@@ -132,32 +132,32 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(current, forKey: .current)
+            try? container.encodeIfPresent(current, forKey: .current)
             
             
             
             
-            try? container.encode(hasNext, forKey: .hasNext)
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
             
             
             
             
-            try? container.encode(hasPrevious, forKey: .hasPrevious)
+            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
             
             
             
             
-            try? container.encode(itemTotal, forKey: .itemTotal)
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
             
             
             
             
-            try? container.encode(size, forKey: .size)
+            try? container.encodeIfPresent(size, forKey: .size)
             
             
             
             
-            try? container.encode(type, forKey: .type)
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
         }
@@ -296,32 +296,32 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(current, forKey: .current)
+            try? container.encodeIfPresent(current, forKey: .current)
             
             
             
             
-            try? container.encode(hasNext, forKey: .hasNext)
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
             
             
             
             
-            try? container.encode(hasPrevious, forKey: .hasPrevious)
+            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
             
             
             
             
-            try? container.encode(itemTotal, forKey: .itemTotal)
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
             
             
             
             
-            try? container.encode(size, forKey: .size)
+            try? container.encodeIfPresent(size, forKey: .size)
             
             
             
             
-            try? container.encode(type, forKey: .type)
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
         }

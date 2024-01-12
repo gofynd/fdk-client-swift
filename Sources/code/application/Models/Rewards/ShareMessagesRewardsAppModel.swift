@@ -188,9 +188,7 @@ public extension ApplicationClient.Rewards {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(email, forKey: .email)
-            
             
             
             
@@ -198,9 +196,7 @@ public extension ApplicationClient.Rewards {
             
             
             
-            
             try? container.encodeIfPresent(fallback, forKey: .fallback)
-            
             
             
             
@@ -208,9 +204,7 @@ public extension ApplicationClient.Rewards {
             
             
             
-            
             try? container.encodeIfPresent(messenger, forKey: .messenger)
-            
             
             
             
@@ -218,14 +212,11 @@ public extension ApplicationClient.Rewards {
             
             
             
-            
             try? container.encodeIfPresent(text, forKey: .text)
             
             
             
-            
             try? container.encodeIfPresent(twitter, forKey: .twitter)
-            
             
             
             

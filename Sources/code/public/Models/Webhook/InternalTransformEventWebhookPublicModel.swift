@@ -118,9 +118,7 @@ public extension PublicClient.Webhook {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(traceId, forKey: .traceId)
-            
             
             
             
@@ -128,14 +126,11 @@ public extension PublicClient.Webhook {
             
             
             
-            
             try? container.encodeIfPresent(type, forKey: .type)
             
             
             
-            
             try? container.encodeIfPresent(version, forKey: .version)
-            
             
             
             

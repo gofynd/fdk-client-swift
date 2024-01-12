@@ -152,9 +152,7 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(payment, forKey: .payment)
-            
             
             
             
@@ -162,9 +160,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(industry, forKey: .industry)
-            
             
             
             
@@ -172,14 +168,11 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(images, forKey: .images)
             
             
             
-            
             try? container.encodeIfPresent(slug, forKey: .slug)
-            
             
             
             

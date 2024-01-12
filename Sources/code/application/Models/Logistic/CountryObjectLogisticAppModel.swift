@@ -242,9 +242,7 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -252,9 +250,7 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(displayName, forKey: .displayName)
-            
             
             
             
@@ -262,14 +258,11 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(iso3, forKey: .iso3)
             
             
             
-            
-            try? container.encode(timezones, forKey: .timezones)
-            
+            try? container.encodeIfPresent(timezones, forKey: .timezones)
             
             
             
@@ -277,9 +270,7 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(phoneCode, forKey: .phoneCode)
-            
             
             
             
@@ -287,14 +278,11 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(longitude, forKey: .longitude)
             
             
             
-            
             try? container.encodeIfPresent(currency, forKey: .currency)
-            
             
             
             

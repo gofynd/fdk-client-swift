@@ -154,9 +154,7 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(ios, forKey: .ios)
-            
             
             
             
@@ -165,9 +163,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(projectId?.asBase64, forKey: .projectId)
-            
             
             
             
@@ -179,9 +175,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(applicationId?.asBase64, forKey: .applicationId)
-            
             
             
             

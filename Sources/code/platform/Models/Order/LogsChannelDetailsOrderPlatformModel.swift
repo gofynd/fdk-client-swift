@@ -103,22 +103,22 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(channelId, forKey: .channelId)
+            try? container.encodeIfPresent(channelId, forKey: .channelId)
             
             
             
             
-            try? container.encode(name, forKey: .name)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encode(logo, forKey: .logo)
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             
             
-            try? container.encode(channelShipmentId, forKey: .channelShipmentId)
+            try? container.encodeIfPresent(channelShipmentId, forKey: .channelShipmentId)
             
             
         }
@@ -228,22 +228,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(channelId, forKey: .channelId)
+            try? container.encodeIfPresent(channelId, forKey: .channelId)
             
             
             
             
-            try? container.encode(name, forKey: .name)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encode(logo, forKey: .logo)
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             
             
-            try? container.encode(channelShipmentId, forKey: .channelShipmentId)
+            try? container.encodeIfPresent(channelShipmentId, forKey: .channelShipmentId)
             
             
         }

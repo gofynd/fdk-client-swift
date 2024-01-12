@@ -685,9 +685,7 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(uid, forKey: .uid)
-            
             
             
             
@@ -695,9 +693,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(categoryMap, forKey: .categoryMap)
-            
             
             
             
@@ -705,9 +701,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(ratingCount, forKey: .ratingCount)
-            
             
             
             
@@ -715,9 +709,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(similars, forKey: .similars)
-            
             
             
             
@@ -725,9 +717,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(seo, forKey: .seo)
-            
             
             
             
@@ -735,9 +725,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(hasVariant, forKey: .hasVariant)
-            
             
             
             
@@ -745,9 +733,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(description, forKey: .description)
-            
             
             
             
@@ -755,9 +741,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(medias, forKey: .medias)
-            
             
             
             
@@ -765,9 +749,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(type, forKey: .type)
-            
             
             
             
@@ -775,9 +757,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(customJson, forKey: .customJson)
-            
             
             
             
@@ -785,9 +765,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(name, forKey: .name)
-            
             
             
             
@@ -795,9 +773,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(shortDescription, forKey: .shortDescription)
-            
             
             
             
@@ -805,9 +781,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(attributes, forKey: .attributes)
-            
             
             
             
@@ -815,9 +789,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(tryouts, forKey: .tryouts)
-            
             
             
             
@@ -825,9 +797,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(action, forKey: .action)
-            
             
             
             
@@ -835,9 +805,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(isDependent, forKey: .isDependent)
-            
             
             
             
@@ -845,9 +813,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(highlights, forKey: .highlights)
-            
             
             
             
@@ -855,14 +821,11 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(brand, forKey: .brand)
             
             
             
-            
             try? container.encodeIfPresent(department, forKey: .department)
-            
             
             
             

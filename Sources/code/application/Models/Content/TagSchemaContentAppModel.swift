@@ -206,9 +206,7 @@ public extension ApplicationClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(name, forKey: .name)
-            
             
             
             
@@ -216,9 +214,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(type, forKey: .type)
-            
             
             
             
@@ -226,9 +222,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -236,9 +230,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(attributes, forKey: .attributes)
-            
             
             
             
@@ -246,9 +238,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(pages, forKey: .pages)
-            
             
             
             

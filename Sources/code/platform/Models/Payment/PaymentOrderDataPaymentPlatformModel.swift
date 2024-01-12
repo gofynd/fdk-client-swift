@@ -211,52 +211,52 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(contact, forKey: .contact)
+            try? container.encodeIfPresent(contact, forKey: .contact)
             
             
             
             
-            try? container.encode(aggregator, forKey: .aggregator)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
             
             
             
             
-            try? container.encode(amount, forKey: .amount)
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
             
             
-            try? container.encode(customerId, forKey: .customerId)
+            try? container.encodeIfPresent(customerId, forKey: .customerId)
             
             
             
             
-            try? container.encode(currency, forKey: .currency)
+            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
             
             
-            try? container.encode(email, forKey: .email)
+            try? container.encodeIfPresent(email, forKey: .email)
             
             
             
             
-            try? container.encode(callbackUrl, forKey: .callbackUrl)
+            try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
             
             
             
             
-            try? container.encode(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
             
             
             
             
-            try? container.encode(method, forKey: .method)
+            try? container.encodeIfPresent(method, forKey: .method)
             
             
             
             
-            try? container.encode(merchantOrderId, forKey: .merchantOrderId)
+            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
             
             
         }
@@ -474,52 +474,52 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(contact, forKey: .contact)
+            try? container.encodeIfPresent(contact, forKey: .contact)
             
             
             
             
-            try? container.encode(aggregator, forKey: .aggregator)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
             
             
             
             
-            try? container.encode(amount, forKey: .amount)
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
             
             
-            try? container.encode(customerId, forKey: .customerId)
+            try? container.encodeIfPresent(customerId, forKey: .customerId)
             
             
             
             
-            try? container.encode(currency, forKey: .currency)
+            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
             
             
-            try? container.encode(email, forKey: .email)
+            try? container.encodeIfPresent(email, forKey: .email)
             
             
             
             
-            try? container.encode(callbackUrl, forKey: .callbackUrl)
+            try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
             
             
             
             
-            try? container.encode(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
             
             
             
             
-            try? container.encode(method, forKey: .method)
+            try? container.encodeIfPresent(method, forKey: .method)
             
             
             
             
-            try? container.encode(merchantOrderId, forKey: .merchantOrderId)
+            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
             
             
         }

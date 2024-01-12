@@ -138,14 +138,11 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(personalInfo, forKey: .personalInfo)
             
             
             
-            
-            try? container.encode(mcc, forKey: .mcc)
-            
+            try? container.encodeIfPresent(mcc, forKey: .mcc)
             
             
             
@@ -153,9 +150,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(marketplaceInfo, forKey: .marketplaceInfo)
-            
             
             
             
@@ -163,9 +158,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
-            
             
             
             

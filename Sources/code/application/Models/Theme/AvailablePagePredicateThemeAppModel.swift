@@ -134,9 +134,7 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(screen, forKey: .screen)
-            
             
             
             
@@ -144,9 +142,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(route, forKey: .route)
-            
             
             
             
@@ -154,9 +150,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(platform, forKey: .platform)
-            
             
             
             

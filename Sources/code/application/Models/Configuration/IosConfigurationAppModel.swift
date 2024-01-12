@@ -73,9 +73,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(applicationId?.asBase64, forKey: .applicationId)
-            
             
             
             

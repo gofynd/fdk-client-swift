@@ -242,9 +242,7 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(address, forKey: .address)
-            
             
             
             
@@ -252,9 +250,7 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(address2, forKey: .address2)
-            
             
             
             
@@ -262,9 +258,7 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(landmark, forKey: .landmark)
-            
             
             
             
@@ -272,9 +266,7 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(sector, forKey: .sector)
-            
             
             
             
@@ -282,9 +274,7 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(state, forKey: .state)
-            
             
             
             
@@ -292,9 +282,7 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(phone, forKey: .phone)
-            
             
             
             

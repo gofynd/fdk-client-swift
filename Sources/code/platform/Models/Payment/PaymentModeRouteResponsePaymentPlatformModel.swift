@@ -104,7 +104,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(advancePayment, forKey: .advancePayment)
+            try? container.encodeIfPresent(advancePayment, forKey: .advancePayment)
             
             
         }
@@ -215,7 +215,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(advancePayment, forKey: .advancePayment)
+            try? container.encodeIfPresent(advancePayment, forKey: .advancePayment)
             
             
         }

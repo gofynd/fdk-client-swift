@@ -229,57 +229,57 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
             
             
             
             
-            try? container.encode(amount, forKey: .amount)
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
             
             
-            try? container.encode(timeUnit, forKey: .timeUnit)
+            try? container.encodeIfPresent(timeUnit, forKey: .timeUnit)
             
             
             
             
-            try? container.encode(description, forKey: .description)
+            try? container.encodeIfPresent(description, forKey: .description)
             
             
             
             
-            try? container.encode(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
             
-            try? container.encode(prepaymentType, forKey: .prepaymentType)
+            try? container.encodeIfPresent(prepaymentType, forKey: .prepaymentType)
             
             
             
             
-            try? container.encode(prepaymentValue, forKey: .prepaymentValue)
+            try? container.encodeIfPresent(prepaymentValue, forKey: .prepaymentValue)
             
             
             
             
-            try? container.encode(cancellationType, forKey: .cancellationType)
+            try? container.encodeIfPresent(cancellationType, forKey: .cancellationType)
             
             
             
             
-            try? container.encode(refundTimeLimit, forKey: .refundTimeLimit)
+            try? container.encodeIfPresent(refundTimeLimit, forKey: .refundTimeLimit)
             
             
             
             
-            try? container.encode(allPrepaymentType, forKey: .allPrepaymentType)
+            try? container.encodeIfPresent(allPrepaymentType, forKey: .allPrepaymentType)
             
             
             
             
-            try? container.encode(allowCustomAdvanceAmount, forKey: .allowCustomAdvanceAmount)
+            try? container.encodeIfPresent(allowCustomAdvanceAmount, forKey: .allowCustomAdvanceAmount)
             
             
         }
@@ -515,57 +515,57 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
             
             
             
             
-            try? container.encode(amount, forKey: .amount)
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
             
             
-            try? container.encode(timeUnit, forKey: .timeUnit)
+            try? container.encodeIfPresent(timeUnit, forKey: .timeUnit)
             
             
             
             
-            try? container.encode(description, forKey: .description)
+            try? container.encodeIfPresent(description, forKey: .description)
             
             
             
             
-            try? container.encode(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
             
-            try? container.encode(prepaymentType, forKey: .prepaymentType)
+            try? container.encodeIfPresent(prepaymentType, forKey: .prepaymentType)
             
             
             
             
-            try? container.encode(prepaymentValue, forKey: .prepaymentValue)
+            try? container.encodeIfPresent(prepaymentValue, forKey: .prepaymentValue)
             
             
             
             
-            try? container.encode(cancellationType, forKey: .cancellationType)
+            try? container.encodeIfPresent(cancellationType, forKey: .cancellationType)
             
             
             
             
-            try? container.encode(refundTimeLimit, forKey: .refundTimeLimit)
+            try? container.encodeIfPresent(refundTimeLimit, forKey: .refundTimeLimit)
             
             
             
             
-            try? container.encode(allPrepaymentType, forKey: .allPrepaymentType)
+            try? container.encodeIfPresent(allPrepaymentType, forKey: .allPrepaymentType)
             
             
             
             
-            try? container.encode(allowCustomAdvanceAmount, forKey: .allowCustomAdvanceAmount)
+            try? container.encodeIfPresent(allowCustomAdvanceAmount, forKey: .allowCustomAdvanceAmount)
             
             
         }

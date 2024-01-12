@@ -211,52 +211,52 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(userOid, forKey: .userOid)
+            try? container.encodeIfPresent(userOid, forKey: .userOid)
             
             
             
             
-            try? container.encode(externalCustomerId, forKey: .externalCustomerId)
+            try? container.encodeIfPresent(externalCustomerId, forKey: .externalCustomerId)
             
             
             
             
-            try? container.encode(firstName, forKey: .firstName)
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
             
             
             
             
-            try? container.encode(lastName, forKey: .lastName)
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
             
             
             
             
-            try? container.encode(mobile, forKey: .mobile)
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
             
             
             
             
-            try? container.encode(email, forKey: .email)
+            try? container.encodeIfPresent(email, forKey: .email)
             
             
             
             
-            try? container.encode(isAnonymousUser, forKey: .isAnonymousUser)
+            try? container.encodeIfPresent(isAnonymousUser, forKey: .isAnonymousUser)
             
             
             
             
-            try? container.encode(gender, forKey: .gender)
+            try? container.encodeIfPresent(gender, forKey: .gender)
             
             
             
             
-            try? container.encode(mongoUserId, forKey: .mongoUserId)
+            try? container.encodeIfPresent(mongoUserId, forKey: .mongoUserId)
             
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }
@@ -474,52 +474,52 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(userOid, forKey: .userOid)
+            try? container.encodeIfPresent(userOid, forKey: .userOid)
             
             
             
             
-            try? container.encode(externalCustomerId, forKey: .externalCustomerId)
+            try? container.encodeIfPresent(externalCustomerId, forKey: .externalCustomerId)
             
             
             
             
-            try? container.encode(firstName, forKey: .firstName)
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
             
             
             
             
-            try? container.encode(lastName, forKey: .lastName)
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
             
             
             
             
-            try? container.encode(mobile, forKey: .mobile)
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
             
             
             
             
-            try? container.encode(email, forKey: .email)
+            try? container.encodeIfPresent(email, forKey: .email)
             
             
             
             
-            try? container.encode(isAnonymousUser, forKey: .isAnonymousUser)
+            try? container.encodeIfPresent(isAnonymousUser, forKey: .isAnonymousUser)
             
             
             
             
-            try? container.encode(gender, forKey: .gender)
+            try? container.encodeIfPresent(gender, forKey: .gender)
             
             
             
             
-            try? container.encode(mongoUserId, forKey: .mongoUserId)
+            try? container.encodeIfPresent(mongoUserId, forKey: .mongoUserId)
             
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }

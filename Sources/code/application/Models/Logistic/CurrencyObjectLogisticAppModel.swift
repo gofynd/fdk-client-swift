@@ -80,14 +80,11 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(code, forKey: .code)
             
             
             
-            
             try? container.encodeIfPresent(name, forKey: .name)
-            
             
             
             

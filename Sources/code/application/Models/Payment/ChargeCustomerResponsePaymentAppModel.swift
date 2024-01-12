@@ -117,14 +117,11 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(status, forKey: .status)
             
             
             
-            
-            try? container.encode(cartId, forKey: .cartId)
-            
+            try? container.encodeIfPresent(cartId, forKey: .cartId)
             
             
             
@@ -132,9 +129,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-            
             
             
             
@@ -142,13 +137,11 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(orderId, forKey: .orderId)
             
             
             
-            
-            try? container.encode(deliveryAddressId, forKey: .deliveryAddressId)
+            try? container.encodeIfPresent(deliveryAddressId, forKey: .deliveryAddressId)
             
             
         }

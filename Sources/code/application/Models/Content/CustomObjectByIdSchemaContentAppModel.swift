@@ -134,9 +134,7 @@ public extension ApplicationClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -144,9 +142,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(displayName, forKey: .displayName)
-            
             
             
             
@@ -154,9 +150,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(references, forKey: .references)
-            
             
             
             

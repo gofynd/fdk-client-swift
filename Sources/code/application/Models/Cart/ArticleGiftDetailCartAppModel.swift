@@ -44,7 +44,6 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(articleId, forKey: .articleId)
             
             

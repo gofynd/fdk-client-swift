@@ -134,9 +134,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(meta, forKey: .meta)
-            
             
             
             
@@ -144,9 +142,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(name, forKey: .name)
-            
             
             
             
@@ -154,9 +150,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(code, forKey: .code)
-            
             
             
             

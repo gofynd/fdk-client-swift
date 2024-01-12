@@ -368,9 +368,7 @@ public extension ApplicationClient.PosCart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(comment, forKey: .comment)
-            
             
             
             
@@ -378,9 +376,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(message, forKey: .message)
-            
             
             
             
@@ -388,9 +384,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(couponText, forKey: .couponText)
-            
             
             
             
@@ -398,9 +392,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(cartId, forKey: .cartId)
-            
             
             
             
@@ -408,9 +400,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(isValid, forKey: .isValid)
-            
             
             
             
@@ -418,9 +408,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -428,9 +416,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(gstin, forKey: .gstin)
-            
             
             
             
@@ -438,9 +424,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(error, forKey: .error)
-            
             
             
             
@@ -448,14 +432,11 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(uid, forKey: .uid)
             
             
             
-            
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
-            
             
             
             

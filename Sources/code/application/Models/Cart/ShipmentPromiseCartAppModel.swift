@@ -80,14 +80,11 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(formatted, forKey: .formatted)
             
             
             
-            
             try? container.encodeIfPresent(timestamp, forKey: .timestamp)
-            
             
             
             

@@ -62,13 +62,11 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
-            try? container.encode(min, forKey: .min)
-            
+            try? container.encodeIfPresent(min, forKey: .min)
             
             
             
-            try? container.encode(max, forKey: .max)
+            try? container.encodeIfPresent(max, forKey: .max)
             
             
         }

@@ -147,9 +147,7 @@ public extension PublicClient.Inventory {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(type, forKey: .type)
-            
             
             
             
@@ -157,9 +155,7 @@ public extension PublicClient.Inventory {
             
             
             
-            
             try? container.encodeIfPresent(current, forKey: .current)
-            
             
             
             
@@ -167,14 +163,11 @@ public extension PublicClient.Inventory {
             
             
             
-            
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
             
             
             
-            
             try? container.encodeIfPresent(nextId, forKey: .nextId)
-            
             
             
             

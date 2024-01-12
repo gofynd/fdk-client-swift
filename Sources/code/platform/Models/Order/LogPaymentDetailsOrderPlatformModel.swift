@@ -67,12 +67,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(paymentMode, forKey: .paymentMode)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
             
             
             
             
-            try? container.encode(amountPaid, forKey: .amountPaid)
+            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
             
             
         }
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(paymentMode, forKey: .paymentMode)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
             
             
             
             
-            try? container.encode(amountPaid, forKey: .amountPaid)
+            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
             
             
         }

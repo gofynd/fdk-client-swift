@@ -73,14 +73,11 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
             
             
             
-            
             try? container.encodeIfPresent(orderId, forKey: .orderId)
-            
             
             
             

@@ -117,9 +117,7 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(delights, forKey: .delights)
-            
             
             
             
@@ -127,9 +125,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(details, forKey: .details)
-            
             
             
             
@@ -137,14 +133,11 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(orderId, forKey: .orderId)
             
             
             
-            
             try? container.encodeIfPresent(transferMode, forKey: .transferMode)
-            
             
             
             

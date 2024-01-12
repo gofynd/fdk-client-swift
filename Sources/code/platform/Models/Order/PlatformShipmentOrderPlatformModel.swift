@@ -1104,7 +1104,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(pickedDate, forKey: .pickedDate)
+            try? container.encodeIfPresent(pickedDate, forKey: .pickedDate)
             
             
             
@@ -1119,7 +1119,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(shipmentStatus, forKey: .shipmentStatus)
+            try? container.encodeIfPresent(shipmentStatus, forKey: .shipmentStatus)
             
             
             
@@ -1129,7 +1129,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(deliverySlot, forKey: .deliverySlot)
+            try? container.encodeIfPresent(deliverySlot, forKey: .deliverySlot)
             
             
             
@@ -1144,32 +1144,32 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(enableDpTracking, forKey: .enableDpTracking)
+            try? container.encodeIfPresent(enableDpTracking, forKey: .enableDpTracking)
             
             
             
             
-            try? container.encode(customMessage, forKey: .customMessage)
+            try? container.encodeIfPresent(customMessage, forKey: .customMessage)
             
             
             
             
-            try? container.encode(estimatedSlaTime, forKey: .estimatedSlaTime)
+            try? container.encodeIfPresent(estimatedSlaTime, forKey: .estimatedSlaTime)
             
             
             
             
-            try? container.encode(estimatedSlaTs, forKey: .estimatedSlaTs)
+            try? container.encodeIfPresent(estimatedSlaTs, forKey: .estimatedSlaTs)
             
             
             
             
-            try? container.encode(canUpdateDimension, forKey: .canUpdateDimension)
+            try? container.encodeIfPresent(canUpdateDimension, forKey: .canUpdateDimension)
             
             
             
             
-            try? container.encode(shipmentImages, forKey: .shipmentImages)
+            try? container.encodeIfPresent(shipmentImages, forKey: .shipmentImages)
             
             
             
@@ -1184,12 +1184,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(forwardShipmentId, forKey: .forwardShipmentId)
+            try? container.encodeIfPresent(forwardShipmentId, forKey: .forwardShipmentId)
             
             
             
             
-            try? container.encode(fulfilmentPriority, forKey: .fulfilmentPriority)
+            try? container.encodeIfPresent(fulfilmentPriority, forKey: .fulfilmentPriority)
             
             
             
@@ -1199,12 +1199,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(customMeta, forKey: .customMeta)
+            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
             
             
             
             
-            try? container.encode(shipmentQuantity, forKey: .shipmentQuantity)
+            try? container.encodeIfPresent(shipmentQuantity, forKey: .shipmentQuantity)
             
             
             
@@ -1219,17 +1219,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(lockStatus, forKey: .lockStatus)
+            try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
             
             
             
             
-            try? container.encode(platformLogo, forKey: .platformLogo)
+            try? container.encodeIfPresent(platformLogo, forKey: .platformLogo)
             
             
             
             
-            try? container.encode(userAgent, forKey: .userAgent)
+            try? container.encodeIfPresent(userAgent, forKey: .userAgent)
             
             
             
@@ -1239,17 +1239,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(invoiceId, forKey: .invoiceId)
+            try? container.encodeIfPresent(invoiceId, forKey: .invoiceId)
             
             
             
             
-            try? container.encode(paymentMethods, forKey: .paymentMethods)
+            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
             
             
             
             
-            try? container.encode(coupon, forKey: .coupon)
+            try? container.encodeIfPresent(coupon, forKey: .coupon)
             
             
             
@@ -1259,7 +1259,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(priorityText, forKey: .priorityText)
+            try? container.encodeIfPresent(priorityText, forKey: .priorityText)
             
             
             
@@ -1269,7 +1269,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(isDpAssignEnabled, forKey: .isDpAssignEnabled)
+            try? container.encodeIfPresent(isDpAssignEnabled, forKey: .isDpAssignEnabled)
             
             
             
@@ -1279,12 +1279,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(dpAssignment, forKey: .dpAssignment)
+            try? container.encodeIfPresent(dpAssignment, forKey: .dpAssignment)
             
             
             
             
-            try? container.encode(totalItems, forKey: .totalItems)
+            try? container.encodeIfPresent(totalItems, forKey: .totalItems)
             
             
             
@@ -1304,17 +1304,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(paymentMode, forKey: .paymentMode)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
             
             
             
             
-            try? container.encode(packagingType, forKey: .packagingType)
+            try? container.encodeIfPresent(packagingType, forKey: .packagingType)
             
             
             
             
-            try? container.encode(journeyType, forKey: .journeyType)
+            try? container.encodeIfPresent(journeyType, forKey: .journeyType)
             
             
             
@@ -1324,7 +1324,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(vertical, forKey: .vertical)
+            try? container.encodeIfPresent(vertical, forKey: .vertical)
             
             
             
@@ -1339,7 +1339,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(operationalStatus, forKey: .operationalStatus)
+            try? container.encodeIfPresent(operationalStatus, forKey: .operationalStatus)
             
             
             
@@ -1349,17 +1349,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(totalBags, forKey: .totalBags)
+            try? container.encodeIfPresent(totalBags, forKey: .totalBags)
             
             
             
             
-            try? container.encode(shipmentCreatedAt, forKey: .shipmentCreatedAt)
+            try? container.encodeIfPresent(shipmentCreatedAt, forKey: .shipmentCreatedAt)
             
             
             
             
-            try? container.encode(shipmentCreatedTs, forKey: .shipmentCreatedTs)
+            try? container.encodeIfPresent(shipmentCreatedTs, forKey: .shipmentCreatedTs)
             
             
             
@@ -1374,12 +1374,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(previousShipmentId, forKey: .previousShipmentId)
+            try? container.encodeIfPresent(previousShipmentId, forKey: .previousShipmentId)
             
             
             
             
-            try? container.encode(shipmentUpdateTime, forKey: .shipmentUpdateTime)
+            try? container.encodeIfPresent(shipmentUpdateTime, forKey: .shipmentUpdateTime)
             
             
             
@@ -1389,17 +1389,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(creditNoteId, forKey: .creditNoteId)
+            try? container.encodeIfPresent(creditNoteId, forKey: .creditNoteId)
             
             
             
             
-            try? container.encode(isSelfShip, forKey: .isSelfShip)
+            try? container.encodeIfPresent(isSelfShip, forKey: .isSelfShip)
             
             
             
             
-            try? container.encode(modeOfPayment, forKey: .modeOfPayment)
+            try? container.encodeIfPresent(modeOfPayment, forKey: .modeOfPayment)
             
             
         }
@@ -2510,7 +2510,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(pickedDate, forKey: .pickedDate)
+            try? container.encodeIfPresent(pickedDate, forKey: .pickedDate)
             
             
             
@@ -2525,7 +2525,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(shipmentStatus, forKey: .shipmentStatus)
+            try? container.encodeIfPresent(shipmentStatus, forKey: .shipmentStatus)
             
             
             
@@ -2535,7 +2535,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(deliverySlot, forKey: .deliverySlot)
+            try? container.encodeIfPresent(deliverySlot, forKey: .deliverySlot)
             
             
             
@@ -2550,32 +2550,32 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(enableDpTracking, forKey: .enableDpTracking)
+            try? container.encodeIfPresent(enableDpTracking, forKey: .enableDpTracking)
             
             
             
             
-            try? container.encode(customMessage, forKey: .customMessage)
+            try? container.encodeIfPresent(customMessage, forKey: .customMessage)
             
             
             
             
-            try? container.encode(estimatedSlaTime, forKey: .estimatedSlaTime)
+            try? container.encodeIfPresent(estimatedSlaTime, forKey: .estimatedSlaTime)
             
             
             
             
-            try? container.encode(estimatedSlaTs, forKey: .estimatedSlaTs)
+            try? container.encodeIfPresent(estimatedSlaTs, forKey: .estimatedSlaTs)
             
             
             
             
-            try? container.encode(canUpdateDimension, forKey: .canUpdateDimension)
+            try? container.encodeIfPresent(canUpdateDimension, forKey: .canUpdateDimension)
             
             
             
             
-            try? container.encode(shipmentImages, forKey: .shipmentImages)
+            try? container.encodeIfPresent(shipmentImages, forKey: .shipmentImages)
             
             
             
@@ -2590,12 +2590,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(forwardShipmentId, forKey: .forwardShipmentId)
+            try? container.encodeIfPresent(forwardShipmentId, forKey: .forwardShipmentId)
             
             
             
             
-            try? container.encode(fulfilmentPriority, forKey: .fulfilmentPriority)
+            try? container.encodeIfPresent(fulfilmentPriority, forKey: .fulfilmentPriority)
             
             
             
@@ -2605,12 +2605,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(customMeta, forKey: .customMeta)
+            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
             
             
             
             
-            try? container.encode(shipmentQuantity, forKey: .shipmentQuantity)
+            try? container.encodeIfPresent(shipmentQuantity, forKey: .shipmentQuantity)
             
             
             
@@ -2625,17 +2625,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(lockStatus, forKey: .lockStatus)
+            try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
             
             
             
             
-            try? container.encode(platformLogo, forKey: .platformLogo)
+            try? container.encodeIfPresent(platformLogo, forKey: .platformLogo)
             
             
             
             
-            try? container.encode(userAgent, forKey: .userAgent)
+            try? container.encodeIfPresent(userAgent, forKey: .userAgent)
             
             
             
@@ -2645,17 +2645,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(invoiceId, forKey: .invoiceId)
+            try? container.encodeIfPresent(invoiceId, forKey: .invoiceId)
             
             
             
             
-            try? container.encode(paymentMethods, forKey: .paymentMethods)
+            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
             
             
             
             
-            try? container.encode(coupon, forKey: .coupon)
+            try? container.encodeIfPresent(coupon, forKey: .coupon)
             
             
             
@@ -2665,7 +2665,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(priorityText, forKey: .priorityText)
+            try? container.encodeIfPresent(priorityText, forKey: .priorityText)
             
             
             
@@ -2675,7 +2675,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(isDpAssignEnabled, forKey: .isDpAssignEnabled)
+            try? container.encodeIfPresent(isDpAssignEnabled, forKey: .isDpAssignEnabled)
             
             
             
@@ -2685,12 +2685,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(dpAssignment, forKey: .dpAssignment)
+            try? container.encodeIfPresent(dpAssignment, forKey: .dpAssignment)
             
             
             
             
-            try? container.encode(totalItems, forKey: .totalItems)
+            try? container.encodeIfPresent(totalItems, forKey: .totalItems)
             
             
             
@@ -2710,17 +2710,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(paymentMode, forKey: .paymentMode)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
             
             
             
             
-            try? container.encode(packagingType, forKey: .packagingType)
+            try? container.encodeIfPresent(packagingType, forKey: .packagingType)
             
             
             
             
-            try? container.encode(journeyType, forKey: .journeyType)
+            try? container.encodeIfPresent(journeyType, forKey: .journeyType)
             
             
             
@@ -2730,7 +2730,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(vertical, forKey: .vertical)
+            try? container.encodeIfPresent(vertical, forKey: .vertical)
             
             
             
@@ -2745,7 +2745,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(operationalStatus, forKey: .operationalStatus)
+            try? container.encodeIfPresent(operationalStatus, forKey: .operationalStatus)
             
             
             
@@ -2755,17 +2755,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(totalBags, forKey: .totalBags)
+            try? container.encodeIfPresent(totalBags, forKey: .totalBags)
             
             
             
             
-            try? container.encode(shipmentCreatedAt, forKey: .shipmentCreatedAt)
+            try? container.encodeIfPresent(shipmentCreatedAt, forKey: .shipmentCreatedAt)
             
             
             
             
-            try? container.encode(shipmentCreatedTs, forKey: .shipmentCreatedTs)
+            try? container.encodeIfPresent(shipmentCreatedTs, forKey: .shipmentCreatedTs)
             
             
             
@@ -2780,12 +2780,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(previousShipmentId, forKey: .previousShipmentId)
+            try? container.encodeIfPresent(previousShipmentId, forKey: .previousShipmentId)
             
             
             
             
-            try? container.encode(shipmentUpdateTime, forKey: .shipmentUpdateTime)
+            try? container.encodeIfPresent(shipmentUpdateTime, forKey: .shipmentUpdateTime)
             
             
             
@@ -2795,17 +2795,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(creditNoteId, forKey: .creditNoteId)
+            try? container.encodeIfPresent(creditNoteId, forKey: .creditNoteId)
             
             
             
             
-            try? container.encode(isSelfShip, forKey: .isSelfShip)
+            try? container.encodeIfPresent(isSelfShip, forKey: .isSelfShip)
             
             
             
             
-            try? container.encode(modeOfPayment, forKey: .modeOfPayment)
+            try? container.encodeIfPresent(modeOfPayment, forKey: .modeOfPayment)
             
             
         }

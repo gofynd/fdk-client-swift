@@ -77,19 +77,15 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
             
             
             
-            
-            try? container.encode(pollingTimeout, forKey: .pollingTimeout)
-            
+            try? container.encodeIfPresent(pollingTimeout, forKey: .pollingTimeout)
             
             
             
             try? container.encodeIfPresent(success, forKey: .success)
-            
             
             
             

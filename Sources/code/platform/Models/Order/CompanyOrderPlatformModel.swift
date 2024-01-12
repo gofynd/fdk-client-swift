@@ -211,52 +211,52 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(panNo, forKey: .panNo)
+            try? container.encodeIfPresent(panNo, forKey: .panNo)
             
             
             
             
-            try? container.encode(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
             
             
             
             
-            try? container.encode(id, forKey: .id)
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
             
-            try? container.encode(companyName, forKey: .companyName)
+            try? container.encodeIfPresent(companyName, forKey: .companyName)
             
             
             
             
-            try? container.encode(gstNumber, forKey: .gstNumber)
+            try? container.encodeIfPresent(gstNumber, forKey: .gstNumber)
             
             
             
             
-            try? container.encode(companyType, forKey: .companyType)
+            try? container.encodeIfPresent(companyType, forKey: .companyType)
             
             
             
             
-            try? container.encode(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
             
-            try? container.encode(businessType, forKey: .businessType)
+            try? container.encodeIfPresent(businessType, forKey: .businessType)
             
             
             
             
-            try? container.encode(agreementStartDate, forKey: .agreementStartDate)
+            try? container.encodeIfPresent(agreementStartDate, forKey: .agreementStartDate)
             
             
         }
@@ -474,52 +474,52 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(panNo, forKey: .panNo)
+            try? container.encodeIfPresent(panNo, forKey: .panNo)
             
             
             
             
-            try? container.encode(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
             
             
             
             
-            try? container.encode(id, forKey: .id)
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
             
-            try? container.encode(companyName, forKey: .companyName)
+            try? container.encodeIfPresent(companyName, forKey: .companyName)
             
             
             
             
-            try? container.encode(gstNumber, forKey: .gstNumber)
+            try? container.encodeIfPresent(gstNumber, forKey: .gstNumber)
             
             
             
             
-            try? container.encode(companyType, forKey: .companyType)
+            try? container.encodeIfPresent(companyType, forKey: .companyType)
             
             
             
             
-            try? container.encode(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
             
-            try? container.encode(businessType, forKey: .businessType)
+            try? container.encodeIfPresent(businessType, forKey: .businessType)
             
             
             
             
-            try? container.encode(agreementStartDate, forKey: .agreementStartDate)
+            try? container.encodeIfPresent(agreementStartDate, forKey: .agreementStartDate)
             
             
         }

@@ -350,9 +350,7 @@ public extension ApplicationClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -360,9 +358,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(key, forKey: .key)
-            
             
             
             
@@ -370,9 +366,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(creator, forKey: .creator)
-            
             
             
             
@@ -380,9 +374,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(resourceId, forKey: .resourceId)
-            
             
             
             
@@ -390,9 +382,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(multiValue, forKey: .multiValue)
-            
             
             
             
@@ -400,9 +390,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(applicationId, forKey: .applicationId)
-            
             
             
             
@@ -410,9 +398,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(hasInvalidValues, forKey: .hasInvalidValues)
-            
             
             
             
@@ -420,9 +406,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-            
             
             
             
@@ -430,9 +414,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
             
             
             

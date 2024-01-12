@@ -422,9 +422,7 @@ public extension ApplicationClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -432,9 +430,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(componentIds, forKey: .componentIds)
-            
             
             
             
@@ -442,9 +438,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(contentPath, forKey: .contentPath)
-            
             
             
             
@@ -452,9 +446,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(dateMeta, forKey: .dateMeta)
-            
             
             
             
@@ -462,9 +454,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(featureImage, forKey: .featureImage)
-            
             
             
             
@@ -472,9 +462,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(schedule, forKey: .schedule)
-            
             
             
             
@@ -482,9 +470,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(orientation, forKey: .orientation)
-            
             
             
             
@@ -492,9 +478,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(published, forKey: .published)
-            
             
             
             
@@ -502,9 +486,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(tags, forKey: .tags)
-            
             
             
             
@@ -512,9 +494,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(type, forKey: .type)
-            
             
             
             
@@ -522,9 +502,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(visibility, forKey: .visibility)
-            
             
             
             

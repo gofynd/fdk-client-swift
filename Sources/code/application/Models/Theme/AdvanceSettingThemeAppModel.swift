@@ -80,14 +80,11 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(overlayPopup, forKey: .overlayPopup)
             
             
             
-            
             try? container.encodeIfPresent(dividerStrokeHighlight, forKey: .dividerStrokeHighlight)
-            
             
             
             

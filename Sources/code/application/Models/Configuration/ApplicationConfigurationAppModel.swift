@@ -548,9 +548,7 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(website, forKey: .website)
-            
             
             
             
@@ -558,9 +556,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(auth, forKey: .auth)
-            
             
             
             
@@ -568,9 +564,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(channelType, forKey: .channelType)
-            
             
             
             
@@ -578,9 +572,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(isInternal, forKey: .isInternal)
-            
             
             
             
@@ -588,9 +580,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -598,9 +588,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(owner, forKey: .owner)
-            
             
             
             
@@ -608,9 +596,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(token, forKey: .token)
-            
             
             
             
@@ -618,9 +604,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(meta, forKey: .meta)
-            
             
             
             
@@ -628,9 +612,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
-            
             
             
             
@@ -638,9 +620,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(banner, forKey: .banner)
-            
             
             
             
@@ -648,9 +628,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(favicon, forKey: .favicon)
-            
             
             
             
@@ -658,9 +636,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(appType, forKey: .appType)
-            
             
             
             
@@ -668,9 +644,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(domain, forKey: .domain)
-            
             
             
             
@@ -678,14 +652,11 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(mode, forKey: .mode)
             
             
             
-            
             try? container.encodeIfPresent(status, forKey: .status)
-            
             
             
             

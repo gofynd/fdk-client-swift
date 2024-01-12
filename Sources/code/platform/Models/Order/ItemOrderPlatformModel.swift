@@ -422,22 +422,22 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(webstoreProductUrl, forKey: .webstoreProductUrl)
+            try? container.encodeIfPresent(webstoreProductUrl, forKey: .webstoreProductUrl)
             
             
             
             
-            try? container.encode(l3Category, forKey: .l3Category)
+            try? container.encodeIfPresent(l3Category, forKey: .l3Category)
             
             
             
             
-            try? container.encode(l3CategoryName, forKey: .l3CategoryName)
+            try? container.encodeIfPresent(l3CategoryName, forKey: .l3CategoryName)
             
             
             
             
-            try? container.encode(lastUpdatedAt, forKey: .lastUpdatedAt)
+            try? container.encodeIfPresent(lastUpdatedAt, forKey: .lastUpdatedAt)
             
             
             
@@ -447,7 +447,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(l2Category, forKey: .l2Category)
+            try? container.encodeIfPresent(l2Category, forKey: .l2Category)
             
             
             
@@ -462,12 +462,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
             
-            try? container.encode(l1CategoryId, forKey: .l1CategoryId)
+            try? container.encodeIfPresent(l1CategoryId, forKey: .l1CategoryId)
             
             
             
@@ -477,22 +477,22 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(l1Category, forKey: .l1Category)
+            try? container.encodeIfPresent(l1Category, forKey: .l1Category)
             
             
             
             
-            try? container.encode(gender, forKey: .gender)
+            try? container.encodeIfPresent(gender, forKey: .gender)
             
             
             
             
-            try? container.encode(canCancel, forKey: .canCancel)
+            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
             
             
             
             
-            try? container.encode(canReturn, forKey: .canReturn)
+            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
             
             
             
@@ -502,27 +502,27 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(branchUrl, forKey: .branchUrl)
+            try? container.encodeIfPresent(branchUrl, forKey: .branchUrl)
             
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
             
-            try? container.encode(color, forKey: .color)
+            try? container.encodeIfPresent(color, forKey: .color)
             
             
             
             
-            try? container.encode(departmentId, forKey: .departmentId)
+            try? container.encodeIfPresent(departmentId, forKey: .departmentId)
             
             
             
             
-            try? container.encode(l2CategoryId, forKey: .l2CategoryId)
+            try? container.encodeIfPresent(l2CategoryId, forKey: .l2CategoryId)
             
             
         }
@@ -951,22 +951,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(webstoreProductUrl, forKey: .webstoreProductUrl)
+            try? container.encodeIfPresent(webstoreProductUrl, forKey: .webstoreProductUrl)
             
             
             
             
-            try? container.encode(l3Category, forKey: .l3Category)
+            try? container.encodeIfPresent(l3Category, forKey: .l3Category)
             
             
             
             
-            try? container.encode(l3CategoryName, forKey: .l3CategoryName)
+            try? container.encodeIfPresent(l3CategoryName, forKey: .l3CategoryName)
             
             
             
             
-            try? container.encode(lastUpdatedAt, forKey: .lastUpdatedAt)
+            try? container.encodeIfPresent(lastUpdatedAt, forKey: .lastUpdatedAt)
             
             
             
@@ -976,7 +976,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(l2Category, forKey: .l2Category)
+            try? container.encodeIfPresent(l2Category, forKey: .l2Category)
             
             
             
@@ -991,12 +991,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
             
-            try? container.encode(l1CategoryId, forKey: .l1CategoryId)
+            try? container.encodeIfPresent(l1CategoryId, forKey: .l1CategoryId)
             
             
             
@@ -1006,22 +1006,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(l1Category, forKey: .l1Category)
+            try? container.encodeIfPresent(l1Category, forKey: .l1Category)
             
             
             
             
-            try? container.encode(gender, forKey: .gender)
+            try? container.encodeIfPresent(gender, forKey: .gender)
             
             
             
             
-            try? container.encode(canCancel, forKey: .canCancel)
+            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
             
             
             
             
-            try? container.encode(canReturn, forKey: .canReturn)
+            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
             
             
             
@@ -1031,27 +1031,27 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(branchUrl, forKey: .branchUrl)
+            try? container.encodeIfPresent(branchUrl, forKey: .branchUrl)
             
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
             
-            try? container.encode(color, forKey: .color)
+            try? container.encodeIfPresent(color, forKey: .color)
             
             
             
             
-            try? container.encode(departmentId, forKey: .departmentId)
+            try? container.encodeIfPresent(departmentId, forKey: .departmentId)
             
             
             
             
-            try? container.encode(l2CategoryId, forKey: .l2CategoryId)
+            try? container.encodeIfPresent(l2CategoryId, forKey: .l2CategoryId)
             
             
         }

@@ -228,7 +228,7 @@ public extension PlatformClient.Webhook {
             
             
             
-            try? container.encode(updatedOn, forKey: .updatedOn)
+            try? container.encodeIfPresent(updatedOn, forKey: .updatedOn)
             
             
             

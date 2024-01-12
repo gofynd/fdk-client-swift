@@ -157,27 +157,27 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(name, forKey: .name)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encode(displayPriority, forKey: .displayPriority)
+            try? container.encodeIfPresent(displayPriority, forKey: .displayPriority)
             
             
             
             
-            try? container.encode(paymentModeId, forKey: .paymentModeId)
+            try? container.encodeIfPresent(paymentModeId, forKey: .paymentModeId)
             
             
             
             
-            try? container.encode(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
             
-            try? container.encode(list, forKey: .list)
+            try? container.encodeIfPresent(list, forKey: .list)
             
             
             
@@ -351,27 +351,27 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(name, forKey: .name)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encode(displayPriority, forKey: .displayPriority)
+            try? container.encodeIfPresent(displayPriority, forKey: .displayPriority)
             
             
             
             
-            try? container.encode(paymentModeId, forKey: .paymentModeId)
+            try? container.encodeIfPresent(paymentModeId, forKey: .paymentModeId)
             
             
             
             
-            try? container.encode(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
             
-            try? container.encode(list, forKey: .list)
+            try? container.encodeIfPresent(list, forKey: .list)
             
             
             

@@ -152,9 +152,7 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(title, forKey: .title)
-            
             
             
             
@@ -162,9 +160,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(canonicalUrl, forKey: .canonicalUrl)
-            
             
             
             
@@ -172,14 +168,11 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(sitemap, forKey: .sitemap)
             
             
             
-            
             try? container.encodeIfPresent(breadcrumb, forKey: .breadcrumb)
-            
             
             
             

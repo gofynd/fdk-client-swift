@@ -59,14 +59,11 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(checkoutForm, forKey: .checkoutForm)
             
             
             
-            
             try? container.encodeIfPresent(storeOsForm, forKey: .storeOsForm)
-            
             
             
             

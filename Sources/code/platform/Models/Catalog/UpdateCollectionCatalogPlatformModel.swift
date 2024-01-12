@@ -505,7 +505,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encode(modifiedBy, forKey: .modifiedBy)
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
             
             
             
@@ -1067,7 +1067,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encode(modifiedBy, forKey: .modifiedBy)
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
             
             
             

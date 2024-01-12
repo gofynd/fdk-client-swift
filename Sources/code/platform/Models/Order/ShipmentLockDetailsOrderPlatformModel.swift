@@ -85,17 +85,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(lockStatus, forKey: .lockStatus)
+            try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
             
             
             
             
-            try? container.encode(lockMessage, forKey: .lockMessage)
+            try? container.encodeIfPresent(lockMessage, forKey: .lockMessage)
             
             
             
             
-            try? container.encode(actionToStatus, forKey: .actionToStatus)
+            try? container.encodeIfPresent(actionToStatus, forKey: .actionToStatus)
             
             
         }
@@ -187,17 +187,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(lockStatus, forKey: .lockStatus)
+            try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
             
             
             
             
-            try? container.encode(lockMessage, forKey: .lockMessage)
+            try? container.encodeIfPresent(lockMessage, forKey: .lockMessage)
             
             
             
             
-            try? container.encode(actionToStatus, forKey: .actionToStatus)
+            try? container.encodeIfPresent(actionToStatus, forKey: .actionToStatus)
             
             
         }

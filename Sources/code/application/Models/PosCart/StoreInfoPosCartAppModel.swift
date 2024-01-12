@@ -80,14 +80,11 @@ public extension ApplicationClient.PosCart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(uid, forKey: .uid)
             
             
             
-            
             try? container.encodeIfPresent(storeCode, forKey: .storeCode)
-            
             
             
             

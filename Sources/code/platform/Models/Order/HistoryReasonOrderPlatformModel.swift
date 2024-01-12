@@ -139,32 +139,32 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(text, forKey: .text)
+            try? container.encodeIfPresent(text, forKey: .text)
             
             
             
             
-            try? container.encode(category, forKey: .category)
+            try? container.encodeIfPresent(category, forKey: .category)
             
             
             
             
-            try? container.encode(state, forKey: .state)
+            try? container.encodeIfPresent(state, forKey: .state)
             
             
             
             
-            try? container.encode(dislayName, forKey: .dislayName)
+            try? container.encodeIfPresent(dislayName, forKey: .dislayName)
             
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
             
-            try? container.encode(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
             
             
         }
@@ -310,32 +310,32 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(text, forKey: .text)
+            try? container.encodeIfPresent(text, forKey: .text)
             
             
             
             
-            try? container.encode(category, forKey: .category)
+            try? container.encodeIfPresent(category, forKey: .category)
             
             
             
             
-            try? container.encode(state, forKey: .state)
+            try? container.encodeIfPresent(state, forKey: .state)
             
             
             
             
-            try? container.encode(dislayName, forKey: .dislayName)
+            try? container.encodeIfPresent(dislayName, forKey: .dislayName)
             
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
             
-            try? container.encode(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
             
             
         }

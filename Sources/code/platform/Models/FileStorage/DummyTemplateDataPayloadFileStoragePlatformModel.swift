@@ -871,7 +871,7 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encode(creditNoteId, forKey: .creditNoteId)
+            try? container.encodeIfPresent(creditNoteId, forKey: .creditNoteId)
             
             
             
@@ -1939,7 +1939,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encode(creditNoteId, forKey: .creditNoteId)
+            try? container.encodeIfPresent(creditNoteId, forKey: .creditNoteId)
             
             
             

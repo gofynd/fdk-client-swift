@@ -502,7 +502,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(parentPromoBags, forKey: .parentPromoBags)
+            try? container.encodeIfPresent(parentPromoBags, forKey: .parentPromoBags)
             
             
             
@@ -517,7 +517,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(sellerIdentifier, forKey: .sellerIdentifier)
+            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
             
             
             
@@ -537,7 +537,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(groupId, forKey: .groupId)
+            try? container.encodeIfPresent(groupId, forKey: .groupId)
             
             
             
@@ -557,32 +557,32 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
             
             
             
             
-            try? container.encode(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
             
             
             
             
-            try? container.encode(canReturn, forKey: .canReturn)
+            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
             
             
             
             
-            try? container.encode(canCancel, forKey: .canCancel)
+            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
             
             
             
             
-            try? container.encode(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
             
-            try? container.encode(lineNumber, forKey: .lineNumber)
+            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
             
             
             
@@ -612,12 +612,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(entityType, forKey: .entityType)
+            try? container.encodeIfPresent(entityType, forKey: .entityType)
             
             
             
             
-            try? container.encode(isParent, forKey: .isParent)
+            try? container.encodeIfPresent(isParent, forKey: .isParent)
             
             
         }
@@ -1126,7 +1126,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(parentPromoBags, forKey: .parentPromoBags)
+            try? container.encodeIfPresent(parentPromoBags, forKey: .parentPromoBags)
             
             
             
@@ -1141,7 +1141,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(sellerIdentifier, forKey: .sellerIdentifier)
+            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
             
             
             
@@ -1161,7 +1161,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(groupId, forKey: .groupId)
+            try? container.encodeIfPresent(groupId, forKey: .groupId)
             
             
             
@@ -1181,32 +1181,32 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
             
             
             
             
-            try? container.encode(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
             
             
             
             
-            try? container.encode(canReturn, forKey: .canReturn)
+            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
             
             
             
             
-            try? container.encode(canCancel, forKey: .canCancel)
+            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
             
             
             
             
-            try? container.encode(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
             
-            try? container.encode(lineNumber, forKey: .lineNumber)
+            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
             
             
             
@@ -1236,12 +1236,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(entityType, forKey: .entityType)
+            try? container.encodeIfPresent(entityType, forKey: .entityType)
             
             
             
             
-            try? container.encode(isParent, forKey: .isParent)
+            try? container.encodeIfPresent(isParent, forKey: .isParent)
             
             
         }

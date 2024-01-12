@@ -197,9 +197,7 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
-            try? container.encode(razorpayPaymentId, forKey: .razorpayPaymentId)
-            
+            try? container.encodeIfPresent(razorpayPaymentId, forKey: .razorpayPaymentId)
             
             
             
@@ -207,9 +205,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            try? container.encode(deviceId, forKey: .deviceId)
-            
+            try? container.encodeIfPresent(deviceId, forKey: .deviceId)
             
             
             
@@ -217,9 +213,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(customerId, forKey: .customerId)
-            
             
             
             
@@ -227,14 +221,11 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
             
             
             
-            
-            try? container.encode(vpa, forKey: .vpa)
-            
+            try? container.encodeIfPresent(vpa, forKey: .vpa)
             
             
             
@@ -242,19 +233,15 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(currency, forKey: .currency)
             
             
             
-            
-            try? container.encode(timeout, forKey: .timeout)
-            
+            try? container.encodeIfPresent(timeout, forKey: .timeout)
             
             
             
-            try? container.encode(amount, forKey: .amount)
-            
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
             

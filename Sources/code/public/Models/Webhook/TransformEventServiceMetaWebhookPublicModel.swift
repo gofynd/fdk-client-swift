@@ -46,7 +46,6 @@ public extension PublicClient.Webhook {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(name, forKey: .name)
             
             

@@ -13,7 +13,7 @@ public class PlatformAPIClient {
             if let token = token {
                 var finalHeaders = headers
                 finalHeaders.append((key: "Authorization", value: "Bearer " + token.accessToken))
-                finalHeaders.append((key: "x-fp-sdk-version", value: "1.4.0-beta.2"))
+                finalHeaders.append((key: "x-fp-sdk-version", value: "1.4.0-beta.3"))
                 finalHeaders.append(contentsOf: config.extraHeaders)
                 if let userAgent = config.userAgent {
                     finalHeaders.append((key: "User-Agent", value: userAgent))
@@ -23,6 +23,9 @@ public class PlatformAPIClient {
                 }
                 if let currency = config.currency {
                     finalHeaders.append((key: "x-currency-code",value: currency))
+                }
+                if let locationDetails = config.locationDetails, let dict =  locationDetails.dictionary, dict.keys.count > 0{
+                    finalHeaders.append((key: "x-location-detail", value: dict.minifiedJson))
                 }
                 //CustomServerTrustManager.enableSSLPinning = config.enableSSLPinning
                 //CustomServerTrustManager.host.insert(URL(string: url)?.host ?? "")

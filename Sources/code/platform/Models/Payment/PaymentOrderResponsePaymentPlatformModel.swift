@@ -146,12 +146,12 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(paymentConfirmUrl, forKey: .paymentConfirmUrl)
+            try? container.encodeIfPresent(paymentConfirmUrl, forKey: .paymentConfirmUrl)
             
             
             
             
-            try? container.encode(callbackUrl, forKey: .callbackUrl)
+            try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
             
             
             
@@ -161,7 +161,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
             
             
             
@@ -319,12 +319,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(paymentConfirmUrl, forKey: .paymentConfirmUrl)
+            try? container.encodeIfPresent(paymentConfirmUrl, forKey: .paymentConfirmUrl)
             
             
             
             
-            try? container.encode(callbackUrl, forKey: .callbackUrl)
+            try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
             
             
             
@@ -334,7 +334,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
             
             
             

@@ -404,9 +404,7 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(companyInfo, forKey: .companyInfo)
-            
             
             
             
@@ -414,9 +412,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -424,9 +420,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(website, forKey: .website)
-            
             
             
             
@@ -434,9 +428,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(description, forKey: .description)
-            
             
             
             
@@ -444,9 +436,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(meta, forKey: .meta)
-            
             
             
             
@@ -454,9 +444,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(secret, forKey: .secret)
-            
             
             
             
@@ -464,9 +452,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(banner, forKey: .banner)
-            
             
             
             
@@ -474,9 +460,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
             
             
             
@@ -484,9 +468,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(tokens, forKey: .tokens)
-            
             
             
             
@@ -494,14 +476,11 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(favicon, forKey: .favicon)
             
             
             
-            
             try? container.encodeIfPresent(mobileLogo, forKey: .mobileLogo)
-            
             
             
             

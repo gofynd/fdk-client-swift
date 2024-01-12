@@ -266,7 +266,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(childDetails, forKey: .childDetails)
+            try? container.encodeIfPresent(childDetails, forKey: .childDetails)
             
             
             
@@ -281,7 +281,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(aSet, forKey: .aSet)
+            try? container.encodeIfPresent(aSet, forKey: .aSet)
             
             
             
@@ -291,22 +291,22 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(currency, forKey: .currency)
+            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
             
             
-            try? container.encode(espModified, forKey: .espModified)
+            try? container.encodeIfPresent(espModified, forKey: .espModified)
             
             
             
             
-            try? container.encode(returnConfig, forKey: .returnConfig)
+            try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
             
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
@@ -326,7 +326,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(rawMeta, forKey: .rawMeta)
+            try? container.encodeIfPresent(rawMeta, forKey: .rawMeta)
             
             
             
@@ -336,7 +336,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(isSet, forKey: .isSet)
+            try? container.encodeIfPresent(isSet, forKey: .isSet)
             
             
         }
@@ -609,7 +609,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(childDetails, forKey: .childDetails)
+            try? container.encodeIfPresent(childDetails, forKey: .childDetails)
             
             
             
@@ -624,7 +624,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(aSet, forKey: .aSet)
+            try? container.encodeIfPresent(aSet, forKey: .aSet)
             
             
             
@@ -634,22 +634,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(currency, forKey: .currency)
+            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
             
             
-            try? container.encode(espModified, forKey: .espModified)
+            try? container.encodeIfPresent(espModified, forKey: .espModified)
             
             
             
             
-            try? container.encode(returnConfig, forKey: .returnConfig)
+            try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
             
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
@@ -669,7 +669,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(rawMeta, forKey: .rawMeta)
+            try? container.encodeIfPresent(rawMeta, forKey: .rawMeta)
             
             
             
@@ -679,7 +679,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(isSet, forKey: .isSet)
+            try? container.encodeIfPresent(isSet, forKey: .isSet)
             
             
         }

@@ -59,14 +59,11 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(address, forKey: .address)
             
             
             
-            
             try? container.encodeIfPresent(serviceabilityFields, forKey: .serviceabilityFields)
-            
             
             
             

@@ -454,7 +454,7 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encode(pan, forKey: .pan)
+            try? container.encodeIfPresent(pan, forKey: .pan)
             
             
             
@@ -970,7 +970,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encode(pan, forKey: .pan)
+            try? container.encodeIfPresent(pan, forKey: .pan)
             
             
             

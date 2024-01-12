@@ -80,14 +80,11 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(secureUrl, forKey: .secureUrl)
             
             
             
-            
             try? container.encodeIfPresent(aspectRatio, forKey: .aspectRatio)
-            
             
             
             

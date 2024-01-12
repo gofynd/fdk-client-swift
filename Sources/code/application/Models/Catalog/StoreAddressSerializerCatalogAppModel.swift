@@ -188,9 +188,7 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(latitude, forKey: .latitude)
-            
             
             
             
@@ -198,9 +196,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(country, forKey: .country)
-            
             
             
             
@@ -208,9 +204,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(address1, forKey: .address1)
-            
             
             
             
@@ -218,14 +212,11 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(city, forKey: .city)
             
             
             
-            
             try? container.encodeIfPresent(longitude, forKey: .longitude)
-            
             
             
             

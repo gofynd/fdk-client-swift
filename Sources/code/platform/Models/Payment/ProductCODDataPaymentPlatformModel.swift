@@ -67,7 +67,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(items, forKey: .items)
+            try? container.encodeIfPresent(items, forKey: .items)
             
             
             
@@ -146,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(items, forKey: .items)
+            try? container.encodeIfPresent(items, forKey: .items)
             
             
             

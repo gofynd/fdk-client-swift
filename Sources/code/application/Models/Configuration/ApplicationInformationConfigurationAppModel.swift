@@ -224,9 +224,7 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(address, forKey: .address)
-            
             
             
             
@@ -234,9 +232,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(socialLinks, forKey: .socialLinks)
-            
             
             
             
@@ -244,9 +240,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(copyrightText, forKey: .copyrightText)
-            
             
             
             
@@ -254,9 +248,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(businessHighlights, forKey: .businessHighlights)
-            
             
             
             
@@ -264,14 +256,11 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
             
             
             
-            
             try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
-            
             
             
             

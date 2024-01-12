@@ -116,9 +116,7 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(light, forKey: .light)
-            
             
             
             
@@ -126,14 +124,11 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(medium, forKey: .medium)
             
             
             
-            
             try? container.encodeIfPresent(semiBold, forKey: .semiBold)
-            
             
             
             

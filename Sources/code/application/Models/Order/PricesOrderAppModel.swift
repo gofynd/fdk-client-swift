@@ -422,9 +422,7 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(deliveryCharge, forKey: .deliveryCharge)
-            
             
             
             
@@ -432,9 +430,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
-            
             
             
             
@@ -442,9 +438,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
-            
             
             
             
@@ -452,9 +446,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
-            
             
             
             
@@ -462,9 +454,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(gstTaxPercentage, forKey: .gstTaxPercentage)
-            
             
             
             
@@ -472,9 +462,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
-            
             
             
             
@@ -482,9 +470,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(transferPrice, forKey: .transferPrice)
-            
             
             
             
@@ -492,9 +478,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
-            
             
             
             
@@ -502,9 +486,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(refundCredit, forKey: .refundCredit)
-            
             
             
             
@@ -512,9 +494,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(promotionEffectiveDiscount, forKey: .promotionEffectiveDiscount)
-            
             
             
             
@@ -522,9 +502,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
-            
             
             
             

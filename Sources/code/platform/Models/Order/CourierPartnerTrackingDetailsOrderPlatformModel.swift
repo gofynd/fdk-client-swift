@@ -221,7 +221,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(dpLocation, forKey: .dpLocation)
+            try? container.encodeIfPresent(dpLocation, forKey: .dpLocation)
             
             
             
@@ -241,7 +241,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(estimatedDeliveryDate, forKey: .estimatedDeliveryDate)
+            try? container.encodeIfPresent(estimatedDeliveryDate, forKey: .estimatedDeliveryDate)
             
             
             
@@ -266,12 +266,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(promisedDeliveryDate, forKey: .promisedDeliveryDate)
+            try? container.encodeIfPresent(promisedDeliveryDate, forKey: .promisedDeliveryDate)
             
             
             
             
-            try? container.encode(remark, forKey: .remark)
+            try? container.encodeIfPresent(remark, forKey: .remark)
             
             
             
@@ -504,7 +504,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(dpLocation, forKey: .dpLocation)
+            try? container.encodeIfPresent(dpLocation, forKey: .dpLocation)
             
             
             
@@ -524,7 +524,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(estimatedDeliveryDate, forKey: .estimatedDeliveryDate)
+            try? container.encodeIfPresent(estimatedDeliveryDate, forKey: .estimatedDeliveryDate)
             
             
             
@@ -549,12 +549,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(promisedDeliveryDate, forKey: .promisedDeliveryDate)
+            try? container.encodeIfPresent(promisedDeliveryDate, forKey: .promisedDeliveryDate)
             
             
             
             
-            try? container.encode(remark, forKey: .remark)
+            try? container.encodeIfPresent(remark, forKey: .remark)
             
             
             

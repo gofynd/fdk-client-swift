@@ -100,9 +100,7 @@ public extension PublicClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(configuration, forKey: .configuration)
-            
             
             
             
@@ -110,9 +108,7 @@ public extension PublicClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(type, forKey: .type)
-            
             
             
             

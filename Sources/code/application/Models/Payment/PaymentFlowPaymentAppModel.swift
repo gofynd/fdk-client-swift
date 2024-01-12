@@ -278,9 +278,7 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(bqrRazorpay, forKey: .bqrRazorpay)
-            
             
             
             
@@ -288,9 +286,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(epaylater, forKey: .epaylater)
-            
             
             
             
@@ -298,9 +294,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(juspay, forKey: .juspay)
-            
             
             
             
@@ -308,9 +302,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(simpl, forKey: .simpl)
-            
             
             
             
@@ -318,9 +310,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(mswipe, forKey: .mswipe)
-            
             
             
             
@@ -328,9 +318,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(ccavenue, forKey: .ccavenue)
-            
             
             
             
@@ -338,9 +326,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(jiopay, forKey: .jiopay)
-            
             
             
             

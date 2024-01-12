@@ -138,9 +138,7 @@ public extension ApplicationClient.Lead {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-            
             
             
             
@@ -148,9 +146,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(priority, forKey: .priority)
-            
             
             
             
@@ -158,14 +154,11 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(content, forKey: .content)
             
             
             
-            
             try? container.encodeIfPresent(customJson, forKey: .customJson)
-            
             
             
             

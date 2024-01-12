@@ -314,9 +314,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(couponAmount, forKey: .couponAmount)
-            
             
             
             
@@ -324,9 +322,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(title, forKey: .title)
-            
             
             
             
@@ -334,9 +330,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(subTitle, forKey: .subTitle)
-            
             
             
             
@@ -344,14 +338,11 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(message, forKey: .message)
             
             
             
-            
-            try? container.encode(couponType, forKey: .couponType)
-            
+            try? container.encodeIfPresent(couponType, forKey: .couponType)
             
             
             
@@ -359,9 +350,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(couponCode, forKey: .couponCode)
-            
             
             
             
@@ -369,9 +358,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
-            try? container.encode(description, forKey: .description)
-            
+            try? container.encodeIfPresent(description, forKey: .description)
             
             
             
@@ -379,14 +366,11 @@ public extension ApplicationClient.Cart {
             
             
             
-            
-            try? container.encode(startDate, forKey: .startDate)
-            
+            try? container.encodeIfPresent(startDate, forKey: .startDate)
             
             
             
-            try? container.encode(endDate, forKey: .endDate)
-            
+            try? container.encodeIfPresent(endDate, forKey: .endDate)
             
             
             

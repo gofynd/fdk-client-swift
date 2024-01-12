@@ -368,9 +368,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(price, forKey: .price)
-            
             
             
             
@@ -378,9 +376,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
-            
             
             
             
@@ -388,9 +384,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(customJson, forKey: .customJson)
-            
             
             
             
@@ -398,9 +392,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(size, forKey: .size)
-            
             
             
             
@@ -408,9 +400,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(seller, forKey: .seller)
-            
             
             
             
@@ -418,9 +408,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(parentItemIdentifiers, forKey: .parentItemIdentifiers)
-            
             
             
             
@@ -428,9 +416,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(store, forKey: .store)
-            
             
             
             
@@ -438,9 +424,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(uid, forKey: .uid)
-            
             
             
             
@@ -448,14 +432,11 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(isGiftVisible, forKey: .isGiftVisible)
             
             
             
-            
             try? container.encodeIfPresent(type, forKey: .type)
-            
             
             
             

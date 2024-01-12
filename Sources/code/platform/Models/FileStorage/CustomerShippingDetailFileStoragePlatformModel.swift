@@ -292,7 +292,7 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encode(gstin, forKey: .gstin)
+            try? container.encodeIfPresent(gstin, forKey: .gstin)
             
             
             
@@ -601,7 +601,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encode(gstin, forKey: .gstin)
+            try? container.encodeIfPresent(gstin, forKey: .gstin)
             
             
             

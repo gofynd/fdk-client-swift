@@ -164,7 +164,7 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encode(ewayBillNumber, forKey: .ewayBillNumber)
+            try? container.encodeIfPresent(ewayBillNumber, forKey: .ewayBillNumber)
             
             
         }
@@ -335,7 +335,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encode(ewayBillNumber, forKey: .ewayBillNumber)
+            try? container.encodeIfPresent(ewayBillNumber, forKey: .ewayBillNumber)
             
             
         }

@@ -103,22 +103,22 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(data, forKey: .data)
+            try? container.encodeIfPresent(data, forKey: .data)
             
             
             
             
-            try? container.encode(paymentFlowData, forKey: .paymentFlowData)
+            try? container.encodeIfPresent(paymentFlowData, forKey: .paymentFlowData)
             
             
             
             
-            try? container.encode(paymentFlow, forKey: .paymentFlow)
+            try? container.encodeIfPresent(paymentFlow, forKey: .paymentFlow)
             
             
             
             
-            try? container.encode(apiLink, forKey: .apiLink)
+            try? container.encodeIfPresent(apiLink, forKey: .apiLink)
             
             
         }
@@ -228,22 +228,22 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(data, forKey: .data)
+            try? container.encodeIfPresent(data, forKey: .data)
             
             
             
             
-            try? container.encode(paymentFlowData, forKey: .paymentFlowData)
+            try? container.encodeIfPresent(paymentFlowData, forKey: .paymentFlowData)
             
             
             
             
-            try? container.encode(paymentFlow, forKey: .paymentFlow)
+            try? container.encodeIfPresent(paymentFlow, forKey: .paymentFlow)
             
             
             
             
-            try? container.encode(apiLink, forKey: .apiLink)
+            try? container.encodeIfPresent(apiLink, forKey: .apiLink)
             
             
         }

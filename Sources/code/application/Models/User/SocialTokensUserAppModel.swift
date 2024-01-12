@@ -80,14 +80,11 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(facebook, forKey: .facebook)
             
             
             
-            
             try? container.encodeIfPresent(accountKit, forKey: .accountKit)
-            
             
             
             

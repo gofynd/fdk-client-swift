@@ -366,72 +366,72 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(forward, forKey: .forward)
+            try? container.encodeIfPresent(forward, forKey: .forward)
             
             
             
             
-            try? container.encode(storeId, forKey: .storeId)
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
             
             
             
             
-            try? container.encode(deliveryAwbNumber, forKey: .deliveryAwbNumber)
+            try? container.encodeIfPresent(deliveryAwbNumber, forKey: .deliveryAwbNumber)
             
             
             
             
-            try? container.encode(kafkaSync, forKey: .kafkaSync)
+            try? container.encodeIfPresent(kafkaSync, forKey: .kafkaSync)
             
             
             
             
-            try? container.encode(deliveryPartnerId, forKey: .deliveryPartnerId)
+            try? container.encodeIfPresent(deliveryPartnerId, forKey: .deliveryPartnerId)
             
             
             
             
-            try? container.encode(appDisplayName, forKey: .appDisplayName)
+            try? container.encodeIfPresent(appDisplayName, forKey: .appDisplayName)
             
             
             
             
-            try? container.encode(stateId, forKey: .stateId)
+            try? container.encodeIfPresent(stateId, forKey: .stateId)
             
             
             
             
-            try? container.encode(stateType, forKey: .stateType)
+            try? container.encodeIfPresent(stateType, forKey: .stateType)
             
             
             
             
-            try? container.encode(bshId, forKey: .bshId)
+            try? container.encodeIfPresent(bshId, forKey: .bshId)
             
             
             
             
-            try? container.encode(createdAt, forKey: .createdAt)
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
             
             
             
             
-            try? container.encode(createdTs, forKey: .createdTs)
+            try? container.encodeIfPresent(createdTs, forKey: .createdTs)
             
             
             
             
-            try? container.encode(shipmentId, forKey: .shipmentId)
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
             
             
             
             
-            try? container.encode(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
             
             
-            try? container.encode(updatedTs, forKey: .updatedTs)
+            try? container.encodeIfPresent(updatedTs, forKey: .updatedTs)
             
             
             
@@ -441,12 +441,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(bagId, forKey: .bagId)
+            try? container.encodeIfPresent(bagId, forKey: .bagId)
             
             
             
             
-            try? container.encode(reasons, forKey: .reasons)
+            try? container.encodeIfPresent(reasons, forKey: .reasons)
             
             
             
@@ -456,7 +456,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
         }
@@ -829,72 +829,72 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(forward, forKey: .forward)
+            try? container.encodeIfPresent(forward, forKey: .forward)
             
             
             
             
-            try? container.encode(storeId, forKey: .storeId)
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
             
             
             
             
-            try? container.encode(deliveryAwbNumber, forKey: .deliveryAwbNumber)
+            try? container.encodeIfPresent(deliveryAwbNumber, forKey: .deliveryAwbNumber)
             
             
             
             
-            try? container.encode(kafkaSync, forKey: .kafkaSync)
+            try? container.encodeIfPresent(kafkaSync, forKey: .kafkaSync)
             
             
             
             
-            try? container.encode(deliveryPartnerId, forKey: .deliveryPartnerId)
+            try? container.encodeIfPresent(deliveryPartnerId, forKey: .deliveryPartnerId)
             
             
             
             
-            try? container.encode(appDisplayName, forKey: .appDisplayName)
+            try? container.encodeIfPresent(appDisplayName, forKey: .appDisplayName)
             
             
             
             
-            try? container.encode(stateId, forKey: .stateId)
+            try? container.encodeIfPresent(stateId, forKey: .stateId)
             
             
             
             
-            try? container.encode(stateType, forKey: .stateType)
+            try? container.encodeIfPresent(stateType, forKey: .stateType)
             
             
             
             
-            try? container.encode(bshId, forKey: .bshId)
+            try? container.encodeIfPresent(bshId, forKey: .bshId)
             
             
             
             
-            try? container.encode(createdAt, forKey: .createdAt)
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
             
             
             
             
-            try? container.encode(createdTs, forKey: .createdTs)
+            try? container.encodeIfPresent(createdTs, forKey: .createdTs)
             
             
             
             
-            try? container.encode(shipmentId, forKey: .shipmentId)
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
             
             
             
             
-            try? container.encode(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
             
             
-            try? container.encode(updatedTs, forKey: .updatedTs)
+            try? container.encodeIfPresent(updatedTs, forKey: .updatedTs)
             
             
             
@@ -904,12 +904,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(bagId, forKey: .bagId)
+            try? container.encodeIfPresent(bagId, forKey: .bagId)
             
             
             
             
-            try? container.encode(reasons, forKey: .reasons)
+            try? container.encodeIfPresent(reasons, forKey: .reasons)
             
             
             
@@ -919,7 +919,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
         }

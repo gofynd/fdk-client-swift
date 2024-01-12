@@ -118,9 +118,7 @@ public extension PublicClient.Partner {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(email, forKey: .email)
-            
             
             
             
@@ -128,14 +126,11 @@ public extension PublicClient.Partner {
             
             
             
-            
             try? container.encodeIfPresent(phone, forKey: .phone)
             
             
             
-            
             try? container.encodeIfPresent(privacyPolicyUrl, forKey: .privacyPolicyUrl)
-            
             
             
             

@@ -121,27 +121,27 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(slot, forKey: .slot)
+            try? container.encodeIfPresent(slot, forKey: .slot)
             
             
             
             
-            try? container.encode(upperBound, forKey: .upperBound)
+            try? container.encodeIfPresent(upperBound, forKey: .upperBound)
             
             
             
             
-            try? container.encode(lowerBound, forKey: .lowerBound)
+            try? container.encodeIfPresent(lowerBound, forKey: .lowerBound)
             
             
             
             
-            try? container.encode(date, forKey: .date)
+            try? container.encodeIfPresent(date, forKey: .date)
             
             
             
             
-            try? container.encode(type, forKey: .type)
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
         }
@@ -269,27 +269,27 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(slot, forKey: .slot)
+            try? container.encodeIfPresent(slot, forKey: .slot)
             
             
             
             
-            try? container.encode(upperBound, forKey: .upperBound)
+            try? container.encodeIfPresent(upperBound, forKey: .upperBound)
             
             
             
             
-            try? container.encode(lowerBound, forKey: .lowerBound)
+            try? container.encodeIfPresent(lowerBound, forKey: .lowerBound)
             
             
             
             
-            try? container.encode(date, forKey: .date)
+            try? container.encodeIfPresent(date, forKey: .date)
             
             
             
             
-            try? container.encode(type, forKey: .type)
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
         }

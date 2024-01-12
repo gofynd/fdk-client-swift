@@ -224,9 +224,7 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(uid, forKey: .uid)
-            
             
             
             
@@ -234,9 +232,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(state, forKey: .state)
-            
             
             
             
@@ -244,9 +240,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(pincode, forKey: .pincode)
-            
             
             
             
@@ -254,9 +248,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(address, forKey: .address)
-            
             
             
             
@@ -264,14 +256,11 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(latLong, forKey: .latLong)
             
             
             
-            
             try? container.encodeIfPresent(name, forKey: .name)
-            
             
             
             

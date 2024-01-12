@@ -323,7 +323,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(couponType, forKey: .couponType)
+            try? container.encodeIfPresent(couponType, forKey: .couponType)
             
             
             
@@ -358,17 +358,17 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(description, forKey: .description)
+            try? container.encodeIfPresent(description, forKey: .description)
             
             
             
             
-            try? container.encode(startDate, forKey: .startDate)
+            try? container.encodeIfPresent(startDate, forKey: .startDate)
             
             
             
             
-            try? container.encode(endDate, forKey: .endDate)
+            try? container.encodeIfPresent(endDate, forKey: .endDate)
             
             
             

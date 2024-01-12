@@ -440,9 +440,7 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(pincode, forKey: .pincode)
-            
             
             
             
@@ -450,9 +448,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
-            try? container.encode(latitude, forKey: .latitude)
-            
+            try? container.encodeIfPresent(latitude, forKey: .latitude)
             
             
             
@@ -460,9 +456,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(landmark, forKey: .landmark)
-            
             
             
             
@@ -470,9 +464,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(city, forKey: .city)
-            
             
             
             
@@ -480,14 +472,11 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(addressType, forKey: .addressType)
             
             
             
-            
-            try? container.encode(longitude, forKey: .longitude)
-            
+            try? container.encodeIfPresent(longitude, forKey: .longitude)
             
             
             
@@ -495,9 +484,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(state, forKey: .state)
-            
             
             
             
@@ -505,9 +492,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(address1, forKey: .address1)
-            
             
             
             
@@ -515,9 +500,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(name, forKey: .name)
-            
             
             
             
@@ -525,9 +508,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(addressCategory, forKey: .addressCategory)
-            
             
             
             
@@ -535,9 +516,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(countryPhoneCode, forKey: .countryPhoneCode)
-            
             
             
             
@@ -545,9 +524,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-            
             
             
             

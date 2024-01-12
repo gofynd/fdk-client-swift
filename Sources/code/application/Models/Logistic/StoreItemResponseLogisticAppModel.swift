@@ -170,9 +170,7 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -180,9 +178,7 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(fulfillmentType, forKey: .fulfillmentType)
-            
             
             
             
@@ -190,9 +186,7 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(tags, forKey: .tags)
-            
             
             
             
@@ -200,9 +194,7 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(latitude, forKey: .latitude)
-            
             
             
             

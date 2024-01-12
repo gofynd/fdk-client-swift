@@ -80,14 +80,11 @@ public extension ApplicationClient.Common {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(name, forKey: .name)
             
             
             
-            
             try? container.encodeIfPresent(symbol, forKey: .symbol)
-            
             
             
             

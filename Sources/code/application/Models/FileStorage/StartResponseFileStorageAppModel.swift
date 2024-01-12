@@ -150,9 +150,7 @@ public extension ApplicationClient.FileStorage {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(fileName, forKey: .fileName)
-            
             
             
             
@@ -160,9 +158,7 @@ public extension ApplicationClient.FileStorage {
             
             
             
-            
             try? container.encodeIfPresent(contentType, forKey: .contentType)
-            
             
             
             
@@ -170,9 +166,7 @@ public extension ApplicationClient.FileStorage {
             
             
             
-            
             try? container.encodeIfPresent(namespace, forKey: .namespace)
-            
             
             
             
@@ -180,9 +174,7 @@ public extension ApplicationClient.FileStorage {
             
             
             
-            
             try? container.encodeIfPresent(size, forKey: .size)
-            
             
             
             
@@ -190,9 +182,7 @@ public extension ApplicationClient.FileStorage {
             
             
             
-            
             try? container.encodeIfPresent(cdn, forKey: .cdn)
-            
             
             
             

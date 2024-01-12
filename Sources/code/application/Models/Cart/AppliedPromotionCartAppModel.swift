@@ -242,9 +242,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(promoId, forKey: .promoId)
-            
             
             
             
@@ -252,9 +250,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(offerText, forKey: .offerText)
-            
             
             
             
@@ -262,9 +258,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
-            
             
             
             
@@ -272,9 +266,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(amount, forKey: .amount)
-            
             
             
             
@@ -282,9 +274,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(ownership, forKey: .ownership)
-            
             
             
             
@@ -292,9 +282,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(appliedFreeArticles, forKey: .appliedFreeArticles)
-            
             
             
             

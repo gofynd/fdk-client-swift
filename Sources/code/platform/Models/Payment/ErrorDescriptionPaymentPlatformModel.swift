@@ -175,42 +175,42 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(msg, forKey: .msg)
+            try? container.encodeIfPresent(msg, forKey: .msg)
             
             
             
             
-            try? container.encode(paymentTransactionId, forKey: .paymentTransactionId)
+            try? container.encodeIfPresent(paymentTransactionId, forKey: .paymentTransactionId)
             
             
             
             
-            try? container.encode(invalidId, forKey: .invalidId)
+            try? container.encodeIfPresent(invalidId, forKey: .invalidId)
             
             
             
             
-            try? container.encode(merchantOrderId, forKey: .merchantOrderId)
+            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
             
             
             
             
-            try? container.encode(merchantName, forKey: .merchantName)
+            try? container.encodeIfPresent(merchantName, forKey: .merchantName)
             
             
             
             
-            try? container.encode(amount, forKey: .amount)
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
             
             
-            try? container.encode(expired, forKey: .expired)
+            try? container.encodeIfPresent(expired, forKey: .expired)
             
             
             
             
-            try? container.encode(cancelled, forKey: .cancelled)
+            try? container.encodeIfPresent(cancelled, forKey: .cancelled)
             
             
         }
@@ -392,42 +392,42 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(msg, forKey: .msg)
+            try? container.encodeIfPresent(msg, forKey: .msg)
             
             
             
             
-            try? container.encode(paymentTransactionId, forKey: .paymentTransactionId)
+            try? container.encodeIfPresent(paymentTransactionId, forKey: .paymentTransactionId)
             
             
             
             
-            try? container.encode(invalidId, forKey: .invalidId)
+            try? container.encodeIfPresent(invalidId, forKey: .invalidId)
             
             
             
             
-            try? container.encode(merchantOrderId, forKey: .merchantOrderId)
+            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
             
             
             
             
-            try? container.encode(merchantName, forKey: .merchantName)
+            try? container.encodeIfPresent(merchantName, forKey: .merchantName)
             
             
             
             
-            try? container.encode(amount, forKey: .amount)
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
             
             
-            try? container.encode(expired, forKey: .expired)
+            try? container.encodeIfPresent(expired, forKey: .expired)
             
             
             
             
-            try? container.encode(cancelled, forKey: .cancelled)
+            try? container.encodeIfPresent(cancelled, forKey: .cancelled)
             
             
         }

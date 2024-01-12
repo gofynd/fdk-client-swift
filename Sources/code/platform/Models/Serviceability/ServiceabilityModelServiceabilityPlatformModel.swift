@@ -129,12 +129,12 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encode(pickupCutoff, forKey: .pickupCutoff)
+            try? container.encodeIfPresent(pickupCutoff, forKey: .pickupCutoff)
             
             
             
             
-            try? container.encode(routeCode, forKey: .routeCode)
+            try? container.encodeIfPresent(routeCode, forKey: .routeCode)
             
             
             
@@ -290,12 +290,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encode(pickupCutoff, forKey: .pickupCutoff)
+            try? container.encodeIfPresent(pickupCutoff, forKey: .pickupCutoff)
             
             
             
             
-            try? container.encode(routeCode, forKey: .routeCode)
+            try? container.encodeIfPresent(routeCode, forKey: .routeCode)
             
             
             

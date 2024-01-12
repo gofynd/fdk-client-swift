@@ -293,7 +293,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(phone, forKey: .phone)
+            try? container.encodeIfPresent(phone, forKey: .phone)
             
             
             
@@ -323,12 +323,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(displayAddress, forKey: .displayAddress)
+            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
             
             
             
             
-            try? container.encode(version, forKey: .version)
+            try? container.encodeIfPresent(version, forKey: .version)
             
             
             
@@ -353,12 +353,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(area, forKey: .area)
+            try? container.encodeIfPresent(area, forKey: .area)
             
             
             
             
-            try? container.encode(email, forKey: .email)
+            try? container.encodeIfPresent(email, forKey: .email)
             
             
             
@@ -688,7 +688,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(phone, forKey: .phone)
+            try? container.encodeIfPresent(phone, forKey: .phone)
             
             
             
@@ -718,12 +718,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(displayAddress, forKey: .displayAddress)
+            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
             
             
             
             
-            try? container.encode(version, forKey: .version)
+            try? container.encodeIfPresent(version, forKey: .version)
             
             
             
@@ -748,12 +748,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(area, forKey: .area)
+            try? container.encodeIfPresent(area, forKey: .area)
             
             
             
             
-            try? container.encode(email, forKey: .email)
+            try? container.encodeIfPresent(email, forKey: .email)
             
             
             

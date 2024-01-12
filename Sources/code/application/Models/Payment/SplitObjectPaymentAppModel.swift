@@ -80,18 +80,15 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
-            try? container.encode(totalNumberOfSplits, forKey: .totalNumberOfSplits)
-            
+            try? container.encodeIfPresent(totalNumberOfSplits, forKey: .totalNumberOfSplits)
             
             
             
-            try? container.encode(splitsRemaining, forKey: .splitsRemaining)
+            try? container.encodeIfPresent(splitsRemaining, forKey: .splitsRemaining)
             
             
             
-            
-            try? container.encode(amountRemaining, forKey: .amountRemaining)
+            try? container.encodeIfPresent(amountRemaining, forKey: .amountRemaining)
             
             
         }

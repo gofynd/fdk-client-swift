@@ -155,12 +155,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(errorMessage, forKey: .errorMessage)
+            try? container.encodeIfPresent(errorMessage, forKey: .errorMessage)
             
             
             
             
-            try? container.encode(displayMessage, forKey: .displayMessage)
+            try? container.encodeIfPresent(displayMessage, forKey: .displayMessage)
             
             
             
@@ -170,7 +170,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }
@@ -332,12 +332,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(errorMessage, forKey: .errorMessage)
+            try? container.encodeIfPresent(errorMessage, forKey: .errorMessage)
             
             
             
             
-            try? container.encode(displayMessage, forKey: .displayMessage)
+            try? container.encodeIfPresent(displayMessage, forKey: .displayMessage)
             
             
             
@@ -347,7 +347,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }

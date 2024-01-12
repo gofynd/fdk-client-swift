@@ -188,9 +188,7 @@ public extension ApplicationClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -198,9 +196,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(pageType, forKey: .pageType)
-            
             
             
             
@@ -208,9 +204,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(schema, forKey: .schema)
-            
             
             
             
@@ -218,14 +212,11 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
             
             
             
-            
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-            
             
             
             

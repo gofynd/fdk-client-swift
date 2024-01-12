@@ -80,14 +80,11 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(colors, forKey: .colors)
             
             
             
-            
             try? container.encodeIfPresent(auth, forKey: .auth)
-            
             
             
             

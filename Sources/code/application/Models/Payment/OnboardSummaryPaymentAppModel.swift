@@ -145,9 +145,7 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(redirectUrl, forKey: .redirectUrl)
-            
             
             
             
@@ -155,9 +153,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(status, forKey: .status)
-            
             
             
             
@@ -165,14 +161,11 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(isEligibleForTxn, forKey: .isEligibleForTxn)
             
             
             
-            
             try? container.encodeIfPresent(merchantCustomerRefId, forKey: .merchantCustomerRefId)
-            
             
             
             

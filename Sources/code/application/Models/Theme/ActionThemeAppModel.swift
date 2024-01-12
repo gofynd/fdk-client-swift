@@ -80,14 +80,11 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(page, forKey: .page)
             
             
             
-            
             try? container.encodeIfPresent(popup, forKey: .popup)
-            
             
             
             

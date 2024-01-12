@@ -85,17 +85,17 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(totalNumberOfSplits, forKey: .totalNumberOfSplits)
+            try? container.encodeIfPresent(totalNumberOfSplits, forKey: .totalNumberOfSplits)
             
             
             
             
-            try? container.encode(splitsRemaining, forKey: .splitsRemaining)
+            try? container.encodeIfPresent(splitsRemaining, forKey: .splitsRemaining)
             
             
             
             
-            try? container.encode(amountRemaining, forKey: .amountRemaining)
+            try? container.encodeIfPresent(amountRemaining, forKey: .amountRemaining)
             
             
         }
@@ -187,17 +187,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(totalNumberOfSplits, forKey: .totalNumberOfSplits)
+            try? container.encodeIfPresent(totalNumberOfSplits, forKey: .totalNumberOfSplits)
             
             
             
             
-            try? container.encode(splitsRemaining, forKey: .splitsRemaining)
+            try? container.encodeIfPresent(splitsRemaining, forKey: .splitsRemaining)
             
             
             
             
-            try? container.encode(amountRemaining, forKey: .amountRemaining)
+            try? container.encodeIfPresent(amountRemaining, forKey: .amountRemaining)
             
             
         }

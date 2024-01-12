@@ -146,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(nextValidationRequired, forKey: .nextValidationRequired)
+            try? container.encodeIfPresent(nextValidationRequired, forKey: .nextValidationRequired)
             
             
             
@@ -156,12 +156,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(displayMessageEn, forKey: .displayMessageEn)
+            try? container.encodeIfPresent(displayMessageEn, forKey: .displayMessageEn)
             
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             

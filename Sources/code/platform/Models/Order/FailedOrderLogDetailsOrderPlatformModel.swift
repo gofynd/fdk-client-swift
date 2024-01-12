@@ -53,12 +53,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(errorTrace, forKey: .errorTrace)
+            try? container.encodeIfPresent(errorTrace, forKey: .errorTrace)
             
             
             
             
-            try? container.encode(exception, forKey: .exception)
+            try? container.encodeIfPresent(exception, forKey: .exception)
             
             
         }
@@ -118,12 +118,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(errorTrace, forKey: .errorTrace)
+            try? container.encodeIfPresent(errorTrace, forKey: .errorTrace)
             
             
             
             
-            try? container.encode(exception, forKey: .exception)
+            try? container.encodeIfPresent(exception, forKey: .exception)
             
             
         }

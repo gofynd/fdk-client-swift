@@ -172,9 +172,7 @@ public extension PublicClient.Webhook {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(eventTraceId, forKey: .eventTraceId)
-            
             
             
             
@@ -182,9 +180,7 @@ public extension PublicClient.Webhook {
             
             
             
-            
             try? container.encodeIfPresent(eventName, forKey: .eventName)
-            
             
             
             
@@ -192,9 +188,7 @@ public extension PublicClient.Webhook {
             
             
             
-            
             try? container.encodeIfPresent(status, forKey: .status)
-            
             
             
             
@@ -202,9 +196,7 @@ public extension PublicClient.Webhook {
             
             
             
-            
             try? container.encodeIfPresent(serviceMeta, forKey: .serviceMeta)
-            
             
             
             

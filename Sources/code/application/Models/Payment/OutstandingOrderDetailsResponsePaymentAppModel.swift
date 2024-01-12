@@ -84,14 +84,11 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
             
             
             
-            
-            try? container.encode(data, forKey: .data)
-            
+            try? container.encodeIfPresent(data, forKey: .data)
             
             
             
@@ -99,8 +96,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            try? container.encode(message, forKey: .message)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }

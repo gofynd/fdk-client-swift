@@ -81,7 +81,9 @@ public class PlatformClient {
         webhook = Webhook(config: config)
         
     }
-
+    public func setLocationDetails(details: PlatformConfig.LocationDetails?){
+        config.locationDetails = details
+    }
     public func applicationClient(id: String) -> ApplicationClient {
         return ApplicationClient(applicationId: id, config: config)
     }

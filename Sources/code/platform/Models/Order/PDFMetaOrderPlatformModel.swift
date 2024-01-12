@@ -67,7 +67,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(consent, forKey: .consent)
+            try? container.encodeIfPresent(consent, forKey: .consent)
             
             
             
@@ -146,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(consent, forKey: .consent)
+            try? container.encodeIfPresent(consent, forKey: .consent)
             
             
             

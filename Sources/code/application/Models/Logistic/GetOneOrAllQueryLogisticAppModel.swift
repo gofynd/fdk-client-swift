@@ -98,23 +98,19 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
-            try? container.encode(country, forKey: .country)
-            
+            try? container.encodeIfPresent(country, forKey: .country)
             
             
             
-            try? container.encode(state, forKey: .state)
+            try? container.encodeIfPresent(state, forKey: .state)
             
             
             
-            
-            try? container.encode(city, forKey: .city)
-            
+            try? container.encodeIfPresent(city, forKey: .city)
             
             
             
-            try? container.encode(sector, forKey: .sector)
+            try? container.encodeIfPresent(sector, forKey: .sector)
             
             
         }

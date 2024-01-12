@@ -92,7 +92,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(pollingTimeout, forKey: .pollingTimeout)
+            try? container.encodeIfPresent(pollingTimeout, forKey: .pollingTimeout)
             
             
             
@@ -196,7 +196,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(pollingTimeout, forKey: .pollingTimeout)
+            try? container.encodeIfPresent(pollingTimeout, forKey: .pollingTimeout)
             
             
             

@@ -285,12 +285,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(area, forKey: .area)
+            try? container.encodeIfPresent(area, forKey: .area)
             
             
             
             
-            try? container.encode(addressType, forKey: .addressType)
+            try? container.encodeIfPresent(addressType, forKey: .addressType)
             
             
             
@@ -300,17 +300,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(email, forKey: .email)
+            try? container.encodeIfPresent(email, forKey: .email)
             
             
             
             
-            try? container.encode(address1, forKey: .address1)
+            try? container.encodeIfPresent(address1, forKey: .address1)
             
             
             
             
-            try? container.encode(landmark, forKey: .landmark)
+            try? container.encodeIfPresent(landmark, forKey: .landmark)
             
             
             
@@ -345,7 +345,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(displayAddress, forKey: .displayAddress)
+            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
             
             
         }
@@ -637,12 +637,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(area, forKey: .area)
+            try? container.encodeIfPresent(area, forKey: .area)
             
             
             
             
-            try? container.encode(addressType, forKey: .addressType)
+            try? container.encodeIfPresent(addressType, forKey: .addressType)
             
             
             
@@ -652,17 +652,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(email, forKey: .email)
+            try? container.encodeIfPresent(email, forKey: .email)
             
             
             
             
-            try? container.encode(address1, forKey: .address1)
+            try? container.encodeIfPresent(address1, forKey: .address1)
             
             
             
             
-            try? container.encode(landmark, forKey: .landmark)
+            try? container.encodeIfPresent(landmark, forKey: .landmark)
             
             
             
@@ -697,7 +697,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(displayAddress, forKey: .displayAddress)
+            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
             
             
         }

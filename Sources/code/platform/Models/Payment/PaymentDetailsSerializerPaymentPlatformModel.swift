@@ -365,7 +365,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
@@ -802,7 +802,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             

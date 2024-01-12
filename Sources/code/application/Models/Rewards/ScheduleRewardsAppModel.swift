@@ -98,9 +98,7 @@ public extension ApplicationClient.Rewards {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(duration, forKey: .duration)
-            
             
             
             
@@ -108,9 +106,7 @@ public extension ApplicationClient.Rewards {
             
             
             
-            
             try? container.encodeIfPresent(start, forKey: .start)
-            
             
             
             

@@ -654,117 +654,117 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(remainingLimit, forKey: .remainingLimit)
+            try? container.encodeIfPresent(remainingLimit, forKey: .remainingLimit)
             
             
             
             
-            try? container.encode(cardBrand, forKey: .cardBrand)
+            try? container.encodeIfPresent(cardBrand, forKey: .cardBrand)
             
             
             
             
-            try? container.encode(cardFingerprint, forKey: .cardFingerprint)
+            try? container.encodeIfPresent(cardFingerprint, forKey: .cardFingerprint)
             
             
             
             
-            try? container.encode(merchantCode, forKey: .merchantCode)
+            try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
             
             
             
             
-            try? container.encode(intentFlow, forKey: .intentFlow)
+            try? container.encodeIfPresent(intentFlow, forKey: .intentFlow)
             
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
             
-            try? container.encode(cardIssuer, forKey: .cardIssuer)
+            try? container.encodeIfPresent(cardIssuer, forKey: .cardIssuer)
             
             
             
             
-            try? container.encode(codLimitPerOrder, forKey: .codLimitPerOrder)
+            try? container.encodeIfPresent(codLimitPerOrder, forKey: .codLimitPerOrder)
             
             
             
             
-            try? container.encode(cardReference, forKey: .cardReference)
+            try? container.encodeIfPresent(cardReference, forKey: .cardReference)
             
             
             
             
-            try? container.encode(cardType, forKey: .cardType)
+            try? container.encodeIfPresent(cardType, forKey: .cardType)
             
             
             
             
-            try? container.encode(cardIsin, forKey: .cardIsin)
+            try? container.encodeIfPresent(cardIsin, forKey: .cardIsin)
             
             
             
             
-            try? container.encode(expMonth, forKey: .expMonth)
+            try? container.encodeIfPresent(expMonth, forKey: .expMonth)
             
             
             
             
-            try? container.encode(fyndVpa, forKey: .fyndVpa)
+            try? container.encodeIfPresent(fyndVpa, forKey: .fyndVpa)
             
             
             
             
-            try? container.encode(cardNumber, forKey: .cardNumber)
+            try? container.encodeIfPresent(cardNumber, forKey: .cardNumber)
             
             
             
             
-            try? container.encode(displayPriority, forKey: .displayPriority)
+            try? container.encodeIfPresent(displayPriority, forKey: .displayPriority)
             
             
             
             
-            try? container.encode(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
             
-            try? container.encode(cardId, forKey: .cardId)
+            try? container.encodeIfPresent(cardId, forKey: .cardId)
             
             
             
             
-            try? container.encode(retryCount, forKey: .retryCount)
+            try? container.encodeIfPresent(retryCount, forKey: .retryCount)
             
             
             
             
-            try? container.encode(cardName, forKey: .cardName)
+            try? container.encodeIfPresent(cardName, forKey: .cardName)
             
             
             
             
-            try? container.encode(timeout, forKey: .timeout)
+            try? container.encodeIfPresent(timeout, forKey: .timeout)
             
             
             
             
-            try? container.encode(intentAppErrorDictList, forKey: .intentAppErrorDictList)
+            try? container.encodeIfPresent(intentAppErrorDictList, forKey: .intentAppErrorDictList)
             
             
             
             
-            try? container.encode(cardBrandImage, forKey: .cardBrandImage)
+            try? container.encodeIfPresent(cardBrandImage, forKey: .cardBrandImage)
             
             
             
             
-            try? container.encode(expired, forKey: .expired)
+            try? container.encodeIfPresent(expired, forKey: .expired)
             
             
             
@@ -774,7 +774,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(cardToken, forKey: .cardToken)
+            try? container.encodeIfPresent(cardToken, forKey: .cardToken)
             
             
             
@@ -784,7 +784,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(codCharges, forKey: .codCharges)
+            try? container.encodeIfPresent(codCharges, forKey: .codCharges)
             
             
             
@@ -794,37 +794,37 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(codLimit, forKey: .codLimit)
+            try? container.encodeIfPresent(codLimit, forKey: .codLimit)
             
             
             
             
-            try? container.encode(intentApp, forKey: .intentApp)
+            try? container.encodeIfPresent(intentApp, forKey: .intentApp)
             
             
             
             
-            try? container.encode(nickname, forKey: .nickname)
+            try? container.encodeIfPresent(nickname, forKey: .nickname)
             
             
             
             
-            try? container.encode(compliantWithTokenisationGuidelines, forKey: .compliantWithTokenisationGuidelines)
+            try? container.encodeIfPresent(compliantWithTokenisationGuidelines, forKey: .compliantWithTokenisationGuidelines)
             
             
             
             
-            try? container.encode(expYear, forKey: .expYear)
+            try? container.encodeIfPresent(expYear, forKey: .expYear)
             
             
             
             
-            try? container.encode(name, forKey: .name)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encode(intentAppErrorList, forKey: .intentAppErrorList)
+            try? container.encodeIfPresent(intentAppErrorList, forKey: .intentAppErrorList)
             
             
         }
@@ -1485,117 +1485,117 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(remainingLimit, forKey: .remainingLimit)
+            try? container.encodeIfPresent(remainingLimit, forKey: .remainingLimit)
             
             
             
             
-            try? container.encode(cardBrand, forKey: .cardBrand)
+            try? container.encodeIfPresent(cardBrand, forKey: .cardBrand)
             
             
             
             
-            try? container.encode(cardFingerprint, forKey: .cardFingerprint)
+            try? container.encodeIfPresent(cardFingerprint, forKey: .cardFingerprint)
             
             
             
             
-            try? container.encode(merchantCode, forKey: .merchantCode)
+            try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
             
             
             
             
-            try? container.encode(intentFlow, forKey: .intentFlow)
+            try? container.encodeIfPresent(intentFlow, forKey: .intentFlow)
             
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
             
-            try? container.encode(cardIssuer, forKey: .cardIssuer)
+            try? container.encodeIfPresent(cardIssuer, forKey: .cardIssuer)
             
             
             
             
-            try? container.encode(codLimitPerOrder, forKey: .codLimitPerOrder)
+            try? container.encodeIfPresent(codLimitPerOrder, forKey: .codLimitPerOrder)
             
             
             
             
-            try? container.encode(cardReference, forKey: .cardReference)
+            try? container.encodeIfPresent(cardReference, forKey: .cardReference)
             
             
             
             
-            try? container.encode(cardType, forKey: .cardType)
+            try? container.encodeIfPresent(cardType, forKey: .cardType)
             
             
             
             
-            try? container.encode(cardIsin, forKey: .cardIsin)
+            try? container.encodeIfPresent(cardIsin, forKey: .cardIsin)
             
             
             
             
-            try? container.encode(expMonth, forKey: .expMonth)
+            try? container.encodeIfPresent(expMonth, forKey: .expMonth)
             
             
             
             
-            try? container.encode(fyndVpa, forKey: .fyndVpa)
+            try? container.encodeIfPresent(fyndVpa, forKey: .fyndVpa)
             
             
             
             
-            try? container.encode(cardNumber, forKey: .cardNumber)
+            try? container.encodeIfPresent(cardNumber, forKey: .cardNumber)
             
             
             
             
-            try? container.encode(displayPriority, forKey: .displayPriority)
+            try? container.encodeIfPresent(displayPriority, forKey: .displayPriority)
             
             
             
             
-            try? container.encode(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
             
-            try? container.encode(cardId, forKey: .cardId)
+            try? container.encodeIfPresent(cardId, forKey: .cardId)
             
             
             
             
-            try? container.encode(retryCount, forKey: .retryCount)
+            try? container.encodeIfPresent(retryCount, forKey: .retryCount)
             
             
             
             
-            try? container.encode(cardName, forKey: .cardName)
+            try? container.encodeIfPresent(cardName, forKey: .cardName)
             
             
             
             
-            try? container.encode(timeout, forKey: .timeout)
+            try? container.encodeIfPresent(timeout, forKey: .timeout)
             
             
             
             
-            try? container.encode(intentAppErrorDictList, forKey: .intentAppErrorDictList)
+            try? container.encodeIfPresent(intentAppErrorDictList, forKey: .intentAppErrorDictList)
             
             
             
             
-            try? container.encode(cardBrandImage, forKey: .cardBrandImage)
+            try? container.encodeIfPresent(cardBrandImage, forKey: .cardBrandImage)
             
             
             
             
-            try? container.encode(expired, forKey: .expired)
+            try? container.encodeIfPresent(expired, forKey: .expired)
             
             
             
@@ -1605,7 +1605,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(cardToken, forKey: .cardToken)
+            try? container.encodeIfPresent(cardToken, forKey: .cardToken)
             
             
             
@@ -1615,7 +1615,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(codCharges, forKey: .codCharges)
+            try? container.encodeIfPresent(codCharges, forKey: .codCharges)
             
             
             
@@ -1625,37 +1625,37 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(codLimit, forKey: .codLimit)
+            try? container.encodeIfPresent(codLimit, forKey: .codLimit)
             
             
             
             
-            try? container.encode(intentApp, forKey: .intentApp)
+            try? container.encodeIfPresent(intentApp, forKey: .intentApp)
             
             
             
             
-            try? container.encode(nickname, forKey: .nickname)
+            try? container.encodeIfPresent(nickname, forKey: .nickname)
             
             
             
             
-            try? container.encode(compliantWithTokenisationGuidelines, forKey: .compliantWithTokenisationGuidelines)
+            try? container.encodeIfPresent(compliantWithTokenisationGuidelines, forKey: .compliantWithTokenisationGuidelines)
             
             
             
             
-            try? container.encode(expYear, forKey: .expYear)
+            try? container.encodeIfPresent(expYear, forKey: .expYear)
             
             
             
             
-            try? container.encode(name, forKey: .name)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encode(intentAppErrorList, forKey: .intentAppErrorList)
+            try? container.encodeIfPresent(intentAppErrorList, forKey: .intentAppErrorList)
             
             
         }

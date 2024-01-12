@@ -78,12 +78,12 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(message, forKey: .message)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
-            try? container.encode(items, forKey: .items)
+            try? container.encodeIfPresent(items, forKey: .items)
             
             
             
@@ -173,12 +173,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(message, forKey: .message)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
-            try? container.encode(items, forKey: .items)
+            try? container.encodeIfPresent(items, forKey: .items)
             
             
             

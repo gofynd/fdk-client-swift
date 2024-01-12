@@ -127,7 +127,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(currency, forKey: .currency)
+            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
             
@@ -142,7 +142,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(gid, forKey: .gid)
+            try? container.encodeIfPresent(gid, forKey: .gid)
             
             
             
@@ -286,7 +286,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(currency, forKey: .currency)
+            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
             
@@ -301,7 +301,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(gid, forKey: .gid)
+            try? container.encodeIfPresent(gid, forKey: .gid)
             
             
             

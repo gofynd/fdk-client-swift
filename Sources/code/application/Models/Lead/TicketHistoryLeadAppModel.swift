@@ -142,9 +142,7 @@ public extension ApplicationClient.Lead {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(type, forKey: .type)
-            
             
             
             
@@ -152,9 +150,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(ticketId, forKey: .ticketId)
-            
             
             
             
@@ -162,9 +158,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-            
             
             
             
@@ -172,9 +166,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-            
             
             
             

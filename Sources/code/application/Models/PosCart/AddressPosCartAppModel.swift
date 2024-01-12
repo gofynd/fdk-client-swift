@@ -530,9 +530,7 @@ public extension ApplicationClient.PosCart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(meta, forKey: .meta)
-            
             
             
             
@@ -540,9 +538,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(countryIsoCode, forKey: .countryIsoCode)
-            
             
             
             
@@ -550,9 +546,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -560,9 +554,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(createdByUserId, forKey: .createdByUserId)
-            
             
             
             
@@ -570,9 +562,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
             
             
             
@@ -580,9 +570,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(sector, forKey: .sector)
-            
             
             
             
@@ -590,9 +578,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(addressType, forKey: .addressType)
-            
             
             
             
@@ -600,9 +586,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(isDefaultAddress, forKey: .isDefaultAddress)
-            
             
             
             
@@ -610,9 +594,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(countryPhoneCode, forKey: .countryPhoneCode)
-            
             
             
             
@@ -620,9 +602,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(areaCode, forKey: .areaCode)
-            
             
             
             
@@ -630,9 +610,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(googleMapPoint, forKey: .googleMapPoint)
-            
             
             
             
@@ -640,9 +618,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(address, forKey: .address)
-            
             
             
             
@@ -650,9 +626,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(name, forKey: .name)
-            
             
             
             
@@ -660,9 +634,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(userId, forKey: .userId)
-            
             
             
             

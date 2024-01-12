@@ -404,9 +404,7 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(templateTag, forKey: .templateTag)
-            
             
             
             
@@ -414,9 +412,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(imageNature, forKey: .imageNature)
-            
             
             
             
@@ -424,9 +420,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(description, forKey: .description)
-            
             
             
             
@@ -434,9 +428,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
-            
             
             
             
@@ -444,9 +436,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(itemCode, forKey: .itemCode)
-            
             
             
             
@@ -454,9 +444,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(countryOfOrigin, forKey: .countryOfOrigin)
-            
             
             
             
@@ -464,9 +452,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(media, forKey: .media)
-            
             
             
             
@@ -474,9 +460,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(isSet, forKey: .isSet)
-            
             
             
             
@@ -484,9 +468,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(slug, forKey: .slug)
-            
             
             
             
@@ -494,14 +476,11 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(identifier, forKey: .identifier)
             
             
             
-            
             try? container.encodeIfPresent(highlights, forKey: .highlights)
-            
             
             
             

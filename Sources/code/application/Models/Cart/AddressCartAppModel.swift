@@ -530,9 +530,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(countryIsoCode, forKey: .countryIsoCode)
-            
             
             
             
@@ -540,9 +538,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(phone, forKey: .phone)
-            
             
             
             
@@ -550,9 +546,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
-            
             
             
             
@@ -560,9 +554,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(areaCodeSlug, forKey: .areaCodeSlug)
-            
             
             
             
@@ -570,9 +562,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -580,9 +570,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(city, forKey: .city)
-            
             
             
             
@@ -590,9 +578,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(stateCode, forKey: .stateCode)
-            
             
             
             
@@ -600,9 +586,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(landmark, forKey: .landmark)
-            
             
             
             
@@ -610,9 +594,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(name, forKey: .name)
-            
             
             
             
@@ -620,9 +602,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
             
             
             
@@ -630,9 +610,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-            
             
             
             
@@ -640,9 +618,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(country, forKey: .country)
-            
             
             
             
@@ -650,9 +626,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(areaCode, forKey: .areaCode)
-            
             
             
             
@@ -660,9 +634,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(state, forKey: .state)
-            
             
             
             

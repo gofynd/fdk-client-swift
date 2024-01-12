@@ -139,32 +139,32 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(text, forKey: .text)
+            try? container.encodeIfPresent(text, forKey: .text)
             
             
             
             
-            try? container.encode(name, forKey: .name)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encode(placeholderText, forKey: .placeholderText)
+            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
             
             
             
             
-            try? container.encode(value, forKey: .value)
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
             
             
-            try? container.encode(minSearchSize, forKey: .minSearchSize)
+            try? container.encodeIfPresent(minSearchSize, forKey: .minSearchSize)
             
             
             
             
-            try? container.encode(showUi, forKey: .showUi)
+            try? container.encodeIfPresent(showUi, forKey: .showUi)
             
             
         }
@@ -310,32 +310,32 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(text, forKey: .text)
+            try? container.encodeIfPresent(text, forKey: .text)
             
             
             
             
-            try? container.encode(name, forKey: .name)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encode(placeholderText, forKey: .placeholderText)
+            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
             
             
             
             
-            try? container.encode(value, forKey: .value)
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
             
             
-            try? container.encode(minSearchSize, forKey: .minSearchSize)
+            try? container.encodeIfPresent(minSearchSize, forKey: .minSearchSize)
             
             
             
             
-            try? container.encode(showUi, forKey: .showUi)
+            try? container.encodeIfPresent(showUi, forKey: .showUi)
             
             
         }

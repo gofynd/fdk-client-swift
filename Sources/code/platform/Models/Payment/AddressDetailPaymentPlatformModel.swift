@@ -359,7 +359,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(addressType, forKey: .addressType)
+            try? container.encodeIfPresent(addressType, forKey: .addressType)
             
             
             
@@ -745,7 +745,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(addressType, forKey: .addressType)
+            try? container.encodeIfPresent(addressType, forKey: .addressType)
             
             
             

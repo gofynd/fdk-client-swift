@@ -80,14 +80,11 @@ public extension ApplicationClient.Rewards {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
             
             
             
-            
             try? container.encodeIfPresent(points, forKey: .points)
-            
             
             
             

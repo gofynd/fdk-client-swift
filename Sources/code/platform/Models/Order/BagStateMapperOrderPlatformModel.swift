@@ -176,12 +176,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
             
             
             
             
-            try? container.encode(appDisplayName, forKey: .appDisplayName)
+            try? container.encodeIfPresent(appDisplayName, forKey: .appDisplayName)
             
             
             
@@ -201,7 +201,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(appStateName, forKey: .appStateName)
+            try? container.encodeIfPresent(appStateName, forKey: .appStateName)
             
             
             
@@ -211,12 +211,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(appFacing, forKey: .appFacing)
+            try? container.encodeIfPresent(appFacing, forKey: .appFacing)
             
             
             
             
-            try? container.encode(notifyCustomer, forKey: .notifyCustomer)
+            try? container.encodeIfPresent(notifyCustomer, forKey: .notifyCustomer)
             
             
             
@@ -404,12 +404,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
             
             
             
             
-            try? container.encode(appDisplayName, forKey: .appDisplayName)
+            try? container.encodeIfPresent(appDisplayName, forKey: .appDisplayName)
             
             
             
@@ -429,7 +429,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(appStateName, forKey: .appStateName)
+            try? container.encodeIfPresent(appStateName, forKey: .appStateName)
             
             
             
@@ -439,12 +439,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(appFacing, forKey: .appFacing)
+            try? container.encodeIfPresent(appFacing, forKey: .appFacing)
             
             
             
             
-            try? container.encode(notifyCustomer, forKey: .notifyCustomer)
+            try? container.encodeIfPresent(notifyCustomer, forKey: .notifyCustomer)
             
             
             

@@ -116,9 +116,7 @@ public extension ApplicationClient.PosCart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(meta, forKey: .meta)
-            
             
             
             
@@ -126,14 +124,11 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
             
             
             
-            
             try? container.encodeIfPresent(token, forKey: .token)
-            
             
             
             

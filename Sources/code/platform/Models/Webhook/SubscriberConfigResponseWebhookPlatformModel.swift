@@ -315,7 +315,7 @@ public extension PlatformClient.Webhook {
             
             
             
-            try? container.encode(type, forKey: .type)
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
             

@@ -224,29 +224,23 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
-            try? container.encode(businessOwnershipType, forKey: .businessOwnershipType)
-            
+            try? container.encodeIfPresent(businessOwnershipType, forKey: .businessOwnershipType)
             
             
             
-            try? container.encode(vintage, forKey: .vintage)
+            try? container.encodeIfPresent(vintage, forKey: .vintage)
             
             
             
-            
-            try? container.encode(gstin, forKey: .gstin)
-            
+            try? container.encodeIfPresent(gstin, forKey: .gstin)
             
             
             
-            try? container.encode(pan, forKey: .pan)
+            try? container.encodeIfPresent(pan, forKey: .pan)
             
             
             
-            
-            try? container.encode(entityType, forKey: .entityType)
-            
+            try? container.encodeIfPresent(entityType, forKey: .entityType)
             
             
             
@@ -254,24 +248,19 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            try? container.encode(fssai, forKey: .fssai)
-            
+            try? container.encodeIfPresent(fssai, forKey: .fssai)
             
             
             
-            try? container.encode(fda, forKey: .fda)
+            try? container.encodeIfPresent(fda, forKey: .fda)
             
             
             
-            
-            try? container.encode(businessType, forKey: .businessType)
-            
+            try? container.encodeIfPresent(businessType, forKey: .businessType)
             
             
             
-            try? container.encode(name, forKey: .name)
-            
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             

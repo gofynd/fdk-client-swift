@@ -599,7 +599,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(userId, forKey: .userId)
+            try? container.encodeIfPresent(userId, forKey: .userId)
             
             
             
@@ -609,17 +609,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(mongoCartId, forKey: .mongoCartId)
+            try? container.encodeIfPresent(mongoCartId, forKey: .mongoCartId)
             
             
             
             
-            try? container.encode(deliveryCharges, forKey: .deliveryCharges)
+            try? container.encodeIfPresent(deliveryCharges, forKey: .deliveryCharges)
             
             
             
             
-            try? container.encode(transactionId, forKey: .transactionId)
+            try? container.encodeIfPresent(transactionId, forKey: .transactionId)
             
             
             
@@ -629,12 +629,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(headers, forKey: .headers)
+            try? container.encodeIfPresent(headers, forKey: .headers)
             
             
             
             
-            try? container.encode(couponValue, forKey: .couponValue)
+            try? container.encodeIfPresent(couponValue, forKey: .couponValue)
             
             
             
@@ -664,17 +664,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
             
-            try? container.encode(codCharges, forKey: .codCharges)
+            try? container.encodeIfPresent(codCharges, forKey: .codCharges)
             
             
             
             
-            try? container.encode(cashbackValue, forKey: .cashbackValue)
+            try? container.encodeIfPresent(cashbackValue, forKey: .cashbackValue)
             
             
             
@@ -684,12 +684,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(affiliateOrderDate, forKey: .affiliateOrderDate)
+            try? container.encodeIfPresent(affiliateOrderDate, forKey: .affiliateOrderDate)
             
             
             
             
-            try? container.encode(paymentMethods, forKey: .paymentMethods)
+            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
             
             
             
@@ -699,12 +699,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(paymentModeId, forKey: .paymentModeId)
+            try? container.encodeIfPresent(paymentModeId, forKey: .paymentModeId)
             
             
             
             
-            try? container.encode(promotionEffectiveDiscount, forKey: .promotionEffectiveDiscount)
+            try? container.encodeIfPresent(promotionEffectiveDiscount, forKey: .promotionEffectiveDiscount)
             
             
             
@@ -714,17 +714,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(discount, forKey: .discount)
+            try? container.encodeIfPresent(discount, forKey: .discount)
             
             
             
             
-            try? container.encode(cashbackApplied, forKey: .cashbackApplied)
+            try? container.encodeIfPresent(cashbackApplied, forKey: .cashbackApplied)
             
             
             
             
-            try? container.encode(fyndCredits, forKey: .fyndCredits)
+            try? container.encodeIfPresent(fyndCredits, forKey: .fyndCredits)
             
             
             
@@ -734,7 +734,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(orderingChannelLogo, forKey: .orderingChannelLogo)
+            try? container.encodeIfPresent(orderingChannelLogo, forKey: .orderingChannelLogo)
             
             
             
@@ -1345,7 +1345,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(userId, forKey: .userId)
+            try? container.encodeIfPresent(userId, forKey: .userId)
             
             
             
@@ -1355,17 +1355,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(mongoCartId, forKey: .mongoCartId)
+            try? container.encodeIfPresent(mongoCartId, forKey: .mongoCartId)
             
             
             
             
-            try? container.encode(deliveryCharges, forKey: .deliveryCharges)
+            try? container.encodeIfPresent(deliveryCharges, forKey: .deliveryCharges)
             
             
             
             
-            try? container.encode(transactionId, forKey: .transactionId)
+            try? container.encodeIfPresent(transactionId, forKey: .transactionId)
             
             
             
@@ -1375,12 +1375,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(headers, forKey: .headers)
+            try? container.encodeIfPresent(headers, forKey: .headers)
             
             
             
             
-            try? container.encode(couponValue, forKey: .couponValue)
+            try? container.encodeIfPresent(couponValue, forKey: .couponValue)
             
             
             
@@ -1410,17 +1410,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
             
-            try? container.encode(codCharges, forKey: .codCharges)
+            try? container.encodeIfPresent(codCharges, forKey: .codCharges)
             
             
             
             
-            try? container.encode(cashbackValue, forKey: .cashbackValue)
+            try? container.encodeIfPresent(cashbackValue, forKey: .cashbackValue)
             
             
             
@@ -1430,12 +1430,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(affiliateOrderDate, forKey: .affiliateOrderDate)
+            try? container.encodeIfPresent(affiliateOrderDate, forKey: .affiliateOrderDate)
             
             
             
             
-            try? container.encode(paymentMethods, forKey: .paymentMethods)
+            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
             
             
             
@@ -1445,12 +1445,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(paymentModeId, forKey: .paymentModeId)
+            try? container.encodeIfPresent(paymentModeId, forKey: .paymentModeId)
             
             
             
             
-            try? container.encode(promotionEffectiveDiscount, forKey: .promotionEffectiveDiscount)
+            try? container.encodeIfPresent(promotionEffectiveDiscount, forKey: .promotionEffectiveDiscount)
             
             
             
@@ -1460,17 +1460,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(discount, forKey: .discount)
+            try? container.encodeIfPresent(discount, forKey: .discount)
             
             
             
             
-            try? container.encode(cashbackApplied, forKey: .cashbackApplied)
+            try? container.encodeIfPresent(cashbackApplied, forKey: .cashbackApplied)
             
             
             
             
-            try? container.encode(fyndCredits, forKey: .fyndCredits)
+            try? container.encodeIfPresent(fyndCredits, forKey: .fyndCredits)
             
             
             
@@ -1480,7 +1480,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(orderingChannelLogo, forKey: .orderingChannelLogo)
+            try? container.encodeIfPresent(orderingChannelLogo, forKey: .orderingChannelLogo)
             
             
             

@@ -82,14 +82,11 @@ public extension PublicClient.Billing {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(plans, forKey: .plans)
             
             
             
-            
             try? container.encodeIfPresent(trialPlan, forKey: .trialPlan)
-            
             
             
             

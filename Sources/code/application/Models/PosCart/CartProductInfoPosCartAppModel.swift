@@ -379,9 +379,7 @@ public extension ApplicationClient.PosCart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(customOrder, forKey: .customOrder)
-            
             
             
             
@@ -389,9 +387,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(product, forKey: .product)
-            
             
             
             
@@ -399,9 +395,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(moq, forKey: .moq)
-            
             
             
             
@@ -409,9 +403,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(pricePerUnit, forKey: .pricePerUnit)
-            
             
             
             
@@ -419,9 +411,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(price, forKey: .price)
-            
             
             
             
@@ -429,9 +419,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(isSet, forKey: .isSet)
-            
             
             
             
@@ -439,9 +427,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(message, forKey: .message)
-            
             
             
             
@@ -449,9 +435,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(discount, forKey: .discount)
-            
             
             
             
@@ -459,9 +443,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(promoMeta, forKey: .promoMeta)
-            
             
             
             
@@ -469,9 +451,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(availability, forKey: .availability)
-            
             
             
             

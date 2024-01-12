@@ -80,14 +80,11 @@ public extension ApplicationClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(aspectRatio, forKey: .aspectRatio)
             
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             

@@ -182,32 +182,32 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(amount, forKey: .amount)
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
             
             
-            try? container.encode(merchantName, forKey: .merchantName)
+            try? container.encodeIfPresent(merchantName, forKey: .merchantName)
             
             
             
             
-            try? container.encode(paymentLinkUrl, forKey: .paymentLinkUrl)
+            try? container.encodeIfPresent(paymentLinkUrl, forKey: .paymentLinkUrl)
             
             
             
             
-            try? container.encode(paymentLinkCurrentStatus, forKey: .paymentLinkCurrentStatus)
+            try? container.encodeIfPresent(paymentLinkCurrentStatus, forKey: .paymentLinkCurrentStatus)
             
             
             
             
-            try? container.encode(externalOrderId, forKey: .externalOrderId)
+            try? container.encodeIfPresent(externalOrderId, forKey: .externalOrderId)
             
             
             
             
-            try? container.encode(pollingTimeout, forKey: .pollingTimeout)
+            try? container.encodeIfPresent(pollingTimeout, forKey: .pollingTimeout)
             
             
             
@@ -401,32 +401,32 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(amount, forKey: .amount)
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
             
             
-            try? container.encode(merchantName, forKey: .merchantName)
+            try? container.encodeIfPresent(merchantName, forKey: .merchantName)
             
             
             
             
-            try? container.encode(paymentLinkUrl, forKey: .paymentLinkUrl)
+            try? container.encodeIfPresent(paymentLinkUrl, forKey: .paymentLinkUrl)
             
             
             
             
-            try? container.encode(paymentLinkCurrentStatus, forKey: .paymentLinkCurrentStatus)
+            try? container.encodeIfPresent(paymentLinkCurrentStatus, forKey: .paymentLinkCurrentStatus)
             
             
             
             
-            try? container.encode(externalOrderId, forKey: .externalOrderId)
+            try? container.encodeIfPresent(externalOrderId, forKey: .externalOrderId)
             
             
             
             
-            try? container.encode(pollingTimeout, forKey: .pollingTimeout)
+            try? container.encodeIfPresent(pollingTimeout, forKey: .pollingTimeout)
             
             
             

@@ -100,7 +100,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(redirectUrl, forKey: .redirectUrl)
+            try? container.encodeIfPresent(redirectUrl, forKey: .redirectUrl)
             
             
             
@@ -110,7 +110,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(success, forKey: .success)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
             
@@ -227,7 +227,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(redirectUrl, forKey: .redirectUrl)
+            try? container.encodeIfPresent(redirectUrl, forKey: .redirectUrl)
             
             
             
@@ -237,7 +237,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(success, forKey: .success)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
             

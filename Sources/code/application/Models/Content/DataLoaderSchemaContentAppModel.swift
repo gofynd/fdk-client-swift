@@ -170,9 +170,7 @@ public extension ApplicationClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(name, forKey: .name)
-            
             
             
             
@@ -180,9 +178,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(operationId, forKey: .operationId)
-            
             
             
             
@@ -190,9 +186,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(url, forKey: .url)
-            
             
             
             
@@ -200,9 +194,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(source, forKey: .source)
-            
             
             
             

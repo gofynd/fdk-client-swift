@@ -315,9 +315,7 @@ public extension ApplicationClient.Lead {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(context, forKey: .context)
-            
             
             
             
@@ -325,9 +323,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(responseId, forKey: .responseId)
-            
             
             
             
@@ -335,9 +331,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(category, forKey: .category)
-            
             
             
             
@@ -345,9 +339,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(source, forKey: .source)
-            
             
             
             
@@ -355,9 +347,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(priority, forKey: .priority)
-            
             
             
             
@@ -365,9 +355,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(assignedTo, forKey: .assignedTo)
-            
             
             
             
@@ -375,9 +363,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(customJson, forKey: .customJson)
-            
             
             
             
@@ -385,9 +371,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(integration, forKey: .integration)
-            
             
             
             
@@ -395,9 +379,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-            
             
             
             

@@ -568,7 +568,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
             
             
             
@@ -578,7 +578,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(alohomoraUserId, forKey: .alohomoraUserId)
+            try? container.encodeIfPresent(alohomoraUserId, forKey: .alohomoraUserId)
             
             
             
@@ -598,7 +598,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(isEnabledForRecon, forKey: .isEnabledForRecon)
+            try? container.encodeIfPresent(isEnabledForRecon, forKey: .isEnabledForRecon)
             
             
             
@@ -608,27 +608,27 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(mallArea, forKey: .mallArea)
+            try? container.encodeIfPresent(mallArea, forKey: .mallArea)
             
             
             
             
-            try? container.encode(vatNo, forKey: .vatNo)
+            try? container.encodeIfPresent(vatNo, forKey: .vatNo)
             
             
             
             
-            try? container.encode(address1, forKey: .address1)
+            try? container.encodeIfPresent(address1, forKey: .address1)
             
             
             
             
-            try? container.encode(displayAddress, forKey: .displayAddress)
+            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
             
             
             
             
-            try? container.encode(storeActiveFrom, forKey: .storeActiveFrom)
+            try? container.encodeIfPresent(storeActiveFrom, forKey: .storeActiveFrom)
             
             
             
@@ -643,22 +643,22 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(longitude, forKey: .longitude)
+            try? container.encodeIfPresent(longitude, forKey: .longitude)
             
             
             
             
-            try? container.encode(brandStoreTags, forKey: .brandStoreTags)
+            try? container.encodeIfPresent(brandStoreTags, forKey: .brandStoreTags)
             
             
             
             
-            try? container.encode(orderIntegrationId, forKey: .orderIntegrationId)
+            try? container.encodeIfPresent(orderIntegrationId, forKey: .orderIntegrationId)
             
             
             
             
-            try? container.encode(parentStoreId, forKey: .parentStoreId)
+            try? container.encodeIfPresent(parentStoreId, forKey: .parentStoreId)
             
             
             
@@ -668,7 +668,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
@@ -678,7 +678,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
             
@@ -693,7 +693,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(sId, forKey: .sId)
+            try? container.encodeIfPresent(sId, forKey: .sId)
             
             
             
@@ -708,32 +708,32 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(packagingMaterialCount, forKey: .packagingMaterialCount)
+            try? container.encodeIfPresent(packagingMaterialCount, forKey: .packagingMaterialCount)
             
             
             
             
-            try? container.encode(isArchived, forKey: .isArchived)
+            try? container.encodeIfPresent(isArchived, forKey: .isArchived)
             
             
             
             
-            try? container.encode(loginUsername, forKey: .loginUsername)
+            try? container.encodeIfPresent(loginUsername, forKey: .loginUsername)
             
             
             
             
-            try? container.encode(mallName, forKey: .mallName)
+            try? container.encodeIfPresent(mallName, forKey: .mallName)
             
             
             
             
-            try? container.encode(latitude, forKey: .latitude)
+            try? container.encodeIfPresent(latitude, forKey: .latitude)
             
             
             
             
-            try? container.encode(address2, forKey: .address2)
+            try? container.encodeIfPresent(address2, forKey: .address2)
             
             
         }
@@ -1308,7 +1308,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
             
             
             
@@ -1318,7 +1318,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(alohomoraUserId, forKey: .alohomoraUserId)
+            try? container.encodeIfPresent(alohomoraUserId, forKey: .alohomoraUserId)
             
             
             
@@ -1338,7 +1338,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(isEnabledForRecon, forKey: .isEnabledForRecon)
+            try? container.encodeIfPresent(isEnabledForRecon, forKey: .isEnabledForRecon)
             
             
             
@@ -1348,27 +1348,27 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(mallArea, forKey: .mallArea)
+            try? container.encodeIfPresent(mallArea, forKey: .mallArea)
             
             
             
             
-            try? container.encode(vatNo, forKey: .vatNo)
+            try? container.encodeIfPresent(vatNo, forKey: .vatNo)
             
             
             
             
-            try? container.encode(address1, forKey: .address1)
+            try? container.encodeIfPresent(address1, forKey: .address1)
             
             
             
             
-            try? container.encode(displayAddress, forKey: .displayAddress)
+            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
             
             
             
             
-            try? container.encode(storeActiveFrom, forKey: .storeActiveFrom)
+            try? container.encodeIfPresent(storeActiveFrom, forKey: .storeActiveFrom)
             
             
             
@@ -1383,22 +1383,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(longitude, forKey: .longitude)
+            try? container.encodeIfPresent(longitude, forKey: .longitude)
             
             
             
             
-            try? container.encode(brandStoreTags, forKey: .brandStoreTags)
+            try? container.encodeIfPresent(brandStoreTags, forKey: .brandStoreTags)
             
             
             
             
-            try? container.encode(orderIntegrationId, forKey: .orderIntegrationId)
+            try? container.encodeIfPresent(orderIntegrationId, forKey: .orderIntegrationId)
             
             
             
             
-            try? container.encode(parentStoreId, forKey: .parentStoreId)
+            try? container.encodeIfPresent(parentStoreId, forKey: .parentStoreId)
             
             
             
@@ -1408,7 +1408,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
@@ -1418,7 +1418,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
             
@@ -1433,7 +1433,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(sId, forKey: .sId)
+            try? container.encodeIfPresent(sId, forKey: .sId)
             
             
             
@@ -1448,32 +1448,32 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(packagingMaterialCount, forKey: .packagingMaterialCount)
+            try? container.encodeIfPresent(packagingMaterialCount, forKey: .packagingMaterialCount)
             
             
             
             
-            try? container.encode(isArchived, forKey: .isArchived)
+            try? container.encodeIfPresent(isArchived, forKey: .isArchived)
             
             
             
             
-            try? container.encode(loginUsername, forKey: .loginUsername)
+            try? container.encodeIfPresent(loginUsername, forKey: .loginUsername)
             
             
             
             
-            try? container.encode(mallName, forKey: .mallName)
+            try? container.encodeIfPresent(mallName, forKey: .mallName)
             
             
             
             
-            try? container.encode(latitude, forKey: .latitude)
+            try? container.encodeIfPresent(latitude, forKey: .latitude)
             
             
             
             
-            try? container.encode(address2, forKey: .address2)
+            try? container.encodeIfPresent(address2, forKey: .address2)
             
             
         }

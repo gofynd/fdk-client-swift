@@ -134,9 +134,7 @@ public extension ApplicationClient.Common {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(verified, forKey: .verified)
-            
             
             
             
@@ -144,9 +142,7 @@ public extension ApplicationClient.Common {
             
             
             
-            
             try? container.encodeIfPresent(isShortlink, forKey: .isShortlink)
-            
             
             
             
@@ -154,9 +150,7 @@ public extension ApplicationClient.Common {
             
             
             
-            
             try? container.encodeIfPresent(name, forKey: .name)
-            
             
             
             

@@ -379,9 +379,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(customMeta, forKey: .customMeta)
-            
             
             
             
@@ -389,9 +387,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
-            
             
             
             
@@ -399,9 +395,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(paymentAutoConfirm, forKey: .paymentAutoConfirm)
-            
             
             
             
@@ -409,9 +403,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-            
             
             
             
@@ -419,9 +411,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
-            
             
             
             
@@ -429,9 +419,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(staff, forKey: .staff)
-            
             
             
             
@@ -439,9 +427,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(orderingStore, forKey: .orderingStore)
-            
             
             
             
@@ -449,9 +435,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(paymentIdentifier, forKey: .paymentIdentifier)
-            
             
             
             
@@ -459,9 +443,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(paymentParams, forKey: .paymentParams)
-            
             
             
             
@@ -469,9 +451,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(meta, forKey: .meta)
-            
             
             
             

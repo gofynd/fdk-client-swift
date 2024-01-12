@@ -175,9 +175,7 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(accountNo, forKey: .accountNo)
-            
             
             
             
@@ -185,9 +183,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(mobile, forKey: .mobile)
-            
             
             
             
@@ -195,9 +191,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(comment, forKey: .comment)
-            
             
             
             
@@ -205,9 +199,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            try? container.encode(vpa, forKey: .vpa)
-            
+            try? container.encodeIfPresent(vpa, forKey: .vpa)
             
             
             
@@ -215,14 +207,11 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
             
             
             
-            
-            try? container.encode(wallet, forKey: .wallet)
-            
+            try? container.encodeIfPresent(wallet, forKey: .wallet)
             
             
             

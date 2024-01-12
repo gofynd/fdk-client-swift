@@ -548,9 +548,7 @@ public extension ApplicationClient.PosCart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(comment, forKey: .comment)
-            
             
             
             
@@ -558,9 +556,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(couponText, forKey: .couponText)
-            
             
             
             
@@ -568,9 +564,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(isValid, forKey: .isValid)
-            
             
             
             
@@ -578,9 +572,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(success, forKey: .success)
-            
             
             
             
@@ -588,9 +580,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(uid, forKey: .uid)
-            
             
             
             
@@ -598,9 +588,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(errorMessage, forKey: .errorMessage)
-            
             
             
             
@@ -608,9 +596,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(storeCode, forKey: .storeCode)
-            
             
             
             
@@ -618,9 +604,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(message, forKey: .message)
-            
             
             
             
@@ -628,9 +612,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(codAvailable, forKey: .codAvailable)
-            
             
             
             
@@ -638,9 +620,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
-            
             
             
             
@@ -648,9 +628,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(codCharges, forKey: .codCharges)
-            
             
             
             
@@ -658,9 +636,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(userType, forKey: .userType)
-            
             
             
             
@@ -668,9 +644,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(gstin, forKey: .gstin)
-            
             
             
             
@@ -678,14 +652,11 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(items, forKey: .items)
             
             
             
-            
             try? container.encodeIfPresent(currency, forKey: .currency)
-            
             
             
             

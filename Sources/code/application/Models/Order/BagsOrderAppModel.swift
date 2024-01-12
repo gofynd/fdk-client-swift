@@ -332,9 +332,7 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
-            try? container.encode(deliveryDate, forKey: .deliveryDate)
-            
+            try? container.encodeIfPresent(deliveryDate, forKey: .deliveryDate)
             
             
             
@@ -342,9 +340,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
-            
             
             
             
@@ -352,9 +348,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(appliedPromos, forKey: .appliedPromos)
-            
             
             
             
@@ -362,9 +356,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(prices, forKey: .prices)
-            
             
             
             
@@ -372,9 +364,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(canReturn, forKey: .canReturn)
-            
             
             
             
@@ -382,9 +372,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
-            try? container.encode(returnableDate, forKey: .returnableDate)
-            
+            try? container.encodeIfPresent(returnableDate, forKey: .returnableDate)
             
             
             
@@ -392,9 +380,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(parentPromoBags, forKey: .parentPromoBags)
-            
             
             
             
@@ -402,14 +388,11 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
             
             
             
-            
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
-            
             
             
             

@@ -81,9 +81,7 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(configuration, forKey: .configuration)
-            
             
             
             
@@ -91,14 +89,11 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(ignoredLocations, forKey: .ignoredLocations)
             
             
             
-            
             try? container.encodeIfPresent(identifier, forKey: .identifier)
-            
             
             
             

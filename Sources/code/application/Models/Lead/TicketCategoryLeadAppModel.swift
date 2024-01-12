@@ -102,9 +102,7 @@ public extension ApplicationClient.Lead {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(display, forKey: .display)
-            
             
             
             
@@ -112,14 +110,11 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(subCategories, forKey: .subCategories)
             
             
             
-            
             try? container.encodeIfPresent(groupId, forKey: .groupId)
-            
             
             
             

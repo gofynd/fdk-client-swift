@@ -314,9 +314,7 @@ public extension ApplicationClient.Lead {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(applicationId, forKey: .applicationId)
-            
             
             
             
@@ -324,9 +322,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(firstName, forKey: .firstName)
-            
             
             
             
@@ -334,9 +330,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(lastName, forKey: .lastName)
-            
             
             
             
@@ -344,9 +338,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(emails, forKey: .emails)
-            
             
             
             
@@ -354,9 +346,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(dob, forKey: .dob)
-            
             
             
             
@@ -364,9 +354,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(profilePicUrl, forKey: .profilePicUrl)
-            
             
             
             
@@ -374,9 +362,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(accountType, forKey: .accountType)
-            
             
             
             
@@ -384,9 +370,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
             
             
             

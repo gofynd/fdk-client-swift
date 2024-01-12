@@ -278,9 +278,7 @@ public extension ApplicationClient.Rewards {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(schedule, forKey: .schedule)
-            
             
             
             
@@ -288,9 +286,7 @@ public extension ApplicationClient.Rewards {
             
             
             
-            
             try? container.encodeIfPresent(applicationId, forKey: .applicationId)
-            
             
             
             
@@ -298,9 +294,7 @@ public extension ApplicationClient.Rewards {
             
             
             
-            
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
             
             
             
@@ -308,9 +302,7 @@ public extension ApplicationClient.Rewards {
             
             
             
-            
             try? container.encodeIfPresent(rule, forKey: .rule)
-            
             
             
             
@@ -318,9 +310,7 @@ public extension ApplicationClient.Rewards {
             
             
             
-            
             try? container.encodeIfPresent(subText, forKey: .subText)
-            
             
             
             
@@ -328,9 +318,7 @@ public extension ApplicationClient.Rewards {
             
             
             
-            
             try? container.encodeIfPresent(type, forKey: .type)
-            
             
             
             
@@ -338,9 +326,7 @@ public extension ApplicationClient.Rewards {
             
             
             
-            
             try? container.encodeIfPresent(updatedBy, forKey: .updatedBy)
-            
             
             
             

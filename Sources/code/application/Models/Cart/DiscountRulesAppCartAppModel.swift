@@ -98,9 +98,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(matchedBuyRules, forKey: .matchedBuyRules)
-            
             
             
             
@@ -108,9 +106,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(offer, forKey: .offer)
-            
             
             
             

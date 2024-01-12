@@ -263,9 +263,7 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-            
             
             
             
@@ -273,9 +271,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(mobile, forKey: .mobile)
-            
             
             
             
@@ -283,9 +279,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
-            
             
             
             
@@ -293,9 +287,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(beneficiaryId, forKey: .beneficiaryId)
-            
             
             
             
@@ -303,14 +295,11 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(email, forKey: .email)
             
             
             
-            
-            try? container.encode(delightsUserName, forKey: .delightsUserName)
-            
+            try? container.encodeIfPresent(delightsUserName, forKey: .delightsUserName)
             
             
             
@@ -318,9 +307,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(transferMode, forKey: .transferMode)
-            
             
             
             
@@ -328,9 +315,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-            
             
             
             
@@ -338,9 +323,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(comment, forKey: .comment)
-            
             
             
             
@@ -348,9 +331,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(title, forKey: .title)
-            
             
             
             

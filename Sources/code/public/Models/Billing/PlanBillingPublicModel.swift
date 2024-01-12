@@ -370,9 +370,7 @@ public extension PublicClient.Billing {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(recurring, forKey: .recurring)
-            
             
             
             
@@ -380,9 +378,7 @@ public extension PublicClient.Billing {
             
             
             
-            
             try? container.encodeIfPresent(planGroup, forKey: .planGroup)
-            
             
             
             
@@ -390,9 +386,7 @@ public extension PublicClient.Billing {
             
             
             
-            
             try? container.encodeIfPresent(currency, forKey: .currency)
-            
             
             
             
@@ -400,9 +394,7 @@ public extension PublicClient.Billing {
             
             
             
-            
             try? container.encodeIfPresent(isVisible, forKey: .isVisible)
-            
             
             
             
@@ -410,9 +402,7 @@ public extension PublicClient.Billing {
             
             
             
-            
             try? container.encodeIfPresent(addons, forKey: .addons)
-            
             
             
             
@@ -420,9 +410,7 @@ public extension PublicClient.Billing {
             
             
             
-            
             try? container.encodeIfPresent(type, forKey: .type)
-            
             
             
             
@@ -430,9 +418,7 @@ public extension PublicClient.Billing {
             
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -440,9 +426,7 @@ public extension PublicClient.Billing {
             
             
             
-            
             try? container.encodeIfPresent(description, forKey: .description)
-            
             
             
             
@@ -450,14 +434,11 @@ public extension PublicClient.Billing {
             
             
             
-            
             try? container.encodeIfPresent(productSuiteId, forKey: .productSuiteId)
             
             
             
-            
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
             
             
             

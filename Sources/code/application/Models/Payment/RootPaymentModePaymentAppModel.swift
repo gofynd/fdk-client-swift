@@ -167,14 +167,11 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
-            try? container.encode(isPayByCardPl, forKey: .isPayByCardPl)
-            
+            try? container.encodeIfPresent(isPayByCardPl, forKey: .isPayByCardPl)
             
             
             
-            try? container.encode(addCardEnabled, forKey: .addCardEnabled)
-            
+            try? container.encodeIfPresent(addCardEnabled, forKey: .addCardEnabled)
             
             
             
@@ -182,9 +179,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(displayName, forKey: .displayName)
-            
             
             
             
@@ -192,14 +187,11 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            try? container.encode(saveCard, forKey: .saveCard)
-            
+            try? container.encodeIfPresent(saveCard, forKey: .saveCard)
             
             
             
-            try? container.encode(aggregatorName, forKey: .aggregatorName)
-            
+            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
             
             
             
@@ -207,8 +199,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            try? container.encode(anonymousEnable, forKey: .anonymousEnable)
+            try? container.encodeIfPresent(anonymousEnable, forKey: .anonymousEnable)
             
             
         }

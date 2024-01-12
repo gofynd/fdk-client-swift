@@ -219,12 +219,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(address1, forKey: .address1)
+            try? container.encodeIfPresent(address1, forKey: .address1)
             
             
             
             
-            try? container.encode(displayAddress, forKey: .displayAddress)
+            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
             
             
             
@@ -490,12 +490,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(address1, forKey: .address1)
+            try? container.encodeIfPresent(address1, forKey: .address1)
             
             
             
             
-            try? container.encode(displayAddress, forKey: .displayAddress)
+            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
             
             
             

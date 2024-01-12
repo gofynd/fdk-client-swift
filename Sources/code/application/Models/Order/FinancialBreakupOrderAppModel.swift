@@ -512,9 +512,7 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(couponValue, forKey: .couponValue)
-            
             
             
             
@@ -522,9 +520,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
-            
             
             
             
@@ -532,9 +528,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
-            
             
             
             
@@ -542,9 +536,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
-            
             
             
             
@@ -552,9 +544,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(gstTaxPercentage, forKey: .gstTaxPercentage)
-            
             
             
             
@@ -562,9 +552,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
-            
             
             
             
@@ -572,9 +560,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(size, forKey: .size)
-            
             
             
             
@@ -582,9 +568,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(cashbackApplied, forKey: .cashbackApplied)
-            
             
             
             
@@ -592,9 +576,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(cashback, forKey: .cashback)
-            
             
             
             
@@ -602,9 +584,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(amountPaidRoundoff, forKey: .amountPaidRoundoff)
-            
             
             
             
@@ -612,9 +592,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(identifiers, forKey: .identifiers)
-            
             
             
             
@@ -622,9 +600,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(itemName, forKey: .itemName)
-            
             
             
             
@@ -632,14 +608,11 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(gstFee, forKey: .gstFee)
             
             
             
-            
             try? container.encodeIfPresent(refundAmount, forKey: .refundAmount)
-            
             
             
             

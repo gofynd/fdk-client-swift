@@ -99,9 +99,7 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(failureCallbackUrl, forKey: .failureCallbackUrl)
-            
             
             
             
@@ -109,9 +107,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(paymentLinkId, forKey: .paymentLinkId)
-            
             
             
             
@@ -119,13 +115,11 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(successCallbackUrl, forKey: .successCallbackUrl)
             
             
             
-            
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }

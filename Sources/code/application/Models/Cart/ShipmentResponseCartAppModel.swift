@@ -206,9 +206,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(shipments, forKey: .shipments)
-            
             
             
             
@@ -216,14 +214,11 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(orderType, forKey: .orderType)
             
             
             
-            
-            try? container.encode(boxType, forKey: .boxType)
-            
+            try? container.encodeIfPresent(boxType, forKey: .boxType)
             
             
             
@@ -231,14 +226,11 @@ public extension ApplicationClient.Cart {
             
             
             
-            
-            try? container.encode(dpOptions, forKey: .dpOptions)
-            
+            try? container.encodeIfPresent(dpOptions, forKey: .dpOptions)
             
             
             
-            try? container.encode(dpId, forKey: .dpId)
-            
+            try? container.encodeIfPresent(dpId, forKey: .dpId)
             
             
             
@@ -246,9 +238,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(fulfillmentType, forKey: .fulfillmentType)
-            
             
             
             

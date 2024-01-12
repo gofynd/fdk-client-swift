@@ -161,7 +161,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(requestId, forKey: .requestId)
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
             
             
             
@@ -171,22 +171,22 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(info, forKey: .info)
+            try? container.encodeIfPresent(info, forKey: .info)
             
             
             
             
-            try? container.encode(stackTrace, forKey: .stackTrace)
+            try? container.encodeIfPresent(stackTrace, forKey: .stackTrace)
             
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
@@ -196,7 +196,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(exception, forKey: .exception)
+            try? container.encodeIfPresent(exception, forKey: .exception)
             
             
         }
@@ -364,7 +364,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(requestId, forKey: .requestId)
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
             
             
             
@@ -374,22 +374,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(info, forKey: .info)
+            try? container.encodeIfPresent(info, forKey: .info)
             
             
             
             
-            try? container.encode(stackTrace, forKey: .stackTrace)
+            try? container.encodeIfPresent(stackTrace, forKey: .stackTrace)
             
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
@@ -399,7 +399,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(exception, forKey: .exception)
+            try? container.encodeIfPresent(exception, forKey: .exception)
             
             
         }

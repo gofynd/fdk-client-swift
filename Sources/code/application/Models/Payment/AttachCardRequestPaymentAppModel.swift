@@ -91,19 +91,15 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(nickname, forKey: .nickname)
             
             
             
-            
-            try? container.encode(refresh, forKey: .refresh)
-            
+            try? container.encodeIfPresent(refresh, forKey: .refresh)
             
             
             
-            try? container.encode(cardId, forKey: .cardId)
-            
+            try? container.encodeIfPresent(cardId, forKey: .cardId)
             
             
             

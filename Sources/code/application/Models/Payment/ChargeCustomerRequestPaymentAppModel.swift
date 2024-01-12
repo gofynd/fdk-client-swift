@@ -95,9 +95,7 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
-            try? container.encode(verified, forKey: .verified)
-            
+            try? container.encodeIfPresent(verified, forKey: .verified)
             
             
             
@@ -105,18 +103,15 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(orderId, forKey: .orderId)
             
             
             
-            
-            try? container.encode(transactionToken, forKey: .transactionToken)
-            
+            try? container.encodeIfPresent(transactionToken, forKey: .transactionToken)
             
             
             
-            try? container.encode(amount, forKey: .amount)
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
         }

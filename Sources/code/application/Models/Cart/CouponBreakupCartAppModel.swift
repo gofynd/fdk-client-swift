@@ -260,19 +260,15 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(couponValue, forKey: .couponValue)
             
             
             
-            
-            try? container.encode(title, forKey: .title)
-            
+            try? container.encodeIfPresent(title, forKey: .title)
             
             
             
-            try? container.encode(subTitle, forKey: .subTitle)
-            
+            try? container.encodeIfPresent(subTitle, forKey: .subTitle)
             
             
             
@@ -280,14 +276,11 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(message, forKey: .message)
             
             
             
-            
-            try? container.encode(couponType, forKey: .couponType)
-            
+            try? container.encodeIfPresent(couponType, forKey: .couponType)
             
             
             
@@ -295,9 +288,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(value, forKey: .value)
-            
             
             
             
@@ -305,19 +296,15 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(isApplied, forKey: .isApplied)
             
             
             
-            
-            try? container.encode(description, forKey: .description)
-            
+            try? container.encodeIfPresent(description, forKey: .description)
             
             
             
             try? container.encodeIfPresent(code, forKey: .code)
-            
             
             
             

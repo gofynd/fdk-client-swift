@@ -209,47 +209,47 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(bagId, forKey: .bagId)
+            try? container.encodeIfPresent(bagId, forKey: .bagId)
             
             
             
             
-            try? container.encode(affiliateOrderId, forKey: .affiliateOrderId)
+            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
             
             
             
             
-            try? container.encode(affiliateId, forKey: .affiliateId)
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
             
             
             
             
-            try? container.encode(itemId, forKey: .itemId)
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
             
             
             
             
-            try? container.encode(fyndOrderId, forKey: .fyndOrderId)
+            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
             
             
             
             
-            try? container.encode(setId, forKey: .setId)
+            try? container.encodeIfPresent(setId, forKey: .setId)
             
             
             
             
-            try? container.encode(affiliateBagId, forKey: .affiliateBagId)
+            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
             
             
             
             
-            try? container.encode(reasonIds, forKey: .reasonIds)
+            try? container.encodeIfPresent(reasonIds, forKey: .reasonIds)
             
             
             
             
-            try? container.encode(mongoArticleId, forKey: .mongoArticleId)
+            try? container.encodeIfPresent(mongoArticleId, forKey: .mongoArticleId)
             
             
         }
@@ -465,47 +465,47 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(bagId, forKey: .bagId)
+            try? container.encodeIfPresent(bagId, forKey: .bagId)
             
             
             
             
-            try? container.encode(affiliateOrderId, forKey: .affiliateOrderId)
+            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
             
             
             
             
-            try? container.encode(affiliateId, forKey: .affiliateId)
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
             
             
             
             
-            try? container.encode(itemId, forKey: .itemId)
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
             
             
             
             
-            try? container.encode(fyndOrderId, forKey: .fyndOrderId)
+            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
             
             
             
             
-            try? container.encode(setId, forKey: .setId)
+            try? container.encodeIfPresent(setId, forKey: .setId)
             
             
             
             
-            try? container.encode(affiliateBagId, forKey: .affiliateBagId)
+            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
             
             
             
             
-            try? container.encode(reasonIds, forKey: .reasonIds)
+            try? container.encodeIfPresent(reasonIds, forKey: .reasonIds)
             
             
             
             
-            try? container.encode(mongoArticleId, forKey: .mongoArticleId)
+            try? container.encodeIfPresent(mongoArticleId, forKey: .mongoArticleId)
             
             
         }

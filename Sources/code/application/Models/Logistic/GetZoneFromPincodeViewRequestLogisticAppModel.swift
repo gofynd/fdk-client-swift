@@ -48,9 +48,7 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(pincode, forKey: .pincode)
-            
             
             
             

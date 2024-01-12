@@ -296,9 +296,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(vog, forKey: .vog)
-            
             
             
             
@@ -306,9 +304,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(fyndCash, forKey: .fyndCash)
-            
             
             
             
@@ -316,9 +312,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(convenienceFee, forKey: .convenienceFee)
-            
             
             
             
@@ -326,9 +320,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(gstCharges, forKey: .gstCharges)
-            
             
             
             
@@ -336,9 +328,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(mopTotal, forKey: .mopTotal)
-            
             
             
             
@@ -346,9 +336,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(coupon, forKey: .coupon)
-            
             
             
             
@@ -356,14 +344,11 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(giftCard, forKey: .giftCard)
             
             
             
-            
             try? container.encodeIfPresent(youSaved, forKey: .youSaved)
-            
             
             
             

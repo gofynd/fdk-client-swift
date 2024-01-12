@@ -296,9 +296,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
-            
             
             
             
@@ -306,9 +304,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
-            
             
             
             
@@ -316,9 +312,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(customJson, forKey: .customJson)
-            
             
             
             
@@ -326,9 +320,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(storeId, forKey: .storeId)
-            
             
             
             
@@ -336,9 +328,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(articleId, forKey: .articleId)
-            
             
             
             
@@ -346,9 +336,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
-            
             
             
             
@@ -356,14 +344,11 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(itemId, forKey: .itemId)
             
             
             
-            
             try? container.encodeIfPresent(meta, forKey: .meta)
-            
             
             
             

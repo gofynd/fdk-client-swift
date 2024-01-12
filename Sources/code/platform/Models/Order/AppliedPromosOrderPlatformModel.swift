@@ -175,12 +175,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(promotionType, forKey: .promotionType)
+            try? container.encodeIfPresent(promotionType, forKey: .promotionType)
             
             
             
             
-            try? container.encode(promotionName, forKey: .promotionName)
+            try? container.encodeIfPresent(promotionName, forKey: .promotionName)
             
             
             
@@ -190,12 +190,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(amount, forKey: .amount)
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
             
             
-            try? container.encode(articleQuantity, forKey: .articleQuantity)
+            try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
             
             
             
@@ -205,12 +205,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(promoId, forKey: .promoId)
+            try? container.encodeIfPresent(promoId, forKey: .promoId)
             
             
             
             
-            try? container.encode(mrpPromotion, forKey: .mrpPromotion)
+            try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
             
             
         }
@@ -392,12 +392,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(promotionType, forKey: .promotionType)
+            try? container.encodeIfPresent(promotionType, forKey: .promotionType)
             
             
             
             
-            try? container.encode(promotionName, forKey: .promotionName)
+            try? container.encodeIfPresent(promotionName, forKey: .promotionName)
             
             
             
@@ -407,12 +407,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(amount, forKey: .amount)
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
             
             
-            try? container.encode(articleQuantity, forKey: .articleQuantity)
+            try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
             
             
             
@@ -422,12 +422,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(promoId, forKey: .promoId)
+            try? container.encodeIfPresent(promoId, forKey: .promoId)
             
             
             
             
-            try? container.encode(mrpPromotion, forKey: .mrpPromotion)
+            try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
             
             
         }

@@ -67,12 +67,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(value, forKey: .value)
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
             
             
-            try? container.encode(unit, forKey: .unit)
+            try? container.encodeIfPresent(unit, forKey: .unit)
             
             
         }
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(value, forKey: .value)
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
             
             
-            try? container.encode(unit, forKey: .unit)
+            try? container.encodeIfPresent(unit, forKey: .unit)
             
             
         }

@@ -116,9 +116,7 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -126,14 +124,11 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
-            
             try? container.encodeIfPresent(parentIds, forKey: .parentIds)
-            
             
             
             

@@ -46,7 +46,6 @@ public extension PublicClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(items, forKey: .items)
             
             

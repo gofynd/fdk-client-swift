@@ -296,14 +296,11 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(totalDueAmount, forKey: .totalDueAmount)
             
             
             
-            
-            try? container.encode(status, forKey: .status)
-            
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             
@@ -311,9 +308,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            try? container.encode(creditLineId, forKey: .creditLineId)
-            
+            try? container.encodeIfPresent(creditLineId, forKey: .creditLineId)
             
             
             
@@ -321,14 +316,11 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(dueAmount, forKey: .dueAmount)
             
             
             
-            
-            try? container.encode(dueDate, forKey: .dueDate)
-            
+            try? container.encodeIfPresent(dueDate, forKey: .dueDate)
             
             
             
@@ -336,38 +328,31 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            try? container.encode(statusMessage, forKey: .statusMessage)
-            
+            try? container.encodeIfPresent(statusMessage, forKey: .statusMessage)
             
             
             
-            try? container.encode(repaymentUrl, forKey: .repaymentUrl)
+            try? container.encodeIfPresent(repaymentUrl, forKey: .repaymentUrl)
             
             
             
-            
-            try? container.encode(soaUrl, forKey: .soaUrl)
-            
+            try? container.encodeIfPresent(soaUrl, forKey: .soaUrl)
             
             
             
-            try? container.encode(isEligibleForTxn, forKey: .isEligibleForTxn)
+            try? container.encodeIfPresent(isEligibleForTxn, forKey: .isEligibleForTxn)
             
             
             
-            
-            try? container.encode(merchantCustomerRefId, forKey: .merchantCustomerRefId)
-            
+            try? container.encodeIfPresent(merchantCustomerRefId, forKey: .merchantCustomerRefId)
             
             
             
-            try? container.encode(buyerStatus, forKey: .buyerStatus)
+            try? container.encodeIfPresent(buyerStatus, forKey: .buyerStatus)
             
             
             
-            
-            try? container.encode(activationUrl, forKey: .activationUrl)
+            try? container.encodeIfPresent(activationUrl, forKey: .activationUrl)
             
             
         }

@@ -98,9 +98,7 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(title, forKey: .title)
-            
             
             
             
@@ -108,9 +106,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(autoplay, forKey: .autoplay)
-            
             
             
             

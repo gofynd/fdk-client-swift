@@ -172,9 +172,7 @@ public extension PublicClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(message, forKey: .message)
-            
             
             
             
@@ -182,9 +180,7 @@ public extension PublicClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(code, forKey: .code)
-            
             
             
             
@@ -192,9 +188,7 @@ public extension PublicClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(info, forKey: .info)
-            
             
             
             
@@ -202,9 +196,7 @@ public extension PublicClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(stackTrace, forKey: .stackTrace)
-            
             
             
             

@@ -121,27 +121,27 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(valueOfGood, forKey: .valueOfGood)
+            try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
             
             
             
             
-            try? container.encode(gstFee, forKey: .gstFee)
+            try? container.encodeIfPresent(gstFee, forKey: .gstFee)
             
             
             
             
-            try? container.encode(brandCalculatedAmount, forKey: .brandCalculatedAmount)
+            try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
             
             
             
             
-            try? container.encode(taxCollectedAtSource, forKey: .taxCollectedAtSource)
+            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
             
             
             
             
-            try? container.encode(gstinCode, forKey: .gstinCode)
+            try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
             
             
         }
@@ -269,27 +269,27 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(valueOfGood, forKey: .valueOfGood)
+            try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
             
             
             
             
-            try? container.encode(gstFee, forKey: .gstFee)
+            try? container.encodeIfPresent(gstFee, forKey: .gstFee)
             
             
             
             
-            try? container.encode(brandCalculatedAmount, forKey: .brandCalculatedAmount)
+            try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
             
             
             
             
-            try? container.encode(taxCollectedAtSource, forKey: .taxCollectedAtSource)
+            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
             
             
             
             
-            try? container.encode(gstinCode, forKey: .gstinCode)
+            try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
             
             
         }

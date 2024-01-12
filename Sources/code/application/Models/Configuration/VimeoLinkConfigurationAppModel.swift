@@ -80,14 +80,11 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(title, forKey: .title)
             
             
             
-            
             try? container.encodeIfPresent(icon, forKey: .icon)
-            
             
             
             

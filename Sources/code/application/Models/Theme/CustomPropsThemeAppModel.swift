@@ -566,9 +566,7 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(headerBgColor, forKey: .headerBgColor)
-            
             
             
             
@@ -576,9 +574,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(headerBorderColor, forKey: .headerBorderColor)
-            
             
             
             
@@ -586,9 +582,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(headerCartNotificationBgColor, forKey: .headerCartNotificationBgColor)
-            
             
             
             
@@ -596,9 +590,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(headerNavHoverColor, forKey: .headerNavHoverColor)
-            
             
             
             
@@ -606,9 +598,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(buttonPrimaryLabelColor, forKey: .buttonPrimaryLabelColor)
-            
             
             
             
@@ -616,9 +606,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(buttonAddToCartLabelColor, forKey: .buttonAddToCartLabelColor)
-            
             
             
             
@@ -626,9 +614,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(buttonSecondaryLabelColor, forKey: .buttonSecondaryLabelColor)
-            
             
             
             
@@ -636,9 +622,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(buttonTertiaryLabelColor, forKey: .buttonTertiaryLabelColor)
-            
             
             
             
@@ -646,9 +630,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(buttonTertiaryHoverTextColor, forKey: .buttonTertiaryHoverTextColor)
-            
             
             
             
@@ -656,9 +638,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(textBodyColor, forKey: .textBodyColor)
-            
             
             
             
@@ -666,9 +646,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(textSalePriceColor, forKey: .textSalePriceColor)
-            
             
             
             
@@ -676,9 +654,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(textDiscountColor, forKey: .textDiscountColor)
-            
             
             
             
@@ -686,9 +662,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(footerTextColor, forKey: .footerTextColor)
-            
             
             
             
@@ -696,9 +670,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(footerNavHoverColor, forKey: .footerNavHoverColor)
-            
             
             
             
@@ -706,9 +678,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(isMenuBelowLogo, forKey: .isMenuBelowLogo)
-            
             
             
             

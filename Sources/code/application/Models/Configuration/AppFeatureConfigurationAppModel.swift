@@ -278,9 +278,7 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(productDetail, forKey: .productDetail)
-            
             
             
             
@@ -288,9 +286,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(registrationPage, forKey: .registrationPage)
-            
             
             
             
@@ -298,9 +294,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(common, forKey: .common)
-            
             
             
             
@@ -308,9 +302,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(qr, forKey: .qr)
-            
             
             
             
@@ -318,9 +310,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(order, forKey: .order)
-            
             
             
             
@@ -328,9 +318,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(app, forKey: .app)
-            
             
             
             
@@ -338,9 +326,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
-            
             
             
             

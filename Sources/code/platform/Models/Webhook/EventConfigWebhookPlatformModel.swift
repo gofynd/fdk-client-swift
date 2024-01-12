@@ -231,7 +231,7 @@ public extension PlatformClient.Webhook {
             
             
             
-            try? container.encode(eventSchema, forKey: .eventSchema)
+            try? container.encodeIfPresent(eventSchema, forKey: .eventSchema)
             
             
             
@@ -246,7 +246,7 @@ public extension PlatformClient.Webhook {
             
             
             
-            try? container.encode(description, forKey: .description)
+            try? container.encodeIfPresent(description, forKey: .description)
             
             
             

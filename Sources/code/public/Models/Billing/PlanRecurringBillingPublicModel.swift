@@ -64,9 +64,7 @@ public extension PublicClient.Billing {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(interval, forKey: .interval)
-            
             
             
             
