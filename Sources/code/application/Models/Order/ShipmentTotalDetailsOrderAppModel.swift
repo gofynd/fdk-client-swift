@@ -80,14 +80,11 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(pieces, forKey: .pieces)
             
             
             
-            
             try? container.encodeIfPresent(totalPrice, forKey: .totalPrice)
-            
             
             
             

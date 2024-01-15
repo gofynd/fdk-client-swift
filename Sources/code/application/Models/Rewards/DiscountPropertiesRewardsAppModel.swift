@@ -116,9 +116,7 @@ public extension ApplicationClient.Rewards {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(absolute, forKey: .absolute)
-            
             
             
             
@@ -126,14 +124,11 @@ public extension ApplicationClient.Rewards {
             
             
             
-            
             try? container.encodeIfPresent(displayAbsolute, forKey: .displayAbsolute)
             
             
             
-            
             try? container.encodeIfPresent(displayPercent, forKey: .displayPercent)
-            
             
             
             

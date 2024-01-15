@@ -139,17 +139,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(totalCount, forKey: .totalCount)
+            try? container.encodeIfPresent(totalCount, forKey: .totalCount)
             
             
             
             
-            try? container.encode(message, forKey: .message)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
-            try? container.encode(success, forKey: .success)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
             
@@ -159,7 +159,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(lane, forKey: .lane)
+            try? container.encodeIfPresent(lane, forKey: .lane)
             
             
             
@@ -310,17 +310,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(totalCount, forKey: .totalCount)
+            try? container.encodeIfPresent(totalCount, forKey: .totalCount)
             
             
             
             
-            try? container.encode(message, forKey: .message)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
-            try? container.encode(success, forKey: .success)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
             
@@ -330,7 +330,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(lane, forKey: .lane)
+            try? container.encodeIfPresent(lane, forKey: .lane)
             
             
             

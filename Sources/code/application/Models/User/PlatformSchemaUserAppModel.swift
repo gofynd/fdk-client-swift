@@ -476,9 +476,7 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(display, forKey: .display)
-            
             
             
             
@@ -486,9 +484,7 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-            
             
             
             
@@ -496,9 +492,7 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(forgotPassword, forKey: .forgotPassword)
-            
             
             
             
@@ -506,9 +500,7 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(skipCaptcha, forKey: .skipCaptcha)
-            
             
             
             
@@ -516,9 +508,7 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(meta, forKey: .meta)
-            
             
             
             
@@ -526,9 +516,7 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(social, forKey: .social)
-            
             
             
             
@@ -536,9 +524,7 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(registerRequiredFields, forKey: .registerRequiredFields)
-            
             
             
             
@@ -546,9 +532,7 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(flashCard, forKey: .flashCard)
-            
             
             
             
@@ -556,9 +540,7 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(socialTokens, forKey: .socialTokens)
-            
             
             
             
@@ -566,9 +548,7 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(register, forKey: .register)
-            
             
             
             
@@ -576,9 +556,7 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(desktopImage, forKey: .desktopImage)
-            
             
             
             
@@ -586,14 +564,11 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(deleteAccountReasons, forKey: .deleteAccountReasons)
             
             
             
-            
             try? container.encodeIfPresent(deleteAccountConsent, forKey: .deleteAccountConsent)
-            
             
             
             

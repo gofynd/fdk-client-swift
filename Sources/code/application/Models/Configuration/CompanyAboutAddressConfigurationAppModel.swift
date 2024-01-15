@@ -152,9 +152,7 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(pincode, forKey: .pincode)
-            
             
             
             
@@ -162,9 +160,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(address2, forKey: .address2)
-            
             
             
             
@@ -172,14 +168,11 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(state, forKey: .state)
             
             
             
-            
             try? container.encodeIfPresent(country, forKey: .country)
-            
             
             
             

@@ -301,7 +301,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(coupon, forKey: .coupon)
+            try? container.encodeIfPresent(coupon, forKey: .coupon)
             
             
         }
@@ -609,7 +609,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(coupon, forKey: .coupon)
+            try? container.encodeIfPresent(coupon, forKey: .coupon)
             
             
         }

@@ -24,6 +24,10 @@ public extension ApplicationClient.Configuration {
         
         public var rewardPoints: RewardPointsConfig?
         
+        public var listingPage: ListingPageFeature?
+        
+        public var internationalShipping: InternationalShipping?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -43,9 +47,13 @@ public extension ApplicationClient.Configuration {
             
             case rewardPoints = "reward_points"
             
+            case listingPage = "listing_page"
+            
+            case internationalShipping = "international_shipping"
+            
         }
 
-        public init(communicationOptinDialog: CommunicationOptinDialogFeature? = nil, compareProducts: CompareProductsFeature? = nil, currency: CurrencyFeature? = nil, deploymentStoreSelection: DeploymentStoreSelectionFeature? = nil, feedback: FeedbackFeature? = nil, listingPrice: ListingPriceFeature? = nil, revenueEngine: RevenueEngineFeature? = nil, rewardPoints: RewardPointsConfig? = nil) {
+        public init(communicationOptinDialog: CommunicationOptinDialogFeature? = nil, compareProducts: CompareProductsFeature? = nil, currency: CurrencyFeature? = nil, deploymentStoreSelection: DeploymentStoreSelectionFeature? = nil, feedback: FeedbackFeature? = nil, internationalShipping: InternationalShipping? = nil, listingPage: ListingPageFeature? = nil, listingPrice: ListingPriceFeature? = nil, revenueEngine: RevenueEngineFeature? = nil, rewardPoints: RewardPointsConfig? = nil) {
             
             self.communicationOptinDialog = communicationOptinDialog
             
@@ -62,6 +70,10 @@ public extension ApplicationClient.Configuration {
             self.compareProducts = compareProducts
             
             self.rewardPoints = rewardPoints
+            
+            self.listingPage = listingPage
+            
+            self.internationalShipping = internationalShipping
             
         }
 
@@ -164,15 +176,37 @@ public extension ApplicationClient.Configuration {
             }
             
             
+            
+            do {
+                listingPage = try container.decode(ListingPageFeature.self, forKey: .listingPage)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                internationalShipping = try container.decode(InternationalShipping.self, forKey: .internationalShipping)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(communicationOptinDialog, forKey: .communicationOptinDialog)
-            
             
             
             
@@ -180,9 +214,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(listingPrice, forKey: .listingPrice)
-            
             
             
             
@@ -190,9 +222,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(revenueEngine, forKey: .revenueEngine)
-            
             
             
             
@@ -200,13 +230,19 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(compareProducts, forKey: .compareProducts)
             
             
             
-            
             try? container.encodeIfPresent(rewardPoints, forKey: .rewardPoints)
+            
+            
+            
+            try? container.encodeIfPresent(listingPage, forKey: .listingPage)
+            
+            
+            
+            try? container.encodeIfPresent(internationalShipping, forKey: .internationalShipping)
             
             
         }

@@ -69,12 +69,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
             
             
-            try? container.encode(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
             
             
         }

@@ -260,9 +260,7 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
-            
             
             
             
@@ -270,9 +268,7 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(success, forKey: .success)
-            
             
             
             
@@ -280,9 +276,7 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(message, forKey: .message)
-            
             
             
             
@@ -290,9 +284,7 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-            
             
             
             
@@ -300,9 +292,7 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(resendEmailToken, forKey: .resendEmailToken)
-            
             
             
             
@@ -310,14 +300,11 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(verifyEmailOtp, forKey: .verifyEmailOtp)
             
             
             
-            
             try? container.encodeIfPresent(verifyMobileOtp, forKey: .verifyMobileOtp)
-            
             
             
             

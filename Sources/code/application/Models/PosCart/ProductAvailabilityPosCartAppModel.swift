@@ -134,9 +134,7 @@ public extension ApplicationClient.PosCart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(availableSizes, forKey: .availableSizes)
-            
             
             
             
@@ -144,9 +142,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(deliverable, forKey: .deliverable)
-            
             
             
             
@@ -154,9 +150,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(isValid, forKey: .isValid)
-            
             
             
             

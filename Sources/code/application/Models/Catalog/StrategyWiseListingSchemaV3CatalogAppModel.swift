@@ -98,9 +98,7 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(distance, forKey: .distance)
-            
             
             
             
@@ -108,9 +106,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(tat, forKey: .tat)
-            
             
             
             

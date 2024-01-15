@@ -69,12 +69,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(end, forKey: .end)
+            try? container.encodeIfPresent(end, forKey: .end)
             
             
             
             
-            try? container.encode(start, forKey: .start)
+            try? container.encodeIfPresent(start, forKey: .start)
             
             
         }

@@ -111,7 +111,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encode(type, forKey: .type)
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
         }
@@ -229,7 +229,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encode(type, forKey: .type)
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
         }

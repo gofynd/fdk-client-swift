@@ -8,7 +8,7 @@ public extension ApplicationClient.Payment {
     */
     class PaymentOptionAndFlow: Codable {
         
-        public var paymentOption: [RootPaymentMode]
+        public var paymentOption: RootPaymentMode
         
         public var paymentFlows: PaymentFlow
         
@@ -21,7 +21,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(paymentFlows: PaymentFlow, paymentOption: [RootPaymentMode]) {
+        public init(paymentFlows: PaymentFlow, paymentOption: RootPaymentMode) {
             
             self.paymentOption = paymentOption
             
@@ -33,7 +33,7 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            paymentOption = try container.decode([RootPaymentMode].self, forKey: .paymentOption)
+            paymentOption = try container.decode(RootPaymentMode.self, forKey: .paymentOption)
             
             
             
@@ -48,9 +48,7 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(paymentOption, forKey: .paymentOption)
-            
             
             
             

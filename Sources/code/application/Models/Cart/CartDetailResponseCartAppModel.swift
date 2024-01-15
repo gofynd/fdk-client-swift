@@ -494,9 +494,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(cartId, forKey: .cartId)
-            
             
             
             
@@ -504,9 +502,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(appliedPromoDetails, forKey: .appliedPromoDetails)
-            
             
             
             
@@ -514,9 +510,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(panNo, forKey: .panNo)
-            
             
             
             
@@ -524,9 +518,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -534,9 +526,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(deliveryPromise, forKey: .deliveryPromise)
-            
             
             
             
@@ -544,9 +534,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(items, forKey: .items)
-            
             
             
             
@@ -554,9 +542,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(commonConfig, forKey: .commonConfig)
-            
             
             
             
@@ -564,9 +550,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(message, forKey: .message)
-            
             
             
             
@@ -574,9 +558,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(staffUserId, forKey: .staffUserId)
-            
             
             
             
@@ -584,9 +566,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(gstin, forKey: .gstin)
-            
             
             
             
@@ -594,9 +574,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(lastModified, forKey: .lastModified)
-            
             
             
             
@@ -604,9 +582,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(currency, forKey: .currency)
-            
             
             
             
@@ -614,9 +590,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(buyNow, forKey: .buyNow)
-            
             
             
             

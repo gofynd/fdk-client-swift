@@ -132,12 +132,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(logo, forKey: .logo)
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             
             
-            try? container.encode(company, forKey: .company)
+            try? container.encodeIfPresent(company, forKey: .company)
             
             
             
@@ -147,17 +147,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
             
             
             
             
-            try? container.encode(brandName, forKey: .brandName)
+            try? container.encodeIfPresent(brandName, forKey: .brandName)
             
             
             
             
-            try? container.encode(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
         }
@@ -296,12 +296,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(logo, forKey: .logo)
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             
             
-            try? container.encode(company, forKey: .company)
+            try? container.encodeIfPresent(company, forKey: .company)
             
             
             
@@ -311,17 +311,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
             
             
             
             
-            try? container.encode(brandName, forKey: .brandName)
+            try? container.encodeIfPresent(brandName, forKey: .brandName)
             
             
             
             
-            try? container.encode(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
         }

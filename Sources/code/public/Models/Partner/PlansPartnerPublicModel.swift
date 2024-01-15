@@ -154,9 +154,7 @@ public extension PublicClient.Partner {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(additionalCharges, forKey: .additionalCharges)
-            
             
             
             
@@ -164,9 +162,7 @@ public extension PublicClient.Partner {
             
             
             
-            
             try? container.encodeIfPresent(name, forKey: .name)
-            
             
             
             
@@ -174,14 +170,11 @@ public extension PublicClient.Partner {
             
             
             
-            
             try? container.encodeIfPresent(type, forKey: .type)
             
             
             
-            
             try? container.encodeIfPresent(price, forKey: .price)
-            
             
             
             

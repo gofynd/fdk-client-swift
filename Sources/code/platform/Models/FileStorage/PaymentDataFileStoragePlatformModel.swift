@@ -20,6 +20,14 @@ public extension PlatformClient.FileStorage {
         
         public var transactionId: String?
         
+        public var time: String?
+        
+        public var mode: String?
+        
+        public var name: String?
+        
+        public var meta: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -31,9 +39,17 @@ public extension PlatformClient.FileStorage {
             
             case transactionId = "transaction_id"
             
+            case time = "time"
+            
+            case mode = "mode"
+            
+            case name = "name"
+            
+            case meta = "meta"
+            
         }
 
-        public init(amount: Double? = nil, date: String? = nil, paymentType: String? = nil, transactionId: String? = nil) {
+        public init(amount: Double? = nil, date: String? = nil, meta: [String: Any]? = nil, mode: String? = nil, name: String? = nil, paymentType: String? = nil, time: String? = nil, transactionId: String? = nil) {
             
             self.paymentType = paymentType
             
@@ -42,6 +58,14 @@ public extension PlatformClient.FileStorage {
             self.date = date
             
             self.transactionId = transactionId
+            
+            self.time = time
+            
+            self.mode = mode
+            
+            self.name = name
+            
+            self.meta = meta
             
         }
 
@@ -96,6 +120,54 @@ public extension PlatformClient.FileStorage {
                 }
                 
             
+            
+                do {
+                    time = try container.decode(String.self, forKey: .time)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    mode = try container.decode(String.self, forKey: .mode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -119,6 +191,26 @@ public extension PlatformClient.FileStorage {
             
             
             try? container.encodeIfPresent(transactionId, forKey: .transactionId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(time, forKey: .time)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mode, forKey: .mode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }
@@ -145,6 +237,14 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var transactionId: String?
         
+        public var time: String?
+        
+        public var mode: String?
+        
+        public var name: String?
+        
+        public var meta: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -156,9 +256,17 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             case transactionId = "transaction_id"
             
+            case time = "time"
+            
+            case mode = "mode"
+            
+            case name = "name"
+            
+            case meta = "meta"
+            
         }
 
-        public init(amount: Double? = nil, date: String? = nil, paymentType: String? = nil, transactionId: String? = nil) {
+        public init(amount: Double? = nil, date: String? = nil, meta: [String: Any]? = nil, mode: String? = nil, name: String? = nil, paymentType: String? = nil, time: String? = nil, transactionId: String? = nil) {
             
             self.paymentType = paymentType
             
@@ -167,6 +275,14 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             self.date = date
             
             self.transactionId = transactionId
+            
+            self.time = time
+            
+            self.mode = mode
+            
+            self.name = name
+            
+            self.meta = meta
             
         }
 
@@ -221,6 +337,54 @@ public extension PlatformClient.ApplicationClient.FileStorage {
                 }
                 
             
+            
+                do {
+                    time = try container.decode(String.self, forKey: .time)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    mode = try container.decode(String.self, forKey: .mode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -244,6 +408,26 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(transactionId, forKey: .transactionId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(time, forKey: .time)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mode, forKey: .mode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }

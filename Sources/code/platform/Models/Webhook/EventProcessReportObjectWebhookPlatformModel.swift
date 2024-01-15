@@ -18,7 +18,7 @@ public extension PlatformClient.Webhook {
         
         public var responseMessage: String?
         
-        public var data: String?
+        public var data: [String: Any]?
         
         public var attempt: Int?
         
@@ -31,6 +31,10 @@ public extension PlatformClient.Webhook {
         public var webhookUrl: String?
         
         public var responseTime: Int?
+        
+        public var messageId: String?
+        
+        public var eventTraceId: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -55,9 +59,13 @@ public extension PlatformClient.Webhook {
             
             case responseTime = "response_time"
             
+            case messageId = "message_id"
+            
+            case eventTraceId = "event_trace_id"
+            
         }
 
-        public init(attempt: Int? = nil, data: String? = nil, eventName: String? = nil, lastAttemptedOn: Int? = nil, name: String? = nil, responseCode: Int? = nil, responseMessage: String? = nil, responseTime: Int? = nil, status: String? = nil, webhookUrl: String? = nil) {
+        public init(attempt: Int? = nil, data: [String: Any]? = nil, eventName: String? = nil, eventTraceId: String? = nil, lastAttemptedOn: Int? = nil, messageId: String? = nil, name: String? = nil, responseCode: Int? = nil, responseMessage: String? = nil, responseTime: Int? = nil, status: String? = nil, webhookUrl: String? = nil) {
             
             self.eventName = eventName
             
@@ -78,6 +86,10 @@ public extension PlatformClient.Webhook {
             self.webhookUrl = webhookUrl
             
             self.responseTime = responseTime
+            
+            self.messageId = messageId
+            
+            self.eventTraceId = eventTraceId
             
         }
 
@@ -122,7 +134,7 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    data = try container.decode(String.self, forKey: .data)
+                    data = try container.decode([String: Any].self, forKey: .data)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -204,6 +216,30 @@ public extension PlatformClient.Webhook {
                 }
                 
             
+            
+                do {
+                    messageId = try container.decode(String.self, forKey: .messageId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    eventTraceId = try container.decode(String.self, forKey: .eventTraceId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -257,6 +293,16 @@ public extension PlatformClient.Webhook {
             
             
             try? container.encodeIfPresent(responseTime, forKey: .responseTime)
+            
+            
+            
+            
+            try? container.encodeIfPresent(messageId, forKey: .messageId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(eventTraceId, forKey: .eventTraceId)
             
             
         }

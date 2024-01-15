@@ -84,9 +84,7 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
-            
             
             
             
@@ -94,9 +92,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(success, forKey: .success)
-            
             
             
             

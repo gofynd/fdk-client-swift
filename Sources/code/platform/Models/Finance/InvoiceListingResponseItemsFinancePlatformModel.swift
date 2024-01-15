@@ -32,6 +32,8 @@ public extension PlatformClient.Finance {
         
         public var invoiceId: String?
         
+        public var currency: Currency?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -55,9 +57,11 @@ public extension PlatformClient.Finance {
             
             case invoiceId = "invoice_id"
             
+            case currency = "currency"
+            
         }
 
-        public init(amount: String? = nil, company: String? = nil, dueDate: String? = nil, invoiceDate: String? = nil, invoiceId: String? = nil, invoiceNumber: String? = nil, invoiceType: String? = nil, isDownloadable: Bool? = nil, period: String? = nil, status: String? = nil) {
+        public init(amount: String? = nil, company: String? = nil, currency: Currency? = nil, dueDate: String? = nil, invoiceDate: String? = nil, invoiceId: String? = nil, invoiceNumber: String? = nil, invoiceType: String? = nil, isDownloadable: Bool? = nil, period: String? = nil, status: String? = nil) {
             
             self.amount = amount
             
@@ -78,6 +82,8 @@ public extension PlatformClient.Finance {
             self.isDownloadable = isDownloadable
             
             self.invoiceId = invoiceId
+            
+            self.currency = currency
             
         }
 
@@ -204,6 +210,18 @@ public extension PlatformClient.Finance {
                 }
                 
             
+            
+                do {
+                    currency = try container.decode(Currency.self, forKey: .currency)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -257,6 +275,11 @@ public extension PlatformClient.Finance {
             
             
             try? container.encodeIfPresent(invoiceId, forKey: .invoiceId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
         }

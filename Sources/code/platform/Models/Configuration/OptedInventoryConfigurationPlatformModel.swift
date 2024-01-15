@@ -14,7 +14,7 @@ public extension PlatformClient.Configuration {
         
         public var optType: OptType?
         
-        public var items: [String: Any]?
+        public var items: [[String: Any]]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Configuration {
             
         }
 
-        public init(items: [String: Any]? = nil, optType: OptType? = nil) {
+        public init(items: [[String: Any]]? = nil, optType: OptType? = nil) {
             
             self.optType = optType
             
@@ -50,7 +50,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    items = try container.decode([String: Any].self, forKey: .items)
+                    items = try container.decode([[String: Any]].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var optType: OptType?
         
-        public var items: [String: Any]?
+        public var items: [[String: Any]]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
         }
 
-        public init(items: [String: Any]? = nil, optType: OptType? = nil) {
+        public init(items: [[String: Any]]? = nil, optType: OptType? = nil) {
             
             self.optType = optType
             
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    items = try container.decode([String: Any].self, forKey: .items)
+                    items = try container.decode([[String: Any]].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

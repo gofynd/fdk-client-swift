@@ -134,9 +134,7 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(col3, forKey: .col3)
-            
             
             
             
@@ -144,9 +142,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(col2, forKey: .col2)
-            
             
             
             
@@ -154,9 +150,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(col1, forKey: .col1)
-            
             
             
             

@@ -170,9 +170,7 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(sizes, forKey: .sizes)
-            
             
             
             
@@ -180,9 +178,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(sizeChart, forKey: .sizeChart)
-            
             
             
             
@@ -190,9 +186,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(multiSize, forKey: .multiSize)
-            
             
             
             
@@ -200,9 +194,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(stores, forKey: .stores)
-            
             
             
             

@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(amount, forKey: .amount)
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
             

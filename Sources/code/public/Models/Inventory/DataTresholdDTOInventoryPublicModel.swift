@@ -118,9 +118,7 @@ public extension PublicClient.Inventory {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(minPrice, forKey: .minPrice)
-            
             
             
             
@@ -128,14 +126,11 @@ public extension PublicClient.Inventory {
             
             
             
-            
             try? container.encodeIfPresent(periodThreshold, forKey: .periodThreshold)
             
             
             
-            
             try? container.encodeIfPresent(periodThresholdType, forKey: .periodThresholdType)
-            
             
             
             

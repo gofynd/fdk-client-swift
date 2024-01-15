@@ -12,18 +12,18 @@ public extension PlatformClient.Webhook {
     class CancelResponse: Codable {
         
         
-        public var code: Int?
+        public var message: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case code = "code"
+            case message = "message"
             
         }
 
-        public init(code: Int? = nil) {
+        public init(message: String? = nil) {
             
-            self.code = code
+            self.message = message
             
         }
 
@@ -32,7 +32,7 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    code = try container.decode(Int.self, forKey: .code)
+                    message = try container.decode(String.self, forKey: .message)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Webhook {
             
             
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }

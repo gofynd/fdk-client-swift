@@ -24,8 +24,6 @@ public extension PlatformClient.Order {
         
         public var contactPerson: String
         
-        public var brandId: [String: Any]?
-        
         public var storeEmail: String
         
         public var isEnabledForRecon: Bool?
@@ -38,13 +36,15 @@ public extension PlatformClient.Order {
         
         public var address1: String
         
+        public var displayAddress: String?
+        
         public var storeActiveFrom: String?
         
         public var city: String
         
         public var name: String
         
-        public var longitude: Double
+        public var longitude: Double?
         
         public var brandStoreTags: [String]?
         
@@ -64,7 +64,7 @@ public extension PlatformClient.Order {
         
         public var meta: StoreMeta
         
-        public var sId: String
+        public var sId: String?
         
         public var state: String
         
@@ -74,11 +74,11 @@ public extension PlatformClient.Order {
         
         public var isArchived: Bool?
         
-        public var loginUsername: String
+        public var loginUsername: String?
         
         public var mallName: String?
         
-        public var latitude: Double
+        public var latitude: Double?
         
         public var address2: String?
         
@@ -97,8 +97,6 @@ public extension PlatformClient.Order {
             
             case contactPerson = "contact_person"
             
-            case brandId = "brand_id"
-            
             case storeEmail = "store_email"
             
             case isEnabledForRecon = "is_enabled_for_recon"
@@ -110,6 +108,8 @@ public extension PlatformClient.Order {
             case vatNo = "vat_no"
             
             case address1 = "address1"
+            
+            case displayAddress = "display_address"
             
             case storeActiveFrom = "store_active_from"
             
@@ -157,7 +157,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(address1: String, address2: String? = nil, alohomoraUserId: Int? = nil, brandId: [String: Any]? = nil, brandStoreTags: [String]? = nil, city: String, code: String? = nil, companyId: Int, contactPerson: String, country: String, createdAt: String, fulfillmentChannel: String, isActive: Bool? = nil, isArchived: Bool? = nil, isEnabledForRecon: Bool? = nil, latitude: Double, locationType: String, loginUsername: String, longitude: Double, mallArea: String? = nil, mallName: String? = nil, meta: StoreMeta, name: String, orderIntegrationId: String? = nil, packagingMaterialCount: Int? = nil, parentStoreId: Int? = nil, phone: Int, pincode: String, state: String, storeActiveFrom: String? = nil, storeAddressJson: StoreAddress? = nil, storeEmail: String, sId: String, updatedAt: String? = nil, vatNo: String? = nil) {
+        public init(address1: String, address2: String? = nil, alohomoraUserId: Int? = nil, brandStoreTags: [String]? = nil, city: String, code: String? = nil, companyId: Int, contactPerson: String, country: String, createdAt: String, displayAddress: String? = nil, fulfillmentChannel: String, isActive: Bool? = nil, isArchived: Bool? = nil, isEnabledForRecon: Bool? = nil, latitude: Double? = nil, locationType: String, loginUsername: String? = nil, longitude: Double? = nil, mallArea: String? = nil, mallName: String? = nil, meta: StoreMeta, name: String, orderIntegrationId: String? = nil, packagingMaterialCount: Int? = nil, parentStoreId: Int? = nil, phone: Int, pincode: String, state: String, storeActiveFrom: String? = nil, storeAddressJson: StoreAddress? = nil, storeEmail: String, sId: String? = nil, updatedAt: String? = nil, vatNo: String? = nil) {
             
             self.phone = phone
             
@@ -171,8 +171,6 @@ public extension PlatformClient.Order {
             
             self.contactPerson = contactPerson
             
-            self.brandId = brandId
-            
             self.storeEmail = storeEmail
             
             self.isEnabledForRecon = isEnabledForRecon
@@ -184,6 +182,8 @@ public extension PlatformClient.Order {
             self.vatNo = vatNo
             
             self.address1 = address1
+            
+            self.displayAddress = displayAddress
             
             self.storeActiveFrom = storeActiveFrom
             
@@ -279,18 +279,6 @@ public extension PlatformClient.Order {
             
             
             
-                do {
-                    brandId = try container.decode([String: Any].self, forKey: .brandId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 storeEmail = try container.decode(String.self, forKey: .storeEmail)
                 
             
@@ -343,6 +331,18 @@ public extension PlatformClient.Order {
             
             
                 do {
+                    displayAddress = try container.decode(String.self, forKey: .displayAddress)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     storeActiveFrom = try container.decode(String.self, forKey: .storeActiveFrom)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -364,9 +364,16 @@ public extension PlatformClient.Order {
             
             
             
-                longitude = try container.decode(Double.self, forKey: .longitude)
+                do {
+                    longitude = try container.decode(Double.self, forKey: .longitude)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -456,9 +463,16 @@ public extension PlatformClient.Order {
             
             
             
-                sId = try container.decode(String.self, forKey: .sId)
+                do {
+                    sId = try container.decode(String.self, forKey: .sId)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 state = try container.decode(String.self, forKey: .state)
@@ -495,9 +509,16 @@ public extension PlatformClient.Order {
                 
             
             
-                loginUsername = try container.decode(String.self, forKey: .loginUsername)
+                do {
+                    loginUsername = try container.decode(String.self, forKey: .loginUsername)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -512,9 +533,16 @@ public extension PlatformClient.Order {
                 
             
             
-                latitude = try container.decode(Double.self, forKey: .latitude)
+                do {
+                    latitude = try container.decode(Double.self, forKey: .latitude)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -540,7 +568,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
             
             
             
@@ -550,7 +578,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(alohomoraUserId, forKey: .alohomoraUserId)
+            try? container.encodeIfPresent(alohomoraUserId, forKey: .alohomoraUserId)
             
             
             
@@ -565,17 +593,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(brandId, forKey: .brandId)
-            
-            
-            
-            
             try? container.encodeIfPresent(storeEmail, forKey: .storeEmail)
             
             
             
             
-            try? container.encode(isEnabledForRecon, forKey: .isEnabledForRecon)
+            try? container.encodeIfPresent(isEnabledForRecon, forKey: .isEnabledForRecon)
             
             
             
@@ -585,12 +608,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(mallArea, forKey: .mallArea)
+            try? container.encodeIfPresent(mallArea, forKey: .mallArea)
             
             
             
             
-            try? container.encode(vatNo, forKey: .vatNo)
+            try? container.encodeIfPresent(vatNo, forKey: .vatNo)
             
             
             
@@ -600,7 +623,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(storeActiveFrom, forKey: .storeActiveFrom)
+            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
+            
+            
+            
+            
+            try? container.encodeIfPresent(storeActiveFrom, forKey: .storeActiveFrom)
             
             
             
@@ -620,17 +648,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(brandStoreTags, forKey: .brandStoreTags)
+            try? container.encodeIfPresent(brandStoreTags, forKey: .brandStoreTags)
             
             
             
             
-            try? container.encode(orderIntegrationId, forKey: .orderIntegrationId)
+            try? container.encodeIfPresent(orderIntegrationId, forKey: .orderIntegrationId)
             
             
             
             
-            try? container.encode(parentStoreId, forKey: .parentStoreId)
+            try? container.encodeIfPresent(parentStoreId, forKey: .parentStoreId)
             
             
             
@@ -640,7 +668,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
@@ -650,7 +678,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
             
@@ -680,12 +708,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(packagingMaterialCount, forKey: .packagingMaterialCount)
+            try? container.encodeIfPresent(packagingMaterialCount, forKey: .packagingMaterialCount)
             
             
             
             
-            try? container.encode(isArchived, forKey: .isArchived)
+            try? container.encodeIfPresent(isArchived, forKey: .isArchived)
             
             
             
@@ -695,7 +723,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(mallName, forKey: .mallName)
+            try? container.encodeIfPresent(mallName, forKey: .mallName)
             
             
             
@@ -705,7 +733,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(address2, forKey: .address2)
+            try? container.encodeIfPresent(address2, forKey: .address2)
             
             
         }
@@ -736,8 +764,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var contactPerson: String
         
-        public var brandId: [String: Any]?
-        
         public var storeEmail: String
         
         public var isEnabledForRecon: Bool?
@@ -750,13 +776,15 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var address1: String
         
+        public var displayAddress: String?
+        
         public var storeActiveFrom: String?
         
         public var city: String
         
         public var name: String
         
-        public var longitude: Double
+        public var longitude: Double?
         
         public var brandStoreTags: [String]?
         
@@ -776,7 +804,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var meta: StoreMeta
         
-        public var sId: String
+        public var sId: String?
         
         public var state: String
         
@@ -786,11 +814,11 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var isArchived: Bool?
         
-        public var loginUsername: String
+        public var loginUsername: String?
         
         public var mallName: String?
         
-        public var latitude: Double
+        public var latitude: Double?
         
         public var address2: String?
         
@@ -809,8 +837,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case contactPerson = "contact_person"
             
-            case brandId = "brand_id"
-            
             case storeEmail = "store_email"
             
             case isEnabledForRecon = "is_enabled_for_recon"
@@ -822,6 +848,8 @@ public extension PlatformClient.ApplicationClient.Order {
             case vatNo = "vat_no"
             
             case address1 = "address1"
+            
+            case displayAddress = "display_address"
             
             case storeActiveFrom = "store_active_from"
             
@@ -869,7 +897,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(address1: String, address2: String? = nil, alohomoraUserId: Int? = nil, brandId: [String: Any]? = nil, brandStoreTags: [String]? = nil, city: String, code: String? = nil, companyId: Int, contactPerson: String, country: String, createdAt: String, fulfillmentChannel: String, isActive: Bool? = nil, isArchived: Bool? = nil, isEnabledForRecon: Bool? = nil, latitude: Double, locationType: String, loginUsername: String, longitude: Double, mallArea: String? = nil, mallName: String? = nil, meta: StoreMeta, name: String, orderIntegrationId: String? = nil, packagingMaterialCount: Int? = nil, parentStoreId: Int? = nil, phone: Int, pincode: String, state: String, storeActiveFrom: String? = nil, storeAddressJson: StoreAddress? = nil, storeEmail: String, sId: String, updatedAt: String? = nil, vatNo: String? = nil) {
+        public init(address1: String, address2: String? = nil, alohomoraUserId: Int? = nil, brandStoreTags: [String]? = nil, city: String, code: String? = nil, companyId: Int, contactPerson: String, country: String, createdAt: String, displayAddress: String? = nil, fulfillmentChannel: String, isActive: Bool? = nil, isArchived: Bool? = nil, isEnabledForRecon: Bool? = nil, latitude: Double? = nil, locationType: String, loginUsername: String? = nil, longitude: Double? = nil, mallArea: String? = nil, mallName: String? = nil, meta: StoreMeta, name: String, orderIntegrationId: String? = nil, packagingMaterialCount: Int? = nil, parentStoreId: Int? = nil, phone: Int, pincode: String, state: String, storeActiveFrom: String? = nil, storeAddressJson: StoreAddress? = nil, storeEmail: String, sId: String? = nil, updatedAt: String? = nil, vatNo: String? = nil) {
             
             self.phone = phone
             
@@ -883,8 +911,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.contactPerson = contactPerson
             
-            self.brandId = brandId
-            
             self.storeEmail = storeEmail
             
             self.isEnabledForRecon = isEnabledForRecon
@@ -896,6 +922,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.vatNo = vatNo
             
             self.address1 = address1
+            
+            self.displayAddress = displayAddress
             
             self.storeActiveFrom = storeActiveFrom
             
@@ -991,18 +1019,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                do {
-                    brandId = try container.decode([String: Any].self, forKey: .brandId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 storeEmail = try container.decode(String.self, forKey: .storeEmail)
                 
             
@@ -1055,6 +1071,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
+                    displayAddress = try container.decode(String.self, forKey: .displayAddress)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     storeActiveFrom = try container.decode(String.self, forKey: .storeActiveFrom)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -1076,9 +1104,16 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                longitude = try container.decode(Double.self, forKey: .longitude)
+                do {
+                    longitude = try container.decode(Double.self, forKey: .longitude)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -1168,9 +1203,16 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                sId = try container.decode(String.self, forKey: .sId)
+                do {
+                    sId = try container.decode(String.self, forKey: .sId)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 state = try container.decode(String.self, forKey: .state)
@@ -1207,9 +1249,16 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-                loginUsername = try container.decode(String.self, forKey: .loginUsername)
+                do {
+                    loginUsername = try container.decode(String.self, forKey: .loginUsername)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -1224,9 +1273,16 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-                latitude = try container.decode(Double.self, forKey: .latitude)
+                do {
+                    latitude = try container.decode(Double.self, forKey: .latitude)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -1252,7 +1308,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
             
             
             
@@ -1262,7 +1318,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(alohomoraUserId, forKey: .alohomoraUserId)
+            try? container.encodeIfPresent(alohomoraUserId, forKey: .alohomoraUserId)
             
             
             
@@ -1277,17 +1333,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(brandId, forKey: .brandId)
-            
-            
-            
-            
             try? container.encodeIfPresent(storeEmail, forKey: .storeEmail)
             
             
             
             
-            try? container.encode(isEnabledForRecon, forKey: .isEnabledForRecon)
+            try? container.encodeIfPresent(isEnabledForRecon, forKey: .isEnabledForRecon)
             
             
             
@@ -1297,12 +1348,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(mallArea, forKey: .mallArea)
+            try? container.encodeIfPresent(mallArea, forKey: .mallArea)
             
             
             
             
-            try? container.encode(vatNo, forKey: .vatNo)
+            try? container.encodeIfPresent(vatNo, forKey: .vatNo)
             
             
             
@@ -1312,7 +1363,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(storeActiveFrom, forKey: .storeActiveFrom)
+            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
+            
+            
+            
+            
+            try? container.encodeIfPresent(storeActiveFrom, forKey: .storeActiveFrom)
             
             
             
@@ -1332,17 +1388,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(brandStoreTags, forKey: .brandStoreTags)
+            try? container.encodeIfPresent(brandStoreTags, forKey: .brandStoreTags)
             
             
             
             
-            try? container.encode(orderIntegrationId, forKey: .orderIntegrationId)
+            try? container.encodeIfPresent(orderIntegrationId, forKey: .orderIntegrationId)
             
             
             
             
-            try? container.encode(parentStoreId, forKey: .parentStoreId)
+            try? container.encodeIfPresent(parentStoreId, forKey: .parentStoreId)
             
             
             
@@ -1352,7 +1408,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
@@ -1362,7 +1418,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
             
@@ -1392,12 +1448,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(packagingMaterialCount, forKey: .packagingMaterialCount)
+            try? container.encodeIfPresent(packagingMaterialCount, forKey: .packagingMaterialCount)
             
             
             
             
-            try? container.encode(isArchived, forKey: .isArchived)
+            try? container.encodeIfPresent(isArchived, forKey: .isArchived)
             
             
             
@@ -1407,7 +1463,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(mallName, forKey: .mallName)
+            try? container.encodeIfPresent(mallName, forKey: .mallName)
             
             
             
@@ -1417,7 +1473,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(address2, forKey: .address2)
+            try? container.encodeIfPresent(address2, forKey: .address2)
             
             
         }

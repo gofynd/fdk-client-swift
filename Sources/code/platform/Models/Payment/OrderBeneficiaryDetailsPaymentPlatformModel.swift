@@ -308,7 +308,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(delightsUserName, forKey: .delightsUserName)
+            try? container.encodeIfPresent(delightsUserName, forKey: .delightsUserName)
             
             
             
@@ -673,7 +673,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(delightsUserName, forKey: .delightsUserName)
+            try? container.encodeIfPresent(delightsUserName, forKey: .delightsUserName)
             
             
             

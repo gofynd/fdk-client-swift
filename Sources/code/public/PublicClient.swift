@@ -3,7 +3,11 @@ import Foundation
 
 public class PublicClient {
 
+    public let billing: Billing
+
     public let configuration: Configuration
+
+    public let content: Content
 
     public let inventory: Inventory
 
@@ -13,7 +17,11 @@ public class PublicClient {
 
     public init(config: PublicConfig) {
         
+        billing = Billing(config: config)
+        
         configuration = Configuration(config: config)
+        
+        content = Content(config: config)
         
         inventory = Inventory(config: config)
         

@@ -80,14 +80,11 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
             
             
             
-            
             try? container.encodeIfPresent(quantity, forKey: .quantity)
-            
             
             
             

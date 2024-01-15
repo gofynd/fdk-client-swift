@@ -134,9 +134,7 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -144,9 +142,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(phoneNumbers, forKey: .phoneNumbers)
-            
             
             
             
@@ -154,9 +150,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(lastName, forKey: .lastName)
-            
             
             
             

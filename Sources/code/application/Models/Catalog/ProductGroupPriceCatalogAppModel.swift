@@ -116,9 +116,7 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(maxEffective, forKey: .maxEffective)
-            
             
             
             
@@ -126,14 +124,11 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(minMarked, forKey: .minMarked)
             
             
             
-            
             try? container.encodeIfPresent(currency, forKey: .currency)
-            
             
             
             

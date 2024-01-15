@@ -116,9 +116,7 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(userId, forKey: .userId)
-            
             
             
             
@@ -126,14 +124,11 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(reasonId, forKey: .reasonId)
             
             
             
-            
             try? container.encodeIfPresent(requestId, forKey: .requestId)
-            
             
             
             

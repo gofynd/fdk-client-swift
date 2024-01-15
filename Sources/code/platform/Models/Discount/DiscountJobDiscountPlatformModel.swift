@@ -36,6 +36,8 @@ public extension PlatformClient.Discount {
         
         public var storeIds: [Int]?
         
+        public var zoneIds: [String]?
+        
         public var discountMeta: DiscountMeta?
         
         public var validity: ValidityObject
@@ -77,6 +79,8 @@ public extension PlatformClient.Discount {
             
             case storeIds = "store_ids"
             
+            case zoneIds = "zone_ids"
+            
             case discountMeta = "discount_meta"
             
             case validity = "validity"
@@ -93,7 +97,7 @@ public extension PlatformClient.Discount {
             
         }
 
-        public init(appIds: [String]? = nil, brandIds: [Int]? = nil, companyId: Int, createdBy: UserDetails, createdOn: String, discountLevel: String? = nil, discountMeta: DiscountMeta? = nil, discountType: String? = nil, filePath: String? = nil, isActive: Bool, jobType: String? = nil, meta: [String: Any]? = nil, modifiedBy: UserDetails, modifiedOn: String, name: String, storeIds: [Int]? = nil, validity: ValidityObject, value: Int? = nil, id: String) {
+        public init(appIds: [String]? = nil, brandIds: [Int]? = nil, companyId: Int, createdBy: UserDetails, createdOn: String, discountLevel: String? = nil, discountMeta: DiscountMeta? = nil, discountType: String? = nil, filePath: String? = nil, isActive: Bool, jobType: String? = nil, meta: [String: Any]? = nil, modifiedBy: UserDetails, modifiedOn: String, name: String, storeIds: [Int]? = nil, validity: ValidityObject, value: Int? = nil, zoneIds: [String]? = nil, id: String) {
             
             self.id = id
             
@@ -118,6 +122,8 @@ public extension PlatformClient.Discount {
             self.brandIds = brandIds
             
             self.storeIds = storeIds
+            
+            self.zoneIds = zoneIds
             
             self.discountMeta = discountMeta
             
@@ -256,6 +262,18 @@ public extension PlatformClient.Discount {
             
             
                 do {
+                    zoneIds = try container.decode([String].self, forKey: .zoneIds)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     discountMeta = try container.decode(DiscountMeta.self, forKey: .discountMeta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -366,6 +384,11 @@ public extension PlatformClient.Discount {
             
             
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            
+            
+            
+            
+            try? container.encodeIfPresent(zoneIds, forKey: .zoneIds)
             
             
             

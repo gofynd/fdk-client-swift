@@ -80,14 +80,11 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
             
             
             
-            
             try? container.encodeIfPresent(fromPincode, forKey: .fromPincode)
-            
             
             
             

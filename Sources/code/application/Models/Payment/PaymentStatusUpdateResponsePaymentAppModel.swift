@@ -95,14 +95,11 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(status, forKey: .status)
             
             
             
-            
-            try? container.encode(success, forKey: .success)
-            
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
             
@@ -110,9 +107,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            try? container.encode(redirectUrl, forKey: .redirectUrl)
-            
+            try? container.encodeIfPresent(redirectUrl, forKey: .redirectUrl)
             
             
             

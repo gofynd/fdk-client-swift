@@ -440,9 +440,7 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(store, forKey: .store)
-            
             
             
             
@@ -450,9 +448,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(isCod, forKey: .isCod)
-            
             
             
             
@@ -460,9 +456,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(quantity, forKey: .quantity)
-            
             
             
             
@@ -470,9 +464,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(groupedAttributes, forKey: .groupedAttributes)
-            
             
             
             
@@ -480,9 +472,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(articleId, forKey: .articleId)
-            
             
             
             
@@ -490,9 +480,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(set, forKey: .set)
-            
             
             
             
@@ -500,9 +488,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(pricePerPiece, forKey: .pricePerPiece)
-            
             
             
             
@@ -510,9 +496,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(discount, forKey: .discount)
-            
             
             
             
@@ -520,9 +504,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(specialBadge, forKey: .specialBadge)
-            
             
             
             
@@ -530,9 +512,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(pricePerUnit, forKey: .pricePerUnit)
-            
             
             
             
@@ -540,14 +520,11 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(marketplaceAttributes, forKey: .marketplaceAttributes)
             
             
             
-            
             try? container.encodeIfPresent(seller, forKey: .seller)
-            
             
             
             

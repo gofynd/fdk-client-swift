@@ -116,9 +116,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(totalItemCount, forKey: .totalItemCount)
-            
             
             
             
@@ -126,14 +124,11 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(total, forKey: .total)
             
             
             
-            
             try? container.encodeIfPresent(current, forKey: .current)
-            
             
             
             

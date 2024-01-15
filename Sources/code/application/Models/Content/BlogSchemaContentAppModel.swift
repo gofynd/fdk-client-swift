@@ -296,9 +296,7 @@ public extension ApplicationClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -306,9 +304,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(application, forKey: .application)
-            
             
             
             
@@ -316,9 +312,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(author, forKey: .author)
-            
             
             
             
@@ -326,9 +320,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(featureImage, forKey: .featureImage)
-            
             
             
             
@@ -336,9 +328,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(readingTime, forKey: .readingTime)
-            
             
             
             
@@ -346,9 +336,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(tags, forKey: .tags)
-            
             
             
             
@@ -356,14 +344,11 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(schedule, forKey: .schedule)
             
             
             
-            
             try? container.encodeIfPresent(title, forKey: .title)
-            
             
             
             

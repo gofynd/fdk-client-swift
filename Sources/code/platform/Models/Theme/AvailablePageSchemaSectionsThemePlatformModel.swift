@@ -24,6 +24,8 @@ public extension PlatformClient.Theme {
         
         public var predicate: AvailablePagePredicate?
         
+        public var source: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -39,9 +41,11 @@ public extension PlatformClient.Theme {
             
             case predicate = "predicate"
             
+            case source = "source"
+            
         }
 
-        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil) {
+        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil, source: String? = nil) {
             
             self.name = name
             
@@ -54,6 +58,8 @@ public extension PlatformClient.Theme {
             self.preset = preset
             
             self.predicate = predicate
+            
+            self.source = source
             
         }
 
@@ -132,6 +138,18 @@ public extension PlatformClient.Theme {
                 }
                 
             
+            
+                do {
+                    source = try container.decode(String.self, forKey: .source)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -165,6 +183,11 @@ public extension PlatformClient.Theme {
             
             
             try? container.encodeIfPresent(predicate, forKey: .predicate)
+            
+            
+            
+            
+            try? container.encodeIfPresent(source, forKey: .source)
             
             
         }
@@ -195,6 +218,8 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public var predicate: AvailablePagePredicate?
         
+        public var source: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -210,9 +235,11 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             case predicate = "predicate"
             
+            case source = "source"
+            
         }
 
-        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil) {
+        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil, source: String? = nil) {
             
             self.name = name
             
@@ -225,6 +252,8 @@ public extension PlatformClient.ApplicationClient.Theme {
             self.preset = preset
             
             self.predicate = predicate
+            
+            self.source = source
             
         }
 
@@ -303,6 +332,18 @@ public extension PlatformClient.ApplicationClient.Theme {
                 }
                 
             
+            
+                do {
+                    source = try container.decode(String.self, forKey: .source)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -336,6 +377,11 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(predicate, forKey: .predicate)
+            
+            
+            
+            
+            try? container.encodeIfPresent(source, forKey: .source)
             
             
         }

@@ -10,28 +10,16 @@ public extension ApplicationClient.Configuration {
         
         public var applicationInfo: ApplicationInfo?
         
-        public var companyInfo: CompanyInfo?
-        
-        public var ownerInfo: OwnerInfo?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case applicationInfo = "application_info"
             
-            case companyInfo = "company_info"
-            
-            case ownerInfo = "owner_info"
-            
         }
 
-        public init(applicationInfo: ApplicationInfo? = nil, companyInfo: CompanyInfo? = nil, ownerInfo: OwnerInfo? = nil) {
+        public init(applicationInfo: ApplicationInfo? = nil) {
             
             self.applicationInfo = applicationInfo
-            
-            self.companyInfo = companyInfo
-            
-            self.ownerInfo = ownerInfo
             
         }
 
@@ -50,48 +38,13 @@ public extension ApplicationClient.Configuration {
             }
             
             
-            
-            do {
-                companyInfo = try container.decode(CompanyInfo.self, forKey: .companyInfo)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                ownerInfo = try container.decode(OwnerInfo.self, forKey: .ownerInfo)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(applicationInfo, forKey: .applicationInfo)
-            
-            
-            
-            
-            try? container.encodeIfPresent(companyInfo, forKey: .companyInfo)
-            
-            
-            
-            
-            try? container.encodeIfPresent(ownerInfo, forKey: .ownerInfo)
             
             
         }

@@ -183,9 +183,7 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(status, forKey: .status)
-            
             
             
             
@@ -193,14 +191,11 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(method, forKey: .method)
             
             
             
-            
-            try? container.encode(deviceId, forKey: .deviceId)
-            
+            try? container.encodeIfPresent(deviceId, forKey: .deviceId)
             
             
             
@@ -208,9 +203,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(customerId, forKey: .customerId)
-            
             
             
             
@@ -218,9 +211,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
-            
             
             
             
@@ -228,9 +219,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(orderId, forKey: .orderId)
-            
             
             
             
@@ -238,9 +227,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            try? container.encode(amount, forKey: .amount)
-            
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
             

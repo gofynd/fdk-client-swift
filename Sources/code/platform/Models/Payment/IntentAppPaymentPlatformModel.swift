@@ -103,22 +103,22 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(packageName, forKey: .packageName)
+            try? container.encodeIfPresent(packageName, forKey: .packageName)
             
             
             
             
-            try? container.encode(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
             
-            try? container.encode(logos, forKey: .logos)
+            try? container.encodeIfPresent(logos, forKey: .logos)
             
             
         }
@@ -228,22 +228,22 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(packageName, forKey: .packageName)
+            try? container.encodeIfPresent(packageName, forKey: .packageName)
             
             
             
             
-            try? container.encode(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
             
-            try? container.encode(logos, forKey: .logos)
+            try? container.encodeIfPresent(logos, forKey: .logos)
             
             
         }

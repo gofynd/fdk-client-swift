@@ -134,9 +134,7 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(theme, forKey: .theme)
-            
             
             
             
@@ -144,9 +142,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(button, forKey: .button)
-            
             
             
             
@@ -154,9 +150,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(header, forKey: .header)
-            
             
             
             

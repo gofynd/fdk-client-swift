@@ -80,14 +80,11 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(invoiceUrl, forKey: .invoiceUrl)
             
             
             
-            
             try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
-            
             
             
             

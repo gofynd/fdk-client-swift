@@ -188,9 +188,7 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(page, forKey: .page)
-            
             
             
             
@@ -198,9 +196,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(deployedStores, forKey: .deployedStores)
-            
             
             
             
@@ -208,9 +204,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(enabled, forKey: .enabled)
-            
             
             
             
@@ -218,14 +212,11 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
             
             
             
-            
             try? container.encodeIfPresent(app, forKey: .app)
-            
             
             
             

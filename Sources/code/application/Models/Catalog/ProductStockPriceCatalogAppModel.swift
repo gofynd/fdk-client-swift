@@ -80,14 +80,11 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(effective, forKey: .effective)
             
             
             
-            
             try? container.encodeIfPresent(currency, forKey: .currency)
-            
             
             
             

@@ -26,6 +26,8 @@ public extension ApplicationClient.Cart {
         
         public var mopTotal: Double?
         
+        public var totalCharge: Double?
+        
         public var coupon: Double?
         
         public var total: Double?
@@ -57,6 +59,8 @@ public extension ApplicationClient.Cart {
             
             case mopTotal = "mop_total"
             
+            case totalCharge = "total_charge"
+            
             case coupon = "coupon"
             
             case total = "total"
@@ -69,7 +73,7 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(codCharge: Double? = nil, convenienceFee: Double? = nil, coupon: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCash: Double? = nil, giftCard: Double? = nil, gstCharges: Double? = nil, mopTotal: Double? = nil, mrpTotal: Double? = nil, subtotal: Double? = nil, total: Double? = nil, vog: Double? = nil, youSaved: Double? = nil) {
+        public init(codCharge: Double? = nil, convenienceFee: Double? = nil, coupon: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCash: Double? = nil, giftCard: Double? = nil, gstCharges: Double? = nil, mopTotal: Double? = nil, mrpTotal: Double? = nil, subtotal: Double? = nil, total: Double? = nil, totalCharge: Double? = nil, vog: Double? = nil, youSaved: Double? = nil) {
             
             self.vog = vog
             
@@ -88,6 +92,8 @@ public extension ApplicationClient.Cart {
             self.mrpTotal = mrpTotal
             
             self.mopTotal = mopTotal
+            
+            self.totalCharge = totalCharge
             
             self.coupon = coupon
             
@@ -214,6 +220,18 @@ public extension ApplicationClient.Cart {
             
             
             do {
+                totalCharge = try container.decode(Double.self, forKey: .totalCharge)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 coupon = try container.decode(Double.self, forKey: .coupon)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -278,9 +296,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(vog, forKey: .vog)
-            
             
             
             
@@ -288,9 +304,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(fyndCash, forKey: .fyndCash)
-            
             
             
             
@@ -298,9 +312,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(convenienceFee, forKey: .convenienceFee)
-            
             
             
             
@@ -308,9 +320,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(gstCharges, forKey: .gstCharges)
-            
             
             
             
@@ -318,9 +328,11 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(mopTotal, forKey: .mopTotal)
             
+            
+            
+            try? container.encodeIfPresent(totalCharge, forKey: .totalCharge)
             
             
             
@@ -328,9 +340,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(total, forKey: .total)
-            
             
             
             
@@ -338,9 +348,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(youSaved, forKey: .youSaved)
-            
             
             
             

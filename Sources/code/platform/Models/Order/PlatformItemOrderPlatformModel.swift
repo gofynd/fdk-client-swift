@@ -409,7 +409,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(id, forKey: .id)
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
@@ -419,97 +419,97 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(brandId, forKey: .brandId)
+            try? container.encodeIfPresent(brandId, forKey: .brandId)
             
             
             
             
-            try? container.encode(slugKey, forKey: .slugKey)
+            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
             
             
             
             
-            try? container.encode(l3Category, forKey: .l3Category)
+            try? container.encodeIfPresent(l3Category, forKey: .l3Category)
             
             
             
             
-            try? container.encode(l3CategoryName, forKey: .l3CategoryName)
+            try? container.encodeIfPresent(l3CategoryName, forKey: .l3CategoryName)
             
             
             
             
-            try? container.encode(lastUpdatedAt, forKey: .lastUpdatedAt)
+            try? container.encodeIfPresent(lastUpdatedAt, forKey: .lastUpdatedAt)
             
             
             
             
-            try? container.encode(name, forKey: .name)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encode(l2Category, forKey: .l2Category)
+            try? container.encodeIfPresent(l2Category, forKey: .l2Category)
             
             
             
             
-            try? container.encode(brand, forKey: .brand)
+            try? container.encodeIfPresent(brand, forKey: .brand)
             
             
             
             
-            try? container.encode(image, forKey: .image)
+            try? container.encodeIfPresent(image, forKey: .image)
             
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
             
-            try? container.encode(l1Category, forKey: .l1Category)
+            try? container.encodeIfPresent(l1Category, forKey: .l1Category)
             
             
             
             
-            try? container.encode(size, forKey: .size)
+            try? container.encodeIfPresent(size, forKey: .size)
             
             
             
             
-            try? container.encode(canCancel, forKey: .canCancel)
+            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
             
             
             
             
-            try? container.encode(canReturn, forKey: .canReturn)
+            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
             
             
             
             
-            try? container.encode(branchUrl, forKey: .branchUrl)
+            try? container.encodeIfPresent(branchUrl, forKey: .branchUrl)
             
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
             
-            try? container.encode(color, forKey: .color)
+            try? container.encodeIfPresent(color, forKey: .color)
             
             
             
             
-            try? container.encode(departmentId, forKey: .departmentId)
+            try? container.encodeIfPresent(departmentId, forKey: .departmentId)
             
             
             
             
-            try? container.encode(images, forKey: .images)
+            try? container.encodeIfPresent(images, forKey: .images)
             
             
         }
@@ -925,7 +925,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(id, forKey: .id)
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
@@ -935,97 +935,97 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(brandId, forKey: .brandId)
+            try? container.encodeIfPresent(brandId, forKey: .brandId)
             
             
             
             
-            try? container.encode(slugKey, forKey: .slugKey)
+            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
             
             
             
             
-            try? container.encode(l3Category, forKey: .l3Category)
+            try? container.encodeIfPresent(l3Category, forKey: .l3Category)
             
             
             
             
-            try? container.encode(l3CategoryName, forKey: .l3CategoryName)
+            try? container.encodeIfPresent(l3CategoryName, forKey: .l3CategoryName)
             
             
             
             
-            try? container.encode(lastUpdatedAt, forKey: .lastUpdatedAt)
+            try? container.encodeIfPresent(lastUpdatedAt, forKey: .lastUpdatedAt)
             
             
             
             
-            try? container.encode(name, forKey: .name)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encode(l2Category, forKey: .l2Category)
+            try? container.encodeIfPresent(l2Category, forKey: .l2Category)
             
             
             
             
-            try? container.encode(brand, forKey: .brand)
+            try? container.encodeIfPresent(brand, forKey: .brand)
             
             
             
             
-            try? container.encode(image, forKey: .image)
+            try? container.encodeIfPresent(image, forKey: .image)
             
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
             
-            try? container.encode(l1Category, forKey: .l1Category)
+            try? container.encodeIfPresent(l1Category, forKey: .l1Category)
             
             
             
             
-            try? container.encode(size, forKey: .size)
+            try? container.encodeIfPresent(size, forKey: .size)
             
             
             
             
-            try? container.encode(canCancel, forKey: .canCancel)
+            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
             
             
             
             
-            try? container.encode(canReturn, forKey: .canReturn)
+            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
             
             
             
             
-            try? container.encode(branchUrl, forKey: .branchUrl)
+            try? container.encodeIfPresent(branchUrl, forKey: .branchUrl)
             
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
             
-            try? container.encode(color, forKey: .color)
+            try? container.encodeIfPresent(color, forKey: .color)
             
             
             
             
-            try? container.encode(departmentId, forKey: .departmentId)
+            try? container.encodeIfPresent(departmentId, forKey: .departmentId)
             
             
             
             
-            try? container.encode(images, forKey: .images)
+            try? container.encodeIfPresent(images, forKey: .images)
             
             
         }

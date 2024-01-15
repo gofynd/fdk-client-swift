@@ -134,9 +134,7 @@ public extension ApplicationClient.PosCart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
-            
             
             
             
@@ -144,9 +142,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(display, forKey: .display)
-            
             
             
             
@@ -154,9 +150,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(key, forKey: .key)
-            
             
             
             

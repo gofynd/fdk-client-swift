@@ -85,17 +85,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(username, forKey: .username)
+            try? container.encodeIfPresent(username, forKey: .username)
             
             
             
             
-            try? container.encode(user, forKey: .user)
+            try? container.encodeIfPresent(user, forKey: .user)
             
             
             
             
-            try? container.encode(password, forKey: .password)
+            try? container.encodeIfPresent(password, forKey: .password)
             
             
         }
@@ -187,17 +187,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(username, forKey: .username)
+            try? container.encodeIfPresent(username, forKey: .username)
             
             
             
             
-            try? container.encode(user, forKey: .user)
+            try? container.encodeIfPresent(user, forKey: .user)
             
             
             
             
-            try? container.encode(password, forKey: .password)
+            try? container.encodeIfPresent(password, forKey: .password)
             
             
         }

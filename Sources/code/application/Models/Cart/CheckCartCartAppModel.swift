@@ -18,7 +18,7 @@ public extension ApplicationClient.Cart {
         
         public var isValid: Bool?
         
-        public var deliveryCharges: Int?
+        public var deliveryCharges: Double?
         
         public var id: String?
         
@@ -64,7 +64,7 @@ public extension ApplicationClient.Cart {
         
         public var buyNow: Bool?
         
-        public var codCharges: Int?
+        public var codCharges: Double?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -129,7 +129,7 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, codAvailable: Bool? = nil, codCharges: Int? = nil, codMessage: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, deliveryCharges: Int? = nil, deliveryChargeInfo: String? = nil, deliveryChargeOrderValue: Int? = nil, deliveryPromise: ShipmentPromise? = nil, errorMessage: String? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, orderId: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, storeCode: String? = nil, storeEmps: [[String: Any]]? = nil, success: Bool? = nil, uid: String? = nil, userType: String? = nil) {
+        public init(breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, codAvailable: Bool? = nil, codCharges: Double? = nil, codMessage: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, deliveryCharges: Double? = nil, deliveryChargeInfo: String? = nil, deliveryChargeOrderValue: Int? = nil, deliveryPromise: ShipmentPromise? = nil, errorMessage: String? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, orderId: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, storeCode: String? = nil, storeEmps: [[String: Any]]? = nil, success: Bool? = nil, uid: String? = nil, userType: String? = nil) {
             
             self.checkoutMode = checkoutMode
             
@@ -256,7 +256,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                deliveryCharges = try container.decode(Int.self, forKey: .deliveryCharges)
+                deliveryCharges = try container.decode(Double.self, forKey: .deliveryCharges)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -532,7 +532,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                codCharges = try container.decode(Int.self, forKey: .codCharges)
+                codCharges = try container.decode(Double.self, forKey: .codCharges)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -548,9 +548,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
-            
             
             
             
@@ -558,9 +556,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(codMessage, forKey: .codMessage)
-            
             
             
             
@@ -568,9 +564,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(isValid, forKey: .isValid)
-            
             
             
             
@@ -578,9 +572,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -588,9 +580,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(errorMessage, forKey: .errorMessage)
-            
             
             
             
@@ -598,9 +588,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(comment, forKey: .comment)
-            
             
             
             
@@ -608,9 +596,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(uid, forKey: .uid)
-            
             
             
             
@@ -618,9 +604,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(deliveryChargeInfo, forKey: .deliveryChargeInfo)
-            
             
             
             
@@ -628,9 +612,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(success, forKey: .success)
-            
             
             
             
@@ -638,9 +620,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(message, forKey: .message)
-            
             
             
             
@@ -648,9 +628,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(restrictCheckout, forKey: .restrictCheckout)
-            
             
             
             
@@ -658,9 +636,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(orderId, forKey: .orderId)
-            
             
             
             
@@ -668,9 +644,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(currency, forKey: .currency)
-            
             
             
             
@@ -678,14 +652,11 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(couponText, forKey: .couponText)
             
             
             
-            
             try? container.encodeIfPresent(buyNow, forKey: .buyNow)
-            
             
             
             

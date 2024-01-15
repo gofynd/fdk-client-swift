@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encode(tag, forKey: .tag)
+            try? container.encodeIfPresent(tag, forKey: .tag)
             
             
             
             
-            try? container.encode(url, forKey: .url)
+            try? container.encodeIfPresent(url, forKey: .url)
             
             
         }
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encode(tag, forKey: .tag)
+            try? container.encodeIfPresent(tag, forKey: .tag)
             
             
             
             
-            try? container.encode(url, forKey: .url)
+            try? container.encodeIfPresent(url, forKey: .url)
             
             
         }

@@ -90,12 +90,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(affiliatePriorityCode, forKey: .affiliatePriorityCode)
+            try? container.encodeIfPresent(affiliatePriorityCode, forKey: .affiliatePriorityCode)
             
             
             
             
-            try? container.encode(fulfilmentPriority, forKey: .fulfilmentPriority)
+            try? container.encodeIfPresent(fulfilmentPriority, forKey: .fulfilmentPriority)
             
             
         }
@@ -192,12 +192,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(affiliatePriorityCode, forKey: .affiliatePriorityCode)
+            try? container.encodeIfPresent(affiliatePriorityCode, forKey: .affiliatePriorityCode)
             
             
             
             
-            try? container.encode(fulfilmentPriority, forKey: .fulfilmentPriority)
+            try? container.encodeIfPresent(fulfilmentPriority, forKey: .fulfilmentPriority)
             
             
         }

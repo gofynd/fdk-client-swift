@@ -188,7 +188,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(deviceId, forKey: .deviceId)
+            try? container.encodeIfPresent(deviceId, forKey: .deviceId)
             
             
             
@@ -223,7 +223,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(amount, forKey: .amount)
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
             
@@ -443,7 +443,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(deviceId, forKey: .deviceId)
+            try? container.encodeIfPresent(deviceId, forKey: .deviceId)
             
             
             
@@ -478,7 +478,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(amount, forKey: .amount)
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
             

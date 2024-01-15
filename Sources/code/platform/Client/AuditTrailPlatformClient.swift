@@ -54,7 +54,7 @@ if let value = sort {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/audit-trail/v1.0/company/\(companyId)/logs/",
+                url: "/service/platform/audit-trail/v1.0/company/\(companyId)/logs",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -102,7 +102,7 @@ if let value = sort {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/audit-trail/v1.0/company/\(companyId)/logs/",
+                url: "/service/platform/audit-trail/v1.0/company/\(companyId)/logs",
                 query: nil,
                 body: body.dictionary,
                 headers: [],

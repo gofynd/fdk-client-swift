@@ -128,12 +128,12 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(paymentLinkUrl, forKey: .paymentLinkUrl)
+            try? container.encodeIfPresent(paymentLinkUrl, forKey: .paymentLinkUrl)
             
             
             
             
-            try? container.encode(pollingTimeout, forKey: .pollingTimeout)
+            try? container.encodeIfPresent(pollingTimeout, forKey: .pollingTimeout)
             
             
             
@@ -143,7 +143,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(paymentLinkId, forKey: .paymentLinkId)
+            try? container.encodeIfPresent(paymentLinkId, forKey: .paymentLinkId)
             
             
         }
@@ -278,12 +278,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(paymentLinkUrl, forKey: .paymentLinkUrl)
+            try? container.encodeIfPresent(paymentLinkUrl, forKey: .paymentLinkUrl)
             
             
             
             
-            try? container.encode(pollingTimeout, forKey: .pollingTimeout)
+            try? container.encodeIfPresent(pollingTimeout, forKey: .pollingTimeout)
             
             
             
@@ -293,7 +293,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(paymentLinkId, forKey: .paymentLinkId)
+            try? container.encodeIfPresent(paymentLinkId, forKey: .paymentLinkId)
             
             
         }

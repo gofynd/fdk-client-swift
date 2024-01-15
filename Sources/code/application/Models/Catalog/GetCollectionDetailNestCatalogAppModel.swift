@@ -48,7 +48,7 @@ public extension ApplicationClient.Catalog {
         
         public var priority: Int?
         
-        public var tag: [String]?
+        public var tags: [String]?
         
         public var appId: String?
         
@@ -95,13 +95,13 @@ public extension ApplicationClient.Catalog {
             
             case priority = "priority"
             
-            case tag = "tag"
+            case tags = "tags"
             
             case appId = "app_id"
             
         }
 
-        public init(action: ProductListingAction? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: [String: Any]? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, name: String? = nil, priority: Int? = nil, query: [CollectionQuery]? = nil, slug: String? = nil, sortOn: String? = nil, tag: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, schedule: [String: Any]? = nil) {
+        public init(action: ProductListingAction? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: [String: Any]? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, name: String? = nil, priority: Int? = nil, query: [CollectionQuery]? = nil, slug: String? = nil, sortOn: String? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, schedule: [String: Any]? = nil) {
             
             self.isActive = isActive
             
@@ -143,7 +143,7 @@ public extension ApplicationClient.Catalog {
             
             self.priority = priority
             
-            self.tag = tag
+            self.tags = tags
             
             self.appId = appId
             
@@ -394,7 +394,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                tag = try container.decode([String].self, forKey: .tag)
+                tags = try container.decode([String].self, forKey: .tags)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -422,9 +422,7 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
             
             
             
@@ -432,9 +430,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(sortOn, forKey: .sortOn)
-            
             
             
             
@@ -442,9 +438,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(banners, forKey: .banners)
-            
             
             
             
@@ -452,9 +446,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(schedule, forKey: .schedule)
-            
             
             
             
@@ -462,9 +454,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(description, forKey: .description)
-            
             
             
             
@@ -472,9 +462,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(customJson, forKey: .customJson)
-            
             
             
             
@@ -482,9 +470,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(allowSort, forKey: .allowSort)
-            
             
             
             
@@ -492,9 +478,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(badge, forKey: .badge)
-            
             
             
             
@@ -502,9 +486,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(action, forKey: .action)
-            
             
             
             
@@ -512,9 +494,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(logo, forKey: .logo)
-            
             
             
             
@@ -522,9 +502,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
-            try? container.encodeIfPresent(tag, forKey: .tag)
-            
+            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
             

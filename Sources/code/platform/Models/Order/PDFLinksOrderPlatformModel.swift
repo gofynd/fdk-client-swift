@@ -310,37 +310,37 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(labelA6, forKey: .labelA6)
+            try? container.encodeIfPresent(labelA6, forKey: .labelA6)
             
             
             
             
-            try? container.encode(invoice, forKey: .invoice)
+            try? container.encodeIfPresent(invoice, forKey: .invoice)
             
             
             
             
-            try? container.encode(labelPos, forKey: .labelPos)
+            try? container.encodeIfPresent(labelPos, forKey: .labelPos)
             
             
             
             
-            try? container.encode(invoiceA6, forKey: .invoiceA6)
+            try? container.encodeIfPresent(invoiceA6, forKey: .invoiceA6)
             
             
             
             
-            try? container.encode(b2B, forKey: .b2B)
+            try? container.encodeIfPresent(b2B, forKey: .b2B)
             
             
             
             
-            try? container.encode(label, forKey: .label)
+            try? container.encodeIfPresent(label, forKey: .label)
             
             
             
             
-            try? container.encode(labelA4, forKey: .labelA4)
+            try? container.encodeIfPresent(labelA4, forKey: .labelA4)
             
             
             
@@ -350,37 +350,37 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(invoiceExport, forKey: .invoiceExport)
+            try? container.encodeIfPresent(invoiceExport, forKey: .invoiceExport)
             
             
             
             
-            try? container.encode(creditNoteUrl, forKey: .creditNoteUrl)
+            try? container.encodeIfPresent(creditNoteUrl, forKey: .creditNoteUrl)
             
             
             
             
-            try? container.encode(deliveryChallanA4, forKey: .deliveryChallanA4)
+            try? container.encodeIfPresent(deliveryChallanA4, forKey: .deliveryChallanA4)
             
             
             
             
-            try? container.encode(labelExport, forKey: .labelExport)
+            try? container.encodeIfPresent(labelExport, forKey: .labelExport)
             
             
             
             
-            try? container.encode(invoiceA4, forKey: .invoiceA4)
+            try? container.encodeIfPresent(invoiceA4, forKey: .invoiceA4)
             
             
             
             
-            try? container.encode(invoicePos, forKey: .invoicePos)
+            try? container.encodeIfPresent(invoicePos, forKey: .invoicePos)
             
             
             
             
-            try? container.encode(poInvoice, forKey: .poInvoice)
+            try? container.encodeIfPresent(poInvoice, forKey: .poInvoice)
             
             
         }
@@ -697,37 +697,37 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(labelA6, forKey: .labelA6)
+            try? container.encodeIfPresent(labelA6, forKey: .labelA6)
             
             
             
             
-            try? container.encode(invoice, forKey: .invoice)
+            try? container.encodeIfPresent(invoice, forKey: .invoice)
             
             
             
             
-            try? container.encode(labelPos, forKey: .labelPos)
+            try? container.encodeIfPresent(labelPos, forKey: .labelPos)
             
             
             
             
-            try? container.encode(invoiceA6, forKey: .invoiceA6)
+            try? container.encodeIfPresent(invoiceA6, forKey: .invoiceA6)
             
             
             
             
-            try? container.encode(b2B, forKey: .b2B)
+            try? container.encodeIfPresent(b2B, forKey: .b2B)
             
             
             
             
-            try? container.encode(label, forKey: .label)
+            try? container.encodeIfPresent(label, forKey: .label)
             
             
             
             
-            try? container.encode(labelA4, forKey: .labelA4)
+            try? container.encodeIfPresent(labelA4, forKey: .labelA4)
             
             
             
@@ -737,37 +737,37 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(invoiceExport, forKey: .invoiceExport)
+            try? container.encodeIfPresent(invoiceExport, forKey: .invoiceExport)
             
             
             
             
-            try? container.encode(creditNoteUrl, forKey: .creditNoteUrl)
+            try? container.encodeIfPresent(creditNoteUrl, forKey: .creditNoteUrl)
             
             
             
             
-            try? container.encode(deliveryChallanA4, forKey: .deliveryChallanA4)
+            try? container.encodeIfPresent(deliveryChallanA4, forKey: .deliveryChallanA4)
             
             
             
             
-            try? container.encode(labelExport, forKey: .labelExport)
+            try? container.encodeIfPresent(labelExport, forKey: .labelExport)
             
             
             
             
-            try? container.encode(invoiceA4, forKey: .invoiceA4)
+            try? container.encodeIfPresent(invoiceA4, forKey: .invoiceA4)
             
             
             
             
-            try? container.encode(invoicePos, forKey: .invoicePos)
+            try? container.encodeIfPresent(invoicePos, forKey: .invoicePos)
             
             
             
             
-            try? container.encode(poInvoice, forKey: .poInvoice)
+            try? container.encodeIfPresent(poInvoice, forKey: .poInvoice)
             
             
         }

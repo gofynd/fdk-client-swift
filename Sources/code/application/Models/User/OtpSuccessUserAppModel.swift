@@ -170,9 +170,7 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
-            
             
             
             
@@ -180,9 +178,7 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(registerToken, forKey: .registerToken)
-            
             
             
             
@@ -190,9 +186,7 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(requestId, forKey: .requestId)
-            
             
             
             
@@ -200,9 +194,7 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(mobile, forKey: .mobile)
-            
             
             
             

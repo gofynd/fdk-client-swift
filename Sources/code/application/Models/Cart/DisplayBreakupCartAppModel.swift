@@ -20,6 +20,8 @@ public extension ApplicationClient.Cart {
         
         public var value: Double?
         
+        public var preset: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,9 +37,11 @@ public extension ApplicationClient.Cart {
             
             case value = "value"
             
+            case preset = "preset"
+            
         }
 
-        public init(currencyCode: String? = nil, currencySymbol: String? = nil, display: String? = nil, key: String? = nil, message: [String]? = nil, value: Double? = nil) {
+        public init(currencyCode: String? = nil, currencySymbol: String? = nil, display: String? = nil, key: String? = nil, message: [String]? = nil, preset: Double? = nil, value: Double? = nil) {
             
             self.currencySymbol = currencySymbol
             
@@ -50,6 +54,8 @@ public extension ApplicationClient.Cart {
             self.currencyCode = currencyCode
             
             self.value = value
+            
+            self.preset = preset
             
         }
 
@@ -128,15 +134,25 @@ public extension ApplicationClient.Cart {
             }
             
             
+            
+            do {
+                preset = try container.decode(Double.self, forKey: .preset)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
-            
             
             
             
@@ -144,9 +160,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(display, forKey: .display)
-            
             
             
             
@@ -154,13 +168,15 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
             
             
             
-            
             try? container.encodeIfPresent(value, forKey: .value)
+            
+            
+            
+            try? container.encodeIfPresent(preset, forKey: .preset)
             
             
         }

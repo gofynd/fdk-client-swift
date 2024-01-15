@@ -98,9 +98,7 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(email, forKey: .email)
-            
             
             
             
@@ -108,9 +106,7 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(registerToken, forKey: .registerToken)
-            
             
             
             

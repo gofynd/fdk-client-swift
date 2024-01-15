@@ -314,9 +314,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(cashbackAmount, forKey: .cashbackAmount)
-            
             
             
             
@@ -324,9 +322,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(cashbackMessageSecondary, forKey: .cashbackMessageSecondary)
-            
             
             
             
@@ -334,9 +330,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(couponDescription, forKey: .couponDescription)
-            
             
             
             
@@ -344,9 +338,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(couponSubtitle, forKey: .couponSubtitle)
-            
             
             
             
@@ -354,9 +346,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(couponType, forKey: .couponType)
-            
             
             
             
@@ -364,9 +354,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(discount, forKey: .discount)
-            
             
             
             
@@ -374,9 +362,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(isValid, forKey: .isValid)
-            
             
             
             
@@ -384,9 +370,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(message, forKey: .message)
-            
             
             
             

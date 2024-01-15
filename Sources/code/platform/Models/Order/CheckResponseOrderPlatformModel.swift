@@ -223,7 +223,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(lockStatus, forKey: .lockStatus)
+            try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
             
             
             
@@ -463,7 +463,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(lockStatus, forKey: .lockStatus)
+            try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
             
             
             

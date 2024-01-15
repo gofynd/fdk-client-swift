@@ -16,6 +16,8 @@ public extension PlatformClient.Theme {
         
         public var category: String?
         
+        public var value: String?
+        
         public var id: String?
         
         public var label: String?
@@ -29,6 +31,8 @@ public extension PlatformClient.Theme {
             
             case category = "category"
             
+            case value = "value"
+            
             case id = "id"
             
             case label = "label"
@@ -37,11 +41,13 @@ public extension PlatformClient.Theme {
             
         }
 
-        public init(category: String? = nil, id: String? = nil, info: String? = nil, label: String? = nil, type: String? = nil) {
+        public init(category: String? = nil, id: String? = nil, info: String? = nil, label: String? = nil, type: String? = nil, value: String? = nil) {
             
             self.type = type
             
             self.category = category
+            
+            self.value = value
             
             self.id = id
             
@@ -69,6 +75,18 @@ public extension PlatformClient.Theme {
             
                 do {
                     category = try container.decode(String.self, forKey: .category)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    value = try container.decode(String.self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -127,6 +145,11 @@ public extension PlatformClient.Theme {
             
             
             try? container.encodeIfPresent(category, forKey: .category)
+            
+            
+            
+            
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
             
@@ -164,6 +187,8 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public var category: String?
         
+        public var value: String?
+        
         public var id: String?
         
         public var label: String?
@@ -177,6 +202,8 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             case category = "category"
             
+            case value = "value"
+            
             case id = "id"
             
             case label = "label"
@@ -185,11 +212,13 @@ public extension PlatformClient.ApplicationClient.Theme {
             
         }
 
-        public init(category: String? = nil, id: String? = nil, info: String? = nil, label: String? = nil, type: String? = nil) {
+        public init(category: String? = nil, id: String? = nil, info: String? = nil, label: String? = nil, type: String? = nil, value: String? = nil) {
             
             self.type = type
             
             self.category = category
+            
+            self.value = value
             
             self.id = id
             
@@ -217,6 +246,18 @@ public extension PlatformClient.ApplicationClient.Theme {
             
                 do {
                     category = try container.decode(String.self, forKey: .category)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    value = try container.decode(String.self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -275,6 +316,11 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(category, forKey: .category)
+            
+            
+            
+            
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
             

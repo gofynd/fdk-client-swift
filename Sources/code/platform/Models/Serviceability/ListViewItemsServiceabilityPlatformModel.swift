@@ -24,11 +24,11 @@ public extension PlatformClient.Serviceability {
         
         public var product: ListViewProduct
         
-        public var pincodesCount: Int
+        public var regionsCount: Int
         
         public var companyId: Int
         
-        public var channels: [ListViewChannels]
+        public var channels: ListViewChannels
         
 
         public enum CodingKeys: String, CodingKey {
@@ -45,7 +45,7 @@ public extension PlatformClient.Serviceability {
             
             case product = "product"
             
-            case pincodesCount = "pincodes_count"
+            case regionsCount = "regions_count"
             
             case companyId = "company_id"
             
@@ -53,7 +53,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(channels: [ListViewChannels], companyId: Int, isActive: Bool, name: String, pincodesCount: Int, product: ListViewProduct, slug: String, storesCount: Int, zoneId: String) {
+        public init(channels: ListViewChannels, companyId: Int, isActive: Bool, name: String, product: ListViewProduct, regionsCount: Int, slug: String, storesCount: Int, zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -67,7 +67,7 @@ public extension PlatformClient.Serviceability {
             
             self.product = product
             
-            self.pincodesCount = pincodesCount
+            self.regionsCount = regionsCount
             
             self.companyId = companyId
             
@@ -109,7 +109,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-                pincodesCount = try container.decode(Int.self, forKey: .pincodesCount)
+                regionsCount = try container.decode(Int.self, forKey: .regionsCount)
                 
             
             
@@ -119,7 +119,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-                channels = try container.decode([ListViewChannels].self, forKey: .channels)
+                channels = try container.decode(ListViewChannels.self, forKey: .channels)
                 
             
             
@@ -160,7 +160,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(pincodesCount, forKey: .pincodesCount)
+            try? container.encodeIfPresent(regionsCount, forKey: .regionsCount)
             
             
             
@@ -201,11 +201,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var product: ListViewProduct
         
-        public var pincodesCount: Int
+        public var regionsCount: Int
         
         public var companyId: Int
         
-        public var channels: [ListViewChannels]
+        public var channels: ListViewChannels
         
 
         public enum CodingKeys: String, CodingKey {
@@ -222,7 +222,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case product = "product"
             
-            case pincodesCount = "pincodes_count"
+            case regionsCount = "regions_count"
             
             case companyId = "company_id"
             
@@ -230,7 +230,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(channels: [ListViewChannels], companyId: Int, isActive: Bool, name: String, pincodesCount: Int, product: ListViewProduct, slug: String, storesCount: Int, zoneId: String) {
+        public init(channels: ListViewChannels, companyId: Int, isActive: Bool, name: String, product: ListViewProduct, regionsCount: Int, slug: String, storesCount: Int, zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -244,7 +244,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             self.product = product
             
-            self.pincodesCount = pincodesCount
+            self.regionsCount = regionsCount
             
             self.companyId = companyId
             
@@ -286,7 +286,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                pincodesCount = try container.decode(Int.self, forKey: .pincodesCount)
+                regionsCount = try container.decode(Int.self, forKey: .regionsCount)
                 
             
             
@@ -296,7 +296,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                channels = try container.decode([ListViewChannels].self, forKey: .channels)
+                channels = try container.decode(ListViewChannels.self, forKey: .channels)
                 
             
             
@@ -337,7 +337,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(pincodesCount, forKey: .pincodesCount)
+            try? container.encodeIfPresent(regionsCount, forKey: .regionsCount)
             
             
             

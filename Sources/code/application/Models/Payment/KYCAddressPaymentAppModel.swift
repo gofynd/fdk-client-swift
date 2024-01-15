@@ -124,14 +124,11 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(city, forKey: .city)
             
             
             
-            
-            try? container.encode(addressline2, forKey: .addressline2)
-            
+            try? container.encodeIfPresent(addressline2, forKey: .addressline2)
             
             
             
@@ -139,9 +136,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            try? container.encode(ownershipType, forKey: .ownershipType)
-            
+            try? container.encodeIfPresent(ownershipType, forKey: .ownershipType)
             
             
             
@@ -149,9 +144,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            try? container.encode(landMark, forKey: .landMark)
-            
+            try? container.encodeIfPresent(landMark, forKey: .landMark)
             
             
             

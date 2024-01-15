@@ -134,9 +134,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(deliverySlots, forKey: .deliverySlots)
-            
             
             
             
@@ -144,9 +142,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
-            
             
             
             
@@ -154,9 +150,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(comment, forKey: .comment)
-            
             
             
             

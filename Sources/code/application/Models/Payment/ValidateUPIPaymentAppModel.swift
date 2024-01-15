@@ -70,9 +70,7 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(status, forKey: .status)
-            
             
             
             
@@ -80,9 +78,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(isValid, forKey: .isValid)
-            
             
             
             

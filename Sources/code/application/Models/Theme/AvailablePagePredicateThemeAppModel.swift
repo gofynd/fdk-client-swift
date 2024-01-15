@@ -14,6 +14,12 @@ public extension ApplicationClient.Theme {
         
         public var route: AvailablePageRoutePredicate?
         
+        public var schedule: AvailablePageSchedulePredicate?
+        
+        public var platform: AvailablePagePlatformPredicate?
+        
+        public var zones: [String]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,15 +29,27 @@ public extension ApplicationClient.Theme {
             
             case route = "route"
             
+            case schedule = "schedule"
+            
+            case platform = "platform"
+            
+            case zones = "zones"
+            
         }
 
-        public init(route: AvailablePageRoutePredicate? = nil, screen: AvailablePageScreenPredicate? = nil, user: AvailablePageUserPredicate? = nil) {
+        public init(platform: AvailablePagePlatformPredicate? = nil, route: AvailablePageRoutePredicate? = nil, schedule: AvailablePageSchedulePredicate? = nil, screen: AvailablePageScreenPredicate? = nil, user: AvailablePageUserPredicate? = nil, zones: [String]? = nil) {
             
             self.screen = screen
             
             self.user = user
             
             self.route = route
+            
+            self.schedule = schedule
+            
+            self.platform = platform
+            
+            self.zones = zones
             
         }
 
@@ -74,15 +92,49 @@ public extension ApplicationClient.Theme {
             }
             
             
+            
+            do {
+                schedule = try container.decode(AvailablePageSchedulePredicate.self, forKey: .schedule)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                platform = try container.decode(AvailablePagePlatformPredicate.self, forKey: .platform)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                zones = try container.decode([String].self, forKey: .zones)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(screen, forKey: .screen)
-            
             
             
             
@@ -90,8 +142,19 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(route, forKey: .route)
+            
+            
+            
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
+            
+            
+            
+            try? container.encodeIfPresent(platform, forKey: .platform)
+            
+            
+            
+            try? container.encodeIfPresent(zones, forKey: .zones)
             
             
         }

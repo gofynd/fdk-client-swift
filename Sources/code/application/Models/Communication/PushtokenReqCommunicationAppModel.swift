@@ -116,9 +116,7 @@ public extension ApplicationClient.Communication {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(action, forKey: .action)
-            
             
             
             
@@ -126,14 +124,11 @@ public extension ApplicationClient.Communication {
             
             
             
-            
             try? container.encodeIfPresent(pushToken, forKey: .pushToken)
             
             
             
-            
             try? container.encodeIfPresent(uniqueDeviceId, forKey: .uniqueDeviceId)
-            
             
             
             

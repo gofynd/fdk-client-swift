@@ -73,9 +73,7 @@ public extension ApplicationClient.PosCart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(mobile, forKey: .mobile)
-            
             
             
             
@@ -83,8 +81,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
-            try? container.encode(email, forKey: .email)
+            try? container.encodeIfPresent(email, forKey: .email)
             
             
         }

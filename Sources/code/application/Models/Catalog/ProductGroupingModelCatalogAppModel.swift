@@ -304,9 +304,7 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
-            try? container.encode(logo, forKey: .logo)
-            
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             
@@ -314,9 +312,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(meta, forKey: .meta)
-            
             
             
             
@@ -324,9 +320,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-            
             
             
             
@@ -334,9 +328,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(pageVisibility, forKey: .pageVisibility)
-            
             
             
             
@@ -344,9 +336,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-            
             
             
             
@@ -354,9 +344,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(products, forKey: .products)
-            
             
             
             
@@ -364,9 +352,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -374,14 +360,11 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(choice, forKey: .choice)
             
             
             
-            
             try? container.encodeIfPresent(slug, forKey: .slug)
-            
             
             
             

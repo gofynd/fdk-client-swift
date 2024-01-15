@@ -30,6 +30,10 @@ public extension ApplicationClient.Cart {
         
         public var city: String?
         
+        public var sector: String?
+        
+        public var stateCode: String?
+        
         public var createdByUserId: String?
         
         public var landmark: String?
@@ -85,6 +89,10 @@ public extension ApplicationClient.Cart {
             
             case city = "city"
             
+            case sector = "sector"
+            
+            case stateCode = "state_code"
+            
             case createdByUserId = "created_by_user_id"
             
             case landmark = "landmark"
@@ -117,7 +125,7 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(address: String? = nil, addressType: String? = nil, area: String? = nil, areaCode: String? = nil, areaCodeSlug: String? = nil, checkoutMode: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, countryPhoneCode: String? = nil, createdByUserId: String? = nil, email: String? = nil, geoLocation: GeoLocation? = nil, googleMapPoint: [String: Any]? = nil, id: String? = nil, isActive: Bool? = nil, isDefaultAddress: Bool? = nil, landmark: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, state: String? = nil, tags: [String]? = nil, userId: String? = nil, customJson: [String: Any]? = nil) {
+        public init(address: String? = nil, addressType: String? = nil, area: String? = nil, areaCode: String? = nil, areaCodeSlug: String? = nil, checkoutMode: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, countryPhoneCode: String? = nil, createdByUserId: String? = nil, email: String? = nil, geoLocation: GeoLocation? = nil, googleMapPoint: [String: Any]? = nil, id: String? = nil, isActive: Bool? = nil, isDefaultAddress: Bool? = nil, landmark: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil, tags: [String]? = nil, userId: String? = nil, customJson: [String: Any]? = nil) {
             
             self.countryIsoCode = countryIsoCode
             
@@ -140,6 +148,10 @@ public extension ApplicationClient.Cart {
             self.customJson = customJson
             
             self.city = city
+            
+            self.sector = sector
+            
+            self.stateCode = stateCode
             
             self.createdByUserId = createdByUserId
             
@@ -299,6 +311,30 @@ public extension ApplicationClient.Cart {
             
             do {
                 city = try container.decode(String.self, forKey: .city)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                sector = try container.decode(String.self, forKey: .sector)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                stateCode = try container.decode(String.self, forKey: .stateCode)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -494,9 +530,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(countryIsoCode, forKey: .countryIsoCode)
-            
             
             
             
@@ -504,9 +538,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(phone, forKey: .phone)
-            
             
             
             
@@ -514,9 +546,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
-            
             
             
             
@@ -524,9 +554,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(areaCodeSlug, forKey: .areaCodeSlug)
-            
             
             
             
@@ -534,9 +562,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -544,9 +570,15 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(city, forKey: .city)
             
+            
+            
+            try? container.encodeIfPresent(sector, forKey: .sector)
+            
+            
+            
+            try? container.encodeIfPresent(stateCode, forKey: .stateCode)
             
             
             
@@ -554,9 +586,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(landmark, forKey: .landmark)
-            
             
             
             
@@ -564,9 +594,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(name, forKey: .name)
-            
             
             
             
@@ -574,9 +602,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
             
             
             
@@ -584,9 +610,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-            
             
             
             
@@ -594,9 +618,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(country, forKey: .country)
-            
             
             
             
@@ -604,9 +626,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(areaCode, forKey: .areaCode)
-            
             
             
             
@@ -614,9 +634,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(state, forKey: .state)
-            
             
             
             

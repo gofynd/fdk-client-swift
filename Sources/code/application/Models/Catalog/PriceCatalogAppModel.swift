@@ -98,9 +98,7 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(min, forKey: .min)
-            
             
             
             
@@ -108,9 +106,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
-            
             
             
             

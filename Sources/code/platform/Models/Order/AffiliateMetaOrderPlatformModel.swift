@@ -319,37 +319,37 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(orderItemId, forKey: .orderItemId)
+            try? container.encodeIfPresent(orderItemId, forKey: .orderItemId)
             
             
             
             
-            try? container.encode(channelOrderId, forKey: .channelOrderId)
+            try? container.encodeIfPresent(channelOrderId, forKey: .channelOrderId)
             
             
             
             
-            try? container.encode(employeeDiscount, forKey: .employeeDiscount)
+            try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
             
             
             
             
-            try? container.encode(boxType, forKey: .boxType)
+            try? container.encodeIfPresent(boxType, forKey: .boxType)
             
             
             
             
-            try? container.encode(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
             
             
             
             
-            try? container.encode(sizeLevelTotalQty, forKey: .sizeLevelTotalQty)
+            try? container.encodeIfPresent(sizeLevelTotalQty, forKey: .sizeLevelTotalQty)
             
             
             
             
-            try? container.encode(loyaltyDiscount, forKey: .loyaltyDiscount)
+            try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
             
             
             
@@ -359,42 +359,42 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(channelShipmentId, forKey: .channelShipmentId)
+            try? container.encodeIfPresent(channelShipmentId, forKey: .channelShipmentId)
             
             
             
             
-            try? container.encode(marketplaceInvoiceId, forKey: .marketplaceInvoiceId)
+            try? container.encodeIfPresent(marketplaceInvoiceId, forKey: .marketplaceInvoiceId)
             
             
             
             
-            try? container.encode(dueDate, forKey: .dueDate)
+            try? container.encodeIfPresent(dueDate, forKey: .dueDate)
             
             
             
             
-            try? container.encode(couponCode, forKey: .couponCode)
+            try? container.encodeIfPresent(couponCode, forKey: .couponCode)
             
             
             
             
-            try? container.encode(isPriority, forKey: .isPriority)
+            try? container.encodeIfPresent(isPriority, forKey: .isPriority)
             
             
             
             
-            try? container.encode(isSerialNumberRequired, forKey: .isSerialNumberRequired)
+            try? container.encodeIfPresent(isSerialNumberRequired, forKey: .isSerialNumberRequired)
             
             
             
             
-            try? container.encode(fulfilmentPriority, forKey: .fulfilmentPriority)
+            try? container.encodeIfPresent(fulfilmentPriority, forKey: .fulfilmentPriority)
             
             
             
             
-            try? container.encode(customerSellingPrice, forKey: .customerSellingPrice)
+            try? container.encodeIfPresent(customerSellingPrice, forKey: .customerSellingPrice)
             
             
         }
@@ -720,37 +720,37 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(orderItemId, forKey: .orderItemId)
+            try? container.encodeIfPresent(orderItemId, forKey: .orderItemId)
             
             
             
             
-            try? container.encode(channelOrderId, forKey: .channelOrderId)
+            try? container.encodeIfPresent(channelOrderId, forKey: .channelOrderId)
             
             
             
             
-            try? container.encode(employeeDiscount, forKey: .employeeDiscount)
+            try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
             
             
             
             
-            try? container.encode(boxType, forKey: .boxType)
+            try? container.encodeIfPresent(boxType, forKey: .boxType)
             
             
             
             
-            try? container.encode(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
             
             
             
             
-            try? container.encode(sizeLevelTotalQty, forKey: .sizeLevelTotalQty)
+            try? container.encodeIfPresent(sizeLevelTotalQty, forKey: .sizeLevelTotalQty)
             
             
             
             
-            try? container.encode(loyaltyDiscount, forKey: .loyaltyDiscount)
+            try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
             
             
             
@@ -760,42 +760,42 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(channelShipmentId, forKey: .channelShipmentId)
+            try? container.encodeIfPresent(channelShipmentId, forKey: .channelShipmentId)
             
             
             
             
-            try? container.encode(marketplaceInvoiceId, forKey: .marketplaceInvoiceId)
+            try? container.encodeIfPresent(marketplaceInvoiceId, forKey: .marketplaceInvoiceId)
             
             
             
             
-            try? container.encode(dueDate, forKey: .dueDate)
+            try? container.encodeIfPresent(dueDate, forKey: .dueDate)
             
             
             
             
-            try? container.encode(couponCode, forKey: .couponCode)
+            try? container.encodeIfPresent(couponCode, forKey: .couponCode)
             
             
             
             
-            try? container.encode(isPriority, forKey: .isPriority)
+            try? container.encodeIfPresent(isPriority, forKey: .isPriority)
             
             
             
             
-            try? container.encode(isSerialNumberRequired, forKey: .isSerialNumberRequired)
+            try? container.encodeIfPresent(isSerialNumberRequired, forKey: .isSerialNumberRequired)
             
             
             
             
-            try? container.encode(fulfilmentPriority, forKey: .fulfilmentPriority)
+            try? container.encodeIfPresent(fulfilmentPriority, forKey: .fulfilmentPriority)
             
             
             
             
-            try? container.encode(customerSellingPrice, forKey: .customerSellingPrice)
+            try? container.encodeIfPresent(customerSellingPrice, forKey: .customerSellingPrice)
             
             
         }

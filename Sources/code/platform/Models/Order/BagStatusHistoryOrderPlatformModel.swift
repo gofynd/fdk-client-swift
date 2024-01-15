@@ -32,9 +32,13 @@ public extension PlatformClient.Order {
         
         public var createdAt: String?
         
+        public var createdTs: String?
+        
         public var shipmentId: String?
         
         public var updatedAt: String?
+        
+        public var updatedTs: String?
         
         public var bagStateMapper: BagStateMapper?
         
@@ -69,9 +73,13 @@ public extension PlatformClient.Order {
             
             case createdAt = "created_at"
             
+            case createdTs = "created_ts"
+            
             case shipmentId = "shipment_id"
             
             case updatedAt = "updated_at"
+            
+            case updatedTs = "updated_ts"
             
             case bagStateMapper = "bag_state_mapper"
             
@@ -85,7 +93,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(appDisplayName: String? = nil, bagId: Int? = nil, bagStateMapper: BagStateMapper? = nil, bshId: Int? = nil, createdAt: String? = nil, deliveryAwbNumber: String? = nil, deliveryPartnerId: Int? = nil, displayName: String? = nil, forward: Bool? = nil, kafkaSync: Bool? = nil, reasons: [[String: Any]]? = nil, shipmentId: String? = nil, stateId: Int? = nil, stateType: String? = nil, status: String, storeId: Int? = nil, updatedAt: String? = nil) {
+        public init(appDisplayName: String? = nil, bagId: Int? = nil, bagStateMapper: BagStateMapper? = nil, bshId: Int? = nil, createdAt: String? = nil, createdTs: String? = nil, deliveryAwbNumber: String? = nil, deliveryPartnerId: Int? = nil, displayName: String? = nil, forward: Bool? = nil, kafkaSync: Bool? = nil, reasons: [[String: Any]]? = nil, shipmentId: String? = nil, stateId: Int? = nil, stateType: String? = nil, status: String, storeId: Int? = nil, updatedAt: String? = nil, updatedTs: String? = nil) {
             
             self.forward = forward
             
@@ -107,9 +115,13 @@ public extension PlatformClient.Order {
             
             self.createdAt = createdAt
             
+            self.createdTs = createdTs
+            
             self.shipmentId = shipmentId
             
             self.updatedAt = updatedAt
+            
+            self.updatedTs = updatedTs
             
             self.bagStateMapper = bagStateMapper
             
@@ -248,6 +260,18 @@ public extension PlatformClient.Order {
             
             
                 do {
+                    createdTs = try container.decode(String.self, forKey: .createdTs)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     shipmentId = try container.decode(String.self, forKey: .shipmentId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -261,6 +285,18 @@ public extension PlatformClient.Order {
             
                 do {
                     updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    updatedTs = try container.decode(String.self, forKey: .updatedTs)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -330,62 +366,72 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(forward, forKey: .forward)
+            try? container.encodeIfPresent(forward, forKey: .forward)
             
             
             
             
-            try? container.encode(storeId, forKey: .storeId)
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
             
             
             
             
-            try? container.encode(deliveryAwbNumber, forKey: .deliveryAwbNumber)
+            try? container.encodeIfPresent(deliveryAwbNumber, forKey: .deliveryAwbNumber)
             
             
             
             
-            try? container.encode(kafkaSync, forKey: .kafkaSync)
+            try? container.encodeIfPresent(kafkaSync, forKey: .kafkaSync)
             
             
             
             
-            try? container.encode(deliveryPartnerId, forKey: .deliveryPartnerId)
+            try? container.encodeIfPresent(deliveryPartnerId, forKey: .deliveryPartnerId)
             
             
             
             
-            try? container.encode(appDisplayName, forKey: .appDisplayName)
+            try? container.encodeIfPresent(appDisplayName, forKey: .appDisplayName)
             
             
             
             
-            try? container.encode(stateId, forKey: .stateId)
+            try? container.encodeIfPresent(stateId, forKey: .stateId)
             
             
             
             
-            try? container.encode(stateType, forKey: .stateType)
+            try? container.encodeIfPresent(stateType, forKey: .stateType)
             
             
             
             
-            try? container.encode(bshId, forKey: .bshId)
+            try? container.encodeIfPresent(bshId, forKey: .bshId)
             
             
             
             
-            try? container.encode(createdAt, forKey: .createdAt)
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
             
             
             
             
-            try? container.encode(shipmentId, forKey: .shipmentId)
+            try? container.encodeIfPresent(createdTs, forKey: .createdTs)
             
             
             
             
-            try? container.encode(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(updatedTs, forKey: .updatedTs)
             
             
             
@@ -395,12 +441,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(bagId, forKey: .bagId)
+            try? container.encodeIfPresent(bagId, forKey: .bagId)
             
             
             
             
-            try? container.encode(reasons, forKey: .reasons)
+            try? container.encodeIfPresent(reasons, forKey: .reasons)
             
             
             
@@ -410,7 +456,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
         }
@@ -449,9 +495,13 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var createdAt: String?
         
+        public var createdTs: String?
+        
         public var shipmentId: String?
         
         public var updatedAt: String?
+        
+        public var updatedTs: String?
         
         public var bagStateMapper: BagStateMapper?
         
@@ -486,9 +536,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case createdAt = "created_at"
             
+            case createdTs = "created_ts"
+            
             case shipmentId = "shipment_id"
             
             case updatedAt = "updated_at"
+            
+            case updatedTs = "updated_ts"
             
             case bagStateMapper = "bag_state_mapper"
             
@@ -502,7 +556,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(appDisplayName: String? = nil, bagId: Int? = nil, bagStateMapper: BagStateMapper? = nil, bshId: Int? = nil, createdAt: String? = nil, deliveryAwbNumber: String? = nil, deliveryPartnerId: Int? = nil, displayName: String? = nil, forward: Bool? = nil, kafkaSync: Bool? = nil, reasons: [[String: Any]]? = nil, shipmentId: String? = nil, stateId: Int? = nil, stateType: String? = nil, status: String, storeId: Int? = nil, updatedAt: String? = nil) {
+        public init(appDisplayName: String? = nil, bagId: Int? = nil, bagStateMapper: BagStateMapper? = nil, bshId: Int? = nil, createdAt: String? = nil, createdTs: String? = nil, deliveryAwbNumber: String? = nil, deliveryPartnerId: Int? = nil, displayName: String? = nil, forward: Bool? = nil, kafkaSync: Bool? = nil, reasons: [[String: Any]]? = nil, shipmentId: String? = nil, stateId: Int? = nil, stateType: String? = nil, status: String, storeId: Int? = nil, updatedAt: String? = nil, updatedTs: String? = nil) {
             
             self.forward = forward
             
@@ -524,9 +578,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.createdAt = createdAt
             
+            self.createdTs = createdTs
+            
             self.shipmentId = shipmentId
             
             self.updatedAt = updatedAt
+            
+            self.updatedTs = updatedTs
             
             self.bagStateMapper = bagStateMapper
             
@@ -665,6 +723,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
+                    createdTs = try container.decode(String.self, forKey: .createdTs)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     shipmentId = try container.decode(String.self, forKey: .shipmentId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -678,6 +748,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    updatedTs = try container.decode(String.self, forKey: .updatedTs)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -747,62 +829,72 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(forward, forKey: .forward)
+            try? container.encodeIfPresent(forward, forKey: .forward)
             
             
             
             
-            try? container.encode(storeId, forKey: .storeId)
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
             
             
             
             
-            try? container.encode(deliveryAwbNumber, forKey: .deliveryAwbNumber)
+            try? container.encodeIfPresent(deliveryAwbNumber, forKey: .deliveryAwbNumber)
             
             
             
             
-            try? container.encode(kafkaSync, forKey: .kafkaSync)
+            try? container.encodeIfPresent(kafkaSync, forKey: .kafkaSync)
             
             
             
             
-            try? container.encode(deliveryPartnerId, forKey: .deliveryPartnerId)
+            try? container.encodeIfPresent(deliveryPartnerId, forKey: .deliveryPartnerId)
             
             
             
             
-            try? container.encode(appDisplayName, forKey: .appDisplayName)
+            try? container.encodeIfPresent(appDisplayName, forKey: .appDisplayName)
             
             
             
             
-            try? container.encode(stateId, forKey: .stateId)
+            try? container.encodeIfPresent(stateId, forKey: .stateId)
             
             
             
             
-            try? container.encode(stateType, forKey: .stateType)
+            try? container.encodeIfPresent(stateType, forKey: .stateType)
             
             
             
             
-            try? container.encode(bshId, forKey: .bshId)
+            try? container.encodeIfPresent(bshId, forKey: .bshId)
             
             
             
             
-            try? container.encode(createdAt, forKey: .createdAt)
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
             
             
             
             
-            try? container.encode(shipmentId, forKey: .shipmentId)
+            try? container.encodeIfPresent(createdTs, forKey: .createdTs)
             
             
             
             
-            try? container.encode(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(updatedTs, forKey: .updatedTs)
             
             
             
@@ -812,12 +904,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(bagId, forKey: .bagId)
+            try? container.encodeIfPresent(bagId, forKey: .bagId)
             
             
             
             
-            try? container.encode(reasons, forKey: .reasons)
+            try? container.encodeIfPresent(reasons, forKey: .reasons)
             
             
             
@@ -827,7 +919,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
         }

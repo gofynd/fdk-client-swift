@@ -273,7 +273,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encode(logo, forKey: .logo)
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             
@@ -593,7 +593,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encode(logo, forKey: .logo)
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             

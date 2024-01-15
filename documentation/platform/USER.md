@@ -6,6 +6,8 @@
 
 ## User Methods
 Authentication Service
+
+Default
 * [getCustomers](#getcustomers)
 * [searchUsers](#searchusers)
 * [createUser](#createuser)
@@ -24,10 +26,22 @@ Authentication Service
 * [updateUserGroup](#updateusergroup)
 * [getUserGroupById](#getusergroupbyid)
 * [updateUserGroupPartially](#updateusergrouppartially)
+* [createUserAttributeDefinition](#createuserattributedefinition)
+* [getUserAttributeDefinitions](#getuserattributedefinitions)
+* [updateUserAttributeDefinition](#updateuserattributedefinition)
+* [deleteUserAttributeDefinitionById](#deleteuserattributedefinitionbyid)
+* [getUserAttributeDefinitionById](#getuserattributedefinitionbyid)
+* [updateUserAttribute](#updateuserattribute)
+* [getUserAttribute](#getuserattribute)
+* [deleteUserAttribute](#deleteuserattribute)
+* [getUserAttributesForUser](#getuserattributesforuser)
+* [getUserAttributeById](#getuserattributebyid)
+
 
 
 
 ## Methods with example and description
+
 
 
 #### getCustomers
@@ -48,7 +62,7 @@ platformClient.application("<APPLICATION_ID>").user.getCustomers(q: q, pageSize:
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| q | [String: Any]? | no | The search query. Mobile number or email ID of a customer. |   
+| q | String? | no | The search query. Mobile number or email ID of a customer. |   
 | pageSize | Int? | no | The number of items to retrieve in each page. Default value is 10. |   
 | pageNo | Int? | no | The page number to navigate through the given set of results. Default value is 1.  |  
 
@@ -1165,7 +1179,7 @@ platformClient.application("<APPLICATION_ID>").user.createUserGroup(body: body) 
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
-| body | CreateUserGroupSchema | yes | Request body |
+| body | CreateUserGroup | yes | Request body |
 
 
 Use this API to create new user Group
@@ -1187,16 +1201,17 @@ Success. returns created User Group. `UserGroupResponseSchema` for more details.
 
 ```json
 {
-  "is_active": true,
-  "_id": "6345677535474fbb6944b7ce",
-  "name": "Group 1",
-  "description": "description",
-  "file_url": "url",
+  "uid": 469,
+  "name": "test2",
+  "description": "test2",
+  "application_id": "000000000000000000000004",
   "status": "pending",
-  "uid": 1,
-  "application_id": "000000000000000000000001",
-  "created_at": "2022-10-11T12:54:13.539Z",
-  "modified_at": "2022-10-11T12:54:13.539Z",
+  "is_active": true,
+  "type": "bulk",
+  "_id": "6540da9759b4f70ad817ace7",
+  "file_url": "testuerl2",
+  "created_at": "2023-10-31T10:44:39.809Z",
+  "modified_at": "2023-10-31T10:44:39.809Z",
   "__v": 0
 }
 ```
@@ -1220,7 +1235,7 @@ Get User Groups mathcing criteria
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").user.getUserGroups(pageNo: pageNo, pageSize: pageSize, name: name, status: status, groupUid: groupUid) { (response, error) in
+platformClient.application("<APPLICATION_ID>").user.getUserGroups(pageNo: pageNo, pageSize: pageSize, name: name, type: type, status: status, groupUid: groupUid) { (response, error) in
     // Use response
 }
 ```
@@ -1233,7 +1248,8 @@ platformClient.application("<APPLICATION_ID>").user.getUserGroups(pageNo: pageNo
 | -------- | ---- | -------- | ----------- | 
 | pageNo | String? | no | page number for pagination result |   
 | pageSize | String? | no | page size for pagination result |   
-| name | String? | no | to seartch for User Groups which contains given string in their name |   
+| name | String? | no | to search for User Groups which contains given string in their name |   
+| type | String? | no | to search for User Groups with given type |   
 | status | String? | no | to get User Groups with given status |   
 | groupUid | Int? | no | to get User Groups with given uid |  
 
@@ -1260,29 +1276,31 @@ Success. User Group details. `UserGroupListResponseSchema` for more details.
 {
   "items": [
     {
-      "is_active": true,
-      "_id": "6345677535474fbb6944b7ce",
-      "name": "Group 1",
-      "description": "description",
-      "file_url": "url",
+      "uid": 469,
+      "name": "test2",
+      "description": "test2",
+      "application_id": "000000000000000000000004",
       "status": "pending",
-      "uid": 1,
-      "application_id": "000000000000000000000001",
-      "created_at": "2022-10-11T12:54:13.539Z",
-      "modified_at": "2022-10-11T12:54:13.539Z",
+      "is_active": true,
+      "type": "bulk",
+      "_id": "6540da9759b4f70ad817ace7",
+      "file_url": "testuerl2",
+      "created_at": "2023-10-31T10:44:39.809Z",
+      "modified_at": "2023-10-31T10:44:39.809Z",
       "__v": 0
     },
     {
-      "is_active": true,
-      "_id": "6345677535474fbb6944b7ced",
-      "name": "Group 2",
-      "description": "description",
-      "file_url": "url2",
+      "uid": 460,
+      "name": "test",
+      "description": "test",
+      "application_id": "000000000000000000000004",
       "status": "pending",
-      "uid": 1,
-      "application_id": "000000000000000000000001",
-      "created_at": "2022-10-11T12:54:13.539Z",
-      "modified_at": "2022-10-11T12:54:13.539Z",
+      "is_active": true,
+      "type": "bulk",
+      "_id": "6540da9759b4f70ad817ace8",
+      "file_url": "testuerl2",
+      "created_at": "2023-10-31T10:44:39.809Z",
+      "modified_at": "2023-10-31T10:44:39.809Z",
       "__v": 0
     }
   ],
@@ -1349,16 +1367,17 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 ```json
 {
-  "is_active": true,
-  "_id": "6345677535474fbb6944b7ce",
-  "name": "Group 1",
-  "description": "description",
-  "file_url": "url",
+  "uid": 469,
+  "name": "test2",
+  "description": "test2",
+  "application_id": "000000000000000000000004",
   "status": "pending",
-  "uid": 1,
-  "application_id": "000000000000000000000001",
-  "created_at": "2022-10-11T12:54:13.539Z",
-  "modified_at": "2022-10-11T12:54:13.539Z",
+  "is_active": true,
+  "type": "bulk",
+  "_id": "6540da9759b4f70ad817ace7",
+  "file_url": "testuerl2",
+  "created_at": "2023-10-31T10:44:39.809Z",
+  "modified_at": "2023-10-31T10:44:39.809Z",
   "__v": 0
 }
 ```
@@ -1509,8 +1528,723 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 ---
 
 
+#### createUserAttributeDefinition
+Create a User Attribute Definition
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").user.createUserAttributeDefinition(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | CreateUserAttributeDefinition | yes | Request body |
+
+
+Use this API to areate a new User Attribute Definition
+
+*Returned Response:*
+
+
+
+
+[UserAttributeDefinitionResponse](#UserAttributeDefinitionResponse)
+
+Success. returns created User Attribute Definition. `UserAttributeDefinitionResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "5e68af49cfa09bf7233022f1",
+  "name": "example_name",
+  "slug": "example_key",
+  "description": "example_description",
+  "application_id": "application_id_example",
+  "type": "string",
+  "multi_value": false,
+  "customer_editable": true,
+  "encrypted": false,
+  "pinned": true,
+  "pin_order": 2,
+  "validations": [
+    {
+      "type": "min",
+      "value": 1
+    }
+  ],
+  "is_locked": false,
+  "created_by": "5f6d1d7774e48a04969b2ea7",
+  "updated_by": "5f6d1d7774e48a04969b2ea7",
+  "created_at": "2023-10-17T10:00:00Z",
+  "modified_at": "2023-10-17T10:05:00Z"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getUserAttributeDefinitions
+Get User Attribute Definitions
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").user.getUserAttributeDefinitions(excludingIds: excludingIds, slug: slug, type: type, customerEditable: customerEditable, encrypted: encrypted, pinned: pinned, pinOrder: pinOrder, isLocked: isLocked, name: name, pageSize: pageSize, pageNo: pageNo) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| excludingIds | String? | no | Exclude attribute definitions by Ids |   
+| slug | String? | no | Filter by attribute slug. |   
+| type | String? | no | Filter by attribute type. |   
+| customerEditable | Bool? | no | Filter by customer_editable status. |   
+| encrypted | Bool? | no | Filter by encrypted status. |   
+| pinned | Bool? | no | Filter by pinned status. |   
+| pinOrder | Int? | no | Filter by pin order. |   
+| isLocked | Bool? | no | Filter by locked status. |   
+| name | String? | no | Filter by attribute name using a case-insensitive regex. |   
+| pageSize | Int? | no | The number of items to retrieve in each page. Default value is 10. |   
+| pageNo | Int? | no | The page number to navigate through the given set of results. Default value is 1.  |  
+
+
+
+Retrieve user attribute definitions.
+
+*Returned Response:*
+
+
+
+
+[[String: Any]](#[String: Any])
+
+Successful response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateUserAttributeDefinition
+Update User Attribute Definition
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").user.updateUserAttributeDefinition(attributeDefId: attributeDefId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| attributeDefId | String | yes | The unique identifier of the attribute definition to update. |  
+| body | CreateUserAttributeDefinition | yes | Request body |
+
+
+Update an existing user attribute definition.
+
+*Returned Response:*
+
+
+
+
+[UserAttributeDefinition](#UserAttributeDefinition)
+
+Successful update
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteUserAttributeDefinitionById
+Delete User Attribute Definition
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").user.deleteUserAttributeDefinitionById(attributeDefId: attributeDefId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| attributeDefId | String | yes | The unique identifier of the attribute definition to delete. |  
+
+
+
+Delete a user attribute definition by its unique identifier.
+
+*Returned Response:*
+
+
+
+
+[SuccessMessageResponse](#SuccessMessageResponse)
+
+Successful Deletion
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getUserAttributeDefinitionById
+Get User Attribute Definition
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").user.getUserAttributeDefinitionById(attributeDefId: attributeDefId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| attributeDefId | String | yes | The unique identifier of the attribute definition to retrieve. |  
+
+
+
+Get a user attribute definition by its unique identifier.
+
+*Returned Response:*
+
+
+
+
+[UserAttributeDefinition](#UserAttributeDefinition)
+
+Successful Retrieval
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateUserAttribute
+Update Or Create User Attribute
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").user.updateUserAttribute(attributeDefId: attributeDefId, userId: userId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| attributeDefId | String | yes | The unique identifier of the attribute definition to update. |   
+| userId | String | yes | The unique identifier of the user to update. |  
+| body | CreateUserAttributeRequest | yes | Request body |
+
+
+Update Or Create User Attribute
+
+*Returned Response:*
+
+
+
+
+[UserAttributeResponse](#UserAttributeResponse)
+
+Successful update
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getUserAttribute
+get User Attribute
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").user.getUserAttribute(attributeDefId: attributeDefId, userId: userId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| attributeDefId | String | yes | The unique identifier of the attribute definition. |   
+| userId | String | yes | The unique identifier of the user. |  
+
+
+
+get User Attribute
+
+*Returned Response:*
+
+
+
+
+[UserAttributeResponse](#UserAttributeResponse)
+
+Successful update
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteUserAttribute
+delete User Attribute
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").user.deleteUserAttribute(attributeDefId: attributeDefId, userId: userId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| attributeDefId | String | yes | The unique identifier of the attribute definition. |   
+| userId | String | yes | The unique identifier of the user. |  
+
+
+
+delete User Attribute
+
+*Returned Response:*
+
+
+
+
+[SuccessMessageResponse](#SuccessMessageResponse)
+
+Successful update
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getUserAttributesForUser
+Get User Attributes for user
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").user.getUserAttributesForUser(userId: userId, pageSize: pageSize, pageNo: pageNo) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| userId | String | yes | The unique identifier of the user to update. |   
+| pageSize | Int? | no | The number of items to retrieve in each page. Default value is 10. |   
+| pageNo | Int? | no | The page number to navigate through the given set of results. Default value is 1.  |  
+
+
+
+Get all user attributes for user
+
+*Returned Response:*
+
+
+
+
+[[String: Any]](#[String: Any])
+
+Successful update
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getUserAttributeById
+Get User Attribute
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").user.getUserAttributeById(attributeId: attributeId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| attributeId | String | yes | The unique identifier of the attribute to get. |  
+
+
+
+Get User Attribute details by id
+
+*Returned Response:*
+
+
+
+
+[UserAttributeResponse](#UserAttributeResponse)
+
+Successful update
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
 
 ### Schemas
+
+ 
+ 
+ #### [SuccessMessageResponse](#SuccessMessageResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UserAttributeDefinition](#UserAttributeDefinition)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  | The unique identifier for the attribute definition. |
+ | name | String? |  yes  | The attribute name. |
+ | slug | String? |  yes  | The attribute key. |
+ | description | String? |  yes  | The description of the attribute. |
+ | applicationId | String? |  yes  | The application ID. |
+ | type | String? |  yes  | The attribute type. |
+ | multiValue | Bool? |  yes  | Whether the attribute supports multiple values. |
+ | customerEditable | Bool? |  yes  | Whether the attribute is customer-editable. |
+ | encrypted | Bool? |  yes  | Whether the attribute is encrypted. |
+ | pinned | Bool? |  yes  | Whether the attribute is pinned. |
+ | pinOrder | Int? |  yes  | The order in which the attribute is pinned. |
+ | validations | [[String: Any]]? |  yes  |  |
+ | isLocked | Bool? |  yes  | Whether the attribute is locked. |
+ | createdAt | String? |  yes  | The creation date of the attribute. |
+ | modifiedAt | String? |  yes  | The modification date of the attribute. |
+ | v | Int? |  yes  | The version number of the attribute. |
+
+---
+
+
+ 
+ 
+ #### [UserAttributeDefinitionResponse](#UserAttributeDefinitionResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  | The unique identifier for the attribute definition. |
+ | name | String? |  yes  | The attribute name. |
+ | slug | String? |  yes  | The attribute key. |
+ | description | String? |  yes  | The description of the attribute. |
+ | applicationId | String? |  yes  | The application ID. |
+ | type | String? |  yes  | The attribute type. |
+ | multiValue | Bool? |  yes  | Whether the attribute supports multiple values. |
+ | customerEditable | Bool? |  yes  | Whether the attribute is customer-editable. |
+ | encrypted | Bool? |  yes  | Whether the attribute is encrypted. |
+ | pinned | Bool? |  yes  | Whether the attribute is pinned. |
+ | pinOrder | Int? |  yes  | The order in which the attribute is pinned. |
+ | validations | [[UserAttributeDefinitionValidation](#UserAttributeDefinitionValidation)]? |  yes  |  |
+ | isLocked | Bool? |  yes  | Whether the attribute is locked. |
+ | createdBy | String? |  yes  | The user who created the attribute. |
+ | updatedBy | String? |  yes  | The user who last updated the attribute. |
+ | createdAt | String? |  yes  | The creation date of the attribute definition. |
+ | modifiedAt | String? |  yes  | The last modification date of the attribute definition. |
+
+---
+
+
+ 
+ 
+ #### [UserAttributeDefinitionValidation](#UserAttributeDefinitionValidation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  | The type of validation. |
+ | value | [String: Any]? |  yes  | The validation value. |
+
+---
+
+
+ 
+ 
+ #### [UserAttributeResponse](#UserAttributeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  | The unique identifier for the attribute definition. |
+ | name | String? |  yes  | The name of user attribute definition. |
+ | userId | String? |  yes  | The unique identifier for the user. |
+ | applicationId | String? |  yes  | The application ID. |
+ | type | String? |  yes  | The attribute type. |
+ | customerOverriden | Bool? |  yes  | Whether the attribute is customer-editable. |
+ | attribute | [String: Any]? |  yes  |  |
+ | updatedBy | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateUserAttributeRequest](#CreateUserAttributeRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | customerOverriden | Bool? |  yes  |  |
+ | attribute | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateUserAttributeDefinition](#CreateUserAttributeDefinition)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | description | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | multiValue | Bool? |  yes  |  |
+ | customerEditable | Bool? |  yes  |  |
+ | encrypted | Bool? |  yes  |  |
+ | pinned | Bool? |  yes  |  |
+ | pinOrder | Double? |  yes  |  |
+ | defaultValue | String? |  yes  |  |
+ | validations | [[String: Any]]? |  yes  |  |
+
+---
+
 
  
  
@@ -1683,15 +2417,45 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  
  
+ #### [Conditions](#Conditions)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | userAttributeDefinitionId | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | value | String? |  yes  |  |
+ | key | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UserResponseErrorSchema](#UserResponseErrorSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | Int? |  yes  |  |
+ | fileUrl | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [UserGroupResponseSchema](#UserGroupResponseSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | conditions | [[Conditions](#Conditions)]? |  yes  |  |
+ | error | [UserResponseErrorSchema](#UserResponseErrorSchema)? |  yes  |  |
  | name | String? |  yes  |  |
  | description | String? |  yes  |  |
  | fileUrl | String? |  yes  |  |
  | id | String? |  yes  |  |
  | status | String? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | type | String? |  yes  |  |
  | uid | Int? |  yes  |  |
  | applicationId | String? |  yes  |  |
  | createdAt | String? |  yes  |  |
@@ -1715,13 +2479,28 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  
  
- #### [CreateUserGroupSchema](#CreateUserGroupSchema)
+ #### [ConditionsSchema](#ConditionsSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | userAttributeDefinitionId | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | value | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateUserGroup](#CreateUserGroup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | conditions | [[ConditionsSchema](#ConditionsSchema)]? |  yes  |  |
+ | type | String? |  yes  |  |
  | name | String |  no  |  |
  | description | String |  no  |  |
- | fileUrl | String |  no  |  |
+ | fileUrl | String? |  yes  |  |
 
 ---
 
@@ -2041,6 +2820,8 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | conditions | [[ConditionsSchema](#ConditionsSchema)]? |  yes  |  |
+ | type | String? |  yes  |  |
  | name | String? |  yes  |  |
  | description | String? |  yes  |  |
  | fileUrl | String? |  yes  |  |

@@ -484,7 +484,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(staffUserId, forKey: .staffUserId)
+            try? container.encodeIfPresent(staffUserId, forKey: .staffUserId)
             
             
             

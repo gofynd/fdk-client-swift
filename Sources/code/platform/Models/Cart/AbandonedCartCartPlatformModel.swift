@@ -579,7 +579,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(comment, forKey: .comment)
+            try? container.encodeIfPresent(comment, forKey: .comment)
             
             
             
@@ -589,12 +589,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(coupon, forKey: .coupon)
+            try? container.encodeIfPresent(coupon, forKey: .coupon)
             
             
             
             
-            try? container.encode(bulkCouponDiscount, forKey: .bulkCouponDiscount)
+            try? container.encodeIfPresent(bulkCouponDiscount, forKey: .bulkCouponDiscount)
             
             
             
@@ -629,12 +629,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(payments, forKey: .payments)
+            try? container.encodeIfPresent(payments, forKey: .payments)
             
             
             
             
-            try? container.encode(paymentMode, forKey: .paymentMode)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
             
             
             
@@ -644,7 +644,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
+            try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
             
             
             
@@ -679,7 +679,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
@@ -704,7 +704,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(gstin, forKey: .gstin)
+            try? container.encodeIfPresent(gstin, forKey: .gstin)
             
             
             
@@ -714,7 +714,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(mergeQty, forKey: .mergeQty)
+            try? container.encodeIfPresent(mergeQty, forKey: .mergeQty)
             
             
             

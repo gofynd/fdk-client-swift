@@ -712,7 +712,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encode(changeRequestId, forKey: .changeRequestId)
+            try? container.encodeIfPresent(changeRequestId, forKey: .changeRequestId)
             
             
             
@@ -747,7 +747,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encode(highlights, forKey: .highlights)
+            try? container.encodeIfPresent(highlights, forKey: .highlights)
             
             
             
@@ -782,7 +782,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encode(media, forKey: .media)
+            try? container.encodeIfPresent(media, forKey: .media)
             
             
             
@@ -872,7 +872,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encode(uid, forKey: .uid)
+            try? container.encodeIfPresent(uid, forKey: .uid)
             
             
             
@@ -1606,7 +1606,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encode(changeRequestId, forKey: .changeRequestId)
+            try? container.encodeIfPresent(changeRequestId, forKey: .changeRequestId)
             
             
             
@@ -1641,7 +1641,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encode(highlights, forKey: .highlights)
+            try? container.encodeIfPresent(highlights, forKey: .highlights)
             
             
             
@@ -1676,7 +1676,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encode(media, forKey: .media)
+            try? container.encodeIfPresent(media, forKey: .media)
             
             
             
@@ -1766,7 +1766,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encode(uid, forKey: .uid)
+            try? container.encodeIfPresent(uid, forKey: .uid)
             
             
             

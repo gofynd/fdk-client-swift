@@ -134,9 +134,7 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(logo, forKey: .logo)
-            
             
             
             
@@ -144,9 +142,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(description, forKey: .description)
-            
             
             
             
@@ -154,9 +150,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(customJson, forKey: .customJson)
-            
             
             
             

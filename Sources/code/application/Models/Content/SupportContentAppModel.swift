@@ -152,9 +152,7 @@ public extension ApplicationClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(created, forKey: .created)
-            
             
             
             
@@ -162,9 +160,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(configType, forKey: .configType)
-            
             
             
             
@@ -172,14 +168,11 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
             
             
             
-            
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-            
             
             
             

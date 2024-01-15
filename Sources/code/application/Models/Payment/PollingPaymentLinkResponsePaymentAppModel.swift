@@ -206,53 +206,43 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
-            try? container.encode(status, forKey: .status)
-            
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             
-            try? container.encode(statusCode, forKey: .statusCode)
+            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
             
             
             
-            
-            try? container.encode(success, forKey: .success)
-            
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
             
-            try? container.encode(httpStatus, forKey: .httpStatus)
+            try? container.encodeIfPresent(httpStatus, forKey: .httpStatus)
             
             
             
-            
-            try? container.encode(message, forKey: .message)
-            
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
-            try? container.encode(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
             
             
             
-            
-            try? container.encode(redirectUrl, forKey: .redirectUrl)
-            
+            try? container.encodeIfPresent(redirectUrl, forKey: .redirectUrl)
             
             
             
-            try? container.encode(paymentLinkId, forKey: .paymentLinkId)
+            try? container.encodeIfPresent(paymentLinkId, forKey: .paymentLinkId)
             
             
             
-            
-            try? container.encode(aggregatorName, forKey: .aggregatorName)
-            
+            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
             
             
             
-            try? container.encode(amount, forKey: .amount)
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
         }

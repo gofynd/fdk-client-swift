@@ -213,7 +213,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(merchantStorePosCode, forKey: .merchantStorePosCode)
+            try? container.encodeIfPresent(merchantStorePosCode, forKey: .merchantStorePosCode)
             
             
             
@@ -443,7 +443,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(merchantStorePosCode, forKey: .merchantStorePosCode)
+            try? container.encodeIfPresent(merchantStorePosCode, forKey: .merchantStorePosCode)
             
             
             

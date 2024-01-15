@@ -222,9 +222,7 @@ public extension ApplicationClient.Lead {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(applicationId, forKey: .applicationId)
-            
             
             
             
@@ -232,9 +230,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(headerImage, forKey: .headerImage)
-            
             
             
             
@@ -242,9 +238,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(description, forKey: .description)
-            
             
             
             
@@ -252,9 +246,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(loginRequired, forKey: .loginRequired)
-            
             
             
             
@@ -262,9 +254,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(successMessage, forKey: .successMessage)
-            
             
             
             
@@ -272,9 +262,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(inputs, forKey: .inputs)
-            
             
             
             
@@ -282,9 +270,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            
             try? container.encodeIfPresent(pollForAssignment, forKey: .pollForAssignment)
-            
             
             
             

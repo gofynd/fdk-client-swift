@@ -186,12 +186,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encode(tags, forKey: .tags)
+            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
             
             
-            try? container.encode(totalQuantity, forKey: .totalQuantity)
+            try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
             
             
             
@@ -389,12 +389,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encode(tags, forKey: .tags)
+            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
             
             
-            try? container.encode(totalQuantity, forKey: .totalQuantity)
+            try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
             
             
             

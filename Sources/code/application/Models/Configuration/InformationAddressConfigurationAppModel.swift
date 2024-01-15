@@ -8,11 +8,11 @@ public extension ApplicationClient.Configuration {
     */
     class InformationAddress: Codable {
         
-        public var loc: String?
+        public var loc: InformationLoc?
         
         public var addressLine: [String]?
         
-        public var phone: InformationPhone?
+        public var phone: [InformationPhone]?
         
         public var city: String?
         
@@ -37,7 +37,7 @@ public extension ApplicationClient.Configuration {
             
         }
 
-        public init(addressLine: [String]? = nil, city: String? = nil, country: String? = nil, loc: String? = nil, phone: InformationPhone? = nil, pincode: Int? = nil) {
+        public init(addressLine: [String]? = nil, city: String? = nil, country: String? = nil, loc: InformationLoc? = nil, phone: [InformationPhone]? = nil, pincode: Int? = nil) {
             
             self.loc = loc
             
@@ -58,7 +58,7 @@ public extension ApplicationClient.Configuration {
             
             
             do {
-                loc = try container.decode(String.self, forKey: .loc)
+                loc = try container.decode(InformationLoc.self, forKey: .loc)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -82,7 +82,7 @@ public extension ApplicationClient.Configuration {
             
             
             do {
-                phone = try container.decode(InformationPhone.self, forKey: .phone)
+                phone = try container.decode([InformationPhone].self, forKey: .phone)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,9 +134,7 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(loc, forKey: .loc)
-            
             
             
             
@@ -144,9 +142,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(phone, forKey: .phone)
-            
             
             
             
@@ -154,9 +150,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(country, forKey: .country)
-            
             
             
             

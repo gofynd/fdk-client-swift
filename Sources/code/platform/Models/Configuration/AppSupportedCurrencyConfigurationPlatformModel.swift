@@ -22,7 +22,7 @@ public extension PlatformClient.Configuration {
         
         public var createdAt: String?
         
-        public var updatedAt: String?
+        public var modifiedAt: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -37,11 +37,11 @@ public extension PlatformClient.Configuration {
             
             case createdAt = "created_at"
             
-            case updatedAt = "updated_at"
+            case modifiedAt = "modified_at"
             
         }
 
-        public init(application: String? = nil, createdAt: String? = nil, defaultCurrency: DefaultCurrency? = nil, supportedCurrency: [String]? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, defaultCurrency: DefaultCurrency? = nil, modifiedAt: String? = nil, supportedCurrency: [String]? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -53,7 +53,7 @@ public extension PlatformClient.Configuration {
             
             self.createdAt = createdAt
             
-            self.updatedAt = updatedAt
+            self.modifiedAt = modifiedAt
             
         }
 
@@ -122,7 +122,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +164,7 @@ public extension PlatformClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
             
             
         }
@@ -193,7 +193,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var createdAt: String?
         
-        public var updatedAt: String?
+        public var modifiedAt: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -208,11 +208,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case createdAt = "created_at"
             
-            case updatedAt = "updated_at"
+            case modifiedAt = "modified_at"
             
         }
 
-        public init(application: String? = nil, createdAt: String? = nil, defaultCurrency: DefaultCurrency? = nil, supportedCurrency: [String]? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, defaultCurrency: DefaultCurrency? = nil, modifiedAt: String? = nil, supportedCurrency: [String]? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -224,7 +224,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             self.createdAt = createdAt
             
-            self.updatedAt = updatedAt
+            self.modifiedAt = modifiedAt
             
         }
 
@@ -293,7 +293,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -335,7 +335,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
             
             
         }

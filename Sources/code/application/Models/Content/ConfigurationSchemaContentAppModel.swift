@@ -98,9 +98,7 @@ public extension ApplicationClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(sleepTime, forKey: .sleepTime)
-            
             
             
             
@@ -108,9 +106,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(duration, forKey: .duration)
-            
             
             
             

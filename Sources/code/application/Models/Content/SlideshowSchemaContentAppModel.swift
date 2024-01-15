@@ -206,9 +206,7 @@ public extension ApplicationClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -216,9 +214,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(dateMeta, forKey: .dateMeta)
-            
             
             
             
@@ -226,9 +222,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(platform, forKey: .platform)
-            
             
             
             
@@ -236,9 +230,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(media, forKey: .media)
-            
             
             
             
@@ -246,9 +238,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(archived, forKey: .archived)
-            
             
             
             

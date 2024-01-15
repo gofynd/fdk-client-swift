@@ -6,12 +6,16 @@
 
 ## Common Methods
 Application configuration apis
+
+Default
 * [searchApplication](#searchapplication)
 * [getLocations](#getlocations)
 
 
 
+
 ## Methods with example and description
+
 
 
 #### searchApplication
@@ -185,6 +189,7 @@ Success
 
 
 ---
+
 
 
 

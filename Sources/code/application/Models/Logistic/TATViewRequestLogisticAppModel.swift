@@ -134,9 +134,7 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
-            
             
             
             
@@ -144,9 +142,7 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(action, forKey: .action)
-            
             
             
             
@@ -154,9 +150,7 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
-            
             
             
             

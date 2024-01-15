@@ -408,14 +408,11 @@ public extension ApplicationClient.PosCart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
-            
-            try? container.encode(pickAtStoreUid, forKey: .pickAtStoreUid)
-            
+            try? container.encodeIfPresent(pickAtStoreUid, forKey: .pickAtStoreUid)
             
             
             
@@ -423,14 +420,11 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(paymentAutoConfirm, forKey: .paymentAutoConfirm)
             
             
             
-            
-            try? container.encode(callbackUrl, forKey: .callbackUrl)
-            
+            try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
             
             
             
@@ -438,9 +432,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
-            
             
             
             
@@ -448,9 +440,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
-            try? container.encode(id, forKey: .id)
-            
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
@@ -458,9 +448,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
-            try? container.encode(customerDetails, forKey: .customerDetails)
-            
+            try? container.encodeIfPresent(customerDetails, forKey: .customerDetails)
             
             
             
@@ -468,14 +456,11 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
             
             
             
-            
-            try? container.encode(paymentParams, forKey: .paymentParams)
-            
+            try? container.encodeIfPresent(paymentParams, forKey: .paymentParams)
             
             
             
@@ -483,9 +468,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
-            
             
             
             
@@ -493,9 +476,7 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
             try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
-            
             
             
             
@@ -503,14 +484,11 @@ public extension ApplicationClient.PosCart {
             
             
             
-            
-            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
-            
+            try? container.encodeIfPresent(paymentIdentifier, forKey: .paymentIdentifier)
             
             
             
-            try? container.encode(orderingStore, forKey: .orderingStore)
-            
+            try? container.encodeIfPresent(orderingStore, forKey: .orderingStore)
             
             
             

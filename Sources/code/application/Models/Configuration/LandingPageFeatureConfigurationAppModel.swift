@@ -116,9 +116,7 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(launchPage, forKey: .launchPage)
-            
             
             
             
@@ -126,14 +124,11 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(loginBtnText, forKey: .loginBtnText)
             
             
             
-            
             try? container.encodeIfPresent(showDomainTextbox, forKey: .showDomainTextbox)
-            
             
             
             

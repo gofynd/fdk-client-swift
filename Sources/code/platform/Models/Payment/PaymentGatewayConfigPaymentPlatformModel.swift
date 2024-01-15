@@ -103,7 +103,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
             
             
             
@@ -223,7 +223,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
             
             
             

@@ -122,7 +122,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encode(nextId, forKey: .nextId)
+            try? container.encodeIfPresent(nextId, forKey: .nextId)
             
             
             
@@ -256,7 +256,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encode(nextId, forKey: .nextId)
+            try? container.encodeIfPresent(nextId, forKey: .nextId)
             
             
             

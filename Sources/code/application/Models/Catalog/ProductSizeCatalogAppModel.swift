@@ -152,9 +152,7 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(quantity, forKey: .quantity)
-            
             
             
             
@@ -162,9 +160,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(weight, forKey: .weight)
-            
             
             
             
@@ -172,14 +168,11 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(sellerIdentifiers, forKey: .sellerIdentifiers)
             
             
             
-            
             try? container.encodeIfPresent(value, forKey: .value)
-            
             
             
             

@@ -6,6 +6,8 @@
 
 ## AuditTrail Methods
 Audit Logging Service that logs the crucial updates on the Platform
+
+Default
 * [getAuditLogs](#getauditlogs)
 * [createAuditLog](#createauditlog)
 * [getAuditLog](#getauditlog)
@@ -13,7 +15,9 @@ Audit Logging Service that logs the crucial updates on the Platform
 
 
 
+
 ## Methods with example and description
+
 
 
 #### getAuditLogs
@@ -371,6 +375,7 @@ Success
 
 
 ---
+
 
 
 

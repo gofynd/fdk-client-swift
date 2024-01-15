@@ -185,9 +185,7 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
-            try? container.encode(sdk, forKey: .sdk)
-            
+            try? container.encodeIfPresent(sdk, forKey: .sdk)
             
             
             
@@ -195,14 +193,11 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            try? container.encode(api, forKey: .api)
-            
+            try? container.encodeIfPresent(api, forKey: .api)
             
             
             
-            try? container.encode(pin, forKey: .pin)
-            
+            try? container.encodeIfPresent(pin, forKey: .pin)
             
             
             
@@ -210,14 +205,11 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            try? container.encode(merchantKey, forKey: .merchantKey)
-            
+            try? container.encodeIfPresent(merchantKey, forKey: .merchantKey)
             
             
             
-            try? container.encode(verifyApi, forKey: .verifyApi)
-            
+            try? container.encodeIfPresent(verifyApi, forKey: .verifyApi)
             
             
             
@@ -225,13 +217,11 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            try? container.encode(userId, forKey: .userId)
-            
+            try? container.encodeIfPresent(userId, forKey: .userId)
             
             
             
-            try? container.encode(merchantId, forKey: .merchantId)
+            try? container.encodeIfPresent(merchantId, forKey: .merchantId)
             
             
         }

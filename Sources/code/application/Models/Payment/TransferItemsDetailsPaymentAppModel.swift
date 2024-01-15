@@ -88,9 +88,7 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -98,14 +96,11 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(logoLarge, forKey: .logoLarge)
             
             
             
-            
             try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
-            
             
             
             

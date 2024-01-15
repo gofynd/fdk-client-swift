@@ -170,9 +170,7 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(uid, forKey: .uid)
-            
             
             
             
@@ -180,9 +178,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(company, forKey: .company)
-            
             
             
             
@@ -190,9 +186,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(storeCode, forKey: .storeCode)
-            
             
             
             
@@ -200,9 +194,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(name, forKey: .name)
-            
             
             
             

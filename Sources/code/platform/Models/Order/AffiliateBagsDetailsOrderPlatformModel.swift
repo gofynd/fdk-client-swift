@@ -16,6 +16,8 @@ public extension PlatformClient.Order {
         
         public var couponCode: String?
         
+        public var affiliateMeta: AffiliateMeta?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,13 +25,17 @@ public extension PlatformClient.Order {
             
             case couponCode = "coupon_code"
             
+            case affiliateMeta = "affiliate_meta"
+            
         }
 
-        public init(affiliateBagId: String? = nil, couponCode: String? = nil) {
+        public init(affiliateBagId: String? = nil, affiliateMeta: AffiliateMeta? = nil, couponCode: String? = nil) {
             
             self.affiliateBagId = affiliateBagId
             
             self.couponCode = couponCode
+            
+            self.affiliateMeta = affiliateMeta
             
         }
 
@@ -60,6 +66,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    affiliateMeta = try container.decode(AffiliateMeta.self, forKey: .affiliateMeta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -67,12 +85,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(affiliateBagId, forKey: .affiliateBagId)
+            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
             
             
             
             
-            try? container.encode(couponCode, forKey: .couponCode)
+            try? container.encodeIfPresent(couponCode, forKey: .couponCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(affiliateMeta, forKey: .affiliateMeta)
             
             
         }
@@ -95,6 +118,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var couponCode: String?
         
+        public var affiliateMeta: AffiliateMeta?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -102,13 +127,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case couponCode = "coupon_code"
             
+            case affiliateMeta = "affiliate_meta"
+            
         }
 
-        public init(affiliateBagId: String? = nil, couponCode: String? = nil) {
+        public init(affiliateBagId: String? = nil, affiliateMeta: AffiliateMeta? = nil, couponCode: String? = nil) {
             
             self.affiliateBagId = affiliateBagId
             
             self.couponCode = couponCode
+            
+            self.affiliateMeta = affiliateMeta
             
         }
 
@@ -139,6 +168,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    affiliateMeta = try container.decode(AffiliateMeta.self, forKey: .affiliateMeta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -146,12 +187,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(affiliateBagId, forKey: .affiliateBagId)
+            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
             
             
             
             
-            try? container.encode(couponCode, forKey: .couponCode)
+            try? container.encodeIfPresent(couponCode, forKey: .couponCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(affiliateMeta, forKey: .affiliateMeta)
             
             
         }

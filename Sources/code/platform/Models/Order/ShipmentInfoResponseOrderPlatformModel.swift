@@ -78,7 +78,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(message, forKey: .message)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
@@ -173,7 +173,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(message, forKey: .message)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             

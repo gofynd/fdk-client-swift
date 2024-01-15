@@ -16,6 +16,8 @@ public extension ApplicationClient.Content {
         
         public var sitemapEnabled: Bool?
         
+        public var additonalSitemap: String?
+        
         public var cannonicalEnabled: Bool?
         
         public var customMetaTags: [CustomMetaTag]?
@@ -37,6 +39,8 @@ public extension ApplicationClient.Content {
             
             case sitemapEnabled = "sitemap_enabled"
             
+            case additonalSitemap = "additonal_sitemap"
+            
             case cannonicalEnabled = "cannonical_enabled"
             
             case customMetaTags = "custom_meta_tags"
@@ -49,7 +53,7 @@ public extension ApplicationClient.Content {
             
         }
 
-        public init(app: String? = nil, cannonicalEnabled: Bool? = nil, createdAt: String? = nil, customMetaTags: [CustomMetaTag]? = nil, details: Detail? = nil, robotsTxt: String? = nil, sitemapEnabled: Bool? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(additonalSitemap: String? = nil, app: String? = nil, cannonicalEnabled: Bool? = nil, createdAt: String? = nil, customMetaTags: [CustomMetaTag]? = nil, details: Detail? = nil, robotsTxt: String? = nil, sitemapEnabled: Bool? = nil, updatedAt: String? = nil, id: String? = nil) {
             
             self.app = app
             
@@ -58,6 +62,8 @@ public extension ApplicationClient.Content {
             self.robotsTxt = robotsTxt
             
             self.sitemapEnabled = sitemapEnabled
+            
+            self.additonalSitemap = additonalSitemap
             
             self.cannonicalEnabled = cannonicalEnabled
             
@@ -113,6 +119,18 @@ public extension ApplicationClient.Content {
             
             do {
                 sitemapEnabled = try container.decode(Bool.self, forKey: .sitemapEnabled)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                additonalSitemap = try container.decode(String.self, forKey: .additonalSitemap)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -188,9 +206,7 @@ public extension ApplicationClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(app, forKey: .app)
-            
             
             
             
@@ -198,9 +214,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(robotsTxt, forKey: .robotsTxt)
-            
             
             
             
@@ -208,9 +222,11 @@ public extension ApplicationClient.Content {
             
             
             
+            try? container.encodeIfPresent(additonalSitemap, forKey: .additonalSitemap)
+            
+            
             
             try? container.encodeIfPresent(cannonicalEnabled, forKey: .cannonicalEnabled)
-            
             
             
             
@@ -218,14 +234,11 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(details, forKey: .details)
             
             
             
-            
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
             
             
             

@@ -40,6 +40,20 @@ public extension PlatformClient.FileStorage {
         
         public var email: String?
         
+        public var displayAddress: String?
+        
+        public var sector: String?
+        
+        public var phone: [String: Any]?
+        
+        public var trn: String?
+        
+        public var vat: String?
+        
+        public var businessCountryTimezone: String?
+        
+        public var businessCountryCurrency: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -71,9 +85,23 @@ public extension PlatformClient.FileStorage {
             
             case email = "email"
             
+            case displayAddress = "display_address"
+            
+            case sector = "sector"
+            
+            case phone = "phone"
+            
+            case trn = "trn"
+            
+            case vat = "vat"
+            
+            case businessCountryTimezone = "business_country_timezone"
+            
+            case businessCountryCurrency = "business_country_currency"
+            
         }
 
-        public init(address: String? = nil, cin: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, email: String? = nil, gstin: String? = nil, name: String? = nil, pan: String? = nil, phoneNo: String? = nil, state: String? = nil, stateCode: String? = nil, websiteUrl: String? = nil, zipCode: Double? = nil) {
+        public init(address: String? = nil, businessCountryCurrency: [String: Any]? = nil, businessCountryTimezone: String? = nil, cin: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, displayAddress: String? = nil, email: String? = nil, gstin: String? = nil, name: String? = nil, pan: String? = nil, phone: [String: Any]? = nil, phoneNo: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil, trn: String? = nil, vat: String? = nil, websiteUrl: String? = nil, zipCode: Double? = nil) {
             
             self.name = name
             
@@ -102,6 +130,20 @@ public extension PlatformClient.FileStorage {
             self.websiteUrl = websiteUrl
             
             self.email = email
+            
+            self.displayAddress = displayAddress
+            
+            self.sector = sector
+            
+            self.phone = phone
+            
+            self.trn = trn
+            
+            self.vat = vat
+            
+            self.businessCountryTimezone = businessCountryTimezone
+            
+            self.businessCountryCurrency = businessCountryCurrency
             
         }
 
@@ -276,6 +318,90 @@ public extension PlatformClient.FileStorage {
                 }
                 
             
+            
+                do {
+                    displayAddress = try container.decode(String.self, forKey: .displayAddress)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    sector = try container.decode(String.self, forKey: .sector)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    phone = try container.decode([String: Any].self, forKey: .phone)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    trn = try container.decode(String.self, forKey: .trn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    vat = try container.decode(String.self, forKey: .vat)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    businessCountryTimezone = try container.decode(String.self, forKey: .businessCountryTimezone)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    businessCountryCurrency = try container.decode([String: Any].self, forKey: .businessCountryCurrency)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -328,7 +454,7 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encode(pan, forKey: .pan)
+            try? container.encodeIfPresent(pan, forKey: .pan)
             
             
             
@@ -349,6 +475,41 @@ public extension PlatformClient.FileStorage {
             
             
             try? container.encodeIfPresent(email, forKey: .email)
+            
+            
+            
+            
+            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sector, forKey: .sector)
+            
+            
+            
+            
+            try? container.encodeIfPresent(phone, forKey: .phone)
+            
+            
+            
+            
+            try? container.encodeIfPresent(trn, forKey: .trn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(vat, forKey: .vat)
+            
+            
+            
+            
+            try? container.encodeIfPresent(businessCountryTimezone, forKey: .businessCountryTimezone)
+            
+            
+            
+            
+            try? container.encodeIfPresent(businessCountryCurrency, forKey: .businessCountryCurrency)
             
             
         }
@@ -395,6 +556,20 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var email: String?
         
+        public var displayAddress: String?
+        
+        public var sector: String?
+        
+        public var phone: [String: Any]?
+        
+        public var trn: String?
+        
+        public var vat: String?
+        
+        public var businessCountryTimezone: String?
+        
+        public var businessCountryCurrency: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -426,9 +601,23 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             case email = "email"
             
+            case displayAddress = "display_address"
+            
+            case sector = "sector"
+            
+            case phone = "phone"
+            
+            case trn = "trn"
+            
+            case vat = "vat"
+            
+            case businessCountryTimezone = "business_country_timezone"
+            
+            case businessCountryCurrency = "business_country_currency"
+            
         }
 
-        public init(address: String? = nil, cin: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, email: String? = nil, gstin: String? = nil, name: String? = nil, pan: String? = nil, phoneNo: String? = nil, state: String? = nil, stateCode: String? = nil, websiteUrl: String? = nil, zipCode: Double? = nil) {
+        public init(address: String? = nil, businessCountryCurrency: [String: Any]? = nil, businessCountryTimezone: String? = nil, cin: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, displayAddress: String? = nil, email: String? = nil, gstin: String? = nil, name: String? = nil, pan: String? = nil, phone: [String: Any]? = nil, phoneNo: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil, trn: String? = nil, vat: String? = nil, websiteUrl: String? = nil, zipCode: Double? = nil) {
             
             self.name = name
             
@@ -457,6 +646,20 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             self.websiteUrl = websiteUrl
             
             self.email = email
+            
+            self.displayAddress = displayAddress
+            
+            self.sector = sector
+            
+            self.phone = phone
+            
+            self.trn = trn
+            
+            self.vat = vat
+            
+            self.businessCountryTimezone = businessCountryTimezone
+            
+            self.businessCountryCurrency = businessCountryCurrency
             
         }
 
@@ -631,6 +834,90 @@ public extension PlatformClient.ApplicationClient.FileStorage {
                 }
                 
             
+            
+                do {
+                    displayAddress = try container.decode(String.self, forKey: .displayAddress)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    sector = try container.decode(String.self, forKey: .sector)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    phone = try container.decode([String: Any].self, forKey: .phone)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    trn = try container.decode(String.self, forKey: .trn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    vat = try container.decode(String.self, forKey: .vat)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    businessCountryTimezone = try container.decode(String.self, forKey: .businessCountryTimezone)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    businessCountryCurrency = try container.decode([String: Any].self, forKey: .businessCountryCurrency)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -683,7 +970,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encode(pan, forKey: .pan)
+            try? container.encodeIfPresent(pan, forKey: .pan)
             
             
             
@@ -704,6 +991,41 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(email, forKey: .email)
+            
+            
+            
+            
+            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sector, forKey: .sector)
+            
+            
+            
+            
+            try? container.encodeIfPresent(phone, forKey: .phone)
+            
+            
+            
+            
+            try? container.encodeIfPresent(trn, forKey: .trn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(vat, forKey: .vat)
+            
+            
+            
+            
+            try? container.encodeIfPresent(businessCountryTimezone, forKey: .businessCountryTimezone)
+            
+            
+            
+            
+            try? container.encodeIfPresent(businessCountryCurrency, forKey: .businessCountryCurrency)
             
             
         }

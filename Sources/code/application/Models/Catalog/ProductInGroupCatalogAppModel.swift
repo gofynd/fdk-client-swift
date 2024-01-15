@@ -174,9 +174,7 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(autoAddToCart, forKey: .autoAddToCart)
-            
             
             
             
@@ -184,9 +182,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(sizes, forKey: .sizes)
-            
             
             
             
@@ -194,9 +190,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(autoSelect, forKey: .autoSelect)
-            
             
             
             
@@ -204,14 +198,11 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
             
             
             
-            
             try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
-            
             
             
             

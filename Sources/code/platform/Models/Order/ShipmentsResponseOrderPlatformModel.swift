@@ -175,42 +175,42 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(status, forKey: .status)
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             
             
-            try? container.encode(finalState, forKey: .finalState)
+            try? container.encodeIfPresent(finalState, forKey: .finalState)
             
             
             
             
-            try? container.encode(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
             
             
             
             
-            try? container.encode(stackTrace, forKey: .stackTrace)
+            try? container.encodeIfPresent(stackTrace, forKey: .stackTrace)
             
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
             
-            try? container.encode(message, forKey: .message)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
-            try? container.encode(exception, forKey: .exception)
+            try? container.encodeIfPresent(exception, forKey: .exception)
             
             
         }
@@ -392,42 +392,42 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(status, forKey: .status)
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             
             
-            try? container.encode(finalState, forKey: .finalState)
+            try? container.encodeIfPresent(finalState, forKey: .finalState)
             
             
             
             
-            try? container.encode(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
             
             
             
             
-            try? container.encode(stackTrace, forKey: .stackTrace)
+            try? container.encodeIfPresent(stackTrace, forKey: .stackTrace)
             
             
             
             
-            try? container.encode(code, forKey: .code)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
             
-            try? container.encode(message, forKey: .message)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
-            try? container.encode(exception, forKey: .exception)
+            try? container.encodeIfPresent(exception, forKey: .exception)
             
             
         }
