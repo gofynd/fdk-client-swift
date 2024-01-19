@@ -1744,54 +1744,6 @@ Success
 
  
  
- #### [SubscriberFailureResponse](#SubscriberFailureResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
- | code | String? |  yes  |  |
- | stack | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [EventConfigs](#EventConfigs)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | Int? |  yes  |  |
- | eventName | String? |  yes  |  |
- | eventType | String? |  yes  |  |
- | eventCategory | String? |  yes  |  |
- | eventSchema | [String: Any]? |  yes  |  |
- | version | String? |  yes  |  |
- | displayName | String? |  yes  |  |
- | description | String? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | updatedOn | String? |  yes  |  |
- | subscriberEventMapping | [SubscriberEventMapping](#SubscriberEventMapping)? |  yes  |  |
-
----
-
-
- 
- 
- #### [SubscriberEventMapping](#SubscriberEventMapping)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | Int? |  yes  |  |
- | eventId | Int? |  yes  |  |
- | subscriberId | Int? |  yes  |  |
- | createdOn | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [SubscriberResponse](#SubscriberResponse)
 
  | Properties | Type | Nullable | Description |
@@ -1808,7 +1760,7 @@ Success
  | createdOn | String? |  yes  |  |
  | type | String? |  yes  |  |
  | authMeta | [AuthMeta](#AuthMeta)? |  yes  |  |
- | eventConfigs | [[EventConfigs](#EventConfigs)]? |  yes  |  |
+ | eventConfigs | [[EventConfig](#EventConfig)]? |  yes  |  |
 
 ---
 

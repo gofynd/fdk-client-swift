@@ -40,6 +40,10 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var promoId: String?
         
+        public var meta: [String: Any]?
+        
+        public var code: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -69,9 +73,13 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case promoId = "promo_id"
             
+            case meta = "meta"
+            
+            case code = "code"
+            
         }
 
-        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, currency: CartCurrency? = nil, discountRules: [DiscountRulesApp]? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership2? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
+        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, code: String? = nil, currency: CartCurrency? = nil, discountRules: [DiscountRulesApp]? = nil, meta: [String: Any]? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership2? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
             
             self.articleQuantity = articleQuantity
             
@@ -98,6 +106,10 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.promotionGroup = promotionGroup
             
             self.promoId = promoId
+            
+            self.meta = meta
+            
+            self.code = code
             
         }
 
@@ -260,6 +272,30 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    code = try container.decode(String.self, forKey: .code)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -328,6 +364,16 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(promoId, forKey: .promoId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
         }

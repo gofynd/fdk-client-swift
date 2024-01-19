@@ -14131,6 +14131,8 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | mrpPromotion | Bool? |  yes  | If applied promotion is applied on product MRP or ESP |
  | promotionGroup | String? |  yes  | Promotion group for the promotion |
  | promoId | String? |  yes  | Promotion id |
+ | meta | [String: Any]? |  yes  | Meta object for extra data |
+ | code | String? |  yes  | Promotion code |
 
 ---
 

@@ -28,7 +28,7 @@ public extension PlatformClient.Serviceability {
         
         public var companyId: Int
         
-        public var channels: ListViewChannels
+        public var channels: [ListViewChannels]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -53,7 +53,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(channels: ListViewChannels, companyId: Int, isActive: Bool, name: String, product: ListViewProduct, regionsCount: Int, slug: String, storesCount: Int, zoneId: String) {
+        public init(channels: [ListViewChannels], companyId: Int, isActive: Bool, name: String, product: ListViewProduct, regionsCount: Int, slug: String, storesCount: Int, zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -119,7 +119,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-                channels = try container.decode(ListViewChannels.self, forKey: .channels)
+                channels = try container.decode([ListViewChannels].self, forKey: .channels)
                 
             
             
@@ -205,7 +205,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var companyId: Int
         
-        public var channels: ListViewChannels
+        public var channels: [ListViewChannels]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -230,7 +230,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(channels: ListViewChannels, companyId: Int, isActive: Bool, name: String, product: ListViewProduct, regionsCount: Int, slug: String, storesCount: Int, zoneId: String) {
+        public init(channels: [ListViewChannels], companyId: Int, isActive: Bool, name: String, product: ListViewProduct, regionsCount: Int, slug: String, storesCount: Int, zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -296,7 +296,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                channels = try container.decode(ListViewChannels.self, forKey: .channels)
+                channels = try container.decode([ListViewChannels].self, forKey: .channels)
                 
             
             

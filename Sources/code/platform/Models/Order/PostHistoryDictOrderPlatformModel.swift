@@ -12,18 +12,24 @@ public extension PlatformClient.Order {
     class PostHistoryDict: Codable {
         
         
-        public var activityHistory: PostActivityHistory
+        public var filters: [PostHistoryFilters]
+        
+        public var data: PostHistoryData
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case activityHistory = "activity_history"
+            case filters = "filters"
+            
+            case data = "data"
             
         }
 
-        public init(activityHistory: PostActivityHistory) {
+        public init(data: PostHistoryData, filters: [PostHistoryFilters]) {
             
-            self.activityHistory = activityHistory
+            self.filters = filters
+            
+            self.data = data
             
         }
 
@@ -31,7 +37,12 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                activityHistory = try container.decode(PostActivityHistory.self, forKey: .activityHistory)
+                filters = try container.decode([PostHistoryFilters].self, forKey: .filters)
+                
+            
+            
+            
+                data = try container.decode(PostHistoryData.self, forKey: .data)
                 
             
             
@@ -42,7 +53,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(activityHistory, forKey: .activityHistory)
+            try? container.encodeIfPresent(filters, forKey: .filters)
+            
+            
+            
+            
+            try? container.encodeIfPresent(data, forKey: .data)
             
             
         }
@@ -61,18 +77,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class PostHistoryDict: Codable {
         
         
-        public var activityHistory: PostActivityHistory
+        public var filters: [PostHistoryFilters]
+        
+        public var data: PostHistoryData
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case activityHistory = "activity_history"
+            case filters = "filters"
+            
+            case data = "data"
             
         }
 
-        public init(activityHistory: PostActivityHistory) {
+        public init(data: PostHistoryData, filters: [PostHistoryFilters]) {
             
-            self.activityHistory = activityHistory
+            self.filters = filters
+            
+            self.data = data
             
         }
 
@@ -80,7 +102,12 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                activityHistory = try container.decode(PostActivityHistory.self, forKey: .activityHistory)
+                filters = try container.decode([PostHistoryFilters].self, forKey: .filters)
+                
+            
+            
+            
+                data = try container.decode(PostHistoryData.self, forKey: .data)
                 
             
             
@@ -91,7 +118,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(activityHistory, forKey: .activityHistory)
+            try? container.encodeIfPresent(filters, forKey: .filters)
+            
+            
+            
+            
+            try? container.encodeIfPresent(data, forKey: .data)
             
             
         }
