@@ -33,7 +33,7 @@ extension ApplicationClient {
             
             ulrs["getPosPaymentModeRoutes"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/options/pos") 
             
-            ulrs["walletLinkInitate"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/options/wallet/link") 
+            ulrs["walletLinkInitiate"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/options/wallet/link") 
             
             ulrs["linkWallet"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/options/wallet/verify") 
             
@@ -835,7 +835,7 @@ if let value = userDetails {
         * Summary: Initiate linking of wallet
         * Description: It will initiate linking of wallet for the aggregator.
         **/
-        public func walletLinkInitate(
+        public func walletLinkInitiate(
             body: WalletLinkRequestSchema,
             onResponse: @escaping (_ response: WalletResponseSchema?, _ error: FDKError?) -> Void
         ) {
@@ -846,7 +846,7 @@ if let value = userDetails {
 
 
             
-            let fullUrl = relativeUrls["walletLinkInitate"] ?? ""
+            let fullUrl = relativeUrls["walletLinkInitiate"] ?? ""
             
             ApplicationAPIClient.execute(
                 config: config,

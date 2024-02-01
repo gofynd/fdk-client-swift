@@ -44843,7 +44843,7 @@ Successful upgrade
  | collection | collection | Symbolic link for Collection: /collection/:slug |
  | collections | collections | Symbolic link for Collections: /collections/ |
  | contactUs | contact-us | Symbolic link for Contact Us: /contact-us/ |
- | externalLink | external | Symbolic link for External Link: /external/ |
+ | external | external | Symbolic link for External Link: /external/ |
  | faq | faq | Symbolic link for FAQ: /faq |
  | freshchat | freshchat | Symbolic link for Chat by Freshchat: /freshchat |
  | home | home | Symbolic link for Home: / |

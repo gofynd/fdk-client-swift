@@ -10361,6 +10361,10 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | billingAddressId | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
  | paymentExtraIdentifiers | [String: Any]? |  yes  |  |
+ | iin | String? |  yes  |  |
+ | network | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | cardId | String? |  yes  |  |
 
 ---
 
@@ -10752,6 +10756,10 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | paymentParams | [String: Any]? |  yes  |  |
  | billingAddressId | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
+ | iin | String? |  yes  |  |
+ | network | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | cardId | String? |  yes  |  |
 
 ---
 

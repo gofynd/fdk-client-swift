@@ -15485,6 +15485,10 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | files | [[Files](#Files)]? |  yes  | List of file url |
  | orderingStore | Int? |  yes  |  |
  | paymentExtraIdentifiers | [String: Any]? |  yes  |  |
+ | iin | String? |  yes  |  |
+ | network | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | cardId | String? |  yes  |  |
 
 ---
 
@@ -15704,6 +15708,10 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | orderType | String |  no  |  |
  | files | [[Files](#Files)]? |  yes  | List of file url |
  | orderingStore | Int? |  yes  |  |
+ | iin | String? |  yes  |  |
+ | network | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | cardId | String? |  yes  |  |
 
 ---
 
