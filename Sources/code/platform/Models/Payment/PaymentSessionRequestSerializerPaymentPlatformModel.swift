@@ -26,6 +26,8 @@ public extension PlatformClient.Payment {
         
         public var totalAmount: Int
         
+        public var checksum: String
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -43,9 +45,11 @@ public extension PlatformClient.Payment {
             
             case totalAmount = "total_amount"
             
+            case checksum = "checksum"
+            
         }
 
-        public init(currency: String, gid: String, meta: [String: Any]? = nil, orderDetails: OrderDetail, paymentDetails: [PaymentSessionDetail], status: String, totalAmount: Int) {
+        public init(checksum: String, currency: String, gid: String, meta: [String: Any]? = nil, orderDetails: OrderDetail, paymentDetails: [PaymentSessionDetail], status: String, totalAmount: Int) {
             
             self.meta = meta
             
@@ -60,6 +64,8 @@ public extension PlatformClient.Payment {
             self.paymentDetails = paymentDetails
             
             self.totalAmount = totalAmount
+            
+            self.checksum = checksum
             
         }
 
@@ -108,6 +114,11 @@ public extension PlatformClient.Payment {
                 
             
             
+            
+                checksum = try container.decode(String.self, forKey: .checksum)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -146,6 +157,11 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(checksum, forKey: .checksum)
             
             
         }
@@ -178,6 +194,8 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var totalAmount: Int
         
+        public var checksum: String
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -195,9 +213,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case totalAmount = "total_amount"
             
+            case checksum = "checksum"
+            
         }
 
-        public init(currency: String, gid: String, meta: [String: Any]? = nil, orderDetails: OrderDetail, paymentDetails: [PaymentSessionDetail], status: String, totalAmount: Int) {
+        public init(checksum: String, currency: String, gid: String, meta: [String: Any]? = nil, orderDetails: OrderDetail, paymentDetails: [PaymentSessionDetail], status: String, totalAmount: Int) {
             
             self.meta = meta
             
@@ -212,6 +232,8 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.paymentDetails = paymentDetails
             
             self.totalAmount = totalAmount
+            
+            self.checksum = checksum
             
         }
 
@@ -260,6 +282,11 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
+            
+                checksum = try container.decode(String.self, forKey: .checksum)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -298,6 +325,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(checksum, forKey: .checksum)
             
             
         }

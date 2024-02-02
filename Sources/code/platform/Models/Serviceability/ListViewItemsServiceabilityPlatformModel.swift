@@ -22,8 +22,6 @@ public extension PlatformClient.Serviceability {
         
         public var isActive: Bool
         
-        public var product: ListViewProduct
-        
         public var regionsCount: Int
         
         public var companyId: Int
@@ -43,8 +41,6 @@ public extension PlatformClient.Serviceability {
             
             case isActive = "is_active"
             
-            case product = "product"
-            
             case regionsCount = "regions_count"
             
             case companyId = "company_id"
@@ -53,7 +49,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(channels: [ListViewChannels], companyId: Int, isActive: Bool, name: String, product: ListViewProduct, regionsCount: Int, slug: String, storesCount: Int, zoneId: String) {
+        public init(channels: [ListViewChannels], companyId: Int, isActive: Bool, name: String, regionsCount: Int, slug: String, storesCount: Int, zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -64,8 +60,6 @@ public extension PlatformClient.Serviceability {
             self.storesCount = storesCount
             
             self.isActive = isActive
-            
-            self.product = product
             
             self.regionsCount = regionsCount
             
@@ -100,11 +94,6 @@ public extension PlatformClient.Serviceability {
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)
-                
-            
-            
-            
-                product = try container.decode(ListViewProduct.self, forKey: .product)
                 
             
             
@@ -151,11 +140,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
-            
-            
-            
-            try? container.encodeIfPresent(product, forKey: .product)
             
             
             
@@ -199,8 +183,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var isActive: Bool
         
-        public var product: ListViewProduct
-        
         public var regionsCount: Int
         
         public var companyId: Int
@@ -220,8 +202,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case isActive = "is_active"
             
-            case product = "product"
-            
             case regionsCount = "regions_count"
             
             case companyId = "company_id"
@@ -230,7 +210,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(channels: [ListViewChannels], companyId: Int, isActive: Bool, name: String, product: ListViewProduct, regionsCount: Int, slug: String, storesCount: Int, zoneId: String) {
+        public init(channels: [ListViewChannels], companyId: Int, isActive: Bool, name: String, regionsCount: Int, slug: String, storesCount: Int, zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -241,8 +221,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.storesCount = storesCount
             
             self.isActive = isActive
-            
-            self.product = product
             
             self.regionsCount = regionsCount
             
@@ -277,11 +255,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)
-                
-            
-            
-            
-                product = try container.decode(ListViewProduct.self, forKey: .product)
                 
             
             
@@ -328,11 +301,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
-            
-            
-            
-            try? container.encodeIfPresent(product, forKey: .product)
             
             
             
