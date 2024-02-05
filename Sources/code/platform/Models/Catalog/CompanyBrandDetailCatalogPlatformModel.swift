@@ -20,6 +20,12 @@ public extension PlatformClient.Catalog {
         
         public var totalArticle: Int?
         
+        public var logo: [String: Any]?
+        
+        public var name: String?
+        
+        public var id: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -31,9 +37,15 @@ public extension PlatformClient.Catalog {
             
             case totalArticle = "total_article"
             
+            case logo = "logo"
+            
+            case name = "name"
+            
+            case id = "id"
+            
         }
 
-        public init(brandId: Int? = nil, brandName: String? = nil, companyId: Int? = nil, totalArticle: Int? = nil) {
+        public init(brandId: Int? = nil, brandName: String? = nil, companyId: Int? = nil, id: Int? = nil, logo: [String: Any]? = nil, name: String? = nil, totalArticle: Int? = nil) {
             
             self.brandId = brandId
             
@@ -42,6 +54,12 @@ public extension PlatformClient.Catalog {
             self.companyId = companyId
             
             self.totalArticle = totalArticle
+            
+            self.logo = logo
+            
+            self.name = name
+            
+            self.id = id
             
         }
 
@@ -96,6 +114,42 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    logo = try container.decode([String: Any].self, forKey: .logo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(Int.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -119,6 +173,21 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(totalArticle, forKey: .totalArticle)
+            
+            
+            
+            
+            try? container.encodeIfPresent(logo, forKey: .logo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
         }
@@ -145,6 +214,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var totalArticle: Int?
         
+        public var logo: [String: Any]?
+        
+        public var name: String?
+        
+        public var id: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -156,9 +231,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case totalArticle = "total_article"
             
+            case logo = "logo"
+            
+            case name = "name"
+            
+            case id = "id"
+            
         }
 
-        public init(brandId: Int? = nil, brandName: String? = nil, companyId: Int? = nil, totalArticle: Int? = nil) {
+        public init(brandId: Int? = nil, brandName: String? = nil, companyId: Int? = nil, id: Int? = nil, logo: [String: Any]? = nil, name: String? = nil, totalArticle: Int? = nil) {
             
             self.brandId = brandId
             
@@ -167,6 +248,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.companyId = companyId
             
             self.totalArticle = totalArticle
+            
+            self.logo = logo
+            
+            self.name = name
+            
+            self.id = id
             
         }
 
@@ -221,6 +308,42 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    logo = try container.decode([String: Any].self, forKey: .logo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(Int.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -244,6 +367,21 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(totalArticle, forKey: .totalArticle)
+            
+            
+            
+            
+            try? container.encodeIfPresent(logo, forKey: .logo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
         }

@@ -16,16 +16,22 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var appId: String?
         
+        public var appSecret: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case appId = "app_id"
             
+            case appSecret = "app_secret"
+            
         }
 
-        public init(appId: String? = nil) {
+        public init(appId: String? = nil, appSecret: String? = nil) {
             
             self.appId = appId
+            
+            self.appSecret = appSecret
             
         }
 
@@ -44,6 +50,18 @@ public extension PlatformClient.ApplicationClient.User {
                 }
                 
             
+            
+                do {
+                    appSecret = try container.decode(String.self, forKey: .appSecret)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -52,6 +70,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(appId, forKey: .appId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(appSecret, forKey: .appSecret)
             
             
         }

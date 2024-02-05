@@ -60,9 +60,11 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var deleteAccountReasons: [DeleteAccountReasons]?
         
-        public var deleteAccountConsent: [String: Any]?
+        public var deleteAccountConsent: DeleteAccountConsent?
         
-        public var sessionConfig: [String: Any]?
+        public var sessionConfig: SessionExpiry?
+        
+        public var v: Int?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -117,9 +119,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             case sessionConfig = "session_config"
             
+            case v = "__v"
+            
         }
 
-        public init(active: Bool? = nil, createdAt: String? = nil, deleteAccountConsent: [String: Any]? = nil, deleteAccountDay: Int? = nil, deleteAccountReasons: [DeleteAccountReasons]? = nil, desktopImage: String? = nil, display: String? = nil, flashCard: FlashCard? = nil, forgotPassword: Bool? = nil, login: Login? = nil, lookAndFeel: LookAndFeel? = nil, meta: MetaSchema? = nil, mobileImage: String? = nil, name: String? = nil, register: Bool? = nil, registerRequiredFields: RegisterRequiredFields? = nil, requiredFields: RequiredFields? = nil, sessionConfig: [String: Any]? = nil, skipCaptcha: Bool? = nil, skipLogin: Bool? = nil, social: Social? = nil, socialTokens: SocialTokens? = nil, subtext: String? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(active: Bool? = nil, createdAt: String? = nil, deleteAccountConsent: DeleteAccountConsent? = nil, deleteAccountDay: Int? = nil, deleteAccountReasons: [DeleteAccountReasons]? = nil, desktopImage: String? = nil, display: String? = nil, flashCard: FlashCard? = nil, forgotPassword: Bool? = nil, login: Login? = nil, lookAndFeel: LookAndFeel? = nil, meta: MetaSchema? = nil, mobileImage: String? = nil, name: String? = nil, register: Bool? = nil, registerRequiredFields: RegisterRequiredFields? = nil, requiredFields: RequiredFields? = nil, sessionConfig: SessionExpiry? = nil, skipCaptcha: Bool? = nil, skipLogin: Bool? = nil, social: Social? = nil, socialTokens: SocialTokens? = nil, subtext: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.display = display
             
@@ -170,6 +174,8 @@ public extension PlatformClient.ApplicationClient.User {
             self.deleteAccountConsent = deleteAccountConsent
             
             self.sessionConfig = sessionConfig
+            
+            self.v = v
             
         }
 
@@ -454,7 +460,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    deleteAccountConsent = try container.decode([String: Any].self, forKey: .deleteAccountConsent)
+                    deleteAccountConsent = try container.decode(DeleteAccountConsent.self, forKey: .deleteAccountConsent)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -466,7 +472,19 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    sessionConfig = try container.decode([String: Any].self, forKey: .sessionConfig)
+                    sessionConfig = try container.decode(SessionExpiry.self, forKey: .sessionConfig)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    v = try container.decode(Int.self, forKey: .v)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -604,6 +622,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(sessionConfig, forKey: .sessionConfig)
+            
+            
+            
+            
+            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

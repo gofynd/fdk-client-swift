@@ -24,6 +24,8 @@ public extension PlatformClient.Serviceability {
         
         public var storePriority: [StorePrioritySchema]?
         
+        public var manualPriority: [String]?
+        
         public var sort: [String]?
         
 
@@ -41,11 +43,13 @@ public extension PlatformClient.Serviceability {
             
             case storePriority = "store_priority"
             
+            case manualPriority = "manual_priority"
+            
             case sort = "sort"
             
         }
 
-        public init(conditions: StoreRuleConditionSchema? = nil, isActive: Bool? = nil, name: String? = nil, sort: [String]? = nil, storePriority: [StorePrioritySchema]? = nil, tagBasedPriority: [String]? = nil, typeBasedPriority: [String]? = nil) {
+        public init(conditions: StoreRuleConditionSchema? = nil, isActive: Bool? = nil, manualPriority: [String]? = nil, name: String? = nil, sort: [String]? = nil, storePriority: [StorePrioritySchema]? = nil, tagBasedPriority: [String]? = nil, typeBasedPriority: [String]? = nil) {
             
             self.name = name
             
@@ -58,6 +62,8 @@ public extension PlatformClient.Serviceability {
             self.tagBasedPriority = tagBasedPriority
             
             self.storePriority = storePriority
+            
+            self.manualPriority = manualPriority
             
             self.sort = sort
             
@@ -140,6 +146,18 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
+                    manualPriority = try container.decode([String].self, forKey: .manualPriority)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     sort = try container.decode([String].self, forKey: .sort)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -183,6 +201,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(storePriority, forKey: .storePriority)
+            
+            
+            
+            
+            try? container.encodeIfPresent(manualPriority, forKey: .manualPriority)
             
             
             
@@ -218,6 +241,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var storePriority: [StorePrioritySchema]?
         
+        public var manualPriority: [String]?
+        
         public var sort: [String]?
         
 
@@ -235,11 +260,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case storePriority = "store_priority"
             
+            case manualPriority = "manual_priority"
+            
             case sort = "sort"
             
         }
 
-        public init(conditions: StoreRuleConditionSchema? = nil, isActive: Bool? = nil, name: String? = nil, sort: [String]? = nil, storePriority: [StorePrioritySchema]? = nil, tagBasedPriority: [String]? = nil, typeBasedPriority: [String]? = nil) {
+        public init(conditions: StoreRuleConditionSchema? = nil, isActive: Bool? = nil, manualPriority: [String]? = nil, name: String? = nil, sort: [String]? = nil, storePriority: [StorePrioritySchema]? = nil, tagBasedPriority: [String]? = nil, typeBasedPriority: [String]? = nil) {
             
             self.name = name
             
@@ -252,6 +279,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.tagBasedPriority = tagBasedPriority
             
             self.storePriority = storePriority
+            
+            self.manualPriority = manualPriority
             
             self.sort = sort
             
@@ -334,6 +363,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
+                    manualPriority = try container.decode([String].self, forKey: .manualPriority)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     sort = try container.decode([String].self, forKey: .sort)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -377,6 +418,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(storePriority, forKey: .storePriority)
+            
+            
+            
+            
+            try? container.encodeIfPresent(manualPriority, forKey: .manualPriority)
             
             
             

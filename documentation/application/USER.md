@@ -17,17 +17,15 @@ Default
 * [loginWithEmailAndPassword](#loginwithemailandpassword)
 * [sendResetPasswordEmail](#sendresetpasswordemail)
 * [sendResetPasswordMobile](#sendresetpasswordmobile)
+* [sendResetToken](#sendresettoken)
 * [forgotPassword](#forgotpassword)
 * [resetForgotPassword](#resetforgotpassword)
-* [sendResetToken](#sendresettoken)
 * [loginWithToken](#loginwithtoken)
 * [registerWithForm](#registerwithform)
 * [verifyEmail](#verifyemail)
 * [verifyMobile](#verifymobile)
 * [hasPassword](#haspassword)
 * [updatePassword](#updatepassword)
-* [deleteUser](#deleteuser)
-* [logout](#logout)
 * [sendOTPOnMobile](#sendotponmobile)
 * [sendForgotOTPOnMobile](#sendforgototponmobile)
 * [verifyMobileOTP](#verifymobileotp)
@@ -49,6 +47,8 @@ Default
 * [setEmailAsPrimary](#setemailasprimary)
 * [sendVerificationLinkToEmail](#sendverificationlinktoemail)
 * [userExists](#userexists)
+* [deleteUser](#deleteuser)
+* [logout](#logout)
 * [getUserAttributes](#getuserattributes)
 * [updateUserAttributes](#updateuserattributes)
 
@@ -100,7 +100,7 @@ Success. Returns a JSON object with the user details. Check the example shown be
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; facebook token login success</i></summary>
 
 ```json
 {
@@ -183,7 +183,7 @@ Success. Returns a JSON object with the user details. Check the example shown be
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; google token login success</i></summary>
 
 ```json
 {
@@ -266,7 +266,7 @@ Success. Returns a JSON object with the user details. Check the example shown be
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; google android token login success</i></summary>
 
 ```json
 {
@@ -349,7 +349,7 @@ Success. Returns a JSON object with the user details. Check the example shown be
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; google android token login success</i></summary>
 
 ```json
 {
@@ -432,7 +432,7 @@ Success. Returns a JSON object with the user details. Check the example shown be
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; apple ios login success</i></summary>
 
 ```json
 {
@@ -515,7 +515,7 @@ Success. Check the example shown below or refer `SendOtpResponse` for more detai
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; login otp success</i></summary>
 
 ```json
 {
@@ -585,7 +585,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; login password success</i></summary>
 
 ```json
 {
@@ -691,13 +691,21 @@ Success. Check the example shown below or refer `ResetPasswordSuccess` for more 
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; reset password success</i></summary>
 
 ```json
 {
-  "status": "sent"
+  "value": {
+    "status": "sent"
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -768,6 +776,70 @@ Success. Check the example shown below or refer `ResetPasswordSuccess` for more 
 ---
 
 
+#### sendResetToken
+Reset Password using token
+
+
+
+
+```swift
+applicationClient.user.sendResetToken(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | CodeRequestBodySchema | yes | Request body |
+
+
+Use this API to send code to reset password.
+
+*Returned Response:*
+
+
+
+
+[ResetPasswordSuccess](#ResetPasswordSuccess)
+
+Success. Check the example shown below or refer `ResetPasswordSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; reset token success</i></summary>
+
+```json
+{
+  "value": {
+    "status": "success"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### forgotPassword
 Forgot Password
 
@@ -808,7 +880,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; forgot password success</i></summary>
 
 ```json
 {
@@ -941,62 +1013,6 @@ Success. Check the example shown below or refer `ResetForgotPasswordSuccess` for
 ---
 
 
-#### sendResetToken
-Reset Password using token
-
-
-
-
-```swift
-applicationClient.user.sendResetToken(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | CodeRequestBodySchema | yes | Request body |
-
-
-Use this API to send code to reset password.
-
-*Returned Response:*
-
-
-
-
-[ResetPasswordSuccess](#ResetPasswordSuccess)
-
-Success. Check the example shown below or refer `ResetPasswordSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "status": "success"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### loginWithToken
 Login or Register with token
 
@@ -1037,7 +1053,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; login with token success</i></summary>
 
 ```json
 {
@@ -1143,22 +1159,30 @@ Success. Check the example shown below or refer `RegisterFormSuccess` for more d
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; register form success</i></summary>
 
 ```json
 {
-  "success": true,
-  "request_id": "ebc059191393681cdfb805b5424bddad",
-  "message": "OTP sent",
-  "mobile": "7400448798",
-  "country_code": "91",
-  "resend_timer": 30,
-  "resend_token": "5197ff90-66e2-11eb-9399-0312fbf2c2a6",
-  "verify_mobile_otp": true,
-  "register_token": "276e718a-d406-4a4b-83f7-cb6cb72b99ff",
-  "userExists": false
+  "value": {
+    "success": true,
+    "request_id": "ebc059191393681cdfb805b5424bddad",
+    "message": "OTP sent",
+    "mobile": "7400448798",
+    "country_code": "91",
+    "resend_timer": 30,
+    "resend_token": "5197ff90-66e2-11eb-9399-0312fbf2c2a6",
+    "verify_mobile_otp": true,
+    "register_token": "276e718a-d406-4a4b-83f7-cb6cb72b99ff",
+    "userExists": false
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -1208,13 +1232,21 @@ Success. Check the example shown below or refer `VerifyEmailSuccess` for more de
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; verify email success</i></summary>
 
 ```json
 {
-  "message": "verified"
+  "value": {
+    "message": "verified"
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -1264,13 +1296,21 @@ Success. Check the example shown below or refer `VerifyEmailSuccess` for more de
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; verify mobile success</i></summary>
 
 ```json
 {
-  "message": "verified"
+  "value": {
+    "message": "verified"
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -1316,11 +1356,21 @@ Success. Returns a boolean value. Check the example shown below or refer `HasPas
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; has password success</i></summary>
 
 ```json
-
+{
+  "value": {
+    "result": 1
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -1370,119 +1420,21 @@ Success. Returns a success message. Refer `VerifyEmailSuccess` for more details.
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; update password success</i></summary>
 
 ```json
 {
-  "message": "success"
+  "value": {
+    "message": "success"
+  }
 }
 ```
 </details>
 
-
-
-
-
-
-
-
-
----
-
-
-#### deleteUser
-verify otp and delete user
-
-
-
-
-```swift
-applicationClient.user.deleteUser(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | DeleteApplicationUserRequestSchema | yes | Request body |
-
-
-verify otp and delete user
-
-*Returned Response:*
-
-
-
-
-[DeleteUserSuccess](#DeleteUserSuccess)
-
-Success. Returns a success message. Refer `DeleteUserSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### logout
-Logs out currently logged in user
-
-
-
-
-```swift
-applicationClient.user.logout() { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-
-Use this API to check to logout a user from the app.
-
-*Returned Response:*
-
-
-
-
-[LogoutSuccess](#LogoutSuccess)
-
-Success. Returns a success message as shown below. Refer `LogoutSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
 </details>
 
 
@@ -1533,19 +1485,27 @@ Success. Returns a JSON object as shown below. Refer `OtpSuccess` for more detai
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; send mobile otp success</i></summary>
 
 ```json
 {
-  "success": true,
-  "request_id": "01503005aeab87cbed93d40f46cc2749",
-  "message": "OTP sent",
-  "mobile": "8652523958",
-  "country_code": "91",
-  "resend_timer": 30,
-  "resend_token": "18fc3d60-66e5-11eb-9399-0312fbf2c2a6"
+  "value": {
+    "success": true,
+    "request_id": "01503005aeab87cbed93d40f46cc2749",
+    "message": "OTP sent",
+    "mobile": "8652523958",
+    "country_code": "91",
+    "resend_timer": 30,
+    "resend_token": "18fc3d60-66e5-11eb-9399-0312fbf2c2a6"
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -1608,7 +1568,7 @@ Success. Returns a JSON object as shown below. Refer `OtpSuccess` for more detai
     "success": true,
     "request_id": "01503005aeab87cbed93d40f46cc2749",
     "message": "OTP sent",
-    "mobile": "8652523958",
+    "mobile": "9987568524",
     "country_code": "91",
     "resend_timer": 30,
     "resend_token": "18fc3d60-66e5-11eb-9399-0312fbf2c2a6"
@@ -1671,7 +1631,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; verify mobile otp success</i></summary>
 
 ```json
 {
@@ -1844,13 +1804,21 @@ Success. Returns a JSON object as shown below. Refer `EmailOtpSuccess` for more 
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; send email otp success</i></summary>
 
 ```json
 {
-  "success": true
+  "value": {
+    "success": true
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -1970,7 +1938,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; verify email otp success</i></summary>
 
 ```json
 {
@@ -2142,7 +2110,7 @@ Success. Returns a JSON object with user details. Refer `UserObjectSchema` for m
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; get session success</i></summary>
 
 ```json
 {
@@ -2243,16 +2211,24 @@ Success. Returns a JSON object containing an array of sessions. Refer `SessionLi
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; get all sessions success</i></summary>
 
 ```json
 {
-  "sessions": [
-    "session_1",
-    "session_2"
-  ]
+  "value": {
+    "sessions": [
+      "session1",
+      "session2"
+    ]
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -2303,92 +2279,100 @@ Success. Returns a JSON object containing the all the platform configurations. R
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; get platform config success</i></summary>
 
 ```json
 {
-  "active": true,
-  "mobile_image": "",
-  "desktop_image": "",
-  "social": {
-    "facebook": true,
-    "google": true,
-    "account_kit": true
-  },
-  "flash_card": {
-    "text": "",
-    "text_color": "#FFFFFF",
-    "background_color": "#EF5350"
-  },
-  "register": true,
-  "forgot_password": true,
-  "login": {
-    "password": true,
-    "otp": true
-  },
-  "skip_captcha": false,
-  "display": "Fynd",
-  "subtext": "Login to Fynd",
-  "name": "Fynd",
-  "meta": {},
-  "required_fields": {
-    "email": {
-      "is_required": false,
-      "level": "hard"
+  "value": {
+    "active": true,
+    "mobile_image": "test",
+    "desktop_image": "test",
+    "social": {
+      "facebook": true,
+      "google": true,
+      "account_kit": true
     },
-    "mobile": {
-      "is_required": true,
-      "level": "hard"
-    }
-  },
-  "register_required_fields": {
-    "email": {
-      "is_required": false,
-      "level": "hard"
+    "flash_card": {
+      "text": "",
+      "text_color": "#FFFFFF",
+      "background_color": "#EF5350"
     },
-    "mobile": {
-      "is_required": true,
-      "level": "hard"
-    }
-  },
-  "skip_login": false,
-  "look_and_feel": {
-    "background_color": "#F5F5F5",
-    "card_position": "center"
-  },
-  "social_tokens": {
-    "google": {
-      "appId": "token_123"
+    "register": true,
+    "forgot_password": true,
+    "login": {
+      "password": true,
+      "otp": true
     },
-    "facebook": {
-      "appId": "2033146826724884"
+    "skip_captcha": false,
+    "display": "Fynd",
+    "subtext": "Login to Fynd",
+    "name": "Fynd",
+    "meta": {},
+    "required_fields": {
+      "email": {
+        "is_required": false,
+        "level": "hard"
+      },
+      "mobile": {
+        "is_required": true,
+        "level": "hard"
+      }
     },
-    "account_kit": {
-      "appId": "548529975557631"
-    }
-  },
-  "delete_account_reasons": [
-    {
-      "reason_text": "test",
-      "reason_id": "123",
-      "show_text_area": true
-    }
-  ],
-  "delete_account_day": 7,
-  "delete_account_consent": {
-    "consent_text": ""
-  },
-  "session_config": {
-    "duration": "30",
-    "type": "Days",
-    "is_rolling": false
-  },
-  "_id": "5e04a5e5220bc15839ad9bc0",
-  "created_at": "2019-12-26T12:21:57.878Z",
-  "updated_at": "2020-08-13T14:31:09.878Z",
-  "__v": 0
+    "register_required_fields": {
+      "email": {
+        "is_required": false,
+        "level": "hard"
+      },
+      "mobile": {
+        "is_required": true,
+        "level": "hard"
+      }
+    },
+    "skip_login": false,
+    "look_and_feel": {
+      "background_color": "#F5F5F5",
+      "card_position": "center"
+    },
+    "social_tokens": {
+      "google": {
+        "appId": "token_123"
+      },
+      "facebook": {
+        "appId": "2033146826724884"
+      },
+      "account_kit": {
+        "appId": "548529975557631"
+      }
+    },
+    "delete_account_reasons": [
+      {
+        "reason_text": "test",
+        "reason_id": "123",
+        "show_text_area": true
+      }
+    ],
+    "delete_account_day": 7,
+    "delete_account_consent": {
+      "consent_text": ""
+    },
+    "session_config": {
+      "duration": 30,
+      "type": "Days",
+      "is_rolling": false
+    },
+    "_id": "5e04a5e5220bc15839ad9bc0",
+    "created_at": "2019-12-26T12:21:57.878Z",
+    "updated_at": "2020-08-13T14:31:09.878Z",
+    "__v": 0
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -2443,7 +2427,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; edit profile success</i></summary>
 
 ```json
 {
@@ -2553,7 +2537,7 @@ Success. Check the example shown below or refer `VerifyMobileOTPSuccess` for mor
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; add mobile number to profile success</i></summary>
 
 ```json
 {
@@ -2669,7 +2653,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; Delete mobile number from profile success</i></summary>
 
 ```json
 {
@@ -2778,7 +2762,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; add mobile number as primary to profile success</i></summary>
 
 ```json
 {
@@ -2888,7 +2872,7 @@ Success. Check the example shown below or refer `SendMobileVerifyLinkSuccess` fo
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; send verification link to mobile success</i></summary>
 
 ```json
 {
@@ -2999,7 +2983,7 @@ Success. Returns a JSON object with user details. Refer `VerifyEmailOTPSuccess` 
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; add email to profile success</i></summary>
 
 ```json
 {
@@ -3114,7 +3098,7 @@ Success. Returns a JSON object with user details. Refer `LoginSuccess` for more 
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; Delete email from profile success</i></summary>
 
 ```json
 {
@@ -3223,7 +3207,7 @@ Success. Returns a JSON object with user details. Refer `LoginSuccess` for more 
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; set email as primary success</i></summary>
 
 ```json
 {
@@ -3329,11 +3313,21 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; send verification link to email success</i></summary>
 
 ```json
-
+{
+  "value": {
+    "verify_email_link": true
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -3388,12 +3382,136 @@ Returns true or false based on user is registered or not.
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; user exists success</i></summary>
 
 ```json
 {
   "value": {
     "user_exists": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteUser
+verify otp and delete user
+
+
+
+
+```swift
+applicationClient.user.deleteUser(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | DeleteApplicationUserRequestSchema | yes | Request body |
+
+
+verify otp and delete user
+
+*Returned Response:*
+
+
+
+
+[DeleteUserSuccess](#DeleteUserSuccess)
+
+Success. Returns a success message. Refer `DeleteUserSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; delete user success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### logout
+Logs out currently logged in user
+
+
+
+
+```swift
+applicationClient.user.logout() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Use this API to check to logout a user from the app.
+
+*Returned Response:*
+
+
+
+
+[LogoutSuccess](#LogoutSuccess)
+
+Success. Returns a success message as shown below. Refer `LogoutSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; logout success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
   }
 }
 ```
@@ -3632,6 +3750,7 @@ Returns a list of users attributes
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | ci | Bool? |  yes  | set to true if you want to encrypt the OTP. |
  | firstName | String? |  yes  |  |
  | lastName | String? |  yes  |  |
  | mobile | [EditProfileMobileSchema](#EditProfileMobileSchema)? |  yes  |  |
@@ -3743,6 +3862,7 @@ Returns a list of users attributes
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | ci | Bool? |  yes  | set to true if you want to encrypt the OTP. |
  | mobile | String? |  yes  |  |
  | countryCode | String? |  yes  |  |
  | action | String? |  yes  |  |
@@ -3872,6 +3992,7 @@ Returns a list of users attributes
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | ci | Bool? |  yes  | set to true if you want to encrypt the OTP. |
  | countryCode | String? |  yes  |  |
  | mobile | String? |  yes  |  |
  | androidHash | String? |  yes  |  |
@@ -4088,7 +4209,7 @@ Returns a list of users attributes
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | result | Bool? |  yes  |  |
+ | result | Int? |  yes  |  |
 
 ---
 
@@ -4140,6 +4261,7 @@ Returns a list of users attributes
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | success | Bool? |  yes  |  |
+ | resendEmailToken | String? |  yes  |  |
 
 ---
 
@@ -4203,28 +4325,6 @@ Returns a list of users attributes
 
  
  
- #### [AuthenticationInternalServerErrorSchema](#AuthenticationInternalServerErrorSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [AuthenticationApiErrorSchema](#AuthenticationApiErrorSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [APIError](#APIError)
 
  | Properties | Type | Nullable | Description |
@@ -4233,7 +4333,9 @@ Returns a list of users attributes
  | message | String? |  yes  |  |
  | info | String? |  yes  | Error code description link |
  | requestId | String? |  yes  |  |
+ | error | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
+ | authenticated | Bool? |  yes  |  |
 
 ---
 
@@ -4332,8 +4434,9 @@ Returns a list of users attributes
  | desktopImage | String? |  yes  |  |
  | deleteAccountDay | Int? |  yes  |  |
  | deleteAccountReasons | [[DeleteAccountReasons](#DeleteAccountReasons)]? |  yes  |  |
- | deleteAccountConsent | [String: Any]? |  yes  |  |
- | sessionConfig | [String: Any]? |  yes  |  |
+ | deleteAccountConsent | [DeleteAccountConsent](#DeleteAccountConsent)? |  yes  |  |
+ | sessionConfig | [SessionExpiry](#SessionExpiry)? |  yes  |  |
+ | v | Int? |  yes  |  |
 
 ---
 
@@ -4479,7 +4582,7 @@ Returns a list of users attributes
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | facebook | [Facebook](#Facebook)? |  yes  |  |
- | accountKit | [Accountkit](#Accountkit)? |  yes  |  |
+ | accountkit | [Accountkit](#Accountkit)? |  yes  |  |
  | google | [Google](#Google)? |  yes  |  |
 
 ---

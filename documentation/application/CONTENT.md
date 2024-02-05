@@ -2420,7 +2420,6 @@ Success. Returns a list of custom fields. Refer `CustomFieldsResponseByResourceI
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | page | [ActionPage](#ActionPage)? |  yes  |  |
- | popup | [ActionPage](#ActionPage)? |  yes  |  |
  | type | String? |  yes  |  |
 
 ---

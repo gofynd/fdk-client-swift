@@ -4030,7 +4030,7 @@ Get general support configuration.
 
 
 
-[CloseVideoRoomResponse](#CloseVideoRoomResponse)
+[GeneralConfigResponse](#GeneralConfigResponse)
 
 Success
 
@@ -4047,7 +4047,51 @@ Success
 ```json
 {
   "value": {
-    "success": true
+    "_id": "64ca1aabae093a451d54817d",
+    "support_communication": [
+      {
+        "type": "link",
+        "title": "testLink",
+        "value": "http://invalid.in",
+        "description": "invalid link in value",
+        "enabled": true
+      },
+      {
+        "type": "phone_number",
+        "title": "update mobile no test",
+        "value": {
+          "code": "91",
+          "number": "7848845538",
+          "iso": "IN"
+        },
+        "description": "dadskjfd",
+        "enabled": true
+      },
+      {
+        "type": "email",
+        "title": "dfdafdsa",
+        "value": "testing@gmail.com",
+        "description": "asdfadsf",
+        "enabled": true
+      },
+      {
+        "type": "email",
+        "title": "testanu",
+        "value": "test@gmail.com",
+        "description": "tesr",
+        "enabled": true
+      }
+    ],
+    "show_communication_info": true,
+    "type": "partner",
+    "integration": {
+      "type": "default"
+    },
+    "available_integration": [
+      "default",
+      "freshdesk"
+    ],
+    "enable_dris": true
   }
 }
 ```
@@ -4069,6 +4113,45 @@ Success
 
 
 ### Schemas
+
+ 
+ 
+ #### [GeneralConfigResponse](#GeneralConfigResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | supportCommunication | [[SupportCommunicationSchema](#SupportCommunicationSchema)]? |  yes  |  |
+ | type | String? |  yes  |  |
+ | integration | [GeneralConfigIntegrationSchema](#GeneralConfigIntegrationSchema)? |  yes  |  |
+ | availableIntegration | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SupportCommunicationSchema](#SupportCommunicationSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+ | title | String? |  yes  |  |
+ | description | String? |  yes  |  |
+ | enabled | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GeneralConfigIntegrationSchema](#GeneralConfigIntegrationSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+
+---
+
 
  
  
@@ -4246,7 +4329,7 @@ Success
  | priorities | [[Priority](#Priority)] |  no  | List of possible priorities for tickets |
  | categories | [[TicketCategory](#TicketCategory)]? |  yes  | List of possible categories for tickets |
  | statuses | [[Status](#Status)] |  no  | List of possible statuses for tickets |
- | assignees | [[String: Any]] |  no  | List of support staff availble for tickets assignment |
+ | assignees | [[String: Any]]? |  yes  | List of support staff availble for tickets assignment |
 
 ---
 
@@ -4549,7 +4632,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | display | String |  no  | Category display value identifier |
  | key | String |  no  | Category key value identifier |
- | subCategories | [TicketCategory](#TicketCategory)? |  yes  |  |
+ | subCategories | [[TicketCategory](#TicketCategory)]? |  yes  |  |
  | groupId | Double? |  yes  | Group id of category releted data |
  | feedbackForm | [FeedbackForm](#FeedbackForm)? |  yes  |  |
 

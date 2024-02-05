@@ -447,6 +447,7 @@ if let value = sector {
             stage: String?,
             paymentMode: String?,
             transportType: String?,
+            accountIds: [String]?,
             
             onResponse: @escaping (_ response: CompanyCourierPartnerAccountListResponse?, _ error: FDKError?) -> Void
         ) {
@@ -484,6 +485,13 @@ if let value = paymentMode {
 if let value = transportType {
     
     xQuery["transport_type"] = value
+    
+}
+
+
+if let value = accountIds {
+    
+    xQuery["account_ids"] = value
     
 }
 
@@ -717,6 +725,7 @@ if let value = transportType {
                     }
             });
         }
+        
         
         
         

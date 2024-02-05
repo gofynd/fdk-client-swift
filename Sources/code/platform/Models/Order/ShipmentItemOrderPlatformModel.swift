@@ -36,6 +36,8 @@ public extension PlatformClient.Order {
         
         public var paymentMethods: [String: Any]?
         
+        public var paymentInfo: [[String: Any]]?
+        
         public var statusCreatedAt: String?
         
         public var statusCreatedTs: String?
@@ -101,6 +103,8 @@ public extension PlatformClient.Order {
             
             case paymentMethods = "payment_methods"
             
+            case paymentInfo = "payment_info"
+            
             case statusCreatedAt = "status_created_at"
             
             case statusCreatedTs = "status_created_ts"
@@ -141,7 +145,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(bags: [BagUnit]? = nil, canProcess: Bool? = nil, channel: ShipmentListingChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customerNote: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, estimatedSlaTime: String? = nil, estimatedSlaTs: String? = nil, fulfillingStore: ShipmentItemFulFillingStore? = nil, invoiceId: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, orderingChannnel: String? = nil, orderCreatedTs: String? = nil, orderDate: String? = nil, orderId: String, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, shipmentCreatedAt: String, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, statusCreatedAt: String? = nil, statusCreatedTs: String? = nil, totalBags: Int, user: UserDataInfo? = nil) {
+        public init(bags: [BagUnit]? = nil, canProcess: Bool? = nil, channel: ShipmentListingChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customerNote: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, estimatedSlaTime: String? = nil, estimatedSlaTs: String? = nil, fulfillingStore: ShipmentItemFulFillingStore? = nil, invoiceId: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, orderingChannnel: String? = nil, orderCreatedTs: String? = nil, orderDate: String? = nil, orderId: String, paymentInfo: [[String: Any]]? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, shipmentCreatedAt: String, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, statusCreatedAt: String? = nil, statusCreatedTs: String? = nil, totalBags: Int, user: UserDataInfo? = nil) {
             
             self.orderDate = orderDate
             
@@ -166,6 +170,8 @@ public extension PlatformClient.Order {
             self.invoiceId = invoiceId
             
             self.paymentMethods = paymentMethods
+            
+            self.paymentInfo = paymentInfo
             
             self.statusCreatedAt = statusCreatedAt
             
@@ -345,6 +351,18 @@ public extension PlatformClient.Order {
             
                 do {
                     paymentMethods = try container.decode([String: Any].self, forKey: .paymentMethods)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    paymentInfo = try container.decode([[String: Any]].self, forKey: .paymentInfo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -624,6 +642,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
             
             
             
@@ -761,6 +784,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var paymentMethods: [String: Any]?
         
+        public var paymentInfo: [[String: Any]]?
+        
         public var statusCreatedAt: String?
         
         public var statusCreatedTs: String?
@@ -826,6 +851,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case paymentMethods = "payment_methods"
             
+            case paymentInfo = "payment_info"
+            
             case statusCreatedAt = "status_created_at"
             
             case statusCreatedTs = "status_created_ts"
@@ -866,7 +893,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(bags: [BagUnit]? = nil, canProcess: Bool? = nil, channel: ShipmentListingChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customerNote: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, estimatedSlaTime: String? = nil, estimatedSlaTs: String? = nil, fulfillingStore: ShipmentItemFulFillingStore? = nil, invoiceId: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, orderingChannnel: String? = nil, orderCreatedTs: String? = nil, orderDate: String? = nil, orderId: String, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, shipmentCreatedAt: String, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, statusCreatedAt: String? = nil, statusCreatedTs: String? = nil, totalBags: Int, user: UserDataInfo? = nil) {
+        public init(bags: [BagUnit]? = nil, canProcess: Bool? = nil, channel: ShipmentListingChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customerNote: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, estimatedSlaTime: String? = nil, estimatedSlaTs: String? = nil, fulfillingStore: ShipmentItemFulFillingStore? = nil, invoiceId: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, orderingChannnel: String? = nil, orderCreatedTs: String? = nil, orderDate: String? = nil, orderId: String, paymentInfo: [[String: Any]]? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, shipmentCreatedAt: String, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, statusCreatedAt: String? = nil, statusCreatedTs: String? = nil, totalBags: Int, user: UserDataInfo? = nil) {
             
             self.orderDate = orderDate
             
@@ -891,6 +918,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.invoiceId = invoiceId
             
             self.paymentMethods = paymentMethods
+            
+            self.paymentInfo = paymentInfo
             
             self.statusCreatedAt = statusCreatedAt
             
@@ -1070,6 +1099,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     paymentMethods = try container.decode([String: Any].self, forKey: .paymentMethods)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    paymentInfo = try container.decode([[String: Any]].self, forKey: .paymentInfo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1349,6 +1390,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
             
             
             

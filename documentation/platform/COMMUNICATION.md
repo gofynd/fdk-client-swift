@@ -6057,7 +6057,7 @@ Send OTP using email and sms
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.sendOtp(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").communication.sendOtp(ci: ci, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -6067,7 +6067,8 @@ platformClient.application("<APPLICATION_ID>").communication.sendOtp(body: body)
 
 
 | Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
+| -------- | ---- | -------- | ----------- | 
+| ci | Bool? | no | Common Information |  
 | body | SendOtpCommsReq | yes | Request body |
 
 

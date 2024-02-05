@@ -30,6 +30,8 @@ public extension PlatformClient.Content {
         
         public var sortOrder: Int?
         
+        public var schedule: CronBasedScheduleSchema?
+        
         public var subNavigation: [NavigationReference]?
         
 
@@ -53,11 +55,13 @@ public extension PlatformClient.Content {
             
             case sortOrder = "sort_order"
             
+            case schedule = "schedule"
+            
             case subNavigation = "sub_navigation"
             
         }
 
-        public init(acl: [String]? = nil, action: Action? = nil, active: Bool? = nil, display: String? = nil, image: String? = nil, sortOrder: Int? = nil, subNavigation: [NavigationReference]? = nil, tags: [String]? = nil, type: String? = nil, localeLanguage: LocaleLanguage? = nil) {
+        public init(acl: [String]? = nil, action: Action? = nil, active: Bool? = nil, display: String? = nil, image: String? = nil, schedule: CronBasedScheduleSchema? = nil, sortOrder: Int? = nil, subNavigation: [NavigationReference]? = nil, tags: [String]? = nil, type: String? = nil, localeLanguage: LocaleLanguage? = nil) {
             
             self.acl = acl
             
@@ -76,6 +80,8 @@ public extension PlatformClient.Content {
             self.display = display
             
             self.sortOrder = sortOrder
+            
+            self.schedule = schedule
             
             self.subNavigation = subNavigation
             
@@ -194,6 +200,18 @@ public extension PlatformClient.Content {
             
             
                 do {
+                    schedule = try container.decode(CronBasedScheduleSchema.self, forKey: .schedule)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     subNavigation = try container.decode([NavigationReference].self, forKey: .subNavigation)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -252,6 +270,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(sortOrder, forKey: .sortOrder)
+            
+            
+            
+            
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
             
             
             
@@ -293,6 +316,8 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var sortOrder: Int?
         
+        public var schedule: CronBasedScheduleSchema?
+        
         public var subNavigation: [NavigationReference]?
         
 
@@ -316,11 +341,13 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case sortOrder = "sort_order"
             
+            case schedule = "schedule"
+            
             case subNavigation = "sub_navigation"
             
         }
 
-        public init(acl: [String]? = nil, action: Action? = nil, active: Bool? = nil, display: String? = nil, image: String? = nil, sortOrder: Int? = nil, subNavigation: [NavigationReference]? = nil, tags: [String]? = nil, type: String? = nil, localeLanguage: LocaleLanguage? = nil) {
+        public init(acl: [String]? = nil, action: Action? = nil, active: Bool? = nil, display: String? = nil, image: String? = nil, schedule: CronBasedScheduleSchema? = nil, sortOrder: Int? = nil, subNavigation: [NavigationReference]? = nil, tags: [String]? = nil, type: String? = nil, localeLanguage: LocaleLanguage? = nil) {
             
             self.acl = acl
             
@@ -339,6 +366,8 @@ public extension PlatformClient.ApplicationClient.Content {
             self.display = display
             
             self.sortOrder = sortOrder
+            
+            self.schedule = schedule
             
             self.subNavigation = subNavigation
             
@@ -457,6 +486,18 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
+                    schedule = try container.decode(CronBasedScheduleSchema.self, forKey: .schedule)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     subNavigation = try container.decode([NavigationReference].self, forKey: .subNavigation)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -515,6 +556,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(sortOrder, forKey: .sortOrder)
+            
+            
+            
+            
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
             
             
             

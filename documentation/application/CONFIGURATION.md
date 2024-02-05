@@ -806,6 +806,11 @@ Success. Check the example shown below or refer `AppFeatureResponse` for more de
       "order": {
         "buy_again": true
       },
+      "buybox": {
+        "show_name": true,
+        "enable_selection": true,
+        "is_seller_buybox_enabled": false
+      },
       "_id": "5e57643c986e4119c973df7d",
       "app": "000000000000000000000004",
       "created_at": "2020-02-27T06:39:56.088Z",
@@ -2080,6 +2085,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | qr | [QrFeature](#QrFeature)? |  yes  |  |
  | pcr | [PcrFeature](#PcrFeature)? |  yes  |  |
  | order | [OrderFeature](#OrderFeature)? |  yes  |  |
+ | buybox | [BuyboxFeature](#BuyboxFeature)? |  yes  |  |
  | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) for the sales channel features |
  | app | String? |  yes  | Application ID of the sales channel |
  | createdAt | String? |  yes  | ISO 8601 timestamp showing the date when the features were configured |
@@ -2269,6 +2275,19 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | buyAgain | Bool? |  yes  | Allow buy again option for order. Default value is false. |
+
+---
+
+
+ 
+ 
+ #### [BuyboxFeature](#BuyboxFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | showName | Bool? |  yes  | Allow users to see seller/stores name on PDP (product detail page). |
+ | enableSelection | Bool? |  yes  | Allow selection of sellers/stores on PDP (product detail page). |
+ | isSellerBuyboxEnabled | Bool? |  yes  | Toggle buybox listing between sellers and stores. True indicates seller listing, while False indicates store listing. |
 
 ---
 

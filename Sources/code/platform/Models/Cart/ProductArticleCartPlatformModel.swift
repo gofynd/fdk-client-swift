@@ -20,6 +20,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var seller: BaseInfo?
         
+        public var productName: String?
+        
         public var cartItemMeta: [String: Any]?
         
         public var parentItemIdentifiers: [String: Any]?
@@ -61,6 +63,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case seller = "seller"
             
+            case productName = "product_name"
+            
             case cartItemMeta = "cart_item_meta"
             
             case parentItemIdentifiers = "parent_item_identifiers"
@@ -95,13 +99,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(cartItemMeta: [String: Any]? = nil, extraMeta: [String: Any]? = nil, giftCard: [String: Any]? = nil, identifier: [String: Any]? = nil, isGiftVisible: Bool? = nil, meta: [String: Any]? = nil, mtoQuantity: Int? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ArticlePriceInfo? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, seller: BaseInfo? = nil, sellerIdentifier: String? = nil, size: String? = nil, store: StoreInfo? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, customJson: [String: Any]? = nil) {
+        public init(cartItemMeta: [String: Any]? = nil, extraMeta: [String: Any]? = nil, giftCard: [String: Any]? = nil, identifier: [String: Any]? = nil, isGiftVisible: Bool? = nil, meta: [String: Any]? = nil, mtoQuantity: Int? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ArticlePriceInfo? = nil, productGroupTags: [String]? = nil, productName: String? = nil, quantity: Int? = nil, seller: BaseInfo? = nil, sellerIdentifier: String? = nil, size: String? = nil, store: StoreInfo? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, customJson: [String: Any]? = nil) {
             
             self.sellerIdentifier = sellerIdentifier
             
             self.quantity = quantity
             
             self.seller = seller
+            
+            self.productName = productName
             
             self.cartItemMeta = cartItemMeta
             
@@ -167,6 +173,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     seller = try container.decode(BaseInfo.self, forKey: .seller)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    productName = try container.decode(String.self, forKey: .productName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -386,6 +404,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(seller, forKey: .seller)
+            
+            
+            
+            
+            try? container.encodeIfPresent(productName, forKey: .productName)
             
             
             

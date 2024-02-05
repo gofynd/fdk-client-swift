@@ -1426,7 +1426,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | display | String |  no  | Category display value identifier |
  | key | String |  no  | Category key value identifier |
- | subCategories | [TicketCategory](#TicketCategory)? |  yes  |  |
+ | subCategories | [[TicketCategory](#TicketCategory)]? |  yes  |  |
  | groupId | Double? |  yes  | Group id of category releted data |
  | feedbackForm | [FeedbackForm](#FeedbackForm)? |  yes  |  |
 

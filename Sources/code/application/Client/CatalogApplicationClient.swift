@@ -1283,16 +1283,58 @@ if let value = pageSize {
         * Description: Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of query. This is particularly useful to enhance the user experience while using the search tool.
         **/
         public func getSearchResults(
-            q: String,
+            q: String?,
+            categorySuggestion: Int?,
+            brandSuggestion: Int?,
+            collectionSuggestion: Int?,
+            productSuggestion: Int?,
+            querySuggestion: Int?,
             
             onResponse: @escaping (_ response: AutoCompleteResponse?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
 
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
 
-    xQuery["q"] = q
 
+if let value = categorySuggestion {
+    
+    xQuery["category_suggestion"] = value
+    
+}
+
+
+if let value = brandSuggestion {
+    
+    xQuery["brand_suggestion"] = value
+    
+}
+
+
+if let value = collectionSuggestion {
+    
+    xQuery["collection_suggestion"] = value
+    
+}
+
+
+if let value = productSuggestion {
+    
+    xQuery["product_suggestion"] = value
+    
+}
+
+
+if let value = querySuggestion {
+    
+    xQuery["query_suggestion"] = value
+    
+}
 
 
  
@@ -2571,7 +2613,9 @@ if let value = id {
             slug: String,
             size: String,
             storeId: Int?,
+            exchangeSellerIdentifier: String?,
             moq: Int?,
+            sellerId: Int?,
             
             onResponse: @escaping (_ response: ProductSizePriceResponseV3?, _ error: FDKError?) -> Void
         ) {
@@ -2585,9 +2629,23 @@ if let value = storeId {
 }
 
 
+if let value = exchangeSellerIdentifier {
+    
+    xQuery["exchange_seller_identifier"] = value
+    
+}
+
+
 if let value = moq {
     
     xQuery["moq"] = value
+    
+}
+
+
+if let value = sellerId {
+    
+    xQuery["seller_id"] = value
     
 }
 

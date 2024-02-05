@@ -8,7 +8,7 @@ public extension ApplicationClient.User {
     */
     class HasPasswordSuccess: Codable {
         
-        public var result: Bool?
+        public var result: Int?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -17,7 +17,7 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(result: Bool? = nil) {
+        public init(result: Int? = nil) {
             
             self.result = result
             
@@ -28,7 +28,7 @@ public extension ApplicationClient.User {
             
             
             do {
-                result = try container.decode(Bool.self, forKey: .result)
+                result = try container.decode(Int.self, forKey: .result)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

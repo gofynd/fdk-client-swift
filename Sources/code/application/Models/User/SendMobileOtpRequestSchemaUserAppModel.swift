@@ -8,6 +8,8 @@ public extension ApplicationClient.User {
     */
     class SendMobileOtpRequestSchema: Codable {
         
+        public var ci: Bool?
+        
         public var mobile: String?
         
         public var countryCode: String?
@@ -23,6 +25,8 @@ public extension ApplicationClient.User {
 
         public enum CodingKeys: String, CodingKey {
             
+            case ci = "ci"
+            
             case mobile = "mobile"
             
             case countryCode = "country_code"
@@ -37,7 +41,9 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(action: String? = nil, androidHash: String? = nil, countryCode: String? = nil, force: String? = nil, mobile: String? = nil, token: String? = nil) {
+        public init(action: String? = nil, androidHash: String? = nil, ci: Bool? = nil, countryCode: String? = nil, force: String? = nil, mobile: String? = nil, token: String? = nil) {
+            
+            self.ci = ci
             
             self.mobile = mobile
             
@@ -55,6 +61,18 @@ public extension ApplicationClient.User {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+            do {
+                ci = try container.decode(Bool.self, forKey: .ci)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
             
             
             do {
@@ -132,6 +150,10 @@ public extension ApplicationClient.User {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            try? container.encodeIfPresent(ci, forKey: .ci)
+            
             
             
             try? container.encodeIfPresent(mobile, forKey: .mobile)
