@@ -23,8 +23,6 @@ extension ApplicationClient {
             
             ulrs["getItemCount"] = config.domain.appendAsPath("/service/application/cart/v1.0/basic") 
             
-            ulrs["getItemCountV2"] = config.domain.appendAsPath("/service/application/cart/v2.0/basic") 
-            
             ulrs["getCoupons"] = config.domain.appendAsPath("/service/application/cart/v1.0/coupon") 
             
             ulrs["applyCoupon"] = config.domain.appendAsPath("/service/application/cart/v1.0/coupon") 
@@ -69,10 +67,6 @@ extension ApplicationClient {
             
             ulrs["checkoutCartV2"] = config.domain.appendAsPath("/service/application/cart/v2.0/checkout") 
             
-            ulrs["getCartMetaConfigs"] = config.domain.appendAsPath("/service/application/cart/v1.0/cart/configuration") 
-            
-            ulrs["getCartMetaConfig"] = config.domain.appendAsPath("/service/application/cart/v1.0/cart/configuration/{cart_meta_id}") 
-            
             self.relativeUrls = ulrs
         }
         public func update(updatedUrl : [String: String]){
@@ -96,7 +90,6 @@ extension ApplicationClient {
             assignCardId: Int?,
             areaCode: String?,
             buyNow: Bool?,
-            cartType: String?,
             
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -148,13 +141,6 @@ if let value = areaCode {
 if let value = buyNow {
     
     xQuery["buy_now"] = value
-    
-}
-
-
-if let value = cartType {
-    
-    xQuery["cart_type"] = value
     
 }
 
@@ -266,7 +252,6 @@ if let value = id {
             areaCode: String?,
             buyNow: Bool?,
             id: String?,
-            cartType: String?,
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -304,13 +289,6 @@ if let value = buyNow {
 if let value = id {
     
     xQuery["id"] = value
-    
-}
-
-
-if let value = cartType {
-    
-    xQuery["cart_type"] = value
     
 }
 
@@ -364,7 +342,6 @@ if let value = cartType {
             b: Bool?,
             areaCode: String?,
             buyNow: Bool?,
-            cartType: String?,
             body: UpdateCartRequest,
             onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -402,13 +379,6 @@ if let value = areaCode {
 if let value = buyNow {
     
     xQuery["buy_now"] = value
-    
-}
-
-
-if let value = cartType {
-    
-    xQuery["cart_type"] = value
     
 }
 
@@ -458,7 +428,6 @@ if let value = cartType {
         **/
         public func deleteCart(
             id: String?,
-            cartType: String?,
             
             onResponse: @escaping (_ response: DeleteCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -468,13 +437,6 @@ var xQuery: [String: Any] = [:]
 if let value = id {
     
     xQuery["id"] = value
-    
-}
-
-
-if let value = cartType {
-    
-    xQuery["cart_type"] = value
     
 }
 
@@ -585,72 +547,6 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Count items in the cart according to cart_type
-        * Description: Use this API to get the total number of items present in cart.
-        **/
-        public func getItemCountV2(
-            id: String?,
-            buyNow: Bool?,
-            
-            onResponse: @escaping (_ response: CartItemCountResponseV2?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
- 
-
-
-            
-            let fullUrl = relativeUrls["getItemCountV2"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CartItemCountResponseV2.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
         * Summary: Fetch Coupon
         * Description: Use this API to get a list of available coupons along with their details.
         **/
@@ -742,7 +638,6 @@ if let value = storeId {
             p: Bool?,
             id: String?,
             buyNow: Bool?,
-            cartType: String?,
             body: ApplyCouponRequest,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -780,13 +675,6 @@ if let value = id {
 if let value = buyNow {
     
     xQuery["buy_now"] = value
-    
-}
-
-
-if let value = cartType {
-    
-    xQuery["cart_type"] = value
     
 }
 
@@ -837,7 +725,6 @@ if let value = cartType {
         public func removeCoupon(
             id: String?,
             buyNow: Bool?,
-            cartType: String?,
             
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -854,13 +741,6 @@ if let value = id {
 if let value = buyNow {
     
     xQuery["buy_now"] = value
-    
-}
-
-
-if let value = cartType {
-    
-    xQuery["cart_type"] = value
     
 }
 
@@ -913,7 +793,6 @@ if let value = cartType {
             articleId: String?,
             uid: Int?,
             slug: String?,
-            cartType: String?,
             
             onResponse: @escaping (_ response: BulkPriceResponse?, _ error: FDKError?) -> Void
         ) {
@@ -944,13 +823,6 @@ if let value = uid {
 if let value = slug {
     
     xQuery["slug"] = value
-    
-}
-
-
-if let value = cartType {
-    
-    xQuery["cart_type"] = value
     
 }
 
@@ -1003,7 +875,6 @@ if let value = cartType {
             i: Bool?,
             b: Bool?,
             buyNow: Bool?,
-            cartType: String?,
             body: RewardPointRequest,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1034,13 +905,6 @@ if let value = b {
 if let value = buyNow {
     
     xQuery["buy_now"] = value
-    
-}
-
-
-if let value = cartType {
-    
-    xQuery["cart_type"] = value
     
 }
 
@@ -1603,7 +1467,6 @@ if let value = buyNow {
             network: String?,
             type: String?,
             cardId: String?,
-            cartType: String?,
             
             onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
         ) {
@@ -1683,13 +1546,6 @@ if let value = type {
 if let value = cardId {
     
     xQuery["card_id"] = value
-    
-}
-
-
-if let value = cartType {
-    
-    xQuery["cart_type"] = value
     
 }
 
@@ -1837,7 +1693,6 @@ if let value = orderType {
         **/
         public func checkoutCart(
             buyNow: Bool?,
-            cartType: String?,
             body: CartCheckoutDetailRequest,
             onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1847,13 +1702,6 @@ var xQuery: [String: Any] = [:]
 if let value = buyNow {
     
     xQuery["buy_now"] = value
-    
-}
-
-
-if let value = cartType {
-    
-    xQuery["cart_type"] = value
     
 }
 
@@ -2131,7 +1979,6 @@ if let value = buyNow {
             pageSize: Int?,
             promotionGroup: String?,
             storeId: Int?,
-            cartType: String?,
             
             onResponse: @escaping (_ response: PromotionOffersResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2162,13 +2009,6 @@ if let value = promotionGroup {
 if let value = storeId {
     
     xQuery["store_id"] = value
-    
-}
-
-
-if let value = cartType {
-    
-    xQuery["cart_type"] = value
     
 }
 
@@ -2298,7 +2138,6 @@ if let value = pageSize {
         **/
         public func checkoutCartV2(
             buyNow: Bool?,
-            cartType: String?,
             body: CartCheckoutDetailV2Request,
             onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2308,13 +2147,6 @@ var xQuery: [String: Any] = [:]
 if let value = buyNow {
     
     xQuery["buy_now"] = value
-    
-}
-
-
-if let value = cartType {
-    
-    xQuery["cart_type"] = value
     
 }
 
@@ -2343,109 +2175,6 @@ if let value = cartType {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CartCheckoutResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get cart configuration
-        * Description: Get cart configuration
-        **/
-        public func getCartMetaConfigs(
-            
-            onResponse: @escaping (_ response: CartConfigListResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            let fullUrl = relativeUrls["getCartMetaConfigs"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CartConfigListResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get cart configuration by id
-        * Description: Get cart configuration by id
-        **/
-        public func getCartMetaConfig(
-            cartMetaId: String,
-            
-            onResponse: @escaping (_ response: CartConfigDetailResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            var fullUrl = relativeUrls["getCartMetaConfig"] ?? ""
-            
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "cart_meta_id" + "}", with: "\(cartMetaId)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CartConfigDetailResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

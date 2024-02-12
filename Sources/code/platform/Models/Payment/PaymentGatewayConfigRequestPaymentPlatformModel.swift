@@ -16,7 +16,7 @@ public extension PlatformClient.Payment {
         
         public var isActive: Bool?
         
-        public var aggregator: PaymentGatewayConfig?
+        public var aggregatorName: PaymentGatewayConfig?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,17 +25,17 @@ public extension PlatformClient.Payment {
             
             case isActive = "is_active"
             
-            case aggregator = "aggregator"
+            case aggregatorName = "aggregator_name"
             
         }
 
-        public init(aggregator: PaymentGatewayConfig? = nil, appId: String, isActive: Bool? = nil) {
+        public init(aggregatorName: PaymentGatewayConfig? = nil, appId: String, isActive: Bool? = nil) {
             
             self.appId = appId
             
             self.isActive = isActive
             
-            self.aggregator = aggregator
+            self.aggregatorName = aggregatorName
             
         }
 
@@ -61,7 +61,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    aggregator = try container.decode(PaymentGatewayConfig.self, forKey: .aggregator)
+                    aggregatorName = try container.decode(PaymentGatewayConfig.self, forKey: .aggregatorName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,7 +88,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
             
             
         }
@@ -111,7 +111,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var isActive: Bool?
         
-        public var aggregator: PaymentGatewayConfig?
+        public var aggregatorName: PaymentGatewayConfig?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -120,17 +120,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case isActive = "is_active"
             
-            case aggregator = "aggregator"
+            case aggregatorName = "aggregator_name"
             
         }
 
-        public init(aggregator: PaymentGatewayConfig? = nil, appId: String, isActive: Bool? = nil) {
+        public init(aggregatorName: PaymentGatewayConfig? = nil, appId: String, isActive: Bool? = nil) {
             
             self.appId = appId
             
             self.isActive = isActive
             
-            self.aggregator = aggregator
+            self.aggregatorName = aggregatorName
             
         }
 
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    aggregator = try container.decode(PaymentGatewayConfig.self, forKey: .aggregator)
+                    aggregatorName = try container.decode(PaymentGatewayConfig.self, forKey: .aggregatorName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -183,7 +183,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
             
             
         }

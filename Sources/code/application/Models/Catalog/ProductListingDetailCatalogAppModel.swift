@@ -28,8 +28,6 @@ public extension ApplicationClient.Catalog {
         
         public var seo: ApplicationItemSEO?
         
-        public var discountMeta: DiscountMeta?
-        
         public var imageNature: String?
         
         public var hasVariant: Bool?
@@ -113,8 +111,6 @@ public extension ApplicationClient.Catalog {
             
             case seo = "seo"
             
-            case discountMeta = "discount_meta"
-            
             case imageNature = "image_nature"
             
             case hasVariant = "has_variant"
@@ -177,7 +173,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(action: ProductListingAction? = nil, attributes: [String: Any]? = nil, brand: ProductBrand? = nil, categories: [ProductBrand]? = nil, categoryMap: ProductCategoryMap? = nil, color: String? = nil, customOrder: ProductDetailCustomOrder? = nil, description: String? = nil, discount: String? = nil, discountMeta: DiscountMeta? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, identifiers: [String]? = nil, imageNature: String? = nil, isDependent: Bool? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, moq: ApplicationItemMOQ? = nil, name: String? = nil, netQuantity: NetQuantity? = nil, price: ProductListingPrice? = nil, productGroupTag: [String]? = nil, productOnlineDate: String? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, seo: ApplicationItemSEO? = nil, shortDescription: String? = nil, similars: [String]? = nil, sizes: [String]? = nil, slug: String, tags: [String]? = nil, teaserTag: String? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil, variants: [ProductVariantListingResponse]? = nil, customJson: [String: Any]? = nil, customMeta: [CustomMetaFields]? = nil) {
+        public init(action: ProductListingAction? = nil, attributes: [String: Any]? = nil, brand: ProductBrand? = nil, categories: [ProductBrand]? = nil, categoryMap: ProductCategoryMap? = nil, color: String? = nil, customOrder: ProductDetailCustomOrder? = nil, description: String? = nil, discount: String? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, identifiers: [String]? = nil, imageNature: String? = nil, isDependent: Bool? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, moq: ApplicationItemMOQ? = nil, name: String? = nil, netQuantity: NetQuantity? = nil, price: ProductListingPrice? = nil, productGroupTag: [String]? = nil, productOnlineDate: String? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, seo: ApplicationItemSEO? = nil, shortDescription: String? = nil, similars: [String]? = nil, sizes: [String]? = nil, slug: String, tags: [String]? = nil, teaserTag: String? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil, variants: [ProductVariantListingResponse]? = nil, customJson: [String: Any]? = nil, customMeta: [CustomMetaFields]? = nil) {
             
             self.uid = uid
             
@@ -198,8 +194,6 @@ public extension ApplicationClient.Catalog {
             self.tags = tags
             
             self.seo = seo
-            
-            self.discountMeta = discountMeta
             
             self.imageNature = imageNature
             
@@ -377,18 +371,6 @@ public extension ApplicationClient.Catalog {
             
             do {
                 seo = try container.decode(ApplicationItemSEO.self, forKey: .seo)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                discountMeta = try container.decode(DiscountMeta.self, forKey: .discountMeta)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -794,10 +776,6 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(seo, forKey: .seo)
-            
-            
-            
-            try? container.encodeIfPresent(discountMeta, forKey: .discountMeta)
             
             
             

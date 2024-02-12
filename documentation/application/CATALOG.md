@@ -5529,7 +5529,7 @@ Get relevant suggestions for a search query
 
 
 ```swift
-applicationClient.catalog.getSearchResults(q: q, categorySuggestion: categorySuggestion, brandSuggestion: brandSuggestion, collectionSuggestion: collectionSuggestion, productSuggestion: productSuggestion, querySuggestion: querySuggestion) { (response, error) in
+applicationClient.catalog.getSearchResults(q: q) { (response, error) in
     // Use response
 }
 ```
@@ -5540,12 +5540,7 @@ applicationClient.catalog.getSearchResults(q: q, categorySuggestion: categorySug
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| q | String? | no | The search query for entering partial or full name of a product, brand or category. For example, if the given search query `q` is _ski_, the relevant search suggestions could be _skirt_, _ski shoes_, __skin cream_ etc. |   
-| categorySuggestion | Int? | no | For getting related category suggestions. |   
-| brandSuggestion | Int? | no | For getting related brand suggestions. |   
-| collectionSuggestion | Int? | no | For getting related collection suggestions. |   
-| productSuggestion | Int? | no | For getting related product suggestions. |   
-| querySuggestion | Int? | no | For getting related query suggestions. |  
+| q | String | yes | The search query for entering partial or full name of a product, brand or category. For example, if the given search query `q` is _ski_, the relevant search suggestions could be _skirt_, _ski shoes_, __skin cream_ etc. |  
 
 
 
@@ -5558,7 +5553,7 @@ Retrieves a list of suggestions for a given search query. Each suggestion is a v
 
 [AutoCompleteResponse](#AutoCompleteResponse)
 
-Success. Returns a list autocomplete suggestions for the search query `q` along side provided suggestion configs. Check the example shown below or refer `AutoCompleteResponse` for more details.
+Success. Returns a list autocomplete suggestions for the search query `q`. Check the example shown below or refer `AutoCompleteResponse` for more details.
 
 
 
@@ -7516,7 +7511,7 @@ Get the price of a product size at a PIN Code
 
 
 ```swift
-applicationClient.catalog.getProductPriceBySlug(slug: slug, size: size, storeId: storeId, exchangeSellerIdentifier: exchangeSellerIdentifier, moq: moq, sellerId: sellerId) { (response, error) in
+applicationClient.catalog.getProductPriceBySlug(slug: slug, size: size, storeId: storeId, moq: moq) { (response, error) in
     // Use response
 }
 ```
@@ -7530,9 +7525,7 @@ applicationClient.catalog.getProductPriceBySlug(slug: slug, size: size, storeId:
 | slug | String | yes | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |   
 | size | String | yes | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes |   
 | storeId | Int? | no | The ID of the store that is selling the product, e.g. 1,2,3. |   
-| exchangeSellerIdentifier | String? | no | The seller identifier of the exchange product. |   
-| moq | Int? | no | An Integer indication the Minimum Order Quantity of a product, e.g. 100. |   
-| sellerId | Int? | no | The ID of the seller that is selling the product, e.g. 1,2,3. |  
+| moq | Int? | no | An Integer indication the Minimum Order Quantity of a product, e.g. 100. |  
 
 
 
@@ -8010,7 +8003,6 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | ---------- | ---- | -------- | ----------- |
  | effective | [Price](#Price)? |  yes  |  |
  | marked | [Price](#Price)? |  yes  |  |
- | selling | [Price](#Price)? |  yes  |  |
 
 ---
 
@@ -8485,7 +8477,6 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | similars | [String]? |  yes  |  |
  | tags | [String]? |  yes  |  |
  | seo | [ApplicationItemSEO](#ApplicationItemSEO)? |  yes  |  |
- | discountMeta | [DiscountMeta](#DiscountMeta)? |  yes  |  |
  | imageNature | String? |  yes  |  |
  | hasVariant | Bool? |  yes  |  |
  | itemType | String? |  yes  |  |

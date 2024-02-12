@@ -14,7 +14,6 @@ Default
 * [updateCart](#updatecart)
 * [deleteCart](#deletecart)
 * [getItemCount](#getitemcount)
-* [getItemCountV2](#getitemcountv2)
 * [getCoupons](#getcoupons)
 * [applyCoupon](#applycoupon)
 * [removeCoupon](#removecoupon)
@@ -37,8 +36,6 @@ Default
 * [getPromotionOffers](#getpromotionoffers)
 * [getLadderOffers](#getladderoffers)
 * [checkoutCartV2](#checkoutcartv2)
-* [getCartMetaConfigs](#getcartmetaconfigs)
-* [getCartMetaConfig](#getcartmetaconfig)
 
 
 
@@ -54,7 +51,7 @@ Fetch all items added to the cart
 
 
 ```swift
-applicationClient.cart.getCart(id: id, i: i, b: b, c: c, assignCardId: assignCardId, areaCode: areaCode, buyNow: buyNow, cartType: cartType) { (response, error) in
+applicationClient.cart.getCart(id: id, i: i, b: b, c: c, assignCardId: assignCardId, areaCode: areaCode, buyNow: buyNow) { (response, error) in
     // Use response
 }
 ```
@@ -65,14 +62,13 @@ applicationClient.cart.getCart(id: id, i: i, b: b, c: c, assignCardId: assignCar
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| id | String? | no | The unique identifier of the cart |   
-| i | Bool? | no | This is a boolean value. Select `true` to retrieve all the items added in the cart. |   
-| b | Bool? | no | This is a boolean value. Select `true` to retrieve the price breakup of cart items. |   
-| c | Bool? | no | This is a boolean value. Select `true` to retrieve the cod charges in breakup of cart items. |   
-| assignCardId | Int? | no | Token of user's debit or credit card |   
-| areaCode | String? | no | Customer servicable area_code |   
-| buyNow | Bool? | no | This is a boolen value. Select `true` to set/initialize buy now cart |   
-| cartType | String? | no | The type of cart |  
+| id | String? | no |  |   
+| i | Bool? | no |  |   
+| b | Bool? | no |  |   
+| c | Bool? | no |  |   
+| assignCardId | Int? | no |  |   
+| areaCode | String? | no |  |   
+| buyNow | Bool? | no |  |  
 
 
 
@@ -778,7 +774,6 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
           "name": "Gandhi Nagar"
         },
         "quantity": 108,
-        "product_name": "",
         "price": {
           "base": {
             "marked": 2999,
@@ -881,8 +876,7 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
         }
       },
       "message": "",
-      "quantity": 1,
-      "seller_count": 1
+      "quantity": 1
     }
   ],
   "buy_now": false,
@@ -945,12 +939,6 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
       "is_applied": false,
       "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
     }
-  },
-  "custom_cart": {
-    "cart_name": "Universal",
-    "cart_type": "universal",
-    "id": "659e3b6b33848a683efebf2c",
-    "is_universal": true
   },
   "delivery_charge_info": "",
   "coupon_text": "View all offers",
@@ -1017,7 +1005,7 @@ Add items to cart
 
 
 ```swift
-applicationClient.cart.addItems(i: i, b: b, areaCode: areaCode, buyNow: buyNow, id: id, cartType: cartType, body: body) { (response, error) in
+applicationClient.cart.addItems(i: i, b: b, areaCode: areaCode, buyNow: buyNow, id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1028,12 +1016,11 @@ applicationClient.cart.addItems(i: i, b: b, areaCode: areaCode, buyNow: buyNow, 
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| i | Bool? | no | This is a boolean value. Select `true` to retrieve all the items added in the cart. |   
-| b | Bool? | no | This is a boolean value. Select `true` to retrieve the price breakup of cart items. |   
-| areaCode | String? | no | Customer servicable area_code |   
-| buyNow | Bool? | no | This is a boolen value. Select `true` to set/initialize buy now cart |   
-| id | String? | no | The unique identifier of the cart |   
-| cartType | String? | no | The type of cart |  
+| i | Bool? | no |  |   
+| b | Bool? | no |  |   
+| areaCode | String? | no |  |   
+| buyNow | Bool? | no |  |   
+| id | String? | no |  |  
 | body | AddCartRequest | yes | Request body |
 
 
@@ -1785,7 +1772,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
           },
           "identifiers": {},
           "moq": {},
-          "seller_count": 1,
           "delivery_promise": {
             "timestamp": {
               "min": 1646257339,
@@ -1809,7 +1795,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
               "name": "Motilal Nagar 1, Goregaon"
             },
             "quantity": 4,
-            "product_name": "",
             "price": {
               "base": {
                 "marked": 3999,
@@ -2291,12 +2276,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
           "discount": "11% OFF"
         }
       ],
-      "custom_cart": {
-        "cart_name": "Universal",
-        "cart_type": "universal",
-        "id": "659e3b6b33848a683efebf2c",
-        "is_universal": true
-      },
       "delivery_charge_info": "",
       "coupon_text": "View all offers",
       "buy_now": false,
@@ -2553,7 +2532,7 @@ Update items in the cart
 
 
 ```swift
-applicationClient.cart.updateCart(id: id, i: i, b: b, areaCode: areaCode, buyNow: buyNow, cartType: cartType, body: body) { (response, error) in
+applicationClient.cart.updateCart(id: id, i: i, b: b, areaCode: areaCode, buyNow: buyNow, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2564,12 +2543,11 @@ applicationClient.cart.updateCart(id: id, i: i, b: b, areaCode: areaCode, buyNow
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| id | String? | no | The unique identifier of the cart |   
-| i | Bool? | no | This is a boolean value. Select `true` to retrieve all the items added in the cart. |   
-| b | Bool? | no | This is a boolean value. Select `true` to retrieve the price breakup of cart items. |   
-| areaCode | String? | no | Customer servicable area_code |   
-| buyNow | Bool? | no | This is a boolen value. Select `true` to set/initialize buy now cart |   
-| cartType | String? | no | The type of cart |  
+| id | String? | no |  |   
+| i | Bool? | no |  |   
+| b | Bool? | no |  |   
+| areaCode | String? | no |  |   
+| buyNow | Bool? | no |  |  
 | body | UpdateCartRequest | yes | Request body |
 
 
@@ -2693,7 +2671,6 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
               "name": "Gandhi Nagar"
             },
             "quantity": 108,
-            "product_name": "",
             "price": {
               "base": {
                 "marked": 2999,
@@ -2789,8 +2766,7 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
             }
           },
           "message": "",
-          "quantity": 101,
-          "seller_count": 1
+          "quantity": 101
         }
       ],
       "delivery_charge_info": "",
@@ -3534,7 +3510,6 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
           "key": "437414_7",
           "message": "",
           "bulk_offer": {},
-          "seller_count": 1,
           "price": {
             "base": {
               "add_on": 5499,
@@ -3615,7 +3590,6 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
               "name": "Colaba Causway"
             },
             "quantity": 5,
-            "product_name": "",
             "price": {
               "base": {
                 "marked": 5499,
@@ -3712,7 +3686,7 @@ Delete cart once user made successful checkout
 
 
 ```swift
-applicationClient.cart.deleteCart(id: id, cartType: cartType) { (response, error) in
+applicationClient.cart.deleteCart(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -3723,8 +3697,7 @@ applicationClient.cart.deleteCart(id: id, cartType: cartType) { (response, error
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| id | String? | no | The unique identifier of the cart. |   
-| cartType | String? | no | The type of cart |  
+| id | String? | no | The unique identifier of the cart. |  
 
 
 
@@ -3807,75 +3780,6 @@ Success. Returns the total count of items in a user's cart.
 ```json
 {
   "user_cart_items_count": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getItemCountV2
-Count items in the cart according to cart_type
-
-
-
-
-```swift
-applicationClient.cart.getItemCountV2(id: id, buyNow: buyNow) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| id | String? | no | The unique identifier of the cart |   
-| buyNow | Bool? | no | Boolean value to get buy_now cart |  
-
-
-
-Use this API to get the total number of items present in cart.
-
-*Returned Response:*
-
-
-
-
-[CartItemCountResponseV2](#CartItemCountResponseV2)
-
-Success. Returns the total count of items in a user's cart.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "user_all_cart_articles_quantity_count": 7,
-  "user_all_cart_article_count": 2,
-  "custom_cart_count": {
-    "universal": {
-      "article_count": 1,
-      "article_quantity_count": 1
-    },
-    "fresh-cart": {
-      "article_count": 1,
-      "article_quantity_count": 6
-    }
-  }
 }
 ```
 </details>
@@ -3994,7 +3898,7 @@ Apply Coupon
 
 
 ```swift
-applicationClient.cart.applyCoupon(i: i, b: b, p: p, id: id, buyNow: buyNow, cartType: cartType, body: body) { (response, error) in
+applicationClient.cart.applyCoupon(i: i, b: b, p: p, id: id, buyNow: buyNow, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -4009,8 +3913,7 @@ applicationClient.cart.applyCoupon(i: i, b: b, p: p, id: id, buyNow: buyNow, car
 | b | Bool? | no |  |   
 | p | Bool? | no |  |   
 | id | String? | no |  |   
-| buyNow | Bool? | no |  |   
-| cartType | String? | no |  |  
+| buyNow | Bool? | no |  |  
 | body | ApplyCouponRequest | yes | Request body |
 
 
@@ -4680,7 +4583,7 @@ Remove Coupon Applied
 
 
 ```swift
-applicationClient.cart.removeCoupon(id: id, buyNow: buyNow, cartType: cartType) { (response, error) in
+applicationClient.cart.removeCoupon(id: id, buyNow: buyNow) { (response, error) in
     // Use response
 }
 ```
@@ -4691,9 +4594,8 @@ applicationClient.cart.removeCoupon(id: id, buyNow: buyNow, cartType: cartType) 
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| id | String? | no | The unique identifier of the cart |   
-| buyNow | Bool? | no | This is boolean to get buy_now cart |   
-| cartType | String? | no | The type of cart |  
+| id | String? | no |  |   
+| buyNow | Bool? | no |  |  
 
 
 
@@ -4913,7 +4815,7 @@ Get discount offers based on quantity
 
 
 ```swift
-applicationClient.cart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, slug: slug, cartType: cartType) { (response, error) in
+applicationClient.cart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -4927,8 +4829,7 @@ applicationClient.cart.getBulkDiscountOffers(itemId: itemId, articleId: articleI
 | itemId | Int? | no | The Item ID of the product |   
 | articleId | String? | no | Article Mongo ID |   
 | uid | Int? | no | UID of the product |   
-| slug | String? | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |   
-| cartType | String? | no | type of the cart |  
+| slug | String? | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
 
 
 
@@ -5043,7 +4944,7 @@ Apply reward points at cart
 
 
 ```swift
-applicationClient.cart.applyRewardPoints(id: id, i: i, b: b, buyNow: buyNow, cartType: cartType, body: body) { (response, error) in
+applicationClient.cart.applyRewardPoints(id: id, i: i, b: b, buyNow: buyNow, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -5054,11 +4955,10 @@ applicationClient.cart.applyRewardPoints(id: id, i: i, b: b, buyNow: buyNow, car
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| id | String? | no | The unique identifier of the cart |   
-| i | Bool? | no | This is a boolean value. Select `true` to retrieve all the items added in the cart. |   
-| b | Bool? | no | This is a boolean value. Select `true` to retrieve the price breakup of cart items. |   
-| buyNow | Bool? | no | This is boolean to get buy_now cart |   
-| cartType | String? | no | type of the cart |  
+| id | String? | no |  |   
+| i | Bool? | no |  |   
+| b | Bool? | no |  |   
+| buyNow | Bool? | no |  |  
 | body | RewardPointRequest | yes | Request body |
 
 
@@ -6399,7 +6299,7 @@ Verify the coupon eligibility against the payment mode
 
 
 ```swift
-applicationClient.cart.validateCouponForPayment(id: id, buyNow: buyNow, addressId: addressId, paymentMode: paymentMode, paymentIdentifier: paymentIdentifier, aggregatorName: aggregatorName, merchantCode: merchantCode, iin: iin, network: network, type: type, cardId: cardId, cartType: cartType) { (response, error) in
+applicationClient.cart.validateCouponForPayment(id: id, buyNow: buyNow, addressId: addressId, paymentMode: paymentMode, paymentIdentifier: paymentIdentifier, aggregatorName: aggregatorName, merchantCode: merchantCode, iin: iin, network: network, type: type, cardId: cardId) { (response, error) in
     // Use response
 }
 ```
@@ -6410,18 +6310,17 @@ applicationClient.cart.validateCouponForPayment(id: id, buyNow: buyNow, addressI
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| id | String? | no | The unique identifier of the cart |   
-| buyNow | Bool? | no | This is boolean to get buy_now cart |   
-| addressId | String? | no | ID allotted to an address |   
-| paymentMode | String? | no | Payment mode selected by the customer |   
-| paymentIdentifier | String? | no | Identifier of payment like ICIC, PAYTM |   
-| aggregatorName | String? | no | Payment gateway identifier |   
-| merchantCode | String? | no | Identifier used by payment gateway for a given payment mode, e.g. NB_ICIC, PAYTM |   
-| iin | String? | no | Debit/Credit card prefix (first 6 digit) |   
-| network | String? | no | Credit/Debit card issuer, e.g. VISA, MASTERCARD, RUPAY |   
-| type | String? | no | card type, e.g. Credit, Debit |   
-| cardId | String? | no | saved card token reference id |   
-| cartType | String? | no | type of the cart |  
+| id | String? | no |  |   
+| buyNow | Bool? | no |  |   
+| addressId | String? | no |  |   
+| paymentMode | String? | no |  |   
+| paymentIdentifier | String? | no |  |   
+| aggregatorName | String? | no |  |   
+| merchantCode | String? | no |  |   
+| iin | String? | no |  |   
+| network | String? | no |  |   
+| type | String? | no |  |   
+| cardId | String? | no |  |  
 
 
 
@@ -7204,7 +7103,7 @@ Checkout all items in the cart
 
 
 ```swift
-applicationClient.cart.checkoutCart(buyNow: buyNow, cartType: cartType, body: body) { (response, error) in
+applicationClient.cart.checkoutCart(buyNow: buyNow, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -7215,8 +7114,7 @@ applicationClient.cart.checkoutCart(buyNow: buyNow, cartType: cartType, body: bo
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| buyNow | Bool? | no | This indicates the type of cart to checkout |   
-| cartType | String? | no | The type of cart |  
+| buyNow | Bool? | no | This indicates the type of cart to checkout |  
 | body | CartCheckoutDetailRequest | yes | Request body |
 
 
@@ -8519,7 +8417,7 @@ Fetch available promotions
 
 
 ```swift
-applicationClient.cart.getPromotionOffers(slug: slug, pageSize: pageSize, promotionGroup: promotionGroup, storeId: storeId, cartType: cartType) { (response, error) in
+applicationClient.cart.getPromotionOffers(slug: slug, pageSize: pageSize, promotionGroup: promotionGroup, storeId: storeId) { (response, error) in
     // Use response
 }
 ```
@@ -8533,8 +8431,7 @@ applicationClient.cart.getPromotionOffers(slug: slug, pageSize: pageSize, promot
 | slug | String? | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |   
 | pageSize | Int? | no | Number of offers to be fetched to show |   
 | promotionGroup | String? | no | Type of promotion groups |   
-| storeId | Int? | no | Store id |   
-| cartType | String? | no | The type of cart |  
+| storeId | Int? | no | Store id |  
 
 
 
@@ -8780,7 +8677,7 @@ Checkout all items in the cart
 
 
 ```swift
-applicationClient.cart.checkoutCartV2(buyNow: buyNow, cartType: cartType, body: body) { (response, error) in
+applicationClient.cart.checkoutCartV2(buyNow: buyNow, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -8791,8 +8688,7 @@ applicationClient.cart.checkoutCartV2(buyNow: buyNow, cartType: cartType, body: 
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| buyNow | Bool? | no | This indicates the type of cart to checkout |   
-| cartType | String? | no | The type of cart |  
+| buyNow | Bool? | no | This indicates the type of cart to checkout |  
 | body | CartCheckoutDetailV2Request | yes | Request body |
 
 
@@ -9227,167 +9123,6 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 ---
 
 
-#### getCartMetaConfigs
-Get cart configuration
-
-
-
-
-```swift
-applicationClient.cart.getCartMetaConfigs() { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-
-Get cart configuration
-
-*Returned Response:*
-
-
-
-
-[CartConfigListResponse](#CartConfigListResponse)
-
-Cart Config fetched successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": [
-    {
-      "id": "6203cb1393506f8a75ecd56b",
-      "name": "Universal",
-      "slug": "universal",
-      "article_tags": [
-        "cloths"
-      ],
-      "created_on": "2023-12-21T12:17:12"
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getCartMetaConfig
-Get cart configuration by id
-
-
-
-
-```swift
-applicationClient.cart.getCartMetaConfig(cartMetaId: cartMetaId) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| cartMetaId | String | yes | CartMeta mongo id for fetching single cart meta data |  
-
-
-
-Get cart configuration by id
-
-*Returned Response:*
-
-
-
-
-[CartConfigDetailResponse](#CartConfigDetailResponse)
-
-Cart Config Fetched successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "id": "645ba594d414eb0669e6ee14",
-    "app_id": "60792ded7826bd09330ed90d",
-    "company_id": 884,
-    "bulk_coupons": false,
-    "delivery_charges": {
-      "charges": [],
-      "enabled": false
-    },
-    "empty_cart": false,
-    "enabled": true,
-    "max_cart_items": 50,
-    "min_cart_value": 0,
-    "revenue_engine_coupon": false,
-    "gift_pricing": 50,
-    "gift_display_text": "",
-    "is_universal": false,
-    "is_active": true,
-    "order_placing": {
-      "enabled": true,
-      "message": ""
-    },
-    "name": "Universal",
-    "slug": "universal",
-    "article_tags": [
-      "sale",
-      "offer"
-    ],
-    "allow_coupon_with_rewards": false,
-    "gst_input": true,
-    "staff_selection": true,
-    "placing_for_customer": false,
-    "pan_card": {
-      "enabled": false,
-      "cod_threshold_amount": 0,
-      "online_threshold_amount": 0
-    },
-    "created_on": "2023-12-21T12:17:12",
-    "updated_on": "2023-12-21T12:17:12",
-    "last_modified_by": "5b84e9ffb02426353608c380"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 
 
 ### Schemas
@@ -9478,7 +9213,6 @@ Cart Config Fetched successfully
  | articleQuantity | Int? |  yes  | Quantity of article on which promotion is applicable |
  | appliedFreeArticles | [[AppliedFreeArticles](#AppliedFreeArticles)]? |  yes  | Applied free article for free gift item promotions |
  | promotionType | String? |  yes  | Promotion type of current promotion |
- | customFieldMeta | [[String: Any]]? |  yes  | custom field meta for promotion. |
  | meta | [String: Any]? |  yes  | Meta object for extra data |
  | code | String? |  yes  | Promotion code |
 
@@ -9613,7 +9347,6 @@ Cart Config Fetched successfully
  | size | String? |  yes  |  |
  | mtoQuantity | Int? |  yes  |  |
  | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
- | productName | String? |  yes  |  |
  | sellerIdentifier | String? |  yes  |  |
  | parentItemIdentifiers | [String: Any]? |  yes  |  |
  | identifier | [String: Any]? |  yes  |  |
@@ -9885,7 +9618,6 @@ Cart Config Fetched successfully
  | key | String? |  yes  |  |
  | message | String? |  yes  |  |
  | isSet | Bool? |  yes  |  |
- | sellerCount | Int? |  yes  |  |
  | pricePerUnit | [ProductPricePerUnitInfo](#ProductPricePerUnitInfo)? |  yes  |  |
  | promotionsApplied | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
 
@@ -10060,20 +9792,6 @@ Cart Config Fetched successfully
 
  
  
- #### [CustomCart](#CustomCart)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  | id of custom cart config |
- | cartName | String? |  yes  | Name of custom cart |
- | cartType | String? |  yes  | Type of custom cart |
- | isUniversal | Bool? |  yes  | By default all carts are universal, will be false for custom cart |
-
----
-
-
- 
- 
  #### [CartDetailResponse](#CartDetailResponse)
 
  | Properties | Type | Nullable | Description |
@@ -10083,7 +9801,6 @@ Cart Config Fetched successfully
  | appliedPromoDetails | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
  | checkoutMode | String? |  yes  |  |
  | panNo | String? |  yes  |  |
- | isPanReceived | Bool? |  yes  |  |
  | isValid | Bool? |  yes  |  |
  | id | String? |  yes  |  |
  | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
@@ -10105,7 +9822,6 @@ Cart Config Fetched successfully
  | couponText | String? |  yes  |  |
  | buyNow | Bool? |  yes  |  |
  | panConfig | [String: Any]? |  yes  |  |
- | customCart | [CustomCart](#CustomCart)? |  yes  |  |
 
 ---
 
@@ -10125,7 +9841,6 @@ Cart Config Fetched successfully
  | storeId | Int? |  yes  |  |
  | display | String? |  yes  |  |
  | articleId | String? |  yes  |  |
- | priceFactoryTypeId | String? |  yes  |  |
  | parentItemIdentifiers | [[String: String]]? |  yes  |  |
  | sellerId | Int? |  yes  |  |
  | pos | Bool? |  yes  |  |
@@ -10176,7 +9891,6 @@ Cart Config Fetched successfully
  | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
  | articleId | String? |  yes  |  |
  | parentItemIdentifiers | [String: Any]? |  yes  |  |
- | priceFactoryTypeId | String? |  yes  |  |
  | itemId | Int? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
 
@@ -10227,19 +9941,6 @@ Cart Config Fetched successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | userCartItemsCount | Int? |  yes  | Item count present in cart |
-
----
-
-
- 
- 
- #### [CartItemCountResponseV2](#CartItemCountResponseV2)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | userAllCartArticlesQuantityCount | Int? |  yes  |  |
- | userAllCartArticleCount | Int? |  yes  |  |
- | customCartCount | [String: Any]? |  yes  |  |
 
 ---
 
@@ -10703,7 +10404,6 @@ Cart Config Fetched successfully
  | couponText | String? |  yes  |  |
  | buyNow | Bool? |  yes  |  |
  | codCharges | Double? |  yes  |  |
- | customCart | [CustomCart](#CustomCart)? |  yes  |  |
 
 ---
 
@@ -11060,104 +10760,6 @@ Cart Config Fetched successfully
  | network | String? |  yes  |  |
  | type | String? |  yes  |  |
  | cardId | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CartConfigListObj](#CartConfigListObj)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | name | String? |  yes  |  |
- | slug | String? |  yes  |  |
- | articleTags | [String]? |  yes  |  |
- | createdOn | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CartConfigListResponse](#CartConfigListResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
- | data | [[CartConfigListObj](#CartConfigListObj)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [OrderPlacing](#OrderPlacing)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
- | message | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [PanCard](#PanCard)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
- | codThresholdAmount | Int? |  yes  |  |
- | onlineThresholdAmount | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [CartConfigDetailObj](#CartConfigDetailObj)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | appId | String? |  yes  |  |
- | companyId | Int? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | updatedOn | String? |  yes  |  |
- | lastModifiedBy | String? |  yes  |  |
- | minCartValue | Int? |  yes  |  |
- | maxCartValue | Int? |  yes  |  |
- | bulkCoupons | Bool? |  yes  |  |
- | maxCartItems | Int? |  yes  |  |
- | giftDisplayText | String? |  yes  |  |
- | deliveryCharges | [DeliveryChargesConfig](#DeliveryChargesConfig)? |  yes  |  |
- | revenueEngineCoupon | Bool? |  yes  |  |
- | giftPricing | Double? |  yes  |  |
- | enabled | Bool? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | orderPlacing | [OrderPlacing](#OrderPlacing)? |  yes  |  |
- | name | String? |  yes  |  |
- | articleTags | [String]? |  yes  |  |
- | allowCouponWithRewards | Bool? |  yes  |  |
- | gstInput | Bool? |  yes  |  |
- | staffSelection | Bool? |  yes  |  |
- | placingForCustomer | Bool? |  yes  |  |
- | panCard | [PanCard](#PanCard)? |  yes  |  |
-
----
-
-
- 
- 
- #### [CartConfigDetailResponse](#CartConfigDetailResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
- | data | [CartConfigDetailObj](#CartConfigDetailObj)? |  yes  |  |
 
 ---
 

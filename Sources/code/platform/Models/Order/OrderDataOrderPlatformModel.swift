@@ -26,7 +26,7 @@ public extension PlatformClient.Order {
         
         public var paymentMethods: [String: Any]?
         
-        public var paymentInfo: [PaymentInfoData]?
+        public var paymentInfo: [[String: Any]]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(createdTs: String? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderDate: String, paymentInfo: [PaymentInfoData]? = nil, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, taxDetails: TaxDetails? = nil) {
+        public init(createdTs: String? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderDate: String, paymentInfo: [[String: Any]]? = nil, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, taxDetails: TaxDetails? = nil) {
             
             self.orderDate = orderDate
             
@@ -144,7 +144,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    paymentInfo = try container.decode([PaymentInfoData].self, forKey: .paymentInfo)
+                    paymentInfo = try container.decode([[String: Any]].self, forKey: .paymentInfo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -229,7 +229,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var paymentMethods: [String: Any]?
         
-        public var paymentInfo: [PaymentInfoData]?
+        public var paymentInfo: [[String: Any]]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -252,7 +252,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(createdTs: String? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderDate: String, paymentInfo: [PaymentInfoData]? = nil, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, taxDetails: TaxDetails? = nil) {
+        public init(createdTs: String? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderDate: String, paymentInfo: [[String: Any]]? = nil, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, taxDetails: TaxDetails? = nil) {
             
             self.orderDate = orderDate
             
@@ -347,7 +347,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    paymentInfo = try container.decode([PaymentInfoData].self, forKey: .paymentInfo)
+                    paymentInfo = try container.decode([[String: Any]].self, forKey: .paymentInfo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

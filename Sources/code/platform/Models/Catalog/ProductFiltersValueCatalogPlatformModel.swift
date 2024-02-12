@@ -34,7 +34,7 @@ public extension PlatformClient.Catalog {
         
         public var selectedMin: Int?
         
-        public var value: String
+        public var value: [String: Any]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(count: Int? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, display: String, displayFormat: String? = nil, isSelected: Bool, max: Int? = nil, min: Int? = nil, queryFormat: String? = nil, selectedMax: Int? = nil, selectedMin: Int? = nil, value: String) {
+        public init(count: Int? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, display: String, displayFormat: String? = nil, isSelected: Bool, max: Int? = nil, min: Int? = nil, queryFormat: String? = nil, selectedMax: Int? = nil, selectedMin: Int? = nil, value: [String: Any]) {
             
             self.count = count
             
@@ -215,7 +215,7 @@ public extension PlatformClient.Catalog {
                 
             
             
-                value = try container.decode(String.self, forKey: .value)
+                value = try container.decode([String: Any].self, forKey: .value)
                 
             
             
@@ -322,7 +322,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var selectedMin: Int?
         
-        public var value: String
+        public var value: [String: Any]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -353,7 +353,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(count: Int? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, display: String, displayFormat: String? = nil, isSelected: Bool, max: Int? = nil, min: Int? = nil, queryFormat: String? = nil, selectedMax: Int? = nil, selectedMin: Int? = nil, value: String) {
+        public init(count: Int? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, display: String, displayFormat: String? = nil, isSelected: Bool, max: Int? = nil, min: Int? = nil, queryFormat: String? = nil, selectedMax: Int? = nil, selectedMin: Int? = nil, value: [String: Any]) {
             
             self.count = count
             
@@ -503,7 +503,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                value = try container.decode(String.self, forKey: .value)
+                value = try container.decode([String: Any].self, forKey: .value)
                 
             
             

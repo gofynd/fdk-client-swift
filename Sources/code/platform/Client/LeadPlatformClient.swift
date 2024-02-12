@@ -686,7 +686,7 @@ if let value = pageSize {
         **/
         public func getGeneralConfig(
             
-            onResponse: @escaping (_ response: GeneralConfigResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CloseVideoRoomResponse?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -711,7 +711,7 @@ if let value = pageSize {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GeneralConfigResponse.self, from: data)
+                        let response = Utility.decode(CloseVideoRoomResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

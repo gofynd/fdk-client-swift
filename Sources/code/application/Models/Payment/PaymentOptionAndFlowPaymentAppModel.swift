@@ -8,9 +8,11 @@ public extension ApplicationClient.Payment {
     */
     class PaymentOptionAndFlow: Codable {
         
-        public var paymentOption: [RootPaymentMode]
+        public var paymentOption: RootPaymentMode
         
         public var paymentFlows: PaymentFlow
+        
+        public var paymentDefaultSelection: PaymentDefaultSelection?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -19,13 +21,17 @@ public extension ApplicationClient.Payment {
             
             case paymentFlows = "payment_flows"
             
+            case paymentDefaultSelection = "payment_default_selection"
+            
         }
 
-        public init(paymentFlows: PaymentFlow, paymentOption: [RootPaymentMode]) {
+        public init(paymentDefaultSelection: PaymentDefaultSelection? = nil, paymentFlows: PaymentFlow, paymentOption: RootPaymentMode) {
             
             self.paymentOption = paymentOption
             
             self.paymentFlows = paymentFlows
+            
+            self.paymentDefaultSelection = paymentDefaultSelection
             
         }
 
@@ -33,13 +39,25 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            paymentOption = try container.decode([RootPaymentMode].self, forKey: .paymentOption)
+            paymentOption = try container.decode(RootPaymentMode.self, forKey: .paymentOption)
             
             
             
             
             paymentFlows = try container.decode(PaymentFlow.self, forKey: .paymentFlows)
             
+            
+            
+            
+            do {
+                paymentDefaultSelection = try container.decode(PaymentDefaultSelection.self, forKey: .paymentDefaultSelection)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
         }
@@ -53,6 +71,10 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(paymentFlows, forKey: .paymentFlows)
+            
+            
+            
+            try? container.encodeIfPresent(paymentDefaultSelection, forKey: .paymentDefaultSelection)
             
             
         }

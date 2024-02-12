@@ -1300,6 +1300,7 @@ Success
  | filePath | String? |  yes  |  |
  | brandIds | [Int]? |  yes  |  |
  | storeIds | [Int]? |  yes  |  |
+ | zoneIds | [String]? |  yes  |  |
  | validity | [ValidityObject](#ValidityObject) |  no  |  |
  | discountMeta | [DiscountMeta](#DiscountMeta)? |  yes  |  |
 

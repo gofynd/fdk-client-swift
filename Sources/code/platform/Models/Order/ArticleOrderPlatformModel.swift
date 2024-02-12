@@ -42,8 +42,6 @@ public extension PlatformClient.Order {
         
         public var isSet: Bool?
         
-        public var tags: [String]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -77,11 +75,9 @@ public extension PlatformClient.Order {
             
             case isSet = "is_set"
             
-            case tags = "tags"
-            
         }
 
-        public init(aSet: [String: Any]? = nil, childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, size: String, tags: [String]? = nil, uid: String, weight: Weight? = nil, id: String) {
+        public init(aSet: [String: Any]? = nil, childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, size: String, uid: String, weight: Weight? = nil, id: String) {
             
             self.childDetails = childDetails
             
@@ -112,8 +108,6 @@ public extension PlatformClient.Order {
             self.size = size
             
             self.isSet = isSet
-            
-            self.tags = tags
             
         }
 
@@ -265,18 +259,6 @@ public extension PlatformClient.Order {
                 }
                 
             
-            
-                do {
-                    tags = try container.decode([String].self, forKey: .tags)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -355,11 +337,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(isSet, forKey: .isSet)
-            
-            
-            
-            
-            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
         }
@@ -408,8 +385,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var isSet: Bool?
         
-        public var tags: [String]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -443,11 +418,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case isSet = "is_set"
             
-            case tags = "tags"
-            
         }
 
-        public init(aSet: [String: Any]? = nil, childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, size: String, tags: [String]? = nil, uid: String, weight: Weight? = nil, id: String) {
+        public init(aSet: [String: Any]? = nil, childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, size: String, uid: String, weight: Weight? = nil, id: String) {
             
             self.childDetails = childDetails
             
@@ -478,8 +451,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.size = size
             
             self.isSet = isSet
-            
-            self.tags = tags
             
         }
 
@@ -631,18 +602,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
-            
-                do {
-                    tags = try container.decode([String].self, forKey: .tags)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -721,11 +680,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(isSet, forKey: .isSet)
-            
-            
-            
-            
-            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
         }

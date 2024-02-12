@@ -748,31 +748,6 @@ Use this API to reset a password using the link sent on mobile.
 
 
 
-[ResetPasswordSuccess](#ResetPasswordSuccess)
-
-Success. Check the example shown below or refer `ResetPasswordSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "status": "sent"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
 ---
 
 
@@ -3750,7 +3725,7 @@ Returns a list of users attributes
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ci | Bool? |  yes  | set to true if you want to encrypt the OTP. |
+ | encryptOtp | Bool? |  yes  | set to true if you want to encrypt the OTP. |
  | firstName | String? |  yes  |  |
  | lastName | String? |  yes  |  |
  | mobile | [EditProfileMobileSchema](#EditProfileMobileSchema)? |  yes  |  |
@@ -3862,7 +3837,7 @@ Returns a list of users attributes
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ci | Bool? |  yes  | set to true if you want to encrypt the OTP. |
+ | encryptOtp | Bool? |  yes  | set to true if you want to encrypt the OTP. |
  | mobile | String? |  yes  |  |
  | countryCode | String? |  yes  |  |
  | action | String? |  yes  |  |
@@ -3992,7 +3967,7 @@ Returns a list of users attributes
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ci | Bool? |  yes  | set to true if you want to encrypt the OTP. |
+ | encryptOtp | Bool? |  yes  | set to true if you want to encrypt the OTP. |
  | countryCode | String? |  yes  |  |
  | mobile | String? |  yes  |  |
  | androidHash | String? |  yes  |  |

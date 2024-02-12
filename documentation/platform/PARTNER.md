@@ -36,7 +36,7 @@ platformClient.application("<APPLICATION_ID>").partner.addProxyPath(extensionId:
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| extensionId | String | yes | Extension id for which a proxy URL will be generated |  
+| extensionId | String | yes | Extension id for which proxy URL will be generated |  
 | body | AddProxyReq | yes | Request body |
 
 
@@ -55,28 +55,20 @@ Proxy created successfully
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "_id": "607406b8a472cd527303692f",
-    "attached_path": "test",
-    "proxy_url": "https://www.abc.com",
-    "company_id": "1",
-    "application_id": "000000000000000000000004",
-    "extension_id": "6073280be899ea5b1150fd9d",
-    "created_at": "2021-04-12T08:37:12.077Z",
-    "modified_at": "2021-04-12T08:37:12.077Z"
-  }
+  "_id": "607406b8a472cd527303692f",
+  "attached_path": "test",
+  "proxy_url": "https://www.abc.com",
+  "company_id": "1",
+  "application_id": "000000000000000000000004",
+  "extension_id": "6073280be899ea5b1150fd9d",
+  "created_at": "2021-04-12T08:37:12.077Z",
+  "modified_at": "2021-04-12T08:37:12.077Z"
 }
 ```
-</details>
-
 </details>
 
 
@@ -109,7 +101,7 @@ platformClient.application("<APPLICATION_ID>").partner.removeProxyPath(extension
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | extensionId | String | yes | Extension id for which proxy URL needs to be removed |   
-| attachedPath | String | yes | Attached path slug |  
+| attachedPath | String | yes | Attachaed path slug |  
 
 
 
@@ -128,31 +120,23 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "message": "Proxy URL deleted",
-    "data": {
-      "_id": "607406b8a472cd527303692f",
-      "attached_path": "test",
-      "proxy_url": "https://www.abc.com",
-      "company_id": "1",
-      "application_id": "000000000000000000000004",
-      "extension_id": "6073280be899ea5b1150fd9d",
-      "created_at": "2021-04-12T08:37:12.077Z",
-      "modified_at": "2021-04-12T08:37:12.077Z"
-    }
+  "message": "Proxy URL deleted",
+  "data": {
+    "_id": "607406b8a472cd527303692f",
+    "attached_path": "test",
+    "proxy_url": "https://www.abc.com",
+    "company_id": "1",
+    "application_id": "000000000000000000000004",
+    "extension_id": "6073280be899ea5b1150fd9d",
+    "created_at": "2021-04-12T08:37:12.077Z",
+    "modified_at": "2021-04-12T08:37:12.077Z"
   }
 }
 ```
-</details>
-
 </details>
 
 

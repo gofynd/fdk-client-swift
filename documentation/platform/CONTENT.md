@@ -8356,7 +8356,7 @@ Get custom fields definitions
 
 
 ```swift
-platformClient.content.getCustomFieldDefinitions(pageNo: pageNo, pageSize: pageSize, resources: resources, types: types, search: search) { (response, error) in
+platformClient.content.getCustomFieldDefinitions(pageNo: pageNo, pageSize: pageSize, resource: resource, type: type, search: search) { (response, error) in
     // Use response
 }
 ```
@@ -8369,8 +8369,8 @@ platformClient.content.getCustomFieldDefinitions(pageNo: pageNo, pageSize: pageS
 | -------- | ---- | -------- | ----------- | 
 | pageNo | String | yes |  |   
 | pageSize | String | yes |  |   
-| resources | String? | no |  |   
-| types | String? | no |  |   
+| resource | String? | no |  |   
+| type | String? | no |  |   
 | search | String? | no |  |  
 
 
@@ -11090,7 +11090,7 @@ Get custom fields definitions
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getAppCustomFieldDefinitions(pageNo: pageNo, pageSize: pageSize, resources: resources, types: types, search: search) { (response, error) in
+platformClient.application("<APPLICATION_ID>").content.getAppCustomFieldDefinitions(pageNo: pageNo, pageSize: pageSize, resource: resource, type: type, search: search) { (response, error) in
     // Use response
 }
 ```
@@ -11103,8 +11103,8 @@ platformClient.application("<APPLICATION_ID>").content.getAppCustomFieldDefiniti
 | -------- | ---- | -------- | ----------- | 
 | pageNo | String | yes |  |   
 | pageSize | String | yes |  |   
-| resources | String? | no |  |   
-| types | String? | no |  |   
+| resource | String? | no |  |   
+| type | String? | no |  |   
 | search | String? | no |  |  
 
 
@@ -13980,6 +13980,7 @@ Success. Get headers of custom object definition
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | page | [ActionPage](#ActionPage)? |  yes  |  |
+ | popup | [ActionPage](#ActionPage)? |  yes  |  |
  | type | String? |  yes  |  |
 
 ---
@@ -15010,6 +15011,17 @@ Success. Get headers of custom object definition
 
  
  
+ #### [CustomFieldValue](#CustomFieldValue)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [CustomFieldSchema](#CustomFieldSchema)
 
  | Properties | Type | Nullable | Description |
@@ -15019,7 +15031,7 @@ Success. Get headers of custom object definition
  | key | String? |  yes  |  |
  | resource | String? |  yes  |  |
  | creator | String? |  yes  |  |
- | value | [[String: Any]]? |  yes  |  |
+ | value | [[CustomFieldValue](#CustomFieldValue)]? |  yes  |  |
  | resourceId | String? |  yes  |  |
  | type | String? |  yes  |  |
  | multiValue | Bool? |  yes  |  |

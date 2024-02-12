@@ -571,7 +571,7 @@ if let value = platform {
         public func sendResetPasswordMobile(
             platform: String?,
             body: SendResetPasswordMobileRequestSchema,
-            onResponse: @escaping (_ response: ResetPasswordSuccess?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -606,7 +606,7 @@ if let value = platform {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ResetPasswordSuccess.self, from: data)
+                        let response = data.dictionary
                         
                         onResponse(response, nil)
                     } else {

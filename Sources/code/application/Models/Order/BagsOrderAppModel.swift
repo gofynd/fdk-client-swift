@@ -42,8 +42,6 @@ public extension ApplicationClient.Order {
         
         public var currentStatus: CurrentStatus?
         
-        public var article: Article?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -81,11 +79,9 @@ public extension ApplicationClient.Order {
             
             case currentStatus = "current_status"
             
-            case article = "article"
-            
         }
 
-        public init(appliedPromos: [AppliedPromos]? = nil, article: Article? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, currentStatus: CurrentStatus? = nil, deliveryDate: String? = nil, financialBreakup: [FinancialBreakup]? = nil, id: Int? = nil, item: Item? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, parentPromoBags: [String: Any]? = nil, prices: Prices? = nil, quantity: Int? = nil, returnableDate: String? = nil, sellerIdentifier: String? = nil) {
+        public init(appliedPromos: [AppliedPromos]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, currentStatus: CurrentStatus? = nil, deliveryDate: String? = nil, financialBreakup: [FinancialBreakup]? = nil, id: Int? = nil, item: Item? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, parentPromoBags: [String: Any]? = nil, prices: Prices? = nil, quantity: Int? = nil, returnableDate: String? = nil, sellerIdentifier: String? = nil) {
             
             self.deliveryDate = deliveryDate
             
@@ -120,8 +116,6 @@ public extension ApplicationClient.Order {
             self.sellerIdentifier = sellerIdentifier
             
             self.currentStatus = currentStatus
-            
-            self.article = article
             
         }
 
@@ -332,18 +326,6 @@ public extension ApplicationClient.Order {
             }
             
             
-            
-            do {
-                article = try container.decode(Article.self, forKey: .article)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -415,10 +397,6 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
-            
-            
-            
-            try? container.encodeIfPresent(article, forKey: .article)
             
             
         }

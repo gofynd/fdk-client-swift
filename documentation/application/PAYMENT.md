@@ -19,7 +19,7 @@ Default
 * [checkAndUpdatePaymentStatus](#checkandupdatepaymentstatus)
 * [getPaymentModeRoutes](#getpaymentmoderoutes)
 * [getPosPaymentModeRoutes](#getpospaymentmoderoutes)
-* [walletLinkInitate](#walletlinkinitate)
+* [walletLinkInitiate](#walletlinkinitiate)
 * [linkWallet](#linkwallet)
 * [delinkWallet](#delinkwallet)
 * [getRupifiBannerDetails](#getrupifibannerdetails)
@@ -54,12 +54,6 @@ Default
 * [outstandingOrderDetails](#outstandingorderdetails)
 * [paidOrderDetails](#paidorderdetails)
 * [createPaymentOrder](#createpaymentorder)
-* [deleteBeneficiaryDetails](#deletebeneficiarydetails)
-* [getRefundOptions](#getrefundoptions)
-* [setRefundOptionforShipment](#setrefundoptionforshipment)
-* [getSelectedRefundOption](#getselectedrefundoption)
-* [getUserBeneficiariesDetailV2](#getuserbeneficiariesdetailv2)
-* [validateBeneficiaryAddress](#validatebeneficiaryaddress)
 
 
 
@@ -367,7 +361,6 @@ Success. Returns a list of cards saved by the user. Check the example shown belo
       "expired": false,
       "card_fingerprint": null,
       "card_brand_image": "https://hdn-1.fynd.com/payment/visa.png",
-      "bank_logo": "https://hdn-1.fynd.com/payment/bank.png",
       "compliant_with_tokenisation_guidelines": true
     }
   ]
@@ -1150,10 +1143,6 @@ Success. Returns all available options for payment. Check the example shown belo
                 "redirect": false,
                 "callback_url": null,
                 "action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
-              },
-              "data": {
-                "user_phone": "9999632145",
-                "user_email": "app@fynd.com"
               }
             },
             "return_url": null
@@ -1508,10 +1497,6 @@ Success. Returns all available options for payment. Check the example shown belo
                 "redirect": false,
                 "callback_url": null,
                 "action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
-              },
-              "data": {
-                "user_phone": "9999632145",
-                "user_email": "app@fynd.com"
               }
             },
             "return_url": null
@@ -1594,14 +1579,14 @@ Success. Returns all available options for payment. Check the example shown belo
 ---
 
 
-#### walletLinkInitate
+#### walletLinkInitiate
 Initiate linking of wallet
 
 
 
 
 ```swift
-applicationClient.payment.walletLinkInitate(body: body) { (response, error) in
+applicationClient.payment.walletLinkInitiate(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3449,10 +3434,6 @@ Success. Returns all available options for payment. Check the example shown belo
                 "redirect": false,
                 "callback_url": null,
                 "action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
-              },
-              "data": {
-                "user_phone": "9999632145",
-                "user_email": "app@fynd.com"
               }
             },
             "return_url": null
@@ -4305,504 +4286,6 @@ Success. Check the example shown below
 ---
 
 
-#### deleteBeneficiaryDetails
-Delete saved beneficiary details of customers
-
-
-
-
-```swift
-applicationClient.payment.deleteBeneficiaryDetails(beneficiaryId: beneficiaryId) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| beneficiaryId | String | yes | This is a String value that contains beneficiary_id as value. |  
-
-
-
-Use this API to delete the saved beneficiary details provided beneficiary Id.
-
-*Returned Response:*
-
-
-
-
-[DeleteRefundAccountResponse](#DeleteRefundAccountResponse)
-
-Success. Shows whether the beneficiary details were saved to a returned/cancelled order or not.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "refund_options": "Account successfully deleted"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getRefundOptions
-Refund Options Handler to fetch available refund options.
-
-
-
-
-```swift
-applicationClient.payment.getRefundOptions(configuration: configuration, productType: productType, amount: amount) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| configuration | String | yes | config type |   
-| productType | String? | no | Product Type either 1P and 3P |   
-| amount | String? | no | refunded amount |  
-
-
-
-Refund Options Handler to fetch available refund options
-
-*Returned Response:*
-
-
-
-
-[RefundOptionResponse](#RefundOptionResponse)
-
-Success. Returns the refund options for config type. Check the example shown below or refer `RefundOptionResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "refund_options": {
-    "items": [
-      {
-        "id": 4,
-        "name": "refund_to_source",
-        "display_name": "refund_to_source",
-        "is_active": true
-      },
-      {
-        "id": 5,
-        "name": "creditnote",
-        "display_name": "CreditNote",
-        "is_active": true
-      },
-      {
-        "id": 8,
-        "name": "Wallet",
-        "display_name": "Wallet",
-        "is_active": true
-      }
-    ]
-  },
-  "offline_refund_options": {
-    "payment_modes": [
-      "COD"
-    ],
-    "items": [
-      {
-        "id": 1,
-        "name": "bank",
-        "display_name": "BANK",
-        "is_active": true
-      },
-      {
-        "id": 2,
-        "name": "upi",
-        "display_name": "UPI",
-        "is_active": true
-      },
-      {
-        "id": 3,
-        "name": "jm_wallet",
-        "display_name": "JM Wallet",
-        "is_active": true
-      }
-    ]
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### setRefundOptionforShipment
-Save refund source against shipment and order
-
-
-
-
-```swift
-applicationClient.payment.setRefundOptionforShipment(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | ShipmentRefundRequest | yes | Request body |
-
-
-Save refund source against shipment and order
-
-*Returned Response:*
-
-
-
-
-[ShipmentRefundResponse](#ShipmentRefundResponse)
-
-Success. Returns the status of saved refund source for shipment and order. Check the example shown below or refer `ShipmentRefundResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "order_id": "FY653A517A0EF2BEE7A7",
-    "shipment_id": "1754345678232412312",
-    "beneficiary_id": "213123213123",
-    "transfer_mode": "bank"
-  },
-  "message": "Saved transfer mode for shipment"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getSelectedRefundOption
-API to get the selected refund options for shipment id
-
-
-
-
-```swift
-applicationClient.payment.getSelectedRefundOption(shipmentId: shipmentId, orderId: orderId) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| shipmentId | String | yes | shipment Id |   
-| orderId | String | yes | Order Id |  
-
-
-
-API to get the selected refund options for shipment id
-
-*Returned Response:*
-
-
-
-
-[SelectedRefundOptionResponse](#SelectedRefundOptionResponse)
-
-Success. Returns the selected refund option for shipment. Check the example shown below or refer `SelectedRefundOptionResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "shipment_id": "1754345678232412312",
-  "transfer_mode": {
-    "mode": "refund_to_source",
-    "display_name": "Refund to Source"
-  },
-  "message": "Refund Source"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getUserBeneficiariesDetailV2
-Lists the beneficiary of a refund
-
-
-
-
-```swift
-applicationClient.payment.getUserBeneficiariesDetailV2(orderId: orderId, shipmentId: shipmentId, mop: mop) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| orderId | String? | no | A unique number used for identifying and tracking your orders. |   
-| shipmentId | String? | no | A unique number used for identifying and tracking your orders. |   
-| mop | String? | no | Mode of payment for which beneficiary data required |  
-
-
-
-Use this API to get the details of all active beneficiary added by a user for refund.
-
-*Returned Response:*
-
-
-
-
-[OrderBeneficiaryResponseSchemaV2](#OrderBeneficiaryResponseSchemaV2)
-
-Success. Returns the details of the beneficiary getting a refund. Check the example shown below or refer `OrderBeneficiaryResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "data": {
-    "bank": [
-      {
-        "id": 221,
-        "beneficiary_id": "0f7e44a922df352c05c5f73cb40ba115",
-        "bank_name": "Example Bank",
-        "branch_name": "Example Bank",
-        "account_holder": "DUMMY NAME",
-        "account_no": "XXXX-XXXX-9999",
-        "ifsc_code": "EXAM0009999",
-        "mobile": "9999999999",
-        "email": "dummy@example.com",
-        "address": "204A",
-        "comment": "",
-        "is_active": null,
-        "created_on": "2020-06-29 12:38:39",
-        "modified_on": "2020-06-29 12:38:39",
-        "display_name": "BANK",
-        "transfer_mode": "bank",
-        "title": "Bank Account",
-        "subtitle": "1234567891",
-        "delights_user_name": null,
-        "default": "true,",
-        "logo": "https://hdn-1.fynd.com/payment/paybycard.png"
-      }
-    ],
-    "upi": [
-      {
-        "id": 222,
-        "beneficiary_id": "0f7e44a922df352c05c5f73cb40ba115",
-        "vpa_address": "success@upi",
-        "vpa": "success@upi",
-        "mobile": "9999999999",
-        "email": "dummy@example.com",
-        "address": "204A",
-        "comment": "",
-        "display_name": "UPI",
-        "transfer_mode": "vpa",
-        "title": "UPI Payment",
-        "subtitle": "success@upi",
-        "delights_user_name": null,
-        "default": "true,",
-        "logo": "https://hdn-1.fynd.com/payment/paybycard.png"
-      }
-    ],
-    "wallet": [
-      {
-        "id": 223,
-        "beneficiary_id": "234567823213123",
-        "wallet_address": "1234567891",
-        "wallet": "1234567891",
-        "mobile": "9999999999",
-        "email": "dummy@example.com",
-        "address": "204A",
-        "comment": "",
-        "display_name": "Wallet",
-        "transfer_mode": "wallet",
-        "title": "DummyWallet",
-        "subtitle": "1234567891",
-        "delights_user_name": null,
-        "default": true,
-        "logo": "https://hdn-1.fynd.com/payment/paybycard.png"
-      }
-    ]
-  },
-  "show_beneficiary_details": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### validateBeneficiaryAddress
-API to Validate UPI ID and IFSC code
-
-
-
-
-```swift
-applicationClient.payment.validateBeneficiaryAddress(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | ValidateValidateAddressRequest | yes | Request body |
-
-
-API to Validate UPI ID and IFSC code
-
-*Returned Response:*
-
-
-
-
-[ValidateValidateAddressResponse](#ValidateValidateAddressResponse)
-
-Success. Returns the IFSC/VPA validation. Check the example shown below or refer `ValidateValidateAddressResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "ifsc": {
-    "branch_name": "MANPUR",
-    "bank_name": "GAYA",
-    "BRANCH": "MANPUR",
-    "CENTRE": "GAYA",
-    "DISTRICT": "GAYA",
-    "STATE": "BIHAR",
-    "ADDRESS": "POBUNIYADGANJBIHAR",
-    "CONTACT": "00",
-    "MICR": "816002103",
-    "UPI": true,
-    "RTGS": true,
-    "CITY": "GAYA",
-    "NEFT": true,
-    "IMPS": true,
-    "SWIFT": "",
-    "BANK": "State Bank of India",
-    "BANKCODE": "SBIN",
-    "IFSC": "SBIN0005611",
-    "success": true
-  },
-  "vpa": {
-    "upi_vpa": "success@razorpay",
-    "status": "VALID",
-    "is_valid": true,
-    "customer_name": "Verified"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 
 
 ### Schemas
@@ -4814,13 +4297,13 @@ Success. Returns the IFSC/VPA validation. Check the example shown below or refer
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | sdk | Bool? |  yes  | SDK |
- | secret | String? |  yes  | Masked payment gateway api secret |
+ | secret | String |  no  | Masked payment gateway api secret |
  | api | String? |  yes  | Payment gateway api endpoint |
  | pin | String? |  yes  | Masked pin |
- | configType | String? |  yes  | Fynd or self payment gateway |
+ | configType | String |  no  | Fynd or self payment gateway |
  | merchantKey | String? |  yes  | Unique merchant key |
  | verifyApi | String? |  yes  | Payment gateway verify payment api endpoint |
- | key | String? |  yes  | Payment gateway api key |
+ | key | String |  no  | Payment gateway api key |
  | userId | String? |  yes  | Registered User id |
  | merchantId | String? |  yes  | Unique merchant id |
 
@@ -5255,6 +4738,19 @@ Success. Returns the IFSC/VPA validation. Check the example shown below or refer
 
  
  
+ #### [PaymentDefaultSelection](#PaymentDefaultSelection)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | mode | String? |  yes  | Default Selection Payment Mode |
+ | identifier | String? |  yes  | Identifier for Payment Mode |
+ | skip | Bool? |  yes  | Decide if the default payment mode will skip the payment options page altogether or just be preferred on the Frontend |
+
+---
+
+
+ 
+ 
  #### [PaymentFlow](#PaymentFlow)
 
  | Properties | Type | Nullable | Description |
@@ -5283,8 +4779,9 @@ Success. Returns the IFSC/VPA validation. Check the example shown below or refer
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | paymentOption | [[RootPaymentMode](#RootPaymentMode)] |  no  | Payment options |
+ | paymentOption | [RootPaymentMode](#RootPaymentMode) |  no  |  |
  | paymentFlows | [PaymentFlow](#PaymentFlow) |  no  |  |
+ | paymentDefaultSelection | [PaymentDefaultSelection](#PaymentDefaultSelection)? |  yes  |  |
 
 ---
 
@@ -5520,6 +5017,7 @@ Success. Returns the IFSC/VPA validation. Check the example shown below or refer
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | upiVpa | String |  no  | UPI ID |
+ | aggregator | String? |  yes  | aggregator slug |
 
 ---
 
@@ -5794,7 +5292,7 @@ Success. Returns the IFSC/VPA validation. Check the example shown below or refer
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | delights | Bool? |  yes  | True if  beneficiary to be added by delights or False if by User |
+ | delights | Bool |  no  | True if  beneficiary to be added by delights or False if by User |
  | shipmentId | String |  no  | Shipment Id of the respective Merchant Order Id |
  | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  no  |  |
  | otp | String? |  yes  |  |
@@ -5879,7 +5377,6 @@ Success. Returns the IFSC/VPA validation. Check the example shown below or refer
  | ---------- | ---- | -------- | ----------- |
  | orderId | String |  no  | Merchant Order Id |
  | beneficiaryId | String |  no  | Beneficiary Hash Id of the beneficiary added |
- | shipmentId | String? |  yes  | Shipment Id from respective merchant order ID |
 
 ---
 
@@ -6399,200 +5896,6 @@ Success. Returns the IFSC/VPA validation. Check the example shown below or refer
 
  
  
- #### [DeleteRefundAccountResponse](#DeleteRefundAccountResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  | Success/Failure of the deleted beneficiary |
- | message | String |  no  | Message |
-
----
-
-
- 
- 
- #### [RefundOptionsDetails](#RefundOptionsDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | displayName | String |  no  | refund option display name |
- | id | Int |  no  | Refund ID. It will be unique identifier |
- | isActive | Bool? |  yes  | Refund option is active or not |
- | name | String |  no  | refund option name |
-
----
-
-
- 
- 
- #### [RefundOptions](#RefundOptions)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [RefundOptionsDetails](#RefundOptionsDetails) |  no  | List of all refund options. |
-
----
-
-
- 
- 
- #### [OfflineRefundOptions](#OfflineRefundOptions)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [RefundOptionsDetails](#RefundOptionsDetails) |  no  | List of all refund options. |
- | paymentModes | [String] |  no  | List of all offline payment options. MOP Code value |
-
----
-
-
- 
- 
- #### [RefundOptionResponse](#RefundOptionResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | offlineRefundOptions | [OfflineRefundOptions](#OfflineRefundOptions) |  no  | Available offline refund options data |
- | success | Bool |  no  | Success/Failure Of response |
- | refundOptions | [RefundOptions](#RefundOptions) |  no  | Available refund options data |
-
----
-
-
- 
- 
- #### [SelectedRefundOptionResponse](#SelectedRefundOptionResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | transferMode | [String: Any] |  no  | selected transfer mode for given shipment |
- | shipmentId | String |  no  | Shipment ID |
- | message | String |  no  | message |
- | success | Bool |  no  | Successful or not. |
-
----
-
-
- 
- 
- #### [WalletBeneficiaryDetails](#WalletBeneficiaryDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | beneficiaryId | String |  no  | Benenficiary Id |
- | modifiedOn | String |  no  | MOdification Date of Beneficiary |
- | displayName | String |  no  | Display Name Of Account |
- | id | Int |  no  |   |
- | subtitle | String |  no  | SHort Title Of Account |
- | transferMode | String |  no  | Transfer Mode Of Account |
- | mobile | String? |  yes  | MObile no of User |
- | isActive | Bool |  no  | Boolean Flag whether Beneficiary set or not |
- | createdOn | String |  no  | Creation Date of Beneficiary |
- | address | String |  no  | Address of User |
- | title | String |  no  | Title Of Account |
- | walletAddress | String |  no  | Bank Name Of Account |
- | comment | String? |  yes  | Remarks |
- | wallet | String? |  yes  | Branch Name Of Account |
- | email | String |  no  | EMail of User |
- | delightsUserName | String? |  yes  | User Id Who filled the Beneficiary  |
-
----
-
-
- 
- 
- #### [UpiBeneficiaryDetails](#UpiBeneficiaryDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | beneficiaryId | String |  no  | Benenficiary Id |
- | modifiedOn | String |  no  | MOdification Date of Beneficiary |
- | displayName | String |  no  | Display Name Of Account |
- | id | Int |  no  |   |
- | subtitle | String |  no  | SHort Title Of Account |
- | transferMode | String |  no  | Transfer Mode Of Account |
- | vpa | String? |  yes  | Branch Name Of Account |
- | mobile | String? |  yes  | Mobile no of User |
- | vpaAddress | String |  no  | Bank Name Of Account |
- | createdOn | String |  no  | Creation Date of Beneficiary |
- | address | String |  no  | Address of User |
- | title | String |  no  | Title Of Account |
- | comment | String? |  yes  | Remarks |
- | isActive | Bool |  no  | Boolean Flag whether Beneficiary set or not |
- | email | String |  no  | EMail of User |
- | delightsUserName | String? |  yes  | User Id Who filled the Beneficiary  |
-
----
-
-
- 
- 
- #### [BeneficiaryRefundOptions](#BeneficiaryRefundOptions)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | bank | [OrderBeneficiaryDetails](#OrderBeneficiaryDetails)? |  yes  | List of all add bank beneficiary details. |
- | wallet | [WalletBeneficiaryDetails](#WalletBeneficiaryDetails)? |  yes  | List of all add Wallet beneficiary details. |
- | upi | [UpiBeneficiaryDetails](#UpiBeneficiaryDetails)? |  yes  | List of all add UPI beneficiary details. |
-
----
-
-
- 
- 
- #### [OrderBeneficiaryResponseSchemaV2](#OrderBeneficiaryResponseSchemaV2)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | showBeneficiaryDetails | Bool |  no  | Show Beneficiary details on UI or not. |
- | data | [BeneficiaryRefundOptions](#BeneficiaryRefundOptions) |  no  | Beneficiary Data for Bank account, UPI and Wallets. |
- | limit | [String: Any] |  no  | Max Limit for adding bank account, UPI and wallet |
-
----
-
-
- 
- 
- #### [ValidateValidateAddressRequest](#ValidateValidateAddressRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | ifscCode | String? |  yes  | IFSC Code |
- | upiVpa | String? |  yes  | VPA Address |
- | aggregator | String? |  yes  | Aggregator Name |
-
----
-
-
- 
- 
- #### [VPADetails](#VPADetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | isValid | Bool |  no  | Is VPA valid or not |
- | upiVpa | String |  no  | VPA address |
- | status | String |  no  | VPA validation message |
- | customerName | String |  no  | VPA Customer Name |
-
----
-
-
- 
- 
- #### [ValidateValidateAddressResponse](#ValidateValidateAddressResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | upi | [VPADetails](#VPADetails)? |  yes  | UPI validation details. |
- | success | Bool |  no  | Successful or not. |
- | ifsc | [String: Any]? |  yes  | IFSC details response data |
-
----
-
-
- 
- 
  #### [PaymentMethodsMetaOrder](#PaymentMethodsMetaOrder)
 
  | Properties | Type | Nullable | Description |
@@ -6661,51 +5964,10 @@ Success. Returns the IFSC/VPA validation. Check the example shown below or refer
  | paymentConfirmUrl | String? |  yes  | Payment confirm url for aggregator |
  | callbackUrl | String? |  yes  | Callback url for aggregator |
  | orderId | String? |  yes  | Merchant order id |
- | success | Bool? |  yes  | Successful or failure |
+ | success | Bool |  no  | Successful or failure |
  | statusCode | Int |  no  | HTTP status code |
  | data | [PaymentOrderData](#PaymentOrderData)? |  yes  |  |
  | message | String |  no  | Message |
-
----
-
-
- 
- 
- #### [ShipmentRefundRequest](#ShipmentRefundRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shipmentId | String |  no  | Shipment Id of the respective Merchant Order Id |
- | orderId | String |  no  | Merchant Order Id |
- | transferMode | String |  no  | Transfer Mode of the Beneficiary to be added |
- | beneficiaryId | String? |  yes  | Beneficiary Hash Id of the beneficiary added |
-
----
-
-
- 
- 
- #### [ShipmentRefundDetail](#ShipmentRefundDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shipmentId | String |  no  | Shipment ID |
- | orderId | String |  no  | Order ID |
- | transferMode | String |  no  | TransferMode |
- | beneficiaryId | String |  no  | Beneficiary ID |
-
----
-
-
- 
- 
- #### [ShipmentRefundResponse](#ShipmentRefundResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [ShipmentRefundDetail](#ShipmentRefundDetail) |  no  | Selected Shipment refund option details. |
- | success | Bool |  no  | Successful or not. |
- | message | String |  no  | message |
 
 ---
 

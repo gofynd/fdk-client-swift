@@ -25,7 +25,7 @@ extension PlatformClient {
             isActive: Bool?,
             channelId: String?,
             q: String?,
-            country: String?,
+            countryIsoCode: String?,
             state: String?,
             city: String?,
             pincode: String?,
@@ -71,9 +71,9 @@ if let value = q {
 }
 
 
-if let value = country {
+if let value = countryIsoCode {
     
-    xQuery["country"] = value
+    xQuery["country_iso_code"] = value
     
 }
 
@@ -336,54 +336,6 @@ if let value = sector {
         
         
         
-        /**
-        *
-        * Summary: Get serviceable store of the item
-        * Description: This API returns serviceable store of the item.
-        **/
-        public func getOptimalLocations(
-            body: ReAssignStoreRequest,
-            onResponse: @escaping (_ response: ReAssignStoreResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/logistics/v1.0/company/\(companyId)/reassign",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ReAssignStoreResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
         
         
         
@@ -447,7 +399,6 @@ if let value = sector {
             stage: String?,
             paymentMode: String?,
             transportType: String?,
-            accountIds: [String]?,
             
             onResponse: @escaping (_ response: CompanyCourierPartnerAccountListResponse?, _ error: FDKError?) -> Void
         ) {
@@ -485,13 +436,6 @@ if let value = paymentMode {
 if let value = transportType {
     
     xQuery["transport_type"] = value
-    
-}
-
-
-if let value = accountIds {
-    
-    xQuery["account_ids"] = value
     
 }
 
@@ -725,7 +669,6 @@ if let value = accountIds {
                     }
             });
         }
-        
         
         
         
@@ -1636,6 +1579,54 @@ if let value = isActive {
             });
         }
         
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Retrieve optimal locations
+        * Description: Retrieve optimal locations based on the specific criteria
+        **/
+        public func getOptimalLocations(
+            body: OptimlLocationsRequestSchema,
+            onResponse: @escaping (_ response: OptimalLocationsResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/logistics/v1.0/company/\(companyId)/optimal-locations",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(OptimalLocationsResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
         
         
     }

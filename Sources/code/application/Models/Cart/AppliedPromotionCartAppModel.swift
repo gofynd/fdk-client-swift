@@ -32,8 +32,6 @@ public extension ApplicationClient.Cart {
         
         public var promotionType: String?
         
-        public var customFieldMeta: [[String: Any]]?
-        
         public var meta: [String: Any]?
         
         public var code: String?
@@ -65,15 +63,13 @@ public extension ApplicationClient.Cart {
             
             case promotionType = "promotion_type"
             
-            case customFieldMeta = "custom_field_meta"
-            
             case meta = "meta"
             
             case code = "code"
             
         }
 
-        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, code: String? = nil, customFieldMeta: [[String: Any]]? = nil, discountRules: [DiscountRulesApp]? = nil, meta: [String: Any]? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
+        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, code: String? = nil, discountRules: [DiscountRulesApp]? = nil, meta: [String: Any]? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
             
             self.promoId = promoId
             
@@ -98,8 +94,6 @@ public extension ApplicationClient.Cart {
             self.appliedFreeArticles = appliedFreeArticles
             
             self.promotionType = promotionType
-            
-            self.customFieldMeta = customFieldMeta
             
             self.meta = meta
             
@@ -256,18 +250,6 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                customFieldMeta = try container.decode([[String: Any]].self, forKey: .customFieldMeta)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -341,10 +323,6 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(promotionType, forKey: .promotionType)
-            
-            
-            
-            try? container.encodeIfPresent(customFieldMeta, forKey: .customFieldMeta)
             
             
             
