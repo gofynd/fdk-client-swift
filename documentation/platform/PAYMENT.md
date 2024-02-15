@@ -7,67 +7,103 @@
 ## Payment Methods
 Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account
 
-Default
+Payment Gateway Configuration
 * [getBrandPaymentGatewayConfig](#getbrandpaymentgatewayconfig)
 * [saveBrandPaymentGatewayConfig](#savebrandpaymentgatewayconfig)
+
+
+Payout Management
 * [getPaymentModeRoutes](#getpaymentmoderoutes)
 * [getAllPayouts](#getallpayouts)
 * [savePayout](#savepayout)
 * [updatePayout](#updatepayout)
 * [activateAndDectivatePayout](#activateanddectivatepayout)
 * [deletePayout](#deletepayout)
+
+
+Subscription Payment and Configuration
 * [getSubscriptionPaymentMethod](#getsubscriptionpaymentmethod)
 * [deleteSubscriptionPaymentMethod](#deletesubscriptionpaymentmethod)
 * [getSubscriptionConfig](#getsubscriptionconfig)
 * [saveSubscriptionSetupIntent](#savesubscriptionsetupintent)
+
+
+Bank Account and IFSC Code Verification
 * [getBankAccountDetailsOpenAPI](#getbankaccountdetailsopenapi)
 * [addRefundBankAccountUsingOTP](#addrefundbankaccountusingotp)
 * [verifyIfscCode](#verifyifsccode)
+
+
+COD Limit for user and order
 * [getUserOrderBeneficiaries](#getuserorderbeneficiaries)
 * [getUserBeneficiaries](#getuserbeneficiaries)
 * [confirmPayment](#confirmpayment)
 * [getUserCODlimitRoutes](#getusercodlimitroutes)
 * [setUserCODlimitRoutes](#setusercodlimitroutes)
+
+
+EDC Device and Management
 * [edcAggregatorsAndModelList](#edcaggregatorsandmodellist)
 * [edcDeviceStats](#edcdevicestats)
 * [updateEdcDevice](#updateedcdevice)
 * [getEdcDevice](#getedcdevice)
 * [addEdcDevice](#addedcdevice)
 * [edcDeviceList](#edcdevicelist)
+
+
+POS Payment Mode and Session Management
 * [getPosPaymentModeRoutes](#getpospaymentmoderoutes)
 * [initialisePayment](#initialisepayment)
 * [checkAndUpdatePaymentStatus](#checkandupdatepaymentstatus)
 * [resendOrCancelPayment](#resendorcancelpayment)
 * [paymentStatusBulk](#paymentstatusbulk)
+* [updatePaymentSession](#updatepaymentsession)
+* [updateRefundSession](#updaterefundsession)
+
+
+Payment gateway token management
 * [oauthGetUrl](#oauthgeturl)
 * [revokeOauthToken](#revokeoauthtoken)
+
+
+Repayment and Merchant Onboarding
 * [repaymentDetails](#repaymentdetails)
 * [merchantOnBoarding](#merchantonboarding)
 * [verifyCustomerForPayment](#verifycustomerforpayment)
+
+
+Payment Link Creation and Management
 * [getPaymentLink](#getpaymentlink)
 * [createPaymentLink](#createpaymentlink)
 * [pollingPaymentLink](#pollingpaymentlink)
 * [resendPaymentLink](#resendpaymentlink)
 * [cancelPaymentLink](#cancelpaymentlink)
+
+
+Default
 * [getPaymentModeControlRoutes](#getpaymentmodecontrolroutes)
 * [setMerchantModeControlRoutes](#setmerchantmodecontrolroutes)
 * [getPaymentModeCustomConfig](#getpaymentmodecustomconfig)
 * [setPaymentModeCustomConfig](#setpaymentmodecustomconfig)
-* [getPaymentCodeOption](#getpaymentcodeoption)
 * [getPaymentSession](#getpaymentsession)
-* [updatePaymentSession](#updatepaymentsession)
-* [updateRefundSession](#updaterefundsession)
 * [getMerchantPaymentOption](#getmerchantpaymentoption)
 * [patchMerchantPaymentOption](#patchmerchantpaymentoption)
-* [getMerchantAggregatorPaymentModeDetails](#getmerchantaggregatorpaymentmodedetails)
-* [patchMerchantAggregatorPaymentModeDetails](#patchmerchantaggregatorpaymentmodedetails)
-* [getPGConfigAggregators](#getpgconfigaggregators)
 * [getMerchantRefundPriority](#getmerchantrefundpriority)
 * [createMerchantRefundPriority](#createmerchantrefundpriority)
 * [updateMerchantRefundPriority](#updatemerchantrefundpriority)
 * [createPaymentOrder](#createpaymentorder)
 * [getMerchantAggregatorAppVersion](#getmerchantaggregatorappversion)
 * [patchMerchantPaymentOptionVersion](#patchmerchantpaymentoptionversion)
+
+
+Payment Code and Option Configuration
+* [getPaymentCodeOption](#getpaymentcodeoption)
+
+
+Payment mode configuration of merchant
+* [getMerchantAggregatorPaymentModeDetails](#getmerchantaggregatorpaymentmodedetails)
+* [patchMerchantAggregatorPaymentModeDetails](#patchmerchantaggregatorpaymentmodedetails)
+* [getPGConfigAggregators](#getpgconfigaggregators)
 
 
 
@@ -77,7 +113,7 @@ Default
 
 
 #### getBrandPaymentGatewayConfig
-Get All Brand Payment Gateway Config Secret
+Get brand payment gateway config
 
 
 
@@ -99,7 +135,7 @@ platformClient.application("<APPLICATION_ID>").payment.getBrandPaymentGatewayCon
 
 
 
-Get All Brand Payment Gateway Config Secret
+Retrieve configuration settings for brand payment gateways.
 
 *Returned Response:*
 
@@ -250,7 +286,7 @@ Refund Transfer Mode
 
 
 #### saveBrandPaymentGatewayConfig
-Save Config Secret For Brand Payment Gateway
+Save brand payment gateway config.
 
 
 
@@ -270,7 +306,7 @@ platformClient.application("<APPLICATION_ID>").payment.saveBrandPaymentGatewayCo
 | body | PaymentGatewayConfigRequest | yes | Request body |
 
 
-Save Config Secret For Brand Payment Gateway
+Store and update configuration settings for brand payment gateways.
 
 *Returned Response:*
 
@@ -308,8 +344,10 @@ Save Config Secret For Brand Payment Gateway Success Response.
 ---
 
 
+
+
 #### getPaymentModeRoutes
-Get All Valid Payment Options
+Get payment mode routes.
 
 
 
@@ -333,7 +371,7 @@ platformClient.application("<APPLICATION_ID>").payment.getPaymentModeRoutes(refr
 
 
 
-Use this API to get Get All Valid Payment Options for making payment
+Retrieve routes and options for payment modes.
 
 *Returned Response:*
 
@@ -1520,7 +1558,7 @@ Success
 
 
 #### getAllPayouts
-Get All Payouts
+Get all payouts.
 
 
 
@@ -1541,7 +1579,7 @@ platformClient.payment.getAllPayouts(uniqueExternalId: uniqueExternalId) { (resp
 
 
 
-Get All Payouts
+Retrieve a list of all payout transactions.
 
 *Returned Response:*
 
@@ -1641,7 +1679,7 @@ payouts response object
 
 
 #### savePayout
-Save Payout
+Save payout.
 
 
 
@@ -1661,7 +1699,7 @@ platformClient.payment.savePayout(body: body) { (response, error) in
 | body | PayoutRequest | yes | Request body |
 
 
-Save Payout
+Store and process a payout transaction.
 
 *Returned Response:*
 
@@ -1723,7 +1761,7 @@ save payout response object
 
 
 #### updatePayout
-Update Payout
+Update payout.
 
 
 
@@ -1744,7 +1782,7 @@ platformClient.payment.updatePayout(uniqueTransferNo: uniqueTransferNo, body: bo
 | body | PayoutRequest | yes | Request body |
 
 
-Update Payout
+Modify the details of a payout transaction.
 
 *Returned Response:*
 
@@ -1782,7 +1820,7 @@ save payout response object
 
 
 #### activateAndDectivatePayout
-Partial Update Payout
+Activate/Deactivate payout.
 
 
 
@@ -1803,7 +1841,7 @@ platformClient.payment.activateAndDectivatePayout(uniqueTransferNo: uniqueTransf
 | body | UpdatePayoutRequest | yes | Request body |
 
 
-Partial Update Payout
+Enable or disable payout functionality.
 
 *Returned Response:*
 
@@ -1841,7 +1879,7 @@ save payout response object
 
 
 #### deletePayout
-Delete Payout
+Delete payout.
 
 
 
@@ -1862,7 +1900,7 @@ platformClient.payment.deletePayout(uniqueTransferNo: uniqueTransferNo) { (respo
 
 
 
-Delete Payout
+Remove a payout transaction from the system.
 
 *Returned Response:*
 
@@ -1897,8 +1935,10 @@ delete payout response object
 ---
 
 
+
+
 #### getSubscriptionPaymentMethod
-List Subscription Payment Method
+Get subscription payment method.
 
 
 
@@ -1919,7 +1959,7 @@ platformClient.payment.getSubscriptionPaymentMethod(uniqueExternalId: uniqueExte
 
 
 
-Get all  Subscription  Payment Method
+Retrieve payment methods for subscriptions.
 
 *Returned Response:*
 
@@ -2081,7 +2121,7 @@ List Subscription Payment Method Response
 
 
 #### deleteSubscriptionPaymentMethod
-Delete Subscription Payment Method
+Delete subscription payment method.
 
 
 
@@ -2103,7 +2143,7 @@ platformClient.payment.deleteSubscriptionPaymentMethod(uniqueExternalId: uniqueE
 
 
 
-Uses this api to Delete Subscription Payment Method
+Remove a payment method from subscription options.
 
 *Returned Response:*
 
@@ -2139,7 +2179,7 @@ Delete Subscription Payment Method Response.
 
 
 #### getSubscriptionConfig
-List Subscription Config
+Get subscription config.
 
 
 
@@ -2155,7 +2195,7 @@ platformClient.payment.getSubscriptionConfig() { (response, error) in
 
 
 
-Get all  Subscription Config details
+Retrieve configuration settings for subscriptions.
 
 *Returned Response:*
 
@@ -2195,7 +2235,7 @@ List Subscription Config Response
 
 
 #### saveSubscriptionSetupIntent
-Save Subscription Setup Intent
+Save subscription setup intent.
 
 
 
@@ -2215,7 +2255,7 @@ platformClient.payment.saveSubscriptionSetupIntent(body: body) { (response, erro
 | body | SaveSubscriptionSetupIntentRequest | yes | Request body |
 
 
-Uses this api to Save Subscription Setup Intent
+Store and process setup intent for subscriptions.
 
 *Returned Response:*
 
@@ -2257,8 +2297,10 @@ Save Subscription Setup Intent Response.
 ---
 
 
+
+
 #### getBankAccountDetailsOpenAPI
-Get bank details
+Get bank account details.
 
 
 
@@ -2280,7 +2322,7 @@ platformClient.application("<APPLICATION_ID>").payment.getBankAccountDetailsOpen
 
 
 
-Use this API to get saved bank details for returned/cancelled order using order id.
+Retrieve bank account information using an open API.
 
 *Returned Response:*
 
@@ -2328,7 +2370,7 @@ Success
 
 
 #### addRefundBankAccountUsingOTP
-Save bank details for cancelled/returned order
+Add refund bank account using OTP.
 
 
 
@@ -2348,7 +2390,7 @@ platformClient.application("<APPLICATION_ID>").payment.addRefundBankAccountUsing
 | body | AddBeneficiaryDetailsOTPRequest | yes | Request body |
 
 
-Use this API to save bank details for returned/cancelled order to refund amount in his account.
+Register a refund bank account with OTP verification.
 
 *Returned Response:*
 
@@ -2387,7 +2429,7 @@ Success
 
 
 #### verifyIfscCode
-Ifsc Code Verification
+Verify IFSC code.
 
 
 
@@ -2408,7 +2450,7 @@ platformClient.payment.verifyIfscCode(ifscCode: ifscCode) { (response, error) in
 
 
 
-Get True or False for correct IFSC Code for adding bank details for refund
+Check the authenticity of an IFSC code.
 
 *Returned Response:*
 
@@ -2461,8 +2503,10 @@ Bank details on correct Ifsc Code
 ---
 
 
+
+
 #### getUserOrderBeneficiaries
-List Order Beneficiary
+Get user order beneficiaries.
 
 
 
@@ -2483,7 +2527,7 @@ platformClient.application("<APPLICATION_ID>").payment.getUserOrderBeneficiaries
 
 
 
-Get all active  beneficiary details added by the user for refund
+Retrieve beneficiaries associated with a user orders.
 
 *Returned Response:*
 
@@ -2541,7 +2585,7 @@ List Order Beneficiary
 
 
 #### getUserBeneficiaries
-List User Beneficiary
+Get user beneficiaries.
 
 
 
@@ -2562,7 +2606,7 @@ platformClient.application("<APPLICATION_ID>").payment.getUserBeneficiaries(orde
 
 
 
-Get all active  beneficiary details added by the user for refund
+Retrieve beneficiaries associated with a user.
 
 *Returned Response:*
 
@@ -2621,7 +2665,7 @@ List User Beneficiary
 
 
 #### confirmPayment
-Confirm payment after successful payment from payment gateway
+Confirm payment.
 
 
 
@@ -2641,7 +2685,7 @@ platformClient.application("<APPLICATION_ID>").payment.confirmPayment(body: body
 | body | PaymentConfirmationRequest | yes | Request body |
 
 
-Use this API to confirm payment after payment gateway accepted payment.
+Authenticate and confirm a payment.
 
 *Returned Response:*
 
@@ -2679,7 +2723,7 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
 
 #### getUserCODlimitRoutes
-Get COD limit for user
+Get user COD limit routes.
 
 
 
@@ -2701,7 +2745,7 @@ platformClient.application("<APPLICATION_ID>").payment.getUserCODlimitRoutes(mer
 
 
 
-Use this API to get user cod limit and reamining limit for the payment
+Retrieve routes and limits for user cash-on-delivery (COD) transactions.
 
 *Returned Response:*
 
@@ -2745,7 +2789,7 @@ Success. Returns user cod limit , remaining limit and usage of user for COD. Che
 
 
 #### setUserCODlimitRoutes
-Set COD option for user for payment
+Set user COD limit routes.
 
 
 
@@ -2765,7 +2809,7 @@ platformClient.application("<APPLICATION_ID>").payment.setUserCODlimitRoutes(bod
 | body | SetCODForUserRequest | yes | Request body |
 
 
-Use this API to set cod option as true or false for the payment
+Configure routes and limits for user COD transactions.
 
 *Returned Response:*
 
@@ -2801,8 +2845,10 @@ Success. Returns true or false for user cod option for payment. Check the exampl
 ---
 
 
+
+
 #### edcAggregatorsAndModelList
-get some information about the store and edc device
+EDC aggregators and model list.
 
 
 
@@ -2818,7 +2864,7 @@ platformClient.application("<APPLICATION_ID>").payment.edcAggregatorsAndModelLis
 
 
 
-Use this API to get info of devices linked to a particular app.
+Retrieve a list of EDC (Electronic Data Capture) aggregators and models.
 
 *Returned Response:*
 
@@ -2864,7 +2910,7 @@ Success. Returns the list of devices linked to the application Check the example
 
 
 #### edcDeviceStats
-get some information about the store and edc device
+EDC device stats.
 
 
 
@@ -2880,7 +2926,7 @@ platformClient.application("<APPLICATION_ID>").payment.edcDeviceStats() { (respo
 
 
 
-Use this API to get info of devices linked to a particular app.
+Get statistics and data related to EDC devices.
 
 *Returned Response:*
 
@@ -2920,7 +2966,7 @@ Success. Returns the list of devices linked to the application Check the example
 
 
 #### updateEdcDevice
-map new edc device to the terminal
+Update EDC device.
 
 
 
@@ -2940,7 +2986,7 @@ platformClient.application("<APPLICATION_ID>").payment.updateEdcDevice(body: bod
 | body | EdcAddRequest | yes | Request body |
 
 
-Use this API to map new edc device to the terminal
+Modify the settings and details of an EDC device.
 
 *Returned Response:*
 
@@ -2988,7 +3034,7 @@ Success. Returns the single edc device mapped to the terminal. Check the example
 
 
 #### getEdcDevice
-get details of a single edc device
+Get EDC device.
 
 
 
@@ -3009,7 +3055,7 @@ platformClient.application("<APPLICATION_ID>").payment.getEdcDevice(terminalUniq
 
 
 
-Use this API to get details of a single edc device
+Retrieve detailed information about an EDC device.
 
 *Returned Response:*
 
@@ -3058,7 +3104,7 @@ Success. Returns the single edc device mapped to the terminal. Check the example
 
 
 #### addEdcDevice
-Update store id and device tag of edc device
+Add EDC device.
 
 
 
@@ -3079,7 +3125,7 @@ platformClient.application("<APPLICATION_ID>").payment.addEdcDevice(terminalUniq
 | body | EdcUpdateRequest | yes | Request body |
 
 
-Use this API to Update store id and device tag of edc device
+Register and add a new EDC device.
 
 *Returned Response:*
 
@@ -3115,7 +3161,7 @@ Check the example shown below or refer `EdcDeviceUpdateResponseSchema` for more 
 
 
 #### edcDeviceList
-get all the device list of an app
+EDC device list.
 
 
 
@@ -3140,7 +3186,7 @@ platformClient.application("<APPLICATION_ID>").payment.edcDeviceList(pageNo: pag
 
 
 
-Use this API to get all devices linked to a particular app.
+Retrieve a list of available EDC devices.
 
 *Returned Response:*
 
@@ -3197,8 +3243,10 @@ Success. Returns the list of devices linked to the application Check the example
 ---
 
 
+
+
 #### getPosPaymentModeRoutes
-Get All Valid Payment Options
+Get POS payment mode routes.
 
 
 
@@ -3230,7 +3278,7 @@ platformClient.application("<APPLICATION_ID>").payment.getPosPaymentModeRoutes(a
 
 
 
-Use this API to get Get All Valid Payment Options for making payment
+Retrieve payment options and aggregator for point-of-sale (POS).
 
 *Returned Response:*
 
@@ -4476,7 +4524,7 @@ Success
 
 
 #### initialisePayment
-Initialize a payment (server-to-server) for UPI and BharatQR
+Initialize payment.
 
 
 
@@ -4496,7 +4544,7 @@ platformClient.application("<APPLICATION_ID>").payment.initialisePayment(body: b
 | body | PaymentInitializationRequest | yes | Request body |
 
 
-PUse this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
+Start the payment initiation process for UPI and QR code.
 
 *Returned Response:*
 
@@ -4543,7 +4591,7 @@ Success. Check the example shown below or refer `PaymentInitializationResponse` 
 
 
 #### checkAndUpdatePaymentStatus
-Performs continuous polling to check status of payment on the server
+Check and update payment status.
 
 
 
@@ -4563,7 +4611,7 @@ platformClient.application("<APPLICATION_ID>").payment.checkAndUpdatePaymentStat
 | body | PaymentStatusUpdateRequest | yes | Request body |
 
 
-Use this API to perform continuous polling at intervals to check the status of payment until timeout.
+Verify and modify the status of a payment.
 
 *Returned Response:*
 
@@ -4601,7 +4649,7 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
 
 #### resendOrCancelPayment
-API to resend and cancel a payment link which was already generated.
+Resend or cancel payment.
 
 
 
@@ -4621,7 +4669,7 @@ platformClient.application("<APPLICATION_ID>").payment.resendOrCancelPayment(bod
 | body | ResendOrCancelPaymentRequest | yes | Request body |
 
 
-Use this API to perform resend or cancel a payment link based on request payload.
+Resend or cancel a payment link.
 
 *Returned Response:*
 
@@ -4685,7 +4733,7 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
 
 #### paymentStatusBulk
-Get Payment status and information for a list of order_ids
+Payment status bulk.
 
 
 
@@ -4705,7 +4753,7 @@ platformClient.application("<APPLICATION_ID>").payment.paymentStatusBulk(body: b
 | body | PaymentStatusBulkHandlerRequest | yes | Request body |
 
 
-Use this API to get Payment status and information for a list of order_ids
+Retrieve the status of multiple payments in bulk.
 
 *Returned Response:*
 
@@ -4811,8 +4859,162 @@ Success. Returns the status of payment. Check the example shown below or refer `
 ---
 
 
+#### updatePaymentSession
+Update payment session.
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").payment.updatePaymentSession(gid: gid, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| gid | String | yes | global identifier of the entity (e.g. order, cart etc.) against which payment_session was initiated. This is generated by Fynd payments platform and is unique. |  
+| body | PaymentSessionRequestSerializer | yes | Request body |
+
+
+Modify the details of a payment session.
+
+*Returned Response:*
+
+
+
+
+[PaymentSessionResponseSerializer](#PaymentSessionResponseSerializer)
+
+Success. Returns the status of Update or not. Check the example shown below or refer `PaymentSessionResponseSerializer` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; status_update_success</i></summary>
+
+```json
+{
+  "summary": "payment status updated successfully",
+  "value": {
+    "gid": "Payment Received",
+    "status": "initiated",
+    "total_amount": 100,
+    "currency": "INR",
+    "platform_transaction_details": [
+      {
+        "object": "platform_payment",
+        "transaction_id": "pay_wtt5r23mpebexcjsxzylyjhn7a",
+        "payment_id": "pay_wtt5r23mpebexcjsxzylyjhn7a"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateRefundSession
+Update refund session.
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").payment.updateRefundSession(gid: gid, requestId: requestId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| gid | String | yes | global identifier of the entity (e.g. order, cart etc.) against which payment_session was initiated. This is generated by Fynd payments platform and is unique. |   
+| requestId | String | yes | A unique id that was used to initiate a refund session. This is generated by Fynd platform and is usually shipment_id. |  
+| body | RefundSessionRequestSerializer | yes | Request body |
+
+
+Modify the details of a refund session.
+
+*Returned Response:*
+
+
+
+
+[RefundSessionResponseSerializer](#RefundSessionResponseSerializer)
+
+Returns the response weather it is success or not. Check the example shown below or refer `RefundSessionResponseSerializer` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; status_update_success</i></summary>
+
+```json
+{
+  "summary": "refund status is updated successfully",
+  "value": {
+    "gid": "FY615DE25839C4AF3A1A",
+    "status": "initiated",
+    "total_refund_amount": 100,
+    "currency": "INR",
+    "platform_refund_details": [
+      {
+        "transaction_id": "pay_wtt5r23mpebexcjsxzylyjhn7a",
+        "refund_id": "act_4lan4lrf2bxexdbinmqoln4nda"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
 #### oauthGetUrl
-API to Get the url to call for oauth
+Get OAuth URL.
 
 
 
@@ -4835,7 +5037,7 @@ platformClient.application("<APPLICATION_ID>").payment.oauthGetUrl(aggregator: a
 
 
 
-Use this API to Get the url to call for oauth.
+Retrieve an OAuth URL for PG API authentication.
 
 *Returned Response:*
 
@@ -4872,7 +5074,7 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
 
 #### revokeOauthToken
-API to Revoke oauth for razorpay partnership
+Revoke OAuth token.
 
 
 
@@ -4893,7 +5095,7 @@ platformClient.application("<APPLICATION_ID>").payment.revokeOauthToken(aggregat
 
 
 
-Use this API to Revoke oauth for razorpay partnership
+Invalidate an OAuth token.
 
 *Returned Response:*
 
@@ -4929,8 +5131,10 @@ Success. Returns the status of revokation. Check the example shown below or refe
 ---
 
 
+
+
 #### repaymentDetails
-API to register repayment details
+Repayment details for BNPL.
 
 
 
@@ -4950,7 +5154,7 @@ platformClient.application("<APPLICATION_ID>").payment.repaymentDetails(body: bo
 | body | RepaymentDetailsSerialiserPayAll | yes | Request body |
 
 
-Use this API to register any repayment record in the db and notify the aggrgator
+Retrieve information about repayment transactions.
 
 *Returned Response:*
 
@@ -4989,7 +5193,7 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
 
 #### merchantOnBoarding
-API to push Ajiodhan merchant data to Gringotts system
+Merchant onboarding for BNPL.
 
 
 
@@ -5009,7 +5213,7 @@ platformClient.application("<APPLICATION_ID>").payment.merchantOnBoarding(body: 
 | body | MerchantOnBoardingRequest | yes | Request body |
 
 
-Use this API to push Ajiodhan merchant data to Gringotts system
+Initiate the onboarding process for a merchant.
 
 *Returned Response:*
 
@@ -5050,7 +5254,7 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
 
 #### verifyCustomerForPayment
-Validate customer for payment
+Verify customer for payment.
 
 
 
@@ -5070,7 +5274,7 @@ platformClient.application("<APPLICATION_ID>").payment.verifyCustomerForPayment(
 | body | ValidateCustomerRequest | yes | Request body |
 
 
-Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi.
+Retrieve a link for making payments.
 
 *Returned Response:*
 
@@ -5146,8 +5350,10 @@ Success. Check the example shown below or refer `ValidateCustomerResponse` for m
 ---
 
 
+
+
 #### getPaymentLink
-Get payment link
+Get payment link.
 
 
 
@@ -5168,7 +5374,7 @@ platformClient.application("<APPLICATION_ID>").payment.getPaymentLink(paymentLin
 
 
 
-Use this API to get a payment link
+Retrieve a link for making payments.
 
 *Returned Response:*
 
@@ -5212,7 +5418,7 @@ Success. Check the example shown below
 
 
 #### createPaymentLink
-Create payment link
+Create payment link.
 
 
 
@@ -5232,7 +5438,7 @@ platformClient.application("<APPLICATION_ID>").payment.createPaymentLink(body: b
 | body | CreatePaymentLinkRequest | yes | Request body |
 
 
-Use this API to create a payment link for the customer
+Generate a new link for accepting payments.
 
 *Returned Response:*
 
@@ -5273,7 +5479,7 @@ Success. Check the example shown below
 
 
 #### pollingPaymentLink
-Used for polling if payment successful or not
+Polling payment link.
 
 
 
@@ -5294,7 +5500,7 @@ platformClient.application("<APPLICATION_ID>").payment.pollingPaymentLink(paymen
 
 
 
-Use this API to poll if payment through payment was successful or not
+Continuously check the status of a payment link.
 
 *Returned Response:*
 
@@ -5336,7 +5542,7 @@ Success. Check the example shown below
 
 
 #### resendPaymentLink
-Resend payment link
+Resend payment link.
 
 
 
@@ -5356,7 +5562,7 @@ platformClient.application("<APPLICATION_ID>").payment.resendPaymentLink(body: b
 | body | CancelOrResendPaymentLinkRequest | yes | Request body |
 
 
-Use this API to resend a payment link for the customer
+Reissue a payment link to a recipient.
 
 *Returned Response:*
 
@@ -5395,7 +5601,7 @@ Success. Check the example shown below
 
 
 #### cancelPaymentLink
-Cancel payment link
+Cancel payment link.
 
 
 
@@ -5415,7 +5621,7 @@ platformClient.application("<APPLICATION_ID>").payment.cancelPaymentLink(body: b
 | body | CancelOrResendPaymentLinkRequest | yes | Request body |
 
 
-Use this API to cancel a payment link for the customer
+Deactivate and cancel a payment link.
 
 *Returned Response:*
 
@@ -5450,6 +5656,8 @@ Success. Check the example shown below
 
 
 ---
+
+
 
 
 #### getPaymentModeControlRoutes
@@ -5846,110 +6054,6 @@ Success.
 ---
 
 
-#### getPaymentCodeOption
-List Payment Options Method Codes
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").payment.getPaymentCodeOption() { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-
-Get all active List Payment Options Method Codes
-
-*Returned Response:*
-
-
-
-
-[GetPaymentCodeResponse](#GetPaymentCodeResponse)
-
-List Order Beneficiary
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "description": "Successful Payment",
-    "method_code": {
-      "name": "Wallet",
-      "networks": "network",
-      "types": "",
-      "codes": {
-        "code": "W",
-        "merchant_code": "MOBIKWIK",
-        "MOBIKWIK": null,
-        "name": "Mobikwik"
-      }
-    },
-    "networks": [],
-    "types": [],
-    "name": "Net Banking",
-    "codes": {
-      "HDFC": {
-        "merchant_code": "HDFC",
-        "name": "HDFC Bank"
-      },
-      "ICIC": {
-        "merchant_code": "ICIC",
-        "name": "ICICI Bank"
-      }
-    },
-    "CARD": {
-      "codes": {
-        "ICICI": {
-          "merchant_code": "ICICI",
-          "name": "ICICI Bank"
-        },
-        "AXIS": {
-          "merchant_code": "AXIS",
-          "name": "AXIS Bank"
-        }
-      },
-      "networks": [
-        "RUPAY",
-        "VISA",
-        "MASTERCARD",
-        "MAESTRO",
-        "AMERICANEXPRESS",
-        "DINERSCLUB"
-      ],
-      "types": [
-        "CREDIT",
-        "DEBIT"
-      ],
-      "name": "CARD"
-    }
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getPaymentSession
 API to get payment session details
 
@@ -6048,160 +6152,8 @@ Success. Returns the details of payment session. Check the example shown below o
 ---
 
 
-#### updatePaymentSession
-API to update status of a payment.
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").payment.updatePaymentSession(gid: gid, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| gid | String | yes | global identifier of the entity (e.g. order, cart etc.) against which payment_session was initiated. This is generated by Fynd payments platform and is unique. |  
-| body | PaymentSessionRequestSerializer | yes | Request body |
-
-
-A payment_session is initiated against a global identifier (gid) which is identifies the entity payment is initiated against. e.g. order_id, cart_id. This endpoint is to update the status of the said payment_session.
-
-*Returned Response:*
-
-
-
-
-[PaymentSessionResponseSerializer](#PaymentSessionResponseSerializer)
-
-Success. Returns the status of Update or not. Check the example shown below or refer `PaymentSessionResponseSerializer` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; status_update_success</i></summary>
-
-```json
-{
-  "summary": "payment status updated successfully",
-  "value": {
-    "gid": "Payment Received",
-    "status": "initiated",
-    "total_amount": 100,
-    "currency": "INR",
-    "platform_transaction_details": [
-      {
-        "object": "platform_payment",
-        "transaction_id": "pay_wtt5r23mpebexcjsxzylyjhn7a",
-        "payment_id": "pay_wtt5r23mpebexcjsxzylyjhn7a"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateRefundSession
-API to update the status of a refund
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").payment.updateRefundSession(gid: gid, requestId: requestId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| gid | String | yes | global identifier of the entity (e.g. order, cart etc.) against which payment_session was initiated. This is generated by Fynd payments platform and is unique. |   
-| requestId | String | yes | A unique id that was used to initiate a refund session. This is generated by Fynd platform and is usually shipment_id. |  
-| body | RefundSessionRequestSerializer | yes | Request body |
-
-
-A refund_session is initiated against a refund request, and this endpoint is to update the status against the refund request_id. A gid is unique indentifier of the entity against which payment was received e.g. an order.
-
-*Returned Response:*
-
-
-
-
-[RefundSessionResponseSerializer](#RefundSessionResponseSerializer)
-
-Returns the response weather it is success or not. Check the example shown below or refer `RefundSessionResponseSerializer` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; status_update_success</i></summary>
-
-```json
-{
-  "summary": "refund status is updated successfully",
-  "value": {
-    "gid": "FY615DE25839C4AF3A1A",
-    "status": "initiated",
-    "total_refund_amount": 100,
-    "currency": "INR",
-    "platform_refund_details": [
-      {
-        "transaction_id": "pay_wtt5r23mpebexcjsxzylyjhn7a",
-        "refund_id": "act_4lan4lrf2bxexdbinmqoln4nda"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getMerchantPaymentOption
-Get Payment modes and COD details.
+Get merchant payment option
 
 
 
@@ -6217,7 +6169,7 @@ platformClient.application("<APPLICATION_ID>").payment.getMerchantPaymentOption(
 
 
 
-This api fetches all the available PGs for merchant and its offline payment mode details.
+Retrieve all the available Paymet Gateways for merchant and its offline payment mode details.
 
 *Returned Response:*
 
@@ -6306,7 +6258,7 @@ Success.
 
 
 #### patchMerchantPaymentOption
-Update Payment modes and COD details.
+Patch merchant payment option
 
 
 
@@ -6391,212 +6343,8 @@ Success.
 ---
 
 
-#### getMerchantAggregatorPaymentModeDetails
-Get Aggregator, payment mode and sub payment mode.
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").payment.getMerchantAggregatorPaymentModeDetails(aggregatorId: aggregatorId, businessUnit: businessUnit, device: device) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| aggregatorId | Int | yes | Aggregators Id |   
-| businessUnit | String | yes |  |   
-| device | String | yes |  |  
-
-
-
-Get Aggregator, payment mode and sub payment mode details.
-
-*Returned Response:*
-
-
-
-
-[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "business_unit": "storefront",
-  "device": "android",
-  "is_active": true,
-  "items": [
-    {
-      "id": 1,
-      "is_active": true
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### patchMerchantAggregatorPaymentModeDetails
-Update Aggregator, payment mode and sub payment mode.
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").payment.patchMerchantAggregatorPaymentModeDetails(aggregatorId: aggregatorId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| aggregatorId | Int | yes | Aggregators Id |  
-| body | PlatformPaymentModeResponse | yes | Request body |
-
-
-Update Aggregator, payment mode and sub payment mode details.
-
-*Returned Response:*
-
-
-
-
-[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "business_unit": "storefront",
-  "device": "android",
-  "is_active": true,
-  "items": [
-    {
-      "id": 1,
-      "is_active": true
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getPGConfigAggregators
-Get Aggregators available to be added as PG.
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").payment.getPGConfigAggregators() { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-
-Get Aggregators available to be added as PG.
-
-*Returned Response:*
-
-
-
-
-[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "",
-  "items": [
-    {
-      "id": 8,
-      "name": "Jio",
-      "slug": "jio",
-      "logos": {
-        "large": "",
-        "small": ""
-      },
-      "is_active": true,
-      "config": [
-        "self",
-        "fynd"
-      ],
-      "status": "active"
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getMerchantRefundPriority
-API to get merchant refund priority
+Get merchant refund priority
 
 
 
@@ -6617,7 +6365,7 @@ platformClient.application("<APPLICATION_ID>").payment.getMerchantRefundPriority
 
 
 
-API to get merchant refund priority
+Get merchant refund priority.
 
 *Returned Response:*
 
@@ -6687,7 +6435,7 @@ Success. Returns the status of Update or not. Check the example shown below or r
 
 
 #### createMerchantRefundPriority
-API to create merchant refund priority
+Crete merchant refund priority
 
 
 
@@ -6708,7 +6456,7 @@ platformClient.application("<APPLICATION_ID>").payment.createMerchantRefundPrior
 | body | RefundPriorityRequestSerializer | yes | Request body |
 
 
-API to update merchant refund priority
+Crete merchant refund priority.
 
 *Returned Response:*
 
@@ -7072,6 +6820,318 @@ Success.
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+#### getPaymentCodeOption
+Get payment mode code.
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").payment.getPaymentCodeOption() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Retrieve options for payment codes.
+
+*Returned Response:*
+
+
+
+
+[GetPaymentCodeResponse](#GetPaymentCodeResponse)
+
+List Order Beneficiary
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "description": "Successful Payment",
+    "method_code": {
+      "name": "Wallet",
+      "networks": "network",
+      "types": "",
+      "codes": {
+        "code": "W",
+        "merchant_code": "MOBIKWIK",
+        "MOBIKWIK": null,
+        "name": "Mobikwik"
+      }
+    },
+    "networks": [],
+    "types": [],
+    "name": "Net Banking",
+    "codes": {
+      "HDFC": {
+        "merchant_code": "HDFC",
+        "name": "HDFC Bank"
+      },
+      "ICIC": {
+        "merchant_code": "ICIC",
+        "name": "ICICI Bank"
+      }
+    },
+    "CARD": {
+      "codes": {
+        "ICICI": {
+          "merchant_code": "ICICI",
+          "name": "ICICI Bank"
+        },
+        "AXIS": {
+          "merchant_code": "AXIS",
+          "name": "AXIS Bank"
+        }
+      },
+      "networks": [
+        "RUPAY",
+        "VISA",
+        "MASTERCARD",
+        "MAESTRO",
+        "AMERICANEXPRESS",
+        "DINERSCLUB"
+      ],
+      "types": [
+        "CREDIT",
+        "DEBIT"
+      ],
+      "name": "CARD"
+    }
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+#### getMerchantAggregatorPaymentModeDetails
+Get merchant aggregator payment mode details.
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").payment.getMerchantAggregatorPaymentModeDetails(aggregatorId: aggregatorId, businessUnit: businessUnit, device: device) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| aggregatorId | Int | yes | Aggregators Id |   
+| businessUnit | String | yes |  |   
+| device | String | yes |  |  
+
+
+
+swagger not found. so operationId not found
+
+*Returned Response:*
+
+
+
+
+[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "business_unit": "storefront",
+  "device": "android",
+  "is_active": true,
+  "items": [
+    {
+      "id": 1,
+      "is_active": true
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### patchMerchantAggregatorPaymentModeDetails
+Patch merchant aggregator payment mode details.
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").payment.patchMerchantAggregatorPaymentModeDetails(aggregatorId: aggregatorId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| aggregatorId | Int | yes | Aggregators Id |  
+| body | PlatformPaymentModeResponse | yes | Request body |
+
+
+swagger not found. so operationId not found
+
+*Returned Response:*
+
+
+
+
+[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "business_unit": "storefront",
+  "device": "android",
+  "is_active": true,
+  "items": [
+    {
+      "id": 1,
+      "is_active": true
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPGConfigAggregators
+Get PG (Payment Gateway) config aggregators.
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").payment.getPGConfigAggregators() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+swagger not found. so operationId not found
+
+*Returned Response:*
+
+
+
+
+[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "",
+  "items": [
+    {
+      "id": 8,
+      "name": "Jio",
+      "slug": "jio",
+      "logos": {
+        "large": "",
+        "small": ""
+      },
+      "is_active": true,
+      "config": [
+        "self",
+        "fynd"
+      ],
+      "status": "active"
+    }
+  ]
+}
+```
 </details>
 
 

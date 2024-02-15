@@ -7,12 +7,18 @@
 ## Lead Methods
 The Leads Management module improves communication, support, and effective interaction. Utilize it to retrieve user tickets, create ticket histories, and generate new tickets. This module also enables you to set up video rooms for participants, providing room tokens for secure access.
 
-Default
+Ticket Management
 * [getTicket](#getticket)
 * [createHistory](#createhistory)
 * [createTicket](#createticket)
+
+
+Custom Form Handling
 * [getCustomForm](#getcustomform)
 * [submitCustomForm](#submitcustomform)
+
+
+Video Room Management
 * [getParticipantsInsideVideoRoom](#getparticipantsinsidevideoroom)
 * [getTokenForVideoRoom](#gettokenforvideoroom)
 
@@ -24,7 +30,7 @@ Default
 
 
 #### getTicket
-Get Ticket with the specific id
+Retrieves a support ticket.
 
 
 
@@ -45,7 +51,7 @@ applicationClient.lead.getTicket(id: id) { (response, error) in
 
 
 
-Get Ticket with the specific id, this is used to view the ticket details
+Retrieve details of a specific customer support ticket.
 
 *Returned Response:*
 
@@ -278,7 +284,7 @@ Success
 
 
 #### createHistory
-Create history for specific Ticket
+Logs ticket history.
 
 
 
@@ -299,7 +305,7 @@ applicationClient.lead.createHistory(id: id, body: body) { (response, error) in
 | body | TicketHistoryPayload | yes | Request body |
 
 
-Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+Adds a history entry for a specific support ticket.
 
 *Returned Response:*
 
@@ -375,7 +381,7 @@ Success
 
 
 #### createTicket
-Create Ticket
+Creates a new ticket.
 
 
 
@@ -395,7 +401,7 @@ applicationClient.lead.createTicket(body: body) { (response, error) in
 | body | AddTicketPayload | yes | Request body |
 
 
-This is used to Create Ticket.
+Generates a new customer support ticket for a user query.
 
 *Returned Response:*
 
@@ -627,8 +633,10 @@ Success
 ---
 
 
+
+
 #### getCustomForm
-Get specific Custom Form using it's slug
+Fetches custom form.
 
 
 
@@ -649,7 +657,7 @@ applicationClient.lead.getCustomForm(slug: slug) { (response, error) in
 
 
 
-Get specific Custom Form using it's slug, this is used to view the form.
+Retrieves a customizable form template for data collection.
 
 *Returned Response:*
 
@@ -736,7 +744,7 @@ Success
 
 
 #### submitCustomForm
-Submit Response for a specific Custom Form using it's slug
+Submits form data.
 
 
 
@@ -757,7 +765,7 @@ applicationClient.lead.submitCustomForm(slug: slug, body: body) { (response, err
 | body | CustomFormSubmissionPayload | yes | Request body |
 
 
-Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
+Sends user-entered data from a custom form for processing.
 
 *Returned Response:*
 
@@ -991,8 +999,10 @@ Success
 ---
 
 
+
+
 #### getParticipantsInsideVideoRoom
-Get participants of a specific Video Room using it's unique name
+Lists video room participants.
 
 
 
@@ -1013,7 +1023,7 @@ applicationClient.lead.getParticipantsInsideVideoRoom(uniqueName: uniqueName) { 
 
 
 
-Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
+Gets the current participants inside a specific video room.
 
 *Returned Response:*
 
@@ -1057,7 +1067,7 @@ Success
 
 
 #### getTokenForVideoRoom
-Get Token to join a specific Video Room using it's unqiue name
+Retrieves video room token.
 
 
 
@@ -1078,7 +1088,7 @@ applicationClient.lead.getTokenForVideoRoom(uniqueName: uniqueName) { (response,
 
 
 
-Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
+Retrieves a secure token for accessing a video chat room.
 
 *Returned Response:*
 

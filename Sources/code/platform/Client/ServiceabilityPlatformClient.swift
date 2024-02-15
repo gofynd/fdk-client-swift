@@ -25,7 +25,7 @@ extension PlatformClient {
             isActive: Bool?,
             channelId: String?,
             q: String?,
-            countryIsoCode: String?,
+            country: String?,
             state: String?,
             city: String?,
             pincode: String?,
@@ -71,9 +71,9 @@ if let value = q {
 }
 
 
-if let value = countryIsoCode {
+if let value = country {
     
-    xQuery["country_iso_code"] = value
+    xQuery["country"] = value
     
 }
 
@@ -144,8 +144,8 @@ if let value = sector {
         
         /**
         *
-        * Summary: Creates a new Zone
-        * Description: Creates a new zone with the specified mapping. A zone enables serviceability based on given regions. By creating a zone and including specific regions, you can ensure that the stores associated with the zone are serviceable for those added regions. This functionality is particularly useful when you need to ensure serviceability for multiple regions by grouping them into a single zone.
+        * Summary: Create zone.
+        * Description: Generate and add a new zone.
         **/
         public func createZone(
             body: CreateZoneData,
@@ -290,8 +290,8 @@ if let value = sector {
         
         /**
         *
-        * Summary: GET stores data
-        * Description: This API returns stores data.
+        * Summary: Get all stores.
+        * Description: Retrieve a list of all available stores data.
         **/
         public func getAllStores(
             

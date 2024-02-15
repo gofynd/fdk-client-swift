@@ -7,13 +7,19 @@
 ## Order Methods
 The Order and Shipment module is designed for retrieving application-specific orders, accessing order details, and obtaining shipment and invoice information. This module facilitates shipment tracking, allows customization of shipment details, and provides reasons for cancellations and returns. Additionally, it offers real-time shipment status updates.
 
-Default
+Order Details
 * [getOrders](#getorders)
 * [getOrderById](#getorderbyid)
 * [getPosOrderById](#getposorderbyid)
 * [getShipmentById](#getshipmentbyid)
-* [getInvoiceByShipmentId](#getinvoicebyshipmentid)
 * [trackShipment](#trackshipment)
+
+
+Receipt, Label and Invoice Download 
+* [getInvoiceByShipmentId](#getinvoicebyshipmentid)
+
+
+Default
 * [getCustomerDetailsByShipmentId](#getcustomerdetailsbyshipmentid)
 * [sendOtpToShipmentCustomer](#sendotptoshipmentcustomer)
 * [verifyOtpShipmentCustomer](#verifyotpshipmentcustomer)
@@ -29,7 +35,7 @@ Default
 
 
 #### getOrders
-Get all orders
+Lists customer orders.
 
 
 
@@ -57,7 +63,7 @@ applicationClient.order.getOrders(status: status, pageNo: pageNo, pageSize: page
 
 
 
-Use this API to retrieve all the orders.
+Retrieves all orders associated with a customer account.
 
 *Returned Response:*
 
@@ -91,7 +97,7 @@ Success. Returns all the orders. Check the example shown below or refer `OrderLi
 
 
 #### getOrderById
-Get details of an order
+Fetches order by ID.
 
 
 
@@ -113,7 +119,7 @@ applicationClient.order.getOrderById(orderId: orderId, allowInactive: allowInact
 
 
 
-Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
+Retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
 
 *Returned Response:*
 
@@ -215,6 +221,13 @@ Success. Check the example shown below or refer `OrderById` for more details.
     "shipments": [
       {
         "order_id": "FY632D541F01152493D0",
+        "order": {
+          "meta": {
+            "custom_cart_id": "652ce6972512f05477a32547",
+            "name": "Universal/Smart Bazar/Fresh Cart",
+            "slug": "universal/smart-bazar/fresh-cart"
+          }
+        },
         "breakup_values": [
           {
             "name": "mrp_total",
@@ -483,7 +496,14 @@ Success. Check the example shown below or refer `OrderById` for more details.
             "can_cancel": true,
             "can_return": false,
             "delivery_date": null,
-            "returnable_date": null
+            "returnable_date": null,
+            "article": [
+              {
+                "tags": [
+                  "1P"
+                ]
+              }
+            ]
           }
         ],
         "size_info": {
@@ -1119,7 +1139,7 @@ Success. Check the example shown below or refer `OrderById` for more details.
 
 
 #### getPosOrderById
-Get POS Order
+Retrieves POS order details.
 
 
 
@@ -1140,7 +1160,7 @@ applicationClient.order.getPosOrderById(orderId: orderId) { (response, error) in
 
 
 
-Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
+Retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
 
 *Returned Response:*
 
@@ -1461,7 +1481,7 @@ Success. Check the example shown below or refer `PosOrderById` for more details.
 
 
 #### getShipmentById
-Get details of a shipment
+Fetches shipment by ID.
 
 
 
@@ -1483,7 +1503,7 @@ applicationClient.order.getShipmentById(shipmentId: shipmentId, allowInactive: a
 
 
 
-Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
+Retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
 
 *Returned Response:*
 
@@ -1504,6 +1524,13 @@ Success. Check the example shown below or refer `ShipmentById` for more details.
 {
   "shipment": {
     "order_id": "FY62F3B8290150D13E36",
+    "order": {
+      "meta": {
+        "custom_cart_id": "652ce6972512f05477a32547",
+        "name": "Universal/Smart Bazar/Fresh Cart",
+        "slug": "universal/smart-bazar/fresh-cart"
+      }
+    },
     "breakup_values": [
       {
         "name": "mrp_total",
@@ -1722,7 +1749,14 @@ Success. Check the example shown below or refer `ShipmentById` for more details.
           31
         ],
         "can_cancel": false,
-        "can_return": false
+        "can_return": false,
+        "article": [
+          {
+            "tags": [
+              "1P"
+            ]
+          }
+        ]
       }
     ],
     "size_info": {
@@ -1898,63 +1932,8 @@ Success. Check the example shown below or refer `ShipmentById` for more details.
 ---
 
 
-#### getInvoiceByShipmentId
-Get Invoice of a shipment
-
-
-
-
-```swift
-applicationClient.order.getInvoiceByShipmentId(shipmentId: shipmentId) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| shipmentId | String | yes | ID of the shipment. |  
-
-
-
-Use this API to retrieve shipment invoice.
-
-*Returned Response:*
-
-
-
-
-[ResponseGetInvoiceShipment](#ResponseGetInvoiceShipment)
-
-Success. Check the example shown below or refer `ShipmentById` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### trackShipment
-Track shipment
+Tracks shipment status.
 
 
 
@@ -1975,7 +1954,7 @@ applicationClient.order.trackShipment(shipmentId: shipmentId) { (response, error
 
 
 
-Track Shipment by shipment id, for application based on application Id
+Track Shipment by shipment id, for application based on application Id.
 
 *Returned Response:*
 
@@ -2021,8 +2000,67 @@ Success. Check the example shown below or refer `ShipmentTrack` for more details
 ---
 
 
+
+
+#### getInvoiceByShipmentId
+Retrieves invoice for shipment.
+
+
+
+
+```swift
+applicationClient.order.getInvoiceByShipmentId(shipmentId: shipmentId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| shipmentId | String | yes | ID of the shipment. |  
+
+
+
+Retrieve the invoice corresponding to a specific shipment ID.
+
+*Returned Response:*
+
+
+
+
+[ResponseGetInvoiceShipment](#ResponseGetInvoiceShipment)
+
+Success. Check the example shown below or refer `ShipmentById` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
 #### getCustomerDetailsByShipmentId
-Get Customer Details by Shipment Id
+Retrieves shipment customer.
 
 
 
@@ -2044,7 +2082,7 @@ applicationClient.order.getCustomerDetailsByShipmentId(orderId: orderId, shipmen
 
 
 
-Use this API to retrieve customer details such as mobileno using Shipment ID.
+Retrieve customer details such as mobile number using Shipment ID.
 
 *Returned Response:*
 
@@ -2084,7 +2122,7 @@ Success. Check the example shown below or refer `CustomerDetailsByShipmentId` fo
 
 
 #### sendOtpToShipmentCustomer
-Send and Resend Otp code to Order-Shipment customer
+Sends OTP to customer.
 
 
 
@@ -2106,7 +2144,7 @@ applicationClient.order.sendOtpToShipmentCustomer(orderId: orderId, shipmentId: 
 
 
 
-Use this API to send OTP to the customer of the mapped Shipment.
+Sends a one-time password (OTP) to the customer for shipment verification.
 
 *Returned Response:*
 
@@ -2145,7 +2183,7 @@ Success to acknowledge the service was notified
 
 
 #### verifyOtpShipmentCustomer
-Verify Otp code
+Verifies OTP.
 
 
 
@@ -2167,7 +2205,7 @@ applicationClient.order.verifyOtpShipmentCustomer(orderId: orderId, shipmentId: 
 | body | VerifyOtp | yes | Request body |
 
 
-Use this API to verify OTP and create a session token with custom payload.
+Confirms the OTP sent to the shipment customer for verification.
 
 *Returned Response:*
 
@@ -2203,7 +2241,7 @@ Success, the code is valid and returns a session token
 
 
 #### getShipmentBagReasons
-Get reasons behind full or partial cancellation of a shipment
+Lists bag reasons.
 
 
 
@@ -2225,7 +2263,7 @@ applicationClient.order.getShipmentBagReasons(shipmentId: shipmentId, bagId: bag
 
 
 
-Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+Retrieves reasons that led to the cancellation for the status of shipment bags.
 
 *Returned Response:*
 
@@ -2301,7 +2339,7 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
 
 #### getShipmentReasons
-Get reasons behind full or partial cancellation of a shipment
+Lists shipment reasons.
 
 
 
@@ -2322,7 +2360,7 @@ applicationClient.order.getShipmentReasons(shipmentId: shipmentId) { (response, 
 
 
 
-Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+Retrieve reasons explaining various shipment statuses.
 
 *Returned Response:*
 
@@ -2439,7 +2477,7 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
 
 #### updateShipmentStatus
-Update the shipment status
+Updates shipment status.
 
 
 
@@ -2460,7 +2498,7 @@ applicationClient.order.updateShipmentStatus(shipmentId: shipmentId, body: body)
 | body | UpdateShipmentStatusRequest | yes | Request body |
 
 
-Use this API to update the status of a shipment using its shipment ID.
+Modifies the current status of a specific shipment using its shipment ID.
 
 *Returned Response:*
 
@@ -2887,6 +2925,7 @@ Successfully updateShipmentStatus!
  | currencyCode | String? |  yes  |  |
  | sellerIdentifier | String? |  yes  |  |
  | currentStatus | [CurrentStatus](#CurrentStatus)? |  yes  |  |
+ | article | [Article](#Article)? |  yes  |  |
 
 ---
 
@@ -2899,6 +2938,17 @@ Successfully updateShipmentStatus!
  | ---------- | ---- | -------- | ----------- |
  | id | Int? |  yes  |  |
  | name | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Article](#Article)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tags | [String]? |  yes  |  |
 
 ---
 
@@ -2980,6 +3030,7 @@ Successfully updateShipmentStatus!
  | needHelpUrl | String? |  yes  |  |
  | returnMeta | [String: Any]? |  yes  |  |
  | deliveryDate | String? |  yes  |  |
+ | order | [OrderRequest](#OrderRequest)? |  yes  |  |
 
 ---
 
@@ -3431,6 +3482,17 @@ Successfully updateShipmentStatus!
  | shipments | [[ShipmentsRequest](#ShipmentsRequest)]? |  yes  |  |
  | excludeBagsNextState | String? |  yes  |  |
  | status | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderRequest](#OrderRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | meta | [String: Any]? |  yes  |  |
 
 ---
 

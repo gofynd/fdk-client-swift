@@ -7,7 +7,7 @@
 ## Share Methods
 Short link and QR Code
 
-Default
+URL Shortner
 * [createShortLink](#createshortlink)
 * [getShortLinks](#getshortlinks)
 * [getShortLinkByHash](#getshortlinkbyhash)
@@ -22,7 +22,7 @@ Default
 
 
 #### createShortLink
-Create short link
+Create short link.
 
 
 
@@ -42,7 +42,7 @@ platformClient.application("<APPLICATION_ID>").share.createShortLink(body: body)
 | body | ShortLinkReq | yes | Request body |
 
 
-Create short link
+Generate a shortened URL link for sharing.
 
 *Returned Response:*
 
@@ -116,7 +116,7 @@ Success
 
 
 #### getShortLinks
-Get short links
+Get short links.
 
 
 
@@ -143,7 +143,7 @@ platformClient.application("<APPLICATION_ID>").share.getShortLinks(pageNo: pageN
 
 
 
-Get short links
+Retrieve a list of all generated short links.
 
 *Returned Response:*
 
@@ -228,7 +228,7 @@ Success
 
 
 #### getShortLinkByHash
-Get short link by hash
+Get short link by hash.
 
 
 
@@ -249,7 +249,7 @@ platformClient.application("<APPLICATION_ID>").share.getShortLinkByHash(hash: ha
 
 
 
-Get short link by hash
+Retrieve a specific short link by its unique hash.
 
 *Returned Response:*
 
@@ -323,7 +323,7 @@ Success
 
 
 #### updateShortLinkById
-Update short link by id
+Update short link by ID.
 
 
 
@@ -344,7 +344,7 @@ platformClient.application("<APPLICATION_ID>").share.updateShortLinkById(id: id,
 | body | ShortLinkReq | yes | Request body |
 
 
-Update short link by id
+Update details of a specific short link by its ID.
 
 *Returned Response:*
 
@@ -418,7 +418,7 @@ Success
 
 
 #### getShortLinkClickStats
-Get click statistics for a short link
+Get short link click statistics.
 
 
 
@@ -439,7 +439,7 @@ platformClient.application("<APPLICATION_ID>").share.getShortLinkClickStats(surl
 
 
 
-Retrieve click statistics for a given short link ID.
+Retrieve statistics and analytics for clicks on a short link.
 
 *Returned Response:*
 

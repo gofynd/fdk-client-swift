@@ -5,11 +5,11 @@ import Foundation
 
 public extension PlatformClient.Catalog {
     /*
-        Model: CollectionItemUpdateSchemaV2
+        Model: CollectionItemUpdateSchema
         Used By: Catalog
     */
 
-    class CollectionItemUpdateSchemaV2: Codable {
+    class CollectionItemUpdateSchema: Codable {
         
         
         public var allowFacets: Bool?
@@ -169,11 +169,11 @@ public extension PlatformClient.Catalog {
 
 public extension PlatformClient.ApplicationClient.Catalog {
     /*
-        Model: CollectionItemUpdateSchemaV2
+        Model: CollectionItemUpdateSchema
         Used By: Catalog
     */
 
-    class CollectionItemUpdateSchemaV2: Codable {
+    class CollectionItemUpdateSchema: Codable {
         
         
         public var allowFacets: Bool?

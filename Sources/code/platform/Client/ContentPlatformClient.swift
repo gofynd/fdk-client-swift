@@ -194,8 +194,8 @@ extension PlatformClient {
         public func getCustomFieldDefinitions(
             pageNo: String,
             pageSize: String,
-            resource: String?,
-            type: String?,
+            resources: String?,
+            types: String?,
             search: String?,
             
             onResponse: @escaping (_ response: CustomFieldDefinitionsSchema?, _ error: FDKError?) -> Void
@@ -213,16 +213,16 @@ var xQuery: [String: Any] = [:]
 
 
 
-if let value = resource {
+if let value = resources {
     
-    xQuery["resource"] = value
+    xQuery["resources"] = value
     
 }
 
 
-if let value = type {
+if let value = types {
     
-    xQuery["type"] = value
+    xQuery["types"] = value
     
 }
 

@@ -9,14 +9,8 @@ Logistics Configuration API's allows you to configure zone, application logistic
 
 Default
 * [getZones](#getzones)
-* [createZone](#createzone)
 * [updateZoneById](#updatezonebyid)
 * [getZoneById](#getzonebyid)
-* [getAllStores](#getallstores)
-* [updatePincodeMopView](#updatepincodemopview)
-* [updatePincodeBulkView](#updatepincodebulkview)
-* [updatePincodeCoDListing](#updatepincodecodlisting)
-* [updatePincodeAuditHistory](#updatepincodeaudithistory)
 * [createCourierPartnerAccount](#createcourierpartneraccount)
 * [getCourierPartnerAccounts](#getcourierpartneraccounts)
 * [updateCourierPartnerAccount](#updatecourierpartneraccount)
@@ -53,7 +47,22 @@ Default
 * [updatePackageMaterials](#updatepackagematerials)
 * [getPackageMaterials](#getpackagematerials)
 * [updateCourierPartnerRulePriority](#updatecourierpartnerrulepriority)
+
+
+Zone Management
+* [createZone](#createzone)
+
+
+Store Management
+* [getAllStores](#getallstores)
 * [getOptimalLocations](#getoptimallocations)
+
+
+Delivery Partners (DP) and Rules Managemen
+* [updatePincodeMopView](#updatepincodemopview)
+* [updatePincodeBulkView](#updatepincodebulkview)
+* [updatePincodeCoDListing](#updatepincodecodlisting)
+* [updatePincodeAuditHistory](#updatepincodeaudithistory)
 
 
 
@@ -69,7 +78,7 @@ Shows zones defined at the company level
 
 
 ```swift
-platformClient.serviceability.getZones(pageNo: pageNo, pageSize: pageSize, isActive: isActive, channelId: channelId, q: q, countryIsoCode: countryIsoCode, state: state, city: city, pincode: pincode, sector: sector) { (response, error) in
+platformClient.serviceability.getZones(pageNo: pageNo, pageSize: pageSize, isActive: isActive, channelId: channelId, q: q, country: country, state: state, city: city, pincode: pincode, sector: sector) { (response, error) in
     // Use response
 }
 ```
@@ -85,7 +94,7 @@ platformClient.serviceability.getZones(pageNo: pageNo, pageSize: pageSize, isAct
 | isActive | Bool? | no | Status of Zone (either active or inactive) |   
 | channelId | String? | no | Zones filtered by an application |   
 | q | String? | no | search with name as a free text |   
-| countryIsoCode | String? | no | ISO2 code of the country |   
+| country | String? | no | ISO2 code of the country |   
 | state | String? | no | State name |   
 | city | String? | no | City name |   
 | pincode | String? | no | Pincode value to search zones |   
@@ -131,79 +140,27 @@ Zone List of application in descending order of their last modified date.
         ],
         "zone_id": "64c3a0926ea670363c8e2e3d",
         "stores_count": 2,
-        "regions_count": 4242
+        "regions_count": 4242,
+        "product": {
+          "count": 0,
+          "type": "all"
+        }
       }
     ],
-    "page": {
-      "type": "number",
-      "size": 1,
-      "current": 1,
-      "has_next": false,
-      "item_total": 1
-    }
+    "page": [
+      {
+        "type": "number",
+        "size": 1,
+        "current": 1,
+        "has_next": false,
+        "item_total": 1
+      }
+    ]
   }
 }
 ```
 </details>
 
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### createZone
-Creates a new Zone
-
-
-
-
-```swift
-platformClient.serviceability.createZone(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | CreateZoneData | yes | Request body |
-
-
-Creates a new zone with the specified mapping. A zone enables serviceability based on given regions. By creating a zone and including specific regions, you can ensure that the stores associated with the zone are serviceable for those added regions. This functionality is particularly useful when you need to ensure serviceability for multiple regions by grouping them into a single zone.
-
-*Returned Response:*
-
-
-
-
-[ZoneResponse](#ZoneResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "status_code": 200,
-  "zone_id": "64809f27f2b8f575d5cb9c56"
-}
-```
 </details>
 
 
@@ -367,275 +324,6 @@ Get details of the Zone
 ```
 </details>
 
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getAllStores
-GET stores data
-
-
-
-
-```swift
-platformClient.serviceability.getAllStores() { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-
-This API returns stores data.
-
-*Returned Response:*
-
-
-
-
-[GetStoresViewResponse](#GetStoresViewResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### updatePincodeMopView
-PincodeView update of MOP.
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeMopView(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | PincodeMopData | yes | Request body |
-
-
-This API updates Pincode method of payment.
-
-*Returned Response:*
-
-
-
-
-[PincodeMOPresponse](#PincodeMOPresponse)
-
-Response Data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### updatePincodeBulkView
-Bulk Update of pincode in the application.
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeBulkView(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | PincodeMopBulkData | yes | Request body |
-
-
-This API constructs bulk write operations to update the MOP data for each pincode in the payload.
-
-*Returned Response:*
-
-
-
-
-[PincodeBulkViewResponse](#PincodeBulkViewResponse)
-
-Response Data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "batch_id": "string",
-  "s3_url": "string"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### updatePincodeCoDListing
-Pincode count view of application.
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeCoDListing(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | PincodeCodStatusListingRequest | yes | Request body |
-
-
-This API returns count of active pincode.
-
-*Returned Response:*
-
-
-
-
-[PincodeCodStatusListingResponse](#PincodeCodStatusListingResponse)
-
-Response Data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### updatePincodeAuditHistory
-Auditlog configuration of application.
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeAuditHistory(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | PincodeMopUpdateAuditHistoryRequest | yes | Request body |
-
-
-This API returns Audit logs of Pincode.
-
-*Returned Response:*
-
-
-
-
-[PincodeMopUpdateAuditHistoryResponseData](#PincodeMopUpdateAuditHistoryResponseData)
-
-Response Data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
 </details>
 
 
@@ -2315,50 +2003,48 @@ Response status_code
 ```json
 {
   "value": {
-    "items": [
-      {
-        "id": "64b8526e5ca47d41582b9fa1",
-        "name": "Package1",
-        "item_id": 1234,
-        "company_id": 1,
-        "length": 1,
-        "height": 1,
-        "width": 1,
-        "weight": 1,
-        "error_rate": 0,
-        "store_ids": [
-          1,
-          9,
-          5
-        ],
-        "rules": [
-          {
-            "rule_id": "64b4337a0c607fbfbcd0156b",
-            "quantity": {
-              "min": 1,
-              "max": 2
-            },
-            "weight": 100
-          }
-        ],
-        "channels": [
-          {
-            "id": "64b4337a0c607fbfbcd0190b",
-            "type": "application"
-          }
-        ],
-        "media": [
-          "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/sandbx/wrkr/sandeepmaale/products/pictures/bundle/free/original/LOc5XW0cc-Logo.png"
-        ],
-        "package_type": "box",
-        "size": "small",
-        "status": "active",
-        "track_inventory": true,
-        "max_weight": 100,
-        "package_vol_weight": 100,
-        "auto_calculate": true
-      }
-    ],
+    "items": {
+      "id": "64b8526e5ca47d41582b9fa1",
+      "name": "Package1",
+      "item_id": 1234,
+      "company_id": 1,
+      "length": 1,
+      "height": 1,
+      "width": 1,
+      "weight": 1,
+      "error_rate": 0,
+      "store_ids": [
+        1,
+        9,
+        5
+      ],
+      "rules": [
+        {
+          "rule_id": "64b4337a0c607fbfbcd0156b",
+          "quantity": {
+            "min": 1,
+            "max": 2
+          },
+          "weight": 100
+        }
+      ],
+      "channels": [
+        {
+          "id": "64b4337a0c607fbfbcd0190b",
+          "type": "application"
+        }
+      ],
+      "media": [
+        "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/sandbx/wrkr/sandeepmaale/products/pictures/bundle/free/original/LOc5XW0cc-Logo.png"
+      ],
+      "package_type": "box",
+      "size": "small",
+      "status": "active",
+      "track_inventory": true,
+      "max_weight": 100,
+      "package_vol_weight": 100,
+      "auto_calculate": true
+    },
     "page": {
       "type": "number",
       "size": 1,
@@ -2519,33 +2205,31 @@ Response status_code
 ```json
 {
   "value": {
-    "items": [
-      {
-        "id": "64b4337a0c607fbfbcd0156b",
-        "company_id": 1,
-        "name": "Rule For Dev Contract",
-        "category_id": {
-          "includes": [
-            1,
-            2
-          ]
-        },
-        "product_tag": {
-          "includes": [
-            "abc",
-            "xyz"
-          ]
-        },
-        "product_id": {
-          "includes": [
-            1,
-            2
-          ]
-        },
-        "type": "package",
-        "is_active": true
-      }
-    ],
+    "items": {
+      "id": "64b4337a0c607fbfbcd0156b",
+      "company_id": 1,
+      "name": "Rule For Dev Contract",
+      "category_id": {
+        "includes": [
+          1,
+          2
+        ]
+      },
+      "product_tag": {
+        "includes": [
+          "abc",
+          "xyz"
+        ]
+      },
+      "product_id": {
+        "includes": [
+          1,
+          2
+        ]
+      },
+      "type": "package",
+      "is_active": true
+    },
     "page": {
       "type": "number",
       "size": 1,
@@ -2959,6 +2643,118 @@ Response status_code
 ---
 
 
+
+
+#### createZone
+Create zone.
+
+
+
+
+```swift
+platformClient.serviceability.createZone(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | CreateZoneData | yes | Request body |
+
+
+Generate and add a new zone.
+
+*Returned Response:*
+
+
+
+
+[ZoneResponse](#ZoneResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "status_code": 200,
+  "zone_id": "64809f27f2b8f575d5cb9c56"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+#### getAllStores
+Get all stores.
+
+
+
+
+```swift
+platformClient.serviceability.getAllStores() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Retrieve a list of all available stores data.
+
+*Returned Response:*
+
+
+
+
+[GetStoresViewResponse](#GetStoresViewResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getOptimalLocations
 Retrieve optimal locations
 
@@ -2990,6 +2786,227 @@ Retrieve optimal locations based on the specific criteria
 [OptimalLocationsResponse](#OptimalLocationsResponse)
 
 Optimal Locations Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+#### updatePincodeMopView
+Update pincode MOP (Mode of Payment) view.
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeMopView(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | PincodeMopData | yes | Request body |
+
+
+Modify and update views related to pincode MOP.
+
+*Returned Response:*
+
+
+
+
+[PincodeMOPresponse](#PincodeMOPresponse)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePincodeBulkView
+Update pincode bulk view.
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeBulkView(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | PincodeMopBulkData | yes | Request body |
+
+
+Modify and update views related to bulk operations on pincode.
+
+*Returned Response:*
+
+
+
+
+[PincodeBulkViewResponse](#PincodeBulkViewResponse)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "batch_id": "string",
+  "s3_url": "string"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePincodeCoDListing
+Update pincode CoD (Cash on Delivery) listing.
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeCoDListing(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | PincodeCodStatusListingRequest | yes | Request body |
+
+
+Modify and update listings for CoD based on pincode.
+
+*Returned Response:*
+
+
+
+
+[PincodeCodStatusListingResponse](#PincodeCodStatusListingResponse)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePincodeAuditHistory
+Update pincode audit history.
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeAuditHistory(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | PincodeMopUpdateAuditHistoryRequest | yes | Request body |
+
+
+Modify and update audit history records for pincode-related activities.
+
+*Returned Response:*
+
+
+
+
+[PincodeMopUpdateAuditHistoryResponseData](#PincodeMopUpdateAuditHistoryResponseData)
+
+Response Data
 
 
 

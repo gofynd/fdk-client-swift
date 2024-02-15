@@ -37,8 +37,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get Ticket with the specific id
-        * Description: Get Ticket with the specific id, this is used to view the ticket details
+        * Summary: Retrieves a support ticket.
+        * Description: Retrieve details of a specific customer support ticket.
         **/
         public func getTicket(
             id: String,
@@ -90,8 +90,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Create history for specific Ticket
-        * Description: Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+        * Summary: Logs ticket history.
+        * Description: Adds a history entry for a specific support ticket.
         **/
         public func createHistory(
             id: String,
@@ -143,8 +143,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Create Ticket
-        * Description: This is used to Create Ticket.
+        * Summary: Creates a new ticket.
+        * Description: Generates a new customer support ticket for a user query.
         **/
         public func createTicket(
             body: AddTicketPayload,
@@ -193,8 +193,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get specific Custom Form using it's slug
-        * Description: Get specific Custom Form using it's slug, this is used to view the form.
+        * Summary: Fetches custom form.
+        * Description: Retrieves a customizable form template for data collection.
         **/
         public func getCustomForm(
             slug: String,
@@ -246,8 +246,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Submit Response for a specific Custom Form using it's slug
-        * Description: Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
+        * Summary: Submits form data.
+        * Description: Sends user-entered data from a custom form for processing.
         **/
         public func submitCustomForm(
             slug: String,
@@ -299,8 +299,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get participants of a specific Video Room using it's unique name
-        * Description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
+        * Summary: Lists video room participants.
+        * Description: Gets the current participants inside a specific video room.
         **/
         public func getParticipantsInsideVideoRoom(
             uniqueName: String,
@@ -352,8 +352,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get Token to join a specific Video Room using it's unqiue name
-        * Description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
+        * Summary: Retrieves video room token.
+        * Description: Retrieves a secure token for accessing a video chat room.
         **/
         public func getTokenForVideoRoom(
             uniqueName: String,

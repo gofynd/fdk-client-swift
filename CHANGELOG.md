@@ -1,4 +1,4 @@
-# CHANGE LOG (1.4.2-beta.4) - v1.9.1-prerelease-v4
+# CHANGE LOG (1.4.2-beta.5) - v1.9.1-prerelease-v5
 
 ## Application Client
 
@@ -8,22 +8,121 @@
 
 
 
+#### getCart
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from `date` to `date-time` of property `lastModified` of schema `CartDetailResponse` in response with status code 200
+
+
+#### addItems
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from `date` to `date-time` of property `cart.lastModified` of schema `CartDetailResponse` in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Added] `query` parameter `cartType` (type: `string`)
+
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from `date` to `date-time` of property `cart.lastModified` of schema `CartDetailResponse` in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] `query` parameter `cartType` (type: `string`)
+
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from `date` to `date-time` of property `lastModified` of schema `CartDetailResponse` in response with status code 201
+
+
+#### removeCoupon
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from `date` to `date-time` of property `lastModified` of schema `CartDetailResponse` in response with status code 200
+
+
+#### applyRewardPoints
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from `date` to `date-time` of property `lastModified` of schema `CartDetailResponse` in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from `date` to `date-time` of property `lastModified` of schema `CartDetailResponse` in response with status code 201
+
+
+#### selectPaymentMode
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from `date` to `date-time` of property `lastModified` of schema `CartDetailResponse` in response with status code 200
+
+
+#### validateCouponForPayment
+
+- ##### What's New
+	- [Added] `query` parameter `cartType` (type: `string`)
+
+
+
+#### getShipments
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from `date` to `date-time` of property `lastModified` of schema `CartShipmentsResponse` in response with status code 200
+
+
 #### checkoutCart
 
 - ##### What's New
+	- [Added] `query` parameter `cartType` (type: `string`)
+
 	- [Added] property `iin` of schema `CartCheckoutDetailRequest` in request body
 	- [Added] property `network` of schema `CartCheckoutDetailRequest` in request body
 	- [Added] property `type` of schema `CartCheckoutDetailRequest` in request body
 	- [Added] property `cardId` of schema `CartCheckoutDetailRequest` in request body
 
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from `date` to `date-time` of property `cart.lastModified` of schema `CheckCart` in response with status code 200
+
+
+#### getCartSharedItems
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from `date` to `date-time` of property `cart.lastModified` of schema `SharedCart` in response with status code 200
+	- [Breaking] [Changed] Value format from `date` to `date-time` of property `cart.lastModified` of schema `SharedCart` in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from `date` to `date-time` of property `cart.lastModified` of schema `SharedCart` in response with status code 200
+
+
+#### getPromotionOffers
+
+- ##### What's New
+	- [Added] `query` parameter `cartType` (type: `string`)
+
+
 
 #### checkoutCartV2
 
 - ##### What's New
+	- [Added] `query` parameter `cartType` (type: `string`)
+
 	- [Added] property `iin` of schema `CartCheckoutDetailV2Request` in request body
 	- [Added] property `network` of schema `CartCheckoutDetailV2Request` in request body
 	- [Added] property `type` of schema `CartCheckoutDetailV2Request` in request body
 	- [Added] property `cardId` of schema `CartCheckoutDetailV2Request` in request body
+
+- ##### What's Changed
+	- [Breaking] [Changed] Value format from `date` to `date-time` of property `cart.lastModified` of schema `CheckCart` in response with status code 200
 
 
 ### Order
@@ -36,6 +135,8 @@
 	- [Added] property `items[].shipments[].prices.amountToBeCollected` of schema `Prices` in response with status code 200
 	- [Added] property `items[].shipments[].bags[].prices.amountToBeCollected` of schema `Prices` in response with status code 200
 	- [Added] property `items[].shipments[].bags[].financialBreakup[].amountToBeCollected` of schema `FinancialBreakup` in response with status code 200
+	- [Added] property `items[].shipments[].bags[].article` of schema `Bags` in response with status code 200
+	- [Added] property `items[].shipments[].order` of schema `Shipments` in response with status code 200
 	- [Added] property `items[].shipments[].paymentInfo` of schema `Shipments` in response with status code 200
 
 
@@ -45,6 +146,8 @@
 	- [Added] property `order.shipments[].prices.amountToBeCollected` of schema `Prices` in response with status code 200
 	- [Added] property `order.shipments[].bags[].prices.amountToBeCollected` of schema `Prices` in response with status code 200
 	- [Added] property `order.shipments[].bags[].financialBreakup[].amountToBeCollected` of schema `FinancialBreakup` in response with status code 200
+	- [Added] property `order.shipments[].bags[].article` of schema `Bags` in response with status code 200
+	- [Added] property `order.shipments[].order` of schema `Shipments` in response with status code 200
 	- [Added] property `order.shipments[].paymentInfo` of schema `Shipments` in response with status code 200
 
 
@@ -54,6 +157,8 @@
 	- [Added] property `order.shipments[].prices.amountToBeCollected` of schema `Prices` in response with status code 200
 	- [Added] property `order.shipments[].bags[].prices.amountToBeCollected` of schema `Prices` in response with status code 200
 	- [Added] property `order.shipments[].bags[].financialBreakup[].amountToBeCollected` of schema `FinancialBreakup` in response with status code 200
+	- [Added] property `order.shipments[].bags[].article` of schema `Bags` in response with status code 200
+	- [Added] property `order.shipments[].order` of schema `Shipments` in response with status code 200
 	- [Added] property `order.shipments[].paymentInfo` of schema `Shipments` in response with status code 200
 
 
@@ -63,6 +168,8 @@
 	- [Added] property `shipment.prices.amountToBeCollected` of schema `Prices` in response with status code 200
 	- [Added] property `shipment.bags[].prices.amountToBeCollected` of schema `Prices` in response with status code 200
 	- [Added] property `shipment.bags[].financialBreakup[].amountToBeCollected` of schema `FinancialBreakup` in response with status code 200
+	- [Added] property `shipment.bags[].article` of schema `Bags` in response with status code 200
+	- [Added] property `shipment.order` of schema `Shipments` in response with status code 200
 	- [Added] property `shipment.paymentInfo` of schema `Shipments` in response with status code 200
 
 
@@ -82,12 +189,6 @@
 	- [Added] property `paymentOptions.paymentDefaultSelection` of schema `PaymentOptionAndFlow` in response with status code 200
 
 
-#### walletLinkInitate
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `walletLinkInitate` to `walletLinkInitiate`
-
-
 #### validateVPA
 
 - ##### What's New
@@ -98,6 +199,12 @@
 
 - ##### What's New
 	- [Added] property `paymentOptions.paymentDefaultSelection` of schema `PaymentOptionAndFlow` in response with status code 200
+
+
+#### createPaymentOrder
+
+- ##### What's Deprecated
+	- [Deleted] Required status from property `success` in response with status code 200
 
 
 ### User
@@ -550,6 +657,106 @@
 
 
 
+#### createCoupon
+
+- ##### What's New
+	- [Added] property `error` of schema `OperationErrorResponse` in response with status code 400
+
+
+#### getCouponById
+
+- ##### What's New
+	- [Added] property `error` of schema `OperationErrorResponse` in response with status code 404
+
+
+#### updateCoupon
+
+- ##### What's New
+	- [Added] property `error` of schema `OperationErrorResponse` in response with status code 404
+
+
+#### updateCouponPartially
+
+- ##### What's New
+	- [Added] property `error` of schema `OperationErrorResponse` in response with status code 404
+
+
+#### getPromotions
+
+- ##### What's New
+	- [Added] property `items[].tags` of schema `PromotionListItem` in response with status code 200
+
+
+#### createPromotion
+
+- ##### What's New
+	- [Added] property `tags` of schema `PromotionAdd` in request body
+	- [Added] property `tags` of schema `PromotionAdd` in response with status code 201
+	- [Added] property `error` of schema `OperationErrorResponse` in response with status code 400
+
+
+#### getPromotionById
+
+- ##### What's New
+	- [Added] property `tags` of schema `PromotionUpdate` in response with status code 200
+	- [Added] property `error` of schema `OperationErrorResponse` in response with status code 404
+
+
+#### updatePromotion
+
+- ##### What's New
+	- [Added] property `tags` of schema `PromotionUpdate` in request body
+	- [Added] property `tags` of schema `PromotionUpdate` in response with status code 200
+	- [Added] property `error` of schema `OperationErrorResponse` in response with status code 404
+
+
+#### updatePromotionPartially
+
+- ##### What's New
+	- [Added] property `error` of schema `OperationErrorResponse` in response with status code 404
+
+
+#### updateCartMetaConfig
+
+- ##### What's New
+	- [Added] property `maxCartValue` of schema `CartMetaConfigUpdate` in request body
+	- [Added] property `maxCartValue` of schema `CartMetaConfigUpdate` in response with status code 200
+	- [Added] property `error` of schema `OperationErrorResponse` in response with status code 400
+
+
+#### fetchCartMetaConfig
+
+- ##### What's New
+	- [Added] property `maxCartValue` of schema `CartMetaConfigAdd` in response with status code 200
+	- [Added] property `error` of schema `OperationErrorResponse` in response with status code 400
+
+
+#### createCartMetaConfig
+
+- ##### What's New
+	- [Added] property `maxCartValue` of schema `CartMetaConfigAdd` in request body
+	- [Added] property `maxCartValue` of schema `CartMetaConfigAdd` in response with status code 201
+	- [Added] property `error` of schema `OperationErrorResponse` in response with status code 400
+
+
+#### updatePriceAdjustment
+
+- ##### What's New
+	- [Added] property `error` of schema `OperationErrorResponse` in response with status code 400
+
+
+#### removePriceAdjustment
+
+- ##### What's New
+	- [Added] property `error` of schema `OperationErrorResponse` in response with status code 400
+
+
+#### addPriceAdjustment
+
+- ##### What's New
+	- [Added] property `error` of schema `OperationErrorResponse` in response with status code 400
+
+
 #### platformCheckoutCart
 
 - ##### What's New
@@ -572,6 +779,24 @@
 
 
 
+#### getCollectionItems
+
+- ##### What's Changed
+	- [Changed] Path From `/service/platform/catalog/v1.0/company/{company_id}/application/{application_id}/collections/{id}/items/` To `/service/platform/catalog/v2.0/company/{company_id}/application/{application_id}/collections/{id}/items/`
+
+
+#### addCollectionItems
+
+- ##### What's New
+	- [Breaking] [Added] Required status to property `type` in request body
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `itemsNotUpdated` of schema `UpdatedResponse` in response with status code 200
+
+- ##### What's Changed
+	- [Changed] Path From `/service/platform/catalog/v1.0/company/{company_id}/application/{application_id}/collections/{id}/items/` To `/service/platform/catalog/v2.0/company/{company_id}/application/{application_id}/collections/{id}/items/`
+
+
 #### getApplicationFilterValues
 
 - ##### What's New
@@ -584,6 +809,16 @@
 - ##### What's New
 	- [Added] method `getApplicationFilterKeys`
 
+
+
+### Configuration
+
+
+
+#### getApplicationById
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `object` to `string` of property `tokens[].createdBy` of schema `TokenSchema` in response with status code 200
 
 
 ### Content
@@ -638,18 +873,6 @@
 
 
 
-#### proxy
-
-- ##### What's New
-	- [Breaking] [Added] properties `data`, `support` in response with status code 200
-
-- ##### What's Deprecated
-	- [Deleted] Value format from `binary` from property `` of schema `` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] Type from `string` to `object` of property `` of schema `` in response with status code 200
-
-
 #### getPdfTypes
 
 - ##### What's New
@@ -664,9 +887,6 @@
 #### getZones
 
 - ##### What's New
-	- [Breaking] [Deleted] `query` parameter `country` (type: `string`)
-
-- [Added] `query` parameter `countryIsoCode` (type: `string`)
 	- [Breaking] [Added] properties `page.size`, `page.current`, `page.type`, `page.hasNext`, `page.itemTotal` in response with status code 200
 	- [Breaking] [Added] Required status to properties `page.current`, `page.has_next`, `page.item_total`, `page.size`, `page.type` in response with status code 200
 	- [Added] property `items[].channels[]` of schema `ListViewItems` in response with status code 200
@@ -750,6 +970,7 @@
 #### getShipments
 
 - ##### What's New
+	- [Added] property `items[].bags[].article.tags` of schema `Article` in response with status code 200
 	- [Added] property `items[].bags[].prices.amountToBeCollected` of schema `Prices` in response with status code 200
 	- [Added] property `items[].bags[].financialBreakup[].amountToBeCollected` of schema `FinancialBreakup` in response with status code 200
 	- [Added] property `items[].prices.amountToBeCollected` of schema `Prices` in response with status code 200
@@ -760,6 +981,7 @@
 
 - ##### What's New
 	- [Added] property `shipments[].order.affiliateOrderId` of schema `OrderDetailsData` in response with status code 200
+	- [Added] property `shipments[].bags[].article.tags` of schema `OrderBagArticle` in response with status code 200
 	- [Added] property `shipments[].bags[].prices.amountToBeCollected` of schema `Prices` in response with status code 200
 	- [Added] property `shipments[].bags[].financialBreakup.amountToBeCollected` of schema `FinancialBreakup` in response with status code 200
 	- [Added] property `shipments[].bags[].paymentInfo` of schema `OrderBags` in response with status code 200
@@ -773,6 +995,7 @@
 	- [Added] property `order.prices.amountToBeCollected` of schema `Prices` in response with status code 200
 	- [Added] property `order.paymentInfo` of schema `OrderData` in response with status code 200
 	- [Added] property `shipments[].order.affiliateOrderId` of schema `OrderDetailsData` in response with status code 200
+	- [Added] property `shipments[].bags[].article.tags` of schema `OrderBagArticle` in response with status code 200
 	- [Added] property `shipments[].bags[].prices.amountToBeCollected` of schema `Prices` in response with status code 200
 	- [Added] property `shipments[].bags[].financialBreakup.amountToBeCollected` of schema `FinancialBreakup` in response with status code 200
 	- [Added] property `shipments[].bags[].paymentInfo` of schema `OrderBags` in response with status code 200
@@ -784,6 +1007,7 @@
 
 - ##### What's New
 	- [Added] property `items[].shipments[].order.affiliateOrderId` of schema `OrderDetailsData` in response with status code 200
+	- [Added] property `items[].shipments[].bags[].article.tags` of schema `OrderBagArticle` in response with status code 200
 	- [Added] property `items[].shipments[].bags[].prices.amountToBeCollected` of schema `Prices` in response with status code 200
 	- [Added] property `items[].shipments[].bags[].financialBreakup.amountToBeCollected` of schema `FinancialBreakup` in response with status code 200
 	- [Added] property `items[].shipments[].bags[].paymentInfo` of schema `OrderBags` in response with status code 200
@@ -794,6 +1018,7 @@
 #### getApplicationShipments
 
 - ##### What's New
+	- [Added] property `items[].bags[].article.tags` of schema `Article` in response with status code 200
 	- [Added] property `items[].bags[].prices.amountToBeCollected` of schema `Prices` in response with status code 200
 	- [Added] property `items[].bags[].financialBreakup[].amountToBeCollected` of schema `FinancialBreakup` in response with status code 200
 	- [Added] property `items[].prices.amountToBeCollected` of schema `Prices` in response with status code 200
@@ -803,6 +1028,7 @@
 #### getBagById
 
 - ##### What's New
+	- [Added] property `data.article.tags` of schema `Article` in response with status code 200
 	- [Added] property `data.order.prices.amountToBeCollected` of schema `Prices` in response with status code 200
 	- [Added] property `data.prices.amountToBeCollected` of schema `Prices` in response with status code 200
 	- [Added] property `data.shipment.price.amountToBeCollected` of schema `Prices` in response with status code 200
@@ -819,6 +1045,7 @@
 #### getBags
 
 - ##### What's New
+	- [Added] property `data.items[].article.tags` of schema `Article` in response with status code 200
 	- [Added] property `data.items[].order.prices.amountToBeCollected` of schema `Prices` in response with status code 200
 	- [Added] property `data.items[].prices.amountToBeCollected` of schema `Prices` in response with status code 200
 	- [Added] property `data.items[].shipment.price.amountToBeCollected` of schema `Prices` in response with status code 200
@@ -994,13 +1221,12 @@
 - ##### What's New
 	- [Added] property `socialTokens.facebook.appSecret` of schema `Facebook` in response with status code 200
 	- [Added] property `socialTokens.google.appSecret` of schema `Google` in response with status code 200
-	- [Added] property `socialTokens.accountkit` of schema `SocialTokens` in response with status code 200
+	- [Added] property `socialTokens.accountKit.appSecret` of schema `Accountkit` in response with status code 200
 	- [Breaking] [Added] properties `deleteAccountConsent.consentText` in response with status code 200
 	- [Breaking] [Added] properties `sessionConfig.duration`, `sessionConfig.type`, `sessionConfig.isRolling` in response with status code 200
 	- [Added] property `v` of schema `PlatformSchema` in response with status code 200
 
 - ##### What's Deprecated
-	- [Breaking] [Deleted] property `socialTokens.accountKit` of schema `SocialTokens` in response with status code 200
 	- [Breaking] [Deleted] property `deleteAccountConsent[]` of schema `PlatformSchema` in response with status code 200
 	- [Breaking] [Deleted] property `sessionConfig[]` of schema `PlatformSchema` in response with status code 200
 	- [Breaking] [Deleted] Response with status 4XX
@@ -1012,22 +1238,20 @@
 - ##### What's New
 	- [Added] property `socialTokens.facebook.appSecret` of schema `Facebook` in request body
 	- [Added] property `socialTokens.google.appSecret` of schema `Google` in request body
-	- [Added] property `socialTokens.accountkit` of schema `SocialTokens` in request body
+	- [Added] property `socialTokens.accountKit.appSecret` of schema `Accountkit` in request body
 	- [Breaking] [Added] properties `deleteAccountConsent.consentText` in request body
 	- [Breaking] [Added] properties `sessionConfig.duration`, `sessionConfig.type`, `sessionConfig.isRolling` in request body
 	- [Added] property `v` of schema `PlatformSchema` in request body
 	- [Added] property `socialTokens.facebook.appSecret` of schema `Facebook` in response with status code 200
 	- [Added] property `socialTokens.google.appSecret` of schema `Google` in response with status code 200
-	- [Added] property `socialTokens.accountkit` of schema `SocialTokens` in response with status code 200
+	- [Added] property `socialTokens.accountKit.appSecret` of schema `Accountkit` in response with status code 200
 	- [Breaking] [Added] properties `deleteAccountConsent.consentText` in response with status code 200
 	- [Breaking] [Added] properties `sessionConfig.duration`, `sessionConfig.type`, `sessionConfig.isRolling` in response with status code 200
 	- [Added] property `v` of schema `PlatformSchema` in response with status code 200
 
 - ##### What's Deprecated
-	- [Breaking] [Deleted] property `socialTokens.accountKit` of schema `SocialTokens` in request body
 	- [Breaking] [Deleted] property `deleteAccountConsent[]` of schema `PlatformSchema` in request body
 	- [Breaking] [Deleted] property `sessionConfig[]` of schema `PlatformSchema` in request body
-	- [Breaking] [Deleted] property `socialTokens.accountKit` of schema `SocialTokens` in response with status code 200
 	- [Breaking] [Deleted] property `deleteAccountConsent[]` of schema `PlatformSchema` in response with status code 200
 	- [Breaking] [Deleted] property `sessionConfig[]` of schema `PlatformSchema` in response with status code 200
 	- [Breaking] [Deleted] Response with status 4XX

@@ -37,8 +37,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get offer by name
-        * Description: Use this API to get fetch the specific offer details and configuration by the name of the offer.
+        * Summary: Fetch specific offer
+        * Description: Retrieves detailed information about an offer by its name.
         **/
         public func getOfferByName(
             name: String,
@@ -90,8 +90,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get all transactions of reward points
-        * Description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
+        * Summary: Order from catalogue.
+        * Description: Place an reward on order items available in the catalogue.
         **/
         public func catalogueOrder(
             body: CatalogueOrderRequest,
@@ -140,8 +140,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get all transactions of reward points
-        * Description: Use this API to fetch a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
+        * Summary: Points history.
+        * Description: Gets the historical data of points earned or spent by the user.
         **/
         public func getUserPointsHistory(
             pageId: String?,
@@ -204,54 +204,10 @@ if let value = pageSize {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
-        * Summary: get paginator for getUserPointsHistory
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getUserPointsHistoryPaginator(
-            pageSize: Int?
-            
-            ) -> Paginator<PointsHistoryResponse> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<PointsHistoryResponse>(pageSize: pageSize, type: "cursor")
-            paginator.onPage = {
-                self.getUserPointsHistory(
-                        
-                        pageId: paginator.pageId
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageId = response.page?.nextId
-                        
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get total available points of a user
-        * Description: Use this API to retrieve total available points of a user for current application.
+        * Summary: Current points.
+        * Description: Retrieves the current reward points balance for the user.
         **/
         public func getUserPoints(
             
@@ -300,8 +256,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get referral details of a user
-        * Description: Use this API to retrieve the referral details like referral code of a user.
+        * Summary: Referral details.
+        * Description: Gets the details of the user’s referral status and codes.
         **/
         public func getUserReferralDetails(
             
@@ -350,8 +306,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Calculates the discount on order-amount
-        * Description: Use this API to calculate the discount on the order amount, based on all the amount range configured in Order Discount offer.
+        * Summary: Order discount.
+        * Description: Retrieve the discount applied to a specific order.
         **/
         public func getOrderDiscount(
             body: OrderDiscountRequest,
@@ -400,8 +356,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Redeems a referral code and credits reward points to referee and the referrer as per the configuration
-        * Description: Use this API to enter a referral code following which, the configured points would be credited to a user's reward points account.
+        * Summary: Redeem code.
+        * Description: Applies a referral code to earn or redeem rewards.
         **/
         public func redeemReferralCode(
             body: RedeemReferralCodeRequest,

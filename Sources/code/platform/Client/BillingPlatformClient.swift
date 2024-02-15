@@ -16,8 +16,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Check coupon validity
-        * Description: Check coupon validity.
+        * Summary: Verify coupon validity.
+        * Description: Checks whether a coupon code is valid for discounts while billing.
         **/
         public func checkCouponValidity(
             plan: String,
@@ -76,8 +76,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Create subscription charge
-        * Description: Register subscription charge for a seller of your extension.
+        * Summary: Initiate subscription billing.
+        * Description: Register a subscription charge for a seller using your extension.
         **/
         public func createSubscriptionCharge(
             extensionId: String,
@@ -125,8 +125,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get subscription charge details
-        * Description: Get created subscription charge details
+        * Summary: Retrieve subscription charge details.
+        * Description: Retrieve detailed information about subscription charges using this API.
         **/
         public func getSubscriptionCharge(
             extensionId: String,
@@ -175,8 +175,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Cancel subscription charge
-        * Description: Cancel subscription and attached charges.
+        * Summary: Cancel a subscription charge.
+        * Description: Cancel an ongoing subscription charge for a customer.
         **/
         public func cancelSubscriptionCharge(
             extensionId: String,
@@ -225,8 +225,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Create one time subscription charge
-        * Description: Register one time subscription charge for a seller of your extension.
+        * Summary: Generate a one-time charge.
+        * Description: Generate a one-time charge for specific services or products.
         **/
         public func createOneTimeCharge(
             extensionId: String,
@@ -274,8 +274,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get subscription charge details
-        * Description: Get created subscription charge details
+        * Summary: Obtain charge details.
+        * Description: Retrieve comprehensive details about a specific billing charge.
         **/
         public func getChargeDetails(
             extensionId: String,
@@ -324,8 +324,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get invoices
-        * Description: Get invoices.
+        * Summary: Retrieve invoices.
+        * Description: Retrieve invoices for billing and payment tracking.
         **/
         public func getInvoices(
             
@@ -372,8 +372,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get invoice by id
-        * Description: Get invoice by id.
+        * Summary: Get a specific invoice.
+        * Description: Retrieve a particular invoice's details by providing its unique ID.
         **/
         public func getInvoiceById(
             invoiceId: String,
@@ -421,8 +421,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get subscription customer detail
-        * Description: Get subscription customer detail.
+        * Summary: Fetch customer details.
+        * Description: Obtain customer-related billing information.
         **/
         public func getCustomerDetail(
             
@@ -469,8 +469,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Upsert subscription customer detail
-        * Description: Upsert subscription customer detail.
+        * Summary: Update or insert customer details.
+        * Description: Allows you to modify or insert customer information in the billing system.
         **/
         public func upsertCustomerDetail(
             body: SubscriptionCustomerCreate,
@@ -517,9 +517,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get current subscription detail
-        * Description: If subscription is active then it will return is_enabled true and return subscription object. If subscription is not active then is_enabled false and message.
-
+        * Summary: Retrieve subscription details.
+        * Description: Retrieve details of a customer's subscription information.
         **/
         public func getSubscription(
             
@@ -566,8 +565,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get subscription subscription limits
-        * Description: Get subscription subscription limits.
+        * Summary: Obtain feature limit configurations.
+        * Description: Retrieve configuration settings for feature limits in subscription plans.
         **/
         public func getFeatureLimitConfig(
             productSuite: String?,
@@ -630,8 +629,8 @@ if let value = type {
         
         /**
         *
-        * Summary: Activate subscription
-        * Description: It will activate subscription plan for customer
+        * Summary: Activate a subscription plan.
+        * Description: Activate a specific subscription plan for a customer.
         **/
         public func activateSubscriptionPlan(
             body: SubscriptionActivateReq,
@@ -678,8 +677,8 @@ if let value = type {
         
         /**
         *
-        * Summary: Cancel subscription
-        * Description: It will cancel current active subscription.
+        * Summary: Cancel a subscription plan.
+        * Description: Cancel an active subscription plan for a customer
         **/
         public func cancelSubscriptionPlan(
             body: CancelSubscriptionReq,
@@ -726,9 +725,8 @@ if let value = type {
         
         /**
         *
-        * Summary: Get Enterprise Plans
-        * Description: Get Enterprise Plans.
-
+        * Summary: Retrieve enterprise-level plans.
+        * Description: Retrieve available enterprise-level subscription plans.
         **/
         public func getEnterprisePlans(
             
@@ -775,8 +773,8 @@ if let value = type {
         
         /**
         *
-        * Summary: Update Status of The plan
-        * Description: It will update the status of the plan
+        * Summary: Update subscription plan status.
+        * Description: Modify the status of a subscription plan.
         **/
         public func planStatusUpdate(
             body: PlanStatusUpdateReq,
@@ -823,8 +821,8 @@ if let value = type {
         
         /**
         *
-        * Summary: Subscribe plan.
-        * Description: It will subscribe a plan.
+        * Summary: Subscribe to a plan.
+        * Description: Subscribe to a specific billing plan.
         **/
         public func subscripePlan(
             body: SunscribePlan,

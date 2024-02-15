@@ -7,13 +7,22 @@
 ## Logistic Methods
 The Logistics module enhances delivery operations efficiency. It enables you to retrieve data and calculate precise delivery times. You can utilize the Country Information module to serve a global customer base and implement zone mapping for efficient delivery route planning. Additionally, this module offers the capability to optimize store assignments based on various criteria, including products, settings, and ignored locations. Furthermore, it supports Custom Packaging to enhance shipment creation.
 
-Default
+Location Information
 * [getPincodeCity](#getpincodecity)
-* [getTatProduct](#gettatproduct)
-* [getAllCountries](#getallcountries)
 * [getPincodeZones](#getpincodezones)
 * [getOptimalLocations](#getoptimallocations)
 * [getLocations](#getlocations)
+
+
+Product Information
+* [getTatProduct](#gettatproduct)
+
+
+Country Information
+* [getAllCountries](#getallcountries)
+
+
+Default
 * [getCountries](#getcountries)
 * [getCountry](#getcountry)
 * [getLocalities](#getlocalities)
@@ -28,7 +37,7 @@ Default
 
 
 #### getPincodeCity
-Get Pincode API
+Fetches city by pincode.
 
 
 
@@ -49,7 +58,7 @@ applicationClient.logistic.getPincodeCity(pincode: pincode) { (response, error) 
 
 
 
-Get pincode data
+Retrieve the name of the city associated with a given pincode.
 
 *Returned Response:*
 
@@ -177,8 +186,181 @@ Get pincode data
 ---
 
 
+#### getPincodeZones
+Fetches zones by pincode.
+
+
+
+
+```swift
+applicationClient.logistic.getPincodeZones(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | GetZoneFromPincodeViewRequest | yes | Request body |
+
+
+Retreive the logistical zones corresponding to a given pincode.
+
+*Returned Response:*
+
+
+
+
+[GetZoneFromPincodeViewResponse](#GetZoneFromPincodeViewResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOptimalLocations
+Finds optimal locations.
+
+
+
+
+```swift
+applicationClient.logistic.getOptimalLocations(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | ReAssignStoreRequest | yes | Request body |
+
+
+Retrieve the most efficient locations for logistics purposes.
+
+*Returned Response:*
+
+
+
+
+[ReAssignStoreResponse](#ReAssignStoreResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLocations
+Fetches available locations.
+
+
+
+
+```swift
+applicationClient.logistic.getLocations(xApplicationId: xApplicationId, xApplicationData: xApplicationData, country: country, state: state, city: city, pincode: pincode, sector: sector, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| xApplicationId | String | yes | A `x-application-id` is a unique identifier for a particular sale channel. |   
+| xApplicationData | String | yes | A `x-application-data` is a unique identifier for a particular sale channel. |   
+| country | String? | no | A `country` contains a specific value of the country `iso2` code. |   
+| state | String? | no | A `state` contains a specific value of the state, province. |   
+| city | String? | no | A `city` contains a specific value of the city. |   
+| pincode | Int? | no | A `pincode` contains a specific value of the city. |   
+| sector | String? | no | A `sector` contains a specific value of the city. |   
+| pageNo | Int? | no | page number. |   
+| pageSize | Int? | no | page size. |  
+
+
+
+Retrieves a list of all locations of countries, states, cities. 
+
+*Returned Response:*
+
+
+
+
+[GetStoreResponse](#GetStoreResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
 #### getTatProduct
-Get TAT API
+Retrieves product turnaround time.
 
 
 
@@ -198,7 +380,7 @@ applicationClient.logistic.getTatProduct(body: body) { (response, error) in
 | body | TATViewRequest | yes | Request body |
 
 
-Get TAT data
+Retrieve the estimated delivery time for a specific product.
 
 *Returned Response:*
 
@@ -338,8 +520,10 @@ Get TAT  data
 ---
 
 
+
+
 #### getAllCountries
-Get Country List
+Lists all countries.
 
 
 
@@ -355,7 +539,7 @@ applicationClient.logistic.getAllCountries() { (response, error) in
 
 
 
-Get all countries
+Retrieve a list of all countries supported by the system.
 
 *Returned Response:*
 
@@ -388,175 +572,6 @@ Get Country List
 ---
 
 
-#### getPincodeZones
-GET zone from the Pincode.
-
-
-
-
-```swift
-applicationClient.logistic.getPincodeZones(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | GetZoneFromPincodeViewRequest | yes | Request body |
-
-
-This API returns zone from the Pincode View.
-
-*Returned Response:*
-
-
-
-
-[GetZoneFromPincodeViewResponse](#GetZoneFromPincodeViewResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getOptimalLocations
-GET zone from the Pincode.
-
-
-
-
-```swift
-applicationClient.logistic.getOptimalLocations(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | ReAssignStoreRequest | yes | Request body |
-
-
-This API returns zone from the Pincode View.
-
-*Returned Response:*
-
-
-
-
-[ReAssignStoreResponse](#ReAssignStoreResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getLocations
-GET locations from the Pincode.
-
-
-
-
-```swift
-applicationClient.logistic.getLocations(xApplicationId: xApplicationId, xApplicationData: xApplicationData, country: country, state: state, city: city, pincode: pincode, sector: sector, pageNo: pageNo, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| xApplicationId | String | yes | A `x-application-id` is a unique identifier for a particular sale channel. |   
-| xApplicationData | String | yes | A `x-application-data` is a unique identifier for a particular sale channel. |   
-| country | String? | no | A `country` contains a specific value of the country `iso2` code. |   
-| state | String? | no | A `state` contains a specific value of the state, province. |   
-| city | String? | no | A `city` contains a specific value of the city. |   
-| pincode | Int? | no | A `pincode` contains a specific value of the city. |   
-| sector | String? | no | A `sector` contains a specific value of the city. |   
-| pageNo | Int? | no | page number. |   
-| pageSize | Int? | no | page size. |  
-
-
-
-This API returns store from the Pincode View.
-
-*Returned Response:*
-
-
-
-
-[GetStoreResponse](#GetStoreResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
 
 
 #### getCountries

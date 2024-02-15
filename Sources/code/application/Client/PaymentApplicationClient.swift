@@ -33,7 +33,7 @@ extension ApplicationClient {
             
             ulrs["getPosPaymentModeRoutes"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/options/pos") 
             
-            ulrs["walletLinkInitiate"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/options/wallet/link") 
+            ulrs["walletLinkInitate"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/options/wallet/link") 
             
             ulrs["linkWallet"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/options/wallet/verify") 
             
@@ -115,8 +115,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get payment gateway keys
-        * Description: Use this API to retrieve the payment gateway key, secrets, merchant, SDK/API details to complete a payment at front-end.
+        * Summary: Fetch payment aggregators.
+        * Description: Retrieves configuration details for available payment aggregators.
         **/
         public func getAggregatorsConfig(
             xApiToken: String?,
@@ -180,8 +180,8 @@ if let value = xApiToken {
         
         /**
         *
-        * Summary: Attach a saved card to customer.
-        * Description: Use this API to attach a customer's saved card at the payment gateway, such as Stripe, Juspay.
+        * Summary: Attach card to user.
+        * Description: Links a payment card to a customer's account.
         **/
         public func attachCardToCustomer(
             body: AttachCardRequest,
@@ -230,8 +230,8 @@ if let value = xApiToken {
         
         /**
         *
-        * Summary: Fetch active payment gateway for card payments
-        * Description: Use this API to retrieve an active payment aggregator along with the Customer ID. This is applicable for cards payments only.
+        * Summary: Active card info.
+        * Description: Gets the active card aggregator for the user.
         **/
         public func getActiveCardAggregator(
             refresh: Bool?,
@@ -288,8 +288,8 @@ if let value = refresh {
         
         /**
         *
-        * Summary: Fetch the list of cards saved by the user
-        * Description: Use this API to retrieve a list of cards stored by user from an active payment gateway.
+        * Summary: List user's cards.
+        * Description: Retrieves all active cards linked to a user.
         **/
         public func getActiveUserCards(
             forceRefresh: Bool?,
@@ -346,8 +346,8 @@ if let value = forceRefresh {
         
         /**
         *
-        * Summary: Delete a card
-        * Description: Use this API to delete a card added by a user on the payment gateway and clear the cache.
+        * Summary: Remove user's card.
+        * Description: Deletes a payment card from the user's account.
         **/
         public func deleteUserCard(
             body: DeletehCardRequest,
@@ -396,8 +396,8 @@ if let value = forceRefresh {
         
         /**
         *
-        * Summary: Validate customer for payment
-        * Description: Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi.
+        * Summary: Verify payment customer.
+        * Description: Checks the user's validity for proceeding with payment.
         **/
         public func verifyCustomerForPayment(
             body: ValidateCustomerRequest,
@@ -446,8 +446,8 @@ if let value = forceRefresh {
         
         /**
         *
-        * Summary: Verify and charge payment
-        * Description: Use this API to verify and check the status of a payment transaction (server-to-server) made through aggregators like Simpl and Mswipe.
+        * Summary: Verify and charge.
+        * Description: Validates and processes a payment transaction.
         **/
         public func verifyAndChargePayment(
             body: ChargeCustomerRequest,
@@ -496,8 +496,8 @@ if let value = forceRefresh {
         
         /**
         *
-        * Summary: Initialize a payment (server-to-server) for UPI and BharatQR
-        * Description: PUse this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
+        * Summary: Start payment process.
+        * Description: Initializes the payment procedure for an order.
         **/
         public func initialisePayment(
             body: PaymentInitializationRequest,
@@ -546,8 +546,8 @@ if let value = forceRefresh {
         
         /**
         *
-        * Summary: Performs continuous polling to check status of payment on the server
-        * Description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
+        * Summary: Update payment status.
+        * Description: Checks and updates the current status of a payment.
         **/
         public func checkAndUpdatePaymentStatus(
             body: PaymentStatusUpdateRequest,
@@ -596,8 +596,8 @@ if let value = forceRefresh {
         
         /**
         *
-        * Summary: Get applicable payment options
-        * Description: Use this API to get all valid payment options for doing a payment.
+        * Summary: Get payment modes.
+        * Description: Lists the payment mode options and their routing details.
         **/
         public func getPaymentModeRoutes(
             amount: Int,
@@ -724,8 +724,8 @@ if let value = shipmentId {
         
         /**
         *
-        * Summary: Get applicable payment options for Point-of-Sale (POS)
-        * Description: Use this API to get all valid payment options for doing a payment in POS.
+        * Summary: POS payment modes.
+        * Description: Lists payment modes available for Point-of-Sale (POS).
         **/
         public func getPosPaymentModeRoutes(
             amount: Int,
@@ -835,7 +835,7 @@ if let value = userDetails {
         * Summary: Initiate linking of wallet
         * Description: It will initiate linking of wallet for the aggregator.
         **/
-        public func walletLinkInitiate(
+        public func walletLinkInitate(
             body: WalletLinkRequestSchema,
             onResponse: @escaping (_ response: WalletResponseSchema?, _ error: FDKError?) -> Void
         ) {
@@ -846,7 +846,7 @@ if let value = userDetails {
 
 
             
-            let fullUrl = relativeUrls["walletLinkInitiate"] ?? ""
+            let fullUrl = relativeUrls["walletLinkInitate"] ?? ""
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -982,8 +982,8 @@ if let value = userDetails {
         
         /**
         *
-        * Summary: Get CreditLine Offer
-        * Description: Get CreditLine Offer if user is tentatively approved by rupifi
+        * Summary: Rupifi banner info.
+        * Description: Retrieve details for displaying the Rupifi payment banner.
         **/
         public func getRupifiBannerDetails(
             
@@ -1032,8 +1032,8 @@ if let value = userDetails {
         
         /**
         *
-        * Summary: Get Epaylater Enabled
-        * Description: Get Epaylater Enabled if user is tentatively approved by epaylater
+        * Summary: Epay banner info.
+        * Description: Gets details for displaying the Epaylater payment banner.
         **/
         public func getEpaylaterBannerDetails(
             
@@ -1082,8 +1082,8 @@ if let value = userDetails {
         
         /**
         *
-        * Summary: API to resend and cancel a payment link which was already generated.
-        * Description: Use this API to perform resend or cancel a payment link based on request payload.
+        * Summary: Manage payment.
+        * Description: Resends or cancels a pending payment transaction.
         **/
         public func resendOrCancelPayment(
             body: ResendOrCancelPaymentRequest,
@@ -1132,8 +1132,8 @@ if let value = userDetails {
         
         /**
         *
-        * Summary: Convert base64 string to HTML form
-        * Description: Use this API to decode base64 html form to plain HTML string.
+        * Summary: Render HTML.
+        * Description: Generates HTML for payment-related interfaces.
         **/
         public func renderHTML(
             body: renderHTMLRequest,
@@ -1182,8 +1182,8 @@ if let value = userDetails {
         
         /**
         *
-        * Summary: API to Validate UPI ID
-        * Description: API to Validate UPI ID
+        * Summary: Validate VPA.
+        * Description: Checks the validity of a Virtual Payment Address (VPA).
         **/
         public func validateVPA(
             body: ValidateVPARequest,
@@ -1232,8 +1232,8 @@ if let value = userDetails {
         
         /**
         *
-        * Summary: API to get Card info from PG
-        * Description: API to get Card info from PG
+        * Summary: Fetch card details.
+        * Description: Gets the details of a specified payment card.
         **/
         public func cardDetails(
             cardInfo: String,
@@ -1293,8 +1293,8 @@ if let value = aggregator {
         
         /**
         *
-        * Summary: Lists the mode of refund
-        * Description: Use this API to retrieve eligible refund modes (such as Netbanking) and add the beneficiary details.
+        * Summary: Refund modes.
+        * Description: Lists the active transfer modes for refunds.
         **/
         public func getActiveRefundTransferModes(
             
@@ -1343,8 +1343,8 @@ if let value = aggregator {
         
         /**
         *
-        * Summary: Enable/Disable a mode for transferring a refund
-        * Description: Activate or Deactivate Transfer Mode to collect Beneficiary Details for Refund
+        * Summary: Toggle refund mode.
+        * Description: Enables or disables a particular refund transfer mode.
         **/
         public func enableOrDisableRefundTransferMode(
             body: UpdateRefundTransferModeRequest,
@@ -1393,8 +1393,8 @@ if let value = aggregator {
         
         /**
         *
-        * Summary: Lists the beneficiary of a refund
-        * Description: Use this API to get the details of all active beneficiary added by a user for refund.
+        * Summary: Beneficiary info.
+        * Description: Retrieves details of beneficiaries linked to the user.
         **/
         public func getUserBeneficiariesDetail(
             orderId: String,
@@ -1449,8 +1449,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Verify IFSC Code
-        * Description: Use this API to check whether the 11-digit IFSC code is valid and to fetch the bank details for refund.
+        * Summary: Verify IFSC.
+        * Description: Checks the validity of an IFSC code for bank transactions.
         **/
         public func verifyIfscCode(
             ifscCode: String?,
@@ -1507,8 +1507,8 @@ if let value = ifscCode {
         
         /**
         *
-        * Summary: Lists the beneficiary of a refund
-        * Description: Use this API to get the details of all active beneficiary added by a user for refund.
+        * Summary: Order beneficiaries.
+        * Description: Retrieve the beneficiary details related to an order.
         **/
         public func getOrderBeneficiariesDetail(
             orderId: String,
@@ -1563,8 +1563,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Verify the beneficiary details using OTP
-        * Description: Use this API to perform an OTP validation before saving the beneficiary details added for a refund.
+        * Summary: Verify OTP for bank.
+        * Description: Confirms OTP and adds a bank beneficiary.
         **/
         public func verifyOtpAndAddBeneficiaryForBank(
             body: AddBeneficiaryViaOtpVerificationRequest,
@@ -1613,8 +1613,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Save bank details for cancelled/returned order
-        * Description: Use this API to save the bank details for a returned or cancelled order to refund the amount.
+        * Summary: Add beneficiary.
+        * Description: Adds beneficiary details for future transactions.
         **/
         public func addBeneficiaryDetails(
             body: AddBeneficiaryDetailsRequest,
@@ -1663,8 +1663,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Save bank details for cancelled/returned order
-        * Description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
+        * Summary: Add refund account.
+        * Description: Adds a bank account for refunds using OTP verification.
         **/
         public func addRefundBankAccountUsingOTP(
             body: AddBeneficiaryDetailsOTPRequest,
@@ -1713,8 +1713,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Send OTP on adding a wallet beneficiary
-        * Description: Use this API to send an OTP while adding a wallet beneficiary by mobile no. verification.
+        * Summary: Verify OTP for wallet.
+        * Description: Confirms OTP and adds a wallet beneficiary.
         **/
         public func verifyOtpAndAddBeneficiaryForWallet(
             body: WalletOtpRequest,
@@ -1763,8 +1763,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Set a default beneficiary for a refund
-        * Description: Use this API to set a default beneficiary for getting a refund.
+        * Summary: Set default beneficiary.
+        * Description: Updates the default beneficiary for the user.
         **/
         public func updateDefaultBeneficiary(
             body: SetDefaultBeneficiaryRequest,
@@ -1813,8 +1813,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get payment link
-        * Description: Use this API to get a payment link
+        * Summary: Fetch payment link.
+        * Description: Retrieves a generated payment link.
         **/
         public func getPaymentLink(
             paymentLinkId: String?,
@@ -1871,8 +1871,8 @@ if let value = paymentLinkId {
         
         /**
         *
-        * Summary: Create payment link
-        * Description: Use this API to create a payment link for the customer
+        * Summary: Create payment link.
+        * Description: Generates a new payment link for transactions.
         **/
         public func createPaymentLink(
             body: CreatePaymentLinkRequest,
@@ -1921,8 +1921,8 @@ if let value = paymentLinkId {
         
         /**
         *
-        * Summary: Resend payment link
-        * Description: Use this API to resend a payment link for the customer
+        * Summary: Resend link.
+        * Description: Resends an existing payment link to the user.
         **/
         public func resendPaymentLink(
             body: CancelOrResendPaymentLinkRequest,
@@ -1971,8 +1971,8 @@ if let value = paymentLinkId {
         
         /**
         *
-        * Summary: Cancel payment link
-        * Description: Use this API to cancel a payment link for the customer
+        * Summary: Cancel link.
+        * Description: Cancels a previously generated payment link.
         **/
         public func cancelPaymentLink(
             body: CancelOrResendPaymentLinkRequest,
@@ -2021,8 +2021,8 @@ if let value = paymentLinkId {
         
         /**
         *
-        * Summary: Get applicable payment options for payment link
-        * Description: Use this API to get all valid payment options for doing a payment through payment link
+        * Summary: Payment link modes.
+        * Description: Lists payment modes available for a given payment link.
         **/
         public func getPaymentModeRoutesPaymentLink(
             paymentLinkId: String,
@@ -2077,8 +2077,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Used for polling if payment successful or not
-        * Description: Use this API to poll if payment through payment was successful or not
+        * Summary: Poll payment link.
+        * Description: Polls the status of a payment link for updates.
         **/
         public func pollingPaymentLink(
             paymentLinkId: String?,
@@ -2135,8 +2135,8 @@ if let value = paymentLinkId {
         
         /**
         *
-        * Summary: Create Order user
-        * Description: Use this API to create a order and payment on aggregator side
+        * Summary: Order via link.
+        * Description: Creates an order handler for payment through a link.
         **/
         public func createOrderHandlerPaymentLink(
             body: CreateOrderUserRequest,
@@ -2185,8 +2185,8 @@ if let value = paymentLinkId {
         
         /**
         *
-        * Summary: Initialize a payment (server-to-server) for UPI and BharatQR
-        * Description: Use this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
+        * Summary: Initialise link payment.
+        * Description: Initializes payment for an order via a payment link.
         **/
         public func initialisePaymentPaymentLink(
             body: PaymentInitializationRequest,
@@ -2235,8 +2235,8 @@ if let value = paymentLinkId {
         
         /**
         *
-        * Summary: Performs continuous polling to check status of payment on the server
-        * Description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
+        * Summary: Update link status.
+        * Description: Checks and updates the status of payment via a link.
         **/
         public func checkAndUpdatePaymentStatusPaymentLink(
             body: PaymentStatusUpdateRequest,
@@ -2285,8 +2285,8 @@ if let value = paymentLinkId {
         
         /**
         *
-        * Summary: API to fetch the customer credit summary
-        * Description: Use this API to fetch the customer credit summary.
+        * Summary: Credit summary.
+        * Description: Retrieves a summary of the customer's credit details.
         **/
         public func customerCreditSummary(
             aggregator: String?,
@@ -2343,8 +2343,8 @@ if let value = aggregator {
         
         /**
         *
-        * Summary: API to get the redirect url to redirect the user to aggregator's page
-        * Description: Use this API to get the redirect url to redirect the user to aggregator's page
+        * Summary: Redirect for payment.
+        * Description: Redirects the user to the payment aggregator's interface.
         **/
         public func redirectToAggregator(
             source: String?,
@@ -2409,8 +2409,8 @@ if let value = aggregator {
         
         /**
         *
-        * Summary: API to fetch the customer credit summary
-        * Description: Use this API to fetch the customer credit summary.
+        * Summary: Verify credit.
+        * Description: Checks the availability and status of customer credit.
         **/
         public func checkCredit(
             aggregator: String?,
@@ -2467,8 +2467,8 @@ if let value = aggregator {
         
         /**
         *
-        * Summary: API to fetch the customer credit summary
-        * Description: Use this API to fetch the customer credit summary.
+        * Summary: Onboard customer.
+        * Description: Initiates the onboarding process for payment services.
         **/
         public func customerOnboard(
             body: CustomerOnboardingRequest,
@@ -2517,8 +2517,8 @@ if let value = aggregator {
         
         /**
         *
-        * Summary: API to fetch the outstanding order details
-        * Description: Use this API to fetch the outstanding order details.
+        * Summary: Outstanding orders.
+        * Description: Lists details of orders with outstanding payments.
         **/
         public func outstandingOrderDetails(
             aggregator: String?,
@@ -2575,8 +2575,8 @@ if let value = aggregator {
         
         /**
         *
-        * Summary: API to fetch the paid order details
-        * Description: Use this API to fetch the paid order details.
+        * Summary: Paid orders.
+        * Description: Retrieves details of orders that have been paid for.
         **/
         public func paidOrderDetails(
             aggregator: String?,
