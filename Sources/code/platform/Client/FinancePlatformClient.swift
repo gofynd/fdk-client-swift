@@ -16,8 +16,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Generate financial report.
-        * Description: Create a financial report with relevant data.
+        * Summary: Generate finance reports.
+        * Description: Generate finance reports.
         **/
         public func generateReport(
             body: GenerateReportRequest,
@@ -64,8 +64,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Download financial report.
-        * Description: Retrieve and save a financial report.
+        * Summary: Gives list of all downloaded reports.
+        * Description: Gives list of all downloaded reports.
         **/
         public func downloadReport(
             body: DownloadReport,
@@ -112,8 +112,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get financial data.
-        * Description: Retrieve financial data for analysis.
+        * Summary: Gives list of columns for table provided.
+        * Description: Gives list of columns for table provided.
         **/
         public func getData(
             body: GetEngineRequest,
@@ -160,8 +160,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get transaction reason.
-        * Description: Retrieve the reason behind a transaction.
+        * Summary: Gives list of the reasons.
+        * Description: Gives list of the reasons.
         **/
         public func getReason(
             body: GetReasonRequest,
@@ -208,8 +208,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get report list.
-        * Description: Retrieve a list of available financial reports.
+        * Summary: Get the list of available reports for a company.
+        * Description: Gives list of reports.
         **/
         public func getReportList(
             body: GetReportListRequest,
@@ -256,8 +256,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get affiliate details.
-        * Description: Retrieve information about an affiliate.
+        * Summary: Gives list of affiliates for company.
+        * Description: Gives list of affiliates for company.
         **/
         public func getAffiliate(
             body: GetAffiliate,
@@ -304,8 +304,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Download credit/debit note.
-        * Description: Retrieve and save credit/debit notes.
+        * Summary: Download credit debit note pdf.
+        * Description: Download credit debit note pdf.
         **/
         public func downloadCreditDebitNote(
             body: DownloadCreditDebitNoteRequest,
@@ -352,8 +352,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Process payments.
-        * Description: Initiate and manage payment processes.
+        * Summary: Payment Processing API.
+        * Description: Payment Processing API.
         **/
         public func paymentProcess(
             body: PaymentProcessRequest,
@@ -400,8 +400,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Access credit line data platform.
-        * Description: Connect to the credit line data platform.
+        * Summary: Used to fetch creditline data.
+        * Description: Used to fetch creditline data.
         **/
         public func creditlineDataplatform(
             body: CreditlineDataPlatformRequest,
@@ -448,8 +448,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Check credit line platform status.
-        * Description: Determine if the credit line platform is operational.
+        * Summary: Checks if seller has opted for creditline or not.
+        * Description: Checks if seller has opted for creditline or not.
         **/
         public func isCreditlinePlatform(
             body: IsCreditlinePlatformRequest,
@@ -496,8 +496,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get invoice types.
-        * Description: Retrieve a list of available invoice types.
+        * Summary: Gives list of active invoice type.
+        * Description: Gives list of active invoice type.
         **/
         public func invoiceType(
             body: InvoiceTypeRequest,
@@ -592,8 +592,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get invoice PDF.
-        * Description: Retrieve the PDF version of an invoice.
+        * Summary: Gives pdf view of invoice.
+        * Description: Gives pdf view of invoice.
         **/
         public func invoicePDF(
             body: InvoicePdfRequest,
@@ -640,8 +640,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Check CN refund method.
-        * Description: Verify the refund method for credit notes.
+        * Summary: Checks if seller has obtained cn as refund method or not.
+        * Description: Checks if seller has obtained cn as refund method or not.
         **/
         public func isCnRefundMethod(
             body: IsCnRefundMethodRequest,
@@ -688,8 +688,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Create seller credit note config.
-        * Description: Set up configuration for seller credit notes.
+        * Summary: Creates credit note config.
+        * Description: Creates credit note config.
         **/
         public func createSellerCreditNoteConfig(
             body: CreateSellerCreditNoteConfigRequest,
@@ -784,8 +784,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get channel display name.
-        * Description: Retrieve the display name for a channel.
+        * Summary: Provide channel display name dict.
+        * Description: Provide channel display name dict.
         **/
         public func channelDisplayName(
             filterKey: String,
@@ -838,8 +838,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get PDF URL view.
-        * Description: Retrieve a URL to view a PDF document.
+        * Summary: Gives cn pdf url.
+        * Description: Gives cn pdf url.
         **/
         public func getPdfUrlView(
             body: GetPdfUrlViewRequest,
@@ -886,8 +886,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get credit note details.
-        * Description: Retrieve detailed information about a credit note.
+        * Summary: Gives credit note details.
+        * Description: Gives credit note details.
         **/
         public func creditNoteDetails(
             body: CreditNoteDetailsRequest,
@@ -934,8 +934,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get customer credit balance.
-        * Description: Retrieve the credit balance of a customer.
+        * Summary: Gives customer credit balance.
+        * Description: Gives customer credit balance.
         **/
         public func getCustomerCreditBalance(
             body: GetCustomerCreditBalanceRequest,
@@ -982,8 +982,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get credit note configuration.
-        * Description: Retrieve configuration settings for credit notes.
+        * Summary: Gives credit note config.
+        * Description: Gives credit note config.
         **/
         public func getCnConfig(
             body: GetCnConfigRequest,
@@ -1030,8 +1030,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Generate customer credit note report.
-        * Description: Create a report specifically for customer credit notes.
+        * Summary: Generate Credit Note report and gives Note details.
+        * Description: Generate Credit Note report and gives Note details.
         **/
         public func generateReportCustomerCn(
             body: GenerateReportCustomerCnRequest,
@@ -1078,8 +1078,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Download customer credit note report.
-        * Description: Retrieve and save a report for customer credit notes.
+        * Summary: Gives list of downloaded reports.
+        * Description: Gives list of downloaded reports.
         **/
         public func downloadReportCustomerCn(
             body: DownloadReportCustomerCnRequest,
@@ -1126,8 +1126,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get reporting filters.
-        * Description: Retrieve available filters for financial reporting.
+        * Summary: Gets all customer Cn filters and search.
+        * Description: Gets all customer Cn filters and search.
         **/
         public func getReportingFilters(
             filterKey: String,

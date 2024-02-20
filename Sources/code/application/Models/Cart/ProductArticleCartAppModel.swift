@@ -26,6 +26,8 @@ public extension ApplicationClient.Cart {
         
         public var seller: BaseInfo?
         
+        public var productName: String?
+        
         public var sellerIdentifier: String?
         
         public var parentItemIdentifiers: [String: Any]?
@@ -67,6 +69,8 @@ public extension ApplicationClient.Cart {
             
             case seller = "seller"
             
+            case productName = "product_name"
+            
             case sellerIdentifier = "seller_identifier"
             
             case parentItemIdentifiers = "parent_item_identifiers"
@@ -89,7 +93,7 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(cartItemMeta: [String: Any]? = nil, extraMeta: [String: Any]? = nil, giftCard: [String: Any]? = nil, identifier: [String: Any]? = nil, isGiftVisible: Bool? = nil, meta: [String: Any]? = nil, mtoQuantity: Int? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ArticlePriceInfo? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, seller: BaseInfo? = nil, sellerIdentifier: String? = nil, size: String? = nil, store: StoreInfo? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, customJson: [String: Any]? = nil) {
+        public init(cartItemMeta: [String: Any]? = nil, extraMeta: [String: Any]? = nil, giftCard: [String: Any]? = nil, identifier: [String: Any]? = nil, isGiftVisible: Bool? = nil, meta: [String: Any]? = nil, mtoQuantity: Int? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ArticlePriceInfo? = nil, productGroupTags: [String]? = nil, productName: String? = nil, quantity: Int? = nil, seller: BaseInfo? = nil, sellerIdentifier: String? = nil, size: String? = nil, store: StoreInfo? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, customJson: [String: Any]? = nil) {
             
             self.price = price
             
@@ -108,6 +112,8 @@ public extension ApplicationClient.Cart {
             self.mtoQuantity = mtoQuantity
             
             self.seller = seller
+            
+            self.productName = productName
             
             self.sellerIdentifier = sellerIdentifier
             
@@ -233,6 +239,18 @@ public extension ApplicationClient.Cart {
             
             do {
                 seller = try container.decode(BaseInfo.self, forKey: .seller)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                productName = try container.decode(String.self, forKey: .productName)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -401,6 +419,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(seller, forKey: .seller)
+            
+            
+            
+            try? container.encodeIfPresent(productName, forKey: .productName)
             
             
             

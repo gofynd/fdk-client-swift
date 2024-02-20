@@ -7,7 +7,7 @@
 ## AuditTrail Methods
 Audit Logging Service that logs the crucial updates on the Platform
 
-Audit Logs Management
+Default
 * [getAuditLogs](#getauditlogs)
 * [createAuditLog](#createauditlog)
 * [getAuditLog](#getauditlog)
@@ -21,7 +21,7 @@ Audit Logs Management
 
 
 #### getAuditLogs
-Retrieve audit logs.
+Get paginated audit logs
 
 
 
@@ -44,7 +44,7 @@ platformClient.audittrail.getAuditLogs(qs: qs, limit: limit, sort: sort) { (resp
 
 
 
-Retrieve audit logs for system events and actions.
+Get a paginated set of logs that can be filtered using the available set of parameters and get the relevant group of logs
 
 *Returned Response:*
 
@@ -111,7 +111,7 @@ Success
 
 
 #### createAuditLog
-Create an audit log.
+Create logs for auditing later on
 
 
 
@@ -131,7 +131,7 @@ platformClient.audittrail.createAuditLog(body: body) { (response, error) in
 | body | RequestBodyAuditLog | yes | Request body |
 
 
-Generate and record an audit log entry for a specific event or action.
+Create a log instance that stores all the relevant info to be logged
 
 *Returned Response:*
 
@@ -176,7 +176,7 @@ Success
 
 
 #### getAuditLog
-Get an audit log entry.
+Get audit log
 
 
 
@@ -197,7 +197,7 @@ platformClient.audittrail.getAuditLog(id: id) { (response, error) in
 
 
 
-Retrieve a specific audit log entry
+Get detailed log information by their id
 
 *Returned Response:*
 
@@ -309,7 +309,7 @@ Success
 
 
 #### getEntityTypes
-Obtain entity types for auditing.
+Get entity types
 
 
 
@@ -325,7 +325,7 @@ platformClient.audittrail.getEntityTypes() { (response, error) in
 
 
 
-List of entity types that can be audited within the platform's
+Get a consolidated list of entity types from all the logs stored on the db, which further helps to filter the logs better
 
 *Returned Response:*
 

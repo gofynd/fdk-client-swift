@@ -7,19 +7,13 @@
 ## Rewards Methods
 The Rewards Points module manages loyalty and rewards programs. Use it to search for offers by name, track user points, monitor referrals, and apply order discounts. The module also supports the use of referral codes, allowing users to earn rewards for both themselves and their referrers.
 
-Offer and Discount Information
+Default
 * [getOfferByName](#getofferbyname)
-* [getOrderDiscount](#getorderdiscount)
-
-
-Catalog Order
 * [catalogueOrder](#catalogueorder)
-
-
-User Points and Referral Handling
 * [getUserPointsHistory](#getuserpointshistory)
 * [getUserPoints](#getuserpoints)
 * [getUserReferralDetails](#getuserreferraldetails)
+* [getOrderDiscount](#getorderdiscount)
 * [redeemReferralCode](#redeemreferralcode)
 
 
@@ -30,7 +24,7 @@ User Points and Referral Handling
 
 
 #### getOfferByName
-Fetch specific offer
+Get offer by name
 
 
 
@@ -51,7 +45,7 @@ applicationClient.rewards.getOfferByName(name: name) { (response, error) in
 
 
 
-Retrieves detailed information about an offer by its name.
+Use this API to get fetch the specific offer details and configuration by the name of the offer.
 
 *Returned Response:*
 
@@ -133,96 +127,8 @@ Success. Check example below or refer `Offer` for more details.
 ---
 
 
-#### getOrderDiscount
-Order discount.
-
-
-
-
-```swift
-applicationClient.rewards.getOrderDiscount(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | OrderDiscountRequest | yes | Request body |
-
-
-Retrieve the discount applied to a specific order.
-
-*Returned Response:*
-
-
-
-
-[OrderDiscountResponse](#OrderDiscountResponse)
-
-Success. Check example below or refer `OrderDiscountResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Success</i></summary>
-
-```json
-{
-  "value": {
-    "order_amount": 3000,
-    "discount": {
-      "absolute": 0,
-      "currency": "INR",
-      "percent": 0,
-      "display_absoulte": "0.00",
-      "display_percent": "0%"
-    },
-    "base_discount": {
-      "absolute": 0,
-      "currency": "INR",
-      "percent": 0,
-      "display_absoulte": "0.00",
-      "display_percent": "0"
-    },
-    "points": 0,
-    "applied_rule_bucket": {
-      "low": 1,
-      "high": -1,
-      "max": 1000,
-      "value": 10,
-      "value_type": "percent"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
 #### catalogueOrder
-Order from catalogue.
+Get all transactions of reward points
 
 
 
@@ -242,7 +148,7 @@ applicationClient.rewards.catalogueOrder(body: body) { (response, error) in
 | body | CatalogueOrderRequest | yes | Request body |
 
 
-Place an reward on order items available in the catalogue.
+Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
 
 *Returned Response:*
 
@@ -291,10 +197,8 @@ Success. Check example below or refer `CatalogueOrderResponse` for more details.
 ---
 
 
-
-
 #### getUserPointsHistory
-Points history.
+Get all transactions of reward points
 
 
 
@@ -316,7 +220,7 @@ applicationClient.rewards.getUserPointsHistory(pageId: pageId, pageSize: pageSiz
 
 
 
-Gets the historical data of points earned or spent by the user.
+Use this API to fetch a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
 
 *Returned Response:*
 
@@ -406,7 +310,7 @@ Success. Check example below or refer `PointsHistoryResponse` for more details.
 
 
 #### getUserPoints
-Current points.
+Get total available points of a user
 
 
 
@@ -422,7 +326,7 @@ applicationClient.rewards.getUserPoints() { (response, error) in
 
 
 
-Retrieves the current reward points balance for the user.
+Use this API to retrieve total available points of a user for current application.
 
 *Returned Response:*
 
@@ -466,7 +370,7 @@ Success. Check example below or refer `PointsResponse` for more details.
 
 
 #### getUserReferralDetails
-Referral details.
+Get referral details of a user
 
 
 
@@ -482,7 +386,7 @@ applicationClient.rewards.getUserReferralDetails() { (response, error) in
 
 
 
-Gets the details of the user’s referral status and codes.
+Use this API to retrieve the referral details like referral code of a user.
 
 *Returned Response:*
 
@@ -582,8 +486,94 @@ Success. Check example below or refer `ReferralDetailsResponse` for more details
 ---
 
 
+#### getOrderDiscount
+Calculates the discount on order-amount
+
+
+
+
+```swift
+applicationClient.rewards.getOrderDiscount(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | OrderDiscountRequest | yes | Request body |
+
+
+Use this API to calculate the discount on the order amount, based on all the amount range configured in Order Discount offer.
+
+*Returned Response:*
+
+
+
+
+[OrderDiscountResponse](#OrderDiscountResponse)
+
+Success. Check example below or refer `OrderDiscountResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "order_amount": 3000,
+    "discount": {
+      "absolute": 0,
+      "currency": "INR",
+      "percent": 0,
+      "display_absoulte": "0.00",
+      "display_percent": "0%"
+    },
+    "base_discount": {
+      "absolute": 0,
+      "currency": "INR",
+      "percent": 0,
+      "display_absoulte": "0.00",
+      "display_percent": "0"
+    },
+    "points": 0,
+    "applied_rule_bucket": {
+      "low": 1,
+      "high": -1,
+      "max": 1000,
+      "value": 10,
+      "value_type": "percent"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### redeemReferralCode
-Redeem code.
+Redeems a referral code and credits reward points to referee and the referrer as per the configuration
 
 
 
@@ -603,7 +593,7 @@ applicationClient.rewards.redeemReferralCode(body: body) { (response, error) in
 | body | RedeemReferralCodeRequest | yes | Request body |
 
 
-Applies a referral code to earn or redeem rewards.
+Use this API to enter a referral code following which, the configured points would be credited to a user's reward points account.
 
 *Returned Response:*
 

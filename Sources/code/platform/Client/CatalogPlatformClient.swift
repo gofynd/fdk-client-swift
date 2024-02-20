@@ -69,10 +69,61 @@ extension PlatformClient {
         
         
         
+        
+        
+        
         /**
         *
-        * Summary: List categories.
-        * Description: Retrieve a list of meta associated available product categories in the catalog.
+        * Summary: Create product categories
+        * Description: This API lets user create product categories
+        **/
+        public func createCategories(
+            body: CategoryRequestBody,
+            onResponse: @escaping (_ response: CategoryCreateResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/category",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CategoryCreateResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get product categories list
+        * Description: This API gets meta associated to product categories.
         **/
         public func listCategories(
             level: String?,
@@ -81,7 +132,6 @@ extension PlatformClient {
             pageNo: Int?,
             pageSize: Int?,
             uids: [Int]?,
-            slug: String?,
             
             onResponse: @escaping (_ response: CategoryResponse?, _ error: FDKError?) -> Void
         ) {
@@ -130,20 +180,13 @@ if let value = uids {
 }
 
 
-if let value = slug {
-    
-    xQuery["slug"] = value
-    
-}
-
-
  
 
 
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/category/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/category",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -173,149 +216,10 @@ if let value = slug {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
-        * Summary: get paginator for listCategories
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func listCategoriesPaginator(
-            level: String?,
-            department: Int?,
-            q: String?,
-            pageSize: Int?,
-            uids: [Int]?,
-            slug: String?
-            
-            ) -> Paginator<CategoryResponse> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<CategoryResponse>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.listCategories(
-                        
-                        level: level,
-                        department: department,
-                        q: q,
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        ,
-                        uids: uids,
-                        slug: slug
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Create categories.
-        * Description: Lets user create product categories on for the seller on the platform.
-        **/
-        public func createCategories(
-            body: CategoryRequestBody,
-            onResponse: @escaping (_ response: CategoryCreateResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/category/",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CategoryCreateResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get category data.
-        * Description: Retrieve detailed information about a specific category with the associated meta.
+        * Summary: Get product category by uid
+        * Description: This API gets meta associated to product categories.
         **/
         public func getCategoryData(
             uid: String,
@@ -331,7 +235,7 @@ if let value = slug {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/category/\(uid)/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/category/\(uid)",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -363,8 +267,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Update category data.
-        * Description: Modify data for an existing category in the catalog.
+        * Summary: Update product categories
+        * Description: Update a product category using this api
         **/
         public func updateCategory(
             uid: String,
@@ -380,7 +284,7 @@ if let value = slug {
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/category/\(uid)/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/category/\(uid)",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -412,8 +316,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Get seller insights.
-        * Description: Retrieve insights and analytics related to sellers within the catalog.
+        * Summary: Analytics data of catalog and inventory that are being cross-selled.
+        * Description: Analytics data of catalog and inventory that are being cross-selled.
         **/
         public func getSellerInsights(
             sellerAppId: String,
@@ -429,7 +333,7 @@ if let value = slug {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/crossSelling/\(sellerAppId)/analytics/insights/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/crossSelling/\(sellerAppId)/analytics/insights",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -461,7 +365,55 @@ if let value = slug {
         
         /**
         *
-        * Summary: List department data.
+        * Summary: Create the department.
+        * Description: Create departments using the API.
+        **/
+        public func createDepartments(
+            body: DepartmentCreateUpdate,
+            onResponse: @escaping (_ response: DepartmentCreateResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/departments",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(DepartmentCreateResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: List all Departments.
         * Description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type.
         **/
         public func listDepartmentsData(
@@ -471,7 +423,7 @@ if let value = slug {
             name: String?,
             search: String?,
             isActive: Bool?,
-            slug: String?,
+            uids: [Int]?,
             
             onResponse: @escaping (_ response: DepartmentsResponse?, _ error: FDKError?) -> Void
         ) {
@@ -520,9 +472,9 @@ if let value = isActive {
 }
 
 
-if let value = slug {
+if let value = uids {
     
-    xQuery["slug"] = value
+    xQuery["uids"] = value
     
 }
 
@@ -533,7 +485,7 @@ if let value = slug {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/departments/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/departments",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -563,149 +515,10 @@ if let value = slug {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
-        * Summary: get paginator for listDepartmentsData
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func listDepartmentsDataPaginator(
-            itemType: String?,
-            pageSize: Int?,
-            name: String?,
-            search: String?,
-            isActive: Bool?,
-            slug: String?
-            
-            ) -> Paginator<DepartmentsResponse> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<DepartmentsResponse>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.listDepartmentsData(
-                        
-                        pageNo: paginator.pageNo
-                        ,
-                        itemType: itemType,
-                        pageSize: paginator.pageSize
-                        ,
-                        name: name,
-                        search: search,
-                        isActive: isActive,
-                        slug: slug
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Create departments.
-        * Description: Create departments with this resource.
-        **/
-        public func createDepartments(
-            body: DepartmentCreateUpdate,
-            onResponse: @escaping (_ response: DepartmentCreateResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/departments/",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(DepartmentCreateResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get department data.
-        * Description: Retrieve detailed information about a specific department by UID.
+        * Summary: Get specific departments details by passing in unique id of the department.
+        * Description: Allows you to get department data, by uid.
         **/
         public func getDepartmentData(
             uid: String,
@@ -721,7 +534,7 @@ if let value = slug {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/departments/\(uid)/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/departments/\(uid)",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -753,8 +566,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Update department data.
-        * Description: Modify the department by their uid using this API.
+        * Summary: Update the department by their uid.
+        * Description: Update the department by their uid using this API.
         **/
         public func updateDepartment(
             uid: String,
@@ -770,7 +583,7 @@ if let value = slug {
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/departments/\(uid)/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/departments/\(uid)",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -802,8 +615,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: List template brand type values.
-        * Description: Retrieve values related to template brand types. The filter type query parameter defines what type of data to return. The type of query returns the valid values for the same
+        * Summary: Allows you to list all values for Templates, Brands or Type
+        * Description: The filter type query parameter defines what type of data to return. The type of query returns the valid values for the same
         **/
         public func listTemplateBrandTypeValues(
             filter: String,
@@ -840,7 +653,7 @@ if let value = itemType {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/downloads/configuration/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/downloads/configuration",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -872,8 +685,8 @@ if let value = itemType {
         
         /**
         *
-        * Summary: Bulk update HSN codes.
-        * Description: Perform bulk updates of HSN codes for products.
+        * Summary: Bulk Create or Update Hsn Code.
+        * Description: Bulk Create or Update Hsn Code.
         **/
         public func bulkHsnCode(
             body: BulkHsnUpsert,
@@ -888,7 +701,7 @@ if let value = itemType {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/hsn/bulk/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/hsn/bulk",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -920,8 +733,8 @@ if let value = itemType {
         
         /**
         *
-        * Summary: Get HSN code.
-        * Description: Retrieve the HSN code for a product.
+        * Summary: Fetch Hsn Code.
+        * Description: Fetch Hsn Code.
         **/
         public func getHsnCode(
             id: String,
@@ -937,7 +750,7 @@ if let value = itemType {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/hsn/\(id)/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/hsn/\(id)",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -969,13 +782,13 @@ if let value = itemType {
         
         /**
         *
-        * Summary: Update HSN code.
-        * Description: Modify the HSN code associated with a product.
+        * Summary: Update Hsn Code.
+        * Description: Update Hsn Code.
         **/
         public func updateHsnCode(
             id: String,
             body: HsnUpsert,
-            onResponse: @escaping (_ response: HsnCode?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: UpdateHsnCode?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -986,7 +799,7 @@ if let value = itemType {
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/hsn/\(id)/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/hsn/\(id)",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -1000,7 +813,7 @@ if let value = itemType {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(HsnCode.self, from: data)
+                        let response = Utility.decode(UpdateHsnCode.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1018,18 +831,18 @@ if let value = itemType {
         
         /**
         *
-        * Summary: Retrieve inventories.
-        * Description: Allows to get Inventories data for particular company.
+        * Summary: Get Inventory for company
+        * Description: This API allows get Inventories data for particular company.
         **/
         public func getInventories(
-            itemId: String?,
+            itemId: Int?,
             size: String?,
             pageNo: Int?,
             pageSize: Int?,
             q: String?,
             sellable: Bool?,
             storeIds: [Int]?,
-            sizeIdentifier: String?,
+            sizeIdentifier: Int?,
             
             onResponse: @escaping (_ response: GetInventoriesResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1128,109 +941,10 @@ if let value = sizeIdentifier {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
-        * Summary: get paginator for getInventories
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getInventoriesPaginator(
-            itemId: String?,
-            size: String?,
-            pageSize: Int?,
-            q: String?,
-            sellable: Bool?,
-            storeIds: [Int]?,
-            sizeIdentifier: String?
-            
-            ) -> Paginator<GetInventoriesResponse> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<GetInventoriesResponse>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getInventories(
-                        
-                        itemId: itemId,
-                        size: size,
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        ,
-                        q: q,
-                        sellable: sellable,
-                        storeIds: storeIds,
-                        sizeIdentifier: sizeIdentifier
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Retrieve inventory bulk upload history.
-        * Description: Helps to get bulk Inventory upload jobs data.
+        * Summary: Get a list of all bulk Inventory upload jobs.
+        * Description: This API helps to get bulk Inventory upload jobs data.
         **/
         public func getInventoryBulkUploadHistory(
             pageNo: Int?,
@@ -1291,65 +1005,14 @@ if let value = pageSize {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
-        * Summary: get paginator for getInventoryBulkUploadHistory
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getInventoryBulkUploadHistoryPaginator(
-            pageSize: Int?
-            
-            ) -> Paginator<BulkInventoryGet> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<BulkInventoryGet>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getInventoryBulkUploadHistory(
-                        
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Create bulk inventory upload job.
-        * Description: Helps to create a bulk Inventory upload job.
+        * Summary: Create a Bulk Inventory upload Job.
+        * Description: This API helps to create a bulk Inventory upload job.
         **/
         public func createBulkInventoryJob(
-            body: BulkJob,
-            onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
+            body: InventoryBulkJob,
+            onResponse: @escaping (_ response: InventoryBulkResponse?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -1374,7 +1037,7 @@ if let value = pageSize {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkResponse.self, from: data)
+                        let response = Utility.decode(InventoryBulkResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1392,8 +1055,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Delete inventory bulk upload job.
-        * Description: Allows to delete bulk Inventory job associated with company.
+        * Summary: Delete Bulk Inventory job.
+        * Description: This API allows to delete bulk Inventory job associated with company.
         **/
         public func deleteBulkInventoryJob(
             batchId: String,
@@ -1409,7 +1072,7 @@ if let value = pageSize {
             PlatformAPIClient.execute(
                 config: config,
                 method: "DELETE",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/bulk/\(batchId)/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/bulk/\(batchId)",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -1441,8 +1104,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Create bulk inventory.
-        * Description: Helps to create products in bulk push to kafka for approval/creation.
+        * Summary: Create products in bulk associated with given batch Id.
+        * Description: This API helps to create products in bulk push to kafka for approval/creation.
         **/
         public func createBulkInventory(
             batchId: String,
@@ -1458,7 +1121,7 @@ if let value = pageSize {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/bulk/\(batchId)/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/bulk/\(batchId)",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -1490,56 +1153,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieve inventory export data.
-        * Description: Helps to retrieve Inventory export history.
-        **/
-        public func getInventoryExport(
-            
-            onResponse: @escaping (_ response: InventoryExportJob?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/download/",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(InventoryExportJob.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Create inventory export job.
-        * Description: Helps to create a Inventory export job.
+        * Summary: Create a Inventory export Job.
+        * Description: This API helps to create a Inventory export job.
         **/
         public func createInventoryExportJob(
             body: InventoryExportRequest,
@@ -1554,7 +1169,7 @@ if let value = pageSize {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/download/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/download",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -1586,22 +1201,264 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Export inventory configuration.
-        * Description: Retrieve List of different filters like brand, store, and type for inventory export.
+        * Summary: Get Inventory export history.
+        * Description: This API helps to get Inventory export history.
+        **/
+        public func getInventoryExport(
+            
+            onResponse: @escaping (_ response: InventoryExportJobResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/download",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(InventoryExportJobResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Edit notification_emails and status of export job.
+        * Description: This API helps to edit notification_emails and status of export job.
+        **/
+        public func patchProductExportDetail(
+            jobId: String,
+            body: ExportPatchRequest,
+            onResponse: @escaping (_ response: PatchProductDownloadsResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "PATCH",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/downloads/\(jobId)",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(PatchProductDownloadsResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get Detail Product export detail.
+        * Description: This API helps to get detail of Product export.
+        **/
+        public func getProductExportDetail(
+            jobId: String,
+            
+            onResponse: @escaping (_ response: GetProductDownloadsResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/downloads/\(jobId)",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetProductDownloadsResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Edit notification_emails and status of export job.
+        * Description: This API helps to edit notification_emails and status of export job.
+        **/
+        public func patchInventoryExportDetail(
+            jobId: String,
+            body: ExportPatchRequest,
+            onResponse: @escaping (_ response: EditInventoryDownloadsResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "PUT",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/inventory/download/\(jobId)",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(EditInventoryDownloadsResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get Detail Product export detail.
+        * Description: This API helps to get detail of Product export.
+        **/
+        public func getInventoryExportDetail(
+            jobId: String,
+            
+            onResponse: @escaping (_ response: EditInventoryDownloadsResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/inventory/download/\(jobId)",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(EditInventoryDownloadsResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get List of different filters for inventory export
+        * Description: This API allows get List of different filters like brand, store, and type for inventory export.
         **/
         public func exportInventoryConfig(
-            filterType: String?,
+            filter: String,
             
             onResponse: @escaping (_ response: InventoryConfig?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
 
-if let value = filterType {
-    
-    xQuery["filter_type"] = value
-    
-}
+
+    xQuery["filter"] = filter
+
 
 
  
@@ -1610,7 +1467,7 @@ if let value = filterType {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/download/configuration/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/download/configuration",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -1642,11 +1499,11 @@ if let value = filterType {
         
         /**
         *
-        * Summary: Download inventory template view.
-        * Description: Allows you to download product template data.
+        * Summary: Download Product Template View
+        * Description: Allows you to download product template data
         **/
         public func downloadInventoryTemplateView(
-            itemType: String,
+            type: String,
             
             onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
         ) {
@@ -1654,7 +1511,7 @@ if let value = filterType {
 var xQuery: [String: Any] = [:] 
 
 
-    xQuery["item_type"] = itemType
+    xQuery["type"] = type
 
 
 
@@ -1664,7 +1521,7 @@ var xQuery: [String: Any] = [:]
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/templates/download/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/templates/download",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -1696,11 +1553,12 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Validate product template schema.
-        * Description: Allows you to list all product templates validation values for all the fields present in the database.
+        * Summary: Validate Product Template Schema
+        * Description: Allows you to list all product templates validation values for all the fields present in the database
         **/
         public func validateProductTemplateSchema(
             itemType: String,
+            bulk: Bool,
             
             onResponse: @escaping (_ response: InventoryValidationResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1712,13 +1570,18 @@ var xQuery: [String: Any] = [:]
 
 
 
+
+    xQuery["bulk"] = bulk
+
+
+
  
 
 
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/templates/validation/schema/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/templates/validation/schema",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -1750,8 +1613,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get optimal locations.
-        * Description: Retrieve the most suitable locations based on certain criteria.
+        * Summary: Location Reassignment
+        * Description: Allows you to reassign locations
         **/
         public func getOptimalLocations(
             body: AssignStore,
@@ -1766,7 +1629,7 @@ var xQuery: [String: Any] = [:]
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/location/reassign/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/location/reassign",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -1781,54 +1644,6 @@ var xQuery: [String: Any] = [:]
                     } else if let data = responseData {
                         
                         let response = Utility.decode(StoreAssignResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get opt-in infomation.
-        * Description: Use this API to fetch opt-in information for all the platforms. If successful, returns a logs in the response body as specified in `GetOptInPlatformSchema`
-        **/
-        public func getMarketplaceOptinDetail(
-            
-            onResponse: @escaping (_ response: GetOptInPlatform?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetOptInPlatform.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1902,7 +1717,7 @@ if let value = marketplace {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/company-brand-details/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/company-brand-details",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -1950,7 +1765,7 @@ if let value = marketplace {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/company-details/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/company-details",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -1982,8 +1797,8 @@ if let value = marketplace {
         
         /**
         *
-        * Summary: Get company metrics.
-        * Description: Allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
+        * Summary: Get the Company metrics
+        * Description: Get the Company metrics associated with the company ID passed.
         **/
         public func getCompanyMetrics(
             
@@ -1998,7 +1813,7 @@ if let value = marketplace {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/company-metrics/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/company-metrics",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -2030,8 +1845,8 @@ if let value = marketplace {
         
         /**
         *
-        * Summary: Get store details.
-        * Description: Retrieve the details of the store associated with the company ID passed.
+        * Summary: Get the Store details.
+        * Description: Get the details of the store associated with the company ID passed.
         **/
         public func getStoreDetail(
             q: String?,
@@ -2070,7 +1885,7 @@ if let value = pageSize {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/location-details/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/location-details",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -2100,118 +1915,10 @@ if let value = pageSize {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
-        * Summary: get paginator for getStoreDetail
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getStoreDetailPaginator(
-            q: String?,
-            pageSize: Int?
-            
-            ) -> Paginator<OptinStoreDetails> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<OptinStoreDetails>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getStoreDetail(
-                        
-                        q: q,
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Create/Update opt-in infomation.
-        * Description: Use this API to create/update opt-in information for given platform. If successful, returns data in the response body as specified in `OptInPostResponseSchema`
-        **/
-        public func createMarketplaceOptin(
-            marketplace: String,
-            body: OptInPostRequest,
-            onResponse: @escaping (_ response: UpdatedResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/\(marketplace)/optin/",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(UpdatedResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get product attributes.
-        * Description: List all the attributes by their L3 categories.
+        * Summary: Get list of all the attributes by their l3_categories
+        * Description: This API allows to list all the attributes by their l3_categories.
         **/
         public func getProductAttributes(
             category: String,
@@ -2240,7 +1947,7 @@ if let value = filter {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/product-attributes/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/product-attributes",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -2272,8 +1979,8 @@ if let value = filter {
         
         /**
         *
-        * Summary: Get gender attribute.
-        * Description: Retrieve the gender attribute for catalog listings.
+        * Summary: Get gender attribute details
+        * Description: This API allows to view the gender attribute details.
         **/
         public func getGenderAttribute(
             attributeSlug: String,
@@ -2321,12 +2028,62 @@ if let value = filter {
         
         /**
         *
-        * Summary: Retrieve product bundles.
-        * Description: Retrieve a list of product bundles available in the catalog.
+        * Summary: Create Product Bundle
+        * Description: Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
+        **/
+        public func createProductBundle(
+            body: ProductBundleRequest,
+            onResponse: @escaping (_ response: GetProductBundleCreateResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/product-bundle",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetProductBundleCreateResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: List all Product Bundles
+        * Description: Get all product bundles for a particular company
         **/
         public func getProductBundle(
             q: String?,
             slug: [String]?,
+            pageNo: Int?,
+            pageSize: Int?,
             
             onResponse: @escaping (_ response: GetProductBundleListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2347,13 +2104,27 @@ if let value = slug {
 }
 
 
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
  
 
 
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/product-bundle/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/product-bundle",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -2385,56 +2156,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Create a product bundle.
-        * Description: Create product bundle in the catalog.
-        **/
-        public func createProductBundle(
-            body: ProductBundleRequest,
-            onResponse: @escaping (_ response: GetProductBundleCreateResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/product-bundle/",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetProductBundleCreateResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get product bundle details.
-        * Description: Retrieve detailed information about a specific product bundle.
+        * Summary: Get a particular Product Bundle details
+        * Description: Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
         **/
         public func getProductBundleDetail(
             id: String,
@@ -2450,7 +2173,7 @@ if let value = slug {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/productBundle/\(id)/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/productBundle/\(id)",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -2482,8 +2205,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Update a product bundle.
-        * Description: Modify the details of an existing product bundle.
+        * Summary: Update a Product Bundle
+        * Description: Update a Product Bundle by its id. On successful request, returns the updated product bundle
         **/
         public func updateProductBundle(
             id: String,
@@ -2499,7 +2222,7 @@ if let value = slug {
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/productBundle/\(id)/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/productBundle/\(id)",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -2531,8 +2254,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Retrieve product assets in bulk.
-        * Description: Helps to retrieve bulk asset jobs data associated to a particular company.
+        * Summary: Get a list of all bulk asset jobs.
+        * Description: This API helps to get bulk asset jobs data associated to a particular company.
         **/
         public func getProductAssetsInBulk(
             pageNo: Int?,
@@ -2563,7 +2286,7 @@ if let value = pageSize {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/assets/bulk/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/assets/bulk",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -2593,61 +2316,10 @@ if let value = pageSize {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
-        * Summary: get paginator for getProductAssetsInBulk
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getProductAssetsInBulkPaginator(
-            pageSize: Int?
-            
-            ) -> Paginator<BulkAssetResponse> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<BulkAssetResponse>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getProductAssetsInBulk(
-                        
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Create product assets in bulk.
-        * Description: Helps to create a bulk asset upload job.
+        * Summary: Create a Bulk asset upload Job.
+        * Description: This API helps to create a bulk asset upload job.
         **/
         public func createProductAssetsInBulk(
             body: ProductBulkAssets,
@@ -2662,7 +2334,7 @@ if let value = pageSize {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/assets/bulk/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/assets/bulk",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -2694,8 +2366,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieve product bulk upload history.
-        * Description: Helps to get bulk product upload jobs data.
+        * Summary: Get a list of all bulk product upload jobs.
+        * Description: This API helps to get bulk product upload jobs data.
         **/
         public func getProductBulkUploadHistory(
             search: String?,
@@ -2764,73 +2436,14 @@ if let value = pageSize {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: get paginator for getProductBulkUploadHistory
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getProductBulkUploadHistoryPaginator(
-            search: String?,
-            pageSize: Int?
-            
-            ) -> Paginator<ProductBulkRequestList> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<ProductBulkRequestList>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getProductBulkUploadHistory(
-                        
-                        search: search,
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
         /**
         *
         * Summary: Create a Bulk product to upload job.
         * Description: This API helps to create a bulk products upload job.
         **/
         public func createBulkProductUploadJob(
-            body: BulkJob,
-            onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
+            body: BulkProductUploadJob,
+            onResponse: @escaping (_ response: ProductBulkResponse?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -2855,7 +2468,7 @@ if let value = pageSize {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkResponse.self, from: data)
+                        let response = Utility.decode(ProductBulkResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2873,11 +2486,11 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Delete product bulk upload job.
-        * Description: Allows to delete bulk product job associated with company.
+        * Summary: Delete Bulk product job.
+        * Description: This API allows to delete bulk product job associated with company.
         **/
         public func deleteProductBulkJob(
-            batchId: Int,
+            batchId: String,
             
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2922,8 +2535,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Create products in bulk.
-        * Description: Helps to create products in bulk push to kafka for approval/creation.
+        * Summary: Create products in bulk associated with given batch Id.
+        * Description: This API helps to create products in bulk push to kafka for approval/creation.
         **/
         public func createProductsInBulk(
             batchId: String,
@@ -2971,8 +2584,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: List product template export details.
-        * Description: Retrieve export details related to product templates. Can view details including trigger data, task id , etc.
+        * Summary: Allows you to list all product templates export list details
+        * Description: Can view details including trigger data, task id , etc.
         **/
         public func listProductTemplateExportDetails(
             
@@ -2987,7 +2600,7 @@ if let value = pageSize {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/downloads/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/downloads",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -3019,8 +2632,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: List HSN codes.
-        * Description: Retrieve a list of Harmonized System Nomenclature (HSN) codes.
+        * Summary: List HSN Codes
+        * Description: Allows you to list all hsn Codes
         **/
         public func listHSNCodes(
             
@@ -3035,7 +2648,7 @@ if let value = pageSize {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/hsn/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/hsn",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -3067,8 +2680,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get product tags.
-        * Description: Retrieve tags data associated to a particular company.
+        * Summary: Get a list of all tags associated with company.
+        * Description: This API helps to get tags data associated to a particular company.
         **/
         public func getProductTags(
             
@@ -3115,8 +2728,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: List product templates.
-        * Description: Allows you to list all product templates, also can filter by department.
+        * Summary: List all Templates
+        * Description: Allows you to list all product templates, also can filter by department
         **/
         public func listProductTemplate(
             department: String,
@@ -3137,7 +2750,7 @@ var xQuery: [String: Any] = [:]
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/templates/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/templates",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -3169,8 +2782,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: List product template categories.
-        * Description: Allows you to list all product categories values for the departments specified.
+        * Summary: List Department specifiec product categories
+        * Description: Allows you to list all product categories values for the departments specified
         **/
         public func listProductTemplateCategories(
             departments: String,
@@ -3197,7 +2810,7 @@ var xQuery: [String: Any] = [:]
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/templates/categories/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/templates/categories",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -3229,8 +2842,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Download product template views.
-        * Description: Allows you to download product template data.
+        * Summary: Download Product Template View
+        * Description: Allows you to download product template data
         **/
         public func downloadProductTemplateViews(
             slug: String,
@@ -3262,7 +2875,7 @@ if let value = type {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/templates/\(slug)/download/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/templates/\(slug)/download",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -3294,8 +2907,8 @@ if let value = type {
         
         /**
         *
-        * Summary: Validate product template.
-        * Description: Allows you to list all product templates validation values for all the fields present in the database.
+        * Summary: Validate Product Template Schema
+        * Description: Allows you to list all product templates validation values for all the fields present in the database
         **/
         public func validateProductTemplate(
             slug: String,
@@ -3327,7 +2940,7 @@ if let value = bulk {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/templates/\(slug)/validation/schema/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/templates/\(slug)/validation/schema",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -3359,15 +2972,27 @@ if let value = bulk {
         
         /**
         *
-        * Summary: Get product validation.
-        * Description: Retrieve validation data for a specific product.
+        * Summary: Validate product/size data
+        * Description: This API validates product data.
         **/
         public func getProductValidation(
+            type: String,
+            slug: String,
             
             onResponse: @escaping (_ response: ValidateProduct?, _ error: FDKError?) -> Void
         ) {
             
- 
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["type"] = type
+
+
+
+
+    xQuery["slug"] = slug
+
+
 
  
 
@@ -3375,8 +3000,8 @@ if let value = bulk {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/validation/",
-                query: nil,
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/validation",
+                query: xQuery,
                 body: nil,
                 headers: [],
                 responseType: "application/json",
@@ -3407,8 +3032,8 @@ if let value = bulk {
         
         /**
         *
-        * Summary: Get inventory by size identifier.
-        * Description: Allows to retrieve Inventory data for particular company grouped by size and store.
+        * Summary: Get Inventory for company
+        * Description: This API allows get Inventory data for particular company grouped by size and store.
         **/
         public func getInventoryBySizeIdentifier(
             itemId: Int,
@@ -3487,125 +3112,18 @@ if let value = locationIds {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
-        * Summary: get paginator for getInventoryBySizeIdentifier
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getInventoryBySizeIdentifierPaginator(
-            itemId: Int,
-            sizeIdentifier: String,
-            pageSize: Int?,
-            q: String?,
-            locationIds: [Int]?
-            
-            ) -> Paginator<InventorySellerIdentifierResponsePaginated> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<InventorySellerIdentifierResponsePaginated>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getInventoryBySizeIdentifier(
-                        
-                        itemId: itemId,
-                        sizeIdentifier: sizeIdentifier,
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        ,
-                        q: q,
-                        locationIds: locationIds
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get product size details.
-        * Description: Retrieve data associated to a particular product size.
+        * Summary: Get a single product size.
+        * Description: This API helps to get data associated to a particular product size.
         **/
         public func getProductSize(
-            itemCode: String?,
             itemId: Int,
-            brandUid: Int?,
-            uid: Int?,
             
-            onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: Product?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = itemCode {
-    
-    xQuery["item_code"] = value
-    
-}
-
-
-if let value = brandUid {
-    
-    xQuery["brand_uid"] = value
-    
-}
-
-
-if let value = uid {
-    
-    xQuery["uid"] = value
-    
-}
-
+ 
 
  
 
@@ -3613,8 +3131,8 @@ if let value = uid {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/sizes/",
-                query: xQuery,
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/sizes",
+                query: nil,
                 body: nil,
                 headers: [],
                 responseType: "application/json",
@@ -3627,7 +3145,7 @@ if let value = uid {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductListingResponse.self, from: data)
+                        let response = Utility.decode(Product.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -3645,8 +3163,8 @@ if let value = uid {
         
         /**
         *
-        * Summary: Delete product size.
-        * Description: Allows to delete size associated with product.
+        * Summary: Delete a Size associated with product.
+        * Description: This API allows to delete size associated with product.
         **/
         public func deleteSize(
             itemId: Int,
@@ -3695,8 +3213,8 @@ if let value = uid {
         
         /**
         *
-        * Summary: Get inventory by size.
-        * Description: Allows to retrieve Inventory data for particular company grouped by size and store.
+        * Summary: Get Inventory for company
+        * Description: This API allows get Inventory data for particular company grouped by size and store.
         **/
         public func getInventoryBySize(
             itemId: Int,
@@ -3775,143 +3293,10 @@ if let value = sellable {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
-        * Summary: get paginator for getInventoryBySize
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getInventoryBySizePaginator(
-            itemId: Int,
-            size: String,
-            pageSize: Int?,
-            q: String?,
-            sellable: Bool?
-            
-            ) -> Paginator<InventoryResponsePaginated> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<InventoryResponsePaginated>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getInventoryBySize(
-                        
-                        itemId: itemId,
-                        size: size,
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        ,
-                        q: q,
-                        sellable: sellable
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Add Inventory for particular size and store.
-        * Description: Allows add Inventory for particular size and store.
-        **/
-        public func addInventory(
-            itemId: Int,
-            size: String,
-            body: InventoryRequest,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/sizes/\(size)",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SuccessResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get variants of products.
-        * Description: Retrieve variants of a specific product.
+        * Summary: Get product list
+        * Description: This API gets meta associated to products.
         **/
         public func getVariantsOfProducts(
             itemId: Int,
@@ -3974,108 +3359,24 @@ if let value = pageSize {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
-        * Summary: get paginator for getVariantsOfProducts
-        * Description: fetch the next page by calling .next(...) function
+        * Summary: Get company verification status
+        * Description: This API gets company verification details.
         **/
-        public func getVariantsOfProductsPaginator(
-            itemId: Int,
-            variantType: String,
-            pageSize: Int?
-            
-            ) -> Paginator<ProductVariantsResponse> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<ProductVariantsResponse>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getVariantsOfProducts(
-                        
-                        itemId: itemId,
-                        variantType: variantType,
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Retrieve size guides.
-        * Description: Allows to view all the size guides associated to the seller.
-        **/
-        public func getSizeGuides(
-            active: Bool?,
+        public func getCompanyVerification(
             q: String?,
-            tag: String?,
             pageNo: Int?,
             pageSize: Int?,
-            brandId: Int?,
             
-            onResponse: @escaping (_ response: ListSizeGuide?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CompanyVerificationResponse?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
 
-if let value = active {
-    
-    xQuery["active"] = value
-    
-}
-
-
 if let value = q {
     
     xQuery["q"] = value
-    
-}
-
-
-if let value = tag {
-    
-    xQuery["tag"] = value
     
 }
 
@@ -4094,20 +3395,13 @@ if let value = pageSize {
 }
 
 
-if let value = brandId {
-    
-    xQuery["brand_id"] = value
-    
-}
-
-
  
 
 
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/sizeguide",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/verification",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -4121,7 +3415,110 @@ if let value = brandId {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ListSizeGuide.self, from: data)
+                        let response = Utility.decode(CompanyVerificationResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get the verification detail of a product
+        * Description: Get the verification detail of a product
+        **/
+        public func getProductVerificationDetails(
+            itemId: Int,
+            
+            onResponse: @escaping (_ response: ProductVerificationModel?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/verification/products/\(itemId)",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ProductVerificationModel.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get variant type list
+        * Description: This API gets meta associated to products.
+        **/
+        public func getVariantTypes(
+            templateTag: String,
+            
+            onResponse: @escaping (_ response: VariantTypesResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["template_tag"] = templateTag
+
+
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/variant-types",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(VariantTypesResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -4140,7 +3537,7 @@ if let value = brandId {
         /**
         *
         * Summary: Create a size guide.
-        * Description: Allows to create a size guide associated to a brand.
+        * Description: This API allows to create a size guide associated to a brand.
         **/
         public func createSizeGuide(
             body: ValidateSizeGuide,
@@ -4187,8 +3584,104 @@ if let value = brandId {
         
         /**
         *
-        * Summary: Get size guide details.
-        * Description: Retrieve data associated about a specific size guide.
+        * Summary: Get list of size guides
+        * Description: This API allows to view all the size guides associated to the seller.
+        **/
+        public func getSizeGuides(
+            active: Bool?,
+            q: String?,
+            brandId: Int?,
+            tag: String?,
+            pageNo: Int?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: ListSizeGuide?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = active {
+    
+    xQuery["active"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = brandId {
+    
+    xQuery["brand_id"] = value
+    
+}
+
+
+if let value = tag {
+    
+    xQuery["tag"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/sizeguide",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ListSizeGuide.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get a single size guide.
+        * Description: This API helps to get data associated to a size guide.
         **/
         public func getSizeGuide(
             id: String,
@@ -4204,7 +3697,7 @@ if let value = brandId {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/sizeguide/\(id)/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/sizeguide/\(id)",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -4236,8 +3729,8 @@ if let value = brandId {
         
         /**
         *
-        * Summary: Update a size guide.
-        * Description: Allows to edit a size guide.
+        * Summary: Edit a size guide.
+        * Description: This API allows to edit a size guide.
         **/
         public func updateSizeGuide(
             id: String,
@@ -4253,7 +3746,7 @@ if let value = brandId {
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/sizeguide/\(id)/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/sizeguide/\(id)",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -4296,8 +3789,8 @@ if let value = brandId {
         
         /**
         *
-        * Summary: Get all product HSN codes.
-        * Description: Retrieve all HSN codes associated with products.
+        * Summary: Hsn Code List.
+        * Description: Hsn Code List.
         **/
         public func getAllProductHsnCodes(
             pageNo: Int?,
@@ -4344,7 +3837,7 @@ if let value = type {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/hsn/",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/hsn",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -4376,8 +3869,8 @@ if let value = type {
         
         /**
         *
-        * Summary: Get single product HSN code.
-        * Description: Retrieve the HSN code for a single product.
+        * Summary: Hsn Code List.
+        * Description: Hsn Code List.
         **/
         public func getSingleProductHSNCode(
             reportingHsn: String,
@@ -4425,8 +3918,8 @@ if let value = type {
         
         /**
         *
-        * Summary: Update inventories.
-        * Description: Allows to add Inventory for particular size and store.
+        * Summary: Add Inventory for particular size and store.
+        * Description: This API allows add Inventory for particular size and store.
         **/
         public func updateInventories(
             body: InventoryRequestSchemaV2,
@@ -4441,7 +3934,7 @@ if let value = type {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/inventory/",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/inventory",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -4473,8 +3966,8 @@ if let value = type {
         
         /**
         *
-        * Summary: List inventory exports.
-        * Description: Helps you the retrieve the history of inventory jobs depending on the filtered criteria.
+        * Summary: Get the history of the inventory export.
+        * Description: This API helps you the get the history of inventory jobs depending on the filtered criteria.
         **/
         public func listInventoryExport(
             status: String?,
@@ -4521,7 +4014,7 @@ if let value = q {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/inventory/download/",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/inventory/download",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -4553,8 +4046,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Create inventory export.
-        * Description: Helps to create a Inventory export job.
+        * Summary: Create an inventory export job.
+        * Description: This API helps to create a Inventory export job.
         **/
         public func createInventoryExport(
             body: InventoryCreateRequest,
@@ -4569,7 +4062,7 @@ if let value = q {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/inventory/download/",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/inventory/download",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -4601,8 +4094,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Retrieve products.
-        * Description: Retrieve a list of products available
+        * Summary: Get product list
+        * Description: This API gets meta associated to products.
         **/
         public func getProducts(
             brandIds: [Int]?,
@@ -4689,7 +4182,7 @@ if let value = pageSize {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/products",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -4719,117 +4212,10 @@ if let value = pageSize {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: get paginator for getProducts
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getProductsPaginator(
-            brandIds: [Int]?,
-            categoryIds: [Int]?,
-            itemIds: [Int]?,
-            departmentIds: [Int]?,
-            itemCode: [String]?,
-            q: String?,
-            tags: [String]?,
-            pageSize: Int?
-            
-            ) -> Paginator<ProductListingResponseV2> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<ProductListingResponseV2>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getProducts(
-                        
-                        brandIds: brandIds,
-                        categoryIds: categoryIds,
-                        itemIds: itemIds,
-                        departmentIds: departmentIds,
-                        itemCode: itemCode,
-                        q: q,
-                        tags: tags,
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
         /**
         *
         * Summary: Create a product.
-        * Description: Allows to create product.
+        * Description: This API allows to create product.
         **/
         public func createProduct(
             body: ProductCreateUpdateSchemaV2,
@@ -4844,7 +4230,7 @@ if let value = pageSize {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/products",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -4876,14 +4262,14 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Upload bulk products.
-        * Description: Helps to create a bulk products upload job.
+        * Summary: Create a Bulk product to upload job.
+        * Description: This API helps to create a bulk products upload job.
         **/
         public func uploadBulkProducts(
             department: String,
             productType: String,
-            body: BulkJob,
-            onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
+            body: BulkProductJob,
+            onResponse: @escaping (_ response: ProductBulkResponse?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -4918,7 +4304,7 @@ var xQuery: [String: Any] = [:]
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkResponse.self, from: data)
+                        let response = Utility.decode(ProductBulkResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -4936,8 +4322,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Retrieve product export jobs.
-        * Description: View details including trigger data, task id , etc.
+        * Summary: Allows you to list all product templates export list details
+        * Description: Can view details including trigger data, task id , etc.
         **/
         public func getProductExportJobs(
             status: String?,
@@ -4984,7 +4370,7 @@ if let value = q {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/downloads/",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/downloads",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -5016,12 +4402,12 @@ if let value = q {
         
         /**
         *
-        * Summary: Create product export job.
-        * Description: Helps to create a Inventory export job.
+        * Summary: Create a product export job.
+        * Description: This API helps to create a Inventory export job.
         **/
         public func createProductExportJob(
             body: ProductTemplateDownloadsExport,
-            onResponse: @escaping (_ response: ProductDownloadsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CreateProductDownloadsResponse?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -5032,7 +4418,7 @@ if let value = q {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/downloads/",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/downloads",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -5046,7 +4432,7 @@ if let value = q {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductDownloadsResponse.self, from: data)
+                        let response = Utility.decode(CreateProductDownloadsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -5064,57 +4450,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Delete a product.
-        * Description: Remove a specific product in the catalog
-        **/
-        public func deleteProduct(
-            itemId: Int,
-            
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "DELETE",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SuccessResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get product details.
-        * Description: Retrieve data associated to a particular product.
+        * Summary: Get a single product.
+        * Description: This API helps to get data associated to a particular product.
         **/
         public func getProduct(
             itemId: Int,
@@ -5146,7 +4483,7 @@ if let value = itemCode {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -5179,7 +4516,7 @@ if let value = itemCode {
         /**
         *
         * Summary: Edit a product.
-        * Description: Modify the details and settings of an existing product in the catalog.
+        * Description: This API allows to edit product.
         **/
         public func editProduct(
             itemId: Int,
@@ -5195,7 +4532,7 @@ if let value = itemCode {
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -5227,8 +4564,57 @@ if let value = itemCode {
         
         /**
         *
-        * Summary: Get all product sizes.
-        * Description: Retrieve all available sizes for a product.
+        * Summary: Delete a product.
+        * Description: This API allows to delete product.
+        **/
+        public func deleteProduct(
+            itemId: Int,
+            
+            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "DELETE",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: All Sizes for a given Product
+        * Description: This API allows to get  All Sizes for a given Product.
         **/
         public func allSizes(
             itemId: Int,
@@ -5276,8 +4662,8 @@ if let value = itemCode {
         
         /**
         *
-        * Summary: Delete realtime inventory.
-        * Description: Remove specific realtime inventory data.
+        * Summary: Add Inventory for particular size and store.
+        * Description: This API allows add Inventory for particular size and store.
         **/
         public func deleteRealtimeInventory(
             itemId: Int,
@@ -5326,8 +4712,8 @@ if let value = itemCode {
         
         /**
         *
-        * Summary: Update realtime inventory.
-        * Description: Allows to add Inventory for particular size and store.
+        * Summary: Add Inventory for particular size and store.
+        * Description: This API allows add Inventory for particular size and store.
         **/
         public func updateRealtimeInventory(
             itemId: Int,
@@ -5359,6 +4745,55 @@ if let value = itemCode {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(InventoryUpdateResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Update marketplace optin
+        * Description: This API retrieves template for a given slug.
+        **/
+        public func getProductTemplateBySlug(
+            slug: String,
+            
+            onResponse: @escaping (_ response: GetProductTemplateSlugResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/templates/\(slug)",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetProductTemplateSlugResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -5428,7 +4863,7 @@ if let value = itemCode {
         * Description: This API allows to update marketplace optin for a company.
         **/
         public func updateMarketplaceOptin(
-            marketplaceSlug: String,
+            marketplace: String,
             body: UpdateMarketplaceOptinRequest,
             onResponse: @escaping (_ response: UpdateMarketplaceOptinResponse?, _ error: FDKError?) -> Void
         ) {
@@ -5441,7 +4876,7 @@ if let value = itemCode {
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/channel/\(marketplaceSlug)/opt-in",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/channel/\(marketplace)/opt-in",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -5466,6 +4901,87 @@ if let value = itemCode {
                     }
             });
         }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Update marketplace optin
+        * Description: This API allows to create marketplace optin for a company.
+        **/
+        public func createMarketplaceOptin(
+            marketplace: String,
+            body: CreateMarketplaceOptinRequest,
+            onResponse: @escaping (_ response: CreateMarketplaceOptinResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/channel/\(marketplace)/opt-in",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CreateMarketplaceOptinResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
     }

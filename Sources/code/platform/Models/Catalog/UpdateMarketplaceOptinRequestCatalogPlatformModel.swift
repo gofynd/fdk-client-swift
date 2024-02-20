@@ -18,7 +18,7 @@ public extension PlatformClient.Catalog {
         
         public var enabled: Bool?
         
-        public var optLevel: String?
+        public var optLevel: Int?
         
         public var platform: String?
         
@@ -41,7 +41,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(brandIds: [Int]? = nil, companyId: Int? = nil, enabled: Bool? = nil, optLevel: String? = nil, platform: String? = nil, storeIds: [Int]? = nil) {
+        public init(brandIds: [Int]? = nil, companyId: Int? = nil, enabled: Bool? = nil, optLevel: Int? = nil, platform: String? = nil, storeIds: [Int]? = nil) {
             
             self.brandIds = brandIds
             
@@ -98,7 +98,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    optLevel = try container.decode(String.self, forKey: .optLevel)
+                    optLevel = try container.decode(Int.self, forKey: .optLevel)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -189,7 +189,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var enabled: Bool?
         
-        public var optLevel: String?
+        public var optLevel: Int?
         
         public var platform: String?
         
@@ -212,7 +212,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(brandIds: [Int]? = nil, companyId: Int? = nil, enabled: Bool? = nil, optLevel: String? = nil, platform: String? = nil, storeIds: [Int]? = nil) {
+        public init(brandIds: [Int]? = nil, companyId: Int? = nil, enabled: Bool? = nil, optLevel: Int? = nil, platform: String? = nil, storeIds: [Int]? = nil) {
             
             self.brandIds = brandIds
             
@@ -269,7 +269,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    optLevel = try container.decode(String.self, forKey: .optLevel)
+                    optLevel = try container.decode(Int.self, forKey: .optLevel)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

@@ -7,7 +7,7 @@
 ## Catalog Methods
 The Catalog module manages product details and size availability, and enables easy comparisons. Use it to explore product options, check stock status, and retrieve brand and category information. The module also supports personalization by allowing tracking of preferred items and brands. It highlights popular products based on user engagement and provides store details. Additionally, this module covers bundled items, size-specific pricing, and seller information.
 
-Product Information
+Default
 * [getProductDetailBySlug](#getproductdetailbyslug)
 * [getProductSizesBySlug](#getproductsizesbyslug)
 * [getProductComparisonBySlugs](#getproductcomparisonbyslugs)
@@ -17,48 +17,27 @@ Product Information
 * [getProductStockByIds](#getproductstockbyids)
 * [getProductStockForTimeByIds](#getproductstockfortimebyids)
 * [getProducts](#getproducts)
-* [getProductBundlesBySlug](#getproductbundlesbyslug)
-* [getProductPriceBySlug](#getproductpricebyslug)
-* [getProductSellersBySlug](#getproductsellersbyslug)
-
-
-Brand Information
 * [getBrands](#getbrands)
 * [getBrandDetailBySlug](#getbranddetailbyslug)
-
-
-Category information
 * [getCategories](#getcategories)
 * [getCategoryDetailBySlug](#getcategorydetailbyslug)
-
-
-Home and Department Information
 * [getHomeProducts](#gethomeproducts)
 * [getDepartments](#getdepartments)
-
-
-Search Results
 * [getSearchResults](#getsearchresults)
-
-
-Collection Information
 * [getCollections](#getcollections)
 * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
 * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
-
-
-Follow and Unfollow Management
 * [getFollowedListing](#getfollowedlisting)
 * [unfollowById](#unfollowbyid)
 * [followById](#followbyid)
 * [getFollowerCountById](#getfollowercountbyid)
 * [getFollowIds](#getfollowids)
-
-
-Store and Location Information
 * [getStores](#getstores)
 * [getInStockLocations](#getinstocklocations)
 * [getLocationDetailsById](#getlocationdetailsbyid)
+* [getProductBundlesBySlug](#getproductbundlesbyslug)
+* [getProductPriceBySlug](#getproductpricebyslug)
+* [getProductSellersBySlug](#getproductsellersbyslug)
 
 
 
@@ -68,7 +47,7 @@ Store and Location Information
 
 
 #### getProductDetailBySlug
-Fetches detailed product information by slug.
+Get a product
 
 
 
@@ -89,7 +68,7 @@ applicationClient.catalog.getProductDetailBySlug(slug: slug) { (response, error)
 
 
 
-Retrieve a product by its slug value.
+Use this API to retrieve a product by its slug value.
 
 *Returned Response:*
 
@@ -250,7 +229,7 @@ Success. Returns a Product object. Check the example shown below or refer `Produ
 
 
 #### getProductSizesBySlug
-Retrieves available sizes for a product by slug.
+Get the sizes of a product
 
 
 
@@ -272,7 +251,7 @@ applicationClient.catalog.getProductSizesBySlug(slug: slug, storeId: storeId) { 
 
 
 
-Retrieve the size options available for a specific product based on its slug.
+A product can have multiple sizes. Use this API to fetch all the available sizes of a product.
 
 *Returned Response:*
 
@@ -342,7 +321,7 @@ Success. Returns a ProductSize object. Check the example shown below or refer `P
 
 
 #### getProductComparisonBySlugs
-Compares multiple products by slugs.
+Compare products
 
 
 
@@ -363,7 +342,7 @@ applicationClient.catalog.getProductComparisonBySlugs(slug: slug) { (response, e
 
 
 
-Retrieves side-by-side comparisons of multiple products identified by their slugs.
+Use this API to compare the features of products belonging to the same category. Note that at least one slug is mandatory in the request query.
 
 *Returned Response:*
 
@@ -629,7 +608,7 @@ Success. Returns an array of objects containing the attributes for comparision. 
 
 
 #### getSimilarComparisonProductBySlug
-Fetches similar products for comparison.
+Get comparison between similar products
 
 
 
@@ -650,7 +629,7 @@ applicationClient.catalog.getSimilarComparisonProductBySlug(slug: slug) { (respo
 
 
 
-Gets products similar to the one identified by the given slug for comparison.
+Use this API to compare a given product automatically with similar products. Only one slug is needed.
 
 *Returned Response:*
 
@@ -684,7 +663,7 @@ Success. Returns an array of objects containing the attributes for comparision. 
 
 
 #### getComparedFrequentlyProductBySlug
-Retrieves products frequently compared with a given product.
+Get comparison between frequently compared products with the given product
 
 
 
@@ -705,7 +684,7 @@ applicationClient.catalog.getComparedFrequentlyProductBySlug(slug: slug) { (resp
 
 
 
-Retrieve products that are often compared to the product specified by its slug.
+Use this API to compare a given product automatically with products that are frequently compared with it. Only one slug is needed.
 
 *Returned Response:*
 
@@ -964,7 +943,7 @@ Success. Returns an array of objects containing the attributes for comparision. 
 
 
 #### getProductVariantsBySlug
-Retrieves product variants by slug.
+Get variant of a particular product
 
 
 
@@ -985,7 +964,7 @@ applicationClient.catalog.getProductVariantsBySlug(slug: slug) { (response, erro
 
 
 
-Retrieves all available variants of a specific product identified by its slug.
+A product can have a different type of variants such as colour, shade, memory. Use this API to fetch all the available variants of a product using its slug.
 
 *Returned Response:*
 
@@ -1053,7 +1032,7 @@ Success. Returns all variants of a product. Check the example shown below or ref
 
 
 #### getProductStockByIds
-Checks product stock by IDs.
+Get the stock of a product
 
 
 
@@ -1078,7 +1057,7 @@ applicationClient.catalog.getProductStockByIds(itemId: itemId, alu: alu, skuCode
 
 
 
-Retrieves the current stock status for products identified by their IDs.
+Retrieve the available stock of the products. Use this API to retrieve stock of multiple products (up to 50) at a time.
 
 *Returned Response:*
 
@@ -1805,7 +1784,7 @@ Success. Returns the status of the product stock.Check the example shown below o
 
 
 #### getProductStockForTimeByIds
-Fetches future stock data for products.
+Get the stock of a product
 
 
 
@@ -1828,7 +1807,7 @@ applicationClient.catalog.getProductStockForTimeByIds(timestamp: timestamp, page
 
 
 
-Retrieves projected stock levels for specified products at a future time.
+Retrieve the available stock of the products. Use this API to get the stock status of products whose inventory is updated at the specified time
 
 *Returned Response:*
 
@@ -1862,7 +1841,7 @@ Success. Returns the status of the product stock.Check the example shown below o
 
 
 #### getProducts
-Lists all products.
+Get all the products
 
 
 
@@ -1890,7 +1869,7 @@ applicationClient.catalog.getProducts(q: q, f: f, filters: filters, sortOn: sort
 
 
 
-Retrieves a list of all products in the catalog. Choose a sort order or make arbitrary search queries by entering the product name, brand, category or collection.
+Use this API to list all the products. You may choose a sort order or make arbitrary search queries by entering the product name, brand, category or collection.
 
 *Returned Response:*
 
@@ -3437,451 +3416,8 @@ Success. Returns a paginated list of products..Check the example shown below or 
 ---
 
 
-#### getProductBundlesBySlug
-Fetches product bundles by slug.
-
-
-
-
-```swift
-applicationClient.catalog.getProductBundlesBySlug(slug: slug, id: id) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| slug | String? | no | Product slug for which bundles need to be fetched. |   
-| id | String? | no | Product uid |  
-
-
-
-Retrieve products bundles to the one specified by its slug.
-
-*Returned Response:*
-
-
-
-
-[ProductBundle](#ProductBundle)
-
-Success. Returns a group of products bundle.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "company_id": 1,
-      "page_visibility": [],
-      "name": "Test bundle",
-      "choice": "multi",
-      "same_store_assignment": true,
-      "slug": "test-bundle",
-      "logo": null,
-      "meta": {},
-      "created_on": "2020-05-21T03:58:41.237000Z",
-      "modified_on": "2020-05-21T03:58:41.237000Z",
-      "products": [
-        {
-          "product_uid": 7502119,
-          "min_quantity": 1,
-          "product_details": {
-            "name": "Neopack WSLTBR42 42 & 44 mm Leather Strap, Brown",
-            "out_of_stock": false,
-            "is_set": false,
-            "identifier": {
-              "sku_code": [
-                "491667188"
-              ]
-            },
-            "country_of_origin": "India",
-            "media": [
-              {
-                "type": "image",
-                "url": "https://hdn-1.jiox0.de/jiox5/products/pictures/item/free/original/G8moRC9NMj-neopack-wsltbr42-smart-watch-bands-491667188-i-1-1200wx1200h.jpeg"
-              },
-              {
-                "type": "image",
-                "url": "https://hdn-1.jiox0.de/jiox5/products/pictures/item/free/original/3Xumb2A0tV-neopack-wsltbr42-smart-watch-bands-491667188-i-2-1200wx1200h.jpeg"
-              },
-              {
-                "type": "image",
-                "url": "https://hdn-1.jiox0.de/jiox5/products/pictures/item/free/original/ZOnlihkNUS-neopack-wsltbr42-smart-watch-bands-491667188-i-3-1200wx1200h.jpeg"
-              },
-              {
-                "type": "image",
-                "url": "https://hdn-1.jiox0.de/jiox5/products/pictures/item/free/original/mu9B2afklQ-neopack-wsltbr42-smart-watch-bands-491667188-i-4-1200wx1200h.jpeg"
-              }
-            ],
-            "template_tag": "health-care",
-            "description": "Personalize your Apple Watch with this Classic and fashionable Neopack WSLTBR42 Leather Strap that fits your different mood and outfits in daily life & any occasion. It is a Perfect Replacement for original straps and is fully adjustable so that it can be adjusted and fit perfectly. The wrist strap is made of genuine calf leather and includes Space Grey Adapter and buckle.",
-            "images": [
-              "https://hdn-1.jiox0.de/jiox5/products/pictures/item/free/original/G8moRC9NMj-neopack-wsltbr42-smart-watch-bands-491667188-i-1-1200wx1200h.jpeg",
-              "https://hdn-1.jiox0.de/jiox5/products/pictures/item/free/original/3Xumb2A0tV-neopack-wsltbr42-smart-watch-bands-491667188-i-2-1200wx1200h.jpeg",
-              "https://hdn-1.jiox0.de/jiox5/products/pictures/item/free/original/ZOnlihkNUS-neopack-wsltbr42-smart-watch-bands-491667188-i-3-1200wx1200h.jpeg",
-              "https://hdn-1.jiox0.de/jiox5/products/pictures/item/free/original/mu9B2afklQ-neopack-wsltbr42-smart-watch-bands-491667188-i-4-1200wx1200h.jpeg"
-            ],
-            "attributes": {
-              "color": "Brown",
-              "model": "WSLTBR42",
-              "action": "upsert",
-              "warranty": "1 Year",
-              "product_details": "Personalize your Apple Watch with this Classic and fashionable Neopack WSLTBR42 Leather Strap that fits your different mood and outfits in daily life & any occasion. It is a Perfect Replacement for original straps and is fully adjustable so that it can be adjusted and fit perfectly. The wrist strap is made of genuine calf leather and includes Space Grey Adapter and buckle.",
-              "brand_name": "Neopack",
-              "primary_color_hex": "8B572A"
-            },
-            "hsn_code": 91130000,
-            "image_nature": "standard",
-            "slug": "neopack-wsltbr42-42-and-44-mm-leather-strap-brown",
-            "brand_uid": 90,
-            "item_code": "491667188"
-          },
-          "allow_remove": true,
-          "auto_add_to_cart": false,
-          "price": {
-            "min_marked": 2499,
-            "min_effective": 1499,
-            "currency": "INR",
-            "max_effective": 1499,
-            "max_marked": 2499
-          },
-          "sizes": [
-            {
-              "value": "OS",
-              "is_available": true,
-              "quantity": 30000,
-              "display": "OS"
-            }
-          ],
-          "max_quantity": 1,
-          "auto_select": false
-        }
-      ]
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getProductPriceBySlug
-Retrieves product price by slug.
-
-
-
-
-```swift
-applicationClient.catalog.getProductPriceBySlug(slug: slug, size: size, storeId: storeId, moq: moq) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| slug | String | yes | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |   
-| size | String | yes | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes |   
-| storeId | Int? | no | The ID of the store that is selling the product, e.g. 1,2,3. |   
-| moq | Int? | no | An Integer indication the Minimum Order Quantity of a product, e.g. 100. |  
-
-
-
-Retrieve the price of a product size at all the selling locations near to a PIN Code.
-
-*Returned Response:*
-
-
-
-
-[ProductSizePriceResponseV3](#ProductSizePriceResponseV3)
-
-Success. Returns a ProductSizePriceV3 object. Check the example shown below or refer `ProductSizePriceResponseV3` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "price_per_piece": {
-    "effective": 66.5,
-    "marked": 66.5,
-    "currency_code": "INR",
-    "currency_symbol": "₹"
-  },
-  "price": {
-    "effective": 399,
-    "marked": 399,
-    "currency_code": "INR",
-    "currency_symbol": "₹"
-  },
-  "quantity": 5,
-  "pincode": 400603,
-  "article_id": "1",
-  "long_lat": [
-    72.9159784,
-    19.0990231
-  ],
-  "item_type": "set",
-  "discount": "",
-  "article_assignment": {
-    "level": "multi-companies",
-    "strategy": "optimal"
-  },
-  "seller": {
-    "uid": 1,
-    "name": "Natalie Norman"
-  },
-  "store": {
-    "uid": 1,
-    "name": "Wayne Lamb",
-    "count": 2
-  },
-  "strategy_wise_listing": [
-    {
-      "distance": 11,
-      "quantity": 5,
-      "tat": 2592000,
-      "pincode": 400603
-    },
-    {
-      "distance": 11,
-      "quantity": 5,
-      "tat": 2592000,
-      "pincode": 400603
-    }
-  ],
-  "set": {
-    "size_distribution": {
-      "sizes": [
-        {
-          "size": "5",
-          "pieces": 1
-        },
-        {
-          "size": "7",
-          "pieces": 1
-        },
-        {
-          "size": "8",
-          "pieces": 2
-        },
-        {
-          "size": "9",
-          "pieces": 1
-        },
-        {
-          "size": "10",
-          "pieces": 1
-        }
-      ]
-    },
-    "quantity": 6
-  },
-  "is_gift": true,
-  "is_cod": false,
-  "delivery_promise": {
-    "min": "2023-08-03T18:19:23",
-    "max": "2023-08-04T14:19:23"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getProductSellersBySlug
-Lists sellers for a product by slug.
-
-
-
-
-```swift
-applicationClient.catalog.getProductSellersBySlug(slug: slug, size: size, strategy: strategy, pageNo: pageNo, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| slug | String | yes | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |   
-| size | String | yes | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes |   
-| strategy | String? | no | Sort stores on the basis of strategy. eg, fast-delivery, low-price, optimal. |   
-| pageNo | Int? | no | The page number to navigate through the given set of results. |   
-| pageSize | Int? | no | The number of items to retrieve in each page. |  
-
-
-
-Retrieve a list of all sellers offering a specific product identified by its slug. 
-
-*Returned Response:*
-
-
-
-
-[ProductSizeSellersResponseV3](#ProductSizeSellersResponseV3)
-
-Success. Returns a ProductSizeSellerV3 object. Check the example shown below or refer `ProductSizeSellersResponseV3` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "price_per_piece": {
-        "effective": 66.5,
-        "marked": 66.5,
-        "currency_code": "INR",
-        "currency_symbol": "₹"
-      },
-      "price": {
-        "effective": 399,
-        "marked": 399,
-        "currency_code": "INR",
-        "currency_symbol": "₹"
-      },
-      "quantity": 5,
-      "pincode": 400603,
-      "article_id": "1",
-      "discount": "",
-      "article_assignment": {
-        "level": "single-company",
-        "strategy": "optimal"
-      },
-      "seller": {
-        "uid": 1,
-        "name": "Natalie Norman"
-      },
-      "store": {
-        "uid": 1,
-        "name": "Wayne Lamb"
-      },
-      "is_gift": true,
-      "is_cod": false
-    },
-    {
-      "price_per_piece": {
-        "effective": 66.5,
-        "marked": 66.5,
-        "currency_code": "INR",
-        "currency_symbol": "₹"
-      },
-      "price": {
-        "effective": 399,
-        "marked": 399,
-        "currency_code": "INR",
-        "currency_symbol": "₹"
-      },
-      "quantity": 5,
-      "pincode": 400603,
-      "article_id": "2",
-      "discount": "",
-      "article_assignment": {
-        "level": "single-company",
-        "strategy": "optimal"
-      },
-      "seller": {
-        "uid": 1,
-        "name": "Natalie Norman"
-      },
-      "store": {
-        "uid": 1,
-        "name": "Wayne Lamb"
-      },
-      "is_gift": true,
-      "is_cod": false
-    }
-  ],
-  "page": {
-    "current": 1,
-    "total": 1,
-    "has_previous": false,
-    "has_next": false,
-    "item_total": 2,
-    "type": "number"
-  },
-  "sort_on": [
-    {
-      "default": true,
-      "is_selected": true,
-      "name": "Best price & fast delivery",
-      "value": "optimal"
-    },
-    {
-      "default": false,
-      "is_selected": false,
-      "name": "Best Price",
-      "value": "low-price"
-    },
-    {
-      "default": false,
-      "is_selected": false,
-      "name": "Fastest Delivery",
-      "value": "fast-delivery"
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
 #### getBrands
-Fetches all available brands.
+Get all the brands
 
 
 
@@ -3904,7 +3440,7 @@ applicationClient.catalog.getBrands(department: department, pageNo: pageNo, page
 
 
 
-Retrieves a comprehensive list of all brands in the catalog under which a product is sold.
+A brand is the name under which a product is sold. Use this API to list all the brands. You can also filter the brands by department.
 
 *Returned Response:*
 
@@ -3976,7 +3512,7 @@ Success. Returns a paginated list of brands. Check the example shown below or re
 
 
 #### getBrandDetailBySlug
-Retrieves detailed brand info by slug.
+Get metadata of a brand
 
 
 
@@ -3997,7 +3533,7 @@ applicationClient.catalog.getBrandDetailBySlug(slug: slug) { (response, error) i
 
 
 
-Retrieve metadata of a brand such as name, information, logo, banner, etc.
+Fetch metadata of a brand such as name, information, logo, banner, etc.
 
 *Returned Response:*
 
@@ -4047,10 +3583,8 @@ Success. Returns a metadata object. Check the example shown below or refer `Bran
 ---
 
 
-
-
 #### getCategories
-Lists all product categories.
+List all the categories
 
 
 
@@ -4071,7 +3605,7 @@ applicationClient.catalog.getCategories(department: department) { (response, err
 
 
 
-Retrieves a list of all available product categories. Also filter the categories by department.
+Use this API to list all the categories. You can also filter the categories by department.
 
 *Returned Response:*
 
@@ -4197,7 +3731,7 @@ Success. Returns a list of categories. Check the example shown below or refer `C
 
 
 #### getCategoryDetailBySlug
-Retrieves category details by slug.
+Get metadata of a category
 
 
 
@@ -4218,7 +3752,7 @@ applicationClient.catalog.getCategoryDetailBySlug(slug: slug) { (response, error
 
 
 
-Retrieve detailed information about a specific product category using its slug and Retrieve metadata of a category such as name, information, logo, banner, etc.
+Fetch metadata of a category such as name, information, logo, banner, etc.
 
 *Returned Response:*
 
@@ -4269,10 +3803,8 @@ Success. Returns metadata of a category. Check the example shown below or refer 
 ---
 
 
-
-
 #### getHomeProducts
-Fetches homepage-featured products.
+List the products
 
 
 
@@ -5838,7 +5370,7 @@ Success. Returns a paginated list of products. Check the example shown below or 
 
 
 #### getDepartments
-Lists all departments.
+List all the departments
 
 
 
@@ -5854,7 +5386,7 @@ applicationClient.catalog.getDepartments() { (response, error) in
 
 
 
-Retrieves a list of all available product departments. Departments are a way to categorise similar products.
+Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
 
 *Returned Response:*
 
@@ -5990,16 +5522,14 @@ List of Departments. See example below or refer `DepartmentResponse` for details
 ---
 
 
-
-
 #### getSearchResults
-Retrieves search result listings.
+Get relevant suggestions for a search query
 
 
 
 
 ```swift
-applicationClient.catalog.getSearchResults(q: q) { (response, error) in
+applicationClient.catalog.getSearchResults(q: q, categorySuggestion: categorySuggestion, brandSuggestion: brandSuggestion, collectionSuggestion: collectionSuggestion, productSuggestion: productSuggestion, querySuggestion: querySuggestion) { (response, error) in
     // Use response
 }
 ```
@@ -6010,11 +5540,16 @@ applicationClient.catalog.getSearchResults(q: q) { (response, error) in
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| q | String | yes | The search query for entering partial or full name of a product, brand or category. For example, if the given search query `q` is _ski_, the relevant search suggestions could be _skirt_, _ski shoes_, __skin cream_ etc. |  
+| q | String? | no | The search query for entering partial or full name of a product, brand or category. For example, if the given search query `q` is _ski_, the relevant search suggestions could be _skirt_, _ski shoes_, __skin cream_ etc. |   
+| categorySuggestion | Int? | no | For getting related category suggestions. |   
+| brandSuggestion | Int? | no | For getting related brand suggestions. |   
+| collectionSuggestion | Int? | no | For getting related collection suggestions. |   
+| productSuggestion | Int? | no | For getting related product suggestions. |   
+| querySuggestion | Int? | no | For getting related query suggestions. |  
 
 
 
-Retrieves products that match the user's search criteria.
+Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of query. This is particularly useful to enhance the user experience while using the search tool.
 
 *Returned Response:*
 
@@ -6023,7 +5558,7 @@ Retrieves products that match the user's search criteria.
 
 [AutoCompleteResponse](#AutoCompleteResponse)
 
-Success. Returns a list autocomplete suggestions for the search query `q`. Check the example shown below or refer `AutoCompleteResponse` for more details.
+Success. Returns a list autocomplete suggestions for the search query `q` along side provided suggestion configs. Check the example shown below or refer `AutoCompleteResponse` for more details.
 
 
 
@@ -6047,10 +5582,8 @@ Success. Returns a list autocomplete suggestions for the search query `q`. Check
 ---
 
 
-
-
 #### getCollections
-Fetches all available collections.
+List all the collections
 
 
 
@@ -6074,7 +5607,7 @@ applicationClient.catalog.getCollections(pageNo: pageNo, pageSize: pageSize, tag
 
 
 
-Retrieves a list of curated product collections.
+Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
 
 *Returned Response:*
 
@@ -6245,7 +5778,7 @@ Success. Returns a list of collections. Check the example shown below or refer `
 
 
 #### getCollectionItemsBySlug
-Lists items in a collection by slug.
+Get the items in a collection
 
 
 
@@ -6274,7 +5807,7 @@ applicationClient.catalog.getCollectionItemsBySlug(slug: slug, f: f, q: q, filte
 
 
 
-Retrieve items in a specific collection identified by its slug.
+Get items in a collection specified by its `slug`.
 
 *Returned Response:*
 
@@ -6637,7 +6170,7 @@ Success. Returns a list items in a given collection. Check the example shown bel
 
 
 #### getCollectionDetailBySlug
-Retrieves collection details by slug.
+Get a particular collection
 
 
 
@@ -6658,7 +6191,7 @@ applicationClient.catalog.getCollectionDetailBySlug(slug: slug) { (response, err
 
 
 
-Retrieve detailed information about a specific collection using its slug.
+Get the details of a collection by its `slug`.
 
 *Returned Response:*
 
@@ -6744,10 +6277,8 @@ Success. Returns a Collection object. Check the example shown below or refer `Co
 ---
 
 
-
-
 #### getFollowedListing
-Retrieves user's followed listings.
+Get a list of followed Products, Brands, Collections
 
 
 
@@ -6770,7 +6301,7 @@ applicationClient.catalog.getFollowedListing(collectionType: collectionType, pag
 
 
 
-Retrieve a list of products or brands the user is following.
+Users can follow a product they like. This API retrieves the products the user have followed.
 
 *Returned Response:*
 
@@ -7120,7 +6651,7 @@ Success. Returns a Followed resource object. Check the example shown below or re
 
 
 #### unfollowById
-Unfollows an item by ID.
+Unfollow an entity (product/brand/collection)
 
 
 
@@ -7142,7 +6673,7 @@ applicationClient.catalog.unfollowById(collectionType: collectionType, collectio
 
 
 
-Removes a followed item, brand, or product based on its ID.
+You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
 
 *Returned Response:*
 
@@ -7179,7 +6710,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 
 #### followById
-Follows an item by ID.
+Follow an entity (product/brand/collection)
 
 
 
@@ -7201,7 +6732,7 @@ applicationClient.catalog.followById(collectionType: collectionType, collectionI
 
 
 
-Adds a product, brand, or item to the user's followed list by its ID.
+Follow a particular entity such as product, brand, collection specified by its ID.
 
 *Returned Response:*
 
@@ -7238,7 +6769,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 
 #### getFollowerCountById
-Retrieves follower count for an item.
+Get Follow Count
 
 
 
@@ -7260,7 +6791,7 @@ applicationClient.catalog.getFollowerCountById(collectionType: collectionType, c
 
 
 
-Retrieves the total number of followers for a specific item by its ID.
+Get the total count of followers for a given collection type and collection ID.
 
 *Returned Response:*
 
@@ -7296,7 +6827,7 @@ Success. Returns the number of followers for a given collection type. Check the 
 
 
 #### getFollowIds
-Fetches IDs of followed items.
+Get the IDs of followed products, brands and collections.
 
 
 
@@ -7317,7 +6848,7 @@ applicationClient.catalog.getFollowIds(collectionType: collectionType) { (respon
 
 
 
-Retrieves the IDs of all items the user is currently following like Products, Brands and Collections.
+You can get the IDs of all the followed Products, Brands and Collections. Pass collection_type as query parameter to fetch specific Ids
 
 *Returned Response:*
 
@@ -7374,10 +6905,8 @@ Success. Returns the IDs of all the Products, Brands and Collections which were 
 ---
 
 
-
-
 #### getStores
-Lists available stores.
+Get store meta information.
 
 
 
@@ -7405,7 +6934,7 @@ applicationClient.catalog.getStores(pageNo: pageNo, pageSize: pageSize, q: q, ci
 
 
 
-Retrieves a list of all physical or online stores.
+Use this API to get a list of stores in a specific application.
 
 *Returned Response:*
 
@@ -7475,7 +7004,7 @@ Success. Returns a list of selling locations. Check the example shown below or r
 
 
 #### getInStockLocations
-Finds in-stock locations for products.
+Get store meta information.
 
 
 
@@ -7502,7 +7031,7 @@ applicationClient.catalog.getInStockLocations(pageNo: pageNo, pageSize: pageSize
 
 
 
-Lists locations where specified products are currently in stock.
+Use this API to get a list of stores in a specific application.
 
 *Returned Response:*
 
@@ -7649,7 +7178,7 @@ Success. Returns a list of selling locations. Check the example shown below or r
 
 
 #### getLocationDetailsById
-Retrieves location details by ID.
+Get store meta information.
 
 
 
@@ -7670,7 +7199,7 @@ applicationClient.catalog.getLocationDetailsById(locationId: locationId) { (resp
 
 
 
-Retrieves detailed information about a specific location using its ID.
+Use this API to get meta details for a store.
 
 *Returned Response:*
 
@@ -7818,6 +7347,449 @@ Success. Returns a metadata object. Check the example shown below or refer `Stor
     "name": "Reliance Digital P. Ltd1234789123",
     "uid": 1
   }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getProductBundlesBySlug
+Get product bundles
+
+
+
+
+```swift
+applicationClient.catalog.getProductBundlesBySlug(slug: slug, id: id) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| slug | String? | no | Product slug for which bundles need to be fetched. |   
+| id | String? | no | Product uid |  
+
+
+
+Use this API to retrieve products bundles to the one specified by its slug.
+
+*Returned Response:*
+
+
+
+
+[ProductBundle](#ProductBundle)
+
+Success. Returns a group of products bundle.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "company_id": 1,
+      "page_visibility": [],
+      "name": "Test bundle",
+      "choice": "multi",
+      "same_store_assignment": true,
+      "slug": "test-bundle",
+      "logo": null,
+      "meta": {},
+      "created_on": "2020-05-21T03:58:41.237000Z",
+      "modified_on": "2020-05-21T03:58:41.237000Z",
+      "products": [
+        {
+          "product_uid": 7502119,
+          "min_quantity": 1,
+          "product_details": {
+            "name": "Neopack WSLTBR42 42 & 44 mm Leather Strap, Brown",
+            "out_of_stock": false,
+            "is_set": false,
+            "identifier": {
+              "sku_code": [
+                "491667188"
+              ]
+            },
+            "country_of_origin": "India",
+            "media": [
+              {
+                "type": "image",
+                "url": "https://hdn-1.jiox0.de/jiox5/products/pictures/item/free/original/G8moRC9NMj-neopack-wsltbr42-smart-watch-bands-491667188-i-1-1200wx1200h.jpeg"
+              },
+              {
+                "type": "image",
+                "url": "https://hdn-1.jiox0.de/jiox5/products/pictures/item/free/original/3Xumb2A0tV-neopack-wsltbr42-smart-watch-bands-491667188-i-2-1200wx1200h.jpeg"
+              },
+              {
+                "type": "image",
+                "url": "https://hdn-1.jiox0.de/jiox5/products/pictures/item/free/original/ZOnlihkNUS-neopack-wsltbr42-smart-watch-bands-491667188-i-3-1200wx1200h.jpeg"
+              },
+              {
+                "type": "image",
+                "url": "https://hdn-1.jiox0.de/jiox5/products/pictures/item/free/original/mu9B2afklQ-neopack-wsltbr42-smart-watch-bands-491667188-i-4-1200wx1200h.jpeg"
+              }
+            ],
+            "template_tag": "health-care",
+            "description": "Personalize your Apple Watch with this Classic and fashionable Neopack WSLTBR42 Leather Strap that fits your different mood and outfits in daily life & any occasion. It is a Perfect Replacement for original straps and is fully adjustable so that it can be adjusted and fit perfectly. The wrist strap is made of genuine calf leather and includes Space Grey Adapter and buckle.",
+            "images": [
+              "https://hdn-1.jiox0.de/jiox5/products/pictures/item/free/original/G8moRC9NMj-neopack-wsltbr42-smart-watch-bands-491667188-i-1-1200wx1200h.jpeg",
+              "https://hdn-1.jiox0.de/jiox5/products/pictures/item/free/original/3Xumb2A0tV-neopack-wsltbr42-smart-watch-bands-491667188-i-2-1200wx1200h.jpeg",
+              "https://hdn-1.jiox0.de/jiox5/products/pictures/item/free/original/ZOnlihkNUS-neopack-wsltbr42-smart-watch-bands-491667188-i-3-1200wx1200h.jpeg",
+              "https://hdn-1.jiox0.de/jiox5/products/pictures/item/free/original/mu9B2afklQ-neopack-wsltbr42-smart-watch-bands-491667188-i-4-1200wx1200h.jpeg"
+            ],
+            "attributes": {
+              "color": "Brown",
+              "model": "WSLTBR42",
+              "action": "upsert",
+              "warranty": "1 Year",
+              "product_details": "Personalize your Apple Watch with this Classic and fashionable Neopack WSLTBR42 Leather Strap that fits your different mood and outfits in daily life & any occasion. It is a Perfect Replacement for original straps and is fully adjustable so that it can be adjusted and fit perfectly. The wrist strap is made of genuine calf leather and includes Space Grey Adapter and buckle.",
+              "brand_name": "Neopack",
+              "primary_color_hex": "8B572A"
+            },
+            "hsn_code": 91130000,
+            "image_nature": "standard",
+            "slug": "neopack-wsltbr42-42-and-44-mm-leather-strap-brown",
+            "brand_uid": 90,
+            "item_code": "491667188"
+          },
+          "allow_remove": true,
+          "auto_add_to_cart": false,
+          "price": {
+            "min_marked": 2499,
+            "min_effective": 1499,
+            "currency": "INR",
+            "max_effective": 1499,
+            "max_marked": 2499
+          },
+          "sizes": [
+            {
+              "value": "OS",
+              "is_available": true,
+              "quantity": 30000,
+              "display": "OS"
+            }
+          ],
+          "max_quantity": 1,
+          "auto_select": false
+        }
+      ]
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getProductPriceBySlug
+Get the price of a product size at a PIN Code
+
+
+
+
+```swift
+applicationClient.catalog.getProductPriceBySlug(slug: slug, size: size, storeId: storeId, exchangeSellerIdentifier: exchangeSellerIdentifier, moq: moq, sellerId: sellerId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| slug | String | yes | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |   
+| size | String | yes | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes |   
+| storeId | Int? | no | The ID of the store that is selling the product, e.g. 1,2,3. |   
+| exchangeSellerIdentifier | String? | no | The seller identifier of the exchange product. |   
+| moq | Int? | no | An Integer indication the Minimum Order Quantity of a product, e.g. 100. |   
+| sellerId | Int? | no | The ID of the seller that is selling the product, e.g. 1,2,3. |  
+
+
+
+Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
+
+*Returned Response:*
+
+
+
+
+[ProductSizePriceResponseV3](#ProductSizePriceResponseV3)
+
+Success. Returns a ProductSizePriceV3 object. Check the example shown below or refer `ProductSizePriceResponseV3` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "price_per_piece": {
+    "effective": 66.5,
+    "marked": 66.5,
+    "currency_code": "INR",
+    "currency_symbol": "₹"
+  },
+  "price": {
+    "effective": 399,
+    "marked": 399,
+    "currency_code": "INR",
+    "currency_symbol": "₹"
+  },
+  "quantity": 5,
+  "pincode": 400603,
+  "article_id": "1",
+  "long_lat": [
+    72.9159784,
+    19.0990231
+  ],
+  "item_type": "set",
+  "discount": "",
+  "article_assignment": {
+    "level": "multi-companies",
+    "strategy": "optimal"
+  },
+  "seller": {
+    "uid": 1,
+    "name": "Natalie Norman"
+  },
+  "store": {
+    "uid": 1,
+    "name": "Wayne Lamb",
+    "count": 2
+  },
+  "strategy_wise_listing": [
+    {
+      "distance": 11,
+      "quantity": 5,
+      "tat": 2592000,
+      "pincode": 400603
+    },
+    {
+      "distance": 11,
+      "quantity": 5,
+      "tat": 2592000,
+      "pincode": 400603
+    }
+  ],
+  "set": {
+    "size_distribution": {
+      "sizes": [
+        {
+          "size": "5",
+          "pieces": 1
+        },
+        {
+          "size": "7",
+          "pieces": 1
+        },
+        {
+          "size": "8",
+          "pieces": 2
+        },
+        {
+          "size": "9",
+          "pieces": 1
+        },
+        {
+          "size": "10",
+          "pieces": 1
+        }
+      ]
+    },
+    "quantity": 6
+  },
+  "is_gift": true,
+  "is_cod": false,
+  "delivery_promise": {
+    "min": "2023-08-03T18:19:23",
+    "max": "2023-08-04T14:19:23"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getProductSellersBySlug
+Get the sellers of a product size at a PIN Code
+
+
+
+
+```swift
+applicationClient.catalog.getProductSellersBySlug(slug: slug, size: size, strategy: strategy, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| slug | String | yes | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |   
+| size | String | yes | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes |   
+| strategy | String? | no | Sort stores on the basis of strategy. eg, fast-delivery, low-price, optimal. |   
+| pageNo | Int? | no | The page number to navigate through the given set of results. |   
+| pageSize | Int? | no | The number of items to retrieve in each page. |  
+
+
+
+A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
+
+*Returned Response:*
+
+
+
+
+[ProductSizeSellersResponseV3](#ProductSizeSellersResponseV3)
+
+Success. Returns a ProductSizeSellerV3 object. Check the example shown below or refer `ProductSizeSellersResponseV3` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "price_per_piece": {
+        "effective": 66.5,
+        "marked": 66.5,
+        "currency_code": "INR",
+        "currency_symbol": "₹"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency_code": "INR",
+        "currency_symbol": "₹"
+      },
+      "quantity": 5,
+      "pincode": 400603,
+      "article_id": "1",
+      "discount": "",
+      "article_assignment": {
+        "level": "single-company",
+        "strategy": "optimal"
+      },
+      "seller": {
+        "uid": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "uid": 1,
+        "name": "Wayne Lamb"
+      },
+      "is_gift": true,
+      "is_cod": false
+    },
+    {
+      "price_per_piece": {
+        "effective": 66.5,
+        "marked": 66.5,
+        "currency_code": "INR",
+        "currency_symbol": "₹"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency_code": "INR",
+        "currency_symbol": "₹"
+      },
+      "quantity": 5,
+      "pincode": 400603,
+      "article_id": "2",
+      "discount": "",
+      "article_assignment": {
+        "level": "single-company",
+        "strategy": "optimal"
+      },
+      "seller": {
+        "uid": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "uid": 1,
+        "name": "Wayne Lamb"
+      },
+      "is_gift": true,
+      "is_cod": false
+    }
+  ],
+  "page": {
+    "current": 1,
+    "total": 1,
+    "has_previous": false,
+    "has_next": false,
+    "item_total": 2,
+    "type": "number"
+  },
+  "sort_on": [
+    {
+      "default": true,
+      "is_selected": true,
+      "name": "Best price & fast delivery",
+      "value": "optimal"
+    },
+    {
+      "default": false,
+      "is_selected": false,
+      "name": "Best Price",
+      "value": "low-price"
+    },
+    {
+      "default": false,
+      "is_selected": false,
+      "name": "Fastest Delivery",
+      "value": "fast-delivery"
+    }
+  ]
 }
 ```
 </details>
@@ -8038,6 +8010,7 @@ Success. Returns a metadata object. Check the example shown below or refer `Stor
  | ---------- | ---- | -------- | ----------- |
  | effective | [Price](#Price)? |  yes  |  |
  | marked | [Price](#Price)? |  yes  |  |
+ | selling | [Price](#Price)? |  yes  |  |
 
 ---
 
@@ -8512,6 +8485,7 @@ Success. Returns a metadata object. Check the example shown below or refer `Stor
  | similars | [String]? |  yes  |  |
  | tags | [String]? |  yes  |  |
  | seo | [ApplicationItemSEO](#ApplicationItemSEO)? |  yes  |  |
+ | discountMeta | [DiscountMeta](#DiscountMeta)? |  yes  |  |
  | imageNature | String? |  yes  |  |
  | hasVariant | Bool? |  yes  |  |
  | itemType | String? |  yes  |  |

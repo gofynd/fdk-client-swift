@@ -54,6 +54,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var panNo: String?
         
+        public var isPanReceived: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -97,9 +99,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case panNo = "pan_no"
             
+            case isPanReceived = "is_pan_received"
+            
         }
 
-        public init(appliedPromoDetails: [AppliedPromotion]? = nil, breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, checkoutMode: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, panConfig: [String: Any]? = nil, panNo: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, user: UserInfo? = nil) {
+        public init(appliedPromoDetails: [AppliedPromotion]? = nil, breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, checkoutMode: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, gstin: String? = nil, id: String? = nil, isPanReceived: Bool? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, panConfig: [String: Any]? = nil, panNo: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, user: UserInfo? = nil) {
             
             self.couponText = couponText
             
@@ -140,6 +144,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.appliedPromoDetails = appliedPromoDetails
             
             self.panNo = panNo
+            
+            self.isPanReceived = isPanReceived
             
         }
 
@@ -386,6 +392,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    isPanReceived = try container.decode(Bool.self, forKey: .isPanReceived)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -489,6 +507,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(panNo, forKey: .panNo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isPanReceived, forKey: .isPanReceived)
             
             
         }

@@ -16,8 +16,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Retrieve audit logs.
-        * Description: Retrieve audit logs for system events and actions.
+        * Summary: Get paginated audit logs
+        * Description: Get a paginated set of logs that can be filtered using the available set of parameters and get the relevant group of logs
         **/
         public func getAuditLogs(
             qs: String,
@@ -86,8 +86,8 @@ if let value = sort {
         
         /**
         *
-        * Summary: Create an audit log.
-        * Description: Generate and record an audit log entry for a specific event or action.
+        * Summary: Create logs for auditing later on
+        * Description: Create a log instance that stores all the relevant info to be logged
         **/
         public func createAuditLog(
             body: RequestBodyAuditLog,
@@ -134,8 +134,8 @@ if let value = sort {
         
         /**
         *
-        * Summary: Get an audit log entry.
-        * Description: Retrieve a specific audit log entry
+        * Summary: Get audit log
+        * Description: Get detailed log information by their id
         **/
         public func getAuditLog(
             id: String,
@@ -183,8 +183,8 @@ if let value = sort {
         
         /**
         *
-        * Summary: Obtain entity types for auditing.
-        * Description: List of entity types that can be audited within the platform's
+        * Summary: Get entity types
+        * Description: Get a consolidated list of entity types from all the logs stored on the db, which further helps to filter the logs better
         **/
         public func getEntityTypes(
             

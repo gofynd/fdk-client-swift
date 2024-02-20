@@ -7,53 +7,38 @@
 ## Cart Methods
 The Cart and Checkout module manages cart items, applies coupons and reward points, and allows you to select delivery addresses. This module also enables you to update payment information and view ongoing promotions. Additionally, it manages cart sharing, merging, and replacing, as well as providing details on shared carts.
 
-Cart management
+Default
 * [getCart](#getcart)
 * [getCartLastModified](#getcartlastmodified)
 * [addItems](#additems)
 * [updateCart](#updatecart)
 * [deleteCart](#deletecart)
 * [getItemCount](#getitemcount)
+* [getItemCountV2](#getitemcountv2)
 * [getCoupons](#getcoupons)
 * [applyCoupon](#applycoupon)
 * [removeCoupon](#removecoupon)
-* [updateCartMeta](#updatecartmeta)
-* [getCartShareLink](#getcartsharelink)
-* [getCartSharedItems](#getcartshareditems)
-* [updateCartWithSharedItems](#updatecartwithshareditems)
-
-
-Discount and Reward Points Handling
 * [getBulkDiscountOffers](#getbulkdiscountoffers)
 * [applyRewardPoints](#applyrewardpoints)
-
-
-Address management
 * [getAddresses](#getaddresses)
 * [addAddress](#addaddress)
 * [getAddressById](#getaddressbyid)
 * [updateAddress](#updateaddress)
 * [removeAddress](#removeaddress)
 * [selectAddress](#selectaddress)
-
-
-Payment and Coupon Validation
 * [selectPaymentMode](#selectpaymentmode)
 * [validateCouponForPayment](#validatecouponforpayment)
-
-
-Shipment Management
 * [getShipments](#getshipments)
 * [checkoutCart](#checkoutcart)
-
-
-Promotion Offers
+* [updateCartMeta](#updatecartmeta)
+* [getCartShareLink](#getcartsharelink)
+* [getCartSharedItems](#getcartshareditems)
+* [updateCartWithSharedItems](#updatecartwithshareditems)
 * [getPromotionOffers](#getpromotionoffers)
 * [getLadderOffers](#getladderoffers)
-
-
-Shipment and Checkout
 * [checkoutCartV2](#checkoutcartv2)
+* [getCartMetaConfigs](#getcartmetaconfigs)
+* [getCartMetaConfig](#getcartmetaconfig)
 
 
 
@@ -63,13 +48,13 @@ Shipment and Checkout
 
 
 #### getCart
-Retrieve cart details.
+Fetch all items added to the cart
 
 
 
 
 ```swift
-applicationClient.cart.getCart(id: id, i: i, b: b, c: c, assignCardId: assignCardId, areaCode: areaCode, buyNow: buyNow) { (response, error) in
+applicationClient.cart.getCart(id: id, i: i, b: b, c: c, assignCardId: assignCardId, areaCode: areaCode, buyNow: buyNow, cartType: cartType) { (response, error) in
     // Use response
 }
 ```
@@ -86,11 +71,12 @@ applicationClient.cart.getCart(id: id, i: i, b: b, c: c, assignCardId: assignCar
 | c | Bool? | no | This is a boolean value. Select `true` to retrieve the cod charges in breakup of cart items. |   
 | assignCardId | Int? | no | Token of user's debit or credit card |   
 | areaCode | String? | no | Customer servicable area_code |   
-| buyNow | Bool? | no | This is a boolen value. Select `true` to set/initialize buy now cart |  
+| buyNow | Bool? | no | This is a boolen value. Select `true` to set/initialize buy now cart |   
+| cartType | String? | no | The type of cart |  
 
 
 
-Retrieve the current state and items in the shopping cart.
+Use this API to get details of all the items added to a cart.
 
 *Returned Response:*
 
@@ -792,6 +778,7 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
           "name": "Gandhi Nagar"
         },
         "quantity": 108,
+        "product_name": "",
         "price": {
           "base": {
             "marked": 2999,
@@ -894,7 +881,8 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
         }
       },
       "message": "",
-      "quantity": 1
+      "quantity": 1,
+      "seller_count": 1
     }
   ],
   "buy_now": false,
@@ -958,6 +946,12 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
       "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
     }
   },
+  "custom_cart": {
+    "cart_name": "Universal",
+    "cart_type": "universal",
+    "id": "659e3b6b33848a683efebf2c",
+    "is_universal": true
+  },
   "delivery_charge_info": "",
   "coupon_text": "View all offers",
   "gstin": "",
@@ -981,7 +975,7 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
 
 
 #### getCartLastModified
-Cart modification time.
+Fetch last-modified timestamp
 
 
 
@@ -1002,7 +996,7 @@ applicationClient.cart.getCartLastModified(id: id) { (response, error) in
 
 
 
-Gets the last modified timestamp for the cart.
+Use this API to fetch Last-Modified timestamp in header metadata.
 
 *Returned Response:*
 
@@ -1017,13 +1011,13 @@ Gets the last modified timestamp for the cart.
 
 
 #### addItems
-Add to cart.
+Add items to cart
 
 
 
 
 ```swift
-applicationClient.cart.addItems(i: i, b: b, areaCode: areaCode, buyNow: buyNow, id: id, body: body) { (response, error) in
+applicationClient.cart.addItems(i: i, b: b, areaCode: areaCode, buyNow: buyNow, id: id, cartType: cartType, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1038,11 +1032,12 @@ applicationClient.cart.addItems(i: i, b: b, areaCode: areaCode, buyNow: buyNow, 
 | b | Bool? | no | This is a boolean value. Select `true` to retrieve the price breakup of cart items. |   
 | areaCode | String? | no | Customer servicable area_code |   
 | buyNow | Bool? | no | This is a boolen value. Select `true` to set/initialize buy now cart |   
-| id | String? | no | The unique identifier of the cart |  
+| id | String? | no | The unique identifier of the cart |   
+| cartType | String? | no | The type of cart |  
 | body | AddCartRequest | yes | Request body |
 
 
-Adds selected items to the shopping cart.
+Use this API to add items to the cart.
 
 *Returned Response:*
 
@@ -1790,6 +1785,7 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
           },
           "identifiers": {},
           "moq": {},
+          "seller_count": 1,
           "delivery_promise": {
             "timestamp": {
               "min": 1646257339,
@@ -1813,6 +1809,7 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
               "name": "Motilal Nagar 1, Goregaon"
             },
             "quantity": 4,
+            "product_name": "",
             "price": {
               "base": {
                 "marked": 3999,
@@ -2294,6 +2291,12 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
           "discount": "11% OFF"
         }
       ],
+      "custom_cart": {
+        "cart_name": "Universal",
+        "cart_type": "universal",
+        "id": "659e3b6b33848a683efebf2c",
+        "is_universal": true
+      },
       "delivery_charge_info": "",
       "coupon_text": "View all offers",
       "buy_now": false,
@@ -2544,7 +2547,7 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
 
 
 #### updateCart
-Update cart.
+Update items in the cart
 
 
 
@@ -2570,7 +2573,7 @@ applicationClient.cart.updateCart(id: id, i: i, b: b, areaCode: areaCode, buyNow
 | body | UpdateCartRequest | yes | Request body |
 
 
-Modifies items and quantities in the existing cart.
+Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs operation:  Operation for current api call. update_item for update items. remove_item for removing items. item_id "/platform/content/v1/products/" item_size "/platform/content/v1/products/:slug/sizes/" quantity item quantity (must be greater than or equal to 1) article_id "/content​/v1​/products​/:identifier​/sizes​/price​/" item_index item position in the cart (must be greater than or equal to 0)
 
 *Returned Response:*
 
@@ -2690,6 +2693,7 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
               "name": "Gandhi Nagar"
             },
             "quantity": 108,
+            "product_name": "",
             "price": {
               "base": {
                 "marked": 2999,
@@ -2785,7 +2789,8 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
             }
           },
           "message": "",
-          "quantity": 101
+          "quantity": 101,
+          "seller_count": 1
         }
       ],
       "delivery_charge_info": "",
@@ -3529,6 +3534,7 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
           "key": "437414_7",
           "message": "",
           "bulk_offer": {},
+          "seller_count": 1,
           "price": {
             "base": {
               "add_on": 5499,
@@ -3609,6 +3615,7 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
               "name": "Colaba Causway"
             },
             "quantity": 5,
+            "product_name": "",
             "price": {
               "base": {
                 "marked": 5499,
@@ -3699,13 +3706,13 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
 
 #### deleteCart
-Clears the cart
+Delete cart once user made successful checkout
 
 
 
 
 ```swift
-applicationClient.cart.deleteCart(id: id) { (response, error) in
+applicationClient.cart.deleteCart(id: id, cartType: cartType) { (response, error) in
     // Use response
 }
 ```
@@ -3716,11 +3723,12 @@ applicationClient.cart.deleteCart(id: id) { (response, error) in
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| id | String? | no | The unique identifier of the cart. |  
+| id | String? | no | The unique identifier of the cart. |   
+| cartType | String? | no | The type of cart |  
 
 
 
-Removes all items and resets the user's cart.
+Use this API to delete the cart.
 
 *Returned Response:*
 
@@ -3757,7 +3765,7 @@ Success. Returns whether the cart has been deleted or not.
 
 
 #### getItemCount
-Count cart items.
+Count items in the cart
 
 
 
@@ -3779,7 +3787,7 @@ applicationClient.cart.getItemCount(id: id, buyNow: buyNow) { (response, error) 
 
 
 
-Gets the total number of items in the cart.
+Use this API to get the total number of items present in cart.
 
 *Returned Response:*
 
@@ -3814,8 +3822,77 @@ Success. Returns the total count of items in a user's cart.
 ---
 
 
+#### getItemCountV2
+Count items in the cart according to cart_type
+
+
+
+
+```swift
+applicationClient.cart.getItemCountV2(id: id, buyNow: buyNow) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| id | String? | no | The unique identifier of the cart |   
+| buyNow | Bool? | no | Boolean value to get buy_now cart |  
+
+
+
+Use this API to get the total number of items present in cart.
+
+*Returned Response:*
+
+
+
+
+[CartItemCountResponseV2](#CartItemCountResponseV2)
+
+Success. Returns the total count of items in a user's cart.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "user_all_cart_articles_quantity_count": 7,
+  "user_all_cart_article_count": 2,
+  "custom_cart_count": {
+    "universal": {
+      "article_count": 1,
+      "article_quantity_count": 1
+    },
+    "fresh-cart": {
+      "article_count": 1,
+      "article_quantity_count": 6
+    }
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getCoupons
-List available coupons.
+Fetch Coupon
 
 
 
@@ -3839,7 +3916,7 @@ applicationClient.cart.getCoupons(id: id, buyNow: buyNow, slug: slug, storeId: s
 
 
 
-Retrieve coupons that can be applied to the cart.
+Use this API to get a list of available coupons along with their details.
 
 *Returned Response:*
 
@@ -3911,7 +3988,7 @@ Success. Returns a coupon object which has a list of all the eligible coupons. R
 
 
 #### applyCoupon
-Apply coupon.
+Apply Coupon
 
 
 
@@ -3937,7 +4014,7 @@ applicationClient.cart.applyCoupon(i: i, b: b, p: p, id: id, buyNow: buyNow, car
 | body | ApplyCouponRequest | yes | Request body |
 
 
-Applies a coupon code to get discounts on cart items.
+Use this API to apply coupons on items in the cart.
 
 *Returned Response:*
 
@@ -4597,13 +4674,13 @@ Success. Returns coupons applied to the cart along with item details and price b
 
 
 #### removeCoupon
-Remove coupon.
+Remove Coupon Applied
 
 
 
 
 ```swift
-applicationClient.cart.removeCoupon(id: id, buyNow: buyNow) { (response, error) in
+applicationClient.cart.removeCoupon(id: id, buyNow: buyNow, cartType: cartType) { (response, error) in
     // Use response
 }
 ```
@@ -4615,11 +4692,12 @@ applicationClient.cart.removeCoupon(id: id, buyNow: buyNow) { (response, error) 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String? | no | The unique identifier of the cart |   
-| buyNow | Bool? | no | This is boolean to get buy_now cart |  
+| buyNow | Bool? | no | This is boolean to get buy_now cart |   
+| cartType | String? | no | The type of cart |  
 
 
 
-Removes an applied coupon from the cart.
+Remove Coupon applied on the cart by passing uid in request body.
 
 *Returned Response:*
 
@@ -4828,877 +4906,14 @@ Success. Returns coupons removed from the cart along with item details and price
 ---
 
 
-#### updateCartMeta
-Update cart metadata.
-
-
-
-
-```swift
-applicationClient.cart.updateCartMeta(id: id, buyNow: buyNow, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| id | String? | no |  |   
-| buyNow | Bool? | no |  |  
-| body | CartMetaRequest | yes | Request body |
-
-
-Adds or modifies metadata for the cart.
-
-*Returned Response:*
-
-
-
-
-[CartMetaResponse](#CartMetaResponse)
-
-Returns a message indicating the success of cart meta updation as shown below.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "cart meta updated"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getCartShareLink
-Share cart link.
-
-
-
-
-```swift
-applicationClient.cart.getCartShareLink(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | GetShareCartLinkRequest | yes | Request body |
-
-
-Generates a shareable link for the current cart.
-
-*Returned Response:*
-
-
-
-
-[GetShareCartLinkResponse](#GetShareCartLinkResponse)
-
-Returns a URL to share and a token as shown below.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Token Generated</i></summary>
-
-```json
-{
-  "value": {
-    "token": "ZweG1XyX",
-    "share_url": "https://uniket-testing.addsale.link/shared-cart/ZweG1XyX"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getCartSharedItems
-Shared cart items.
-
-
-
-
-```swift
-applicationClient.cart.getCartSharedItems(token: token) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| token | String | yes | Token of the shared short link |  
-
-
-
-Retrieves items from a shared cart link.
-
-*Returned Response:*
-
-
-
-
-[SharedCartResponse](#SharedCartResponse)
-
-Success. Returns a Cart object as per the valid token. Refer `SharedCartResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "cart": {
-    "shared_cart_details": {
-      "token": "BQ9jySQ9",
-      "user": {
-        "user_id": "23109086",
-        "is_anonymous": false
-      },
-      "meta": {
-        "selected_staff": "",
-        "ordering_store": null
-      },
-      "selected_staff": "",
-      "ordering_store": null,
-      "source": {},
-      "created_on": "2019-12-18T14:00:07.165000"
-    },
-    "items": [
-      {
-        "key": "791651_6",
-        "identifiers": {},
-        "discount": "",
-        "bulk_offer": {},
-        "coupon_message": "",
-        "article": {
-          "type": "article",
-          "uid": "304_1054_9036_R1005753_6",
-          "size": "6",
-          "seller": {
-            "uid": 304,
-            "name": "LEAYAN GLOBAL PVT. LTD."
-          },
-          "store": {
-            "uid": 5322,
-            "name": "Vaisali Nagar"
-          },
-          "quantity": 1,
-          "price": {
-            "base": {
-              "marked": 2095,
-              "effective": 2095,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "marked": 2095,
-              "effective": 2095,
-              "currency_code": "INR"
-            }
-          }
-        },
-        "charges": [
-          {
-            "type": "convenience fee",
-            "name": "convenience fee",
-            "code": "convenience fee",
-            "amount": {
-              "value": 10,
-              "currency": "INR"
-            },
-            "meta": {
-              "price_adjustment_id": "64c22d66fe278c0796bd8e4d",
-              "article_level_distribution": true
-            }
-          }
-        ],
-        "product": {
-          "type": "product",
-          "uid": 791651,
-          "name": "Black Running Shoes",
-          "slug": "furo-black-running-shoes-791651-f8bcc3",
-          "brand": {
-            "uid": 1054,
-            "name": "Furo"
-          },
-          "categories": [
-            {
-              "uid": 160,
-              "name": "Running Shoes"
-            }
-          ],
-          "images": [
-            {
-              "aspect_ratio": "16:25",
-              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
-              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
-            }
-          ],
-          "action": {
-            "type": "product",
-            "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
-            "query": {
-              "product_slug": [
-                "furo-black-running-shoes-791651-f8bcc3"
-              ]
-            }
-          }
-        },
-        "message": "",
-        "quantity": 1,
-        "availability": {
-          "sizes": [
-            "7",
-            "8",
-            "9",
-            "10",
-            "6"
-          ],
-          "other_store_quantity": 12,
-          "out_of_stock": false,
-          "deliverable": true,
-          "is_valid": true
-        },
-        "price": {
-          "base": {
-            "add_on": 2095,
-            "marked": 2095,
-            "effective": 2095,
-            "selling": 2095,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "add_on": 2095,
-            "marked": 2095,
-            "effective": 2095,
-            "selling": 2095,
-            "currency_code": "INR"
-          }
-        }
-      },
-      {
-        "key": "791651_7",
-        "identifiers": {},
-        "discount": "",
-        "bulk_offer": {},
-        "coupon_message": "",
-        "article": {
-          "type": "article",
-          "uid": "304_1054_9036_R1005753_7",
-          "size": "7",
-          "seller": {
-            "uid": 304,
-            "name": "LEAYAN GLOBAL PVT. LTD."
-          },
-          "store": {
-            "uid": 5322,
-            "name": "Vaisali Nagar"
-          },
-          "quantity": 2,
-          "price": {
-            "base": {
-              "marked": 2095,
-              "effective": 2095,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "marked": 2095,
-              "effective": 2095,
-              "currency_code": "INR"
-            }
-          }
-        },
-        "charges": [
-          {
-            "type": "convenience fee",
-            "name": "convenience fee",
-            "code": "convenience fee",
-            "amount": {
-              "value": 10,
-              "currency": "INR"
-            },
-            "meta": {
-              "price_adjustment_id": "64c22d66fe278c0796bd8e4d",
-              "article_level_distribution": true
-            }
-          }
-        ],
-        "product": {
-          "type": "product",
-          "uid": 791651,
-          "name": "Black Running Shoes",
-          "slug": "furo-black-running-shoes-791651-f8bcc3",
-          "brand": {
-            "uid": 1054,
-            "name": "Furo"
-          },
-          "categories": [
-            {
-              "uid": 160,
-              "name": "Running Shoes"
-            }
-          ],
-          "images": [
-            {
-              "aspect_ratio": "16:25",
-              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
-              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
-            }
-          ],
-          "action": {
-            "type": "product",
-            "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
-            "query": {
-              "product_slug": [
-                "furo-black-running-shoes-791651-f8bcc3"
-              ]
-            }
-          }
-        },
-        "message": "",
-        "quantity": 2,
-        "availability": {
-          "sizes": [
-            "7",
-            "8",
-            "9",
-            "10",
-            "6"
-          ],
-          "other_store_quantity": 7,
-          "out_of_stock": false,
-          "deliverable": true,
-          "is_valid": true
-        },
-        "price": {
-          "base": {
-            "add_on": 4190,
-            "marked": 4190,
-            "effective": 4190,
-            "selling": 4190,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "add_on": 4190,
-            "marked": 4190,
-            "effective": 4190,
-            "selling": 4190,
-            "currency_code": "INR"
-          }
-        }
-      }
-    ],
-    "cart_id": 13055,
-    "uid": "13055",
-    "breakup_values": {
-      "raw": {
-        "cod_charge": 0,
-        "convenience_fee": 0,
-        "coupon": 0,
-        "delivery_charge": 0,
-        "discount": 0,
-        "fynd_cash": 0,
-        "gst_charges": 958.73,
-        "mrp_total": 6285,
-        "mop_total": 0,
-        "total_charge": 10,
-        "subtotal": 6285,
-        "total": 6285,
-        "vog": 5326.27,
-        "you_saved": 0
-      },
-      "loyalty_points": {
-        "total": 0,
-        "applicable": 0,
-        "is_applied": false,
-        "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-      },
-      "coupon": {
-        "type": "cash",
-        "code": "",
-        "uid": "",
-        "value": 0,
-        "is_applied": false,
-        "message": "Sorry! Invalid coupon"
-      },
-      "display": [
-        {
-          "display": "MRP Total",
-          "key": "mrp_total",
-          "value": 6285,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Subtotal",
-          "key": "subtotal",
-          "value": 6285,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Total",
-          "key": "total",
-          "value": 6285,
-          "currency_code": "INR"
-        }
-      ]
-    },
-    "delivery_charge_info": "",
-    "coupon_text": "View all offers",
-    "gstin": "",
-    "comment": "",
-    "checkout_mode": "self",
-    "payment_selection_lock": {
-      "enabled": false,
-      "default_options": "COD",
-      "payment_identifier": ""
-    },
-    "restrict_checkout": false,
-    "is_valid": true,
-    "last_modified": "2020-03-09T00:00:00.000Z"
-  },
-  "error": ""
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateCartWithSharedItems
-Update with shared items.
-
-
-
-
-```swift
-applicationClient.cart.updateCartWithSharedItems(token: token, action: action) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| token | String | yes | Token of the shared short link |   
-| action | String | yes | Operation to perform on the existing cart merge or replace. |  
-
-
-
-Updates the cart with items from a shared link.
-
-*Returned Response:*
-
-
-
-
-[SharedCartResponse](#SharedCartResponse)
-
-Success. Returns a merged or replaced cart as per the valid token. Refer `SharedCartResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Cart Merged/Replaced</i></summary>
-
-```json
-{
-  "value": {
-    "cart": {
-      "shared_cart_details": {
-        "token": "BQ9jySQ9",
-        "user": {
-          "user_id": "23109086",
-          "is_anonymous": false
-        },
-        "meta": {
-          "selected_staff": "",
-          "ordering_store": null
-        },
-        "selected_staff": "",
-        "ordering_store": null,
-        "source": {},
-        "created_on": "2019-12-18T14:00:07.165000"
-      },
-      "items": [
-        {
-          "key": "791651_6",
-          "identifiers": {},
-          "discount": "",
-          "bulk_offer": {},
-          "coupon_message": "",
-          "article": {
-            "type": "article",
-            "uid": "304_1054_9036_R1005753_6",
-            "size": "6",
-            "seller": {
-              "uid": 304,
-              "name": "LEAYAN GLOBAL PVT. LTD."
-            },
-            "store": {
-              "uid": 5322,
-              "name": "Vaisali Nagar"
-            },
-            "quantity": 1,
-            "price": {
-              "base": {
-                "marked": 2095,
-                "effective": 2095,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 2095,
-                "effective": 2095,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "charges": [
-            {
-              "type": "convenience fee",
-              "name": "convenience fee",
-              "code": "convenience fee",
-              "amount": {
-                "value": 10,
-                "currency": "INR"
-              },
-              "meta": {
-                "price_adjustment_id": "64c22d66fe278c0796bd8e4d",
-                "article_level_distribution": true
-              }
-            }
-          ],
-          "product": {
-            "type": "product",
-            "uid": 791651,
-            "name": "Black Running Shoes",
-            "slug": "furo-black-running-shoes-791651-f8bcc3",
-            "brand": {
-              "uid": 1054,
-              "name": "Furo"
-            },
-            "categories": [
-              {
-                "uid": 160,
-                "name": "Running Shoes"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
-              "query": {
-                "product_slug": [
-                  "furo-black-running-shoes-791651-f8bcc3"
-                ]
-              }
-            }
-          },
-          "message": "",
-          "quantity": 1,
-          "availability": {
-            "sizes": [
-              "7",
-              "8",
-              "9",
-              "10",
-              "6"
-            ],
-            "other_store_quantity": 12,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "price": {
-            "base": {
-              "add_on": 2095,
-              "marked": 2095,
-              "effective": 2095,
-              "selling": 2095,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 2095,
-              "marked": 2095,
-              "effective": 2095,
-              "selling": 2095,
-              "currency_code": "INR"
-            }
-          }
-        },
-        {
-          "key": "791651_7",
-          "identifiers": {},
-          "discount": "",
-          "bulk_offer": {},
-          "coupon_message": "",
-          "article": {
-            "type": "article",
-            "uid": "304_1054_9036_R1005753_7",
-            "size": "7",
-            "seller": {
-              "uid": 304,
-              "name": "LEAYAN GLOBAL PVT. LTD."
-            },
-            "store": {
-              "uid": 5322,
-              "name": "Vaisali Nagar"
-            },
-            "quantity": 2,
-            "price": {
-              "base": {
-                "marked": 2095,
-                "effective": 2095,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 2095,
-                "effective": 2095,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "charges": [
-            {
-              "type": "convenience fee",
-              "name": "convenience fee",
-              "code": "convenience fee",
-              "amount": {
-                "value": 10,
-                "currency": "INR"
-              },
-              "meta": {
-                "price_adjustment_id": "64c22d66fe278c0796bd8e4d",
-                "article_level_distribution": true
-              }
-            }
-          ],
-          "product": {
-            "type": "product",
-            "uid": 791651,
-            "name": "Black Running Shoes",
-            "slug": "furo-black-running-shoes-791651-f8bcc3",
-            "brand": {
-              "uid": 1054,
-              "name": "Furo"
-            },
-            "categories": [
-              {
-                "uid": 160,
-                "name": "Running Shoes"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
-              "query": {
-                "product_slug": [
-                  "furo-black-running-shoes-791651-f8bcc3"
-                ]
-              }
-            }
-          },
-          "message": "",
-          "quantity": 2,
-          "availability": {
-            "sizes": [
-              "7",
-              "8",
-              "9",
-              "10",
-              "6"
-            ],
-            "other_store_quantity": 7,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "price": {
-            "base": {
-              "add_on": 4190,
-              "marked": 4190,
-              "effective": 4190,
-              "selling": 4190,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 4190,
-              "marked": 4190,
-              "effective": 4190,
-              "selling": 4190,
-              "currency_code": "INR"
-            }
-          }
-        }
-      ],
-      "cart_id": 13055,
-      "uid": "13055",
-      "breakup_values": {
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": 0,
-          "fynd_cash": 0,
-          "gst_charges": 958.73,
-          "mrp_total": 6285,
-          "mop_total": 0,
-          "total_charge": 10,
-          "subtotal": 6285,
-          "total": 6285,
-          "vog": 5326.27,
-          "you_saved": 0
-        },
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        },
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": "",
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid coupon"
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 6285,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 6285,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 6285,
-            "currency_code": "INR"
-          }
-        ]
-      },
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "gstin": "",
-      "comment": "",
-      "checkout_mode": "self",
-      "payment_selection_lock": {
-        "enabled": false,
-        "default_options": "COD",
-        "payment_identifier": ""
-      },
-      "restrict_checkout": false,
-      "is_valid": true,
-      "last_modified": "2020-03-09T00:00:00.000Z"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
 #### getBulkDiscountOffers
-Bulk discounts.
+Get discount offers based on quantity
 
 
 
 
 ```swift
-applicationClient.cart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, slug: slug) { (response, error) in
+applicationClient.cart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, slug: slug, cartType: cartType) { (response, error) in
     // Use response
 }
 ```
@@ -5712,11 +4927,12 @@ applicationClient.cart.getBulkDiscountOffers(itemId: itemId, articleId: articleI
 | itemId | Int? | no | The Item ID of the product |   
 | articleId | String? | no | Article Mongo ID |   
 | uid | Int? | no | UID of the product |   
-| slug | String? | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
+| slug | String? | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |   
+| cartType | String? | no | type of the cart |  
 
 
 
-Lists available bulk discount offers for cart items.
+Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present.
 
 *Returned Response:*
 
@@ -5821,13 +5037,13 @@ Success. Returns a data object containing the seller details and available offer
 
 
 #### applyRewardPoints
-Use reward points.
+Apply reward points at cart
 
 
 
 
 ```swift
-applicationClient.cart.applyRewardPoints(id: id, i: i, b: b, buyNow: buyNow, body: body) { (response, error) in
+applicationClient.cart.applyRewardPoints(id: id, i: i, b: b, buyNow: buyNow, cartType: cartType, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -5841,11 +5057,12 @@ applicationClient.cart.applyRewardPoints(id: id, i: i, b: b, buyNow: buyNow, bod
 | id | String? | no | The unique identifier of the cart |   
 | i | Bool? | no | This is a boolean value. Select `true` to retrieve all the items added in the cart. |   
 | b | Bool? | no | This is a boolean value. Select `true` to retrieve the price breakup of cart items. |   
-| buyNow | Bool? | no | This is boolean to get buy_now cart |  
+| buyNow | Bool? | no | This is boolean to get buy_now cart |   
+| cartType | String? | no | type of the cart |  
 | body | RewardPointRequest | yes | Request body |
 
 
-Applies user’s reward points to the cart.
+Use this API to redeem a fixed no. of reward points by applying it to the cart.
 
 *Returned Response:*
 
@@ -6063,10 +5280,8 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
 ---
 
 
-
-
 #### getAddresses
-Get saved addresses.
+Fetch address
 
 
 
@@ -6092,7 +5307,7 @@ applicationClient.cart.getAddresses(cartId: cartId, buyNow: buyNow, mobileNo: mo
 
 
 
-Retrieve all saved addresses for the user.
+Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional uid address_id mobile_no checkout_mode tags default
 
 *Returned Response:*
 
@@ -6207,7 +5422,7 @@ Success. Returns an Address object containing a list of address saved in the acc
 
 
 #### addAddress
-Add new address.
+Add address to an account
 
 
 
@@ -6227,7 +5442,7 @@ applicationClient.cart.addAddress(body: body) { (response, error) in
 | body | Address | yes | Request body |
 
 
-Saves a new address for the user.
+Use this API to add an address to an account.
 
 *Returned Response:*
 
@@ -6265,7 +5480,7 @@ Success. Returns the address ID, a flag whether the address is set as default, a
 
 
 #### getAddressById
-Fetch address.
+Fetch a single address by its ID
 
 
 
@@ -6292,7 +5507,7 @@ applicationClient.cart.getAddressById(id: id, cartId: cartId, buyNow: buyNow, mo
 
 
 
-Retrieves a saved address using its ID.
+Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional mobile_no checkout_mode tags default
 
 *Returned Response:*
 
@@ -6354,7 +5569,7 @@ Success. Returns an Address object containing a list of address saved in the acc
 
 
 #### updateAddress
-Update address.
+Update address added to an account
 
 
 
@@ -6375,7 +5590,7 @@ applicationClient.cart.updateAddress(id: id, body: body) { (response, error) in
 | body | Address | yes | Request body |
 
 
-Modifies a saved address.
+Use this API to update an existing address in the account. Request object should contain attributes mentioned in Address can be updated. These attributes are: is_default_address landmark area pincode email address_type name address_id address
 
 *Returned Response:*
 
@@ -6414,7 +5629,7 @@ Success. Returns the address ID and a message indicating a successful address up
 
 
 #### removeAddress
-Delete address.
+Remove address associated with an account
 
 
 
@@ -6435,7 +5650,7 @@ applicationClient.cart.removeAddress(id: id) { (response, error) in
 
 
 
-Removes a saved address from the user's profile.
+Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
 
 *Returned Response:*
 
@@ -6472,7 +5687,7 @@ Returns a Status object indicating the success or failure of address deletion.
 
 
 #### selectAddress
-Choose delivery address.
+Select an address from available addresses
 
 
 
@@ -6496,7 +5711,7 @@ applicationClient.cart.selectAddress(cartId: cartId, buyNow: buyNow, i: i, b: b,
 | body | SelectCartAddressRequest | yes | Request body |
 
 
-Selects an address for the cart's delivery.
+Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. address_id billing_address_id uid
 
 *Returned Response:*
 
@@ -6819,10 +6034,8 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 ---
 
 
-
-
 #### selectPaymentMode
-Pick payment method.
+Update cart payment
 
 
 
@@ -6844,7 +6057,7 @@ applicationClient.cart.selectPaymentMode(id: id, buyNow: buyNow, body: body) { (
 | body | UpdateCartPaymentRequest | yes | Request body |
 
 
-Chooses a payment mode for the checkout process.
+Use this API to update cart payment.
 
 *Returned Response:*
 
@@ -7180,7 +6393,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 
 
 #### validateCouponForPayment
-Validate coupon.
+Verify the coupon eligibility against the payment mode
 
 
 
@@ -7212,7 +6425,7 @@ applicationClient.cart.validateCouponForPayment(id: id, buyNow: buyNow, addressI
 
 
 
-Checks if a coupon is valid for the selected payment mode.
+Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
 
 *Returned Response:*
 
@@ -7256,10 +6469,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 ---
 
 
-
-
 #### getShipments
-List shipments.
+Get delivery date and options before checkout
 
 
 
@@ -7285,7 +6496,7 @@ applicationClient.cart.getShipments(p: p, id: id, buyNow: buyNow, addressId: add
 
 
 
-Retrieve shipment details for items in the cart.
+Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
 
 *Returned Response:*
 
@@ -7987,7 +7198,7 @@ Success. Returns delivery promise along with shipment details and price breakup.
 
 
 #### checkoutCart
-Checkout cart.
+Checkout all items in the cart
 
 
 
@@ -8009,7 +7220,7 @@ applicationClient.cart.checkoutCart(buyNow: buyNow, cartType: cartType, body: bo
 | body | CartCheckoutDetailRequest | yes | Request body |
 
 
-Initiates the checkout process for the cart.
+Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
 
 *Returned Response:*
 
@@ -8440,10 +7651,869 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 ---
 
 
+#### updateCartMeta
+Update the cart meta
+
+
+
+
+```swift
+applicationClient.cart.updateCartMeta(id: id, buyNow: buyNow, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| id | String? | no |  |   
+| buyNow | Bool? | no |  |  
+| body | CartMetaRequest | yes | Request body |
+
+
+Use this API to update cart meta like checkout_mode and gstin.
+
+*Returned Response:*
+
+
+
+
+[CartMetaResponse](#CartMetaResponse)
+
+Returns a message indicating the success of cart meta updation as shown below.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "cart meta updated"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCartShareLink
+Generate token for sharing the cart
+
+
+
+
+```swift
+applicationClient.cart.getCartShareLink(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | GetShareCartLinkRequest | yes | Request body |
+
+
+Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart.
+
+*Returned Response:*
+
+
+
+
+[GetShareCartLinkResponse](#GetShareCartLinkResponse)
+
+Returns a URL to share and a token as shown below.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Token Generated</i></summary>
+
+```json
+{
+  "value": {
+    "token": "ZweG1XyX",
+    "share_url": "https://uniket-testing.addsale.link/shared-cart/ZweG1XyX"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCartSharedItems
+Get details of a shared cart
+
+
+
+
+```swift
+applicationClient.cart.getCartSharedItems(token: token) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| token | String | yes | Token of the shared short link |  
+
+
+
+Use this API to get the shared cart details as per the token generated using the share-cart API.
+
+*Returned Response:*
+
+
+
+
+[SharedCartResponse](#SharedCartResponse)
+
+Success. Returns a Cart object as per the valid token. Refer `SharedCartResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "cart": {
+    "shared_cart_details": {
+      "token": "BQ9jySQ9",
+      "user": {
+        "user_id": "23109086",
+        "is_anonymous": false
+      },
+      "meta": {
+        "selected_staff": "",
+        "ordering_store": null
+      },
+      "selected_staff": "",
+      "ordering_store": null,
+      "source": {},
+      "created_on": "2019-12-18T14:00:07.165000"
+    },
+    "items": [
+      {
+        "key": "791651_6",
+        "identifiers": {},
+        "discount": "",
+        "bulk_offer": {},
+        "coupon_message": "",
+        "article": {
+          "type": "article",
+          "uid": "304_1054_9036_R1005753_6",
+          "size": "6",
+          "seller": {
+            "uid": 304,
+            "name": "LEAYAN GLOBAL PVT. LTD."
+          },
+          "store": {
+            "uid": 5322,
+            "name": "Vaisali Nagar"
+          },
+          "quantity": 1,
+          "price": {
+            "base": {
+              "marked": 2095,
+              "effective": 2095,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "marked": 2095,
+              "effective": 2095,
+              "currency_code": "INR"
+            }
+          }
+        },
+        "charges": [
+          {
+            "type": "convenience fee",
+            "name": "convenience fee",
+            "code": "convenience fee",
+            "amount": {
+              "value": 10,
+              "currency": "INR"
+            },
+            "meta": {
+              "price_adjustment_id": "64c22d66fe278c0796bd8e4d",
+              "article_level_distribution": true
+            }
+          }
+        ],
+        "product": {
+          "type": "product",
+          "uid": 791651,
+          "name": "Black Running Shoes",
+          "slug": "furo-black-running-shoes-791651-f8bcc3",
+          "brand": {
+            "uid": 1054,
+            "name": "Furo"
+          },
+          "categories": [
+            {
+              "uid": 160,
+              "name": "Running Shoes"
+            }
+          ],
+          "images": [
+            {
+              "aspect_ratio": "16:25",
+              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
+              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
+            }
+          ],
+          "action": {
+            "type": "product",
+            "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
+            "query": {
+              "product_slug": [
+                "furo-black-running-shoes-791651-f8bcc3"
+              ]
+            }
+          }
+        },
+        "message": "",
+        "quantity": 1,
+        "availability": {
+          "sizes": [
+            "7",
+            "8",
+            "9",
+            "10",
+            "6"
+          ],
+          "other_store_quantity": 12,
+          "out_of_stock": false,
+          "deliverable": true,
+          "is_valid": true
+        },
+        "price": {
+          "base": {
+            "add_on": 2095,
+            "marked": 2095,
+            "effective": 2095,
+            "selling": 2095,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "add_on": 2095,
+            "marked": 2095,
+            "effective": 2095,
+            "selling": 2095,
+            "currency_code": "INR"
+          }
+        }
+      },
+      {
+        "key": "791651_7",
+        "identifiers": {},
+        "discount": "",
+        "bulk_offer": {},
+        "coupon_message": "",
+        "article": {
+          "type": "article",
+          "uid": "304_1054_9036_R1005753_7",
+          "size": "7",
+          "seller": {
+            "uid": 304,
+            "name": "LEAYAN GLOBAL PVT. LTD."
+          },
+          "store": {
+            "uid": 5322,
+            "name": "Vaisali Nagar"
+          },
+          "quantity": 2,
+          "price": {
+            "base": {
+              "marked": 2095,
+              "effective": 2095,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "marked": 2095,
+              "effective": 2095,
+              "currency_code": "INR"
+            }
+          }
+        },
+        "charges": [
+          {
+            "type": "convenience fee",
+            "name": "convenience fee",
+            "code": "convenience fee",
+            "amount": {
+              "value": 10,
+              "currency": "INR"
+            },
+            "meta": {
+              "price_adjustment_id": "64c22d66fe278c0796bd8e4d",
+              "article_level_distribution": true
+            }
+          }
+        ],
+        "product": {
+          "type": "product",
+          "uid": 791651,
+          "name": "Black Running Shoes",
+          "slug": "furo-black-running-shoes-791651-f8bcc3",
+          "brand": {
+            "uid": 1054,
+            "name": "Furo"
+          },
+          "categories": [
+            {
+              "uid": 160,
+              "name": "Running Shoes"
+            }
+          ],
+          "images": [
+            {
+              "aspect_ratio": "16:25",
+              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
+              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
+            }
+          ],
+          "action": {
+            "type": "product",
+            "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
+            "query": {
+              "product_slug": [
+                "furo-black-running-shoes-791651-f8bcc3"
+              ]
+            }
+          }
+        },
+        "message": "",
+        "quantity": 2,
+        "availability": {
+          "sizes": [
+            "7",
+            "8",
+            "9",
+            "10",
+            "6"
+          ],
+          "other_store_quantity": 7,
+          "out_of_stock": false,
+          "deliverable": true,
+          "is_valid": true
+        },
+        "price": {
+          "base": {
+            "add_on": 4190,
+            "marked": 4190,
+            "effective": 4190,
+            "selling": 4190,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "add_on": 4190,
+            "marked": 4190,
+            "effective": 4190,
+            "selling": 4190,
+            "currency_code": "INR"
+          }
+        }
+      }
+    ],
+    "cart_id": 13055,
+    "uid": "13055",
+    "breakup_values": {
+      "raw": {
+        "cod_charge": 0,
+        "convenience_fee": 0,
+        "coupon": 0,
+        "delivery_charge": 0,
+        "discount": 0,
+        "fynd_cash": 0,
+        "gst_charges": 958.73,
+        "mrp_total": 6285,
+        "mop_total": 0,
+        "total_charge": 10,
+        "subtotal": 6285,
+        "total": 6285,
+        "vog": 5326.27,
+        "you_saved": 0
+      },
+      "loyalty_points": {
+        "total": 0,
+        "applicable": 0,
+        "is_applied": false,
+        "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+      },
+      "coupon": {
+        "type": "cash",
+        "code": "",
+        "uid": "",
+        "value": 0,
+        "is_applied": false,
+        "message": "Sorry! Invalid coupon"
+      },
+      "display": [
+        {
+          "display": "MRP Total",
+          "key": "mrp_total",
+          "value": 6285,
+          "currency_code": "INR"
+        },
+        {
+          "display": "Subtotal",
+          "key": "subtotal",
+          "value": 6285,
+          "currency_code": "INR"
+        },
+        {
+          "display": "Total",
+          "key": "total",
+          "value": 6285,
+          "currency_code": "INR"
+        }
+      ]
+    },
+    "delivery_charge_info": "",
+    "coupon_text": "View all offers",
+    "gstin": "",
+    "comment": "",
+    "checkout_mode": "self",
+    "payment_selection_lock": {
+      "enabled": false,
+      "default_options": "COD",
+      "payment_identifier": ""
+    },
+    "restrict_checkout": false,
+    "is_valid": true,
+    "last_modified": "2020-03-09T00:00:00.000Z"
+  },
+  "error": ""
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateCartWithSharedItems
+Merge or replace existing cart
+
+
+
+
+```swift
+applicationClient.cart.updateCartWithSharedItems(token: token, action: action) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| token | String | yes | Token of the shared short link |   
+| action | String | yes | Operation to perform on the existing cart merge or replace. |  
+
+
+
+Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace.
+
+*Returned Response:*
+
+
+
+
+[SharedCartResponse](#SharedCartResponse)
+
+Success. Returns a merged or replaced cart as per the valid token. Refer `SharedCartResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Cart Merged/Replaced</i></summary>
+
+```json
+{
+  "value": {
+    "cart": {
+      "shared_cart_details": {
+        "token": "BQ9jySQ9",
+        "user": {
+          "user_id": "23109086",
+          "is_anonymous": false
+        },
+        "meta": {
+          "selected_staff": "",
+          "ordering_store": null
+        },
+        "selected_staff": "",
+        "ordering_store": null,
+        "source": {},
+        "created_on": "2019-12-18T14:00:07.165000"
+      },
+      "items": [
+        {
+          "key": "791651_6",
+          "identifiers": {},
+          "discount": "",
+          "bulk_offer": {},
+          "coupon_message": "",
+          "article": {
+            "type": "article",
+            "uid": "304_1054_9036_R1005753_6",
+            "size": "6",
+            "seller": {
+              "uid": 304,
+              "name": "LEAYAN GLOBAL PVT. LTD."
+            },
+            "store": {
+              "uid": 5322,
+              "name": "Vaisali Nagar"
+            },
+            "quantity": 1,
+            "price": {
+              "base": {
+                "marked": 2095,
+                "effective": 2095,
+                "currency_code": "INR"
+              },
+              "converted": {
+                "marked": 2095,
+                "effective": 2095,
+                "currency_code": "INR"
+              }
+            }
+          },
+          "charges": [
+            {
+              "type": "convenience fee",
+              "name": "convenience fee",
+              "code": "convenience fee",
+              "amount": {
+                "value": 10,
+                "currency": "INR"
+              },
+              "meta": {
+                "price_adjustment_id": "64c22d66fe278c0796bd8e4d",
+                "article_level_distribution": true
+              }
+            }
+          ],
+          "product": {
+            "type": "product",
+            "uid": 791651,
+            "name": "Black Running Shoes",
+            "slug": "furo-black-running-shoes-791651-f8bcc3",
+            "brand": {
+              "uid": 1054,
+              "name": "Furo"
+            },
+            "categories": [
+              {
+                "uid": 160,
+                "name": "Running Shoes"
+              }
+            ],
+            "images": [
+              {
+                "aspect_ratio": "16:25",
+                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
+                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
+              }
+            ],
+            "action": {
+              "type": "product",
+              "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
+              "query": {
+                "product_slug": [
+                  "furo-black-running-shoes-791651-f8bcc3"
+                ]
+              }
+            }
+          },
+          "message": "",
+          "quantity": 1,
+          "availability": {
+            "sizes": [
+              "7",
+              "8",
+              "9",
+              "10",
+              "6"
+            ],
+            "other_store_quantity": 12,
+            "out_of_stock": false,
+            "deliverable": true,
+            "is_valid": true
+          },
+          "price": {
+            "base": {
+              "add_on": 2095,
+              "marked": 2095,
+              "effective": 2095,
+              "selling": 2095,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "add_on": 2095,
+              "marked": 2095,
+              "effective": 2095,
+              "selling": 2095,
+              "currency_code": "INR"
+            }
+          }
+        },
+        {
+          "key": "791651_7",
+          "identifiers": {},
+          "discount": "",
+          "bulk_offer": {},
+          "coupon_message": "",
+          "article": {
+            "type": "article",
+            "uid": "304_1054_9036_R1005753_7",
+            "size": "7",
+            "seller": {
+              "uid": 304,
+              "name": "LEAYAN GLOBAL PVT. LTD."
+            },
+            "store": {
+              "uid": 5322,
+              "name": "Vaisali Nagar"
+            },
+            "quantity": 2,
+            "price": {
+              "base": {
+                "marked": 2095,
+                "effective": 2095,
+                "currency_code": "INR"
+              },
+              "converted": {
+                "marked": 2095,
+                "effective": 2095,
+                "currency_code": "INR"
+              }
+            }
+          },
+          "charges": [
+            {
+              "type": "convenience fee",
+              "name": "convenience fee",
+              "code": "convenience fee",
+              "amount": {
+                "value": 10,
+                "currency": "INR"
+              },
+              "meta": {
+                "price_adjustment_id": "64c22d66fe278c0796bd8e4d",
+                "article_level_distribution": true
+              }
+            }
+          ],
+          "product": {
+            "type": "product",
+            "uid": 791651,
+            "name": "Black Running Shoes",
+            "slug": "furo-black-running-shoes-791651-f8bcc3",
+            "brand": {
+              "uid": 1054,
+              "name": "Furo"
+            },
+            "categories": [
+              {
+                "uid": 160,
+                "name": "Running Shoes"
+              }
+            ],
+            "images": [
+              {
+                "aspect_ratio": "16:25",
+                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
+                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
+              }
+            ],
+            "action": {
+              "type": "product",
+              "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
+              "query": {
+                "product_slug": [
+                  "furo-black-running-shoes-791651-f8bcc3"
+                ]
+              }
+            }
+          },
+          "message": "",
+          "quantity": 2,
+          "availability": {
+            "sizes": [
+              "7",
+              "8",
+              "9",
+              "10",
+              "6"
+            ],
+            "other_store_quantity": 7,
+            "out_of_stock": false,
+            "deliverable": true,
+            "is_valid": true
+          },
+          "price": {
+            "base": {
+              "add_on": 4190,
+              "marked": 4190,
+              "effective": 4190,
+              "selling": 4190,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "add_on": 4190,
+              "marked": 4190,
+              "effective": 4190,
+              "selling": 4190,
+              "currency_code": "INR"
+            }
+          }
+        }
+      ],
+      "cart_id": 13055,
+      "uid": "13055",
+      "breakup_values": {
+        "raw": {
+          "cod_charge": 0,
+          "convenience_fee": 0,
+          "coupon": 0,
+          "delivery_charge": 0,
+          "discount": 0,
+          "fynd_cash": 0,
+          "gst_charges": 958.73,
+          "mrp_total": 6285,
+          "mop_total": 0,
+          "total_charge": 10,
+          "subtotal": 6285,
+          "total": 6285,
+          "vog": 5326.27,
+          "you_saved": 0
+        },
+        "loyalty_points": {
+          "total": 0,
+          "applicable": 0,
+          "is_applied": false,
+          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+        },
+        "coupon": {
+          "type": "cash",
+          "code": "",
+          "uid": "",
+          "value": 0,
+          "is_applied": false,
+          "message": "Sorry! Invalid coupon"
+        },
+        "display": [
+          {
+            "display": "MRP Total",
+            "key": "mrp_total",
+            "value": 6285,
+            "currency_code": "INR"
+          },
+          {
+            "display": "Subtotal",
+            "key": "subtotal",
+            "value": 6285,
+            "currency_code": "INR"
+          },
+          {
+            "display": "Total",
+            "key": "total",
+            "value": 6285,
+            "currency_code": "INR"
+          }
+        ]
+      },
+      "delivery_charge_info": "",
+      "coupon_text": "View all offers",
+      "gstin": "",
+      "comment": "",
+      "checkout_mode": "self",
+      "payment_selection_lock": {
+        "enabled": false,
+        "default_options": "COD",
+        "payment_identifier": ""
+      },
+      "restrict_checkout": false,
+      "is_valid": true,
+      "last_modified": "2020-03-09T00:00:00.000Z"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 #### getPromotionOffers
-Retrieves promotional offers
+Fetch available promotions
 
 
 
@@ -8468,7 +8538,7 @@ applicationClient.cart.getPromotionOffers(slug: slug, pageSize: pageSize, promot
 
 
 
-Lists all available promotional offers for the cart.
+Use this API to get top 5 offers available for current product
 
 *Returned Response:*
 
@@ -8559,7 +8629,7 @@ Success. Returns a array containing the available offers (if exists) on product 
 
 
 #### getLadderOffers
-Fetches ladder offers.
+Fetch ladder price promotion
 
 
 
@@ -8583,7 +8653,7 @@ applicationClient.cart.getLadderOffers(slug: slug, storeId: storeId, promotionId
 
 
 
-Gets tiered discounts based on cart value.
+Use this API to get applicable ladder price promotion for current product
 
 *Returned Response:*
 
@@ -8703,10 +8773,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 ---
 
 
-
-
 #### checkoutCartV2
-Enhanced cart checkout process
+Checkout all items in the cart
 
 
 
@@ -8728,7 +8796,7 @@ applicationClient.cart.checkoutCartV2(buyNow: buyNow, cartType: cartType, body: 
 | body | CartCheckoutDetailV2Request | yes | Request body |
 
 
-Initiates a more secure and detailed checkout process.
+Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
 
 *Returned Response:*
 
@@ -9159,6 +9227,167 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 ---
 
 
+#### getCartMetaConfigs
+Get cart configuration
+
+
+
+
+```swift
+applicationClient.cart.getCartMetaConfigs() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Get cart configuration
+
+*Returned Response:*
+
+
+
+
+[CartConfigListResponse](#CartConfigListResponse)
+
+Cart Config fetched successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "6203cb1393506f8a75ecd56b",
+      "name": "Universal",
+      "slug": "universal",
+      "article_tags": [
+        "cloths"
+      ],
+      "created_on": "2023-12-21T12:17:12"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCartMetaConfig
+Get cart configuration by id
+
+
+
+
+```swift
+applicationClient.cart.getCartMetaConfig(cartMetaId: cartMetaId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| cartMetaId | String | yes | CartMeta mongo id for fetching single cart meta data |  
+
+
+
+Get cart configuration by id
+
+*Returned Response:*
+
+
+
+
+[CartConfigDetailResponse](#CartConfigDetailResponse)
+
+Cart Config Fetched successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "645ba594d414eb0669e6ee14",
+    "app_id": "60792ded7826bd09330ed90d",
+    "company_id": 884,
+    "bulk_coupons": false,
+    "delivery_charges": {
+      "charges": [],
+      "enabled": false
+    },
+    "empty_cart": false,
+    "enabled": true,
+    "max_cart_items": 50,
+    "min_cart_value": 0,
+    "revenue_engine_coupon": false,
+    "gift_pricing": 50,
+    "gift_display_text": "",
+    "is_universal": false,
+    "is_active": true,
+    "order_placing": {
+      "enabled": true,
+      "message": ""
+    },
+    "name": "Universal",
+    "slug": "universal",
+    "article_tags": [
+      "sale",
+      "offer"
+    ],
+    "allow_coupon_with_rewards": false,
+    "gst_input": true,
+    "staff_selection": true,
+    "placing_for_customer": false,
+    "pan_card": {
+      "enabled": false,
+      "cod_threshold_amount": 0,
+      "online_threshold_amount": 0
+    },
+    "created_on": "2023-12-21T12:17:12",
+    "updated_on": "2023-12-21T12:17:12",
+    "last_modified_by": "5b84e9ffb02426353608c380"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 
 ### Schemas
@@ -9249,6 +9478,7 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | articleQuantity | Int? |  yes  | Quantity of article on which promotion is applicable |
  | appliedFreeArticles | [[AppliedFreeArticles](#AppliedFreeArticles)]? |  yes  | Applied free article for free gift item promotions |
  | promotionType | String? |  yes  | Promotion type of current promotion |
+ | customFieldMeta | [[String: Any]]? |  yes  | custom field meta for promotion. |
  | meta | [String: Any]? |  yes  | Meta object for extra data |
  | code | String? |  yes  | Promotion code |
 
@@ -9383,6 +9613,7 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | size | String? |  yes  |  |
  | mtoQuantity | Int? |  yes  |  |
  | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | productName | String? |  yes  |  |
  | sellerIdentifier | String? |  yes  |  |
  | parentItemIdentifiers | [String: Any]? |  yes  |  |
  | identifier | [String: Any]? |  yes  |  |
@@ -9654,6 +9885,7 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | key | String? |  yes  |  |
  | message | String? |  yes  |  |
  | isSet | Bool? |  yes  |  |
+ | sellerCount | Int? |  yes  |  |
  | pricePerUnit | [ProductPricePerUnitInfo](#ProductPricePerUnitInfo)? |  yes  |  |
  | promotionsApplied | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
 
@@ -9828,6 +10060,20 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  
  
+ #### [CustomCart](#CustomCart)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  | id of custom cart config |
+ | cartName | String? |  yes  | Name of custom cart |
+ | cartType | String? |  yes  | Type of custom cart |
+ | isUniversal | Bool? |  yes  | By default all carts are universal, will be false for custom cart |
+
+---
+
+
+ 
+ 
  #### [CartDetailResponse](#CartDetailResponse)
 
  | Properties | Type | Nullable | Description |
@@ -9837,6 +10083,7 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | appliedPromoDetails | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
  | checkoutMode | String? |  yes  |  |
  | panNo | String? |  yes  |  |
+ | isPanReceived | Bool? |  yes  |  |
  | isValid | Bool? |  yes  |  |
  | id | String? |  yes  |  |
  | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
@@ -9858,6 +10105,7 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | couponText | String? |  yes  |  |
  | buyNow | Bool? |  yes  |  |
  | panConfig | [String: Any]? |  yes  |  |
+ | customCart | [CustomCart](#CustomCart)? |  yes  |  |
 
 ---
 
@@ -9877,6 +10125,7 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | storeId | Int? |  yes  |  |
  | display | String? |  yes  |  |
  | articleId | String? |  yes  |  |
+ | priceFactoryTypeId | String? |  yes  |  |
  | parentItemIdentifiers | [[String: String]]? |  yes  |  |
  | sellerId | Int? |  yes  |  |
  | pos | Bool? |  yes  |  |
@@ -9927,6 +10176,7 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
  | articleId | String? |  yes  |  |
  | parentItemIdentifiers | [String: Any]? |  yes  |  |
+ | priceFactoryTypeId | String? |  yes  |  |
  | itemId | Int? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
 
@@ -9977,6 +10227,19 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | userCartItemsCount | Int? |  yes  | Item count present in cart |
+
+---
+
+
+ 
+ 
+ #### [CartItemCountResponseV2](#CartItemCountResponseV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | userAllCartArticlesQuantityCount | Int? |  yes  |  |
+ | userAllCartArticleCount | Int? |  yes  |  |
+ | customCartCount | [String: Any]? |  yes  |  |
 
 ---
 
@@ -10440,6 +10703,7 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | couponText | String? |  yes  |  |
  | buyNow | Bool? |  yes  |  |
  | codCharges | Double? |  yes  |  |
+ | customCart | [CustomCart](#CustomCart)? |  yes  |  |
 
 ---
 
@@ -10796,6 +11060,104 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | network | String? |  yes  |  |
  | type | String? |  yes  |  |
  | cardId | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CartConfigListObj](#CartConfigListObj)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | articleTags | [String]? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CartConfigListResponse](#CartConfigListResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  |  |
+ | data | [[CartConfigListObj](#CartConfigListObj)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderPlacing](#OrderPlacing)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | Bool? |  yes  |  |
+ | message | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PanCard](#PanCard)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | Bool? |  yes  |  |
+ | codThresholdAmount | Int? |  yes  |  |
+ | onlineThresholdAmount | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CartConfigDetailObj](#CartConfigDetailObj)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  |  |
+ | appId | String? |  yes  |  |
+ | companyId | Int? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | updatedOn | String? |  yes  |  |
+ | lastModifiedBy | String? |  yes  |  |
+ | minCartValue | Int? |  yes  |  |
+ | maxCartValue | Int? |  yes  |  |
+ | bulkCoupons | Bool? |  yes  |  |
+ | maxCartItems | Int? |  yes  |  |
+ | giftDisplayText | String? |  yes  |  |
+ | deliveryCharges | [DeliveryChargesConfig](#DeliveryChargesConfig)? |  yes  |  |
+ | revenueEngineCoupon | Bool? |  yes  |  |
+ | giftPricing | Double? |  yes  |  |
+ | enabled | Bool? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | orderPlacing | [OrderPlacing](#OrderPlacing)? |  yes  |  |
+ | name | String? |  yes  |  |
+ | articleTags | [String]? |  yes  |  |
+ | allowCouponWithRewards | Bool? |  yes  |  |
+ | gstInput | Bool? |  yes  |  |
+ | staffSelection | Bool? |  yes  |  |
+ | placingForCustomer | Bool? |  yes  |  |
+ | panCard | [PanCard](#PanCard)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CartConfigDetailResponse](#CartConfigDetailResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  |  |
+ | data | [CartConfigDetailObj](#CartConfigDetailObj)? |  yes  |  |
 
 ---
 

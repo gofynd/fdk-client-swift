@@ -14,8 +14,8 @@ extension PublicClient {
         
         /**
         *
-        * Summary: Get panel extension details.
-        * Description: Retrieve detailed information about panel extensions in the public server setup.
+        * Summary: Get extension details
+        * Description: Use this API to get extension details
         **/
         public func getPanelExtensionDetails(
             slug: String,

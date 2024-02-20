@@ -12,7 +12,7 @@ public extension PlatformClient.Payment {
     class UpdatePayoutResponse: Codable {
         
         
-        public var isDefault: Bool
+        public var isDefault: Bool?
         
         public var isActive: Bool
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(isActive: Bool, isDefault: Bool, success: Bool) {
+        public init(isActive: Bool, isDefault: Bool? = nil, success: Bool) {
             
             self.isDefault = isDefault
             
@@ -43,9 +43,16 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                isDefault = try container.decode(Bool.self, forKey: .isDefault)
+                do {
+                    isDefault = try container.decode(Bool.self, forKey: .isDefault)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -93,7 +100,7 @@ public extension PlatformClient.ApplicationClient.Payment {
     class UpdatePayoutResponse: Codable {
         
         
-        public var isDefault: Bool
+        public var isDefault: Bool?
         
         public var isActive: Bool
         
@@ -110,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(isActive: Bool, isDefault: Bool, success: Bool) {
+        public init(isActive: Bool, isDefault: Bool? = nil, success: Bool) {
             
             self.isDefault = isDefault
             
@@ -124,9 +131,16 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                isDefault = try container.decode(Bool.self, forKey: .isDefault)
+                do {
+                    isDefault = try container.decode(Bool.self, forKey: .isDefault)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)

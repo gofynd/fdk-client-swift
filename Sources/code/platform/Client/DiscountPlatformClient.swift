@@ -16,8 +16,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get discounts.
-        * Description: Retrieve a list of available discounts.
+        * Summary: Fetch discount list.
+        * Description: Fetch discount list.
         **/
         public func getDiscounts(
             view: String?,
@@ -134,10 +134,117 @@ if let value = appIds {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Create discount.
-        * Description: Create discount.
+        * Summary: get paginator for getDiscounts
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getDiscountsPaginator(
+            view: String?,
+            q: String?,
+            pageSize: Int?,
+            archived: Bool?,
+            month: Int?,
+            year: Int?,
+            type: String?,
+            appIds: [String]?
+            
+            ) -> Paginator<ListOrCalender> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ListOrCalender>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getDiscounts(
+                        
+                        view: view,
+                        q: q,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        archived: archived,
+                        month: month,
+                        year: year,
+                        type: type,
+                        appIds: appIds
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Create Discount.
+        * Description: Create Discount.
         **/
         public func createDiscount(
             body: CreateUpdateDiscount,
@@ -184,8 +291,8 @@ if let value = appIds {
         
         /**
         *
-        * Summary: Get discount by ID.
-        * Description: Retrieve detailed information about a specific discount.
+        * Summary: Fetch discount.
+        * Description: Fetch discount.
         **/
         public func getDiscount(
             id: String,
@@ -233,8 +340,8 @@ if let value = appIds {
         
         /**
         *
-        * Summary: Update discount.
-        * Description: Create discount.
+        * Summary: Update Discount.
+        * Description: Update Discount.
         **/
         public func updateDiscount(
             id: String,
@@ -282,8 +389,8 @@ if let value = appIds {
         
         /**
         *
-        * Summary: Upsert discount items.
-        * Description: Create custom discounts.
+        * Summary: Create custom discount from bulk.
+        * Description: Create custom discounts through API.
         **/
         public func upsertDiscountItems(
             id: String,
@@ -331,8 +438,8 @@ if let value = appIds {
         
         /**
         *
-        * Summary: Validate discount file.
-        * Description: Validate file.
+        * Summary: Validate File.
+        * Description: Validate File.
         **/
         public func validateDiscountFile(
             discount: String?,
@@ -387,8 +494,8 @@ if let value = discount {
         
         /**
         *
-        * Summary: Download discount file.
-        * Description: Validate file.
+        * Summary: Validate File.
+        * Description: Validate File.
         **/
         public func downloadDiscountFile(
             type: String,
@@ -436,8 +543,8 @@ if let value = discount {
         
         /**
         *
-        * Summary: Get validation job.
-        * Description: Validate file.
+        * Summary: Validate File Job.
+        * Description: Validate File Job.
         **/
         public func getValidationJob(
             id: String,
@@ -485,8 +592,8 @@ if let value = discount {
         
         /**
         *
-        * Summary: Cancel validation job.
-        * Description: Validate file.
+        * Summary: Cancel Validation Job.
+        * Description: Cancel Validation Job.
         **/
         public func cancelValidationJob(
             id: String,
@@ -534,8 +641,8 @@ if let value = discount {
         
         /**
         *
-        * Summary: Get download job.
-        * Description: Download file Job.
+        * Summary: Download File Job.
+        * Description: Download File Job.
         **/
         public func getDownloadJob(
             id: String,
@@ -583,8 +690,8 @@ if let value = discount {
         
         /**
         *
-        * Summary: Cancel download job.
-        * Description: Cancel download Job.
+        * Summary: Cancel Download Job.
+        * Description: Cancel Download Job.
         **/
         public func cancelDownloadJob(
             id: String,

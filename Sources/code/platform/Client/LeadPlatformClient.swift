@@ -16,8 +16,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get platform tickets.
-        * Description: Retrieve a list of tickets created within the platform at company level
+        * Summary: Gets the list of company level tickets and/or ticket filters depending on query params
+        * Description: Gets the list of company level tickets and/or ticket filters
         **/
         public func getPlatformTickets(
             items: Bool?,
@@ -126,10 +126,109 @@ if let value = pageSize {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Create ticket.
-        * Description: Create a new ticket at application level
+        * Summary: get paginator for getPlatformTickets
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getPlatformTicketsPaginator(
+            items: Bool?,
+            filters: Bool?,
+            q: String?,
+            status: String?,
+            priority: PriorityEnum?,
+            category: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<TicketList> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<TicketList>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getPlatformTickets(
+                        
+                        items: items,
+                        filters: filters,
+                        q: q,
+                        status: status,
+                        priority: priority,
+                        category: category,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Creates a company level ticket
+        * Description: Creates a company level ticket
         **/
         public func createTicket(
             body: AddTicketPayload,
@@ -177,8 +276,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get platform ticket.
-        * Description: Retrieve detailed information about a specific ticket which is raised at company level
+        * Summary: Retreives ticket details of a company level ticket with ticket ID
+        * Description: Retreives ticket details of a company level ticket
         **/
         public func getPlatformTicket(
             id: String,
@@ -226,8 +325,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Edit platform ticket.
-        * Description: Modify the content and settings of a specific company level ticket.
+        * Summary: Edits ticket details of a company level ticket
+        * Description: Edits ticket details of a company level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
         **/
         public func editPlatformTicket(
             id: String,
@@ -277,8 +376,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Create platform ticket history.
-        * Description: Create futher interactions on a company level ticket such as changing it's status, priority or replying to a ticket via a thread.
+        * Summary: Create history for specific company level ticket
+        * Description: Create history for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
         **/
         public func createPlatformTicketHistory(
             id: String,
@@ -326,8 +425,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get platform ticket history.
-        * Description: Retrieve a list of history records for a company level ticket.
+        * Summary: Gets history list for specific company level ticket
+        * Description: Gets history list for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
         **/
         public func getPlatformTicketHistory(
             id: String,
@@ -375,8 +474,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get feedbacks.
-        * Description: Retrieve feedback information related to a ticket.
+        * Summary: Gets a list of feedback submitted against that ticket
+        * Description: Gets a list of feedback submitted against that ticket
         **/
         public func getFeedbacks(
             id: String,
@@ -424,8 +523,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Submit feedback.
-        * Description: Provide feedback on a ticket and it's resolution.
+        * Summary: Submit a response for feeback form against that ticket
+        * Description: Submit a response for feeback form against that ticket
         **/
         public func submitFeedback(
             id: String,
@@ -480,8 +579,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get token for platform video room.
-        * Description: Retrieve an access token for a platform video room.
+        * Summary: Get Token to join a specific Video Room using it's unqiue name
+        * Description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
         **/
         public func getTokenForPlatformVideoRoom(
             uniqueName: String,
@@ -530,8 +629,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get platform video participants.
-        * Description: Retrieve a list of participants in a platform video room.
+        * Summary: Get participants of a specific Video Room using it's unique name
+        * Description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
         **/
         public func getPlatformVideoParticipants(
             uniqueName: String,
@@ -582,12 +681,12 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get general configuration.
-        * Description: Retrieve general configuration settings related to support system for company tickets
+        * Summary: Get general support configuration.
+        * Description: Get general support configuration.
         **/
         public func getGeneralConfig(
             
-            onResponse: @escaping (_ response: CloseVideoRoomResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GeneralConfigResponse?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -612,7 +711,7 @@ if let value = pageSize {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CloseVideoRoomResponse.self, from: data)
+                        let response = Utility.decode(GeneralConfigResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

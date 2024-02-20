@@ -7,11 +7,8 @@
 ## Common Methods
 Application configuration apis
 
-Application search
+Default
 * [searchApplication](#searchapplication)
-
-
-Location Information
 * [getLocations](#getlocations)
 
 
@@ -22,7 +19,7 @@ Location Information
 
 
 #### searchApplication
-Searches through applications.
+Search Application
 
 
 
@@ -44,7 +41,7 @@ applicationClient.common.searchApplication(authorization: authorization, query: 
 
 
 
-Provide application name or domain url. 
+Provide application name or domain url
 
 *Returned Response:*
 
@@ -138,10 +135,8 @@ Success
 ---
 
 
-
-
 #### getLocations
-Fetches available locations.
+Get countries, states, cities
 
 
 
@@ -163,7 +158,7 @@ applicationClient.common.getLocations(locationType: locationType, id: id) { (res
 
 
 
-Retrieves a list of all locations of countries, states, cities. 
+Get countries, states, cities
 
 *Returned Response:*
 

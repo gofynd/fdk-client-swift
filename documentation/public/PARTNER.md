@@ -7,7 +7,7 @@
 ## Partner Methods
 Partner configuration apis
 
-Panel extension details
+Default
 * [getPanelExtensionDetails](#getpanelextensiondetails)
 
 
@@ -18,7 +18,7 @@ Panel extension details
 
 
 #### getPanelExtensionDetails
-Get panel extension details.
+Get extension details
 
 
 
@@ -39,7 +39,7 @@ publicClient.partner.getPanelExtensionDetails(slug: slug) { (response, error) in
 
 
 
-Retrieve detailed information about panel extensions in the public server setup.
+Use this API to get extension details
 
 *Returned Response:*
 

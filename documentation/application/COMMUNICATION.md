@@ -7,12 +7,9 @@
 ## Communication Methods
 The Communications module manages user notifications to keep users informed and engaged through personalized push notifications. Use it to enable users to view notifications they've opted into, modify their communication preferences, and update push tokens for real-time updates.
 
-Communication Consent
+Default
 * [getCommunicationConsent](#getcommunicationconsent)
 * [upsertCommunicationConsent](#upsertcommunicationconsent)
-
-
-Push Token Management
 * [upsertAppPushtoken](#upsertapppushtoken)
 
 
@@ -23,7 +20,7 @@ Push Token Management
 
 
 #### getCommunicationConsent
-Retrieves communication consent status.
+Get communication consent
 
 
 
@@ -39,7 +36,7 @@ applicationClient.communication.getCommunicationConsent() { (response, error) in
 
 
 
-Retrieve the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp. 
+Use this API to retrieve the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
 
 *Returned Response:*
 
@@ -100,7 +97,7 @@ Success. Returns all available communication opt-ins along with the consent deta
 
 
 #### upsertCommunicationConsent
-Updates or inserts consent settings.
+Upsert communication consent
 
 
 
@@ -120,7 +117,7 @@ applicationClient.communication.upsertCommunicationConsent(body: body) { (respon
 | body | CommunicationConsentReq | yes | Request body |
 
 
-Update and insert the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp. 
+Use this API to update and insert the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
 
 *Returned Response:*
 
@@ -178,10 +175,8 @@ Success. Updates the channels for which user has consented. Check the example sh
 ---
 
 
-
-
 #### upsertAppPushtoken
-Updates or adds app push token.
+Upsert push token of a user
 
 
 
@@ -201,7 +196,7 @@ applicationClient.communication.upsertAppPushtoken(body: body) { (response, erro
 | body | PushtokenReq | yes | Request body |
 
 
-Update the push token of the user. 
+Use this API to update and insert the push token of the user.
 
 *Returned Response:*
 

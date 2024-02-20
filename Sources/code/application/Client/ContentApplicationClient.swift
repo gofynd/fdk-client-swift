@@ -67,8 +67,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches announcements of an Application
-        * Description: Retrieves all current announcements in the application.
+        * Summary: Get live announcements
+        * Description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve live announcements. Get announcements on individual pages or for all pages.
         **/
         public func getAnnouncements(
             
@@ -117,8 +117,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves a single blog post.
-        * Description: Retrieves all information relate to a specific blog such as it's contents, author, publish date, SEO related information.
+        * Summary: Get a blog
+        * Description: Use this API to get the details of a blog using its slug. Details include the title, reading time, publish status, feature image, tags, author, etc.
         **/
         public func getBlog(
             slug: String,
@@ -178,8 +178,8 @@ if let value = rootId {
         
         /**
         *
-        * Summary: Lists all blog posts
-        * Description: Retrieve all the blogs which are present in the application.
+        * Summary: Get a list of blogs
+        * Description: Use this API to get all the blogs.
         **/
         public func getBlogs(
             pageNo: Int?,
@@ -242,10 +242,53 @@ if let value = pageSize {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Retrieves data loaders enabled for an application
-        * Description: Retrieves all the data loaders that are added and enabled for an application.
+        * Summary: get paginator for getBlogs
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getBlogsPaginator(
+            pageSize: Int?
+            
+            ) -> Paginator<BlogGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<BlogGetResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getBlogs(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get the data loaders associated with an application
+        * Description: Use this API to get all selected data loaders of the application in the form of tags.
         **/
         public func getDataLoaders(
             
@@ -294,8 +337,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Fetches FAQs of an applicaiton
-        * Description: Retrieves a list of frequently asked questions.
+        * Summary: Get a list of FAQs
+        * Description: Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website.
         **/
         public func getFaqs(
             
@@ -344,8 +387,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Lists FAQ categories.
-        * Description: Retrieve categories for organizing FAQs.
+        * Summary: Get a list of FAQ categories
+        * Description: FAQs can be divided into categories. Use this API to get a list of FAQ categories.
         **/
         public func getFaqCategories(
             
@@ -394,8 +437,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves FAQ by slug.
-        * Description: Retrieves a specific FAQ using its slug identifier.
+        * Summary: Get an FAQ
+        * Description: Use this API to get a particular FAQ by its slug.
         **/
         public func getFaqBySlug(
             slug: String,
@@ -447,8 +490,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves FAQ category by slug.
-        * Description: Retrieve a specific FAQ category using its slug.
+        * Summary: Get the FAQ category
+        * Description: FAQs can be divided into categories. Use this API to get the category to which an FAQ belongs.
         **/
         public func getFaqCategoryBySlug(
             slug: String,
@@ -500,8 +543,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves FAQs by category.
-        * Description: Retrieves FAQs belonging to a specific category slug.
+        * Summary: Get FAQs using the slug of FAQ category
+        * Description: FAQs can be divided into categories. Use this API to get all the FAQs belonging to a category by using the category slug.
         **/
         public func getFaqsByCategorySlug(
             slug: String,
@@ -553,8 +596,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Fetches landing page.
-        * Description: Gets the content of the application's landing page.
+        * Summary: Get the landing page
+        * Description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch the details of a landing page.
         **/
         public func getLandingPage(
             
@@ -603,8 +646,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves legal information.
-        * Description: Retrieve legal policies for an application which includes Terms and conditions, return policy, shipping policy and privacy policy.
+        * Summary: Get legal information
+        * Description: Use this API to get the legal information of an application, which includes Privacy Policy, Terms and Conditions, Shipping Policy and FAQs regarding the usage of the application.
         **/
         public func getLegalInformation(
             
@@ -653,8 +696,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves navigation items
-        * Description: Retrieves the navigation link items which can be powered to genreate menus on application's website or equivalent mobile apps
+        * Summary: Get the navigation
+        * Description: Use this API to fetch the navigations details which includes the items of the navigation panel. It also shows the links and sub-navigations.
         **/
         public func getNavigations(
             pageNo: Int?,
@@ -717,10 +760,53 @@ if let value = pageSize {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Retrieves SEO settings of an applicaiton
-        * Description: Retrieve search engine optimization configurations of an application. Details include the title, description and an image
+        * Summary: get paginator for getNavigations
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getNavigationsPaginator(
+            pageSize: Int?
+            
+            ) -> Paginator<NavigationGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<NavigationGetResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getNavigations(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get the SEO of an application
+        * Description: Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap.
         **/
         public func getSEOConfiguration(
             
@@ -997,8 +1083,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves support related info of an applicaiton
-        * Description: Retrieves customer support contact details. Contact Details can be either phone number or email-id or both.
+        * Summary: Get the support information
+        * Description: Use this API to get contact details for customer support including emails and phone numbers.
         **/
         public func getSupportInformation(
             
@@ -1047,8 +1133,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves HTML tags
-        * Description: Retrieve any HTML tags to power additional functionalities within an application.
+        * Summary: Get the tags associated with an application
+        * Description: Use this API to get all the CSS and JS injected in the application in the form of tags.
         **/
         public func getTags(
             
@@ -1097,8 +1183,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Single page details.
-        * Description: Retrieve detailed information for a specific page within the theme.
+        * Summary: Get a page
+        * Description: Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
         **/
         public func getPage(
             slug: String,
@@ -1158,8 +1244,8 @@ if let value = rootId {
         
         /**
         *
-        * Summary: Lists all pages.
-        * Description: Retrieve all available content pages in the app.
+        * Summary: Get all pages
+        * Description: Use this API to get a list of pages.
         **/
         public func getPages(
             pageNo: Int?,
@@ -1217,6 +1303,49 @@ if let value = pageSize {
                         onResponse(nil, err)
                     }
             });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getPages
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getPagesPaginator(
+            pageSize: Int?
+            
+            ) -> Paginator<PageGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<PageGetResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getPages(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
         }
         
         

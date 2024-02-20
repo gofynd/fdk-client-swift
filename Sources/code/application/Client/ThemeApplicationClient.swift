@@ -31,8 +31,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetch all pages.
-        * Description: Retrieves a list of all the pages available within the applied theme.
+        * Summary: Get all pages of a theme
+        * Description: Use this API to retrieve all the available pages of a theme by its ID.
         **/
         public func getAllPages(
             themeId: String,
@@ -84,8 +84,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Single page details.
-        * Description: Retrieve detailed information for a specific page within the theme.
+        * Summary: Get page of a theme
+        * Description: Use this API to retrieve a page of a theme.
         **/
         public func getPage(
             themeId: String,
@@ -156,8 +156,8 @@ if let value = company {
         
         /**
         *
-        * Summary: Current theme.
-        * Description: Gets the theme currently applied to the application.
+        * Summary: Get the theme currently applied to an application
+        * Description: An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application.
         **/
         public func getAppliedTheme(
             
@@ -206,8 +206,8 @@ if let value = company {
         
         /**
         *
-        * Summary: Preview theme.
-        * Description: Retrieves a theme for previewing before applying it to the application.
+        * Summary: Get a theme for a preview
+        * Description: A theme can be previewed before applying it. Use this API to retrieve the preview of a theme by its ID.
         **/
         public func getThemeForPreview(
             themeId: String,

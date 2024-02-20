@@ -14,8 +14,8 @@ extension PublicClient {
         
         /**
         *
-        * Summary: Fetch all webhook events.
-        * Description: Retrieve a list of all webhook events in the public server setup.
+        * Summary: Get All Webhook Events
+        * Description: Get All Webhook Events
         **/
         public func fetchAllWebhookEvents(
             
@@ -61,8 +61,8 @@ extension PublicClient {
         
         /**
         *
-        * Summary: Query webhook event details.
-        * Description: Query and obtain detailed information about webhook events in the public server configurations.
+        * Summary: Send webhook event name, type, version, category in request body to get complete details of event from server
+        * Description: Get Webhook Event Details for provided events
         **/
         public func queryWebhookEventDetails(
             body: [EventConfigBase],

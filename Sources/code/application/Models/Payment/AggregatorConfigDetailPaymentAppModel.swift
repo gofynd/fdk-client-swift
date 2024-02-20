@@ -10,19 +10,19 @@ public extension ApplicationClient.Payment {
         
         public var sdk: Bool?
         
-        public var secret: String
+        public var secret: String?
         
         public var api: String?
         
         public var pin: String?
         
-        public var configType: String
+        public var configType: String?
         
         public var merchantKey: String?
         
         public var verifyApi: String?
         
-        public var key: String
+        public var key: String?
         
         public var userId: String?
         
@@ -53,7 +53,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(api: String? = nil, configType: String, key: String, merchantId: String? = nil, merchantKey: String? = nil, pin: String? = nil, sdk: Bool? = nil, secret: String, userId: String? = nil, verifyApi: String? = nil) {
+        public init(api: String? = nil, configType: String? = nil, key: String? = nil, merchantId: String? = nil, merchantKey: String? = nil, pin: String? = nil, sdk: Bool? = nil, secret: String? = nil, userId: String? = nil, verifyApi: String? = nil) {
             
             self.sdk = sdk
             
@@ -93,8 +93,15 @@ public extension ApplicationClient.Payment {
             
             
             
-            secret = try container.decode(String.self, forKey: .secret)
+            do {
+                secret = try container.decode(String.self, forKey: .secret)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -122,8 +129,15 @@ public extension ApplicationClient.Payment {
             
             
             
-            configType = try container.decode(String.self, forKey: .configType)
+            do {
+                configType = try container.decode(String.self, forKey: .configType)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -151,8 +165,15 @@ public extension ApplicationClient.Payment {
             
             
             
-            key = try container.decode(String.self, forKey: .key)
+            do {
+                key = try container.decode(String.self, forKey: .key)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             

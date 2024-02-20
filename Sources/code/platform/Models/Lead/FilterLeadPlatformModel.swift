@@ -18,7 +18,7 @@ public extension PlatformClient.Lead {
         
         public var statuses: [Status]
         
-        public var assignees: [[String: Any]]
+        public var assignees: [[String: Any]]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,7 +33,7 @@ public extension PlatformClient.Lead {
             
         }
 
-        public init(assignees: [[String: Any]], categories: [TicketCategory]? = nil, priorities: [Priority], statuses: [Status]) {
+        public init(assignees: [[String: Any]]? = nil, categories: [TicketCategory]? = nil, priorities: [Priority], statuses: [Status]) {
             
             self.priorities = priorities
             
@@ -71,9 +71,16 @@ public extension PlatformClient.Lead {
             
             
             
-                assignees = try container.decode([[String: Any]].self, forKey: .assignees)
+                do {
+                    assignees = try container.decode([[String: Any]].self, forKey: .assignees)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -122,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Lead {
         
         public var statuses: [Status]
         
-        public var assignees: [[String: Any]]
+        public var assignees: [[String: Any]]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -137,7 +144,7 @@ public extension PlatformClient.ApplicationClient.Lead {
             
         }
 
-        public init(assignees: [[String: Any]], categories: [TicketCategory]? = nil, priorities: [Priority], statuses: [Status]) {
+        public init(assignees: [[String: Any]]? = nil, categories: [TicketCategory]? = nil, priorities: [Priority], statuses: [Status]) {
             
             self.priorities = priorities
             
@@ -175,9 +182,16 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
             
-                assignees = try container.decode([[String: Any]].self, forKey: .assignees)
+                do {
+                    assignees = try container.decode([[String: Any]].self, forKey: .assignees)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         

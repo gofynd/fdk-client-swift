@@ -30,8 +30,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get company-level themes.
-        * Description: Retrieve themes specific to a company.
+        * Summary: Get themes for a company
+        * Description: Retrieve a list of themes available for a specific company.
         **/
         public func getCompanyLevelThemes(
             searchText: String?,
@@ -142,8 +142,8 @@ if let value = searchText {
         
         /**
         *
-        * Summary: Add marketplace theme to company.
-        * Description: Incorporate a marketplace theme into a company's profile.
+        * Summary: Add a theme to a company
+        * Description: Add a marketplace theme to a company by providing the theme ID and company ID.
         **/
         public func addMarketplaceThemeToCompany(
             body: ThemeReq,
@@ -190,8 +190,8 @@ if let value = searchText {
         
         /**
         *
-        * Summary: Delete company theme.
-        * Description: Remove a theme associated with a company.
+        * Summary: Delete a theme
+        * Description: Delete a specific theme for a company by providing the company ID and theme ID.
         **/
         public func deleteCompanyTheme(
             themeId: String,

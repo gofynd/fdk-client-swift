@@ -16,8 +16,9 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Manual retry of failed event.
-        * Description: Trigger a manual retry for an event that failed to deliver.
+        * Summary: Initiate a manual retry for event processing.
+        * Description: Initiates a manual retry for event processing for a specific company. This endpoint allows the user to specify the date range (start_date and end_date) within which the events should be retried.
+
         **/
         public func manualRetryOfFailedEvent(
             body: RetryEventRequest,
@@ -64,8 +65,9 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get event counts.
-        * Description: Retrieve the counts of events based on their status.
+        * Summary: Get the count of failed events for a company within a specified date range.
+        * Description: Retrieves the count of failed events for a specific company within the specified date range. The user can filter the count based on specific event types if provided.
+
         **/
         public func getEventCounts(
             body: RetryEventRequest,
@@ -112,8 +114,9 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get manual retry status.
-        * Description: Check the status of a manual retry operation.
+        * Summary: Get the retry status for a company's failed events.
+        * Description: Retrieves the status of retry for a specific company's failed events. This endpoint returns the total number of events, the count of successfully retried events, the count of failed retry attempts, and the overall status of the retry process.
+
         **/
         public func getManualRetryStatus(
             
@@ -160,8 +163,9 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Manual retry cancellation.
-        * Description: Cancel a manual retry operation for a failed event.
+        * Summary: Cancel the active manual retry for a company's failed events.
+        * Description: Cancels the active manual retry for a specific company's failed events. If a manual retry is currently in progress, it will be cancelled.
+
         **/
         public func manualRetryCancel(
             
@@ -208,8 +212,9 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Download delivery report.
-        * Description: Download detailed delivery reports for events.
+        * Summary: Download processed events report for a company.
+        * Description: Download reports for a specific company based on the provided filters.
+
         **/
         public func downloadDeliveryReport(
             body: EventProcessRequest,
@@ -256,8 +261,9 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Ping webhook.
-        * Description: Send a test ping to a webhook for verification.
+        * Summary: Ping and validate webhook url.
+        * Description: Ping and validate webhook url.
+
         **/
         public func pingWebhook(
             body: PingWebhook,
@@ -304,8 +310,9 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get report filters.
-        * Description: Retrieve filters used for generating reports.
+        * Summary: Get filters for a company.
+        * Description: Retrieve filters for a specific company based on the provided subscriber IDs.
+
         **/
         public func getReportFilters(
             body: ReportFiltersPayload,
@@ -352,8 +359,9 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get historical reports.
-        * Description: Retrieve historical reports of webhook events.
+        * Summary: Get report download history.
+        * Description: Retrieve history reports for a specific company based on the provided filters.
+
         **/
         public func getHistoricalReports(
             body: HistoryPayload,
@@ -400,8 +408,9 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Cancel job by name.
-        * Description: Cancel a specific job by its name.
+        * Summary: Cancel a report export.
+        * Description: Cancel the export of a specific report for a company.
+
         **/
         public func cancelJobByName(
             filename: String,
@@ -449,8 +458,9 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get delivery reports.
-        * Description: Retrieve reports on the delivery status of events.
+        * Summary: Get processed events report for a company.
+        * Description: Retrieve a list of processed events for a specific company based on the provided filters.
+
         **/
         public func getDeliveryReports(
             body: EventProcessRequest,
@@ -497,8 +507,9 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Fetch all event configurations.
-        * Description: Retrieve all configurations for event handling.
+        * Summary: Get All Webhook Events.
+        * Description: To fetch all webhook events.
+
         **/
         public func fetchAllEventConfigurations(
             
@@ -545,8 +556,58 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Register subscriber to event.
-        * Description: Add a subscriber to receive events of a specific type.
+        * Summary: Register Subscriber.
+        * Description: Register Subscriber.
+
+        **/
+        public func registerSubscriberToEventV2(
+            body: SubscriberConfigRequestV2,
+            onResponse: @escaping (_ response: SubscriberConfigResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/webhook/v2.0/company/\(companyId)/subscriber/",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SubscriberConfigResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Register Subscriber.
+        * Description: Register Subscriber.
+
         **/
         public func registerSubscriberToEvent(
             body: SubscriberConfig,
@@ -593,8 +654,9 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get subscribers by company.
-        * Description: Retrieve subscribers associated with a company.
+        * Summary: Get Subscribers By CompanyId.
+        * Description: Get Subscribers By Company ID.
+
         **/
         public func getSubscribersByCompany(
             pageNo: Int?,
@@ -665,8 +727,8 @@ if let value = extensionId {
         
         /**
         *
-        * Summary: Update subscriber config.
-        * Description: Modify and update subscriber configuration settings.
+        * Summary: Update Subscriber
+        * Description: Update Subscriber
         **/
         public func updateSubscriberConfig(
             body: SubscriberConfig,
@@ -713,8 +775,8 @@ if let value = extensionId {
         
         /**
         *
-        * Summary: Get subscriber by ID.
-        * Description: Retrieve a subscriber's details by their unique identifier.
+        * Summary: Get Subscriber By Subscriber ID
+        * Description: Get Subscriber By Subscriber ID
         **/
         public func getSubscriberById(
             subscriberId: Int,
@@ -762,8 +824,8 @@ if let value = extensionId {
         
         /**
         *
-        * Summary: Get subscribers by extension ID.
-        * Description: Retrieve subscribers associated with a specific extension.
+        * Summary: Get Subscribers By Extension ID
+        * Description: Get Subscribers By ExtensionID
         **/
         public func getSubscribersByExtensionId(
             pageNo: Int?,

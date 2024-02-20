@@ -16,8 +16,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get company onboard data.
-        * Description: View the company profile of the seller account.
+        * Summary: Get company profile
+        * Description: This API allows to view the company profile of the seller account.
         **/
         public func cbsOnboardGet(
             
@@ -64,8 +64,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Update company information.
-        * Description: Allows to edit the company profile of the seller account.
+        * Summary: Edit company profile
+        * Description: This API allows to edit the company profile of the seller account.
         **/
         public func updateCompany(
             body: UpdateCompany,
@@ -112,8 +112,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get company metrics.
-        * Description: Allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
+        * Summary: Get company metrics
+        * Description: This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
         **/
         public func getCompanyMetrics(
             
@@ -160,8 +160,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get brand details.
-        * Description: Retrieve detailed information about a specific brand. Get data associated to a particular company brand.
+        * Summary: Get a single company brand.
+        * Description: This API helps to get data associated to a particular company brand.
         **/
         public func getBrand(
             brandId: String,
@@ -209,8 +209,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Edit brand details.
-        * Description: Modify details and settings of a specific brand. Allows to edit meta of a brand.
+        * Summary: Edit a brand.
+        * Description: This API allows to edit meta of a brand.
         **/
         public func editBrand(
             brandId: String,
@@ -258,8 +258,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Create brand.
-        * Description: Allows to create a brand associated to a company.
+        * Summary: Create a Brand.
+        * Description: This API allows to create a brand associated to a company.
         **/
         public func createBrand(
             body: CreateUpdateBrandRequestSerializer,
@@ -306,8 +306,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get brands.
-        * Description: Retrieve a list of available brands.
+        * Summary: Get brands associated to a company
+        * Description: This API helps to get view brands associated to a particular company.
         **/
         public func getBrands(
             pageNo: Int?,
@@ -437,8 +437,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Create company-brand mapping.
-        * Description: Establish a mapping between a company and a brand.
+        * Summary: Create a company brand mapping.
+        * Description: This API allows to create a company brand mapping, for a already existing brand in the system.
         **/
         public func createCompanyBrandMapping(
             body: CompanyBrandPostRequestSerializer,
@@ -485,8 +485,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Get company locations.
-        * Description: Retrieve a list of locations associated with the company.
+        * Summary: Get list of locations
+        * Description: This API allows to view all the locations associated to a company.
         **/
         public func getLocations(
             storeType: String?,
@@ -696,8 +696,8 @@ if let value = tags {
         
         /**
         *
-        * Summary: Create location.
-        * Description: Create a new location. Allows to edit a location associated to a company.
+        * Summary: Create a location associated to a company.
+        * Description: This API allows to edit a location associated to a company.
         **/
         public func createLocation(
             body: LocationSerializer,
@@ -744,8 +744,8 @@ if let value = tags {
         
         /**
         *
-        * Summary: Get location detail.
-        * Description: Retrieve detailed information about a specific location. Get data associated to a specific location.
+        * Summary: Get details of a specific location.
+        * Description: This API helps to get data associated to a specific location.
         **/
         public func getLocationDetail(
             locationId: String,
@@ -793,8 +793,8 @@ if let value = tags {
         
         /**
         *
-        * Summary: Update location.
-        * Description: Allows to edit a location associated to a company.
+        * Summary: Edit a location asscoiated to a company.
+        * Description: This API allows to edit a location associated to a company.
         **/
         public func updateLocation(
             locationId: String,
@@ -842,8 +842,8 @@ if let value = tags {
         
         /**
         *
-        * Summary: Create locations in bulk.
-        * Description: Allows to create a location associated to a company.
+        * Summary: Create a location asscoiated to a company in bulk.
+        * Description: This API allows to create a location associated to a company.
         **/
         public func createLocationBulk(
             body: BulkLocationSerializer,
@@ -890,8 +890,8 @@ if let value = tags {
         
         /**
         *
-        * Summary: Get location tags.
-        * Description: Retrieve all the tags associated to a company.
+        * Summary: Get tags associated with locations for a company.
+        * Description: This API fetches all the tags associated to a company.
         **/
         public func getLocationTags(
             

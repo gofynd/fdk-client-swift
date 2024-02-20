@@ -181,8 +181,8 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Retrieve available coupons.
-            * Description: Retrieve a list of available coupons for use in the shopping cart.
+            * Summary: Get with single coupon details or coupon list
+            * Description: Get coupon list with pagination
             **/
             public func getCoupons(
                 pageNo: Int?,
@@ -291,10 +291,111 @@ if let value = code {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Create a new coupon.
-            * Description: Generate and add a new coupon to the cart.
+            * Summary: get paginator for getCoupons
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getCouponsPaginator(
+                pageSize: Int?,
+                isArchived: Bool?,
+                title: String?,
+                isPublic: Bool?,
+                isDisplay: Bool?,
+                typeSlug: String?,
+                code: String?
+                
+                ) -> Paginator<CouponsResponse> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<CouponsResponse>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getCoupons(
+                            
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            ,
+                            isArchived: isArchived,
+                            title: title,
+                            isPublic: isPublic,
+                            isDisplay: isDisplay,
+                            typeSlug: typeSlug,
+                            code: code
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Create new coupon
+            * Description: Create new coupon
             **/
             public func createCoupon(
                 body: CouponAdd,
@@ -341,8 +442,104 @@ if let value = code {
             
             /**
             *
-            * Summary: Get coupon details by ID.
-            * Description: Retrieve detailed information about a specific coupon using its unique ID.
+            * Summary: Get a list of all coupon tags associated with a application.
+            * Description: This API helps to get coupon tags data associated to a particular application.
+            **/
+            public func getCouponTags(
+                
+                onResponse: @escaping (_ response: TagsViewResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/coupon-tags",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(TagsViewResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get a list of all Promotion tags associated with a application.
+            * Description: This API helps to get Promotion tags data associated to a particular application.
+            **/
+            public func getPromotionTags(
+                
+                onResponse: @escaping (_ response: TagsViewResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/promo-tags",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(TagsViewResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get with single coupon details or coupon list
+            * Description: Get single coupon details with `id` in path param
             **/
             public func getCouponById(
                 id: String,
@@ -390,8 +587,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Update a coupon.
-            * Description: Modify the details and settings of an existing coupon in the cart system.
+            * Summary: Update existing coupon configuration
+            * Description: Update coupon with id sent in `id`
             **/
             public func updateCoupon(
                 id: String,
@@ -439,8 +636,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Partially update a coupon.
-            * Description: Make partial modifications to the settings of an existing coupon in the cart system.
+            * Summary: Update coupon archive state and schedule
+            * Description: Update archive/unarchive and change schedule for coupon
             **/
             public func updateCouponPartially(
                 id: String,
@@ -488,8 +685,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Retrieve available promotions.
-            * Description: Retrieve a list of available promotions to apply to the cart.
+            * Summary: Get promotion list
+            * Description: Get promotion list with pagination
             **/
             public func getPromotions(
                 pageNo: Int?,
@@ -598,10 +795,111 @@ if let value = promotionId {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Create a new promotion.
-            * Description: Generate and add a new promotion to the cart system 
+            * Summary: get paginator for getPromotions
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getPromotionsPaginator(
+                pageSize: Int?,
+                q: String?,
+                isActive: Bool?,
+                promoGroup: String?,
+                promotionType: String?,
+                fpPanel: String?,
+                promotionId: String?
+                
+                ) -> Paginator<PromotionsResponse> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<PromotionsResponse>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getPromotions(
+                            
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            ,
+                            q: q,
+                            isActive: isActive,
+                            promoGroup: promoGroup,
+                            promotionType: promotionType,
+                            fpPanel: fpPanel,
+                            promotionId: promotionId
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Create new promotion
+            * Description: Create new promotion
             **/
             public func createPromotion(
                 body: PromotionAdd,
@@ -648,8 +946,8 @@ if let value = promotionId {
             
             /**
             *
-            * Summary: Get promotion details by ID.
-            * Description: Retrieve detailed information about a specific promotion using its unique ID.
+            * Summary: Get with single promotion details or promotion list
+            * Description: Get single promotion details with `id` in path param
             **/
             public func getPromotionById(
                 id: String,
@@ -697,8 +995,8 @@ if let value = promotionId {
             
             /**
             *
-            * Summary: Update a promotion.
-            * Description: Modify the details and settings of an existing promotion in the cart system.
+            * Summary: Update existing promotion configuration
+            * Description: Update promotion with id sent in `id`
             **/
             public func updatePromotion(
                 id: String,
@@ -746,8 +1044,8 @@ if let value = promotionId {
             
             /**
             *
-            * Summary: Partially update a promotion.
-            * Description: Make partial modifications to the settings of an existing promotion in the cart system.
+            * Summary: Update promotion publish state and schedule
+            * Description: Update publish/unpublish and change schedule for promotion
             **/
             public func updatePromotionPartially(
                 id: String,
@@ -795,8 +1093,8 @@ if let value = promotionId {
             
             /**
             *
-            * Summary: Get promotion and coupon configuration.
-            * Description: Retrieve configuration settings for promotions and coupons.
+            * Summary: Fetch all promos that are set as active
+            * Description: Use this API to get list of all the active promos/coupons.
             **/
             public func getPromosCouponConfig(
                 entityType: String?,
@@ -859,13 +1157,62 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Update cart metadata configuration.
-            * Description: Modify the configuration settings for cart metadata.
+            * Summary: Get cart meta configuration by id
+            * Description: Get cart meta configuration by id
+            **/
+            public func getCartMetaConfig(
+                cartMetaId: String,
+                
+                onResponse: @escaping (_ response: CartMetaConfigDetailResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/cartConfiguration/\(cartMetaId)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CartMetaConfigDetailResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Update cart meta configuration
+            * Description: Update cart meta configuration
             **/
             public func updateCartMetaConfig(
                 cartMetaId: String,
                 body: CartMetaConfigUpdate,
-                onResponse: @escaping (_ response: CartMetaConfigUpdate?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartMetaConfigDetailResponse?, _ error: FDKError?) -> Void
             ) {
                 
  
@@ -890,7 +1237,7 @@ if let value = isHidden {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartMetaConfigUpdate.self, from: data)
+                            let response = Utility.decode(CartMetaConfigDetailResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -908,12 +1255,110 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Fetch cart meta configuration
-            * Description: Fetch cart meta configuration
+            * Summary: Update cart meta configuration
+            * Description: Update cart meta configuration
             **/
-            public func fetchCartMetaConfig(
+            public func upateCartMetaActiveStatus(
+                cartMetaId: String,
+                body: CartMetaConfigUpdate,
+                onResponse: @escaping (_ response: CartMetaConfigDetailResponse?, _ error: FDKError?) -> Void
+            ) {
                 
-                onResponse: @escaping (_ response: CartMetaConfigAdd?, _ error: FDKError?) -> Void
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PATCH",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/cartConfiguration/\(cartMetaId)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CartMetaConfigDetailResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Delete cart meta configuration
+            * Description: Delete cart meta configuration
+            **/
+            public func deleteCartMetaConfig(
+                cartMetaId: String,
+                
+                onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/cartConfiguration/\(cartMetaId)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessMessage.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get cart meta configuration
+            * Description: Get cart meta configuration
+            **/
+            public func getCartMetaConfigs(
+                
+                onResponse: @escaping (_ response: CartMetaConfigListResponse?, _ error: FDKError?) -> Void
             ) {
                 
  
@@ -938,7 +1383,7 @@ if let value = isHidden {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartMetaConfigAdd.self, from: data)
+                            let response = Utility.decode(CartMetaConfigListResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -961,7 +1406,7 @@ if let value = isHidden {
             **/
             public func createCartMetaConfig(
                 body: CartMetaConfigAdd,
-                onResponse: @escaping (_ response: CartMetaConfigAdd?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartMetaConfigDetailResponse?, _ error: FDKError?) -> Void
             ) {
                 
  
@@ -986,7 +1431,7 @@ if let value = isHidden {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartMetaConfigAdd.self, from: data)
+                            let response = Utility.decode(CartMetaConfigDetailResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1004,8 +1449,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Update price adjustments.
-            * Description: Modify price adjustments for items in the cart.
+            * Summary: Update price adjustment configuration
+            * Description: Update price adjustment configuration
             **/
             public func updatePriceAdjustment(
                 id: String,
@@ -1053,8 +1498,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Remove price adjustments.
-            * Description: Remove price adjustments applied to items in the cart.
+            * Summary: Remove price adjustment
+            * Description: Remove price adjustment
             **/
             public func removePriceAdjustment(
                 id: String,
@@ -1102,8 +1547,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Add price adjustments.
-            * Description: Apply price adjustments to items in the cart.
+            * Summary: Create new price adjustment
+            * Description: Create new price adjustment
             **/
             public func addPriceAdjustment(
                 body: PriceAdjustmentAdd,
@@ -1150,8 +1595,62 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Fetch and validate cart items.
-            * Description: Retrieve and validate items currently in the cart.
+            * Summary: Get a list of all price adjustments associated with a cart
+            * Description: This API helps to get price adjustments data associated to a particular cart
+            **/
+            public func getPriceAdjustments(
+                cartId: String,
+                
+                onResponse: @escaping (_ response: PriceAdjustmentResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["cart_id"] = cartId
+
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/price-adjustment",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(PriceAdjustmentResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Fetch Cart Details
+            * Description: Get all the details of cart for a list of provided `cart_items`
             **/
             public func fetchAndvalidateCartItems(
                 body: OpenapiCartDetailsRequest,
@@ -1198,8 +1697,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Check cart serviceability.
-            * Description: Verify if the items in the cart are serviceable.
+            * Summary: Check Pincode Serviceability
+            * Description: Check Pincode serviceability for cart items provided in `cart_items` and address pincode in `shipping_address`
             **/
             public func checkCartServiceability(
                 body: OpenApiCartServiceabilityRequest,
@@ -1246,8 +1745,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Proceed to cart checkout.
-            * Description: Initiate the checkout process for the items in the cart.
+            * Summary: Create Fynd order with cart details
+            * Description: Generate Fynd order for cart details send with provided `cart_items`
             **/
             public func checkoutCart(
                 body: OpenApiPlatformCheckoutReq,
@@ -1294,8 +1793,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Retrieve abandoned carts.
-            * Description: Retrieve abandoned carts for analysis and potential recovery.
+            * Summary: Get with abandoned cart list
+            * Description: Get abandoned cart list with pagination
             **/
             public func getAbandonedCart(
                 pageNo: Int?,
@@ -1396,10 +1895,103 @@ if let value = sortOn {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Get abandoned cart details.
-            * Description: Retrieve detailed information about a specific abandoned cart.
+            * Summary: get paginator for getAbandonedCart
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getAbandonedCartPaginator(
+                pageSize: Int?,
+                fromDate: String?,
+                toDate: String?,
+                anonymousCart: Bool?,
+                lastId: String?,
+                sortOn: String?
+                
+                ) -> Paginator<AbandonedCartResponse> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<AbandonedCartResponse>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getAbandonedCart(
+                            
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            ,
+                            fromDate: fromDate,
+                            toDate: toDate,
+                            anonymousCart: anonymousCart,
+                            lastId: lastId,
+                            sortOn: sortOn
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Fetch all items added to the cart
+            * Description: Use this API to get details of all the items added to a cart.
             **/
             public func getAbandonedCartDetails(
                 id: String?,
@@ -1478,8 +2070,8 @@ if let value = c {
             
             /**
             *
-            * Summary: Add items to the cart.
-            * Description: Add items to the shopping cart 
+            * Summary: Add items to abandoned cart
+            * Description: Use this API to add items to the abandoned cart.
             **/
             public func addItems(
                 cartId: String,
@@ -1535,8 +2127,8 @@ if let value = b {
             
             /**
             *
-            * Summary: Update cart items.
-            * Description: Modify items and their quantities in the shopping cart.
+            * Summary: Update items in the abandoned cart
+            * Description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs operation Operation for current api call.update_item for update items. remove_item for removing items. item_id "/platform/content/v1/products/" "/platform/content/v1/products/:slug/sizes/" quantity item quantity (must be greater than or equal to 1) article_id "/content​/v1​/products​/:identifier​/sizes​/price​/"  item position in the cart (must be greater than or equal to 0)
             **/
             public func updateCart(
                 cartId: String,
@@ -1592,8 +2184,8 @@ if let value = b {
             
             /**
             *
-            * Summary: Get coupon option values.
-            * Description: Retrieve available values for coupon options.
+            * Summary: Get coupon options enums with display values
+            * Description: Get coupon enum values for fields in valid coupon object. Used for front end to create, update and filter coupon lists via fields
             **/
             public func getCouponOptionValues(
                 
@@ -1640,8 +2232,8 @@ if let value = b {
             
             /**
             *
-            * Summary: Check if a coupon code exists.
-            * Description: Verify the existence of a specific coupon code.
+            * Summary: Check if coupon is already created with coupon code
+            * Description: Check if sent coupon code is already existing coupon code. As coupon code is to be unique.
             **/
             public func getCouponCodeExists(
                 code: String?,
@@ -1696,8 +2288,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Check if a promotion code exists.
-            * Description: Verify the existence of a specific promotion code.
+            * Summary: Check if promotion is already created with promotion code
+            * Description: Check if sent promotion code is already existing promotion code. As promotion code is to be unique.
             **/
             public func getPromotionCodeExists(
                 code: String?,
@@ -1752,8 +2344,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Override the cart.
-            * Description: Override the current cart with a new configuration.
+            * Summary: Create Fynd order with overriding cart details
+            * Description: Generate Fynd order while overriding cart details sent with provided `cart_items`
             **/
             public func overrideCart(
                 body: OverrideCheckoutReq,
@@ -1848,8 +2440,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Get items shared via a cart link.
-            * Description: Retrieve the items shared with you via a cart link.
+            * Summary: Get details of a shared cart
+            * Description: Use this API to get the shared cart details as per the token generated using the share-cart API.
             **/
             public func getCartSharedItems(
                 token: String,
@@ -1897,8 +2489,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Update cart with shared items.
-            * Description: Modify your cart by adding shared items from a cart link.
+            * Summary: Merge or replace existing cart
+            * Description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace.
             **/
             public func updateCartWithSharedItems(
                 token: String,
@@ -1955,8 +2547,8 @@ if let value = cartId {
             
             /**
             *
-            * Summary: Retrieve a list of carts.
-            * Description: Retrieve a list of saved shopping carts.
+            * Summary: Get cart list for store os user
+            * Description: Get all carts for the store os user which is created for customer
             **/
             public func getCartList(
                 fromDate: String?,
@@ -2027,8 +2619,8 @@ if let value = filterOn {
             
             /**
             *
-            * Summary: Update cart user details.
-            * Description: Modify user-related details for a shopping cart.
+            * Summary: Update user id for store os customer
+            * Description: Update user id for store os customer after creating customer
             **/
             public func updateCartUser(
                 id: String?,
@@ -2083,8 +2675,8 @@ if let value = id {
             
             /**
             *
-            * Summary: Get cart details.
-            * Description: Retrieve detailed information about a shopping cart.
+            * Summary: Fetch all items added to the customer cart using cart id
+            * Description: Use this API to get details of all the items added to a cart.
             **/
             public func getCart(
                 id: String?,
@@ -2093,6 +2685,7 @@ if let value = id {
                 b: Bool?,
                 assignCardId: Int?,
                 buyNow: Bool?,
+                cartType: String?,
                 
                 onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
             ) {
@@ -2141,6 +2734,13 @@ if let value = buyNow {
 }
 
 
+if let value = cartType {
+    
+    xQuery["cart_type"] = value
+    
+}
+
+
  
 
 
@@ -2179,14 +2779,15 @@ if let value = buyNow {
             
             /**
             *
-            * Summary: Add items via platform integration.
-            * Description: Add items to the cart through platform integration.
+            * Summary: Add items to cart
+            * Description: Use this API to add items to the cart.
             **/
             public func platformAddItems(
                 i: Bool?,
                 b: Bool?,
                 buyNow: Bool?,
                 id: String?,
+                cartType: String?,
                 body: PlatformAddCartRequest,
                 onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
             ) {
@@ -2217,6 +2818,13 @@ if let value = buyNow {
 if let value = id {
     
     xQuery["id"] = value
+    
+}
+
+
+if let value = cartType {
+    
+    xQuery["cart_type"] = value
     
 }
 
@@ -2267,6 +2875,7 @@ if let value = id {
                 i: Bool?,
                 b: Bool?,
                 buyNow: Bool?,
+                cartType: String?,
                 body: PlatformUpdateCartRequest,
                 onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
             ) {
@@ -2297,6 +2906,13 @@ if let value = b {
 if let value = buyNow {
     
     xQuery["buy_now"] = value
+    
+}
+
+
+if let value = cartType {
+    
+    xQuery["cart_type"] = value
     
 }
 
@@ -2339,11 +2955,12 @@ if let value = buyNow {
             
             /**
             *
-            * Summary: Delete a cart.
-            * Description: Delete a specific shopping cart from the system.
+            * Summary: Delete cart once user made successful checkout
+            * Description: Use this API to delete the cart.
             **/
             public func deleteCart(
                 id: String?,
+                cartType: String?,
                 body: DeleteCartRequest,
                 onResponse: @escaping (_ response: DeleteCartDetailResponse?, _ error: FDKError?) -> Void
             ) {
@@ -2353,6 +2970,13 @@ var xQuery: [String: Any] = [:]
 if let value = id {
     
     xQuery["id"] = value
+    
+}
+
+
+if let value = cartType {
+    
+    xQuery["cart_type"] = value
     
 }
 
@@ -2395,12 +3019,13 @@ if let value = id {
             
             /**
             *
-            * Summary: Get the item count in a cart.
-            * Description: Retrieve the total number of items in a shopping cart.
+            * Summary: Count items in the customer's cart
+            * Description: Use this API to get the total number of items present in cart.
             **/
             public func getItemCount(
                 id: String?,
                 buyNow: Bool?,
+                cartType: String?,
                 
                 onResponse: @escaping (_ response: CartItemCountResponse?, _ error: FDKError?) -> Void
             ) {
@@ -2417,6 +3042,13 @@ if let value = id {
 if let value = buyNow {
     
     xQuery["buy_now"] = value
+    
+}
+
+
+if let value = cartType {
+    
+    xQuery["cart_type"] = value
     
 }
 
@@ -2459,8 +3091,8 @@ if let value = buyNow {
             
             /**
             *
-            * Summary: Get app-specific coupons.
-            * Description: Retrieve coupons specific to the mobile app.
+            * Summary: Fetch Coupon
+            * Description: Use this API to get a list of available coupons along with their details.
             **/
             public func getAppCoupons(
                 id: String?,
@@ -2539,8 +3171,8 @@ if let value = storeId {
             
             /**
             *
-            * Summary: Apply a coupon to the cart.
-            * Description: Apply a selected coupon to the items in the shopping cart.
+            * Summary: Apply Coupon for platform pos user
+            * Description: Use this API to apply coupons on items in the cart.
             **/
             public func applyCoupon(
                 i: Bool?,
@@ -2627,8 +3259,8 @@ if let value = buyNow {
             
             /**
             *
-            * Summary: Remove a coupon from the cart.
-            * Description: Remove a coupon from the items in the shopping cart.
+            * Summary: Remove Applied Coupon for platform pos user
+            * Description: Remove Coupon applied on the cart by passing uid in request body.
             **/
             public func removeCoupon(
                 uid: String?,
@@ -2795,8 +3427,8 @@ if let value = userId {
             
             /**
             *
-            * Summary: Add a new user address.
-            * Description: Create and add a new user address for cart checkout.
+            * Summary: Add address to an account
+            * Description: Use this API to add an address to an account.
             **/
             public func addAddress(
                 body: PlatformAddress,
@@ -2948,8 +3580,8 @@ if let value = userId {
             
             /**
             *
-            * Summary: Update address.
-            * Description: Modify the shipping address for an order.
+            * Summary: Update address added to an account
+            * Description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in Address can be updated. These attributes are:is_default_address landmark area pincode email address_type name address_id address
             **/
             public func updateAddress(
                 id: String,
@@ -2997,8 +3629,8 @@ if let value = userId {
             
             /**
             *
-            * Summary: Remove a user address.
-            * Description: Delete an existing user address from the system.
+            * Summary: Remove address associated with an account
+            * Description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
             **/
             public func removeAddress(
                 id: String,
@@ -3246,8 +3878,8 @@ if let value = orderType {
             
             /**
             *
-            * Summary: Update shipment details.
-            * Description: Modify the details and settings of cart shipments.
+            * Summary: Update shipment delivery type and quantity before checkout
+            * Description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery.
             **/
             public func updateShipments(
                 i: Bool?,
@@ -3342,8 +3974,8 @@ if let value = orderType {
             
             /**
             *
-            * Summary: Update cart metadata.
-            * Description: Modify the metadata associated with the shopping cart.
+            * Summary: Update the cart meta for platform pos user
+            * Description: Use this API to update cart meta like checkout_mode and gstin.
             **/
             public func updateCartMeta(
                 id: String?,
@@ -3406,11 +4038,12 @@ if let value = buyNow {
             
             /**
             *
-            * Summary: Platform-specific cart checkout.
-            * Description: Initiate cart checkout through platform-specific integration.
+            * Summary: Checkout all items in the cart
+            * Description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
             **/
             public func platformCheckoutCart(
                 id: String?,
+                cartType: String?,
                 body: PlatformCartCheckoutDetailRequest,
                 onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
             ) {
@@ -3420,6 +4053,13 @@ var xQuery: [String: Any] = [:]
 if let value = id {
     
     xQuery["id"] = value
+    
+}
+
+
+if let value = cartType {
+    
+    xQuery["cart_type"] = value
     
 }
 
@@ -3462,8 +4102,8 @@ if let value = id {
             
             /**
             *
-            * Summary: Get available delivery modes.
-            * Description: Retrieve a list of available delivery modes for cart checkout.
+            * Summary: Get available delivery modes for cart
+            * Description: Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of store-address API.
             **/
             public func getAvailableDeliveryModes(
                 areaCode: String,
@@ -3524,8 +4164,8 @@ if let value = id {
             
             /**
             *
-            * Summary: Get store address by UID.
-            * Description: Retrieve the store address using a unique identifier (UID).
+            * Summary: Get list of stores for give uids
+            * Description: Use this API to get the store details by entering the unique identifier of the pickup stores shown in the response of available-delivery-mode API.
             **/
             public func getStoreAddressByUid(
                 storeUid: Int,
@@ -3578,8 +4218,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Select a payment mode.
-            * Description: Choose a payment mode for cart checkout.
+            * Summary: Update cart payment
+            * Description: Use this API to update cart payment.
             **/
             public func selectPaymentMode(
                 id: String?,
@@ -3650,8 +4290,8 @@ if let value = orderType {
             
             /**
             *
-            * Summary: Validate a coupon for payment.
-            * Description:  Verify the validity of a coupon code for the payment process.
+            * Summary: Verify the coupon eligibility against the payment mode
+            * Description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
             **/
             public func validateCouponForPayment(
                 id: String?,
@@ -3754,11 +4394,12 @@ if let value = merchantCode {
             
             /**
             *
-            * Summary: Platform-specific cart checkout v2.
-            * Description: Initiate cart checkout through an updated platform-specific integration.
+            * Summary: Checkout all items in the cart
+            * Description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
             **/
             public func platformCheckoutCartV2(
                 id: String?,
+                cartType: String?,
                 body: PlatformCartCheckoutDetailV2Request,
                 onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
             ) {
@@ -3768,6 +4409,13 @@ var xQuery: [String: Any] = [:]
 if let value = id {
     
     xQuery["id"] = value
+    
+}
+
+
+if let value = cartType {
+    
+    xQuery["cart_type"] = value
     
 }
 
@@ -3810,8 +4458,8 @@ if let value = id {
             
             /**
             *
-            * Summary: Select a payment mode v2.
-            * Description: Choose a payment mode for cart checkout in the updated platform integration.
+            * Summary: Update cart payment
+            * Description: Use this API to update cart payment.
             **/
             public func selectPaymentModeV2(
                 id: String?,
@@ -3897,8 +4545,8 @@ if let value = orderType {
             
             /**
             *
-            * Summary: Get catalog insights.
-            * Description: Retrieve the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the application.
+            * Summary: Analytics data of catalog and inventory.
+            * Description: Catalog Insights api returns the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the app.
             **/
             public func getCatalogInsights(
                 brand: String?,
@@ -3921,7 +4569,7 @@ if let value = brand {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/analytics/insights/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/analytics/insights",
                     query: xQuery,
                     body: nil,
                     headers: [],
@@ -3953,8 +4601,8 @@ if let value = brand {
             
             /**
             *
-            * Summary: Get application brand listing.
-            * Description: Retrieve brand listings related to the application. A brand is the name under which a product is being sold
+            * Summary: List all the brands for the application
+            * Description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
             **/
             public func getApplicationBrandListing(
                 pageNo: Int?,
@@ -4086,11 +4734,11 @@ if let value = q {
             
             /**
             *
-            * Summary: Update application brand.
-            * Description: Modify data associated to a item custom meta.
+            * Summary: Update a single custom json.
+            * Description: This API helps to update data associated to a item custom meta.
             **/
             public func updateAppBrand(
-                brandUid: String,
+                brandUid: Int,
                 body: ApplicationBrandJson,
                 onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
@@ -4135,15 +4783,15 @@ if let value = q {
             
             /**
             *
-            * Summary: Get application brands.
-            * Description: List all the brands. A brand is the name under which a product is being sold. 
+            * Summary: List all the brands
+            * Description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
             **/
             public func getApplicationBrands(
                 department: String?,
                 pageNo: Int?,
                 pageSize: Int?,
                 q: String?,
-                brandId: [Int]?,
+                brandId: Int?,
                 
                 onResponse: @escaping (_ response: BrandListingResponse?, _ error: FDKError?) -> Void
             ) {
@@ -4269,7 +4917,7 @@ if let value = brandId {
                 department: String?,
                 pageSize: Int?,
                 q: String?,
-                brandId: [Int]?
+                brandId: Int?
                 
                 ) -> Paginator<BrandListingResponse> {
                 let pageSize = pageSize ?? 20
@@ -4300,8 +4948,8 @@ if let value = brandId {
             
             /**
             *
-            * Summary: Get categories.
-            * Description: Retrieve a list of categories. Optionally pass filter the brands by the department.
+            * Summary: List all the categories
+            * Description: List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse`
             **/
             public func getCategories(
                 department: String?,
@@ -4356,8 +5004,8 @@ if let value = department {
             
             /**
             *
-            * Summary: Get application category listing.
-            * Description: Retrieve category listings related to the application. A brand is the name under which a product is being sold.
+            * Summary: List all the brands for the application
+            * Description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
             **/
             public func getApplicationCategoryListing(
                 departmentId: Int?,
@@ -4505,11 +5153,11 @@ if let value = q {
             
             /**
             *
-            * Summary: Update application category.
-            * Description: Modify category data related to the application. Helps to update data associated to a item custom meta.
+            * Summary: Update a single custom json.
+            * Description: This API helps to update data associated to a item custom meta.
             **/
             public func updateAppCategory(
-                categoryUid: String,
+                categoryUid: Int,
                 body: ApplicationCategoryJson,
                 onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
@@ -4554,205 +5202,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Retrieve all collections.
-            * Description: A Collection allows you to organize your products into hierarchical groups.
-            **/
-            public func getAllCollections(
-                q: String?,
-                scheduleStatus: String?,
-                type: String?,
-                tags: [String]?,
-                isActive: Bool?,
-                pageNo: Int?,
-                pageSize: Int?,
-                
-                onResponse: @escaping (_ response: GetCollectionListingResponse?, _ error: FDKError?) -> Void
-            ) {
-                
-var xQuery: [String: Any] = [:] 
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
-if let value = scheduleStatus {
-    
-    xQuery["schedule_status"] = value
-    
-}
-
-
-if let value = type {
-    
-    xQuery["type"] = value
-    
-}
-
-
-if let value = tags {
-    
-    xQuery["tags"] = value
-    
-}
-
-
-if let value = isActive {
-    
-    xQuery["is_active"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(GetCollectionListingResponse.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: get paginator for getAllCollections
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getAllCollectionsPaginator(
-                q: String?,
-                scheduleStatus: String?,
-                type: String?,
-                tags: [String]?,
-                isActive: Bool?,
-                pageSize: Int?
-                
-                ) -> Paginator<GetCollectionListingResponse> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<GetCollectionListingResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getAllCollections(
-                            
-                            q: q,
-                            scheduleStatus: scheduleStatus,
-                            type: type,
-                            tags: tags,
-                            isActive: isActive,
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
-            /**
-            *
             * Summary: Add a Collection
-            * Description: Create a collection to the catalog.
+            * Description: Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
             **/
             public func createCollection(
                 body: CreateCollection,
@@ -4767,7 +5218,7 @@ if let value = pageSize {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -4799,32 +5250,54 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get values of the selected value for the filter options.
-            * Description: Get query filters keys to configure a collection
+            * Summary: List all the collections
+            * Description: A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
             **/
-            public func getApplicationFilterValues(
-                filterKey: String,
-                c: String?,
-                collectionId: String?,
+            public func getAllCollections(
+                q: String?,
+                scheduleStatus: String?,
+                type: String?,
+                tag: [String]?,
+                isActive: Bool?,
                 pageNo: Int?,
                 pageSize: Int?,
-                q: String?,
                 
-                onResponse: @escaping (_ response: GetQueryFiltersValuesResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetCollectionListingResponse?, _ error: FDKError?) -> Void
             ) {
                 
 var xQuery: [String: Any] = [:] 
 
-if let value = c {
+if let value = q {
     
-    xQuery["c"] = value
+    xQuery["q"] = value
     
 }
 
 
-if let value = collectionId {
+if let value = scheduleStatus {
     
-    xQuery["collection_id"] = value
+    xQuery["schedule_status"] = value
+    
+}
+
+
+if let value = type {
+    
+    xQuery["type"] = value
+    
+}
+
+
+if let value = tag {
+    
+    xQuery["tag"] = value
+    
+}
+
+
+if let value = isActive {
+    
+    xQuery["is_active"] = value
     
 }
 
@@ -4843,20 +5316,13 @@ if let value = pageSize {
 }
 
 
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
  
 
 
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/filterOptions/\(filterKey)/values",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections",
                     query: xQuery,
                     body: nil,
                     headers: [],
@@ -4870,7 +5336,7 @@ if let value = q {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetQueryFiltersValuesResponse.self, from: data)
+                            let response = Utility.decode(GetCollectionListingResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4888,64 +5354,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get filters keys of the filter options.
-            * Description: Get query filters keys to configure a collection
-            **/
-            public func getApplicationFilterKeys(
-                c: String?,
-                
-                onResponse: @escaping (_ response: GetQueryFiltersKeysResponse?, _ error: FDKError?) -> Void
-            ) {
-                
-var xQuery: [String: Any] = [:] 
-
-if let value = c {
-    
-    xQuery["c"] = value
-    
-}
-
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/filter-options/keys",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(GetQueryFiltersKeysResponse.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Retrieve query filters.
-            * Description: Retrieve query filters to configure a collection
+            * Summary: Get query filters to configure a collection
+            * Description: Get query filters to configure a collection
             **/
             public func getQueryFilters(
                 
@@ -4960,7 +5370,7 @@ if let value = c {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/query-options/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/query-options",
                     query: nil,
                     body: nil,
                     headers: [],
@@ -4975,177 +5385,6 @@ if let value = c {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(GetQueryFiltersResponse.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Delete a collection.
-            * Description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
-            **/
-            public func deleteCollection(
-                id: String,
-                
-                onResponse: @escaping (_ response: CommonResponseSchemaCollection?, _ error: FDKError?) -> Void
-            ) {
-                
- 
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "DELETE",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(id)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(CommonResponseSchemaCollection.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Update a collection
-            * Description: Update a collection by it's id. On successful request, returns the updated collection
-            **/
-            public func updateCollection(
-                id: String,
-                body: UpdateCollection,
-                onResponse: @escaping (_ response: UpdateCollection?, _ error: FDKError?) -> Void
-            ) {
-                
- 
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "PUT",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(id)/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(UpdateCollection.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Get the items for a collection
-            * Description: Get items from a collection specified by its `id`.
-            **/
-            public func getCollectionItems(
-                id: String,
-                sortOn: String?,
-                pageId: String?,
-                pageSize: Int?,
-                
-                onResponse: @escaping (_ response: GetCollectionItemsResponse?, _ error: FDKError?) -> Void
-            ) {
-                
-var xQuery: [String: Any] = [:] 
-
-if let value = sortOn {
-    
-    xQuery["sort_on"] = value
-    
-}
-
-
-if let value = pageId {
-    
-    xQuery["page_id"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "GET",
-                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/collections/\(id)/items/",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(GetCollectionItemsResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5180,7 +5419,7 @@ if let value = pageSize {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/collections/\(id)/items/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(id)/items",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -5212,8 +5451,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get collection details.
-            * Description: Get the details of a collection by its slug.
+            * Summary: Get a particular collection
+            * Description: Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
             **/
             public func getCollectionDetail(
                 slug: String,
@@ -5229,7 +5468,7 @@ if let value = pageSize {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(slug)/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(slug)",
                     query: nil,
                     body: nil,
                     headers: [],
@@ -5261,8 +5500,106 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get application department listing.
-            * Description: Retrieve department listings related to the application. Departments are a way to categorise similar products. A product can lie in multiple departments.
+            * Summary: Update a collection
+            * Description: Update a collection by it's id. On successful request, returns the updated collection
+            **/
+            public func updateCollection(
+                id: String,
+                body: UpdateCollection,
+                onResponse: @escaping (_ response: UpdateCollection?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(UpdateCollection.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Delete a Collection
+            * Description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
+            **/
+            public func deleteCollection(
+                id: String,
+                
+                onResponse: @escaping (_ response: CommonResponseSchemaCollection?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CommonResponseSchemaCollection.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: List all the departments for the application
+            * Description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the application departments. If successful, returns the list of departments specified in `ApplicationDepartmentListingResponse`
             **/
             public func getApplicationDepartmentListing(
                 pageNo: Int?,
@@ -5394,11 +5731,11 @@ if let value = q {
             
             /**
             *
-            * Summary: Update application department.
-            * Description: Modify department data related to the application.
+            * Summary: Update a single custom json.
+            * Description: This API helps to update data associated to a item custom meta.
             **/
             public func updateAppDepartment(
-                departmentUid: String,
+                departmentUid: Int,
                 body: ApplicationDepartmentJson,
                 onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
@@ -5443,8 +5780,57 @@ if let value = q {
             
             /**
             *
-            * Summary: Get departments.
-            * Description: Retrieve a list of departments. Departments are a way to categorise similar products. A product can lie in multiple departments.
+            * Summary: Get filter details for application
+            * Description: configured details for catalog.
+            **/
+            public func getConfigurationsFilterMetadata(
+                filter: String,
+                
+                onResponse: @escaping (_ response: FilterResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/productConfiguration/metadata/\(filter)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(FilterResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: List all the departments
+            * Description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
             **/
             public func getDepartments(
                 
@@ -5491,8 +5877,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get application inventory.
-            * Description: Retrieve inventory data related to the application. Retrieve the available Inventory of the products. Use this API to get the Inventory status of products with the filters of timestamp, store_ids, brand_ids, item_id, Items, Pagination
+            * Summary: Get the stock of a product
+            * Description: Retrieve the available Inventory of the products. Use this API to get the Inventory status of products with the filters of timestamp, store_ids, brand_ids, item_id - Items - Pagination
             **/
             public func getAppInventory(
                 itemIds: [Int]?,
@@ -5563,7 +5949,7 @@ if let value = pageId {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/inventory/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/inventory",
                     query: xQuery,
                     body: nil,
                     headers: [],
@@ -5595,18 +5981,19 @@ if let value = pageId {
             
             /**
             *
-            * Summary: Get application locations.
-            * Description: Retrieve locations specific to the application. View all the locations asscoiated to a application.
+            * Summary: Get list of locations
+            * Description: This API allows to view all the locations asscoiated to a application.
             **/
             public func getAppLocations(
                 storeType: String?,
-                uid: [Int]?,
+                uid: String?,
                 q: String?,
                 stage: String?,
                 pageNo: Int?,
                 pageSize: Int?,
                 tags: [String]?,
                 storeTypes: [String]?,
+                companyUids: [Int]?,
                 
                 onResponse: @escaping (_ response: LocationListSerializer?, _ error: FDKError?) -> Void
             ) {
@@ -5665,6 +6052,13 @@ if let value = tags {
 if let value = storeTypes {
     
     xQuery["store_types"] = value
+    
+}
+
+
+if let value = companyUids {
+    
+    xQuery["company_uids"] = value
     
 }
 
@@ -5762,6 +6156,12 @@ if let value = storeTypes {
             
             
             
+            
+            
+            
+            
+            
+            
             /**
             *
             * Summary: get paginator for getAppLocations
@@ -5769,12 +6169,13 @@ if let value = storeTypes {
             **/
             public func getAppLocationsPaginator(
                 storeType: String?,
-                uid: [Int]?,
+                uid: String?,
                 q: String?,
                 stage: String?,
                 pageSize: Int?,
                 tags: [String]?,
-                storeTypes: [String]?
+                storeTypes: [String]?,
+                companyUids: [Int]?
                 
                 ) -> Paginator<LocationListSerializer> {
                 let pageSize = pageSize ?? 20
@@ -5791,7 +6192,8 @@ if let value = storeTypes {
                             pageSize: paginator.pageSize
                             ,
                             tags: tags,
-                            storeTypes: storeTypes
+                            storeTypes: storeTypes,
+                            companyUids: companyUids
                         ) { response, error in                    
                         if let response = response {
                             paginator.hasNext = response.page?.hasNext ?? false
@@ -5808,8 +6210,8 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Retrieve configurations.
-            * Description: Retrieve a configured details for catalog.
+            * Summary: Get configured details for catalog
+            * Description: configured details for catalog.
             **/
             public func getConfigurations(
                 
@@ -5824,7 +6226,7 @@ if let value = storeTypes {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product-configuration/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product-configuration",
                     query: nil,
                     body: nil,
                     headers: [],
@@ -5856,7 +6258,7 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Create configuration for product listing.
+            * Summary: Add configuration for products & listings
             * Description: Add configuration for products & listing.
             **/
             public func createConfigurationProductListing(
@@ -5872,7 +6274,7 @@ if let value = storeTypes {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product-configuration/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product-configuration",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -5904,8 +6306,8 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Retrieve catalog configuration.
-            * Description: Retrieve configuration meta details for the catalog.
+            * Summary: Get configuration meta  details for catalog for admin panel
+            * Description: configuration meta  details for catalog.
             **/
             public func getCatalogConfiguration(
                 
@@ -5920,7 +6322,7 @@ if let value = storeTypes {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product-configuration/metadata/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product-configuration/metadata",
                     query: nil,
                     body: nil,
                     headers: [],
@@ -5952,8 +6354,8 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Retrieve configuration by type.
-            * Description: Retrieve configuration details based on a specific type in the catalog.
+            * Summary: Get configured details for catalog
+            * Description: configured details for catalog.
             **/
             public func getConfigurationByType(
                 type: String,
@@ -5969,7 +6371,7 @@ if let value = storeTypes {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(type)/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(type)",
                     query: nil,
                     body: nil,
                     headers: [],
@@ -6001,7 +6403,7 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Create configuration by type.
+            * Summary: Add configuration for categories and brands
             * Description: Add configuration for categories & brands.
             **/
             public func createConfigurationByType(
@@ -6018,7 +6420,7 @@ if let value = storeTypes {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(type)/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(type)",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -6050,11 +6452,11 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Retrieve application product data.
+            * Summary: Get company application product data.
             * Description: Products are the core resource of an application. If successful, returns a Company Application Product resource in the response body depending upon filter sent.
             **/
             public func getAppProduct(
-                itemId: String,
+                itemId: Int,
                 
                 onResponse: @escaping (_ response: OwnerAppItemResponse?, _ error: FDKError?) -> Void
             ) {
@@ -6067,7 +6469,7 @@ if let value = storeTypes {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product/\(itemId)/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product/\(itemId)",
                     query: nil,
                     body: nil,
                     headers: [],
@@ -6099,11 +6501,11 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Update application product data.
-            * Description: Allows to update data associated to a item custom meta.
+            * Summary: Update a single custom meta.
+            * Description: This API helps to update data associated to a item custom meta.
             **/
             public func updateAppProduct(
-                itemId: String,
+                itemId: Int,
                 body: ApplicationItemMeta,
                 onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
@@ -6116,7 +6518,7 @@ if let value = storeTypes {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product/\(itemId)/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product/\(itemId)",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -6148,8 +6550,8 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Get application products.
-            * Description: Retrieve products associated with the application. List all the products associated with a brand, collection or category in a requested sort order.
+            * Summary: List the products
+            * Description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ApplicationProductListingResponse`
             **/
             public func getAppicationProducts(
                 q: String?,
@@ -6162,7 +6564,7 @@ if let value = storeTypes {
                 pageSize: Int?,
                 pageNo: Int?,
                 pageType: String?,
-                itemIds: [Int]?,
+                itemIds: [String]?,
                 
                 onResponse: @escaping (_ response: ApplicationProductListingResponse?, _ error: FDKError?) -> Void
             ) {
@@ -6370,7 +6772,7 @@ if let value = itemIds {
                 isDependent: Bool?,
                 sortOn: String?,
                 pageSize: Int?,
-                itemIds: [Int]?
+                itemIds: [String]?
                 
                 ) -> Paginator<ApplicationProductListingResponse> {
                 let pageSize = pageSize ?? 20
@@ -6410,15 +6812,14 @@ if let value = itemIds {
             
             /**
             *
-            * Summary: Get discounted inventory by size identifier.
-            * Description: Allows to retrieve Inventory data for particular company grouped by size and store.
+            * Summary: Get Inventory for company
+            * Description: This API allows get Inventory data for particular company grouped by size and store.
             **/
             public func getDiscountedInventoryBySizeIdentifier(
                 itemId: Int,
-                sizeIdentifier: String,
+                sizeIdentifier: Int,
                 pageNo: Int?,
                 pageSize: Int?,
-                q: String?,
                 locationIds: [Int]?,
                 
                 onResponse: @escaping (_ response: InventorySellerIdentifierResponsePaginated?, _ error: FDKError?) -> Void
@@ -6436,13 +6837,6 @@ if let value = pageNo {
 if let value = pageSize {
     
     xQuery["page_size"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
     
 }
 
@@ -6490,95 +6884,10 @@ if let value = locationIds {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
-            * Summary: get paginator for getDiscountedInventoryBySizeIdentifier
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getDiscountedInventoryBySizeIdentifierPaginator(
-                itemId: Int,
-                sizeIdentifier: String,
-                pageSize: Int?,
-                q: String?,
-                locationIds: [Int]?
-                
-                ) -> Paginator<InventorySellerIdentifierResponsePaginated> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<InventorySellerIdentifierResponsePaginated>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getDiscountedInventoryBySizeIdentifier(
-                            
-                            itemId: itemId,
-                            sizeIdentifier: sizeIdentifier,
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            q: q,
-                            locationIds: locationIds
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Get product details by slug.
-            * Description: Retrieve detailed product information using a product slug. Products are the core resource of an application. Products can be associated by categories, collections, brands and more.
+            * Summary: Get a product
+            * Description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
             **/
             public func getProductDetailBySlug(
                 slug: String,
@@ -6626,8 +6935,8 @@ if let value = locationIds {
             
             /**
             *
-            * Summary: Get application products.
-            * Description: Retrieve products specific to the application. Products are the core resource of an application. Products can be associated by categories, collections, brands and more.
+            * Summary: Get applicationwise products
+            * Description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. If successful, returns a Product resource in the response body specified in `ApplicationProductListingResponseDatabasePowered`
             **/
             public func getAppProducts(
                 brandIds: [Int]?,
@@ -6706,7 +7015,7 @@ if let value = q {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/raw-products/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/raw-products",
                     query: xQuery,
                     body: nil,
                     headers: [],
@@ -6732,107 +7041,6 @@ if let value = q {
                 });
             }
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: get paginator for getAppProducts
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getAppProductsPaginator(
-                brandIds: [Int]?,
-                categoryIds: [Int]?,
-                departmentIds: [Int]?,
-                tags: [String]?,
-                itemIds: [Int]?,
-                pageSize: Int?,
-                q: String?
-                
-                ) -> Paginator<RawProductListingResponse> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<RawProductListingResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getAppProducts(
-                            
-                            brandIds: brandIds,
-                            categoryIds: categoryIds,
-                            departmentIds: departmentIds,
-                            tags: tags,
-                            itemIds: itemIds,
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            q: q
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
             
             
             
@@ -7175,56 +7383,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get autocomplete configuration.
-            * Description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
-            **/
-            public func getAutocompleteConfig(
-                
-                onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
-            ) {
-                
- 
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(GetAutocompleteWordsResponse.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Create custom autocomplete rules.
-            * Description: Generate and add custom autocomplete rules to the catalog.
+            * Summary: Add a Custom Autocomplete Keywords
+            * Description: Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
             **/
             public func createCustomAutocompleteRule(
                 body: CreateAutocompleteKeyword,
@@ -7239,7 +7399,7 @@ if let value = q {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -7271,7 +7431,185 @@ if let value = q {
             
             /**
             *
-            * Summary: Delete autocomplete keywords.
+            * Summary: List all Autocomplete Keyword Listing
+            * Description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
+            **/
+            public func getAutocompleteConfig(
+                pageNo: Int?,
+                pageSize: Int?,
+                q: String?,
+                isActive: Bool?,
+                
+                onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = isActive {
+    
+    xQuery["is_active"] = value
+    
+}
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(GetAutocompleteWordsResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get a Autocomplete Keywords Details
+            * Description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
+            **/
+            public func getAutocompleteKeywordDetail(
+                id: String,
+                
+                onResponse: @escaping (_ response: GetAutocompleteWordsData?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(GetAutocompleteWordsData.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Create & Update Autocomplete Keyword
+            * Description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+            **/
+            public func updateAutocompleteKeyword(
+                id: String,
+                body: CreateAutocompleteKeyword,
+                onResponse: @escaping (_ response: GetAutocompleteWordsData?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(GetAutocompleteWordsData.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Delete a Autocomplete Keywords
             * Description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
             **/
             public func deleteAutocompleteKeyword(
@@ -7288,7 +7626,7 @@ if let value = q {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)",
                     query: nil,
                     body: nil,
                     headers: [],
@@ -7320,13 +7658,12 @@ if let value = q {
             
             /**
             *
-            * Summary: Get autocomplete keyword details.
-            * Description: Retrieve detailed information about a specific autocomplete keyword.
+            * Summary: Create search rerank for an application
+            * Description: This view allows you to create search rerank attributes for an application
             **/
-            public func getAutocompleteKeywordDetail(
-                id: String,
-                
-                onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
+            public func createSearchRerank(
+                body: CreateSearchRerankRequest,
+                onResponse: @escaping (_ response: CreateSearchRerankResponse?, _ error: FDKError?) -> Void
             ) {
                 
  
@@ -7336,57 +7673,8 @@ if let value = q {
 
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(GetAutocompleteWordsResponse.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Update autocomplete keywords.
-            * Description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
-            **/
-            public func updateAutocompleteKeyword(
-                id: String,
-                body: CreateAutocompleteKeyword,
-                onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
-            ) {
-                
- 
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "PUT",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
+                    method: "POST",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/rerank",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -7400,7 +7688,7 @@ if let value = q {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetAutocompleteWordsResponse.self, from: data)
+                            let response = Utility.decode(CreateSearchRerankResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7418,60 +7706,12 @@ if let value = q {
             
             /**
             *
-            * Summary: Delete Search Configuration
-            * Description: Delete search configuration in the catalog.
+            * Summary: Get search rerank for an application
+            * Description: This view allows you to create search rerank attributes for an application
             **/
-            public func deleteSearchConfiguration(
+            public func getSearchRerank(
                 
-                onResponse: @escaping (_ response: DeleteSearchConfigurationResponse?, _ error: FDKError?) -> Void
-            ) {
-                
- 
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "DELETE",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/configuration/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(DeleteSearchConfigurationResponse.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Get Search Configuration
-            * Description: Get search configuration in the catalog.
-            **/
-            public func getSearchConfiguration(
-                
-                onResponse: @escaping (_ response: GetSearchConfigurationResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetSearchRerankResponse?, _ error: FDKError?) -> Void
             ) {
                 
  
@@ -7482,7 +7722,7 @@ if let value = q {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/configuration/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/rerank",
                     query: nil,
                     body: nil,
                     headers: [],
@@ -7496,7 +7736,7 @@ if let value = q {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetSearchConfigurationResponse.self, from: data)
+                            let response = Utility.decode(GetSearchRerankResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7514,8 +7754,155 @@ if let value = q {
             
             /**
             *
-            * Summary: Create search configuration
-            * Description: Create search configuration for the catalog.
+            * Summary: Get search rerank for an application
+            * Description: This view allows you to retrieve search rerank attribute detail for an application
+            **/
+            public func getSearchRerankDetail(
+                id: String,
+                
+                onResponse: @escaping (_ response: GetSearchRerankDetailResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/rerank/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(GetSearchRerankDetailResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Update search rerank for an application
+            * Description: This view allows you to update search rerank attribute for an application
+            **/
+            public func updateSearchRerankConfiguration(
+                id: String,
+                body: UpdateSearchRerankRequest,
+                onResponse: @escaping (_ response: UpdateSearchRerankResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/rerank/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(UpdateSearchRerankResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Delete search rerank configuration for an application
+            * Description: This view allows you to delete search rerank configuration for an application
+            **/
+            public func deleteSearchRerankConfiguration(
+                id: String,
+                
+                onResponse: @escaping (_ response: DeleteSearchRerankConfigurationResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/rerank/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(DeleteSearchRerankConfigurationResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Update search configuration for an application
+            * Description: This view allows you to modify searchable attributes for an application
             **/
             public func createSearchConfiguration(
                 body: CreateSearchConfigurationRequest,
@@ -7530,7 +7917,7 @@ if let value = q {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/configuration/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/configuration",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -7545,6 +7932,54 @@ if let value = q {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(CreateSearchConfigurationResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: List search configuration for an application
+            * Description: This view allows you to add/modify searchable attributes for an application
+            **/
+            public func getSearchConfiguration(
+                
+                onResponse: @escaping (_ response: GetSearchConfigurationResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/configuration",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(GetSearchConfigurationResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7578,7 +8013,7 @@ if let value = q {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/configuration/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/configuration",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -7610,12 +8045,12 @@ if let value = q {
             
             /**
             *
-            * Summary: Get all search keywords.
-            * Description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
+            * Summary: Delete search configuration for an application
+            * Description: This view allows you to reset search config for an application
             **/
-            public func getAllSearchKeyword(
+            public func deleteSearchConfiguration(
                 
-                onResponse: @escaping (_ response: GetSearchWordsResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DeleteSearchConfigurationResponse?, _ error: FDKError?) -> Void
             ) {
                 
  
@@ -7625,8 +8060,8 @@ if let value = q {
 
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/",
+                    method: "DELETE",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/configuration",
                     query: nil,
                     body: nil,
                     headers: [],
@@ -7640,7 +8075,7 @@ if let value = q {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetSearchWordsResponse.self, from: data)
+                            let response = Utility.decode(DeleteSearchConfigurationResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7658,8 +8093,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Create custom search keywords.
-            * Description: Create a Custom Search Keywords. 
+            * Summary: Add a Custom Search Keywords
+            * Description: Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
             **/
             public func createCustomKeyword(
                 body: CreateSearchKeyword,
@@ -7674,7 +8109,7 @@ if let value = q {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -7706,7 +8141,185 @@ if let value = q {
             
             /**
             *
-            * Summary: Delete search keywords.
+            * Summary: List all Search Custom Keyword Listing
+            * Description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
+            **/
+            public func getAllSearchKeyword(
+                pageNo: Int?,
+                pageSize: Int?,
+                q: String?,
+                isActive: Bool?,
+                
+                onResponse: @escaping (_ response: GetSearchWordsResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = isActive {
+    
+    xQuery["is_active"] = value
+    
+}
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(GetSearchWordsResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get a Search Keywords Details
+            * Description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
+            **/
+            public func getSearchKeywords(
+                id: String,
+                
+                onResponse: @escaping (_ response: GetSearchWordsData?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(GetSearchWordsData.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Update Search Keyword
+            * Description: Update Search Keyword by its id. On successful request, returns the updated collection
+            **/
+            public func updateSearchKeywords(
+                id: String,
+                body: CreateSearchKeyword,
+                onResponse: @escaping (_ response: GetSearchWordsData?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(GetSearchWordsData.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Delete a Search Keywords
             * Description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
             **/
             public func deleteSearchKeywords(
@@ -7723,7 +8336,7 @@ if let value = q {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)",
                     query: nil,
                     body: nil,
                     headers: [],
@@ -7755,109 +8368,11 @@ if let value = q {
             
             /**
             *
-            * Summary: Retrieve search keywords.
-            * Description: Retrieve a list of search keywords from the catalog.
-            **/
-            public func getSearchKeywords(
-                id: String,
-                
-                onResponse: @escaping (_ response: GetSearchWordsDetailResponse?, _ error: FDKError?) -> Void
-            ) {
-                
- 
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(GetSearchWordsDetailResponse.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Update search keywords.
-            * Description: Update Search Keyword by its id. On successful request, returns the updated collection
-            **/
-            public func updateSearchKeywords(
-                id: String,
-                body: CreateSearchKeyword,
-                onResponse: @escaping (_ response: GetSearchWordsData?, _ error: FDKError?) -> Void
-            ) {
-                
- 
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "PUT",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(GetSearchWordsData.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Update application location.
-            * Description: Modify location data related to the application. Helps to update data associated to a item custom meta
+            * Summary: Update a single custom json.
+            * Description: This API helps to update data associated to a item custom meta.
             **/
             public func updateAppLocation(
-                storeUid: String,
+                storeUid: Int,
                 body: ApplicationStoreJson,
                 onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
@@ -7960,10 +8475,14 @@ if let value = q {
             
             
             
+            
+            
+            
+            
             /**
             *
-            * Summary: Update 'Allow Single' setting.
-            * Description: Modify allow single flag for filters of the application.
+            * Summary: Update allow single flag for filters of the application.
+            * Description: Update allow single flag for filters of the application.
             **/
             public func updateAllowSingle(
                 body: AllowSingleRequest,
@@ -8010,8 +8529,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Update default sorting.
-            * Description: Modify the default sort key configuration for the application.
+            * Summary: Update the default sort key configuration for the application.
+            * Description: Update the default sort key configuration for the application.
             **/
             public func updateDefaultSort(
                 body: DefaultKeyRequest,
@@ -8058,16 +8577,66 @@ if let value = q {
             
             /**
             *
-            * Summary: Retrieve listing configurations.
-            * Description: Retrieve the details of the application configured configurations of listing config types.
+            * Summary: Add configuration for listings
+            * Description: Add configuration for listing.
+            **/
+            public func createListingConfiguration(
+                configType: String,
+                body: AppConfigurationsFilter,
+                onResponse: @escaping (_ response: AppConfigurationsFilterResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(AppConfigurationsFilterResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get the details of the application configured configurations of listing config types.
+            * Description: Get the details of the application configured configurations of listing config types.
             **/
             public func getListingConfigurations(
                 configType: String,
                 pageNo: Int?,
                 pageSize: Int?,
                 search: String?,
+                uids: [Int]?,
                 
-                onResponse: @escaping (_ response: GetConfigResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetListingConfigResponse?, _ error: FDKError?) -> Void
             ) {
                 
 var xQuery: [String: Any] = [:] 
@@ -8093,13 +8662,20 @@ if let value = search {
 }
 
 
+if let value = uids {
+    
+    xQuery["uids"] = value
+    
+}
+
+
  
 
 
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)",
                     query: xQuery,
                     body: nil,
                     headers: [],
@@ -8113,7 +8689,7 @@ if let value = search {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetConfigResponse.self, from: data)
+                            let response = Utility.decode(GetListingConfigResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -8131,13 +8707,13 @@ if let value = search {
             
             /**
             *
-            * Summary: Create listing configuration.
-            * Description: Add configuration for catalog listing.
+            * Summary: Create configuration for Group config types.
+            * Description: Create configuration for Group config types.
             **/
-            public func createListingConfiguration(
+            public func createGroupConfiguration(
                 configType: String,
-                body: AppConfigurationsSort,
-                onResponse: @escaping (_ response: AppConfigurationsSort?, _ error: FDKError?) -> Void
+                body: AppConfigurationCreateDetail,
+                onResponse: @escaping (_ response: AppConfigurationDetail?, _ error: FDKError?) -> Void
             ) {
                 
  
@@ -8148,7 +8724,7 @@ if let value = search {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/groups",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -8162,7 +8738,7 @@ if let value = search {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AppConfigurationsSort.self, from: data)
+                            let response = Utility.decode(AppConfigurationDetail.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -8180,8 +8756,8 @@ if let value = search {
             
             /**
             *
-            * Summary: Retrieve group configurations.
-            * Description: Retrieve the details of the application configured configurations of group config types.
+            * Summary: Get the details of the application configured configurations of group config types.
+            * Description: Get the details of the application configured configurations of group config types.
             **/
             public func getGroupConfigurations(
                 configType: String,
@@ -8261,11 +8837,12 @@ if let value = templateSlug {
             
             /**
             *
-            * Summary: Create group configuration.
-            * Description: Create configuration for group configuration types.
+            * Summary: Update the group configurations for the application.
+            * Description: Update the group configurations for the application.
             **/
-            public func createGroupConfiguration(
+            public func updateGroupConfiguration(
                 configType: String,
+                groupSlug: String,
                 body: AppConfigurationDetail,
                 onResponse: @escaping (_ response: AppConfigurationDetail?, _ error: FDKError?) -> Void
             ) {
@@ -8277,8 +8854,8 @@ if let value = templateSlug {
 
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "POST",
-                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/groups",
+                    method: "PUT",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/groups/\(groupSlug)",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -8310,7 +8887,7 @@ if let value = templateSlug {
             
             /**
             *
-            * Summary: Delete group configuration.
+            * Summary: Delete configuration of the product config type of the application.
             * Description: Delete configuration of the product config type of the application.
             **/
             public func deleteGroupConfiguration(
@@ -8360,14 +8937,14 @@ if let value = templateSlug {
             
             /**
             *
-            * Summary: Update group configuration.
-            * Description: Modify the group configurations for the application.
+            * Summary: Update configuration for listings
+            * Description: Update configuration for listing.
             **/
-            public func updateGroupConfiguration(
+            public func updateListingConfiguration(
                 configType: String,
-                groupSlug: String,
-                body: AppConfigurationDetail,
-                onResponse: @escaping (_ response: AppConfigurationDetail?, _ error: FDKError?) -> Void
+                configId: String,
+                body: AppConfigurationsFilterResponse,
+                onResponse: @escaping (_ response: AppConfigurationsFilterResponse?, _ error: FDKError?) -> Void
             ) {
                 
  
@@ -8378,7 +8955,7 @@ if let value = templateSlug {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/groups/\(groupSlug)",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/item/\(configId)",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -8392,7 +8969,7 @@ if let value = templateSlug {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AppConfigurationDetail.self, from: data)
+                            let response = Utility.decode(AppConfigurationsFilterResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -8410,8 +8987,8 @@ if let value = templateSlug {
             
             /**
             *
-            * Summary: Delete listing configuration.
-            * Description: Remove a specific listing configuration from the catalog.
+            * Summary: Delete configuration for listings
+            * Description: Delete configuration for listing.
             **/
             public func deleteListingConfiguration(
                 configType: String,
@@ -8428,7 +9005,7 @@ if let value = templateSlug {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
-                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/item/\(configId)/",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/item/\(configId)",
                     query: nil,
                     body: nil,
                     headers: [],
@@ -8460,65 +9037,12 @@ if let value = templateSlug {
             
             /**
             *
-            * Summary: Update listing configuration.
-            * Description: Modify the details and settings of an existing listing configuration.
-            **/
-            public func updateListingConfiguration(
-                configType: String,
-                configId: String,
-                body: AppConfigurationsSort,
-                onResponse: @escaping (_ response: AppConfigurationsSort?, _ error: FDKError?) -> Void
-            ) {
-                
- 
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "PUT",
-                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/item/\(configId)/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(AppConfigurationsSort.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Retrieve configuration metadata.
-            * Description: Retrieve the configuraion metadata details for catalog.
+            * Summary: Get configuration metadata details for catalog for admin panel
+            * Description: Get the configuraion metadata details for catalog.
             **/
             public func getConfigurationMetadata(
                 configType: String,
                 templateSlug: String?,
-                pageNo: Int?,
-                pageSize: Int?,
-                q: String?,
                 
                 onResponse: @escaping (_ response: GetConfigMetadataResponse?, _ error: FDKError?) -> Void
             ) {
@@ -8532,34 +9056,13 @@ if let value = templateSlug {
 }
 
 
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
  
 
 
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/metadata/",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/metadata",
                     query: xQuery,
                     body: nil,
                     headers: [],
@@ -8604,6 +9107,1720 @@ if let value = q {
             
             
             
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Create autocomplete settings config for an application
+            * Description: This API allows to create autocomplete settings for an application.
+            **/
+            public func createAutocompleteSettings(
+                body: AutocompleteRequestSchema,
+                onResponse: @escaping (_ response: AutocompleteUpsertResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/settings",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(AutocompleteUpsertResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get autocomplete settings config for an application
+            * Description: This API allows to get autocomplete settings config for an application.
+            **/
+            public func getAutocompleteSettings(
+                
+                onResponse: @escaping (_ response: AutocompleteResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/settings",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(AutocompleteResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Update autocomplete settings config for an application
+            * Description: This API allows to update autocomplete settings for an application.
+            **/
+            public func updateAutocompleteSettings(
+                id: String,
+                body: AutocompleteRequestSchema,
+                onResponse: @escaping (_ response: AutocompleteUpsertResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/settings/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(AutocompleteUpsertResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get autocomplete suggestions as per config for an application
+            * Description: This API allows to get autocomplete suggestions as per config.
+            **/
+            public func getAutocompletePreview(
+                q: String?,
+                categorySuggestion: Int?,
+                brandSuggestion: Int?,
+                collectionSuggestion: Int?,
+                productSuggestion: Int?,
+                querySuggestion: Int?,
+                
+                onResponse: @escaping (_ response: AutocompletePreviewResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = categorySuggestion {
+    
+    xQuery["category_suggestion"] = value
+    
+}
+
+
+if let value = brandSuggestion {
+    
+    xQuery["brand_suggestion"] = value
+    
+}
+
+
+if let value = collectionSuggestion {
+    
+    xQuery["collection_suggestion"] = value
+    
+}
+
+
+if let value = productSuggestion {
+    
+    xQuery["product_suggestion"] = value
+    
+}
+
+
+if let value = querySuggestion {
+    
+    xQuery["query_suggestion"] = value
+    
+}
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/preview",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(AutocompletePreviewResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get Merchandising Rule's action details
+            * Description: This allows you to get details of pin action of a merchandising rule.
+            **/
+            public func getMerchandisingRulePinAction(
+                merchandisingRuleId: String,
+                
+                onResponse: @escaping (_ response: PinResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/merchandise/rules/\(merchandisingRuleId)/pin",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(PinResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Create Merchandising Rule's action details
+            * Description: This allows you to create pin action of a merchandising rule.
+            **/
+            public func createMerchandisingRulePinAction(
+                merchandisingRuleId: String,
+                body: PinRequest,
+                onResponse: @escaping (_ response: SuccessResponseMerchandising?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/merchandise/rules/\(merchandisingRuleId)/pin",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessResponseMerchandising.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Update Merchandising Rule's action details
+            * Description: This allows you to update pin action of a merchandising rule.
+            **/
+            public func updateMerchandisingRulePinAction(
+                merchandisingRuleId: String,
+                body: PinRequest,
+                onResponse: @escaping (_ response: SuccessResponseMerchandising?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/merchandise/rules/\(merchandisingRuleId)/pin",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessResponseMerchandising.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get Merchandising Rule's Hide action details
+            * Description: This allows you to get details of hide action of a merchandising rule.
+            **/
+            public func getMerchandisingRuleHideAction(
+                merchandisingRuleId: String,
+                
+                onResponse: @escaping (_ response: HideResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/merchandise/rules/\(merchandisingRuleId)/hide",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(HideResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Create Merchandising Rule's Hide action details
+            * Description: This allows you to create hide action of a merchandising rule.
+            **/
+            public func createMerchandisingRuleHideAction(
+                merchandisingRuleId: String,
+                body: HideRequest,
+                onResponse: @escaping (_ response: SuccessResponseMerchandising?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/merchandise/rules/\(merchandisingRuleId)/hide",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessResponseMerchandising.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Update Merchandising Rule's Hide action details
+            * Description: This allows you to update hide action of a merchandising rule.
+            **/
+            public func updateMerchandisingRuleHideAction(
+                merchandisingRuleId: String,
+                body: HideRequest,
+                onResponse: @escaping (_ response: SuccessResponseMerchandising?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/merchandise/rules/\(merchandisingRuleId)/hide",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessResponseMerchandising.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get Merchandising Rule's Boost action details
+            * Description: This allows you to get details of Boost action of a merchandising rule.
+            **/
+            public func getMerchandisingRuleBoostAction(
+                merchandisingRuleId: String,
+                
+                onResponse: @escaping (_ response: GetMerchandisingRuleBoostAction?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/merchandise/rules/\(merchandisingRuleId)/boost",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(GetMerchandisingRuleBoostAction.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Create Merchandising Rule's Boost action details
+            * Description: This allows you to create Boost action of a merchandising rule.
+            **/
+            public func createMerchandisingRuleBoostAction(
+                merchandisingRuleId: String,
+                body: GetMerchandisingRuleBoostAction,
+                onResponse: @escaping (_ response: SuccessResponseMerchandising?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/merchandise/rules/\(merchandisingRuleId)/boost",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessResponseMerchandising.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Update Merchandising Rule's Boost action details
+            * Description: This allows you to update Boost action of a merchandising rule.
+            **/
+            public func updateMerchandisingRuleBoostAction(
+                merchandisingRuleId: String,
+                body: GetMerchandisingRuleBoostAction,
+                onResponse: @escaping (_ response: SuccessResponseMerchandising?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/merchandise/rules/\(merchandisingRuleId)/boost",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessResponseMerchandising.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get Merchandising Rule's Bury action details
+            * Description: This allows you to get details of Bury action of a merchandising rule.
+            **/
+            public func getMerchandisingRuleBuryAction(
+                merchandisingRuleId: String,
+                
+                onResponse: @escaping (_ response: GetMerchandisingRuleBuryAction?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/merchandise/rules/\(merchandisingRuleId)/bury",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(GetMerchandisingRuleBuryAction.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get Merchandising Rule's Bury action details
+            * Description: This allows you to create Bury action of a merchandising rule.
+            **/
+            public func createMerchandisingRuleBuryAction(
+                merchandisingRuleId: String,
+                body: GetMerchandisingRuleBuryAction,
+                onResponse: @escaping (_ response: SuccessResponseMerchandising?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/merchandise/rules/\(merchandisingRuleId)/bury",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessResponseMerchandising.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Update Merchandising Rule's Bury action details
+            * Description: This allows you to update Bury action of a merchandising rule.
+            **/
+            public func updateMerchandisingRuleBuryAction(
+                merchandisingRuleId: String,
+                body: GetMerchandisingRuleBuryAction,
+                onResponse: @escaping (_ response: SuccessResponseMerchandising?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/merchandise/rules/\(merchandisingRuleId)/bury",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessResponseMerchandising.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Create a Merchandising Rule's query
+            * Description: This allows you to Create a merchandising rule's query.
+            **/
+            public func createMerchandisingRuleQuery(
+                body: MerchandisingRuleQueryPost,
+                onResponse: @escaping (_ response: MerchandiseQueryResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/merchandise/rules/query",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(MerchandiseQueryResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get Merchandising Rule's query details
+            * Description: This allows you to get details of a merchandising rule's query.
+            **/
+            public func getMerchandisingQuery(
+                merchandisingRuleId: String,
+                
+                onResponse: @escaping (_ response: SearchRequest?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/merchandise/rules/\(merchandisingRuleId)/query",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SearchRequest.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Update a Merchandising Rule's query
+            * Description: This allows you to Update a merchandising rule's query.
+            **/
+            public func updateMerchandisingRuleQuery(
+                merchandisingRuleId: String,
+                body: MerchandisingRuleQueryPost,
+                onResponse: @escaping (_ response: SuccessResponseMerchandising?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/merchandise/rules/\(merchandisingRuleId)/query",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessResponseMerchandising.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get list of all Merchandising Rule's details
+            * Description: This allows you to get details of all merchandising rule's details.
+            **/
+            public func getMerchandisingRules(
+                pageId: String?,
+                pageSize: Int?,
+                
+                onResponse: @escaping (_ response: MerchandisingRulesList?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/merchandise/rules",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(MerchandisingRulesList.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get live preview of a Merchandising Rule
+            * Description: This allows you to get live preview of a merchandising rule.
+            **/
+            public func getLivePreview(
+                merchandisingRuleId: String,
+                searchKeyword: String?,
+                
+                onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+if let value = searchKeyword {
+    
+    xQuery["search_keyword"] = value
+    
+}
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/merchandise/rules/\(merchandisingRuleId)/preview",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(ProductListingResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Create price factory
+            * Description: This API allows to create price factory.
+            **/
+            public func createAppPriceFactory(
+                body: CreateAppPriceFactoryRequest,
+                onResponse: @escaping (_ response: CreateAppPriceFactoryResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/price-factory",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CreateAppPriceFactoryResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get price factory
+            * Description: This API allows to get price factories.
+            **/
+            public func getAppPriceFactories(
+                isActive: Bool?,
+                factoryTypeId: String?,
+                code: String?,
+                pageNo: Int?,
+                pageSize: Int?,
+                
+                onResponse: @escaping (_ response: GetAppPriceFactoryResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+if let value = isActive {
+    
+    xQuery["is_active"] = value
+    
+}
+
+
+if let value = factoryTypeId {
+    
+    xQuery["factory_type_id"] = value
+    
+}
+
+
+if let value = code {
+    
+    xQuery["code"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/price-factory",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(GetAppPriceFactoryResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get price factory
+            * Description: This API allows to get price factory.
+            **/
+            public func getAppPriceFactory(
+                id: String,
+                
+                onResponse: @escaping (_ response: AppPriceFactory?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/priceFactory/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(AppPriceFactory.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: 
+            * Description: This API allows to update price factory.
+            **/
+            public func editAppPriceFactory(
+                id: String,
+                body: EditAppPriceFactoryRequest,
+                onResponse: @escaping (_ response: AppPriceFactory?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/priceFactory/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(AppPriceFactory.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: 
+            * Description: This API allows to add  products in price factory.
+            **/
+            public func addProductsInPriceFactoryByZoneId(
+                id: String,
+                zoneId: String,
+                body: CreateAppPriceFactoryProductRequest,
+                onResponse: @escaping (_ response: CreateAppPriceFactoryProductsResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/priceFactory/\(id)/products/zone/\(zoneId)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CreateAppPriceFactoryProductsResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: 
+            * Description: This API allows to get products in price factory.
+            **/
+            public func getProductsInPriceFactoryByZoneId(
+                id: String,
+                zoneId: String,
+                itemId: Bool?,
+                sellerIdentifier: String?,
+                pageNo: Int?,
+                pageSize: Int?,
+                
+                onResponse: @escaping (_ response: CreateAppPriceFactoryProductsResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+if let value = itemId {
+    
+    xQuery["item_id"] = value
+    
+}
+
+
+if let value = sellerIdentifier {
+    
+    xQuery["seller_identifier"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/priceFactory/\(id)/products/zone/\(zoneId)",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CreateAppPriceFactoryProductsResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: 
+            * Description: This API allows to partially update products in price factory.
+            **/
+            public func updateProductPriceByZoneInPriceFactory(
+                id: String,
+                itemId: Int,
+                zoneId: String,
+                body: UpdateAppPriceFactoryProductRequest,
+                onResponse: @escaping (_ response: UpdateAppPriceFactoryProductResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PATCH",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/priceFactory/\(id)/product/\(itemId)/zone/\(zoneId)/price",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(UpdateAppPriceFactoryProductResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: 
+            * Description: This API allows to create bulk job for adding products in price factory.
+            **/
+            public func createProductPriceFactoryBulkJob(
+                id: String,
+                body: CreateAppPriceFactoryProductBulkJobRequest,
+                onResponse: @escaping (_ response: CreateAppPriceFactoryProductBulkJobResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/priceFactory/\(id)/products/bulk",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CreateAppPriceFactoryProductBulkJobResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: 
+            * Description: This API allows to poll bulk job for adding products in price factory.
+            **/
+            public func pollProductPriceFactoryBulkJob(
+                id: String,
+                jobId: String,
+                
+                onResponse: @escaping (_ response: CreateAppPriceFactoryProductBulkJobPollResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/priceFactory/\(id)/products/bulk/\(jobId)/poll",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CreateAppPriceFactoryProductBulkJobPollResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: 
+            * Description: This API allows to validate bulk job for adding products in price factory.
+            **/
+            public func validateProductPriceFactoryBulkJob(
+                id: String,
+                jobId: String,
+                body: CreateAppPriceFactoryProductBulkJobRequest,
+                onResponse: @escaping (_ response: CreateAppPriceFactoryProductBulkJobResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/priceFactory/\(id)/products/bulk/\(jobId)/validate",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CreateAppPriceFactoryProductBulkJobResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: 
+            * Description: This API allows to process bulk job for adding products in price factory.
+            **/
+            public func processProductPriceFactoryBulkJob(
+                id: String,
+                jobId: String,
+                body: CreateAppPriceFactoryProductBulkJobRequest,
+                onResponse: @escaping (_ response: CreateAppPriceFactoryProductBulkJobResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/priceFactory/\(id)/products/bulk/\(jobId)/process",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CreateAppPriceFactoryProductBulkJobResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
         }
         
         
@@ -8624,8 +10841,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get application providers.
-            * Description: Retrieve a list of providers associated with the platform.
+            * Summary: Get app providers
+            * Description: Using this API will return a list of application providers.
             **/
             public func getAppProviders(
                 
@@ -8672,8 +10889,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Update application providers.
-            * Description: Modify provider information for the platform.
+            * Summary: update app providers
+            * Description: Using this API will update the application providers.
             **/
             public func updateAppProviders(
                 body: AppProviderReq,
@@ -8720,8 +10937,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get global providers.
-            * Description: Retrieve a list of global communication providers.
+            * Summary: Get global providers
+            * Description: Using this API, will retrieve a list of global providers.
             **/
             public func getGlobalProviders(
                 
@@ -8768,8 +10985,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get email providers.
-            * Description: Retrieve a list of email communication providers.
+            * Summary: Get email providers
+            * Description: Get email providers
             **/
             public func getEmailProviders(
                 pageNo: Int?,
@@ -8846,10 +11063,79 @@ if let value = query {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Create email provider.
-            * Description: Generate and add a new email communication provider.
+            * Summary: get paginator for getEmailProviders
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getEmailProvidersPaginator(
+                pageSize: Int?,
+                sort: [String: Any]?,
+                query: [String: Any]?
+                
+                ) -> Paginator<EmailProviders> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<EmailProviders>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getEmailProviders(
+                            
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            ,
+                            sort: sort,
+                            query: query
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Create email provider
+            * Description: Create email provider
             **/
             public func createEmailProvider(
                 body: EmailProviderReq,
@@ -8896,8 +11182,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get email provider by ID.
-            * Description: Retrieve detailed information about a specific email communication provider.
+            * Summary: Get email provider by id
+            * Description: Get email provider by id
             **/
             public func getEmailProviderById(
                 id: String,
@@ -8945,8 +11231,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Update email provider by ID.
-            * Description: Modify the settings of a specific email communication provider.
+            * Summary: Update email provider by id
+            * Description: Update email provider by id
             **/
             public func updateEmailProviderById(
                 id: String,
@@ -8994,8 +11280,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Delete email provider by ID.
-            * Description: Remove a specific email communication provider from the platform.
+            * Summary: Delete email provider by id
+            * Description: Delete email provider by id
             **/
             public func deleteEmailProviderById(
                 id: String,
@@ -9043,8 +11329,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get SMS providers.
-            * Description: Retrieve a list of SMS communication providers.
+            * Summary: Get sms providers
+            * Description: Get sms providers
             **/
             public func getSmsProviders(
                 pageNo: Int?,
@@ -9123,8 +11409,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Create SMS provider.
-            * Description: Add a new SMS communication provider.
+            * Summary: Create sms provider
+            * Description: Create sms provider
             **/
             public func createSmsProvider(
                 body: SmsProviderReq,
@@ -9171,8 +11457,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get default SMS providers.
-            * Description: Retrieve the default SMS communication providers.
+            * Summary: Get default sms providers
+            * Description: Get default sms providers
             **/
             public func getDefaultSmsProviders(
                 
@@ -9219,8 +11505,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get SMS provider by ID.
-            * Description: Retrieve detailed information about a specific SMS communication provider.
+            * Summary: Get sms provider by id
+            * Description: Get sms provider by id
             **/
             public func getSmsProviderById(
                 id: String,
@@ -9268,8 +11554,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Update SMS provider by ID.
-            * Description: Modify specific SMS communication provider.
+            * Summary: Update sms provider by id
+            * Description: Update sms provider by id
             **/
             public func updateSmsProviderById(
                 id: String,
@@ -9317,8 +11603,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Delete SMS provider by ID.
-            * Description: Remove a specific SMS communication provider.
+            * Summary: Delete sms provider by id
+            * Description: Delete sms provider by id
             **/
             public func deleteSmsProviderById(
                 id: String,
@@ -9366,8 +11652,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get campaigns.
-            * Description: Retrieve a list of communication campaigns.
+            * Summary: Get campaigns
+            * Description: Get campaigns
             **/
             public func getCampaigns(
                 query: [String: Any]?,
@@ -9446,8 +11732,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Create campaign.
-            * Description: Add a new communication campaign.
+            * Summary: Create campaign
+            * Description: Create campaign
             **/
             public func createCampaign(
                 body: CampaignReq,
@@ -9494,8 +11780,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Get campaign by ID.
-            * Description: Retrieve detailed information about a specific communication campaign.
+            * Summary: Get campaign by id
+            * Description: Get campaign by id
             **/
             public func getCampaignById(
                 id: String,
@@ -9543,8 +11829,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Update campaign by ID.
-            * Description: Modify the settings of a specific communication campaign.
+            * Summary: Update campaign by id
+            * Description: Update campaign by id
             **/
             public func updateCampaignById(
                 id: String,
@@ -9592,8 +11878,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Get campaign statistics by ID.
-            * Description: Retrieve statistical data for a specific communication campaign.
+            * Summary: Get stats of campaign by id
+            * Description: Get stats of campaign by id
             **/
             public func getStatsOfCampaignById(
                 id: String,
@@ -9641,8 +11927,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Get BigQuery row count by ID.
-            * Description: Retrieve big query row count by id
+            * Summary: Get big query row count by id
+            * Description: Get big query row count by id
             **/
             public func getBigQueryRowCountById(
                 id: String,
@@ -9690,7 +11976,7 @@ if let value = sort {
             
             /**
             *
-            * Summary: Create BigQuery row count.
+            * Summary: Create big query row count
             * Description: Create big query row count
             **/
             public func createBigQueryRowCount(
@@ -9738,8 +12024,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Get BigQuery headers by ID.
-            * Description: Retrieve header information from BigQuery for a specific campaign.
+            * Summary: Get big query headers by id
+            * Description: Get big query headers by id
             **/
             public func getBigQueryHeadersById(
                 id: String,
@@ -9787,7 +12073,7 @@ if let value = sort {
             
             /**
             *
-            * Summary: Create BigQuery N-count.
+            * Summary: Create big query n count
             * Description: Create big query n count
             **/
             public func createBigQueryNCount(
@@ -9835,7 +12121,7 @@ if let value = sort {
             
             /**
             *
-            * Summary: Create BigQuery headers.
+            * Summary: Create big query headers
             * Description: Create big query headers
             **/
             public func createBigQueryHeaders(
@@ -9883,8 +12169,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Get system audiences.
-            * Description: Retrieve system-defined audiences for communication.
+            * Summary: Get system audiences
+            * Description: Get system audiences
             **/
             public func getSystemAudiences(
                 
@@ -9931,8 +12217,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Get audiences.
-            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign.
+            * Summary: Get audiences
+            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get audiences.
             **/
             public func getAudiences(
                 pageNo: Int?,
@@ -10009,10 +12295,79 @@ if let value = query {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Create audience.
-            * Description: Add audience which is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. 
+            * Summary: get paginator for getAudiences
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getAudiencesPaginator(
+                pageSize: Int?,
+                sort: [String: Any]?,
+                query: [String: Any]?
+                
+                ) -> Paginator<Audiences> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<Audiences>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getAudiences(
+                            
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            ,
+                            sort: sort,
+                            query: query
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Create audience
+            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to create audience.
             **/
             public func createAudience(
                 body: AudienceReq,
@@ -10059,8 +12414,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get audience by ID.
-            * Description: Retrieve detailed information about a specific custom communication audience.
+            * Summary: Get audience by id
+            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get audiences by Id.
             **/
             public func getAudienceById(
                 id: String,
@@ -10108,8 +12463,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Update audience by ID.
-            * Description: Modify the settings of a specific custom communication audience.
+            * Summary: Update audience by id
+            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to update audience by id.
             **/
             public func updateAudienceById(
                 id: String,
@@ -10157,8 +12512,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Delete audience by ID.
-            * Description: Remove a specific custom communication audience.
+            * Summary: Delete audience by id
+            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to delete audience by id.
             **/
             public func deleteAudienceById(
                 id: String,
@@ -10206,8 +12561,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get dummy data sources.
-            * Description: Retrieve a list of dummy data sources for testing.
+            * Summary: Get dummy data sources
+            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get dummy data sources.
             **/
             public func getDummyDatasources(
                 
@@ -10254,8 +12609,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get dummy data sources metadata.
-            * Description: Retrieve metadata information about dummy data sources.
+            * Summary: Get dummy data sources meta
+            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get dummy data sources meta.
             **/
             public func getDummyDatasourcesMeta(
                 id: Int,
@@ -10303,8 +12658,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get N sample records in CSV 
-            * Description: Retrieve a specified number of sample records from a CSV data source using a GET request.
+            * Summary: Get n sample records from csv
+            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get n sample records from csv.
             **/
             public func getNSampleRecordsFromCsvByGet(
                 
@@ -10351,8 +12706,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get N sample records from CSV.
-            * Description: Retrieve a specified number of sample records from a CSV data source.
+            * Summary: Get n sample records from csv
+            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get n sample records from csv
             **/
             public func getNSampleRecordsFromCsv(
                 body: GetNRecordsCsvReq,
@@ -10399,8 +12754,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get email templates.
-            * Description: Retrieve a list of available email communication templates.
+            * Summary: Get email templates
+            * Description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all email templates.
             **/
             public func getEmailTemplates(
                 pageNo: Int?,
@@ -10477,10 +12832,79 @@ if let value = query {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Create email template.
-            * Description: Generate and add a new email communication template.
+            * Summary: get paginator for getEmailTemplates
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getEmailTemplatesPaginator(
+                pageSize: Int?,
+                sort: [String: Any]?,
+                query: [String: Any]?
+                
+                ) -> Paginator<EmailTemplates> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<EmailTemplates>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getEmailTemplates(
+                            
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            ,
+                            sort: sort,
+                            query: query
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Create email template
+            * Description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to create an email template.
             **/
             public func createEmailTemplate(
                 body: EmailTemplateReq,
@@ -10527,8 +12951,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get system email templates.
-            * Description: Retrieve system-defined email communication templates.
+            * Summary: Get system email templates
+            * Description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all system email templates.
             **/
             public func getSystemEmailTemplates(
                 
@@ -10575,8 +12999,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get email template by ID.
-            * Description: Retrieve detailed information about a specific email communication template.
+            * Summary: Get email template by id
+            * Description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get an email template by id.
             **/
             public func getEmailTemplateById(
                 id: String,
@@ -10624,8 +13048,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Update email template by ID.
-            * Description: Modify the content and settings of a specific email communication template.
+            * Summary: Update email template by id
+            * Description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to update an email template by id.
             **/
             public func updateEmailTemplateById(
                 id: String,
@@ -10673,8 +13097,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Delete email template by ID.
-            * Description: Email templates are predefined formats linked to various events for delivering messages to users. Remove a specific email communication template by its ID.
+            * Summary: Delete email template by id
+            * Description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to delete an email template by id.
             **/
             public func deleteEmailTemplateById(
                 id: String,
@@ -10722,8 +13146,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get subscribed email templates.
-            * Description: Retrieve email communication templates that are subscribed to.
+            * Summary: Get subscribed email templates
+            * Description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all subscribed email templates.
             **/
             public func getSubscribedEmailTemplates(
                 pageNo: Int?,
@@ -10792,10 +13216,71 @@ if let value = query {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Get SMS templates.
-            * Description: Retrieve a list of available SMS communication templates.
+            * Summary: get paginator for getSubscribedEmailTemplates
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getSubscribedEmailTemplatesPaginator(
+                pageSize: Int?,
+                query: [String: Any]?
+                
+                ) -> Paginator<EmailTemplates> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<EmailTemplates>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getSubscribedEmailTemplates(
+                            
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            ,
+                            query: query
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get sms templates
+            * Description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all sms templates.
             **/
             public func getSmsTemplates(
                 pageNo: Int?,
@@ -10872,10 +13357,79 @@ if let value = query {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Create SMS template.
-            * Description: Add a new SMS communication template.
+            * Summary: get paginator for getSmsTemplates
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getSmsTemplatesPaginator(
+                pageSize: Int?,
+                sort: [String: Any]?,
+                query: [String: Any]?
+                
+                ) -> Paginator<SmsTemplates> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<SmsTemplates>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getSmsTemplates(
+                            
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            ,
+                            sort: sort,
+                            query: query
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Create sms template
+            * Description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to create an sms template.
             **/
             public func createSmsTemplate(
                 body: SmsTemplateReq,
@@ -10922,8 +13476,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get system SMS templates.
-            * Description: Retrieve system-defined SMS communication templates.
+            * Summary: Get system sms templates
+            * Description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all system sms templates.
             **/
             public func getSystemSmsTemplates(
                 
@@ -10970,8 +13524,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get SMS template by ID.
-            * Description: Retrieve detailed information about a specific SMS communication template.
+            * Summary: Get sms template by id
+            * Description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get an sms template by ID.
             **/
             public func getSmsTemplateById(
                 id: String,
@@ -11019,8 +13573,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Update SMS template by ID.
-            * Description: Modify the content and settings of a specific SMS communication template.
+            * Summary: Update sms template by id
+            * Description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to update an sms template by ID.
             **/
             public func updateSmsTemplateById(
                 id: String,
@@ -11068,8 +13622,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Delete SMS template by ID.
-            * Description: Remove a specific SMS communication template.
+            * Summary: Delete sms template by id
+            * Description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to delete an sms template by ID.
             **/
             public func deleteSmsTemplateById(
                 id: String,
@@ -11117,8 +13671,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get subscribed SMS templates.
-            * Description: Retrieve SMS communication templates that are subscribed to.
+            * Summary: Get subscribed sms templates
+            * Description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all subscribed sms templates.
             **/
             public func getSubscribedSmsTemplates(
                 pageNo: Int?,
@@ -11187,10 +13741,71 @@ if let value = query {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Send communication synchronously.
-            * Description: Initiate and send communication in real-time.
+            * Summary: get paginator for getSubscribedSmsTemplates
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getSubscribedSmsTemplatesPaginator(
+                pageSize: Int?,
+                query: [String: Any]?
+                
+                ) -> Paginator<SmsTemplates> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<SmsTemplates>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getSubscribedSmsTemplates(
+                            
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            ,
+                            query: query
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Send email or sms synchronously
+            * Description: Send email or sms synchronously
             **/
             public func sendCommunicationSynchronously(
                 body: EngineRequest,
@@ -11237,8 +13852,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Send communication asynchronously.
-            * Description: Initiate and send communication with the option for asynchronous processing.
+            * Summary: Send email or sms asynchronously
+            * Description: Send email or sms asynchronously
             **/
             public func sendCommunicationAsynchronously(
                 body: EngineRequest,
@@ -11285,8 +13900,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get event subscriptions.
-            * Description: Retrieve a list of event subscriptions related to communication.
+            * Summary: Get event subscriptions
+            * Description: Get event subscriptions
             **/
             public func getEventSubscriptions(
                 pageNo: Int?,
@@ -11351,6 +13966,67 @@ if let value = populate {
                 });
             }
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: get paginator for getEventSubscriptions
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getEventSubscriptionsPaginator(
+                pageSize: Int?,
+                populate: String?
+                
+                ) -> Paginator<EventSubscriptions> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<EventSubscriptions>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getEventSubscriptions(
+                            
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            ,
+                            populate: populate
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
             
             
             
@@ -11608,8 +14284,8 @@ if let value = populate {
             
             /**
             *
-            * Summary: Get global variables.
-            * Description: Retrieve global variables used in communication.
+            * Summary: get global variables
+            * Description: get global variables
             **/
             public func getGlobalVariables(
                 
@@ -11656,8 +14332,8 @@ if let value = populate {
             
             /**
             *
-            * Summary: Post global variables.
-            * Description: Update and post global variables for communication.
+            * Summary: post global variables
+            * Description: psot global variables
             **/
             public func postGlobalVariables(
                 body: GlobalVariablesReq,
@@ -11704,8 +14380,8 @@ if let value = populate {
             
             /**
             *
-            * Summary: Get jobs.
-            * Description: Retrieve a list of communication jobs.
+            * Summary: Get jobs
+            * Description: Get jobs
             **/
             public func getJobs(
                 pageNo: Int?,
@@ -11782,6 +14458,75 @@ if let value = query {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: get paginator for getJobs
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getJobsPaginator(
+                pageSize: Int?,
+                sort: [String: Any]?,
+                query: [String: Any]?
+                
+                ) -> Paginator<Jobs> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<Jobs>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getJobs(
+                            
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            ,
+                            sort: sort,
+                            query: query
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
             /**
             *
             * Summary: Create jobs
@@ -11832,8 +14577,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Trigger campaign job.
-            * Description: Initiate a job to execute a communication campaign.
+            * Summary: Trigger campaign job
+            * Description: Trigger campaign job
             **/
             public func triggerCampaignJob(
                 body: TriggerJobRequest,
@@ -11880,8 +14625,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get job logs.
-            * Description: Retrieve logs and details related to communication jobs.
+            * Summary: Get job logs
+            * Description: Get job logs
             **/
             public func getJobLogs(
                 pageNo: Int?,
@@ -11958,10 +14703,79 @@ if let value = query {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Get communication logs.
-            * Description: Retrieve logs and records of communication activities.
+            * Summary: get paginator for getJobLogs
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getJobLogsPaginator(
+                pageSize: Int?,
+                sort: [String: Any]?,
+                query: [String: Any]?
+                
+                ) -> Paginator<JobLogs> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<JobLogs>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getJobLogs(
+                            
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            ,
+                            sort: sort,
+                            query: query
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get communication logs
+            * Description: Get communication logs
             **/
             public func getCommunicationLogs(
                 pageId: String?,
@@ -12039,17 +14853,95 @@ if let value = query {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Send OTP.
-            * Description: Send a one-time password (OTP) for authentication or verification.
+            * Summary: get paginator for getCommunicationLogs
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getCommunicationLogsPaginator(
+                pageSize: Int?,
+                sort: [String: Any]?,
+                query: [String: Any]?
+                
+                ) -> Paginator<Logs> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<Logs>(pageSize: pageSize, type: "cursor")
+                paginator.onPage = {
+                    self.getCommunicationLogs(
+                            
+                            pageId: paginator.pageId
+                            ,
+                            pageSize: paginator.pageSize
+                            ,
+                            sort: sort,
+                            query: query
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageId = response.page?.nextId
+                            
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Send OTP using email and sms
+            * Description: Send OTP Comms via email and sms
             **/
             public func sendOtp(
+                ci: Bool?,
                 body: SendOtpCommsReq,
                 onResponse: @escaping (_ response: SendOtpCommsRes?, _ error: FDKError?) -> Void
             ) {
                 
- 
+var xQuery: [String: Any] = [:] 
+
+if let value = ci {
+    
+    xQuery["ci"] = value
+    
+}
+
 
  
 
@@ -12058,7 +14950,7 @@ if let value = query {
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/otp/send-otp-comms",
-                    query: nil,
+                    query: xQuery,
                     body: body.dictionary,
                     headers: [],
                     responseType: "application/json",
@@ -12089,8 +14981,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Verify OTP.
-            * Description: Verify the one-time password (OTP) for authentication or verification.
+            * Summary: Verify OTP sent via email and sms
+            * Description: Verify OTP sent via email and sms
             **/
             public func verfiyOtp(
                 body: VerifyOtpCommsReq,
@@ -12248,8 +15140,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get build configuration.
-            * Description: Retrieve latest build configuration, such as app name, landing page image, splash image used in a mobile build.
+            * Summary: Get configuration of latest mobile build
+            * Description: Fetch latest build configuration, such as app name, landing page image, splash image used in a mobile build.
             **/
             public func getBuildConfig(
                 platformType: String,
@@ -12297,7 +15189,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Update build configuration.
+            * Summary: Update the configuration for next mobile build
             * Description: Modify the existing build configuration, such as app name, landing page image, splash image used in a mobile build.
             **/
             public func updateBuildConfig(
@@ -12346,8 +15238,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get previous versions.
-            * Description: Retrieve version details of the app, this includes the build status, build date, version name, latest version, and a lot more.
+            * Summary: Get details of previous mobile builds
+            * Description: Fetch version details of the app, this includes the build status, build date, version name, latest version, and a lot more.
             **/
             public func getPreviousVersions(
                 platformType: String,
@@ -12395,7 +15287,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Get application features.
+            * Summary: Get the sales channel configuration and features
             * Description: Shows feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
             **/
             public func getAppFeatures(
@@ -12443,7 +15335,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Update application features.
+            * Summary: Update the sales channel configuration and features
             * Description: Modify the feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
             **/
             public func updateAppFeatures(
@@ -12491,7 +15383,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Modify application features.
+            * Summary: Update features of application
             * Description: Update features of application
             **/
             public func modifyAppFeatures(
@@ -12539,7 +15431,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Get application basic details.
+            * Summary: Get sales channel details
             * Description: Shows basic sales channel details like name, description, logo, domain, company ID, and other related information.
             **/
             public func getAppBasicDetails(
@@ -12587,7 +15479,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Update application basic details.
+            * Summary: Update sales channel details
             * Description: Modify sales channel details like name, description, logo, domain, company ID, and other related information.
             **/
             public func updateAppBasicDetails(
@@ -12635,7 +15527,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Get application contact information.
+            * Summary: Get current information of the sales channel
             * Description: Fetch data such as social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application.
             **/
             public func getAppContactInfo(
@@ -12683,7 +15575,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Update application contact information.
+            * Summary: Save or update current information of the sales channel
             * Description: Modify the social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application.
             **/
             public func updateAppContactInfo(
@@ -12731,8 +15623,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get application API tokens.
-            * Description: Retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth. 
+            * Summary: Get social tokens for the sales channel
+            * Description: Use this API to retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth. **Note** - Token values are encrypted with AES encryption using a secret key.
             **/
             public func getAppApiTokens(
                 
@@ -12779,8 +15671,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Update application API tokens.
-            * Description: Add or edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth.
+            * Summary: Add or update social tokens for the sales channel
+            * Description: Use this API to add or edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth.
             **/
             public func updateAppApiTokens(
                 body: TokenResponse,
@@ -12827,8 +15719,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get application companies.
-            * Description: Retrieve info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application
+            * Summary: Get companies enabled in the sales channel inventory
+            * Description: Fetch info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application
             **/
             public func getAppCompanies(
                 uid: Int?,
@@ -12897,10 +15789,71 @@ if let value = pageSize {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Get application stores.
-            * Description: Retrieve information of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application
+            * Summary: get paginator for getAppCompanies
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getAppCompaniesPaginator(
+                uid: Int?,
+                pageSize: Int?
+                
+                ) -> Paginator<CompaniesResponse> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<CompaniesResponse>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getAppCompanies(
+                            
+                            uid: uid,
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get stores enabled in the sales channel inventory
+            * Description: Fetch info of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application
             **/
             public func getAppStores(
                 pageNo: Int?,
@@ -12961,10 +15914,63 @@ if let value = pageSize {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Get inventory configuration.
-            * Description: Retrieve configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
+            * Summary: get paginator for getAppStores
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getAppStoresPaginator(
+                pageSize: Int?
+                
+                ) -> Paginator<StoresResponse> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<StoresResponse>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getAppStores(
+                            
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get sales channel configuration
+            * Description: Use this API to fetch configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
             **/
             public func getInventoryConfig(
                 
@@ -13011,7 +16017,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Update inventory configuration.
+            * Summary: Update sales channel configuration
             * Description: Modify the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
             **/
             public func updateInventoryConfig(
@@ -13059,7 +16065,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Partially update inventory configuration.
+            * Summary: Partially update sales channel configuration
             * Description: Partially update the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
             **/
             public func partiallyUpdateInventoryConfig(
@@ -13107,8 +16113,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get application currency configuration.
-            * Description: Retrieve a list of currencies supported in the current sales channel. Moreover, get the cuurency that is set as the default one in the application.
+            * Summary: Get currencies supported in the application
+            * Description: Get a list of currencies supported in the current sales channel. Moreover, get the cuurency that is set as the default one in the application.
             **/
             public func getAppCurrencyConfig(
                 
@@ -13155,8 +16161,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Update application currency configuration.
-            * Description: Modify currency configuration settings for the application. Add and edit the currencies supported in the application. Initially, INR will be enabled by default.
+            * Summary: Update initial sales channel supported currency
+            * Description: Use this API to add and edit the currencies supported in the application. Initially, INR will be enabled by default.
             **/
             public func updateAppCurrencyConfig(
                 body: AppSupportedCurrency,
@@ -13203,8 +16209,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get supported currencies.
-            * Description: Retrieve a list of supported currencies for the application. A list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+            * Summary: Get currencies enabled in the application
+            * Description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
             **/
             public func getAppSupportedCurrency(
                 
@@ -13251,8 +16257,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get ordering stores by filter.
-            * Description: Retrieve ordering stores based on specified filters. Use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
+            * Summary: Get ordering store by filter
+            * Description: Use this API to use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
             **/
             public func getOrderingStoresByFilter(
                 pageNo: Int?,
@@ -13313,10 +16319,63 @@ if let value = pageSize {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Update ordering store configuration.
-            * Description: Modify configuration settings for ordering stores. Edit the details of the deployment stores (the selling locations where the application will be utilised for placing orders)
+            * Summary: get paginator for getOrderingStoresByFilter
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getOrderingStoresByFilterPaginator(
+                pageSize: Int?,
+                
+                body: FilterOrderingStoreRequest) -> Paginator<OrderingStores> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<OrderingStores>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getOrderingStoresByFilter(
+                            
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            ,body: body
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Add/Update ordering store config
+            * Description: Use this API to edit the details of the deployment stores (the selling locations where the application will be utilised for placing orders)
             **/
             public func updateOrderingStoreConfig(
                 body: OrderingStoreConfig,
@@ -13363,8 +16422,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get ordering store configuration.
-            * Description: Retrieve configuration settings for ordering stores. Retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
+            * Summary: Get ordering store config
+            * Description: Fetch the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
             **/
             public func getOrderingStoreConfig(
                 
@@ -13411,8 +16470,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get staff ordering stores.
-            * Description: Retrieve ordering stores accessible to staff members. Retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders).
+            * Summary: Get deployment stores
+            * Description: Use this API to retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders).
             **/
             public func getStaffOrderingStores(
                 pageNo: Int?,
@@ -13477,6 +16536,67 @@ if let value = q {
                 });
             }
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: get paginator for getStaffOrderingStores
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getStaffOrderingStoresPaginator(
+                pageSize: Int?,
+                q: String?
+                
+                ) -> Paginator<OrderingStoresResponse> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<OrderingStoresResponse>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getStaffOrderingStores(
+                            
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            ,
+                            q: q
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
             
             
             
@@ -13579,8 +16699,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get domains.
-            * Description: Get list of domains. 
+            * Summary: Fetch all the domains added to an  application (sales channel website), including pre-defined domain (free domain) or custom domain (owned by the brand). Know the verification status of each domain name, and find out which one is the primary domain, short link domain, or both.
+            * Description: Get list of domains
             **/
             public func getDomains(
                 
@@ -13627,8 +16747,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Add domain.
-            * Description: Add a new domain. Add a new domain to current sales channel, including pre-defined domain (free domain) or custom domain (owned by the brand)
+            * Summary: Add new domain to current sales channel
+            * Description: Add a new domain to current sales channel, including pre-defined domain (free domain) or custom domain (owned by the brand)
             **/
             public func addDomain(
                 body: DomainAddRequest,
@@ -13675,8 +16795,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Remove domain by ID.
-            * Description: Delete a specific domain from the application. Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain.
+            * Summary: Remove attached domain from current sales channel
+            * Description: Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain.
             **/
             public func removeDomainById(
                 id: String,
@@ -13724,8 +16844,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Change domain type.
-            * Description: Modify the type of a specific domain. Primary domain is used as the URL of your website. Short link domain is comparatively smaller and used while generating short links.
+            * Summary: Change the type of domain in the current sales channel
+            * Description: Primary domain is used as the URL of your website. Short link domain is comparatively smaller and used while generating short links. Use this API to change a domain to either Primary or a Shortlink domain.
             **/
             public func changeDomainType(
                 body: UpdateDomainTypeRequest,
@@ -13772,8 +16892,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get domain status.
-            * Description: Retrieve the status of a specific domain. Shows if the A records and TXT records of the domain correctly points to appropriate IP on Fynd Servers.
+            * Summary: Get the status of connected domain
+            * Description: Shows if the A records and TXT records of the domain correctly points to appropriate IP on Fynd Servers.
             **/
             public func getDomainStatus(
                 body: DomainStatusRequest,
@@ -13822,12 +16942,12 @@ if let value = q {
             
             /**
             *
-            * Summary: Get application by ID.
-            * Description: Retrieve detailed information about a specific application. Use application ID to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, token, etc.
+            * Summary: Get sales channel data by ID
+            * Description: Use application ID to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, token, etc.
             **/
             public func getApplicationById(
                 
-                onResponse: @escaping (_ response: ApplicationById?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: Application?, _ error: FDKError?) -> Void
             ) {
                 
  
@@ -13852,7 +16972,7 @@ if let value = q {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ApplicationById.self, from: data)
+                            let response = Utility.decode(Application.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -13901,8 +17021,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get announcements list.
-            * Description: Retrieve a list of announcements.
+            * Summary: Get a list of announcements
+            * Description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve a list of announcements.	
             **/
             public func getAnnouncementsList(
                 pageNo: Int?,
@@ -13963,10 +17083,63 @@ if let value = pageSize {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Create announcement.
-            * Description: Generate and add a new announcement.
+            * Summary: get paginator for getAnnouncementsList
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getAnnouncementsListPaginator(
+                pageSize: Int?
+                
+                ) -> Paginator<GetAnnouncementListSchema> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<GetAnnouncementListSchema>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getAnnouncementsList(
+                            
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Create an announcement
+            * Description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to create an announcement.
             **/
             public func createAnnouncement(
                 body: AdminAnnouncementSchema,
@@ -14013,8 +17186,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get announcement by ID.
-            * Description: Retrieve detailed information about a specific announcement.
+            * Summary: Get announcement by ID
+            * Description: Use this API to retrieve an announcement and its details such as the target platform and pages on which it's applicable
             **/
             public func getAnnouncementById(
                 announcementId: String,
@@ -14062,8 +17235,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Update announcement.
-            * Description: Modify the content and settings of a specific announcement.
+            * Summary: Update an announcement
+            * Description: Use this API to edit an existing announcement and its details such as the target platform and pages on which it's applicable
             **/
             public func updateAnnouncement(
                 announcementId: String,
@@ -14111,8 +17284,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Update announcement schedule.
-            * Description: Modify the scheduling of a specific announcement.
+            * Summary: Update the schedule and the publish status of an announcement
+            * Description: Use this API to edit the duration, i.e. start date-time and end date-time of an announcement. Moreover, you can enable/disable an announcement using this API.
             **/
             public func updateAnnouncementSchedule(
                 announcementId: String,
@@ -14160,8 +17333,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Delete announcement.
-            * Description: Remove a specific announcement.
+            * Summary: Delete announcement by id
+            * Description: Use this API to delete an existing announcement.
             **/
             public func deleteAnnouncement(
                 announcementId: String,
@@ -14209,8 +17382,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Create blog.
-            * Description: Generate and add a new blog.
+            * Summary: Create a blog
+            * Description: Use this API to create a blog.
             **/
             public func createBlog(
                 body: BlogRequest,
@@ -14257,8 +17430,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get blogs.
-            * Description: Retrieve a list of available blogs.
+            * Summary: Get blogs
+            * Description: Use this API to get a list of blogs along with their details, such as the title, reading time, publish status, feature image, tags, author, etc.
             **/
             public func getBlogs(
                 pageNo: Int?,
@@ -14319,10 +17492,63 @@ if let value = pageSize {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Update blog.
-            * Description: Modify the content and settings of a specific blog.
+            * Summary: get paginator for getBlogs
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getBlogsPaginator(
+                pageSize: Int?
+                
+                ) -> Paginator<BlogGetResponse> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<BlogGetResponse>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getBlogs(
+                            
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Update a blog
+            * Description: Use this API to update the details of an existing blog which includes title, feature image, content, SEO details, expiry, etc.
             **/
             public func updateBlog(
                 id: String,
@@ -14370,8 +17596,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Delete blog.
-            * Description: Remove a specific blog.
+            * Summary: Delete blogs
+            * Description: Use this API to delete a blog.
             **/
             public func deleteBlog(
                 id: String,
@@ -14419,8 +17645,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get component by ID.
-            * Description: Retrieve detailed information about a specific component.
+            * Summary: Get components of a blog
+            * Description: Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
             **/
             public func getComponentById(
                 slug: String,
@@ -14468,8 +17694,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Add data loader.
-            * Description: Create and add a new data loader.
+            * Summary: Adds a data loader
+            * Description: Use this API to add data loader. This includes the data loader name, operationId, service name and its type (url/function) with corresponding value.
             **/
             public func addDataLoader(
                 body: DataLoaderSchema,
@@ -14516,8 +17742,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get data loaders.
-            * Description: Retrieve a list of data loaders.
+            * Summary: Get all the data loaders in an application
+            * Description: Use this to get all data loaders of an application
             **/
             public func getDataLoaders(
                 
@@ -14564,8 +17790,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Delete data loader.
-            * Description: Remove a specific data loader.
+            * Summary: Delete data loader in application
+            * Description: Use this API to delete data loader.
             **/
             public func deleteDataLoader(
                 dataLoaderId: String,
@@ -14613,8 +17839,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Edit data loader.
-            * Description: Modify the settings of a specific data loader.
+            * Summary: Edit a data loader by id
+            * Description: Use this API to edit the details of an existing data loader by its ID.
             **/
             public func editDataLoader(
                 dataLoaderId: String,
@@ -14711,8 +17937,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Select data loader.
-            * Description: Choose and set a data loader for use.
+            * Summary: Select a data loader by id
+            * Description: Use this API to select a data loader to be used in applications.
             **/
             public func selectDataLoader(
                 dataLoaderId: String,
@@ -14760,8 +17986,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Reset data loader.
-            * Description: Clear and reset data loader settings.
+            * Summary: Reset a data loader by serive name and operation Id
+            * Description: Use this API to reselect a data loader.
             **/
             public func resetDataLoader(
                 service: String,
@@ -14810,8 +18036,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get FAQ categories.
-            * Description: Retrieve a list of FAQ categories.
+            * Summary: Get a list of FAQ categories
+            * Description: FAQs can be divided into categories. Use this API to get a list of FAQ categories.
             **/
             public func getFaqCategories(
                 
@@ -14858,8 +18084,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get FAQ category by slug or ID.
-            * Description: Retrieve detailed information about a specific FAQ category.
+            * Summary: Get an FAQ category by slug or id
+            * Description: FAQs can be divided into categories. Use this API to get an FAQ categories using its slug or ID.
             **/
             public func getFaqCategoryBySlugOrId(
                 idOrSlug: String,
@@ -14907,8 +18133,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Create FAQ category.
-            * Description: Generate and add a new FAQ category.
+            * Summary: Create an FAQ category
+            * Description: FAQs help users to solve an issue or know more about a process. FAQs can be categorized separately, for e.g. some questions can be related to payment, some could be related to purchase, shipping, navigating, etc. Use this API to create an FAQ category.
             **/
             public func createFaqCategory(
                 body: CreateFaqCategoryRequestSchema,
@@ -14955,8 +18181,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Update FAQ category.
-            * Description: Modify the content and settings of a specific FAQ category.
+            * Summary: Update an FAQ category
+            * Description: Use this API to edit an existing FAQ category.
             **/
             public func updateFaqCategory(
                 id: String,
@@ -15004,8 +18230,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Delete FAQ category.
-            * Description: Remove a specific FAQ category.
+            * Summary: Delete an FAQ category
+            * Description: Use this API to delete an FAQ category.
             **/
             public func deleteFaqCategory(
                 id: String,
@@ -15053,8 +18279,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get FAQs by category ID or slug.
-            * Description: Retrieve a list of FAQs within a specific category.
+            * Summary: Get question and answers within an FAQ category
+            * Description: Use this API to retrieve all the commonly asked question and answers belonging to an FAQ category.
             **/
             public func getFaqsByCategoryIdOrSlug(
                 idOrSlug: String,
@@ -15102,8 +18328,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Add FAQ.
-            * Description: Create and add a new FAQ.
+            * Summary: Create an FAQ
+            * Description: FAQs help users to solve an issue or know more about a process. Use this API to create an FAQ for a given FAQ category.
             **/
             public func addFaq(
                 categoryId: String,
@@ -15151,8 +18377,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Update FAQ.
-            * Description: Modify the content and settings of a specific FAQ.
+            * Summary: Update an FAQ
+            * Description: Use this API to edit an existing FAQ.
             **/
             public func updateFaq(
                 categoryId: String,
@@ -15201,8 +18427,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Delete FAQ.
-            * Description: Remove a specific FAQ.
+            * Summary: Delete an FAQ
+            * Description: Use this API to delete an existing FAQ.
             **/
             public func deleteFaq(
                 categoryId: String,
@@ -15251,8 +18477,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get FAQ by ID or slug.
-            * Description: Retrieve detailed information about a specific FAQ.
+            * Summary: Get an FAQ
+            * Description: Use this API to retrieve a specific FAQ. You will get the question and answer of that FAQ.
             **/
             public func getFaqByIdOrSlug(
                 idOrSlug: String,
@@ -15300,8 +18526,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Generate SEO title.
-            * Description: Create an SEO-friendly title for content.
+            * Summary: Get SEO meta tag title for content
+            * Description: Use this API to get GPT3 generated SEO meta tag title for content
             **/
             public func generateSEOTitle(
                 type: GenerationEntityType,
@@ -15349,8 +18575,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get landing pages.
-            * Description: Retrieve a list of landing pages.
+            * Summary: Get landing pages
+            * Description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch a list of landing pages.
             **/
             public func getLandingPages(
                 pageNo: Int?,
@@ -15411,10 +18637,63 @@ if let value = pageSize {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Create landing page.
-            * Description: Generate and add a new landing page.
+            * Summary: get paginator for getLandingPages
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getLandingPagesPaginator(
+                pageSize: Int?
+                
+                ) -> Paginator<LandingPageGetResponse> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<LandingPageGetResponse>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getLandingPages(
+                            
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Create a landing page
+            * Description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to create a landing page.
             **/
             public func createLandingPage(
                 body: LandingPageSchema,
@@ -15461,8 +18740,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Update landing page.
-            * Description: Modify the content and settings of a specific landing page.
+            * Summary: Update a landing page
+            * Description: Use this API to edit the details of an existing landing page.
             **/
             public func updateLandingPage(
                 id: String,
@@ -15510,8 +18789,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Delete landing page.
-            * Description: Remove a specific landing page.
+            * Summary: Delete a landing page
+            * Description: Use this API to delete an existing landing page.
             **/
             public func deleteLandingPage(
                 id: String,
@@ -15559,8 +18838,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get legal related information for applicaiton
-            * Description: Retrieve legal information and terms.
+            * Summary: Get legal information
+            * Description: Use this API to get the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
             **/
             public func getLegalInformation(
                 
@@ -15607,8 +18886,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Update legal related information for application
-            * Description: Modify legal information and terms.
+            * Summary: Save legal information
+            * Description: Use this API to edit, update and save the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
             **/
             public func updateLegalInformation(
                 body: ApplicationLegal,
@@ -15655,8 +18934,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get navigation items
-            * Description: Retrieve a list of navigational elements.
+            * Summary: Get navigations
+            * Description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the orientation, links, sub-navigations, etc.
             **/
             public func getNavigations(
                 devicePlatform: String,
@@ -15723,10 +19002,71 @@ if let value = pageSize {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Create navigation items
-            * Description: Generate and add a new navigation element.
+            * Summary: get paginator for getNavigations
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getNavigationsPaginator(
+                devicePlatform: String,
+                pageSize: Int?
+                
+                ) -> Paginator<NavigationGetResponse> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<NavigationGetResponse>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getNavigations(
+                            
+                            devicePlatform: devicePlatform,
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Create a navigation
+            * Description: Navigation is the arrangement of navigational items to ease the accessibility of resources for users on a website. Use this API to create a navigation.
             **/
             public func createNavigation(
                 body: NavigationRequest,
@@ -15773,8 +19113,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get default navigations.
-            * Description: Retrieve default navigation elements.
+            * Summary: Get default navigations
+            * Description: On any website (application), there are navigations that are present by default. Use this API to retrieve those default navigations.
             **/
             public func getDefaultNavigations(
                 
@@ -15821,8 +19161,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get navigation by slug.
-            * Description: Retrieve detailed information about a specific navigation element.
+            * Summary: Get a navigation by slug
+            * Description: Use this API to retrieve a navigation by its slug.
             **/
             public func getNavigationBySlug(
                 slug: String,
@@ -15876,8 +19216,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update navigation.
-            * Description: Modify the content and settings of a specific navigation element.
+            * Summary: Update a navigation
+            * Description: Use this API to edit the details of an existing navigation.
             **/
             public func updateNavigation(
                 id: String,
@@ -15925,8 +19265,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Delete navigation.
-            * Description: Remove a specific navigation element.
+            * Summary: Delete a navigation
+            * Description: Use this API to delete an existing navigation.
             **/
             public func deleteNavigation(
                 id: String,
@@ -15974,8 +19314,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get page meta.
-            * Description: Retrieve metadata for a specific page.
+            * Summary: Get page meta
+            * Description: Use this API to get the meta of custom pages (blog, page) and default system pages (e.g. home/brand/category/collection).
             **/
             public func getPageMeta(
                 
@@ -16022,8 +19362,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get page specification.
-            * Description: Retrieve specifications and details for a specific page.
+            * Summary: Get page spec
+            * Description: Use this API to get the specifications of a page, such as page type, display name, params and query.
             **/
             public func getPageSpec(
                 
@@ -16070,8 +19410,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Create page preview.
-            * Description: Generate and add a new page preview.
+            * Summary: Create a page preview
+            * Description: Use this API to create a page preview to check the appearance of a custom page.
             **/
             public func createPagePreview(
                 body: PageRequest,
@@ -16118,8 +19458,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update page preview.
-            * Description: Modify the content and settings of a specific page preview.
+            * Summary: Change the publish status of a page
+            * Description: Use this API to change the publish status of an existing page. Allows you to publish and unpublish the page.
             **/
             public func updatePagePreview(
                 slug: String,
@@ -16167,8 +19507,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Delete page.
-            * Description: Remove a page from the platform.
+            * Summary: Delete a page
+            * Description: Use this API to delete an existing page.
             **/
             public func deletePage(
                 id: String,
@@ -16216,8 +19556,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Add path redirection rules.
-            * Description: Create and add rules for path redirection.
+            * Summary: Save path based redirection rules
+            * Description: Use this API to add redirection rules
             **/
             public func addPathRedirectionRules(
                 body: PathMappingSchema,
@@ -16264,8 +19604,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get path redirection rules.
-            * Description: Retrieve a list of path redirection rules.
+            * Summary: Get path based redirection rules
+            * Description: Use this API to get path based redirection rules.
             **/
             public func getPathRedirectionRules(
                 pageSize: Int?,
@@ -16328,8 +19668,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get path redirection rule.
-            * Description: Retrieve detailed information about a specific path redirection rule.
+            * Summary: Get path based redirection rule
+            * Description: Use this API to get path based redirection rule.
             **/
             public func getPathRedirectionRule(
                 pathId: String,
@@ -16377,8 +19717,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Update path redirection rules.
-            * Description: Modify settings for path redirection rules.
+            * Summary: Update path based redirection rules
+            * Description: Use this API to update redirection rules
             **/
             public func updatePathRedirectionRules(
                 pathId: String,
@@ -16426,8 +19766,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Delete path redirection rules.
-            * Description: Remove specific path redirection rules.
+            * Summary: Delete path based redirection rules
+            * Description: Use this API to delete redirection rules
             **/
             public func deletePathRedirectionRules(
                 pathId: String,
@@ -16475,8 +19815,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get SEO configuration for an application
-            * Description: Retrieve configuration settings for SEO.
+            * Summary: Get SEO configuration of an application
+            * Description: Use this API to know how the SEO is configured in the application. This includes the sitemap, robot.txt, custom meta tags, etc.
             **/
             public func getSEOConfiguration(
                 
@@ -16523,8 +19863,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Update SEO configuration for an application
-            * Description: Modify configuration settings for SEO.
+            * Summary: Update SEO of application
+            * Description: Use this API to edit the SEO details of an application. This includes the sitemap, robot.txt, custom meta tags, etc.
             **/
             public func updateSEOConfiguration(
                 body: SeoComponent,
@@ -17234,8 +20574,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get support information.
-            * Description: Retrieve information related to customer support.
+            * Summary: Get support information
+            * Description: Use this API to get the contact details for customer support, including emails and phone numbers.
             **/
             public func getSupportInformation(
                 
@@ -17282,8 +20622,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update support related info for an application
-            * Description: Modify information related to customer support.
+            * Summary: Update the support data of an application
+            * Description: Use this API to edit the existing contact details for customer support, including emails and phone numbers.
             **/
             public func updateSupportInformation(
                 body: Support,
@@ -17330,8 +20670,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update HTML tag
-            * Description: Modify settings for an injectable tag.
+            * Summary: Update the exisitng tags for an application by replacing with provided tags
+            * Description: Use this API to edit and override all existing tags. All existing tags will be replaced by the new tags provided in body. 
             **/
             public func updateInjectableTag(
                 body: CreateTagRequestSchema,
@@ -17378,8 +20718,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get all HTML tags
-            * Description: Retrieve a list of injectable tags.
+            * Summary: Get all the tags in an application
+            * Description: Use this API to get the CSS and JS injected in the application in the form of tags.
             **/
             public func getInjectableTags(
                 all: Bool?,
@@ -17434,8 +20774,8 @@ if let value = all {
             
             /**
             *
-            * Summary: Create HTML tag.
-            * Description: Create and add a new injectable tag.
+            * Summary: Add a tag
+            * Description: CSS and JS can be injected in the application (website) with the help of tags. Use this API to create such tags by entering the tag name, tag type (css/js), url and position of the tag.
             **/
             public func addInjectableTag(
                 body: CreateTagRequestSchema,
@@ -17482,8 +20822,8 @@ if let value = all {
             
             /**
             *
-            * Summary: Remove HTML tag.
-            * Description: Delete a specific injectable tag.
+            * Summary: Remove a tag
+            * Description: Use this API to delete an existing tag.
             **/
             public func removeInjectableTag(
                 body: RemoveHandpickedSchema,
@@ -17530,8 +20870,8 @@ if let value = all {
             
             /**
             *
-            * Summary: Update HTML tag
-            * Description: Modify settings for an injectable tag.
+            * Summary: Edit a tag by id
+            * Description: Use this API to edit the details of an existing tag by its ID.
             **/
             public func editInjectableTag(
                 tagId: String,
@@ -17579,8 +20919,8 @@ if let value = all {
             
             /**
             *
-            * Summary: Get blog by slug.
-            * Description: Retrieve detailed information about a specific blog using its slug.
+            * Summary: Get blog by slug
+            * Description: Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
             **/
             public func getBlogBySlug(
                 slug: String,
@@ -17628,8 +20968,8 @@ if let value = all {
             
             /**
             *
-            * Summary: Create page.
-            * Description: Generate and add a new page to the platform.
+            * Summary: Create a page
+            * Description: Use this API to create a custom page using a title, seo, publish status, feature image, tags, meta, etc.
             **/
             public func createPage(
                 body: PageRequest,
@@ -17676,8 +21016,8 @@ if let value = all {
             
             /**
             *
-            * Summary: Get pages.
-            * Description: Retrieve a list of available pages.
+            * Summary: Get a list of pages
+            * Description: Use this API to retrieve a list of pages.
             **/
             public func getPages(
                 pageNo: Int?,
@@ -17738,10 +21078,63 @@ if let value = pageSize {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Update page.
-            * Description: Modify and update the content of a page.
+            * Summary: get paginator for getPages
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getPagesPaginator(
+                pageSize: Int?
+                
+                ) -> Paginator<PageGetResponse> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<PageGetResponse>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getPages(
+                            
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Update a page
+            * Description: Use this API to edit the details of an existing page, such as its title, seo, publish status, feature image, tags, schedule, etc.
             **/
             public func updatePage(
                 id: String,
@@ -17789,8 +21182,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get page by slug.
-            * Description: Retrieve detailed information about a specific page using its slug.
+            * Summary: Get page by slug
+            * Description: Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc.
             **/
             public func getPageBySlug(
                 slug: String,
@@ -18237,7 +21630,7 @@ if let value = search {
             
             /**
             *
-            * Summary: Get list of custom fields of gives resource
+            * Summary: Get list of custom fields of given resource
             * Description: Use this API to retrieve the custom fields for given resource in param.
             **/
             public func getAppCustomFields(
@@ -19142,8 +22535,26 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Application start upload.
-            * Description: Start uploading a file from an application and returns a storage link in response.
+            * Summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
+            * Description: Uploads an arbitrarily sized buffer or blob.
+
+It has three Major Steps:
+* Start
+* Upload
+* Complete
+
+### Start
+Initiates the assets upload using `appStartUpload`.
+It returns the storage link in response.
+
+### Upload
+Use the storage link to upload a file (Buffer or Blob) to the File Storage.
+Make a `PUT` request on storage link received from `appStartUpload` api with file (Buffer or Blob) as a request body.
+
+### Complete
+After successfully upload, call `appCompleteUpload` api to complete the upload process.
+This operation will return the url for the uploaded file.
+
             **/
             public func appStartUpload(
                 namespace: String,
@@ -19191,8 +22602,26 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Application complete upload.
-            * Description: Finish uploading a file from an application.
+            * Summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
+            * Description: Uploads an arbitrarily sized buffer or blob.
+
+It has three Major Steps:
+* Start
+* Upload
+* Complete
+
+### Start
+Initiates the assets upload using `appStartUpload`.
+It returns the storage link in response.
+
+### Upload
+Use the storage link to upload a file (Buffer or Blob) to the File Storage.
+Make a `PUT` request on storage link received from `appStartUpload` api with file (Buffer or Blob) as a request body.
+
+### Complete
+After successfully upload, call `appCompleteUpload` api to complete the upload process.
+This operation will return the url for the uploaded file.
+
             **/
             public func appCompleteUpload(
                 namespace: String,
@@ -19242,8 +22671,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Application copy files.
-            * Description: Copy files from an application to another location.
+            * Summary: Copy Files
+            * Description: Copy Files
             **/
             public func appCopyFiles(
                 sync: Bool?,
@@ -19299,8 +22728,8 @@ if let value = sync {
             
             /**
             *
-            * Summary: Application browse files.
-            * Description: Browse files within an application.
+            * Summary: Browse Files
+            * Description: Browse Files
             **/
             public func appbrowse(
                 namespace: String,
@@ -19446,8 +22875,8 @@ if let value = search {
             
             /**
             *
-            * Summary: Get PDF types.
-            * Description: Retrieve a list of available PDF types.
+            * Summary: Get all the supported invoice pdf types
+            * Description: Get all the supported invoice pdf types such as Invoice, Label, Delivery challan
             **/
             public func getPdfTypes(
                 countryCode: String?,
@@ -19508,8 +22937,57 @@ if let value = countryCode {
             
             /**
             *
-            * Summary: Get default PDF data.
-            * Description: Retrieve default data for PDF generation.
+            * Summary: delete Pdf Type
+            * Description: delete Pdf Type for invoice such as Invoice, Label, Deliver challan
+            **/
+            public func deletePdfType(
+                id: String,
+                
+                onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/types/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = String(decoding: data, as: UTF8.self)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get Dummy pdf data for invoice or label
+            * Description: Get Dummy pdf data for invoice or label
             **/
             public func getDefaultPdfData(
                 pdfTypeId: Int,
@@ -19570,8 +23048,8 @@ if let value = countryCode {
             
             /**
             *
-            * Summary: Update HTML Template
-            * Description: Update the HTML Template.
+            * Summary: Update html template for invoice or label
+            * Description: Update html template for invoice such as Invoice, Label, Deliver challan
             **/
             public func updateHtmlTemplate(
                 id: String,
@@ -19602,6 +23080,55 @@ if let value = countryCode {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(PdfConfigSaveSuccess.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: delete html template for invoice or label
+            * Description: delete html template for invoice such as Invoice, Label, Deliver challan
+            **/
+            public func deletePdfConfigTemplate(
+                id: String,
+                
+                onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/config/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = String(decoding: data, as: UTF8.self)
                             
                             onResponse(response, nil)
                         } else {
@@ -19687,8 +23214,8 @@ if let value = countryCode {
             
             /**
             *
-            * Summary: Save HTML template.
-            * Description: Store an HTML template.
+            * Summary: Update html template for invoice or label
+            * Description: Update html template for invoice such as Invoice, Label, Deliver challan
             **/
             public func saveHtmlTemplate(
                 body: PdfConfig,
@@ -19735,8 +23262,8 @@ if let value = countryCode {
             
             /**
             *
-            * Summary: Get default PDF template.
-            * Description: Retrieve the default PDF template.
+            * Summary: Default html template
+            * Description: Get default html template data for invoice or label
             **/
             public func getDefaultPdfTemplate(
                 pdfTypeId: Int,
@@ -19803,7 +23330,7 @@ if let value = countryCode {
             
             /**
             *
-            * Summary: Generate payment receipt.
+            * Summary: Generate Payment Receipt for Jiomart Digital
             * Description: Generate Payment Receipt for Jiomart Digital
             **/
             public func generatePaymentReceipt(
@@ -20166,8 +23693,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Get custom form.
-            * Description: Retrieve information about a custom form which includes corresponding field details and any validation regex required against that field or not
+            * Summary: Get specific custom form using it's slug
+            * Description: Get specific custom form using it's slug, this is used to view the form.
             **/
             public func getCustomForm(
                 slug: String,
@@ -20215,8 +23742,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Edit custom form.
-            * Description: Modify the content and assosciated settings of a custom form.
+            * Summary: Edit the given custom form
+            * Description: Edit the given custom form field such as adding or deleting input, assignee, title, decription, notification and polling information.
             **/
             public func editCustomForm(
                 slug: String,
@@ -20313,8 +23840,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Get custom forms.
-            * Description: Retrieve a list of available custom forms.
+            * Summary: Get list of custom form
+            * Description: Get list of custom form for given application
             **/
             public func getCustomForms(
                 
@@ -20361,8 +23888,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Create custom form.
-            * Description: Create a new custom form for application users to fill
+            * Summary: Creates a new custom form
+            * Description: Creates a new custom form for given application
             **/
             public func createCustomForm(
                 body: CreateCustomFormPayload,
@@ -20509,8 +24036,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Open video room.
-            * Description: Initiate and open a video room.
+            * Summary: Open a video room.
+            * Description: Open a video room.
             **/
             public func openVideoRoom(
                 body: CreateVideoRoomPayload,
@@ -20557,8 +24084,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Close video room.
-            * Description: Terminate and close an active video room.
+            * Summary: Close the video room and force all participants to leave.
+            * Description: Close the video room and force all participants to leave.
             **/
             public func closeVideoRoom(
                 uniqueName: String,
@@ -20625,10 +24152,11 @@ if let value = category {
             
             
             
+            
             /**
             *
-            * Summary: Update pincode MOP (Mode of Payment) view.
-            * Description: Modify and update views related to pincode MOP.
+            * Summary: PincodeView update of MOP.
+            * Description: This API updates Pincode method of payment.
             **/
             public func updatePincodeMopView(
                 body: PincodeMopData,
@@ -20675,8 +24203,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Update pincode bulk view.
-            * Description: Modify and update views related to bulk operations on pincode.
+            * Summary: Bulk Update of pincode in the application.
+            * Description: This API constructs bulk write operations to update the MOP data for each pincode in the payload.
             **/
             public func updatePincodeBulkView(
                 body: PincodeMopBulkData,
@@ -20723,8 +24251,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Update pincode CoD (Cash on Delivery) listing.
-            * Description: Modify and update listings for CoD based on pincode.
+            * Summary: Pincode count view of application.
+            * Description: This API returns count of active pincode.
             **/
             public func updatePincodeCoDListing(
                 body: PincodeCodStatusListingRequest,
@@ -20771,8 +24299,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Update pincode audit history.
-            * Description: Modify and update audit history records for pincode-related activities.
+            * Summary: Auditlog configuration of application.
+            * Description: This API returns Audit logs of Pincode.
             **/
             public func updatePincodeAuditHistory(
                 body: PincodeMopUpdateAuditHistoryRequest,
@@ -21091,8 +24619,8 @@ if let value = status {
             
             /**
             *
-            * Summary: Get All Courier Rules applied to application
-            * Description: This API returns all the Courier Rules applied to an application
+            * Summary: Get All application configs
+            * Description: This API returns all config applied to an application
             **/
             public func getApplicationConfiguration(
                 
@@ -21122,6 +24650,54 @@ if let value = status {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(ApplicationConfig.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: To patch any config which can be applied to application.
+            * Description: Apply configs to application and for reference, refer to examples
+            **/
+            public func patchApplicationConfiguration(
+                body: ApplicationConfigPatchRequest,
+                onResponse: @escaping (_ response: ApplicationConfigPatchResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PATCH",
+                    url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/configuration",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(ApplicationConfigPatchResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21654,7 +25230,6 @@ if let value = status {
             }
             
             
-            
         }
         
         
@@ -21710,6 +25285,485 @@ if let value = status {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: 
+            * Description: Get all questions of that cluster
+            **/
+            public func getQuestions(
+                pageNo: Int?,
+                pageSize: Int?,
+                q: String?,
+                isActive: String?,
+                
+                onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = isActive {
+    
+    xQuery["is_active"] = value
+    
+}
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/order-manage/v1.0/company/\(companyId)/application/\(applicationId)/question/",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = data.dictionary
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: 
+            * Description: Retrieve rule lane configurations
+            **/
+            public func getRuleLaneConfig(
+                searchValue: String?,
+                
+                onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+if let value = searchValue {
+    
+    xQuery["search_value"] = value
+    
+}
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/order-manage/v1.0/company/\(companyId)/application/\(applicationId)/rule-lane-config",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = data.dictionary
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: 
+            * Description: Create a new rule
+            **/
+            public func createRule(
+                body: RuleRequest,
+                onResponse: @escaping (_ response: CreateRuleResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/order-manage/v1.0/company/\(companyId)/application/\(applicationId)/rule",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CreateRuleResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: 
+            * Description: Get a specific rule by ID
+            **/
+            public func getRuleById(
+                ruleId: String,
+                
+                onResponse: @escaping (_ response: RuleResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/order-manage/v1.0/company/\(companyId)/application/\(applicationId)/rule/\(ruleId)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(RuleResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: 
+            * Description: Update a specific rule by ID
+            **/
+            public func updateRule(
+                ruleId: String,
+                body: RuleUpdateRequest,
+                onResponse: @escaping (_ response: RuleUpdateResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/order-manage/v1.0/company/\(companyId)/application/\(applicationId)/rule/\(ruleId)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(RuleUpdateResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: 
+            * Description: Delete a specific rule by ID
+            **/
+            public func deleteRule(
+                ruleId: String,
+                
+                onResponse: @escaping (_ response: DeleteRuleResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/order-manage/v1.0/company/\(companyId)/application/\(applicationId)/rule/\(ruleId)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(DeleteRuleResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: 
+            * Description: Update the position of a rule
+            **/
+            public func updateRulePosition(
+                body: UpdateRulePositionRequest,
+                onResponse: @escaping (_ response: UpdateRulePositionResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/order-manage/v1.0/company/\(companyId)/application/\(applicationId)/rule-position/",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(UpdateRulePositionResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: 
+            * Description: Get available rule parameters
+            **/
+            public func getRuleParameters(
+                
+                onResponse: @escaping (_ response: RuleParametersResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/order-manage/v1.0/company/\(companyId)/application/\(applicationId)/rule-parameters/",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(RuleParametersResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: 
+            * Description: Get a list of rules
+            **/
+            public func getRuleList(
+                body: RuleListRequest,
+                onResponse: @escaping (_ response: RuleListResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/order-manage/v1.0/company/\(companyId)/application/\(applicationId)/rule_list",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(RuleListResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
             
             
             
@@ -21940,8 +25994,8 @@ if let value = excludeLockedShipments {
             
             /**
             *
-            * Summary: Track shipment on the platform.
-            * Description: Track shipment by Shipment ID for application based on application Id
+            * Summary: Track shipment
+            * Description: Track Shipment by shipment id, for application based on application Id
             **/
             public func trackShipmentPlatform(
                 shipmentId: String,
@@ -21992,10 +26046,15 @@ if let value = excludeLockedShipments {
             
             
             
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Get platform shipment reasons.
-            * Description: Retrieve reasons behind full or partial cancellation of a shipment
+            * Summary: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+            * Description: Using action, get reasons behind full or partial cancellation of a shipment
             **/
             public func getPlatformShipmentReasons(
                 action: String,
@@ -22063,8 +26122,8 @@ if let value = excludeLockedShipments {
             
             /**
             *
-            * Summary: Add proxy path.
-            * Description: Create and add a new proxy path.
+            * Summary: Create proxy URL for the external URL
+            * Description: Use this API to generate proxy URL for the external URL
             **/
             public func addProxyPath(
                 extensionId: String,
@@ -22112,8 +26171,8 @@ if let value = excludeLockedShipments {
             
             /**
             *
-            * Summary: Remove proxy path.
-            * Description: Delete a proxy path from the platform.
+            * Summary: Remove proxy URL for the external URL
+            * Description: Use this API to remove the proxy URL which is already generated for the external URL
             **/
             public func removeProxyPath(
                 extensionId: String,
@@ -22177,8 +26236,8 @@ if let value = excludeLockedShipments {
             
             /**
             *
-            * Summary: Get brand payment gateway config
-            * Description: Retrieve configuration settings for brand payment gateways.
+            * Summary: Get All Brand Payment Gateway Config Secret
+            * Description: Get All Brand Payment Gateway Config Secret
             **/
             public func getBrandPaymentGatewayConfig(
                 aggregator: String?,
@@ -22241,8 +26300,8 @@ if let value = configType {
             
             /**
             *
-            * Summary: Save brand payment gateway config.
-            * Description: Store and update configuration settings for brand payment gateways.
+            * Summary: Save Config Secret For Brand Payment Gateway
+            * Description: Save Config Secret For Brand Payment Gateway
             **/
             public func saveBrandPaymentGatewayConfig(
                 body: PaymentGatewayConfigRequest,
@@ -22289,8 +26348,8 @@ if let value = configType {
             
             /**
             *
-            * Summary: Get payment mode routes.
-            * Description: Retrieve routes and options for payment modes.
+            * Summary: Get All Valid Payment Options
+            * Description: Use this API to get Get All Valid Payment Options for making payment
             **/
             public func getPaymentModeRoutes(
                 refresh: Bool,
@@ -22374,8 +26433,8 @@ if let value = shipmentId {
             
             /**
             *
-            * Summary: Get bank account details.
-            * Description: Retrieve bank account information using an open API.
+            * Summary: Get bank details
+            * Description: Use this API to get saved bank details for returned/cancelled order using order id.
             **/
             public func getBankAccountDetailsOpenAPI(
                 orderId: String,
@@ -22436,8 +26495,8 @@ if let value = requestHash {
             
             /**
             *
-            * Summary: Add refund bank account using OTP.
-            * Description: Register a refund bank account with OTP verification.
+            * Summary: Save bank details for cancelled/returned order
+            * Description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
             **/
             public func addRefundBankAccountUsingOTP(
                 body: AddBeneficiaryDetailsOTPRequest,
@@ -22485,8 +26544,8 @@ if let value = requestHash {
             
             /**
             *
-            * Summary: Get user order beneficiaries.
-            * Description: Retrieve beneficiaries associated with a user orders.
+            * Summary: List Order Beneficiary
+            * Description: Get all active  beneficiary details added by the user for refund
             **/
             public func getUserOrderBeneficiaries(
                 orderId: String,
@@ -22539,8 +26598,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get user beneficiaries.
-            * Description: Retrieve beneficiaries associated with a user.
+            * Summary: List User Beneficiary
+            * Description: Get all active  beneficiary details added by the user for refund
             **/
             public func getUserBeneficiaries(
                 orderId: String,
@@ -22593,8 +26652,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Confirm payment.
-            * Description: Authenticate and confirm a payment.
+            * Summary: Confirm payment after successful payment from payment gateway
+            * Description: Use this API to confirm payment after payment gateway accepted payment.
             **/
             public func confirmPayment(
                 body: PaymentConfirmationRequest,
@@ -22641,8 +26700,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get user COD limit routes.
-            * Description: Retrieve routes and limits for user cash-on-delivery (COD) transactions.
+            * Summary: Get COD limit for user
+            * Description: Use this API to get user cod limit and reamining limit for the payment
             **/
             public func getUserCODlimitRoutes(
                 merchantUserId: String,
@@ -22701,12 +26760,12 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Set user COD limit routes.
-            * Description: Configure routes and limits for user COD transactions.
+            * Summary: Set COD option for user for payment
+            * Description: Use this API to set cod option as true or false for the payment
             **/
             public func setUserCODlimitRoutes(
                 body: SetCODForUserRequest,
-                onResponse: @escaping (_ response: SetCODOptionResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetUserCODLimitResponse?, _ error: FDKError?) -> Void
             ) {
                 
  
@@ -22731,7 +26790,7 @@ var xQuery: [String: Any] = [:]
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SetCODOptionResponse.self, from: data)
+                            let response = Utility.decode(GetUserCODLimitResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22749,8 +26808,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: EDC aggregators and model list.
-            * Description: Retrieve a list of EDC (Electronic Data Capture) aggregators and models.
+            * Summary: get some information about the store and edc device
+            * Description: Use this API to get info of devices linked to a particular app.
             **/
             public func edcAggregatorsAndModelList(
                 
@@ -22797,8 +26856,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: EDC device stats.
-            * Description: Get statistics and data related to EDC devices.
+            * Summary: get some information about the store and edc device
+            * Description: Use this API to get info of devices linked to a particular app.
             **/
             public func edcDeviceStats(
                 
@@ -22845,8 +26904,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update EDC device.
-            * Description: Modify the settings and details of an EDC device.
+            * Summary: map new edc device to the terminal
+            * Description: Use this API to map new edc device to the terminal
             **/
             public func updateEdcDevice(
                 body: EdcAddRequest,
@@ -22893,8 +26952,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get EDC device.
-            * Description: Retrieve detailed information about an EDC device.
+            * Summary: get details of a single edc device
+            * Description: Use this API to get details of a single edc device
             **/
             public func getEdcDevice(
                 terminalUniqueIdentifier: String,
@@ -22942,8 +27001,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Add EDC device.
-            * Description: Register and add a new EDC device.
+            * Summary: Update store id and device tag of edc device
+            * Description: Use this API to Update store id and device tag of edc device
             **/
             public func addEdcDevice(
                 terminalUniqueIdentifier: String,
@@ -22991,8 +27050,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: EDC device list.
-            * Description: Retrieve a list of available EDC devices.
+            * Summary: get all the device list of an app
+            * Description: Use this API to get all devices linked to a particular app.
             **/
             public func edcDeviceList(
                 pageNo: Int?,
@@ -23079,8 +27138,8 @@ if let value = deviceTag {
             
             /**
             *
-            * Summary: Get POS payment mode routes.
-            * Description: Retrieve payment options and aggregator for point-of-sale (POS).
+            * Summary: Get All Valid Payment Options
+            * Description: Use this API to get Get All Valid Payment Options for making payment
             **/
             public func getPosPaymentModeRoutes(
                 amount: Int,
@@ -23217,8 +27276,8 @@ if let value = shipmentId {
             
             /**
             *
-            * Summary: Initialize payment.
-            * Description: Start the payment initiation process for UPI and QR code.
+            * Summary: Initialize a payment (server-to-server) for UPI and BharatQR
+            * Description: PUse this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
             **/
             public func initialisePayment(
                 body: PaymentInitializationRequest,
@@ -23265,8 +27324,8 @@ if let value = shipmentId {
             
             /**
             *
-            * Summary: Check and update payment status.
-            * Description: Verify and modify the status of a payment.
+            * Summary: Performs continuous polling to check status of payment on the server
+            * Description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
             **/
             public func checkAndUpdatePaymentStatus(
                 body: PaymentStatusUpdateRequest,
@@ -23313,8 +27372,8 @@ if let value = shipmentId {
             
             /**
             *
-            * Summary: Resend or cancel payment.
-            * Description: Resend or cancel a payment link.
+            * Summary: API to resend and cancel a payment link which was already generated.
+            * Description: Use this API to perform resend or cancel a payment link based on request payload.
             **/
             public func resendOrCancelPayment(
                 body: ResendOrCancelPaymentRequest,
@@ -23361,8 +27420,8 @@ if let value = shipmentId {
             
             /**
             *
-            * Summary: Payment status bulk.
-            * Description: Retrieve the status of multiple payments in bulk.
+            * Summary: Get Payment status and information for a list of order_ids
+            * Description: Use this API to get Payment status and information for a list of order_ids
             **/
             public func paymentStatusBulk(
                 body: PaymentStatusBulkHandlerRequest,
@@ -23409,8 +27468,8 @@ if let value = shipmentId {
             
             /**
             *
-            * Summary: Get OAuth URL.
-            * Description: Retrieve an OAuth URL for PG API authentication.
+            * Summary: API to Get the url to call for oauth
+            * Description: Use this API to Get the url to call for oauth.
             **/
             public func oauthGetUrl(
                 aggregator: String,
@@ -23474,8 +27533,8 @@ if let value = failureRedirectUrl {
             
             /**
             *
-            * Summary: Revoke OAuth token.
-            * Description: Invalidate an OAuth token.
+            * Summary: API to Revoke oauth for razorpay partnership
+            * Description: Use this API to Revoke oauth for razorpay partnership
             **/
             public func revokeOauthToken(
                 aggregator: String,
@@ -23523,8 +27582,8 @@ if let value = failureRedirectUrl {
             
             /**
             *
-            * Summary: Repayment details for BNPL.
-            * Description: Retrieve information about repayment transactions.
+            * Summary: API to register repayment details
+            * Description: Use this API to register any repayment record in the db and notify the aggrgator
             **/
             public func repaymentDetails(
                 body: RepaymentDetailsSerialiserPayAll,
@@ -23571,8 +27630,8 @@ if let value = failureRedirectUrl {
             
             /**
             *
-            * Summary: Merchant onboarding for BNPL.
-            * Description: Initiate the onboarding process for a merchant.
+            * Summary: API to push Ajiodhan merchant data to Gringotts system
+            * Description: Use this API to push Ajiodhan merchant data to Gringotts system
             **/
             public func merchantOnBoarding(
                 body: MerchantOnBoardingRequest,
@@ -23619,8 +27678,8 @@ if let value = failureRedirectUrl {
             
             /**
             *
-            * Summary: Verify customer for payment.
-            * Description: Retrieve a link for making payments.
+            * Summary: Validate customer for payment
+            * Description: Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi.
             **/
             public func verifyCustomerForPayment(
                 body: ValidateCustomerRequest,
@@ -23667,8 +27726,8 @@ if let value = failureRedirectUrl {
             
             /**
             *
-            * Summary: Get payment link.
-            * Description: Retrieve a link for making payments.
+            * Summary: Get payment link
+            * Description: Use this API to get a payment link
             **/
             public func getPaymentLink(
                 paymentLinkId: String?,
@@ -23723,8 +27782,8 @@ if let value = paymentLinkId {
             
             /**
             *
-            * Summary: Create payment link.
-            * Description: Generate a new link for accepting payments.
+            * Summary: Create payment link
+            * Description: Use this API to create a payment link for the customer
             **/
             public func createPaymentLink(
                 body: CreatePaymentLinkRequest,
@@ -23771,8 +27830,8 @@ if let value = paymentLinkId {
             
             /**
             *
-            * Summary: Polling payment link.
-            * Description: Continuously check the status of a payment link.
+            * Summary: Used for polling if payment successful or not
+            * Description: Use this API to poll if payment through payment was successful or not
             **/
             public func pollingPaymentLink(
                 paymentLinkId: String?,
@@ -23827,8 +27886,8 @@ if let value = paymentLinkId {
             
             /**
             *
-            * Summary: Resend payment link.
-            * Description: Reissue a payment link to a recipient.
+            * Summary: Resend payment link
+            * Description: Use this API to resend a payment link for the customer
             **/
             public func resendPaymentLink(
                 body: CancelOrResendPaymentLinkRequest,
@@ -23875,8 +27934,8 @@ if let value = paymentLinkId {
             
             /**
             *
-            * Summary: Cancel payment link.
-            * Description: Deactivate and cancel a payment link.
+            * Summary: Cancel payment link
+            * Description: Use this API to cancel a payment link for the customer
             **/
             public func cancelPaymentLink(
                 body: CancelOrResendPaymentLinkRequest,
@@ -24119,8 +28178,8 @@ if let value = paymentLinkId {
             
             /**
             *
-            * Summary: Get payment mode code.
-            * Description: Retrieve options for payment codes.
+            * Summary: List Payment Options Method Codes
+            * Description: Get all active List Payment Options Method Codes
             **/
             public func getPaymentCodeOption(
                 
@@ -24224,8 +28283,8 @@ if let value = lineItem {
             
             /**
             *
-            * Summary: Update payment session.
-            * Description: Modify the details of a payment session.
+            * Summary: API to update status of a payment.
+            * Description: A payment_session is initiated against a global identifier (gid) which is identifies the entity payment is initiated against. e.g. order_id, cart_id. This endpoint is to update the status of the said payment_session.
             **/
             public func updatePaymentSession(
                 gid: String,
@@ -24273,8 +28332,8 @@ if let value = lineItem {
             
             /**
             *
-            * Summary: Update refund session.
-            * Description: Modify the details of a refund session.
+            * Summary: API to update the status of a refund
+            * Description: A refund_session is initiated against a refund request, and this endpoint is to update the status against the refund request_id. A gid is unique indentifier of the entity against which payment was received e.g. an order.
             **/
             public func updateRefundSession(
                 gid: String,
@@ -24323,15 +28382,23 @@ if let value = lineItem {
             
             /**
             *
-            * Summary: Get merchant payment option
-            * Description: Retrieve all the available Paymet Gateways for merchant and its offline payment mode details.
+            * Summary: Get Payment modes and COD details.
+            * Description: This api fetches all the available PGs for merchant and its offline payment mode details.
             **/
             public func getMerchantPaymentOption(
+                paymentOptionType: String?,
                 
-                onResponse: @escaping (_ response: PlatformPaymentModeResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PlatformOnlineOfflinePaymentResponse?, _ error: FDKError?) -> Void
             ) {
                 
- 
+var xQuery: [String: Any] = [:] 
+
+if let value = paymentOptionType {
+    
+    xQuery["payment_option_type"] = value
+    
+}
+
 
  
 
@@ -24340,7 +28407,7 @@ if let value = lineItem {
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/configuration",
-                    query: nil,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     responseType: "application/json",
@@ -24353,7 +28420,7 @@ if let value = lineItem {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PlatformPaymentModeResponse.self, from: data)
+                            let response = Utility.decode(PlatformOnlineOfflinePaymentResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -24371,7 +28438,7 @@ if let value = lineItem {
             
             /**
             *
-            * Summary: Patch merchant payment option
+            * Summary: Update Payment modes and COD details.
             * Description: To updated online payment as active/inactive or offline payment configuration like cod charges, anonymous cod allowed flags.
             **/
             public func patchMerchantPaymentOption(
@@ -24419,8 +28486,8 @@ if let value = lineItem {
             
             /**
             *
-            * Summary: Get merchant aggregator payment mode details.
-            * Description: swagger not found. so operationId not found
+            * Summary: Get Aggregator, payment mode and sub payment mode.
+            * Description: Get Aggregator, payment mode and sub payment mode details.
             **/
             public func getMerchantAggregatorPaymentModeDetails(
                 aggregatorId: Int,
@@ -24480,8 +28547,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Patch merchant aggregator payment mode details.
-            * Description: swagger not found. so operationId not found
+            * Summary: Update Aggregator, payment mode and sub payment mode.
+            * Description: Update Aggregator, payment mode and sub payment mode details.
             **/
             public func patchMerchantAggregatorPaymentModeDetails(
                 aggregatorId: Int,
@@ -24529,8 +28596,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get PG (Payment Gateway) config aggregators.
-            * Description: swagger not found. so operationId not found
+            * Summary: Get Aggregators available to be added as PG.
+            * Description: Get Aggregators available to be added as PG.
             **/
             public func getPGConfigAggregators(
                 
@@ -24577,8 +28644,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get merchant refund priority
-            * Description: Get merchant refund priority.
+            * Summary: API to get merchant refund priority
+            * Description: API to get merchant refund priority
             **/
             public func getMerchantRefundPriority(
                 configType: String,
@@ -24626,8 +28693,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Crete merchant refund priority
-            * Description: Crete merchant refund priority.
+            * Summary: API to create merchant refund priority
+            * Description: API to update merchant refund priority
             **/
             public func createMerchantRefundPriority(
                 configType: String,
@@ -24893,6 +28960,497 @@ if let value = subPaymentMode {
             }
             
             
+            
+            
+            
+            /**
+            *
+            * Summary: Delete saved beneficiary details of customers
+            * Description: Use this API to delete the saved beneficiary details provided beneficiary Id.
+            **/
+            public func deleteBeneficiaryDetails(
+                beneficiaryId: String,
+                
+                onResponse: @escaping (_ response: DeleteRefundAccountResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/refund/account/\(beneficiaryId)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(DeleteRefundAccountResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Refund Options Handler to fetch available refund options.
+            * Description: Refund Options Handler to fetch available refund options
+            **/
+            public func getRefundOptions(
+                configuration: String,
+                productType: String?,
+                amount: String?,
+                
+                onResponse: @escaping (_ response: RefundOptionResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["configuration"] = configuration
+
+
+
+if let value = productType {
+    
+    xQuery["product_type"] = value
+    
+}
+
+
+if let value = amount {
+    
+    xQuery["amount"] = value
+    
+}
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/refundoptions/",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(RefundOptionResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Save refund source against shipment and order
+            * Description: Save refund source against shipment and order
+            **/
+            public func setRefundOptionforShipment(
+                body: ShipmentRefundRequest,
+                onResponse: @escaping (_ response: ShipmentRefundResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/refundoptions/",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(ShipmentRefundResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: API to get the selected refund options for shipment id
+            * Description: API to get the selected refund options for shipment id
+            **/
+            public func getSelectedRefundOption(
+                shipmentId: String,
+                orderId: String,
+                
+                onResponse: @escaping (_ response: SelectedRefundOptionResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["shipment_id"] = shipmentId
+
+
+
+
+    xQuery["order_id"] = orderId
+
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/selected_refund_options",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SelectedRefundOptionResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Lists the beneficiary of a refund
+            * Description: Use this API to get the details of all active beneficiary added by a user for refund.
+            **/
+            public func getUserBeneficiariesDetailV2(
+                orderId: String?,
+                shipmentId: String?,
+                mop: String?,
+                
+                onResponse: @escaping (_ response: OrderBeneficiaryResponseSchemaV2?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+if let value = orderId {
+    
+    xQuery["order_id"] = value
+    
+}
+
+
+if let value = shipmentId {
+    
+    xQuery["shipment_id"] = value
+    
+}
+
+
+if let value = mop {
+    
+    xQuery["mop"] = value
+    
+}
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/payment/v2.0/company/\(companyId)/application/\(applicationId)/refund/user/beneficiary",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(OrderBeneficiaryResponseSchemaV2.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: API to Validate UPI ID and IFSC code
+            * Description: API to Validate UPI ID and IFSC code
+            **/
+            public func validateBeneficiaryAddress(
+                body: ValidateValidateAddressRequest,
+                onResponse: @escaping (_ response: ValidateValidateAddressResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/validate/beneficiary-address",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(ValidateValidateAddressResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Set a default beneficiary for a refund
+            * Description: Use this API to set a default beneficiary for getting a refund.
+            **/
+            public func updateDefaultBeneficiary(
+                body: SetDefaultBeneficiaryRequest,
+                onResponse: @escaping (_ response: SetDefaultBeneficiaryResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/refund/beneficiary/default",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SetDefaultBeneficiaryResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: API to get pennydrop validation flag
+            * Description: API to get pennydrop validation flag
+            **/
+            public func getPennyDropValidation(
+                
+                onResponse: @escaping (_ response: PennyDropValidationResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/pennydrop/validation",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(PennyDropValidationResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: API to update penny drop validation for application ID
+            * Description: API to update penny drop validation for application ID
+            **/
+            public func updatePennyDropValidation(
+                body: UpdatePennyDropValidationRequest,
+                onResponse: @escaping (_ response: PennyDropValidationResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/pennydrop/validation",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(PennyDropValidationResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
         }
         
         
@@ -24913,8 +29471,8 @@ if let value = subPaymentMode {
             
             /**
             *
-            * Summary: Display giveaways.
-            * Description: Retrieve and display available giveaways.
+            * Summary: List of giveaways of the current application.
+            * Description: Fetch the detailed compilation of live, completed, and scheduled point-based giveaways created.
             **/
             public func showGiveaways(
                 pageId: String,
@@ -24973,8 +29531,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Save giveaway.
-            * Description: Store and manage details of a giveaway.
+            * Summary: List of giveaways of the current application.
+            * Description: Creates a new giveaway in the current application, specifying the target audience, points allocation, as well as the name and display name of the giveaway.
             **/
             public func saveGiveAway(
                 body: Giveaway,
@@ -25022,7 +29580,7 @@ var xQuery: [String: Any] = [:]
             /**
             *
             * Summary: Get giveaway by ID.
-            * Description: Retrieve specific giveaway details by its unique identifier.
+            * Description: Retrieve the specific giveaway by giveaway ID. It will show all the details of the requested giveaway.
             **/
             public func getGiveawayById(
                 id: String,
@@ -25070,8 +29628,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update giveaway.
-            * Description: Modify and update information about a giveaway.
+            * Summary: Updates the giveaway by it's ID.
+            * Description: Make the necessary updates to the giveaway based on its giveaway ID.
             **/
             public func updateGiveAway(
                 id: String,
@@ -25119,8 +29677,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Show offers.
-            * Description: Display available offers for users.
+            * Summary: List of offers of the current application.
+            * Description: Retrieve the list of offers within the current application, including order_discount, order, sign_up, and referral, along with their respective details.
             **/
             public func showOffers(
                 
@@ -25167,8 +29725,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get offer by name.
-            * Description: Retrieve an offer by its name.
+            * Summary: Fetch a offer by its name
+            * Description: Fetch the specific offer details and configuration by the name of the offer.
             **/
             public func getOfferByName(
                 name: String,
@@ -25216,8 +29774,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update offer by name.
-            * Description: Modify and manage an offer using its name.
+            * Summary: Update offer by name
+            * Description: Update the specific offer details and its configuration by offer name.
             **/
             public func updateOfferByName(
                 name: String,
@@ -25265,8 +29823,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update user status.
-            * Description: Change and update the status of a user in the rewards system.
+            * Summary: Update user status
+            * Description: Update the user status by marking them as a block or unblock. It can be done by changing the active flag in request body.
             **/
             public func updateUserStatus(
                 userId: String,
@@ -25314,8 +29872,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get user details.
-            * Description: Retrieve comprehensive details about a user in the rewards program.
+            * Summary: Get user reward details
+            * Description: Fetches the user details and the user reward details with their current reward points for the specific user.
             **/
             public func getUserDetails(
                 userId: String,
@@ -25363,8 +29921,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get user points history.
-            * Description: Retrieve the history of points earned and redeemed by a user.
+            * Summary: Get all transactions of reward points
+            * Description: Fetches a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
             **/
             public func getUserPointsHistory(
                 userId: String,
@@ -25426,10 +29984,72 @@ if let value = pageSize {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Get rewards configuration.
-            * Description: Retrieve the configuration settings for the rewards program.
+            * Summary: get paginator for getUserPointsHistory
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getUserPointsHistoryPaginator(
+                userId: String,
+                pageSize: Int?
+                
+                ) -> Paginator<HistoryRes> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<HistoryRes>(pageSize: pageSize, type: "cursor")
+                paginator.onPage = {
+                    self.getUserPointsHistory(
+                            
+                            userId: userId,
+                            pageId: paginator.pageId
+                            ,
+                            pageSize: paginator.pageSize
+                            
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageId = response.page?.nextId
+                            
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get all valid android paths
+            * Description: Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fraudulent device.
             **/
             public func getRewardsConfiguration(
                 
@@ -25476,8 +30096,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Set rewards configuration.
-            * Description: Configure and modify the settings for the rewards program.
+            * Summary: Updates the collection with given android paths.
+            * Description: Updates the configuration or inserts new records with the given android paths.
             **/
             public func setRewardsConfiguration(
                 body: ConfigurationRequest,
@@ -25539,8 +30159,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Create short link.
-            * Description: Generate a shortened URL link for sharing.
+            * Summary: Create short link
+            * Description: Create short link
             **/
             public func createShortLink(
                 body: ShortLinkReq,
@@ -25587,8 +30207,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get short links.
-            * Description: Retrieve a list of all generated short links.
+            * Summary: Get short links
+            * Description: Get short links
             **/
             public func getShortLinks(
                 pageNo: Int?,
@@ -25691,8 +30311,8 @@ if let value = title {
             
             /**
             *
-            * Summary: Get short link by hash.
-            * Description: Retrieve a specific short link by its unique hash.
+            * Summary: Get short link by hash
+            * Description: Get short link by hash
             **/
             public func getShortLinkByHash(
                 hash: String,
@@ -25740,8 +30360,8 @@ if let value = title {
             
             /**
             *
-            * Summary: Update short link by ID.
-            * Description: Update details of a specific short link by its ID.
+            * Summary: Update short link by id
+            * Description: Update short link by id
             **/
             public func updateShortLinkById(
                 id: String,
@@ -25789,8 +30409,8 @@ if let value = title {
             
             /**
             *
-            * Summary: Get short link click statistics.
-            * Description: Retrieve statistics and analytics for clicks on a short link.
+            * Summary: Get click statistics for a short link
+            * Description: Retrieve click statistics for a given short link ID.
             **/
             public func getShortLinkClickStats(
                 surlId: String,
@@ -25858,8 +30478,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get all pages.
-            * Description: Retrieve a list of all available pages.
+            * Summary: Get all pages of a theme
+            * Description: Use this API to retrieve all the available pages of a theme by its ID.
             **/
             public func getAllPages(
                 themeId: String,
@@ -25907,8 +30527,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Create page.
-            * Description: Generate and add a new page to the platform.
+            * Summary: Create a page 
+            * Description: Use this API to create a page for a theme by its ID.
             **/
             public func createPage(
                 themeId: String,
@@ -25956,8 +30576,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update multiple pages.
-            * Description: Modify multiple pages simultaneously.
+            * Summary: Update multiple pages of a theme
+            * Description: Use this API to update multiple pages of a theme by its ID.
             **/
             public func updateMultiplePages(
                 themeId: String,
@@ -26005,8 +30625,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get page.
-            * Description: Retrieve detailed information about a specific page.
+            * Summary: Get page of a theme
+            * Description: Use this API to retrieve a page of a theme.
             **/
             public func getPage(
                 themeId: String,
@@ -26055,8 +30675,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update page.
-            * Description: Modify and update the content of a page.
+            * Summary: Updates a page 
+            * Description: Use this API to update a page for a theme by its ID.
             **/
             public func updatePage(
                 themeId: String,
@@ -26105,8 +30725,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Delete page.
-            * Description: Remove a page from the platform.
+            * Summary: Deletes a page 
+            * Description: Use this API to delete a page for a theme by its ID and page_value.
             **/
             public func deletePage(
                 themeId: String,
@@ -26155,8 +30775,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get theme library.
-            * Description: Retrieve themes available in the platform's library.
+            * Summary: Get a list of themes from the theme library
+            * Description: Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to fetch a list of themes from the library along with their configuration details. 
             **/
             public func getThemeLibrary(
                 pageSize: Int?,
@@ -26219,8 +30839,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Add to theme library.
-            * Description: Store and add a theme to the platform's library.
+            * Summary: Add a theme to the theme library
+            * Description: Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to choose a theme and add it to the theme library.
             **/
             public func addToThemeLibrary(
                 body: AddThemeRequestSchema,
@@ -26267,8 +30887,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get public themes.
-            * Description: Retrieve themes that are publicly accessible.
+            * Summary: Get all public themes
+            * Description: Use this API to get a list of free themes that you can apply to your website.
             **/
             public func getPublicThemes(
                 pageSize: Int?,
@@ -26331,8 +30951,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get fonts.
-            * Description: Retrieve a list of available fonts.
+            * Summary: Get all the supported fonts in a theme
+            * Description: Font is a collection of characters with a similar design. Use this API to retrieve a list of website fonts.
             **/
             public func getFonts(
                 
@@ -26379,8 +30999,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Publish theme.
-            * Description: Make a theme accessible for use.
+            * Summary: Publish a theme
+            * Description: Use this API to publish a theme that is either newly created or edited.
             **/
             public func publishTheme(
                 themeId: String,
@@ -26428,8 +31048,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Unpublish theme.
-            * Description: Remove a published theme from public access.
+            * Summary: Unpublish a theme
+            * Description: Use this API to remove an existing theme from the list of available themes.
             **/
             public func unpublishTheme(
                 themeId: String,
@@ -26477,8 +31097,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Archive theme.
-            * Description: Store a theme in an archive.
+            * Summary: Archive a theme
+            * Description: Use this API to store an existing theme but not delete it so that it can be used in future if required. 
             **/
             public func archiveTheme(
                 themeId: String,
@@ -26526,8 +31146,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Unarchive theme.
-            * Description: Retrieve a theme from the archive.
+            * Summary: Unarchive a theme
+            * Description: Use this API to restore an archived theme and bring it back for editing or publishing. 
             **/
             public func unarchiveTheme(
                 themeId: String,
@@ -26579,8 +31199,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get application themes.
-            * Description: Retrieve themes available for an application.
+            * Summary: Get all the themes for a specific application
+            * Description: Get all the themes for a specific application
             **/
             public func getApplicationThemes(
                 
@@ -26627,8 +31247,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get application themes count.
-            * Description: Count the number of themes available for an application.
+            * Summary: Get the count of themes for a specific application
+            * Description: Get the count of themes for a specific application
             **/
             public func getApplicationThemesCount(
                 
@@ -26675,8 +31295,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get theme by ID.
-            * Description: Retrieve a theme by its unique identifier.
+            * Summary: Get Theme By Theme Id
+            * Description: Get Theme By Theme Id
             **/
             public func getThemeById(
                 themeId: String,
@@ -26724,8 +31344,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Update theme.
-            * Description: Modify and update the content and settings of a theme
+            * Summary: Update theme for a specific company and application
+            * Description: Update theme for a specific company and application
             **/
             public func updateTheme(
                 themeId: String,
@@ -26773,8 +31393,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Delete theme.
-            * Description: Remove a theme from the platform.
+            * Summary: Delete a theme
+            * Description: This endpoint is used to delete a theme from the specified company and application.
             **/
             public func deleteTheme(
                 themeId: String,
@@ -26822,8 +31442,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Add theme to application.
-            * Description: Include a theme in an application's design.
+            * Summary: Add a theme to an application
+            * Description: Add a theme to an application by providing the marketplace theme ID.
             **/
             public func addThemeToApplication(
                 body: ThemeReq,
@@ -26870,8 +31490,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Update theme name.
-            * Description: Modify the name of a theme.
+            * Summary: Update Theme Name
+            * Description: Update the name of a theme for a specific company and application.
             **/
             public func updateThemeName(
                 themeId: String,
@@ -26919,8 +31539,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Apply theme.
-            * Description: Set and apply a theme to an application or page.
+            * Summary: Apply theme to a specific application
+            * Description: Apply theme to a specific application by providing company_id, application_id, and theme_id.
             **/
             public func applyTheme(
                 themeId: String,
@@ -26968,8 +31588,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Duplicate theme.
-            * Description: Create a copy of an existing theme.
+            * Summary: Duplicate a Theme
+            * Description: This endpoint duplicates a Theme in the specified application.
             **/
             public func duplicateTheme(
                 themeId: String,
@@ -27017,8 +31637,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get applied theme.
-            * Description: Retrieve the currently applied theme.
+            * Summary: Get the Applied theme of an Application
+            * Description: Get Applied Theme of an Application by Application Id
             **/
             public func getAppliedTheme(
                 
@@ -27065,8 +31685,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get theme for preview.
-            * Description: Retrieve a theme for previewing before application.
+            * Summary: Get Theme Preview By Theme Id
+            * Description: Get Theme Preview By Theme Id
             **/
             public func getThemeForPreview(
                 themeId: String,
@@ -27114,8 +31734,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get theme last modified.
-            * Description: Retrieve the last modification of a theme.
+            * Summary: Fetch last modified timestamp
+            * Description: Use this API to fetch Last-Modified timestamp in header metadata.
             **/
             public func getThemeLastModified(
                 themeId: String,
@@ -27163,8 +31783,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Is upgradable.
-            * Description: Determine if a theme is eligible for an upgrade.
+            * Summary: Check if the theme is upgradable
+            * Description: This API endpoint checks if the theme is upgradable for a specific company and application.
             **/
             public func isUpgradable(
                 themeId: String,
@@ -27212,8 +31832,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Upgrade theme.
-            * Description: Enhance and update a theme to a new version.
+            * Summary: Upgrade an application
+            * Description: This endpoint allows you to upgrade an application.
             **/
             public func upgradeTheme(
                 themeId: String,
@@ -27276,8 +31896,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get customers.
-            * Description: Retrieve a list of customer profiles.
+            * Summary: Get a list of customers
+            * Description: Use this API to retrieve a list of customers who have registered in the application.
             **/
             public func getCustomers(
                 q: String?,
@@ -27348,8 +31968,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Search users.
-            * Description: Search and filter user profiles.
+            * Summary: Search an existing user.
+            * Description: Use this API to retrieve an existing user from a list.
             **/
             public func searchUsers(
                 q: String?,
@@ -27412,8 +32032,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Create user.
-            * Description: Register and add a new user to the platform.
+            * Summary: Create user
+            * Description: Create user
             **/
             public func createUser(
                 body: CreateUserRequestSchema,
@@ -27460,8 +32080,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Block/unblock users.
-            * Description: Control user access by blocking or unblocking their accounts.
+            * Summary: Block/Unblock user
+            * Description: Block/Unblock user
             **/
             public func blockOrUnblockUsers(
                 body: BlockUserRequestSchema,
@@ -27508,8 +32128,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Undelete user.
-            * Description: Restore a previously deleted user account.
+            * Summary: undelete user who deleted from application and have not elapsed the platform configured delete days
+            * Description: undelete user who deleted from application and have not elapsed the platform configured delete days
             **/
             public func unDeleteUser(
                 body: UnDeleteUserRequestSchema,
@@ -27556,8 +32176,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Update user.
-            * Description: Modify and update user profile information.
+            * Summary: Update user
+            * Description: Use this API to update user details, Note: Existing emails and phone numbers of user will be replaced directly if phone_numbers or emails field sent in request data.
             **/
             public func updateUser(
                 userId: String,
@@ -27605,8 +32225,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Create user session.
-            * Description: Establish a session for user interactions.
+            * Summary: Create user session
+            * Description: Create user session
             **/
             public func createUserSession(
                 body: CreateUserSessionRequestSchema,
@@ -27653,8 +32273,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Delete session.
-            * Description: Terminate an active user session.
+            * Summary: Delete a session for a user
+            * Description: Use this API to Delete a session of customers who have registered in the application.
             **/
             public func deleteSession(
                 id: String,
@@ -27719,8 +32339,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get active sessions.
-            * Description: Retrieve a list of currently active user sessions.
+            * Summary: Get a list of all session with info for a user
+            * Description: Use this API to retrieve a list of session with info of customers who have registered in the application.
             **/
             public func getActiveSessions(
                 id: String,
@@ -27773,8 +32393,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Delete active sessions.
-            * Description: End multiple active user sessions.
+            * Summary: Delete a list of all session for a user
+            * Description: Use this API to Delete a list of session of customers who have registered in the application.
             **/
             public func deleteActiveSessions(
                 id: String,
@@ -27881,8 +32501,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get platform config.
-            * Description: Retrieve configuration settings for the platform.
+            * Summary: Get platform configurations
+            * Description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
             **/
             public func getPlatformConfig(
                 
@@ -27929,8 +32549,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update platform config.
-            * Description: Modify and update platform configuration settings.
+            * Summary: Update platform configurations
+            * Description: Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text.
             **/
             public func updatePlatformConfig(
                 body: PlatformSchema,
@@ -27977,8 +32597,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Create user group.
-            * Description: Form and add a new user group.
+            * Summary: Create an User Group
+            * Description: Use this API to create new user Group
             **/
             public func createUserGroup(
                 body: CreateUserGroup,
@@ -28025,8 +32645,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get user groups.
-            * Description: Retrieve a list of user groups.
+            * Summary: Get User Groups mathcing criteria
+            * Description: Use this API to get User Groups mathing criteria passed in query
             **/
             public func getUserGroups(
                 pageNo: String?,
@@ -28121,8 +32741,8 @@ if let value = groupUid {
             
             /**
             *
-            * Summary: Update user group.
-            * Description: Modify and update user group details.
+            * Summary: Update an User Group
+            * Description: Use this API to update an existing user Group
             **/
             public func updateUserGroup(
                 groupId: String,
@@ -28170,8 +32790,8 @@ if let value = groupUid {
             
             /**
             *
-            * Summary: Get user group by ID.
-            * Description: Retrieve a user group by its unique identifier.
+            * Summary: Get an User Group by Id
+            * Description: Use this API to get details of an existing user Group
             **/
             public func getUserGroupById(
                 groupId: String,
@@ -28220,7 +32840,7 @@ if let value = groupUid {
             /**
             *
             * Summary: Add or Remove an user from particular user group and update user group details
-            * Description: Update user group partially on the platform.
+            * Description: Use this API to update user group details and add or remove an user to the user group.
             **/
             public func updateUserGroupPartially(
                 groupId: String,

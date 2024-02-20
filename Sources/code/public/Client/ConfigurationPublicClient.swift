@@ -14,8 +14,8 @@ extension PublicClient {
         
         /**
         *
-        * Summary: Search application.
-        * Description: Provide application name or domain url.
+        * Summary: Search Application
+        * Description: Provide application name or domain url
         **/
         public func searchApplication(
             authorization: String?,

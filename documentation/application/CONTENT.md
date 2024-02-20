@@ -7,65 +7,29 @@
 ## Content Methods
 The Content module manages content in the application. Use it to help users stay updated with announcements, read blog posts, manage data loaders, consult FAQs, and access legal and support information. It also enhances navigation modules and SEO capabilities for better online visibility, as well as supports slideshow interactions.
 
-Announcement Management
+Default
 * [getAnnouncements](#getannouncements)
-
-
-Blog Management
 * [getBlog](#getblog)
 * [getBlogs](#getblogs)
-
-
-Data Loaders
 * [getDataLoaders](#getdataloaders)
-
-
-FAQ and FAQ Categories
 * [getFaqs](#getfaqs)
 * [getFaqCategories](#getfaqcategories)
 * [getFaqBySlug](#getfaqbyslug)
 * [getFaqCategoryBySlug](#getfaqcategorybyslug)
 * [getFaqsByCategorySlug](#getfaqsbycategoryslug)
-
-
-Landing Page Management
 * [getLandingPage](#getlandingpage)
-
-
-Legal Pages Management
 * [getLegalInformation](#getlegalinformation)
-
-
-Navigation Management
 * [getNavigations](#getnavigations)
-
-
-Application SEO Configuration
 * [getSEOConfiguration](#getseoconfiguration)
-
-
-Default
 * [getSEOMarkupSchemas](#getseomarkupschemas)
 * [getSlideshows](#getslideshows)
 * [getSlideshow](#getslideshow)
+* [getSupportInformation](#getsupportinformation)
+* [getTags](#gettags)
+* [getPage](#getpage)
+* [getPages](#getpages)
 * [getCustomObject](#getcustomobject)
 * [getCustomFields](#getcustomfields)
-
-
-Legal Information and Support
-* [getSupportInformation](#getsupportinformation)
-
-
-HTML Tags Management
-* [getTags](#gettags)
-
-
-Page information
-* [getPage](#getpage)
-
-
-Page management
-* [getPages](#getpages)
 
 
 
@@ -75,7 +39,7 @@ Page management
 
 
 #### getAnnouncements
-Fetches announcements of an Application
+Get live announcements
 
 
 
@@ -91,7 +55,7 @@ applicationClient.content.getAnnouncements() { (response, error) in
 
 
 
-Retrieves all current announcements in the application.
+Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve live announcements. Get announcements on individual pages or for all pages.
 
 *Returned Response:*
 
@@ -159,10 +123,8 @@ Success. Returns a JSON object with the details of the announcement shown on an 
 ---
 
 
-
-
 #### getBlog
-Retrieves a single blog post.
+Get a blog
 
 
 
@@ -184,7 +146,7 @@ applicationClient.content.getBlog(slug: slug, rootId: rootId) { (response, error
 
 
 
-Retrieves all information relate to a specific blog such as it's contents, author, publish date, SEO related information.
+Use this API to get the details of a blog using its slug. Details include the title, reading time, publish status, feature image, tags, author, etc.
 
 *Returned Response:*
 
@@ -263,7 +225,7 @@ Success. Returns a JSON object with blog details. Check the example shown below 
 
 
 #### getBlogs
-Lists all blog posts
+Get a list of blogs
 
 
 
@@ -285,7 +247,7 @@ applicationClient.content.getBlogs(pageNo: pageNo, pageSize: pageSize) { (respon
 
 
 
-Retrieve all the blogs which are present in the application.
+Use this API to get all the blogs.
 
 *Returned Response:*
 
@@ -367,10 +329,8 @@ Success. Check the example shown below or refer `BlogGetResponse` for more detai
 ---
 
 
-
-
 #### getDataLoaders
-Retrieves data loaders enabled for an application
+Get the data loaders associated with an application
 
 
 
@@ -386,7 +346,7 @@ applicationClient.content.getDataLoaders() { (response, error) in
 
 
 
-Retrieves all the data loaders that are added and enabled for an application.
+Use this API to get all selected data loaders of the application in the form of tags.
 
 *Returned Response:*
 
@@ -440,10 +400,8 @@ Success. Returns a JSON object containing all the data loaders injected in the a
 ---
 
 
-
-
 #### getFaqs
-Fetches FAQs of an applicaiton
+Get a list of FAQs
 
 
 
@@ -459,7 +417,7 @@ applicationClient.content.getFaqs() { (response, error) in
 
 
 
-Retrieves a list of frequently asked questions.
+Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website.
 
 *Returned Response:*
 
@@ -511,7 +469,7 @@ Success. Returns a JSON object with question and answers. Check the example show
 
 
 #### getFaqCategories
-Lists FAQ categories.
+Get a list of FAQ categories
 
 
 
@@ -527,7 +485,7 @@ applicationClient.content.getFaqCategories() { (response, error) in
 
 
 
-Retrieve categories for organizing FAQs.
+FAQs can be divided into categories. Use this API to get a list of FAQ categories.
 
 *Returned Response:*
 
@@ -574,7 +532,7 @@ Success. Returns a JSON object with categories of FAQ. Check the example shown b
 
 
 #### getFaqBySlug
-Retrieves FAQ by slug.
+Get an FAQ
 
 
 
@@ -595,7 +553,7 @@ applicationClient.content.getFaqBySlug(slug: slug) { (response, error) in
 
 
 
-Retrieves a specific FAQ using its slug identifier.
+Use this API to get a particular FAQ by its slug.
 
 *Returned Response:*
 
@@ -635,7 +593,7 @@ Success. Returns a question and answer by its slug. Check the example shown belo
 
 
 #### getFaqCategoryBySlug
-Retrieves FAQ category by slug.
+Get the FAQ category
 
 
 
@@ -656,7 +614,7 @@ applicationClient.content.getFaqCategoryBySlug(slug: slug) { (response, error) i
 
 
 
-Retrieve a specific FAQ category using its slug.
+FAQs can be divided into categories. Use this API to get the category to which an FAQ belongs.
 
 *Returned Response:*
 
@@ -707,7 +665,7 @@ Success. Returns a FAQ category with its slug. Check the example shown below or 
 
 
 #### getFaqsByCategorySlug
-Retrieves FAQs by category.
+Get FAQs using the slug of FAQ category
 
 
 
@@ -728,7 +686,7 @@ applicationClient.content.getFaqsByCategorySlug(slug: slug) { (response, error) 
 
 
 
-Retrieves FAQs belonging to a specific category slug.
+FAQs can be divided into categories. Use this API to get all the FAQs belonging to a category by using the category slug.
 
 *Returned Response:*
 
@@ -771,10 +729,8 @@ Success. Returns a categorized list of question and answers using its slug. Chec
 ---
 
 
-
-
 #### getLandingPage
-Fetches landing page.
+Get the landing page
 
 
 
@@ -790,7 +746,7 @@ applicationClient.content.getLandingPage() { (response, error) in
 
 
 
-Gets the content of the application's landing page.
+Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch the details of a landing page.
 
 *Returned Response:*
 
@@ -854,10 +810,8 @@ Success. Returns the landing page details. Check the example shown below or refe
 ---
 
 
-
-
 #### getLegalInformation
-Retrieves legal information.
+Get legal information
 
 
 
@@ -873,7 +827,7 @@ applicationClient.content.getLegalInformation() { (response, error) in
 
 
 
-Retrieve legal policies for an application which includes Terms and conditions, return policy, shipping policy and privacy policy.
+Use this API to get the legal information of an application, which includes Privacy Policy, Terms and Conditions, Shipping Policy and FAQs regarding the usage of the application.
 
 *Returned Response:*
 
@@ -946,10 +900,8 @@ Success. Returns the T&C, Shipping Policy, Privacy Policy and Return Policy. Che
 ---
 
 
-
-
 #### getNavigations
-Retrieves navigation items
+Get the navigation
 
 
 
@@ -971,7 +923,7 @@ applicationClient.content.getNavigations(pageNo: pageNo, pageSize: pageSize) { (
 
 
 
-Retrieves the navigation link items which can be powered to genreate menus on application's website or equivalent mobile apps
+Use this API to fetch the navigations details which includes the items of the navigation panel. It also shows the links and sub-navigations.
 
 *Returned Response:*
 
@@ -1199,10 +1151,8 @@ Success. Returns a JSON object with navigation details. Check the example shown 
 ---
 
 
-
-
 #### getSEOConfiguration
-Retrieves SEO settings of an applicaiton
+Get the SEO of an application
 
 
 
@@ -1218,7 +1168,7 @@ applicationClient.content.getSEOConfiguration() { (response, error) in
 
 
 
-Retrieve search engine optimization configurations of an application. Details include the title, description and an image
+Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap.
 
 *Returned Response:*
 
@@ -1285,8 +1235,6 @@ Success. Returns a JSON object SEO details such as robots.txt, meta-tags, and si
 
 
 ---
-
-
 
 
 #### getSEOMarkupSchemas
@@ -1562,6 +1510,366 @@ Success. Returns the details of how a slideshow is configured. Check the example
 ---
 
 
+#### getSupportInformation
+Get the support information
+
+
+
+
+```swift
+applicationClient.content.getSupportInformation() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Use this API to get contact details for customer support including emails and phone numbers.
+
+*Returned Response:*
+
+
+
+
+[Support](#Support)
+
+Success. Returns all support information including email and phone number. Check the example shown below or refer `Support` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "5ea4980b87a7944094216193",
+    "config_type": "app",
+    "application": "000000000000000000000001",
+    "created_at": "2020-04-25T20:05:31.300Z",
+    "updated_at": "2020-12-04T10:48:12.194Z",
+    "contact": {
+      "phone": {
+        "active": true,
+        "phone": [
+          {
+            "key": "Jane Doe",
+            "code": "91",
+            "number": "9988776655"
+          }
+        ]
+      },
+      "email": {
+        "active": false,
+        "email": []
+      }
+    },
+    "created": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getTags
+Get the tags associated with an application
+
+
+
+
+```swift
+applicationClient.content.getTags() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Use this API to get all the CSS and JS injected in the application in the form of tags.
+
+*Returned Response:*
+
+
+
+
+[TagsSchema](#TagsSchema)
+
+Success. Returns a JSON object containing all the tags injected in the application. Check the example shown below or refer `TagsSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "application": "000000000000000000000001",
+  "_id": "5f7c37b2dd0144bb3a353c5f",
+  "tags": [
+    {
+      "name": "Tapfiliate JS",
+      "sub_type": "external",
+      "_id": "5f7c37b2dd0144f1f8353c60",
+      "type": "js",
+      "url": "https://script.tapfiliate.com/tapfiliate.js",
+      "position": "body-bottom",
+      "attributes": {
+        "async": true
+      }
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPage
+Get a page
+
+
+
+
+```swift
+applicationClient.content.getPage(slug: slug, rootId: rootId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| slug | String | yes | A short, human-readable, URL-friendly identifier of a page. You can get slug value from the endpoint /service/application/content/v2.0/pages/. |   
+| rootId | String? | no | ID given to the HTML element |  
+
+
+
+Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
+
+*Returned Response:*
+
+
+
+
+[PageSchema](#PageSchema)
+
+Success. Returns a JSON object with page details. Check the example shown below or refer `CustomPageSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "date_meta": {
+      "created_on": "2021-03-16T08:24:19.197Z",
+      "modified_on": "2021-03-16T08:24:19.197Z"
+    },
+    "tags": [
+      "my first page"
+    ],
+    "published": true,
+    "component_ids": [],
+    "archived": false,
+    "_id": "60506dcad18cb33946026862",
+    "title": "my first page",
+    "slug": "1st_page",
+    "feature_image": {
+      "secure_url": "https://google.com/some-image"
+    },
+    "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
+    "platform": "web",
+    "description": "hey this is my first page",
+    "visibility": {
+      "test": true
+    },
+    "_schedule": {
+      "start": "2021-04-23T23:50:00.000Z",
+      "next_schedule": [
+        {}
+      ]
+    },
+    "seo": {
+      "title": "my first page",
+      "description": "hey this is my first page",
+      "image": {
+        "url": ""
+      }
+    },
+    "type": "rawhtml",
+    "application": "000000000000000000000001",
+    "orientation": "portrait",
+    "page_meta": []
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPages
+Get all pages
+
+
+
+
+```swift
+applicationClient.content.getPages(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| pageNo | Int? | no | The page number to navigate through the given set of results. Default value is 1.  |   
+| pageSize | Int? | no | The number of items to retrieve in each page. |  
+
+
+
+Use this API to get a list of pages.
+
+*Returned Response:*
+
+
+
+
+[PageGetResponse](#PageGetResponse)
+
+Success. Returns a list of pages along with their details. Check the example shown below or refer `PageGetStorefrontResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "date_meta": {
+          "created_on": "2021-03-14T06:49:03.945Z",
+          "modified_on": "2021-03-14T06:49:03.945Z"
+        },
+        "tags": [
+          "my first page"
+        ],
+        "_id": "604db275b3ae202873964d94",
+        "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
+        "title": "test-page",
+        "slug": "test-page",
+        "published": true,
+        "_schedule": {
+          "next_schedule": [
+            {}
+          ],
+          "start": "2021-04-08T07:15:13.000Z",
+          "end": "2021-04-10T02:00:00.000Z"
+        },
+        "feature_image": {
+          "secure_url": "https://google.com/some-image"
+        },
+        "seo": {
+          "title": "my first page",
+          "description": "hey this is my first page",
+          "image": {
+            "url": ""
+          }
+        },
+        "application": "000000000000000000000001",
+        "author": {
+          "name": "Abhinav Maurya"
+        }
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 1,
+      "item_total": 2,
+      "has_next": true
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getCustomObject
 Get custom object details
 
@@ -1727,374 +2035,6 @@ Success. Returns a list of custom fields. Refer `CustomFieldsResponseByResourceI
         "updated_at": "2023-10-25T14:45:04.441Z"
       }
     ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
-#### getSupportInformation
-Retrieves support related info of an applicaiton
-
-
-
-
-```swift
-applicationClient.content.getSupportInformation() { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-
-Retrieves customer support contact details. Contact Details can be either phone number or email-id or both.
-
-*Returned Response:*
-
-
-
-
-[Support](#Support)
-
-Success. Returns all support information including email and phone number. Check the example shown below or refer `Support` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "5ea4980b87a7944094216193",
-    "config_type": "app",
-    "application": "000000000000000000000001",
-    "created_at": "2020-04-25T20:05:31.300Z",
-    "updated_at": "2020-12-04T10:48:12.194Z",
-    "contact": {
-      "phone": {
-        "active": true,
-        "phone": [
-          {
-            "key": "Jane Doe",
-            "code": "91",
-            "number": "9988776655"
-          }
-        ]
-      },
-      "email": {
-        "active": false,
-        "email": []
-      }
-    },
-    "created": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
-#### getTags
-Retrieves HTML tags
-
-
-
-
-```swift
-applicationClient.content.getTags() { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-
-Retrieve any HTML tags to power additional functionalities within an application.
-
-*Returned Response:*
-
-
-
-
-[TagsSchema](#TagsSchema)
-
-Success. Returns a JSON object containing all the tags injected in the application. Check the example shown below or refer `TagsSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "application": "000000000000000000000001",
-  "_id": "5f7c37b2dd0144bb3a353c5f",
-  "tags": [
-    {
-      "name": "Tapfiliate JS",
-      "sub_type": "external",
-      "_id": "5f7c37b2dd0144f1f8353c60",
-      "type": "js",
-      "url": "https://script.tapfiliate.com/tapfiliate.js",
-      "position": "body-bottom",
-      "attributes": {
-        "async": true
-      }
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
-#### getPage
-Single page details.
-
-
-
-
-```swift
-applicationClient.content.getPage(slug: slug, rootId: rootId) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| slug | String | yes | A short, human-readable, URL-friendly identifier of a page. You can get slug value from the endpoint /service/application/content/v2.0/pages/. |   
-| rootId | String? | no | ID given to the HTML element |  
-
-
-
-Retrieve detailed information for a specific page within the theme.
-
-*Returned Response:*
-
-
-
-
-[PageSchema](#PageSchema)
-
-Success. Returns a JSON object with page details. Check the example shown below or refer `CustomPageSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "date_meta": {
-      "created_on": "2021-03-16T08:24:19.197Z",
-      "modified_on": "2021-03-16T08:24:19.197Z"
-    },
-    "tags": [
-      "my first page"
-    ],
-    "published": true,
-    "component_ids": [],
-    "archived": false,
-    "_id": "60506dcad18cb33946026862",
-    "title": "my first page",
-    "slug": "1st_page",
-    "feature_image": {
-      "secure_url": "https://google.com/some-image"
-    },
-    "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
-    "platform": "web",
-    "description": "hey this is my first page",
-    "visibility": {
-      "test": true
-    },
-    "_schedule": {
-      "start": "2021-04-23T23:50:00.000Z",
-      "next_schedule": [
-        {}
-      ]
-    },
-    "seo": {
-      "title": "my first page",
-      "description": "hey this is my first page",
-      "image": {
-        "url": ""
-      }
-    },
-    "type": "rawhtml",
-    "application": "000000000000000000000001",
-    "orientation": "portrait",
-    "page_meta": []
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-
-
-#### getPages
-Lists all pages.
-
-
-
-
-```swift
-applicationClient.content.getPages(pageNo: pageNo, pageSize: pageSize) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| pageNo | Int? | no | The page number to navigate through the given set of results. Default value is 1.  |   
-| pageSize | Int? | no | The number of items to retrieve in each page. |  
-
-
-
-Retrieve all available content pages in the app.
-
-*Returned Response:*
-
-
-
-
-[PageGetResponse](#PageGetResponse)
-
-Success. Returns a list of pages along with their details. Check the example shown below or refer `PageGetStorefrontResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "date_meta": {
-          "created_on": "2021-03-14T06:49:03.945Z",
-          "modified_on": "2021-03-14T06:49:03.945Z"
-        },
-        "tags": [
-          "my first page"
-        ],
-        "_id": "604db275b3ae202873964d94",
-        "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
-        "title": "test-page",
-        "slug": "test-page",
-        "published": true,
-        "_schedule": {
-          "next_schedule": [
-            {}
-          ],
-          "start": "2021-04-08T07:15:13.000Z",
-          "end": "2021-04-10T02:00:00.000Z"
-        },
-        "feature_image": {
-          "secure_url": "https://google.com/some-image"
-        },
-        "seo": {
-          "title": "my first page",
-          "description": "hey this is my first page",
-          "image": {
-            "url": ""
-          }
-        },
-        "application": "000000000000000000000001",
-        "author": {
-          "name": "Abhinav Maurya"
-        }
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 1,
-      "item_total": 2,
-      "has_next": true
-    }
   }
 }
 ```
@@ -2480,7 +2420,6 @@ Success. Returns a list of pages along with their details. Check the example sho
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | page | [ActionPage](#ActionPage)? |  yes  |  |
- | popup | [ActionPage](#ActionPage)? |  yes  |  |
  | type | String? |  yes  |  |
 
 ---
