@@ -44,8 +44,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var code: String?
         
-        public var customFieldMeta: [[String: Any]]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -79,11 +77,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case code = "code"
             
-            case customFieldMeta = "custom_field_meta"
-            
         }
 
-        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, code: String? = nil, currency: CartCurrency? = nil, customFieldMeta: [[String: Any]]? = nil, discountRules: [DiscountRulesApp]? = nil, meta: [String: Any]? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership2? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
+        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, code: String? = nil, currency: CartCurrency? = nil, discountRules: [DiscountRulesApp]? = nil, meta: [String: Any]? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership2? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
             
             self.articleQuantity = articleQuantity
             
@@ -114,8 +110,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.meta = meta
             
             self.code = code
-            
-            self.customFieldMeta = customFieldMeta
             
         }
 
@@ -302,18 +296,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
-            
-                do {
-                    customFieldMeta = try container.decode([[String: Any]].self, forKey: .customFieldMeta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -392,11 +374,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(code, forKey: .code)
-            
-            
-            
-            
-            try? container.encodeIfPresent(customFieldMeta, forKey: .customFieldMeta)
             
             
         }

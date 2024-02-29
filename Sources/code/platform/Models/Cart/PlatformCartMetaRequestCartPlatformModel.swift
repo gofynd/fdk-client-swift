@@ -24,8 +24,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var panNo: String?
         
-        public var isPanReceived: Bool?
-        
         public var comment: String?
         
         public var staffUserId: String?
@@ -43,15 +41,13 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case panNo = "pan_no"
             
-            case isPanReceived = "is_pan_received"
-            
             case comment = "comment"
             
             case staffUserId = "staff_user_id"
             
         }
 
-        public init(checkoutMode: String? = nil, comment: String? = nil, giftDetails: [String: Any]? = nil, gstin: String? = nil, isPanReceived: Bool? = nil, panNo: String? = nil, pickUpCustomerDetails: [String: Any]? = nil, staffUserId: String? = nil) {
+        public init(checkoutMode: String? = nil, comment: String? = nil, giftDetails: [String: Any]? = nil, gstin: String? = nil, panNo: String? = nil, pickUpCustomerDetails: [String: Any]? = nil, staffUserId: String? = nil) {
             
             self.gstin = gstin
             
@@ -62,8 +58,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.giftDetails = giftDetails
             
             self.panNo = panNo
-            
-            self.isPanReceived = isPanReceived
             
             self.comment = comment
             
@@ -136,18 +130,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    isPanReceived = try container.decode(Bool.self, forKey: .isPanReceived)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     comment = try container.decode(String.self, forKey: .comment)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -198,11 +180,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(panNo, forKey: .panNo)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isPanReceived, forKey: .isPanReceived)
             
             
             

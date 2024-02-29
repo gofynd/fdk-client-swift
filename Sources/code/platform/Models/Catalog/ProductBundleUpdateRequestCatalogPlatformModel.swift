@@ -14,7 +14,7 @@ public extension PlatformClient.Catalog {
         
         public var choice: String
         
-        public var companyId: String?
+        public var companyId: Int?
         
         public var isActive: Bool
         
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(choice: String, companyId: String? = nil, isActive: Bool, logo: String? = nil, meta: [String: Any]? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, pageVisibility: [String]? = nil, products: [ProductBundleItem], sameStoreAssignment: Bool? = nil, slug: String) {
+        public init(choice: String, companyId: Int? = nil, isActive: Bool, logo: String? = nil, meta: [String: Any]? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, pageVisibility: [String]? = nil, products: [ProductBundleItem], sameStoreAssignment: Bool? = nil, slug: String) {
             
             self.choice = choice
             
@@ -103,7 +103,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    companyId = try container.decode(String.self, forKey: .companyId)
+                    companyId = try container.decode(Int.self, forKey: .companyId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -288,7 +288,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var choice: String
         
-        public var companyId: String?
+        public var companyId: Int?
         
         public var isActive: Bool
         
@@ -339,7 +339,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(choice: String, companyId: String? = nil, isActive: Bool, logo: String? = nil, meta: [String: Any]? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, pageVisibility: [String]? = nil, products: [ProductBundleItem], sameStoreAssignment: Bool? = nil, slug: String) {
+        public init(choice: String, companyId: Int? = nil, isActive: Bool, logo: String? = nil, meta: [String: Any]? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, pageVisibility: [String]? = nil, products: [ProductBundleItem], sameStoreAssignment: Bool? = nil, slug: String) {
             
             self.choice = choice
             
@@ -377,7 +377,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    companyId = try container.decode(String.self, forKey: .companyId)
+                    companyId = try container.decode(Int.self, forKey: .companyId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

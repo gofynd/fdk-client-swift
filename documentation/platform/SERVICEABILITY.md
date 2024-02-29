@@ -9,15 +9,8 @@ Logistics Configuration API's allows you to configure zone, application logistic
 
 Default
 * [getZones](#getzones)
-* [createZone](#createzone)
 * [updateZoneById](#updatezonebyid)
 * [getZoneById](#getzonebyid)
-* [getAllStores](#getallstores)
-* [getOptimalLocations](#getoptimallocations)
-* [updatePincodeMopView](#updatepincodemopview)
-* [updatePincodeBulkView](#updatepincodebulkview)
-* [updatePincodeCoDListing](#updatepincodecodlisting)
-* [updatePincodeAuditHistory](#updatepincodeaudithistory)
 * [createCourierPartnerAccount](#createcourierpartneraccount)
 * [getCourierPartnerAccounts](#getcourierpartneraccounts)
 * [updateCourierPartnerAccount](#updatecourierpartneraccount)
@@ -30,7 +23,6 @@ Default
 * [getCompanyConfiguration](#getcompanyconfiguration)
 * [updateApplicationConfiguration](#updateapplicationconfiguration)
 * [getApplicationConfiguration](#getapplicationconfiguration)
-* [patchApplicationConfiguration](#patchapplicationconfiguration)
 * [bulkTat](#bulktat)
 * [getBulkTat](#getbulktat)
 * [patchApplicationServiceabilitySelfShipment](#patchapplicationserviceabilityselfshipment)
@@ -55,6 +47,22 @@ Default
 * [updatePackageMaterials](#updatepackagematerials)
 * [getPackageMaterials](#getpackagematerials)
 * [updateCourierPartnerRulePriority](#updatecourierpartnerrulepriority)
+
+
+Zone Management
+* [createZone](#createzone)
+
+
+Store Management
+* [getAllStores](#getallstores)
+* [getOptimalLocations](#getoptimallocations)
+
+
+Delivery Partners (DP) and Rules Managemen
+* [updatePincodeMopView](#updatepincodemopview)
+* [updatePincodeBulkView](#updatepincodebulkview)
+* [updatePincodeCoDListing](#updatepincodecodlisting)
+* [updatePincodeAuditHistory](#updatepincodeaudithistory)
 
 
 
@@ -132,79 +140,27 @@ Zone List of application in descending order of their last modified date.
         ],
         "zone_id": "64c3a0926ea670363c8e2e3d",
         "stores_count": 2,
-        "regions_count": 4242
+        "regions_count": 4242,
+        "product": {
+          "count": 0,
+          "type": "all"
+        }
       }
     ],
-    "page": {
-      "type": "number",
-      "size": 1,
-      "current": 1,
-      "has_next": false,
-      "item_total": 1
-    }
+    "page": [
+      {
+        "type": "number",
+        "size": 1,
+        "current": 1,
+        "has_next": false,
+        "item_total": 1
+      }
+    ]
   }
 }
 ```
 </details>
 
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### createZone
-Creates a new Zone
-
-
-
-
-```swift
-platformClient.serviceability.createZone(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | CreateZoneData | yes | Request body |
-
-
-Creates a new zone with the specified mapping. A zone enables serviceability based on given regions. By creating a zone and including specific regions, you can ensure that the stores associated with the zone are serviceable for those added regions. This functionality is particularly useful when you need to ensure serviceability for multiple regions by grouping them into a single zone.
-
-*Returned Response:*
-
-
-
-
-[ZoneResponse](#ZoneResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "status_code": 200,
-  "zone_id": "64809f27f2b8f575d5cb9c56"
-}
-```
 </details>
 
 
@@ -381,329 +337,6 @@ Get details of the Zone
 ---
 
 
-#### getAllStores
-GET stores data
-
-
-
-
-```swift
-platformClient.serviceability.getAllStores() { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-
-This API returns stores data.
-
-*Returned Response:*
-
-
-
-
-[GetStoresViewResponse](#GetStoresViewResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getOptimalLocations
-Get serviceable store of the item
-
-
-
-
-```swift
-platformClient.serviceability.getOptimalLocations(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | ReAssignStoreRequest | yes | Request body |
-
-
-This API returns serviceable store of the item.
-
-*Returned Response:*
-
-
-
-
-[ReAssignStoreResponse](#ReAssignStoreResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### updatePincodeMopView
-PincodeView update of MOP.
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeMopView(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | PincodeMopData | yes | Request body |
-
-
-This API updates Pincode method of payment.
-
-*Returned Response:*
-
-
-
-
-[PincodeMOPresponse](#PincodeMOPresponse)
-
-Response Data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### updatePincodeBulkView
-Bulk Update of pincode in the application.
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeBulkView(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | PincodeMopBulkData | yes | Request body |
-
-
-This API constructs bulk write operations to update the MOP data for each pincode in the payload.
-
-*Returned Response:*
-
-
-
-
-[PincodeBulkViewResponse](#PincodeBulkViewResponse)
-
-Response Data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "batch_id": "string",
-  "s3_url": "string"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### updatePincodeCoDListing
-Pincode count view of application.
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeCoDListing(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | PincodeCodStatusListingRequest | yes | Request body |
-
-
-This API returns count of active pincode.
-
-*Returned Response:*
-
-
-
-
-[PincodeCodStatusListingResponse](#PincodeCodStatusListingResponse)
-
-Response Data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### updatePincodeAuditHistory
-Auditlog configuration of application.
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeAuditHistory(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | PincodeMopUpdateAuditHistoryRequest | yes | Request body |
-
-
-This API returns Audit logs of Pincode.
-
-*Returned Response:*
-
-
-
-
-[PincodeMopUpdateAuditHistoryResponseData](#PincodeMopUpdateAuditHistoryResponseData)
-
-Response Data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### createCourierPartnerAccount
 Creation of Courier Account
 
@@ -765,7 +398,7 @@ Getting Courier Account list of a company.
 
 
 ```swift
-platformClient.serviceability.getCourierPartnerAccounts(pageNo: pageNo, pageSize: pageSize, stage: stage, paymentMode: paymentMode, transportType: transportType, accountIds: accountIds) { (response, error) in
+platformClient.serviceability.getCourierPartnerAccounts(pageNo: pageNo, pageSize: pageSize, stage: stage, paymentMode: paymentMode, transportType: transportType) { (response, error) in
     // Use response
 }
 ```
@@ -780,8 +413,7 @@ platformClient.serviceability.getCourierPartnerAccounts(pageNo: pageNo, pageSize
 | pageSize | Int? | no | determines the items to be displayed in a page |   
 | stage | String? | no | stage of the account. enabled/disabled |   
 | paymentMode | String? | no | Filters dp accounts based on payment mode |   
-| transportType | String? | no | Filters dp accounts based on transport_type |   
-| accountIds | [String]? | no | Filters dp accounts based on their ids |  
+| transportType | String? | no | Filters dp accounts based on transport_type |  
 
 
 
@@ -1308,7 +940,7 @@ Response status_code
 
 
 #### getApplicationConfiguration
-Get All application configs
+Get All Courier Rules applied to application
 
 
 
@@ -1324,7 +956,7 @@ platformClient.application("<APPLICATION_ID>").serviceability.getApplicationConf
 
 
 
-This API returns all config applied to an application
+This API returns all the Courier Rules applied to an application
 
 *Returned Response:*
 
@@ -1339,155 +971,11 @@ Response status_code
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; ApplicationConfig</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "value": {
-    "application_id": "test_app",
-    "company_id": 1,
-    "rule_ids": [
-      "64b4337a0c607fbfbcd0156b",
-      "64b4337a0c607fbfbcd01564"
-    ],
-    "sort": [
-      "fastest"
-    ],
-    "zones": {
-      "serviceability_type": "zone-based",
-      "active_count": 0,
-      "total_count": 0
-    },
-    "buybox_config": {
-      "show_seller": true,
-      "enable_selection": true,
-      "is_seller_buybox_enabled": true
-    },
-    "buybox_rule_config": {
-      "store_type_priority": [
-        "FC",
-        "STORE"
-      ],
-      "store_tag_proiority": [
-        "store_tag_1",
-        "store_tag_2"
-      ],
-      "sort": [
-        "price",
-        "store_type",
-        "promise",
-        "store_creation_date",
-        "distance",
-        "store_tag"
-      ]
-    },
-    "promise_types": [
-      {
-        "display_name": "Standard Delivery",
-        "slug": "standard_delivery",
-        "description": "A standard promise type for general use",
-        "is_active": true,
-        "is_default": true
-      },
-      {
-        "display_name": "Express Delivery",
-        "slug": "express_delivery",
-        "description": "A express promise type for general use",
-        "is_active": true,
-        "is_default": false
-      }
-    ],
-    "promise_config": {
-      "store_attributes": {
-        "is_operational_timing_enabled": true,
-        "is_order_acceptance_timing_enabled": true,
-        "is_average_processing_time": true,
-        "is_holiday_enabled": true
-      },
-      "delivery_service_attributes": {
-        "is_pickup_cutoff_time_enabled": "true,",
-        "is_service_tat_enabled": true,
-        "is_holiday_enabled": true
-      },
-      "buffer_field": {
-        "unit": "hours",
-        "value": 10,
-        "enabled": true
-      }
-    }
-  }
-}
+
 ```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### patchApplicationConfiguration
-To patch any config which can be applied to application.
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").serviceability.patchApplicationConfiguration(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | ApplicationConfigPatchRequest | yes | Request body |
-
-
-Apply configs to application and for reference, refer to examples
-
-*Returned Response:*
-
-
-
-
-[ApplicationConfigPatchResponse](#ApplicationConfigPatchResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; ApplicationConfigPatchResponse</i></summary>
-
-```json
-{
-  "value": {
-    "success": true
-  }
-}
-```
-</details>
-
 </details>
 
 
@@ -2515,50 +2003,48 @@ Response status_code
 ```json
 {
   "value": {
-    "items": [
-      {
-        "id": "64b8526e5ca47d41582b9fa1",
-        "name": "Package1",
-        "item_id": 1234,
-        "company_id": 1,
-        "length": 1,
-        "height": 1,
-        "width": 1,
-        "weight": 1,
-        "error_rate": 0,
-        "store_ids": [
-          1,
-          9,
-          5
-        ],
-        "rules": [
-          {
-            "rule_id": "64b4337a0c607fbfbcd0156b",
-            "quantity": {
-              "min": 1,
-              "max": 2
-            },
-            "weight": 100
-          }
-        ],
-        "channels": [
-          {
-            "id": "64b4337a0c607fbfbcd0190b",
-            "type": "application"
-          }
-        ],
-        "media": [
-          "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/sandbx/wrkr/sandeepmaale/products/pictures/bundle/free/original/LOc5XW0cc-Logo.png"
-        ],
-        "package_type": "box",
-        "size": "small",
-        "status": "active",
-        "track_inventory": true,
-        "max_weight": 100,
-        "package_vol_weight": 100,
-        "auto_calculate": true
-      }
-    ],
+    "items": {
+      "id": "64b8526e5ca47d41582b9fa1",
+      "name": "Package1",
+      "item_id": 1234,
+      "company_id": 1,
+      "length": 1,
+      "height": 1,
+      "width": 1,
+      "weight": 1,
+      "error_rate": 0,
+      "store_ids": [
+        1,
+        9,
+        5
+      ],
+      "rules": [
+        {
+          "rule_id": "64b4337a0c607fbfbcd0156b",
+          "quantity": {
+            "min": 1,
+            "max": 2
+          },
+          "weight": 100
+        }
+      ],
+      "channels": [
+        {
+          "id": "64b4337a0c607fbfbcd0190b",
+          "type": "application"
+        }
+      ],
+      "media": [
+        "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/sandbx/wrkr/sandeepmaale/products/pictures/bundle/free/original/LOc5XW0cc-Logo.png"
+      ],
+      "package_type": "box",
+      "size": "small",
+      "status": "active",
+      "track_inventory": true,
+      "max_weight": 100,
+      "package_vol_weight": 100,
+      "auto_calculate": true
+    },
     "page": {
       "type": "number",
       "size": 1,
@@ -2719,33 +2205,31 @@ Response status_code
 ```json
 {
   "value": {
-    "items": [
-      {
-        "id": "64b4337a0c607fbfbcd0156b",
-        "company_id": 1,
-        "name": "Rule For Dev Contract",
-        "category_id": {
-          "includes": [
-            1,
-            2
-          ]
-        },
-        "product_tag": {
-          "includes": [
-            "abc",
-            "xyz"
-          ]
-        },
-        "product_id": {
-          "includes": [
-            1,
-            2
-          ]
-        },
-        "type": "package",
-        "is_active": true
-      }
-    ],
+    "items": {
+      "id": "64b4337a0c607fbfbcd0156b",
+      "company_id": 1,
+      "name": "Rule For Dev Contract",
+      "category_id": {
+        "includes": [
+          1,
+          2
+        ]
+      },
+      "product_tag": {
+        "includes": [
+          "abc",
+          "xyz"
+        ]
+      },
+      "product_id": {
+        "includes": [
+          1,
+          2
+        ]
+      },
+      "type": "package",
+      "is_active": true
+    },
     "page": {
       "type": "number",
       "size": 1,
@@ -3136,6 +2620,393 @@ Updates Courier Partner Rules Priority for a sales channel
 [RulePriorityResponse](#RulePriorityResponse)
 
 Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+#### createZone
+Create zone.
+
+
+
+
+```swift
+platformClient.serviceability.createZone(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | CreateZoneData | yes | Request body |
+
+
+Generate and add a new zone.
+
+*Returned Response:*
+
+
+
+
+[ZoneResponse](#ZoneResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "status_code": 200,
+  "zone_id": "64809f27f2b8f575d5cb9c56"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+#### getAllStores
+Get all stores.
+
+
+
+
+```swift
+platformClient.serviceability.getAllStores() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Retrieve a list of all available stores data.
+
+*Returned Response:*
+
+
+
+
+[GetStoresViewResponse](#GetStoresViewResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOptimalLocations
+Retrieve optimal locations
+
+
+
+
+```swift
+platformClient.serviceability.getOptimalLocations(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | OptimlLocationsRequestSchema | yes | Request body |
+
+
+Retrieve optimal locations based on the specific criteria
+
+*Returned Response:*
+
+
+
+
+[OptimalLocationsResponse](#OptimalLocationsResponse)
+
+Optimal Locations Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+#### updatePincodeMopView
+Update pincode MOP (Mode of Payment) view.
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeMopView(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | PincodeMopData | yes | Request body |
+
+
+Modify and update views related to pincode MOP.
+
+*Returned Response:*
+
+
+
+
+[PincodeMOPresponse](#PincodeMOPresponse)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePincodeBulkView
+Update pincode bulk view.
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeBulkView(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | PincodeMopBulkData | yes | Request body |
+
+
+Modify and update views related to bulk operations on pincode.
+
+*Returned Response:*
+
+
+
+
+[PincodeBulkViewResponse](#PincodeBulkViewResponse)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "batch_id": "string",
+  "s3_url": "string"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePincodeCoDListing
+Update pincode CoD (Cash on Delivery) listing.
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeCoDListing(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | PincodeCodStatusListingRequest | yes | Request body |
+
+
+Modify and update listings for CoD based on pincode.
+
+*Returned Response:*
+
+
+
+
+[PincodeCodStatusListingResponse](#PincodeCodStatusListingResponse)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePincodeAuditHistory
+Update pincode audit history.
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeAuditHistory(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | PincodeMopUpdateAuditHistoryRequest | yes | Request body |
+
+
+Modify and update audit history records for pincode-related activities.
+
+*Returned Response:*
+
+
+
+
+[PincodeMopUpdateAuditHistoryResponseData](#PincodeMopUpdateAuditHistoryResponseData)
+
+Response Data
 
 
 
@@ -3926,35 +3797,6 @@ Response status_code
 
  
  
- #### [ReAssignStoreRequest](#ReAssignStoreRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | toPincode | String |  no  |  |
- | identifier | String |  no  |  |
- | configuration | [String: Any] |  no  |  |
- | ignoredLocations | [String] |  no  |  |
- | articles | [[String: Any]] |  no  |  |
-
----
-
-
- 
- 
- #### [ReAssignStoreResponse](#ReAssignStoreResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | toPincode | String |  no  |  |
- | success | Bool |  no  |  |
- | error | [String: Any] |  no  |  |
- | articles | [[String: Any]]? |  yes  |  |
-
----
-
-
- 
- 
  #### [PincodeMopData](#PincodeMopData)
 
  | Properties | Type | Nullable | Description |
@@ -4366,7 +4208,6 @@ Response status_code
  | cpList | [[CourierPartnerList](#CourierPartnerList)]? |  yes  |  |
  | name | String |  no  |  |
  | conditions | [CourierPartnerRuleConditions](#CourierPartnerRuleConditions) |  no  |  |
- | manualPriority | [String]? |  yes  |  |
  | sort | [String] |  no  |  |
 
 ---
@@ -4422,139 +4263,13 @@ Response status_code
 
  
  
- #### [BuyboxConfig](#BuyboxConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | showSeller | Bool |  no  |  |
- | enableSelection | Bool |  no  |  |
- | isSellerBuyboxEnabled | Bool |  no  |  |
-
----
-
-
- 
- 
- #### [BuyboxRuleConfig](#BuyboxRuleConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | storeTypePriority | [String]? |  yes  |  |
- | storeTagPriority | [String]? |  yes  |  |
- | sort | [String]? |  yes  |  |
-
----
-
-
- 
- 
- #### [PromiseType](#PromiseType)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | displayName | String |  no  |  |
- | slug | String |  no  |  |
- | description | String |  no  |  |
- | isActive | Bool |  no  |  |
- | isDefault | Bool |  no  |  |
-
----
-
-
- 
- 
- #### [StorePromiseAttributeConfig](#StorePromiseAttributeConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | isOperationalTimingEnabled | Bool? |  yes  |  |
- | isOrderAcceptanceTimingEnabled | Bool? |  yes  |  |
- | isAverageProcessingTime | Bool? |  yes  |  |
- | isHolidayEnabled | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [DeliveryServiceAttributeConfig](#DeliveryServiceAttributeConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | isPickupCutoffTimeEnabled | Bool? |  yes  |  |
- | isServiceTatEnabled | Bool? |  yes  |  |
- | isHolidayEnabled | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [BufferField](#BufferField)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | unit | String? |  yes  |  |
- | value | Int? |  yes  |  |
- | enabled | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [PromiseConfig](#PromiseConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | storeAttributes | [StorePromiseAttributeConfig](#StorePromiseAttributeConfig)? |  yes  |  |
- | deliveryServiceAttributes | [DeliveryServiceAttributeConfig](#DeliveryServiceAttributeConfig)? |  yes  |  |
- | bufferField | [BufferField](#BufferField)? |  yes  |  |
-
----
-
-
- 
- 
  #### [ApplicationConfig](#ApplicationConfig)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | ruleIds | [String]? |  yes  |  |
  | sort | [String]? |  yes  |  |
- | applicationId | String? |  yes  |  |
- | companyId | Int? |  yes  |  |
- | manualPriority | [String]? |  yes  |  |
  | zones | [ZoneConfig](#ZoneConfig)? |  yes  |  |
- | buyboxConfig | [BuyboxConfig](#BuyboxConfig)? |  yes  |  |
- | buyboxRuleConfig | [BuyboxRuleConfig](#BuyboxRuleConfig)? |  yes  |  |
- | promiseTypes | [[PromiseType](#PromiseType)]? |  yes  |  |
- | promiseConfig | [PromiseConfig](#PromiseConfig)? |  yes  |  |
-
----
-
-
- 
- 
- #### [ApplicationConfigPatchRequest](#ApplicationConfigPatchRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | buyboxConfig | [BuyboxConfig](#BuyboxConfig)? |  yes  |  |
- | buyboxRuleConfig | [BuyboxRuleConfig](#BuyboxRuleConfig)? |  yes  |  |
- | promiseTypes | [[PromiseType](#PromiseType)]? |  yes  |  |
- | promiseConfig | [PromiseConfig](#PromiseConfig)? |  yes  |  |
-
----
-
-
- 
- 
- #### [ApplicationConfigPatchResponse](#ApplicationConfigPatchResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
 
 ---
 
@@ -4653,7 +4368,6 @@ Response status_code
  | tagBasedPriority | [String]? |  yes  |  |
  | storePriority | [[StorePrioritySchema](#StorePrioritySchema)]? |  yes  |  |
  | sort | [String]? |  yes  |  |
- | manualPriority | [String]? |  yes  |  |
 
 ---
 
@@ -4708,7 +4422,6 @@ Response status_code
  | tagBasedPriority | [String]? |  yes  |  |
  | storePriority | [[StorePrioritySchema](#StorePrioritySchema)]? |  yes  |  |
  | sort | [String]? |  yes  |  |
- | manualPriority | [String]? |  yes  |  |
  | conditions | [StoreRuleConditionSchema](#StoreRuleConditionSchema)? |  yes  |  |
  | isActive | Bool? |  yes  |  |
 
@@ -4751,7 +4464,6 @@ Response status_code
  | typeBasedPriority | [String]? |  yes  |  |
  | tagBasedPriority | [String]? |  yes  |  |
  | storePriority | [[StorePrioritySchema](#StorePrioritySchema)]? |  yes  |  |
- | manualPriority | [String]? |  yes  |  |
  | sort | [String]? |  yes  |  |
 
 ---
@@ -4770,7 +4482,6 @@ Response status_code
  | tagBasedPriority | [String]? |  yes  |  |
  | storePriority | [[StorePrioritySchema](#StorePrioritySchema)]? |  yes  |  |
  | sort | [String]? |  yes  |  |
- | manualPriority | [String]? |  yes  |  |
  | conditions | [StoreRuleConditionSchema](#StoreRuleConditionSchema)? |  yes  |  |
  | isActive | Bool? |  yes  |  |
 
@@ -4790,7 +4501,6 @@ Response status_code
  | tagBasedPriority | [String]? |  yes  |  |
  | storePriority | [[StorePrioritySchema](#StorePrioritySchema)]? |  yes  |  |
  | sort | [String]? |  yes  |  |
- | manualPriority | [String]? |  yes  |  |
  | conditions | [StoreRuleConditionSchema](#StoreRuleConditionSchema)? |  yes  |  |
  | isActive | Bool? |  yes  |  |
  | companyId | Int? |  yes  |  |
@@ -5096,6 +4806,130 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | success | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ArticleAssignment](#ArticleAssignment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | level | String? |  yes  |  |
+ | strategy | String? |  yes  | The strategy parameter allows users to specify the desired approach or criteria for selecting optimal locations. |
+
+---
+
+
+ 
+ 
+ #### [ServiceabilityLocation](#ServiceabilityLocation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | longitude | String |  no  | The longitude of the serviceability location. |
+ | latitude | String |  no  | The latitude of the serviceability location. |
+
+---
+
+
+ 
+ 
+ #### [LocationDetailsServiceability](#LocationDetailsServiceability)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pincode | String? |  yes  | The pincode of the serviceability location. |
+ | sector | String? |  yes  | The sector of the serviceability location. |
+ | state | String? |  yes  | The state of the serviceability location. |
+ | country | String |  no  | The country of the serviceability location. |
+ | city | String? |  yes  | The city of the serviceability location. |
+ | countryIsoCode | String |  no  | The ISO code of the country. |
+ | location | [ServiceabilityLocation](#ServiceabilityLocation)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OptimalLocationsArticles](#OptimalLocationsArticles)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | itemId | Int |  no  |  |
+ | size | String |  no  |  |
+ | quantity | String |  no  |  |
+ | groupId | String? |  yes  |  |
+ | isPrimaryItem | Bool? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | articleAssignment | [ArticleAssignment](#ArticleAssignment) |  no  |  |
+ | ignoreLocations | [Int] |  no  |  |
+ | assignLocations | [Int] |  no  |  |
+ | sellerId | Int? |  yes  |  |
+ | storeId | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OptimlLocationsRequestSchema](#OptimlLocationsRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | channelId | String |  no  |  |
+ | channelType | String |  no  |  |
+ | channelIdentifier | String? |  yes  |  |
+ | toServiceability | [LocationDetailsServiceability](#LocationDetailsServiceability) |  no  |  |
+ | article | [OptimalLocationsArticles](#OptimalLocationsArticles)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OptimalLocationArticlesResponse](#OptimalLocationArticlesResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | itemId | Int |  no  |  |
+ | size | String |  no  |  |
+ | quantity | Int |  no  |  |
+ | groupId | String? |  yes  |  |
+ | isPrimaryItem | Bool? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | articleAssignment | [ArticleAssignment](#ArticleAssignment) |  no  |  |
+ | sellerId | Int? |  yes  |  |
+ | ignoreLocations | [Int] |  no  |  |
+ | assignLocations | [Int] |  no  |  |
+ | priceEffective | Double |  no  |  |
+ | mtoQuantity | Int |  no  |  |
+ | id | String |  no  |  |
+ | uid | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OptimalLocationAssignedStoresResponse](#OptimalLocationAssignedStoresResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | storeId | Int |  no  |  |
+ | articles | [[OptimalLocationArticlesResponse](#OptimalLocationArticlesResponse)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OptimalLocationsResponse](#OptimalLocationsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | assignedStores | [[OptimalLocationAssignedStoresResponse](#OptimalLocationAssignedStoresResponse)] |  no  |  |
 
 ---
 

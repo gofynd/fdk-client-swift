@@ -22,8 +22,6 @@ public extension PlatformClient.Configuration {
         
         public var discount: InventoryDiscount?
         
-        public var pricingStrategy: PricingStrategy?
-        
         public var outOfStock: Bool?
         
         public var onlyVerifiedProducts: Bool?
@@ -51,8 +49,6 @@ public extension PlatformClient.Configuration {
             
             case discount = "discount"
             
-            case pricingStrategy = "pricing_strategy"
-            
             case outOfStock = "out_of_stock"
             
             case onlyVerifiedProducts = "only_verified_products"
@@ -69,7 +65,7 @@ public extension PlatformClient.Configuration {
             
         }
 
-        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, pricingStrategy: PricingStrategy? = nil, store: InventoryStore? = nil) {
+        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
             
             self.brand = brand
             
@@ -80,8 +76,6 @@ public extension PlatformClient.Configuration {
             self.price = price
             
             self.discount = discount
-            
-            self.pricingStrategy = pricingStrategy
             
             self.outOfStock = outOfStock
             
@@ -153,18 +147,6 @@ public extension PlatformClient.Configuration {
             
                 do {
                     discount = try container.decode(InventoryDiscount.self, forKey: .discount)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    pricingStrategy = try container.decode(PricingStrategy.self, forKey: .pricingStrategy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -286,11 +268,6 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(discount, forKey: .discount)
-            
-            
-            
-            
-            try? container.encodeIfPresent(pricingStrategy, forKey: .pricingStrategy)
             
             
             
@@ -354,8 +331,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var discount: InventoryDiscount?
         
-        public var pricingStrategy: PricingStrategy?
-        
         public var outOfStock: Bool?
         
         public var onlyVerifiedProducts: Bool?
@@ -383,8 +358,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case discount = "discount"
             
-            case pricingStrategy = "pricing_strategy"
-            
             case outOfStock = "out_of_stock"
             
             case onlyVerifiedProducts = "only_verified_products"
@@ -401,7 +374,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
         }
 
-        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, pricingStrategy: PricingStrategy? = nil, store: InventoryStore? = nil) {
+        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
             
             self.brand = brand
             
@@ -412,8 +385,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.price = price
             
             self.discount = discount
-            
-            self.pricingStrategy = pricingStrategy
             
             self.outOfStock = outOfStock
             
@@ -485,18 +456,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
                 do {
                     discount = try container.decode(InventoryDiscount.self, forKey: .discount)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    pricingStrategy = try container.decode(PricingStrategy.self, forKey: .pricingStrategy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -618,11 +577,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(discount, forKey: .discount)
-            
-            
-            
-            
-            try? container.encodeIfPresent(pricingStrategy, forKey: .pricingStrategy)
             
             
             

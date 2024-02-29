@@ -16,8 +16,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: 
-        * Description: Invalidate shipment Cache
+        * Summary: Invalidate shipment cache.
+        * Description: Invalidate shipment Cache.
         **/
         public func invalidateShipmentCache(
             body: InvalidateShipmentCachePayload,
@@ -64,272 +64,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: 
-        * Description: Refund State Configuration
-        **/
-        public func postRefundStateConfiguration(
-            appId: String,
-            body: PostRefundStateConfiguration,
-            onResponse: @escaping (_ response: PostRefundStateConfigurationResponse?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["app_id"] = appId
-
-
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/refund/states/config",
-                query: xQuery,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(PostRefundStateConfigurationResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: 
-        * Description: Refund State Configuration
-        **/
-        public func getRefundStateConfiguration(
-            appId: String,
-            
-            onResponse: @escaping (_ response: GetRefundStateConfigurationResponse?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["app_id"] = appId
-
-
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/refund/states/config",
-                query: xQuery,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetRefundStateConfigurationResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: 
-        * Description: Refund State Configuration
-        **/
-        public func getRefundEnableStateList(
-            
-            onResponse: @escaping (_ response: GetRefundStates?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/refund/states",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetRefundStates.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: 
-        * Description: refund configuration.
-        **/
-        public func postRefundConfiguration(
-            appId: String,
-            body: RefundStateConfigurationManualSchema,
-            onResponse: @escaping (_ response: RefundStateConfigurationManualSchemaResponse?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["app_id"] = appId
-
-
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/refund/config",
-                query: xQuery,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(RefundStateConfigurationManualSchemaResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: 
-        * Description: refund configuration.
-        **/
-        public func getRefundConfiguration(
-            appId: String,
-            
-            onResponse: @escaping (_ response: RefundStateConfigurationManualSchemaResponse?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["app_id"] = appId
-
-
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/refund/config",
-                query: xQuery,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(RefundStateConfigurationManualSchemaResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: 
-        * Description: Reassign Location
+        * Summary: Reassign location.
+        * Description: Change the assigned location for an order or shipment.
         **/
         public func reassignLocation(
             body: StoreReassign,
@@ -376,8 +112,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: 
-        * Description: update shipment/bag lock and check status
+        * Summary: Update shipment lock.
+        * Description: Modify shipment/bag lock and check status.
         **/
         public func updateShipmentLock(
             body: UpdateShipmentLockPayload,
@@ -424,8 +160,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: 
-        * Description: Get Announcements
+        * Summary: Get announcements.
+        * Description: Retrieve announcements related to orders or shipments.
         **/
         public func getAnnouncements(
             date: String?,
@@ -480,8 +216,8 @@ if let value = date {
         
         /**
         *
-        * Summary: 
-        * Description: Update Address for the order
+        * Summary: Update address.
+        * Description: Modify the shipping address for an order.
         **/
         public func updateAddress(
             shipmentId: String,
@@ -620,8 +356,8 @@ if let value = country {
         
         /**
         *
-        * Summary: 
-        * Description: Click to Call
+        * Summary: Click to call.
+        * Description: Click to call. 
         **/
         public func click2Call(
             caller: String,
@@ -702,8 +438,8 @@ if let value = method {
         
         /**
         *
-        * Summary: 
-        * Description: This API is for Shipment State transition or Shipment data update or both below example is for partial state transition with data update
+        * Summary: Update shipment status.
+        * Description: Shipment state transition or Shipment data update or both.
         **/
         public func updateShipmentStatus(
             body: UpdateShipmentStatusRequest,
@@ -750,8 +486,8 @@ if let value = method {
         
         /**
         *
-        * Summary: 
-        * Description: Get Role Based Actions
+        * Summary: Get role-based actions.
+        * Description: Retrieve role based actions.
         **/
         public func getRoleBasedActions(
             
@@ -798,8 +534,8 @@ if let value = method {
         
         /**
         *
-        * Summary: 
-        * Description: Get Shipment History
+        * Summary: Get shipment history.
+        * Description: Retrieve the shipment history.
         **/
         public func getShipmentHistory(
             shipmentId: String?,
@@ -862,8 +598,8 @@ if let value = bagId {
         
         /**
         *
-        * Summary: 
-        * Description: Post shipment history
+        * Summary: Post shipment history.
+        * Description: Add history records for a shipment.
         **/
         public func postShipmentHistory(
             body: PostShipmentHistory,
@@ -910,8 +646,8 @@ if let value = bagId {
         
         /**
         *
-        * Summary: 
-        * Description: Send SMS Ninja Panel
+        * Summary: Send SMS via Ninja.
+        * Description: Send SMS Ninja Panel.
         **/
         public func sendSmsNinja(
             body: SendSmsPayload,
@@ -958,8 +694,8 @@ if let value = bagId {
         
         /**
         *
-        * Summary: 
-        * Description: Update Packaging Dimensions
+        * Summary: Update packaging dimensions.
+        * Description: Modify the dimensions of packaging.
         **/
         public func updatePackagingDimensions(
             body: UpdatePackagingDimensionsPayload,
@@ -1006,8 +742,8 @@ if let value = bagId {
         
         /**
         *
-        * Summary: 
-        * Description: Create Order
+        * Summary: Create order.
+        * Description: Create order.
         **/
         public func createOrder(
             body: CreateOrderAPI,
@@ -1054,8 +790,8 @@ if let value = bagId {
         
         /**
         *
-        * Summary: 
-        * Description: getChannelConfig
+        * Summary: Get channel configuration.
+        * Description: Retrieve configuration settings for a channel.
         **/
         public func getChannelConfig(
             
@@ -1102,8 +838,8 @@ if let value = bagId {
         
         /**
         *
-        * Summary: 
-        * Description: createChannelConfig
+        * Summary: Create channel configuration.
+        * Description: Set up configuration for a channel.
         **/
         public func createChannelConfig(
             body: CreateChannelConfigData,
@@ -1150,8 +886,8 @@ if let value = bagId {
         
         /**
         *
-        * Summary: 
-        * Description: Update Order
+        * Summary: Order update.
+        * Description: Modify the details and status of an order. 
         **/
         public func orderUpdate(
             body: PlatformOrderUpdate,
@@ -1198,8 +934,8 @@ if let value = bagId {
         
         /**
         *
-        * Summary: 
-        * Description: Check order status
+        * Summary: Check order status.
+        * Description: Verify the current status of an order.
         **/
         public func checkOrderStatus(
             body: OrderStatus,
@@ -1246,8 +982,8 @@ if let value = bagId {
         
         /**
         *
-        * Summary: 
-        * Description: Get State Transition Map
+        * Summary: Get state transition map.
+        * Description: Retrieve a map of state transitions for orders.
         **/
         public func getStateTransitionMap(
             
@@ -1294,9 +1030,8 @@ if let value = bagId {
         
         /**
         *
-        * Summary: To fetch next state transitions.
-        * Description: This endpoint will fetch next possible states based on logged in user
-
+        * Summary: Get allowed state transition.
+        * Description: Retrieve next possible states based on logged in user.
         **/
         public func getAllowedStateTransition(
             orderingChannel: String,
@@ -1355,8 +1090,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: 
-        * Description: Fetch Credit Balance Detail
+        * Summary: Fetch credit balance detail.
+        * Description: Retrieve details about credit balance.
         **/
         public func fetchCreditBalanceDetail(
             body: FetchCreditBalanceRequestPayload,
@@ -1403,8 +1138,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: 
-        * Description: Fetch Refund Mode Config
+        * Summary: Fetch refund mode config.
+        * Description: Retrieve configuration for refund modes.
         **/
         public func fetchRefundModeConfig(
             body: RefundModeConfigRequestPayload,
@@ -1451,8 +1186,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: 
-        * Description: Attach Order User
+        * Summary: Attach order user.
+        * Description: Attach order User
         **/
         public func attachOrderUser(
             body: AttachOrderUser,
@@ -1499,8 +1234,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: 
-        * Description: Send User Mobile OTP
+        * Summary: Send user mobile OTP.
+        * Description: Send a one-time OTP to a users mobile device.
         **/
         public func sendUserMobileOTP(
             body: SendUserMobileOTP,
@@ -1547,7 +1282,7 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: 
+        * Summary: Verify mobile OTP.
         * Description: Verify Mobile OTP
         **/
         public func verifyMobileOTP(
@@ -1595,8 +1330,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: 
-        * Description: downloads lanes shipment/orders.
+        * Summary: Download lanes report.
+        * Description: Downloads lanes shipment/orders.
         **/
         public func downloadLanesReport(
             body: BulkReportsDownloadRequest,
@@ -2395,7 +2130,7 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: 
+        * Summary: E-invoice retry.
         * Description: Retry e-invoice after failure
         **/
         public func eInvoiceRetry(
@@ -2443,8 +2178,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: 
-        * Description: This endpoint allows users to get courier partner tracking details for a given shipment id or awb no. The service will fetch courier partner statuses that are pushed to oms.
+        * Summary: Track shipment.
+        * Description: Retrieve courier partner tracking details for a given shipment id or awb no.
         **/
         public func trackShipment(
             shipmentId: String?,
@@ -2523,8 +2258,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Post courier partner tracking details
-        * Description: This endpoint allows users to post courier partner tracking details for a given shipment id or awb no. The service will add entry for courier partner statuses and will be saved to oms.
+        * Summary: Update shipment tracking.
+        * Description: Modify courier partner tracking details for a given shipment id or awb no.
         **/
         public func updateShipmentTracking(
             body: CourierPartnerTrackingDetails,
@@ -2659,6 +2394,55 @@ if let value = searchValue {
         
         /**
         *
+        * Summary: 
+        * Description: This API is used to manually generate Invoice ID against shipments.
+        **/
+        public func generateInvoiceID(
+            invoiceType: String,
+            body: GenerateInvoiceIDRequest,
+            onResponse: @escaping (_ response: GenerateInvoiceIDResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/\(invoiceType)/id/generate",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GenerateInvoiceIDResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
         * Summary: Get failed order logs according to the filter provided
         * Description: This endpoint allows users to get the exact error trace from the log id provided
         **/
@@ -2707,19 +2491,10 @@ if let value = searchValue {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
-        * Summary: 
-        * Description: Get Shipments Listing for the company id
+        * Summary: Get shipments.
+        * Description: Retrieve a list of available shipments.
         **/
         public func getShipments(
             lane: String?,
@@ -3012,293 +2787,10 @@ if let value = orderType {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
-        * Summary: get paginator for getShipments
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getShipmentsPaginator(
-            lane: String?,
-            bagStatus: String?,
-            statusOverrideLane: Bool?,
-            timeToDispatch: Int?,
-            searchType: String?,
-            searchValue: String?,
-            fromDate: String?,
-            toDate: String?,
-            startDate: String?,
-            endDate: String?,
-            dpIds: String?,
-            stores: String?,
-            salesChannels: String?,
-            pageSize: Int?,
-            fetchActiveShipment: Bool?,
-            allowInactive: Bool?,
-            excludeLockedShipments: Bool?,
-            paymentMethods: String?,
-            channelShipmentId: String?,
-            channelOrderId: String?,
-            customMeta: String?,
-            orderingChannel: String?,
-            companyAffiliateTag: String?,
-            myOrders: Bool?,
-            platformUserId: String?,
-            sortType: String?,
-            showCrossCompanyData: Bool?,
-            tags: String?,
-            customerId: String?,
-            orderType: String?
-            
-            ) -> Paginator<ShipmentInternalPlatformViewResponse> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<ShipmentInternalPlatformViewResponse>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getShipments(
-                        
-                        lane: lane,
-                        bagStatus: bagStatus,
-                        statusOverrideLane: statusOverrideLane,
-                        timeToDispatch: timeToDispatch,
-                        searchType: searchType,
-                        searchValue: searchValue,
-                        fromDate: fromDate,
-                        toDate: toDate,
-                        startDate: startDate,
-                        endDate: endDate,
-                        dpIds: dpIds,
-                        stores: stores,
-                        salesChannels: salesChannels,
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        ,
-                        fetchActiveShipment: fetchActiveShipment,
-                        allowInactive: allowInactive,
-                        excludeLockedShipments: excludeLockedShipments,
-                        paymentMethods: paymentMethods,
-                        channelShipmentId: channelShipmentId,
-                        channelOrderId: channelOrderId,
-                        customMeta: customMeta,
-                        orderingChannel: orderingChannel,
-                        companyAffiliateTag: companyAffiliateTag,
-                        myOrders: myOrders,
-                        platformUserId: platformUserId,
-                        sortType: sortType,
-                        showCrossCompanyData: showCrossCompanyData,
-                        tags: tags,
-                        customerId: customerId,
-                        orderType: orderType
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: 
-        * Description: Get shipment details for the given shipment.
+        * Summary: Get shipment by ID.
+        * Description: Retrieve detailed information about a specific shipment.
         **/
         public func getShipmentById(
             channelShipmentId: String?,
@@ -3369,8 +2861,8 @@ if let value = fetchActiveShipment {
         
         /**
         *
-        * Summary: 
-        * Description: Get Order Details by ID
+        * Summary: Get order by ID.
+        * Description: Retrieve detailed information about a specific order.
         **/
         public func getOrderById(
             orderId: String,
@@ -3439,8 +2931,8 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: 
-        * Description: Get lane config for the order
+        * Summary: Get lane configuration.
+        * Description: Retrieve configuration settings for lanes.
         **/
         public func getLaneConfig(
             superLane: String?,
@@ -3639,8 +3131,8 @@ if let value = orderType {
         
         /**
         *
-        * Summary: 
-        * Description: Get Orders Listing
+        * Summary: Get orders.
+        * Description: Retrieve a list of available orders.
         **/
         public func getOrders(
             lane: String?,
@@ -3863,474 +3355,10 @@ if let value = orderType {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
-        * Summary: get paginator for getOrders
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getOrdersPaginator(
-            lane: String?,
-            searchType: String?,
-            bagStatus: String?,
-            timeToDispatch: Int?,
-            paymentMethods: String?,
-            tags: String?,
-            searchValue: String?,
-            fromDate: String?,
-            toDate: String?,
-            startDate: String?,
-            endDate: String?,
-            dpIds: String?,
-            stores: String?,
-            salesChannels: String?,
-            pageSize: Int?,
-            isPrioritySort: Bool?,
-            customMeta: String?,
-            myOrders: Bool?,
-            showCrossCompanyData: Bool?,
-            customerId: String?,
-            orderType: String?
-            
-            ) -> Paginator<OrderListingResponse> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<OrderListingResponse>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getOrders(
-                        
-                        lane: lane,
-                        searchType: searchType,
-                        bagStatus: bagStatus,
-                        timeToDispatch: timeToDispatch,
-                        paymentMethods: paymentMethods,
-                        tags: tags,
-                        searchValue: searchValue,
-                        fromDate: fromDate,
-                        toDate: toDate,
-                        startDate: startDate,
-                        endDate: endDate,
-                        dpIds: dpIds,
-                        stores: stores,
-                        salesChannels: salesChannels,
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        ,
-                        isPrioritySort: isPrioritySort,
-                        customMeta: customMeta,
-                        myOrders: myOrders,
-                        showCrossCompanyData: showCrossCompanyData,
-                        customerId: customerId,
-                        orderType: orderType
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: 
-        * Description: Get User views(User cross company views)
-        **/
-        public func getuserviews(
-            
-            onResponse: @escaping (_ response: UserViewsResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/order/v1.0/company/\(companyId)/views",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(UserViewsResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: 
-        * Description: Add User views(User cross company views)
-        **/
-        public func postuserviews(
-            body: UserViewsResponse,
-            onResponse: @escaping (_ response: CreateUpdateDeleteResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/order/v1.0/company/\(companyId)/views",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateUpdateDeleteResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: 
-        * Description: Update User views(User cross company views)
-        **/
-        public func updateuserviews(
-            body: UserViewsResponse,
-            onResponse: @escaping (_ response: CreateUpdateDeleteResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "PUT",
-                url: "/service/platform/order/v1.0/company/\(companyId)/views",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateUpdateDeleteResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: 
-        * Description: Delete User views(User cross company views)
-        **/
-        public func deleteuserviews(
-            id: String,
-            
-            onResponse: @escaping (_ response: CreateUpdateDeleteResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "DELETE",
-                url: "/service/platform/order/v1.0/company/\(companyId)/views/\(id)",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateUpdateDeleteResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: 
-        * Description: Get Global Filters
-        **/
-        public func globalfilters(
-            showIn: String,
-            requestSource: String,
-            
-            onResponse: @escaping (_ response: GlobalFiltersResponse?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["show_in"] = showIn
-
-
-
-
-    xQuery["request_source"] = requestSource
-
-
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/order/v1.0/company/\(companyId)/filters",
-                query: xQuery,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GlobalFiltersResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: 
-        * Description: Get Listing Filters
+        * Summary: Get filters.
+        * Description: Retrieve listing filters.
         **/
         public func getfilters(
             view: String,
@@ -4391,8 +3419,8 @@ if let value = groupEntity {
         
         /**
         *
-        * Summary: 
-        * Description: Generate Bulk Shipment Excel Report.
+        * Summary: Get bulk shipment Excel file.
+        * Description: Retrieve a bulk shipment Excel report.
         **/
         public func getBulkShipmentExcelFile(
             salesChannels: String?,
@@ -4535,8 +3563,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: 
-        * Description: Get Bulk Action seller templates.
+        * Summary: Get bulk action template.
+        * Description: Retrieve bulk action seller templates.
         **/
         public func getBulkActionTemplate(
             
@@ -4583,7 +3611,7 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: 
+        * Summary: Download bulk action template.
         * Description: Download bulk actions seller templates.
         **/
         public func downloadBulkActionTemplate(
@@ -4639,8 +3667,8 @@ if let value = templateSlug {
         
         /**
         *
-        * Summary: Get reasons behind full or partial cancellation of a shipment
-        * Description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+        * Summary: Get shipment reasons.
+        * Description: Retrieve the issues that led to the cancellation of bags within a shipment.
         **/
         public func getShipmentReasons(
             shipmentId: String,
@@ -4691,8 +3719,8 @@ if let value = templateSlug {
         
         /**
         *
-        * Summary: 
-        * Description: Get Order Bag Details.
+        * Summary: Get bag by ID.
+        * Description: Retrieve detailed information about a specific bag.
         **/
         public func getBagById(
             bagId: String?,
@@ -4763,8 +3791,8 @@ if let value = channelId {
         
         /**
         *
-        * Summary: 
-        * Description: Get Bags for the order
+        * Summary: Get bags.
+        * Description: Retrieve Bags for the order.
         **/
         public func getBags(
             bagIds: String?,
@@ -4883,8 +3911,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: 
-        * Description: Generate POS recipt by order id.
+        * Summary: Generate POS receipt by order ID.
+        * Description: Create a point-of-sale (POS) receipt for a specific order by order ID.
         **/
         public func generatePOSReceiptByOrderId(
             orderId: String,

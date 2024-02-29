@@ -7,13 +7,16 @@
 ## Theme Methods
 Responsible for themes
 
-Default
+Page Management
 * [getAllPages](#getallpages)
 * [createPage](#createpage)
 * [updateMultiplePages](#updatemultiplepages)
 * [getPage](#getpage)
 * [updatePage](#updatepage)
 * [deletePage](#deletepage)
+
+
+Theme management 
 * [getThemeLibrary](#getthemelibrary)
 * [addToThemeLibrary](#addtothemelibrary)
 * [getPublicThemes](#getpublicthemes)
@@ -23,7 +26,6 @@ Default
 * [archiveTheme](#archivetheme)
 * [unarchiveTheme](#unarchivetheme)
 * [getCompanyLevelThemes](#getcompanylevelthemes)
-* [getCompanyLevelPrivateThemes](#getcompanylevelprivatethemes)
 * [addMarketplaceThemeToCompany](#addmarketplacethemetocompany)
 * [deleteCompanyTheme](#deletecompanytheme)
 * [getApplicationThemes](#getapplicationthemes)
@@ -42,6 +44,10 @@ Default
 * [upgradeTheme](#upgradetheme)
 
 
+Default
+* [getCompanyLevelPrivateThemes](#getcompanylevelprivatethemes)
+
+
 
 
 ## Methods with example and description
@@ -49,7 +55,7 @@ Default
 
 
 #### getAllPages
-Get all pages of a theme
+Get all pages.
 
 
 
@@ -70,7 +76,7 @@ platformClient.application("<APPLICATION_ID>").theme.getAllPages(themeId: themeI
 
 
 
-Use this API to retrieve all the available pages of a theme by its ID.
+Retrieve a list of all available pages.
 
 *Returned Response:*
 
@@ -532,7 +538,7 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
 
 
 #### createPage
-Create a page 
+Create page.
 
 
 
@@ -553,7 +559,7 @@ platformClient.application("<APPLICATION_ID>").theme.createPage(themeId: themeId
 | body | AvailablePageSchema | yes | Request body |
 
 
-Use this API to create a page for a theme by its ID.
+Generate and add a new page to the platform.
 
 *Returned Response:*
 
@@ -962,7 +968,7 @@ Success. Returns the page of the theme. Refer `AvailablePageSchema` for more det
 
 
 #### updateMultiplePages
-Update multiple pages of a theme
+Update multiple pages.
 
 
 
@@ -983,7 +989,7 @@ platformClient.application("<APPLICATION_ID>").theme.updateMultiplePages(themeId
 | body | AllAvailablePageSchema | yes | Request body |
 
 
-Use this API to update multiple pages of a theme by its ID.
+Modify multiple pages simultaneously.
 
 *Returned Response:*
 
@@ -1445,7 +1451,7 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
 
 
 #### getPage
-Get page of a theme
+Get page.
 
 
 
@@ -1467,7 +1473,7 @@ platformClient.application("<APPLICATION_ID>").theme.getPage(themeId: themeId, p
 
 
 
-Use this API to retrieve a page of a theme.
+Retrieve detailed information about a specific page.
 
 *Returned Response:*
 
@@ -1876,7 +1882,7 @@ Success. Returns an object of the page.  Refer `AvailablePageSchema` for more de
 
 
 #### updatePage
-Updates a page 
+Update page.
 
 
 
@@ -1898,7 +1904,7 @@ platformClient.application("<APPLICATION_ID>").theme.updatePage(themeId: themeId
 | body | AvailablePageSchema | yes | Request body |
 
 
-Use this API to update a page for a theme by its ID.
+Modify and update the content of a page.
 
 *Returned Response:*
 
@@ -2307,7 +2313,7 @@ Success. Returns a the page of the theme. Refer `AvailablePageSchema` for more d
 
 
 #### deletePage
-Deletes a page 
+Delete page.
 
 
 
@@ -2329,7 +2335,7 @@ platformClient.application("<APPLICATION_ID>").theme.deletePage(themeId: themeId
 
 
 
-Use this API to delete a page for a theme by its ID and page_value.
+Remove a page from the platform.
 
 *Returned Response:*
 
@@ -2737,8 +2743,10 @@ Success. Returns a the page of the theme. Refer `AvailablePageSchema` for more d
 ---
 
 
+
+
 #### getThemeLibrary
-Get a list of themes from the theme library
+Get theme library.
 
 
 
@@ -2760,7 +2768,7 @@ platformClient.application("<APPLICATION_ID>").theme.getThemeLibrary(pageSize: p
 
 
 
-Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to fetch a list of themes from the library along with their configuration details. 
+Retrieve themes available in the platform's library.
 
 *Returned Response:*
 
@@ -2794,7 +2802,7 @@ Success. Refer `FontsSchema` for more details.
 
 
 #### addToThemeLibrary
-Add a theme to the theme library
+Add to theme library.
 
 
 
@@ -2814,7 +2822,7 @@ platformClient.application("<APPLICATION_ID>").theme.addToThemeLibrary(body: bod
 | body | AddThemeRequestSchema | yes | Request body |
 
 
-Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to choose a theme and add it to the theme library.
+Store and add a theme to the platform's library.
 
 *Returned Response:*
 
@@ -2848,7 +2856,7 @@ Success. Refer `FontsSchema` for more details.
 
 
 #### getPublicThemes
-Get all public themes
+Get public themes.
 
 
 
@@ -2870,7 +2878,7 @@ platformClient.application("<APPLICATION_ID>").theme.getPublicThemes(pageSize: p
 
 
 
-Use this API to get a list of free themes that you can apply to your website.
+Retrieve themes that are publicly accessible.
 
 *Returned Response:*
 
@@ -2904,7 +2912,7 @@ Success. Refer `FontsSchema` for more details.
 
 
 #### getFonts
-Get all the supported fonts in a theme
+Get fonts.
 
 
 
@@ -2920,7 +2928,7 @@ platformClient.application("<APPLICATION_ID>").theme.getFonts() { (response, err
 
 
 
-Font is a collection of characters with a similar design. Use this API to retrieve a list of website fonts.
+Retrieve a list of available fonts.
 
 *Returned Response:*
 
@@ -2980,7 +2988,7 @@ Success. Refer `FontsSchema` for more details.
 
 
 #### publishTheme
-Publish a theme
+Publish theme.
 
 
 
@@ -3001,7 +3009,7 @@ platformClient.application("<APPLICATION_ID>").theme.publishTheme(themeId: theme
 
 
 
-Use this API to publish a theme that is either newly created or edited.
+Make a theme accessible for use.
 
 *Returned Response:*
 
@@ -3035,7 +3043,7 @@ Success. Refer `FontsSchema` for more details.
 
 
 #### unpublishTheme
-Unpublish a theme
+Unpublish theme.
 
 
 
@@ -3056,7 +3064,7 @@ platformClient.application("<APPLICATION_ID>").theme.unpublishTheme(themeId: the
 
 
 
-Use this API to remove an existing theme from the list of available themes.
+Remove a published theme from public access.
 
 *Returned Response:*
 
@@ -3090,7 +3098,7 @@ Success. Refer `FontsSchema` for more details.
 
 
 #### archiveTheme
-Archive a theme
+Archive theme.
 
 
 
@@ -3111,7 +3119,7 @@ platformClient.application("<APPLICATION_ID>").theme.archiveTheme(themeId: theme
 
 
 
-Use this API to store an existing theme but not delete it so that it can be used in future if required. 
+Store a theme in an archive.
 
 *Returned Response:*
 
@@ -3145,7 +3153,7 @@ Success. Refer `FontsSchema` for more details.
 
 
 #### unarchiveTheme
-Unarchive a theme
+Unarchive theme.
 
 
 
@@ -3166,7 +3174,7 @@ platformClient.application("<APPLICATION_ID>").theme.unarchiveTheme(themeId: the
 
 
 
-Use this API to restore an archived theme and bring it back for editing or publishing. 
+Retrieve a theme from the archive.
 
 *Returned Response:*
 
@@ -3200,7 +3208,7 @@ Success. Refer `FontsSchema` for more details.
 
 
 #### getCompanyLevelThemes
-Get themes for a company
+Get company-level themes.
 
 
 
@@ -3221,7 +3229,7 @@ platformClient.theme.getCompanyLevelThemes(searchText: searchText) { (response, 
 
 
 
-Retrieve a list of themes available for a specific company.
+Retrieve themes specific to a company.
 
 *Returned Response:*
 
@@ -3254,63 +3262,8 @@ A list of themes for the company.
 ---
 
 
-#### getCompanyLevelPrivateThemes
-Get private themes for a company
-
-
-
-
-```swift
-platformClient.theme.getCompanyLevelPrivateThemes(searchText: searchText) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| searchText | String? | no | Search Text to match the Theme Names and return the response. |  
-
-
-
-Retrieve a list of private themes available for a specific company.
-
-*Returned Response:*
-
-
-
-
-[[CompanyPrivateTheme]](#[CompanyPrivateTheme])
-
-A list of Private themes for the company.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### addMarketplaceThemeToCompany
-Add a theme to a company
+Add marketplace theme to company.
 
 
 
@@ -3330,7 +3283,7 @@ platformClient.theme.addMarketplaceThemeToCompany(body: body) { (response, error
 | body | ThemeReq | yes | Request body |
 
 
-Add a marketplace theme to a company by providing the theme ID and company ID.
+Incorporate a marketplace theme into a company's profile.
 
 *Returned Response:*
 
@@ -3364,7 +3317,7 @@ The theme was successfully applied to the company.
 
 
 #### deleteCompanyTheme
-Delete a theme
+Delete company theme.
 
 
 
@@ -3385,7 +3338,7 @@ platformClient.theme.deleteCompanyTheme(themeId: themeId) { (response, error) in
 
 
 
-Delete a specific theme for a company by providing the company ID and theme ID.
+Remove a theme associated with a company.
 
 *Returned Response:*
 
@@ -3419,7 +3372,7 @@ Theme deleted successfully.
 
 
 #### getApplicationThemes
-Get all the themes for a specific application
+Get application themes.
 
 
 
@@ -3435,7 +3388,7 @@ platformClient.application("<APPLICATION_ID>").theme.getApplicationThemes() { (r
 
 
 
-Get all the themes for a specific application
+Retrieve themes available for an application.
 
 *Returned Response:*
 
@@ -7435,7 +7388,7 @@ The list of themes for the application was fetched successfully.
 
 
 #### getApplicationThemesCount
-Get the count of themes for a specific application
+Get application themes count.
 
 
 
@@ -7451,7 +7404,7 @@ platformClient.application("<APPLICATION_ID>").theme.getApplicationThemesCount()
 
 
 
-Get the count of themes for a specific application
+Count the number of themes available for an application.
 
 *Returned Response:*
 
@@ -7485,7 +7438,7 @@ The count of themes for the application was fetched successfully.
 
 
 #### getThemeById
-Get Theme By Theme Id
+Get theme by ID.
 
 
 
@@ -7506,7 +7459,7 @@ platformClient.application("<APPLICATION_ID>").theme.getThemeById(themeId: theme
 
 
 
-Get Theme By Theme Id
+Retrieve a theme by its unique identifier.
 
 *Returned Response:*
 
@@ -7540,7 +7493,7 @@ The Details of themes for the application was fetched successfully.
 
 
 #### updateTheme
-Update theme for a specific company and application
+Update theme.
 
 
 
@@ -7561,7 +7514,7 @@ platformClient.application("<APPLICATION_ID>").theme.updateTheme(themeId: themeI
 | body | UpdateThemeRequestBody | yes | Request body |
 
 
-Update theme for a specific company and application
+Modify and update the content and settings of a theme
 
 *Returned Response:*
 
@@ -11554,7 +11507,7 @@ Theme updated successfully
 
 
 #### deleteTheme
-Delete a theme
+Delete theme.
 
 
 
@@ -11575,7 +11528,7 @@ platformClient.application("<APPLICATION_ID>").theme.deleteTheme(themeId: themeI
 
 
 
-This endpoint is used to delete a theme from the specified company and application.
+Remove a theme from the platform.
 
 *Returned Response:*
 
@@ -15568,7 +15521,7 @@ Theme successfully deleted.
 
 
 #### addThemeToApplication
-Add a theme to an application
+Add theme to application.
 
 
 
@@ -15588,7 +15541,7 @@ platformClient.application("<APPLICATION_ID>").theme.addThemeToApplication(body:
 | body | ThemeReq | yes | Request body |
 
 
-Add a theme to an application by providing the marketplace theme ID.
+Include a theme in an application's design.
 
 *Returned Response:*
 
@@ -19581,7 +19534,7 @@ Theme
 
 
 #### updateThemeName
-Update Theme Name
+Update theme name.
 
 
 
@@ -19602,7 +19555,7 @@ platformClient.application("<APPLICATION_ID>").theme.updateThemeName(themeId: th
 | body | UpdateThemeNameRequestBody | yes | Request body |
 
 
-Update the name of a theme for a specific company and application.
+Modify the name of a theme.
 
 *Returned Response:*
 
@@ -23595,7 +23548,7 @@ Theme name updated successfully.
 
 
 #### applyTheme
-Apply theme to a specific application
+Apply theme.
 
 
 
@@ -23616,7 +23569,7 @@ platformClient.application("<APPLICATION_ID>").theme.applyTheme(themeId: themeId
 
 
 
-Apply theme to a specific application by providing company_id, application_id, and theme_id.
+Set and apply a theme to an application or page.
 
 *Returned Response:*
 
@@ -27609,7 +27562,7 @@ Theme applied successfully
 
 
 #### duplicateTheme
-Duplicate a Theme
+Duplicate theme.
 
 
 
@@ -27630,7 +27583,7 @@ platformClient.application("<APPLICATION_ID>").theme.duplicateTheme(themeId: the
 
 
 
-This endpoint duplicates a Theme in the specified application.
+Create a copy of an existing theme.
 
 *Returned Response:*
 
@@ -31623,7 +31576,7 @@ Resource duplicated successfully
 
 
 #### getAppliedTheme
-Get the Applied theme of an Application
+Get applied theme.
 
 
 
@@ -31639,7 +31592,7 @@ platformClient.application("<APPLICATION_ID>").theme.getAppliedTheme() { (respon
 
 
 
-Get Applied Theme of an Application by Application Id
+Retrieve the currently applied theme.
 
 *Returned Response:*
 
@@ -35632,7 +35585,7 @@ Successfully fetch the applied theme
 
 
 #### getThemeForPreview
-Get Theme Preview By Theme Id
+Get theme for preview.
 
 
 
@@ -35653,7 +35606,7 @@ platformClient.application("<APPLICATION_ID>").theme.getThemeForPreview(themeId:
 
 
 
-Get Theme Preview By Theme Id
+Retrieve a theme for previewing before application.
 
 *Returned Response:*
 
@@ -39646,7 +39599,7 @@ Get the details of the theme for preview purpose.
 
 
 #### getThemeLastModified
-Fetch last modified timestamp
+Get theme last modified.
 
 
 
@@ -39667,7 +39620,7 @@ platformClient.application("<APPLICATION_ID>").theme.getThemeLastModified(themeI
 
 
 
-Use this API to fetch Last-Modified timestamp in header metadata.
+Retrieve the last modification of a theme.
 
 *Returned Response:*
 
@@ -39682,7 +39635,7 @@ Use this API to fetch Last-Modified timestamp in header metadata.
 
 
 #### isUpgradable
-Check if the theme is upgradable
+Is upgradable.
 
 
 
@@ -39703,7 +39656,7 @@ platformClient.application("<APPLICATION_ID>").theme.isUpgradable(themeId: theme
 
 
 
-This API endpoint checks if the theme is upgradable for a specific company and application.
+Determine if a theme is eligible for an upgrade.
 
 *Returned Response:*
 
@@ -39769,7 +39722,7 @@ Successful response
 
 
 #### upgradeTheme
-Upgrade an application
+Upgrade theme.
 
 
 
@@ -39790,7 +39743,7 @@ platformClient.application("<APPLICATION_ID>").theme.upgradeTheme(themeId: theme
 
 
 
-This endpoint allows you to upgrade an application.
+Enhance and update a theme to a new version.
 
 *Returned Response:*
 
@@ -43769,6 +43722,63 @@ Successful upgrade
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
+
+#### getCompanyLevelPrivateThemes
+Get private themes for a company
+
+
+
+
+```swift
+platformClient.theme.getCompanyLevelPrivateThemes(searchText: searchText) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| searchText | String? | no | Search Text to match the Theme Names and return the response. |  
+
+
+
+Retrieve a list of private themes available for a specific company.
+
+*Returned Response:*
+
+
+
+
+[[CompanyPrivateTheme]](#[CompanyPrivateTheme])
+
+A list of Private themes for the company.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
 </details>
 
 

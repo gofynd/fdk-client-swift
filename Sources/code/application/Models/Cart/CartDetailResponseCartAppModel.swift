@@ -18,8 +18,6 @@ public extension ApplicationClient.Cart {
         
         public var panNo: String?
         
-        public var isPanReceived: Bool?
-        
         public var isValid: Bool?
         
         public var id: String?
@@ -62,8 +60,6 @@ public extension ApplicationClient.Cart {
         
         public var panConfig: [String: Any]?
         
-        public var customCart: CustomCart?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -76,8 +72,6 @@ public extension ApplicationClient.Cart {
             case checkoutMode = "checkout_mode"
             
             case panNo = "pan_no"
-            
-            case isPanReceived = "is_pan_received"
             
             case isValid = "is_valid"
             
@@ -121,11 +115,9 @@ public extension ApplicationClient.Cart {
             
             case panConfig = "pan_config"
             
-            case customCart = "custom_cart"
-            
         }
 
-        public init(appliedPromoDetails: [AppliedPromotion]? = nil, breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, comment: String? = nil, commonConfig: CartCommonConfig? = nil, coupon: CartDetailCoupon? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customCart: CustomCart? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, gstin: String? = nil, id: String? = nil, isPanReceived: Bool? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, notification: [String: Any]? = nil, panConfig: [String: Any]? = nil, panNo: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, staffUserId: String? = nil, success: Bool? = nil, uid: String? = nil) {
+        public init(appliedPromoDetails: [AppliedPromotion]? = nil, breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, comment: String? = nil, commonConfig: CartCommonConfig? = nil, coupon: CartDetailCoupon? = nil, couponText: String? = nil, currency: CartCurrency? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, notification: [String: Any]? = nil, panConfig: [String: Any]? = nil, panNo: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, staffUserId: String? = nil, success: Bool? = nil, uid: String? = nil) {
             
             self.cartId = cartId
             
@@ -136,8 +128,6 @@ public extension ApplicationClient.Cart {
             self.checkoutMode = checkoutMode
             
             self.panNo = panNo
-            
-            self.isPanReceived = isPanReceived
             
             self.isValid = isValid
             
@@ -180,8 +170,6 @@ public extension ApplicationClient.Cart {
             self.buyNow = buyNow
             
             self.panConfig = panConfig
-            
-            self.customCart = customCart
             
         }
 
@@ -239,18 +227,6 @@ public extension ApplicationClient.Cart {
             
             do {
                 panNo = try container.decode(String.self, forKey: .panNo)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                isPanReceived = try container.decode(Bool.self, forKey: .isPanReceived)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -512,18 +488,6 @@ public extension ApplicationClient.Cart {
             }
             
             
-            
-            do {
-                customCart = try container.decode(CustomCart.self, forKey: .customCart)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -547,10 +511,6 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(panNo, forKey: .panNo)
-            
-            
-            
-            try? container.encodeIfPresent(isPanReceived, forKey: .isPanReceived)
             
             
             
@@ -635,10 +595,6 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(panConfig, forKey: .panConfig)
-            
-            
-            
-            try? container.encodeIfPresent(customCart, forKey: .customCart)
             
             
         }

@@ -24,8 +24,6 @@ public extension PlatformClient.Configuration {
         
         public var onlyVerifiedProducts: Bool?
         
-        public var pricingStrategy: PricingStrategy?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -41,11 +39,9 @@ public extension PlatformClient.Configuration {
             
             case onlyVerifiedProducts = "only_verified_products"
             
-            case pricingStrategy = "pricing_strategy"
-            
         }
 
-        public init(brand: InventoryBrandRule? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, pricingStrategy: PricingStrategy? = nil, store: InventoryStoreRule? = nil) {
+        public init(brand: InventoryBrandRule? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, store: InventoryStoreRule? = nil) {
             
             self.brand = brand
             
@@ -58,8 +54,6 @@ public extension PlatformClient.Configuration {
             self.outOfStock = outOfStock
             
             self.onlyVerifiedProducts = onlyVerifiedProducts
-            
-            self.pricingStrategy = pricingStrategy
             
         }
 
@@ -138,18 +132,6 @@ public extension PlatformClient.Configuration {
                 }
                 
             
-            
-                do {
-                    pricingStrategy = try container.decode(PricingStrategy.self, forKey: .pricingStrategy)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -183,11 +165,6 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(onlyVerifiedProducts, forKey: .onlyVerifiedProducts)
-            
-            
-            
-            
-            try? container.encodeIfPresent(pricingStrategy, forKey: .pricingStrategy)
             
             
         }
@@ -218,8 +195,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var onlyVerifiedProducts: Bool?
         
-        public var pricingStrategy: PricingStrategy?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -235,11 +210,9 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case onlyVerifiedProducts = "only_verified_products"
             
-            case pricingStrategy = "pricing_strategy"
-            
         }
 
-        public init(brand: InventoryBrandRule? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, pricingStrategy: PricingStrategy? = nil, store: InventoryStoreRule? = nil) {
+        public init(brand: InventoryBrandRule? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, store: InventoryStoreRule? = nil) {
             
             self.brand = brand
             
@@ -252,8 +225,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.outOfStock = outOfStock
             
             self.onlyVerifiedProducts = onlyVerifiedProducts
-            
-            self.pricingStrategy = pricingStrategy
             
         }
 
@@ -332,18 +303,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
-            
-                do {
-                    pricingStrategy = try container.decode(PricingStrategy.self, forKey: .pricingStrategy)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -377,11 +336,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(onlyVerifiedProducts, forKey: .onlyVerifiedProducts)
-            
-            
-            
-            
-            try? container.encodeIfPresent(pricingStrategy, forKey: .pricingStrategy)
             
             
         }

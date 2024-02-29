@@ -22,7 +22,7 @@ public extension PlatformClient.Webhook {
         
         public var attempt: Int?
         
-        public var lastAttemptedOn: Int?
+        public var lastAttemptedOn: Double?
         
         public var status: String?
         
@@ -65,7 +65,7 @@ public extension PlatformClient.Webhook {
             
         }
 
-        public init(attempt: Int? = nil, data: [String: Any]? = nil, eventName: String? = nil, eventTraceId: String? = nil, lastAttemptedOn: Int? = nil, messageId: String? = nil, name: String? = nil, responseCode: Int? = nil, responseMessage: String? = nil, responseTime: Int? = nil, status: String? = nil, webhookUrl: String? = nil) {
+        public init(attempt: Int? = nil, data: [String: Any]? = nil, eventName: String? = nil, eventTraceId: String? = nil, lastAttemptedOn: Double? = nil, messageId: String? = nil, name: String? = nil, responseCode: Int? = nil, responseMessage: String? = nil, responseTime: Int? = nil, status: String? = nil, webhookUrl: String? = nil) {
             
             self.eventName = eventName
             
@@ -158,7 +158,7 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    lastAttemptedOn = try container.decode(Int.self, forKey: .lastAttemptedOn)
+                    lastAttemptedOn = try container.decode(Double.self, forKey: .lastAttemptedOn)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

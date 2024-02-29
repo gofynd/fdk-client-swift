@@ -8,7 +8,7 @@ public extension ApplicationClient.User {
     */
     class SendOtpRequestSchema: Codable {
         
-        public var ci: Bool?
+        public var encryptOtp: Bool?
         
         public var countryCode: String?
         
@@ -19,7 +19,7 @@ public extension ApplicationClient.User {
 
         public enum CodingKeys: String, CodingKey {
             
-            case ci = "ci"
+            case encryptOtp = "encrypt_otp"
             
             case countryCode = "country_code"
             
@@ -29,9 +29,9 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(androidHash: String? = nil, ci: Bool? = nil, countryCode: String? = nil, mobile: String? = nil) {
+        public init(androidHash: String? = nil, countryCode: String? = nil, encryptOtp: Bool? = nil, mobile: String? = nil) {
             
-            self.ci = ci
+            self.encryptOtp = encryptOtp
             
             self.countryCode = countryCode
             
@@ -46,7 +46,7 @@ public extension ApplicationClient.User {
             
             
             do {
-                ci = try container.decode(Bool.self, forKey: .ci)
+                encryptOtp = try container.decode(Bool.self, forKey: .encryptOtp)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,7 +98,7 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(ci, forKey: .ci)
+            try? container.encodeIfPresent(encryptOtp, forKey: .encryptOtp)
             
             
             

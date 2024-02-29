@@ -20,8 +20,6 @@ public extension PlatformClient.Payment {
         
         public var totalQuantity: Int?
         
-        public var sellerCompanyId: Int?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -33,11 +31,9 @@ public extension PlatformClient.Payment {
             
             case totalQuantity = "total_quantity"
             
-            case sellerCompanyId = "seller_company_id"
-            
         }
 
-        public init(articles: [[String: Any]], cartValue: Double, items: [String: Any], sellerCompanyId: Int? = nil, totalQuantity: Int? = nil) {
+        public init(articles: [[String: Any]], cartValue: Double, items: [String: Any], totalQuantity: Int? = nil) {
             
             self.items = items
             
@@ -46,8 +42,6 @@ public extension PlatformClient.Payment {
             self.cartValue = cartValue
             
             self.totalQuantity = totalQuantity
-            
-            self.sellerCompanyId = sellerCompanyId
             
         }
 
@@ -81,18 +75,6 @@ public extension PlatformClient.Payment {
                 }
                 
             
-            
-                do {
-                    sellerCompanyId = try container.decode(Int.self, forKey: .sellerCompanyId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -116,11 +98,6 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
-            
-            
-            
-            
-            try? container.encodeIfPresent(sellerCompanyId, forKey: .sellerCompanyId)
             
             
         }
@@ -147,8 +124,6 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var totalQuantity: Int?
         
-        public var sellerCompanyId: Int?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -160,11 +135,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case totalQuantity = "total_quantity"
             
-            case sellerCompanyId = "seller_company_id"
-            
         }
 
-        public init(articles: [[String: Any]], cartValue: Double, items: [String: Any], sellerCompanyId: Int? = nil, totalQuantity: Int? = nil) {
+        public init(articles: [[String: Any]], cartValue: Double, items: [String: Any], totalQuantity: Int? = nil) {
             
             self.items = items
             
@@ -173,8 +146,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.cartValue = cartValue
             
             self.totalQuantity = totalQuantity
-            
-            self.sellerCompanyId = sellerCompanyId
             
         }
 
@@ -208,18 +179,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 }
                 
             
-            
-                do {
-                    sellerCompanyId = try container.decode(Int.self, forKey: .sellerCompanyId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -243,11 +202,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
-            
-            
-            
-            
-            try? container.encodeIfPresent(sellerCompanyId, forKey: .sellerCompanyId)
             
             
         }

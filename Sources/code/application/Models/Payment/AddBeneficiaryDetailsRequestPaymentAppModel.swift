@@ -8,7 +8,7 @@ public extension ApplicationClient.Payment {
     */
     class AddBeneficiaryDetailsRequest: Codable {
         
-        public var delights: Bool?
+        public var delights: Bool
         
         public var shipmentId: String
         
@@ -41,7 +41,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(delights: Bool? = nil, details: BeneficiaryModeDetails, orderId: String, otp: String? = nil, requestId: String? = nil, shipmentId: String, transferMode: String) {
+        public init(delights: Bool, details: BeneficiaryModeDetails, orderId: String, otp: String? = nil, requestId: String? = nil, shipmentId: String, transferMode: String) {
             
             self.delights = delights
             
@@ -63,15 +63,8 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            do {
-                delights = try container.decode(Bool.self, forKey: .delights)
+            delights = try container.decode(Bool.self, forKey: .delights)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
             

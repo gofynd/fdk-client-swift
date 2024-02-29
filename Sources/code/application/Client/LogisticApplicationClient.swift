@@ -11,6 +11,10 @@ extension ApplicationClient {
             self.config = config;
             var ulrs = [String: String]()
             
+            ulrs["getPincodeCity"] = config.domain.appendAsPath("/service/application/logistics/v1.0/pincode/{pincode}") 
+            
+            ulrs["getTatProduct"] = config.domain.appendAsPath("/service/application/logistics/v1.0/") 
+            
             ulrs["getAllCountries"] = config.domain.appendAsPath("/service/application/logistics/v1.0/country-list") 
             
             ulrs["getPincodeZones"] = config.domain.appendAsPath("/service/application/logistics/v1.0/pincode/zones") 
@@ -41,8 +45,111 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get Country List
-        * Description: Get all countries
+        * Summary: Fetches city by pincode.
+        * Description: Retrieve the name of the city associated with a given pincode.
+        **/
+        public func getPincodeCity(
+            pincode: String,
+            
+            onResponse: @escaping (_ response: PincodeApiResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            
+            var fullUrl = relativeUrls["getPincodeCity"] ?? ""
+            
+                fullUrl = fullUrl.replacingOccurrences(of: "{" + "pincode" + "}", with: "\(pincode)")
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(PincodeApiResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Retrieves product turnaround time.
+        * Description: Retrieve the estimated delivery time for a specific product.
+        **/
+        public func getTatProduct(
+            body: TATViewRequest,
+            onResponse: @escaping (_ response: TATViewResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["getTatProduct"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(TATViewResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Lists all countries.
+        * Description: Retrieve a list of all countries supported by the system.
         **/
         public func getAllCountries(
             
@@ -91,8 +198,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: GET zone from the Pincode.
-        * Description: This API returns zone from the Pincode View.
+        * Summary: Fetches zones by pincode.
+        * Description: Retreive the logistical zones corresponding to a given pincode.
         **/
         public func getPincodeZones(
             body: GetZoneFromPincodeViewRequest,
@@ -141,8 +248,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: GET zone from the Pincode.
-        * Description: This API returns zone from the Pincode View.
+        * Summary: Finds optimal locations.
+        * Description: Retrieve the most efficient locations for logistics purposes.
         **/
         public func getOptimalLocations(
             body: ReAssignStoreRequest,
@@ -191,8 +298,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: GET locations from the Pincode.
-        * Description: This API returns store from the Pincode View.
+        * Summary: Fetches available locations.
+        * Description: Retrieves a list of all locations of countries, states, cities. 
         **/
         public func getLocations(
             xApplicationId: String,

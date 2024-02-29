@@ -26,8 +26,6 @@ public extension ApplicationClient.Cart {
         
         public var articleId: String?
         
-        public var priceFactoryTypeId: String?
-        
         public var parentItemIdentifiers: [[String: String]]?
         
         public var sellerId: Int?
@@ -61,8 +59,6 @@ public extension ApplicationClient.Cart {
             
             case articleId = "article_id"
             
-            case priceFactoryTypeId = "price_factory_type_id"
-            
             case parentItemIdentifiers = "parent_item_identifiers"
             
             case sellerId = "seller_id"
@@ -77,7 +73,7 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(articleAssignment: [String: Any]? = nil, articleId: String? = nil, display: String? = nil, extraMeta: [String: Any]? = nil, itemId: Int? = nil, itemSize: String? = nil, meta: [String: Any]? = nil, parentItemIdentifiers: [[String: String]]? = nil, pos: Bool? = nil, priceFactoryTypeId: String? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, sellerId: Int? = nil, sellerIdentifier: String? = nil, storeId: Int? = nil, customJson: [String: Any]? = nil) {
+        public init(articleAssignment: [String: Any]? = nil, articleId: String? = nil, display: String? = nil, extraMeta: [String: Any]? = nil, itemId: Int? = nil, itemSize: String? = nil, meta: [String: Any]? = nil, parentItemIdentifiers: [[String: String]]? = nil, pos: Bool? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, sellerId: Int? = nil, sellerIdentifier: String? = nil, storeId: Int? = nil, customJson: [String: Any]? = nil) {
             
             self.articleAssignment = articleAssignment
             
@@ -96,8 +92,6 @@ public extension ApplicationClient.Cart {
             self.display = display
             
             self.articleId = articleId
-            
-            self.priceFactoryTypeId = priceFactoryTypeId
             
             self.parentItemIdentifiers = parentItemIdentifiers
             
@@ -226,18 +220,6 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                priceFactoryTypeId = try container.decode(String.self, forKey: .priceFactoryTypeId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 parentItemIdentifiers = try container.decode([[String: String]].self, forKey: .parentItemIdentifiers)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -347,10 +329,6 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(articleId, forKey: .articleId)
-            
-            
-            
-            try? container.encodeIfPresent(priceFactoryTypeId, forKey: .priceFactoryTypeId)
             
             
             

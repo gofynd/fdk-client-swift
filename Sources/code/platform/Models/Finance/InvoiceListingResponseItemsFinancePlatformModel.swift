@@ -12,7 +12,7 @@ public extension PlatformClient.Finance {
     class InvoiceListingResponseItems: Codable {
         
         
-        public var amount: Double?
+        public var amount: String?
         
         public var company: String?
         
@@ -61,7 +61,7 @@ public extension PlatformClient.Finance {
             
         }
 
-        public init(amount: Double? = nil, company: String? = nil, currency: Currency? = nil, dueDate: String? = nil, invoiceDate: String? = nil, invoiceId: String? = nil, invoiceNumber: String? = nil, invoiceType: String? = nil, isDownloadable: Bool? = nil, period: String? = nil, status: String? = nil) {
+        public init(amount: String? = nil, company: String? = nil, currency: Currency? = nil, dueDate: String? = nil, invoiceDate: String? = nil, invoiceId: String? = nil, invoiceNumber: String? = nil, invoiceType: String? = nil, isDownloadable: Bool? = nil, period: String? = nil, status: String? = nil) {
             
             self.amount = amount
             
@@ -92,7 +92,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    amount = try container.decode(Double.self, forKey: .amount)
+                    amount = try container.decode(String.self, forKey: .amount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

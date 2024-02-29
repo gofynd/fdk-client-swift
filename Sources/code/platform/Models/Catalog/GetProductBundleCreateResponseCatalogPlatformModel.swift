@@ -12,13 +12,11 @@ public extension PlatformClient.Catalog {
     class GetProductBundleCreateResponse: Codable {
         
         
-        public var createdBy: UserSerializer?
-        
-        public var modifiedBy: UserSerializer?
-        
         public var choice: String
         
         public var companyId: Int?
+        
+        public var createdBy: [String: Any]?
         
         public var createdOn: String?
         
@@ -29,6 +27,8 @@ public extension PlatformClient.Catalog {
         public var logo: String?
         
         public var meta: [String: Any]?
+        
+        public var modifiedBy: [String: Any]?
         
         public var modifiedOn: String?
         
@@ -45,13 +45,11 @@ public extension PlatformClient.Catalog {
 
         public enum CodingKeys: String, CodingKey {
             
-            case createdBy = "created_by"
-            
-            case modifiedBy = "modified_by"
-            
             case choice = "choice"
             
             case companyId = "company_id"
+            
+            case createdBy = "created_by"
             
             case createdOn = "created_on"
             
@@ -62,6 +60,8 @@ public extension PlatformClient.Catalog {
             case logo = "logo"
             
             case meta = "meta"
+            
+            case modifiedBy = "modified_by"
             
             case modifiedOn = "modified_on"
             
@@ -77,15 +77,13 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(choice: String, companyId: Int? = nil, createdBy: UserSerializer? = nil, createdOn: String? = nil, id: String? = nil, isActive: Bool, logo: String? = nil, meta: [String: Any]? = nil, modifiedBy: UserSerializer? = nil, modifiedOn: String? = nil, name: String, pageVisibility: [String]? = nil, products: [ProductBundleItem], sameStoreAssignment: Bool? = nil, slug: String) {
-            
-            self.createdBy = createdBy
-            
-            self.modifiedBy = modifiedBy
+        public init(choice: String, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, id: String? = nil, isActive: Bool, logo: String? = nil, meta: [String: Any]? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, pageVisibility: [String]? = nil, products: [ProductBundleItem], sameStoreAssignment: Bool? = nil, slug: String) {
             
             self.choice = choice
             
             self.companyId = companyId
+            
+            self.createdBy = createdBy
             
             self.createdOn = createdOn
             
@@ -96,6 +94,8 @@ public extension PlatformClient.Catalog {
             self.logo = logo
             
             self.meta = meta
+            
+            self.modifiedBy = modifiedBy
             
             self.modifiedOn = modifiedOn
             
@@ -115,30 +115,6 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    createdBy = try container.decode(UserSerializer.self, forKey: .createdBy)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    modifiedBy = try container.decode(UserSerializer.self, forKey: .modifiedBy)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 choice = try container.decode(String.self, forKey: .choice)
                 
             
@@ -146,6 +122,18 @@ public extension PlatformClient.Catalog {
             
                 do {
                     companyId = try container.decode(Int.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    createdBy = try container.decode([String: Any].self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -199,6 +187,18 @@ public extension PlatformClient.Catalog {
             
                 do {
                     meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    modifiedBy = try container.decode([String: Any].self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -266,22 +266,17 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-            
-            
-            
-            
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
-            
-            
-            
-            
             try? container.encodeIfPresent(choice, forKey: .choice)
             
             
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
             
             
             
@@ -307,6 +302,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
             
             
             
@@ -355,13 +355,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetProductBundleCreateResponse: Codable {
         
         
-        public var createdBy: UserSerializer?
-        
-        public var modifiedBy: UserSerializer?
-        
         public var choice: String
         
         public var companyId: Int?
+        
+        public var createdBy: [String: Any]?
         
         public var createdOn: String?
         
@@ -372,6 +370,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var logo: String?
         
         public var meta: [String: Any]?
+        
+        public var modifiedBy: [String: Any]?
         
         public var modifiedOn: String?
         
@@ -388,13 +388,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public enum CodingKeys: String, CodingKey {
             
-            case createdBy = "created_by"
-            
-            case modifiedBy = "modified_by"
-            
             case choice = "choice"
             
             case companyId = "company_id"
+            
+            case createdBy = "created_by"
             
             case createdOn = "created_on"
             
@@ -405,6 +403,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case logo = "logo"
             
             case meta = "meta"
+            
+            case modifiedBy = "modified_by"
             
             case modifiedOn = "modified_on"
             
@@ -420,15 +420,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(choice: String, companyId: Int? = nil, createdBy: UserSerializer? = nil, createdOn: String? = nil, id: String? = nil, isActive: Bool, logo: String? = nil, meta: [String: Any]? = nil, modifiedBy: UserSerializer? = nil, modifiedOn: String? = nil, name: String, pageVisibility: [String]? = nil, products: [ProductBundleItem], sameStoreAssignment: Bool? = nil, slug: String) {
-            
-            self.createdBy = createdBy
-            
-            self.modifiedBy = modifiedBy
+        public init(choice: String, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, id: String? = nil, isActive: Bool, logo: String? = nil, meta: [String: Any]? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, pageVisibility: [String]? = nil, products: [ProductBundleItem], sameStoreAssignment: Bool? = nil, slug: String) {
             
             self.choice = choice
             
             self.companyId = companyId
+            
+            self.createdBy = createdBy
             
             self.createdOn = createdOn
             
@@ -439,6 +437,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.logo = logo
             
             self.meta = meta
+            
+            self.modifiedBy = modifiedBy
             
             self.modifiedOn = modifiedOn
             
@@ -458,30 +458,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    createdBy = try container.decode(UserSerializer.self, forKey: .createdBy)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    modifiedBy = try container.decode(UserSerializer.self, forKey: .modifiedBy)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 choice = try container.decode(String.self, forKey: .choice)
                 
             
@@ -489,6 +465,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     companyId = try container.decode(Int.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    createdBy = try container.decode([String: Any].self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -542,6 +530,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    modifiedBy = try container.decode([String: Any].self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -609,22 +609,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-            
-            
-            
-            
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
-            
-            
-            
-            
             try? container.encodeIfPresent(choice, forKey: .choice)
             
             
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
             
             
             
@@ -650,6 +645,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
             
             
             

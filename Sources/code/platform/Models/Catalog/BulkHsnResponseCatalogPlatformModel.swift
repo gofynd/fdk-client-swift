@@ -12,18 +12,18 @@ public extension PlatformClient.Catalog {
     class BulkHsnResponse: Codable {
         
         
-        public var data: BulkHsnDataResponse?
+        public var success: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case data = "data"
+            case success = "success"
             
         }
 
-        public init(data: BulkHsnDataResponse? = nil) {
+        public init(success: Bool? = nil) {
             
-            self.data = data
+            self.success = success
             
         }
 
@@ -32,7 +32,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    data = try container.decode(BulkHsnDataResponse.self, forKey: .data)
+                    success = try container.decode(Bool.self, forKey: .success)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }
@@ -68,18 +68,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class BulkHsnResponse: Codable {
         
         
-        public var data: BulkHsnDataResponse?
+        public var success: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case data = "data"
+            case success = "success"
             
         }
 
-        public init(data: BulkHsnDataResponse? = nil) {
+        public init(success: Bool? = nil) {
             
-            self.data = data
+            self.success = success
             
         }
 
@@ -88,7 +88,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    data = try container.decode(BulkHsnDataResponse.self, forKey: .data)
+                    success = try container.decode(Bool.self, forKey: .success)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }

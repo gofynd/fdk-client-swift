@@ -12,24 +12,18 @@ public extension PlatformClient.Payment {
     class DeletePayoutResponse: Codable {
         
         
-        public var delete: Bool?
-        
-        public var uniqueTransferNo: String?
+        public var success: Bool
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case delete = "delete"
-            
-            case uniqueTransferNo = "unique_transfer_no"
+            case success = "success"
             
         }
 
-        public init(delete: Bool? = nil, uniqueTransferNo: String? = nil) {
+        public init(success: Bool) {
             
-            self.delete = delete
-            
-            self.uniqueTransferNo = uniqueTransferNo
+            self.success = success
             
         }
 
@@ -37,28 +31,9 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    delete = try container.decode(Bool.self, forKey: .delete)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                success = try container.decode(Bool.self, forKey: .success)
                 
             
-            
-                do {
-                    uniqueTransferNo = try container.decode(String.self, forKey: .uniqueTransferNo)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
@@ -67,12 +42,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(delete, forKey: .delete)
-            
-            
-            
-            
-            try? container.encodeIfPresent(uniqueTransferNo, forKey: .uniqueTransferNo)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }
@@ -91,24 +61,18 @@ public extension PlatformClient.ApplicationClient.Payment {
     class DeletePayoutResponse: Codable {
         
         
-        public var delete: Bool?
-        
-        public var uniqueTransferNo: String?
+        public var success: Bool
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case delete = "delete"
-            
-            case uniqueTransferNo = "unique_transfer_no"
+            case success = "success"
             
         }
 
-        public init(delete: Bool? = nil, uniqueTransferNo: String? = nil) {
+        public init(success: Bool) {
             
-            self.delete = delete
-            
-            self.uniqueTransferNo = uniqueTransferNo
+            self.success = success
             
         }
 
@@ -116,28 +80,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    delete = try container.decode(Bool.self, forKey: .delete)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                success = try container.decode(Bool.self, forKey: .success)
                 
             
-            
-                do {
-                    uniqueTransferNo = try container.decode(String.self, forKey: .uniqueTransferNo)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
@@ -146,12 +91,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(delete, forKey: .delete)
-            
-            
-            
-            
-            try? container.encodeIfPresent(uniqueTransferNo, forKey: .uniqueTransferNo)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }
