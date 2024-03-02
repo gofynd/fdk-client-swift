@@ -3489,8 +3489,8 @@ Success. Returns a group of products bundle.
       "slug": "test-bundle",
       "logo": null,
       "meta": {},
-      "created_on": "2020-05-21T03:58:41.237000Z",
-      "modified_on": "2020-05-21T03:58:41.237000Z",
+      "created_on": "2020-05-21T03:58:41.237Z",
+      "modified_on": "2020-05-21T03:58:41.237Z",
       "products": [
         {
           "product_uid": 7502119,
@@ -3706,8 +3706,8 @@ Success. Returns a ProductSizePriceV3 object. Check the example shown below or r
   "is_gift": true,
   "is_cod": false,
   "delivery_promise": {
-    "min": "2023-08-03T18:19:23",
-    "max": "2023-08-04T14:19:23"
+    "min": "2023-08-03T18:19:23.000Z",
+    "max": "2023-08-04T14:19:23.000Z"
   }
 }
 ```

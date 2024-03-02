@@ -2796,6 +2796,7 @@ if let value = orderType {
             channelShipmentId: String?,
             shipmentId: String?,
             fetchActiveShipment: Bool?,
+            allowInactive: Bool?,
             
             onResponse: @escaping (_ response: ShipmentInfoResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2819,6 +2820,13 @@ if let value = shipmentId {
 if let value = fetchActiveShipment {
     
     xQuery["fetch_active_shipment"] = value
+    
+}
+
+
+if let value = allowInactive {
+    
+    xQuery["allow_inactive"] = value
     
 }
 
@@ -3157,6 +3165,7 @@ if let value = orderType {
             showCrossCompanyData: Bool?,
             customerId: String?,
             orderType: String?,
+            allowInactive: Bool?,
             
             onResponse: @escaping (_ response: OrderListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -3313,6 +3322,13 @@ if let value = customerId {
 if let value = orderType {
     
     xQuery["order_type"] = value
+    
+}
+
+
+if let value = allowInactive {
+    
+    xQuery["allow_inactive"] = value
     
 }
 

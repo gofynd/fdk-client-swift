@@ -1476,7 +1476,7 @@ Success
  | eventName | String? |  yes  | The name of the processed event. |
  | responseCode | Int? |  yes  | The response code of the event. |
  | responseMessage | String? |  yes  | The response message of the event. |
- | data | [String: Any]? |  yes  | The data associated with the event. |
+ | data | String? |  yes  | The data associated with the event. |
  | attempt | Int? |  yes  | The attempt number of the event. |
  | lastAttemptedOn | Double? |  yes  | The timestamp of the last attempted event. |
  | status | String? |  yes  | The status of the event (e.g., "FAILED"). |
@@ -1542,6 +1542,7 @@ Success
  | eventName | String? |  yes  |  |
  | eventType | String? |  yes  |  |
  | eventCategory | String? |  yes  |  |
+ | subscriberEventMapping | [SubscriberEventMapping](#SubscriberEventMapping)? |  yes  |  |
  | eventSchema | [String: Any]? |  yes  |  |
  | version | String? |  yes  |  |
  | displayName | String? |  yes  |  |
@@ -1731,40 +1732,6 @@ Success
 
  
  
- #### [SubscriberFailureResponse](#SubscriberFailureResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
- | code | String? |  yes  |  |
- | stack | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [EventConfigs](#EventConfigs)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | Int? |  yes  |  |
- | eventName | String? |  yes  |  |
- | eventType | String? |  yes  |  |
- | eventCategory | String? |  yes  |  |
- | eventSchema | [String: Any]? |  yes  |  |
- | version | String? |  yes  |  |
- | displayName | String? |  yes  |  |
- | description | String? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | updatedOn | String? |  yes  |  |
- | subscriberEventMapping | [SubscriberEventMapping](#SubscriberEventMapping)? |  yes  |  |
-
----
-
-
- 
- 
  #### [SubscriberEventMapping](#SubscriberEventMapping)
 
  | Properties | Type | Nullable | Description |
@@ -1867,9 +1834,9 @@ Success
 
  | Name | Value | Description |
  | ---- | ----- | ----------- |
- | active | active | Status is active |
- | inactive | inactive | Status is inactive |
- | blocked | blocked | Subscriber is blocked by system due to multiple failed delivery attempts. |
+ | active | active | active |
+ | inactive | inactive | inactive |
+ | blocked | blocked | blocked |
 
 ---
 

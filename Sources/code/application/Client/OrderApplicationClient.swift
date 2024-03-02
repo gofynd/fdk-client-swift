@@ -59,6 +59,7 @@ extension ApplicationClient {
             startDate: String?,
             endDate: String?,
             customMeta: String?,
+            allowInactive: Bool?,
             
             onResponse: @escaping (_ response: OrderList?, _ error: FDKError?) -> Void
         ) {
@@ -117,6 +118,13 @@ if let value = endDate {
 if let value = customMeta {
     
     xQuery["custom_meta"] = value
+    
+}
+
+
+if let value = allowInactive {
+    
+    xQuery["allow_inactive"] = value
     
 }
 
