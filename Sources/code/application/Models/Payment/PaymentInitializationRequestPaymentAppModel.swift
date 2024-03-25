@@ -34,6 +34,8 @@ public extension ApplicationClient.Payment {
         
         public var email: String
         
+        public var uniqueLinkId: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -63,9 +65,11 @@ public extension ApplicationClient.Payment {
             
             case email = "email"
             
+            case uniqueLinkId = "unique_link_id"
+            
         }
 
-        public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, deviceId: String? = nil, email: String, merchantOrderId: String, method: String, orderId: String, razorpayPaymentId: String? = nil, timeout: Int? = nil, vpa: String? = nil) {
+        public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, deviceId: String? = nil, email: String, merchantOrderId: String, method: String, orderId: String, razorpayPaymentId: String? = nil, timeout: Int? = nil, uniqueLinkId: String? = nil, vpa: String? = nil) {
             
             self.razorpayPaymentId = razorpayPaymentId
             
@@ -92,6 +96,8 @@ public extension ApplicationClient.Payment {
             self.amount = amount
             
             self.email = email
+            
+            self.uniqueLinkId = uniqueLinkId
             
         }
 
@@ -191,6 +197,18 @@ public extension ApplicationClient.Payment {
             
             
             
+            
+            do {
+                uniqueLinkId = try container.decode(String.self, forKey: .uniqueLinkId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -246,6 +264,10 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(email, forKey: .email)
+            
+            
+            
+            try? container.encodeIfPresent(uniqueLinkId, forKey: .uniqueLinkId)
             
             
         }

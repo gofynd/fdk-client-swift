@@ -14,7 +14,7 @@ public extension PlatformClient.Communication {
         
         public var key: String?
         
-        public var value: [String: Any]?
+        public var value: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Communication {
             
         }
 
-        public init(key: String? = nil, value: [String: Any]? = nil) {
+        public init(key: String? = nil, value: String? = nil) {
             
             self.key = key
             
@@ -50,7 +50,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    value = try container.decode([String: Any].self, forKey: .value)
+                    value = try container.decode(String.self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var key: String?
         
-        public var value: [String: Any]?
+        public var value: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
         }
 
-        public init(key: String? = nil, value: [String: Any]? = nil) {
+        public init(key: String? = nil, value: String? = nil) {
             
             self.key = key
             
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    value = try container.decode([String: Any].self, forKey: .value)
+                    value = try container.decode(String.self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

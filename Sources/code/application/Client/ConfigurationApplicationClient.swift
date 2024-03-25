@@ -13,15 +13,15 @@ extension ApplicationClient {
             
             ulrs["getApplication"] = config.domain.appendAsPath("/service/application/configuration/v1.0/application") 
             
-            ulrs["getOwnerInfo"] = config.domain.appendAsPath("/service/application/configuration/v1.0/about") 
+            ulrs["getOwnerInfo"] = config.domain.appendAsPath("/service/application/configuration/v2.0/about") 
             
             ulrs["getBasicDetails"] = config.domain.appendAsPath("/service/application/configuration/v1.0/detail") 
             
             ulrs["getIntegrationTokens"] = config.domain.appendAsPath("/service/application/configuration/v1.0/token") 
             
-            ulrs["getOrderingStores"] = config.domain.appendAsPath("/service/application/configuration/v1.0/ordering-store/stores") 
+            ulrs["getOrderingStores"] = config.domain.appendAsPath("/service/application/configuration/v2.0/ordering-store/stores") 
             
-            ulrs["getStoreDetailById"] = config.domain.appendAsPath("/service/application/configuration/v1.0/ordering-store/stores/{store_id}") 
+            ulrs["getStoreDetailById"] = config.domain.appendAsPath("/service/application/configuration/v2.0/ordering-store/stores/{store_id}") 
             
             ulrs["getFeatures"] = config.domain.appendAsPath("/service/application/configuration/v1.0/feature") 
             
@@ -105,8 +105,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves application owner details.
-        * Description: Retrieve the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, etc. Also retrieves the seller and owner information such as address, email address, and phone number.
+        * Summary: Get sales channel, owner and seller information
+        * Description: Use this API to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
         **/
         public func getOwnerInfo(
             
@@ -255,8 +255,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Lists order-enabled stores.
-        * Description: Retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
+        * Summary: Get all deployment stores
+        * Description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
         **/
         public func getOrderingStores(
             pageNo: Int?,
@@ -327,10 +327,59 @@ if let value = q {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Retrieves store details by ID.
-        * Description: Retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders). 
+        * Summary: get paginator for getOrderingStores
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getOrderingStoresPaginator(
+            pageSize: Int?,
+            q: String?
+            
+            ) -> Paginator<OrderingStores> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<OrderingStores>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getOrderingStores(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        q: q
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get ordering store details
+        * Description: Use this API to retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders).
         **/
         public func getStoreDetailById(
             storeId: Int,
@@ -876,6 +925,73 @@ if let value = userName {
                         onResponse(nil, err)
                     }
             });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getAppStaffList
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getAppStaffListPaginator(
+            pageSize: Int?,
+            orderIncent: Bool?,
+            orderingStore: Int?,
+            user: String?,
+            userName: String?
+            
+            ) -> Paginator<AppStaffListResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<AppStaffListResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getAppStaffList(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        orderIncent: orderIncent,
+                        orderingStore: orderingStore,
+                        user: user,
+                        userName: userName
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
         }
         
         

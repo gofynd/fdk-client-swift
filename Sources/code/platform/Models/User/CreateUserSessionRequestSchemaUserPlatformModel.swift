@@ -14,11 +14,11 @@ public extension PlatformClient.ApplicationClient.User {
     class CreateUserSessionRequestSchema: Codable {
         
         
-        public var domain: String?
+        public var domain: String
         
         public var maxAge: Double?
         
-        public var userId: String?
+        public var userId: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -31,7 +31,7 @@ public extension PlatformClient.ApplicationClient.User {
             
         }
 
-        public init(domain: String? = nil, maxAge: Double? = nil, userId: String? = nil) {
+        public init(domain: String, maxAge: Double? = nil, userId: String) {
             
             self.domain = domain
             
@@ -45,16 +45,9 @@ public extension PlatformClient.ApplicationClient.User {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    domain = try container.decode(String.self, forKey: .domain)
+                domain = try container.decode(String.self, forKey: .domain)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -69,16 +62,9 @@ public extension PlatformClient.ApplicationClient.User {
                 
             
             
-                do {
-                    userId = try container.decode(String.self, forKey: .userId)
+                userId = try container.decode(String.self, forKey: .userId)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         

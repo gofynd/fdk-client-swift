@@ -8,13 +8,7 @@ public extension ApplicationClient.Lead {
     */
     class UserSchema: Codable {
         
-        public var applicationId: String?
-        
-        public var userId: String?
-        
         public var firstName: String?
-        
-        public var meta: [String: Any]?
         
         public var lastName: String?
         
@@ -22,9 +16,9 @@ public extension ApplicationClient.Lead {
         
         public var emails: [Email]?
         
-        public var gender: String?
+        public var passwordHistory: [UserPasswordHistory]?
         
-        public var dob: String?
+        public var gender: String?
         
         public var active: Bool?
         
@@ -33,6 +27,12 @@ public extension ApplicationClient.Lead {
         public var username: String?
         
         public var accountType: String?
+        
+        public var uid: String?
+        
+        public var debug: Debug?
+        
+        public var hasOldPasswordHash: Bool?
         
         public var id: String?
         
@@ -43,13 +43,7 @@ public extension ApplicationClient.Lead {
 
         public enum CodingKeys: String, CodingKey {
             
-            case applicationId = "application_id"
-            
-            case userId = "user_id"
-            
             case firstName = "first_name"
-            
-            case meta = "meta"
             
             case lastName = "last_name"
             
@@ -57,9 +51,9 @@ public extension ApplicationClient.Lead {
             
             case emails = "emails"
             
-            case gender = "gender"
+            case passwordHistory = "password_history"
             
-            case dob = "dob"
+            case gender = "gender"
             
             case active = "active"
             
@@ -69,6 +63,12 @@ public extension ApplicationClient.Lead {
             
             case accountType = "account_type"
             
+            case uid = "uid"
+            
+            case debug = "debug"
+            
+            case hasOldPasswordHash = "has_old_password_hash"
+            
             case id = "_id"
             
             case createdAt = "created_at"
@@ -77,15 +77,9 @@ public extension ApplicationClient.Lead {
             
         }
 
-        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, createdAt: String? = nil, dob: String? = nil, emails: [Email]? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
-            
-            self.applicationId = applicationId
-            
-            self.userId = userId
+        public init(accountType: String? = nil, active: Bool? = nil, createdAt: String? = nil, debug: Debug? = nil, emails: [Email]? = nil, firstName: String? = nil, gender: String? = nil, hasOldPasswordHash: Bool? = nil, lastName: String? = nil, passwordHistory: [UserPasswordHistory]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, uid: String? = nil, updatedAt: String? = nil, username: String? = nil, id: String? = nil) {
             
             self.firstName = firstName
-            
-            self.meta = meta
             
             self.lastName = lastName
             
@@ -93,9 +87,9 @@ public extension ApplicationClient.Lead {
             
             self.emails = emails
             
-            self.gender = gender
+            self.passwordHistory = passwordHistory
             
-            self.dob = dob
+            self.gender = gender
             
             self.active = active
             
@@ -104,6 +98,12 @@ public extension ApplicationClient.Lead {
             self.username = username
             
             self.accountType = accountType
+            
+            self.uid = uid
+            
+            self.debug = debug
+            
+            self.hasOldPasswordHash = hasOldPasswordHash
             
             self.id = id
             
@@ -118,43 +118,7 @@ public extension ApplicationClient.Lead {
             
             
             do {
-                applicationId = try container.decode(String.self, forKey: .applicationId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                userId = try container.decode(String.self, forKey: .userId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 firstName = try container.decode(String.self, forKey: .firstName)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -202,7 +166,7 @@ public extension ApplicationClient.Lead {
             
             
             do {
-                gender = try container.decode(String.self, forKey: .gender)
+                passwordHistory = try container.decode([UserPasswordHistory].self, forKey: .passwordHistory)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -214,7 +178,7 @@ public extension ApplicationClient.Lead {
             
             
             do {
-                dob = try container.decode(String.self, forKey: .dob)
+                gender = try container.decode(String.self, forKey: .gender)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -274,6 +238,42 @@ public extension ApplicationClient.Lead {
             
             
             do {
+                uid = try container.decode(String.self, forKey: .uid)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                debug = try container.decode(Debug.self, forKey: .debug)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                hasOldPasswordHash = try container.decode(Bool.self, forKey: .hasOldPasswordHash)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 id = try container.decode(String.self, forKey: .id)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -314,19 +314,7 @@ public extension ApplicationClient.Lead {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
-            
-            
-            
-            try? container.encodeIfPresent(userId, forKey: .userId)
-            
-            
-            
             try? container.encodeIfPresent(firstName, forKey: .firstName)
-            
-            
-            
-            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
@@ -342,11 +330,11 @@ public extension ApplicationClient.Lead {
             
             
             
+            try? container.encodeIfPresent(passwordHistory, forKey: .passwordHistory)
+            
+            
+            
             try? container.encodeIfPresent(gender, forKey: .gender)
-            
-            
-            
-            try? container.encodeIfPresent(dob, forKey: .dob)
             
             
             
@@ -363,6 +351,18 @@ public extension ApplicationClient.Lead {
             
             
             try? container.encodeIfPresent(accountType, forKey: .accountType)
+            
+            
+            
+            try? container.encodeIfPresent(uid, forKey: .uid)
+            
+            
+            
+            try? container.encodeIfPresent(debug, forKey: .debug)
+            
+            
+            
+            try? container.encodeIfPresent(hasOldPasswordHash, forKey: .hasOldPasswordHash)
             
             
             

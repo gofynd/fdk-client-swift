@@ -34,6 +34,8 @@ public extension PlatformClient.Order {
         
         public var deliveryCharge: Double?
         
+        public var tcsCharge: Double?
+        
         public var cashback: Double?
         
         public var valueOfGood: Double?
@@ -81,6 +83,8 @@ public extension PlatformClient.Order {
             
             case deliveryCharge = "delivery_charge"
             
+            case tcsCharge = "tcs_charge"
+            
             case cashback = "cashback"
             
             case valueOfGood = "value_of_good"
@@ -105,7 +109,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(amountPaid: Double? = nil, amountPaidRoundoff: Double? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double? = nil, cashback: Double? = nil, cashbackApplied: Double? = nil, codCharges: Double? = nil, couponEffectiveDiscount: Double? = nil, couponValue: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, giftPrice: Double? = nil, pmPriceSplit: Double? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, promotionEffectiveDiscount: Double? = nil, refundAmount: Double? = nil, refundCredit: Double? = nil, taxCollectedAtSource: Double? = nil, transferPrice: Double? = nil, valueOfGood: Double? = nil) {
+        public init(amountPaid: Double? = nil, amountPaidRoundoff: Double? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double? = nil, cashback: Double? = nil, cashbackApplied: Double? = nil, codCharges: Double? = nil, couponEffectiveDiscount: Double? = nil, couponValue: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, giftPrice: Double? = nil, pmPriceSplit: Double? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, promotionEffectiveDiscount: Double? = nil, refundAmount: Double? = nil, refundCredit: Double? = nil, taxCollectedAtSource: Double? = nil, tcsCharge: Double? = nil, transferPrice: Double? = nil, valueOfGood: Double? = nil) {
             
             self.refundCredit = refundCredit
             
@@ -128,6 +132,8 @@ public extension PlatformClient.Order {
             self.brandCalculatedAmount = brandCalculatedAmount
             
             self.deliveryCharge = deliveryCharge
+            
+            self.tcsCharge = tcsCharge
             
             self.cashback = cashback
             
@@ -279,6 +285,18 @@ public extension PlatformClient.Order {
             
                 do {
                     deliveryCharge = try container.decode(Double.self, forKey: .deliveryCharge)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    tcsCharge = try container.decode(Double.self, forKey: .tcsCharge)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -478,6 +496,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(deliveryCharge, forKey: .deliveryCharge)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tcsCharge, forKey: .tcsCharge)
             
             
             
@@ -573,6 +596,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var deliveryCharge: Double?
         
+        public var tcsCharge: Double?
+        
         public var cashback: Double?
         
         public var valueOfGood: Double?
@@ -620,6 +645,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case deliveryCharge = "delivery_charge"
             
+            case tcsCharge = "tcs_charge"
+            
             case cashback = "cashback"
             
             case valueOfGood = "value_of_good"
@@ -644,7 +671,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(amountPaid: Double? = nil, amountPaidRoundoff: Double? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double? = nil, cashback: Double? = nil, cashbackApplied: Double? = nil, codCharges: Double? = nil, couponEffectiveDiscount: Double? = nil, couponValue: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, giftPrice: Double? = nil, pmPriceSplit: Double? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, promotionEffectiveDiscount: Double? = nil, refundAmount: Double? = nil, refundCredit: Double? = nil, taxCollectedAtSource: Double? = nil, transferPrice: Double? = nil, valueOfGood: Double? = nil) {
+        public init(amountPaid: Double? = nil, amountPaidRoundoff: Double? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double? = nil, cashback: Double? = nil, cashbackApplied: Double? = nil, codCharges: Double? = nil, couponEffectiveDiscount: Double? = nil, couponValue: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, giftPrice: Double? = nil, pmPriceSplit: Double? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, promotionEffectiveDiscount: Double? = nil, refundAmount: Double? = nil, refundCredit: Double? = nil, taxCollectedAtSource: Double? = nil, tcsCharge: Double? = nil, transferPrice: Double? = nil, valueOfGood: Double? = nil) {
             
             self.refundCredit = refundCredit
             
@@ -667,6 +694,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.brandCalculatedAmount = brandCalculatedAmount
             
             self.deliveryCharge = deliveryCharge
+            
+            self.tcsCharge = tcsCharge
             
             self.cashback = cashback
             
@@ -818,6 +847,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     deliveryCharge = try container.decode(Double.self, forKey: .deliveryCharge)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    tcsCharge = try container.decode(Double.self, forKey: .tcsCharge)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1017,6 +1058,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(deliveryCharge, forKey: .deliveryCharge)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tcsCharge, forKey: .tcsCharge)
             
             
             

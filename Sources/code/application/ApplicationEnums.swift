@@ -12,53 +12,11 @@ import Foundation
 
 
 
-public extension ApplicationClient.Content {
-    
-    
-    
-}
-
 
 
 
 
 public extension ApplicationClient.Lead {
-    
-    
-    /*
-        Enum: PriorityEnum
-        Used By: Lead
-    */
-    enum PriorityEnum: String, Codable {
-        
-        case low = "low"
-        
-        case medium = "medium"
-        
-        case high = "high"
-        
-        case urgent = "urgent"
-        
-    }
-
-    
-    
-    /*
-        Enum: HistoryTypeEnum
-        Used By: Lead
-    */
-    enum HistoryTypeEnum: String, Codable {
-        
-        case rating = "rating"
-        
-        case log = "log"
-        
-        case comment = "comment"
-        
-        case thread = "thread"
-        
-    }
-
     
     
     /*
@@ -117,12 +75,6 @@ public extension ApplicationClient.Lead {
 
 
 
-
-public extension ApplicationClient.Theme {
-    
-    
-    
-}
 
 
 

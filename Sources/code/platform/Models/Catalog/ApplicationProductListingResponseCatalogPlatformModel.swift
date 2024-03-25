@@ -16,7 +16,7 @@ public extension PlatformClient.Catalog {
         
         public var items: [ProductListingDetail]?
         
-        public var operators: [String: Any]?
+        public var operators: OperatorsResponse?
         
         public var page: Page
         
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(filters: [ProductFilters]? = nil, items: [ProductListingDetail]? = nil, operators: [String: Any]? = nil, page: Page, sortOn: [ProductSortOn]? = nil) {
+        public init(filters: [ProductFilters]? = nil, items: [ProductListingDetail]? = nil, operators: OperatorsResponse? = nil, page: Page, sortOn: [ProductSortOn]? = nil) {
             
             self.filters = filters
             
@@ -80,7 +80,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    operators = try container.decode([String: Any].self, forKey: .operators)
+                    operators = try container.decode(OperatorsResponse.self, forKey: .operators)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -157,7 +157,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var items: [ProductListingDetail]?
         
-        public var operators: [String: Any]?
+        public var operators: OperatorsResponse?
         
         public var page: Page
         
@@ -178,7 +178,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(filters: [ProductFilters]? = nil, items: [ProductListingDetail]? = nil, operators: [String: Any]? = nil, page: Page, sortOn: [ProductSortOn]? = nil) {
+        public init(filters: [ProductFilters]? = nil, items: [ProductListingDetail]? = nil, operators: OperatorsResponse? = nil, page: Page, sortOn: [ProductSortOn]? = nil) {
             
             self.filters = filters
             
@@ -221,7 +221,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    operators = try container.decode([String: Any].self, forKey: .operators)
+                    operators = try container.decode(OperatorsResponse.self, forKey: .operators)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

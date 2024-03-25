@@ -16,8 +16,6 @@ public extension PlatformClient.Content {
         
         public var key: String?
         
-        public var value: [[String: Any]]?
-        
         public var type: String?
         
         public var definitionId: String?
@@ -29,21 +27,17 @@ public extension PlatformClient.Content {
             
             case key = "key"
             
-            case value = "value"
-            
             case type = "type"
             
             case definitionId = "definition_id"
             
         }
 
-        public init(definitionId: String? = nil, key: String? = nil, type: String? = nil, value: [[String: Any]]? = nil, id: String? = nil) {
+        public init(definitionId: String? = nil, key: String? = nil, type: String? = nil, id: String? = nil) {
             
             self.id = id
             
             self.key = key
-            
-            self.value = value
             
             self.type = type
             
@@ -69,18 +63,6 @@ public extension PlatformClient.Content {
             
                 do {
                     key = try container.decode(String.self, forKey: .key)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    value = try container.decode([[String: Any]].self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -127,11 +109,6 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(key, forKey: .key)
-            
-            
-            
-            
-            try? container.encodeIfPresent(value, forKey: .value)
             
             
             
@@ -164,8 +141,6 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var key: String?
         
-        public var value: [[String: Any]]?
-        
         public var type: String?
         
         public var definitionId: String?
@@ -177,21 +152,17 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case key = "key"
             
-            case value = "value"
-            
             case type = "type"
             
             case definitionId = "definition_id"
             
         }
 
-        public init(definitionId: String? = nil, key: String? = nil, type: String? = nil, value: [[String: Any]]? = nil, id: String? = nil) {
+        public init(definitionId: String? = nil, key: String? = nil, type: String? = nil, id: String? = nil) {
             
             self.id = id
             
             self.key = key
-            
-            self.value = value
             
             self.type = type
             
@@ -217,18 +188,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     key = try container.decode(String.self, forKey: .key)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    value = try container.decode([[String: Any]].self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -275,11 +234,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(key, forKey: .key)
-            
-            
-            
-            
-            try? container.encodeIfPresent(value, forKey: .value)
             
             
             

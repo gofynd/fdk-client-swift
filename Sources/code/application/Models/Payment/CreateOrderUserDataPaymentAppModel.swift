@@ -28,6 +28,8 @@ public extension ApplicationClient.Payment {
         
         public var email: String?
         
+        public var base64Html: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -51,9 +53,11 @@ public extension ApplicationClient.Payment {
             
             case email = "email"
             
+            case base64Html = "base64_html"
+            
         }
 
-        public init(aggregator: String? = nil, amount: Double? = nil, callbackUrl: String? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, email: String? = nil, merchantOrderId: String? = nil, method: String? = nil, orderId: String? = nil) {
+        public init(aggregator: String? = nil, amount: Double? = nil, base64Html: String? = nil, callbackUrl: String? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, email: String? = nil, merchantOrderId: String? = nil, method: String? = nil, orderId: String? = nil) {
             
             self.method = method
             
@@ -74,6 +78,8 @@ public extension ApplicationClient.Payment {
             self.amount = amount
             
             self.email = email
+            
+            self.base64Html = base64Html
             
         }
 
@@ -200,6 +206,18 @@ public extension ApplicationClient.Payment {
             }
             
             
+            
+            do {
+                base64Html = try container.decode(String.self, forKey: .base64Html)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -243,6 +261,10 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(email, forKey: .email)
+            
+            
+            
+            try? container.encodeIfPresent(base64Html, forKey: .base64Html)
             
             
         }

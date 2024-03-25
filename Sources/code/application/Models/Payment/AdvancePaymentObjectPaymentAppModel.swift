@@ -8,6 +8,8 @@ public extension ApplicationClient.Payment {
     */
     class AdvancePaymentObject: Codable {
         
+        public var version: Version?
+        
         public var name: String?
         
         public var displayPriority: Double?
@@ -25,6 +27,8 @@ public extension ApplicationClient.Payment {
 
         public enum CodingKeys: String, CodingKey {
             
+            case version = "version"
+            
             case name = "name"
             
             case displayPriority = "display_priority"
@@ -41,7 +45,9 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(advance: AdvanceObject? = nil, displayName: String? = nil, displayPriority: Double? = nil, list: [PaymentModeList]? = nil, name: String? = nil, paymentModeId: Double? = nil, split: SplitObject? = nil) {
+        public init(advance: AdvanceObject? = nil, displayName: String? = nil, displayPriority: Double? = nil, list: [PaymentModeList]? = nil, name: String? = nil, paymentModeId: Double? = nil, split: SplitObject? = nil, version: Version? = nil) {
+            
+            self.version = version
             
             self.name = name
             
@@ -61,6 +67,18 @@ public extension ApplicationClient.Payment {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+            do {
+                version = try container.decode(Version.self, forKey: .version)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
             
             
             do {
@@ -150,6 +168,10 @@ public extension ApplicationClient.Payment {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            try? container.encodeIfPresent(version, forKey: .version)
+            
             
             
             try? container.encodeIfPresent(name, forKey: .name)

@@ -11,6 +11,10 @@ extension ApplicationClient {
             self.config = config;
             var ulrs = [String: String]()
             
+            ulrs["getUserAttributes"] = config.domain.appendAsPath("/service/application/user/profile/v1.0/user-attributes") 
+            
+            ulrs["updateUserAttributes"] = config.domain.appendAsPath("/service/application/user/profile/v1.0/user-attributes") 
+            
             ulrs["loginWithFacebook"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/login/facebook-token") 
             
             ulrs["loginWithGoogle"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/login/google-token") 
@@ -26,8 +30,6 @@ extension ApplicationClient {
             ulrs["loginWithEmailAndPassword"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/login/password") 
             
             ulrs["sendResetPasswordEmail"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/login/password/reset") 
-            
-            ulrs["sendResetPasswordMobile"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/login/password/mobile/reset") 
             
             ulrs["sendResetToken"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/login/password/reset/token") 
             
@@ -93,10 +95,6 @@ extension ApplicationClient {
             
             ulrs["logout"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/logout") 
             
-            ulrs["getUserAttributes"] = config.domain.appendAsPath("/service/application/user/profile/v1.0/user-attributes") 
-            
-            ulrs["updateUserAttributes"] = config.domain.appendAsPath("/service/application/user/profile/v1.0/user-attributes") 
-            
             self.relativeUrls = ulrs
         }
         public func update(updatedUrl : [String: String]){
@@ -109,23 +107,123 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Facebook login.
-        * Description: Enables login through Facebook accounts.
+        * Summary: Get user attributes
+        * Description: Use this API to get the list of user attributes
         **/
-        public func loginWithFacebook(
-            platform: String?,
-            body: OAuthRequestSchema,
-            onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
+        public func getUserAttributes(
+            slug: String?,
+            
+            onResponse: @escaping (_ response: UserAttributes?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
 
-if let value = platform {
+if let value = slug {
     
-    xQuery["platform"] = value
+    xQuery["slug"] = value
     
 }
 
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["getUserAttributes"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UserAttributes.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Update user attributes
+        * Description: Use this API to update user attributes
+        **/
+        public func updateUserAttributes(
+            body: UpdateUserAttributesRequest,
+            onResponse: @escaping (_ response: UserAttributes?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["updateUserAttributes"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "PATCH",
+                url: fullUrl,
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UserAttributes.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Facebook login.
+        * Description: Enables login through Facebook accounts.
+        **/
+        public func loginWithFacebook(
+            body: OAuthRequestSchema,
+            onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
 
  
 
@@ -137,7 +235,7 @@ if let value = platform {
                 config: config,
                 method: "POST",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -171,19 +269,11 @@ if let value = platform {
         * Description: Enables login through Google accounts.
         **/
         public func loginWithGoogle(
-            platform: String?,
             body: OAuthRequestSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
+ 
 
  
 
@@ -195,7 +285,7 @@ if let value = platform {
                 config: config,
                 method: "POST",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -229,19 +319,11 @@ if let value = platform {
         * Description: Facilitates Google login specifically for Android users.
         **/
         public func loginWithGoogleAndroid(
-            platform: String?,
             body: OAuthRequestSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
+ 
 
  
 
@@ -253,7 +335,7 @@ if let value = platform {
                 config: config,
                 method: "POST",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -287,19 +369,11 @@ if let value = platform {
         * Description: Facilitates Google login specifically for iOS users.
         **/
         public func loginWithGoogleIOS(
-            platform: String?,
             body: OAuthRequestSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
+ 
 
  
 
@@ -311,7 +385,7 @@ if let value = platform {
                 config: config,
                 method: "POST",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -345,19 +419,11 @@ if let value = platform {
         * Description: Enables login through Apple ID specifically for iOS users.
         **/
         public func loginWithAppleIOS(
-            platform: String?,
             body: OAuthRequestAppleSchema,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
+ 
 
  
 
@@ -369,7 +435,7 @@ if let value = platform {
                 config: config,
                 method: "POST",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -403,19 +469,11 @@ if let value = platform {
         * Description: Allows users to log in using a one-time password.
         **/
         public func loginWithOTP(
-            platform: String?,
             body: SendOtpRequestSchema,
             onResponse: @escaping (_ response: SendOtpResponse?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
+ 
 
  
 
@@ -427,7 +485,7 @@ if let value = platform {
                 config: config,
                 method: "POST",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -511,19 +569,11 @@ if let value = platform {
         * Description: Sends a password reset link to the user's email.
         **/
         public func sendResetPasswordEmail(
-            platform: String?,
             body: SendResetPasswordEmailRequestSchema,
             onResponse: @escaping (_ response: ResetPasswordSuccess?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
+ 
 
  
 
@@ -535,7 +585,7 @@ if let value = platform {
                 config: config,
                 method: "POST",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -549,64 +599,6 @@ if let value = platform {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ResetPasswordSuccess.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Reset password (Mobile).
-        * Description: Sends a password reset OTP to the user's mobile number.
-        **/
-        public func sendResetPasswordMobile(
-            platform: String?,
-            body: SendResetPasswordMobileRequestSchema,
-            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
-            
-            let fullUrl = relativeUrls["sendResetPasswordMobile"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders:  [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = data.dictionary
                         
                         onResponse(response, nil)
                     } else {
@@ -827,19 +819,11 @@ if let value = platform {
         * Description: Enables new users to register using a form.
         **/
         public func registerWithForm(
-            platform: String?,
             body: FormRegisterRequestSchema,
             onResponse: @escaping (_ response: RegisterFormSuccess?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
+ 
 
  
 
@@ -851,7 +835,7 @@ if let value = platform {
                 config: config,
                 method: "POST",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -1085,19 +1069,11 @@ if let value = platform {
         * Description: Sends a one-time password to the user's mobile for verification.
         **/
         public func sendOTPOnMobile(
-            platform: String?,
             body: SendMobileOtpRequestSchema,
             onResponse: @escaping (_ response: OtpSuccess?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
+ 
 
  
 
@@ -1109,7 +1085,7 @@ if let value = platform {
                 config: config,
                 method: "POST",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -1143,19 +1119,11 @@ if let value = platform {
         * Description: Sends a one-time password to the user's forgot mobile for verification request.
         **/
         public func sendForgotOTPOnMobile(
-            platform: String?,
             body: SendMobileForgotOtpRequestSchema,
             onResponse: @escaping (_ response: OtpSuccess?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
+ 
 
  
 
@@ -1167,7 +1135,7 @@ if let value = platform {
                 config: config,
                 method: "POST",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -1201,19 +1169,11 @@ if let value = platform {
         * Description: Validates the OTP sent to the user's mobile.
         **/
         public func verifyMobileOTP(
-            platform: String?,
             body: VerifyOtpRequestSchema,
             onResponse: @escaping (_ response: VerifyOtpSuccess?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
+ 
 
  
 
@@ -1225,7 +1185,7 @@ if let value = platform {
                 config: config,
                 method: "POST",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -1259,19 +1219,11 @@ if let value = platform {
         * Description: Use this API to verify the Forgot OTP received on a mobile number.
         **/
         public func verifyMobileForgotOTP(
-            platform: String?,
             body: VerifyMobileForgotOtpRequestSchema,
             onResponse: @escaping (_ response: VerifyForgotOtpSuccess?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
+ 
 
  
 
@@ -1283,7 +1235,7 @@ if let value = platform {
                 config: config,
                 method: "POST",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -1317,19 +1269,11 @@ if let value = platform {
         * Description: Sends a one-time password to the user's email for verification.
         **/
         public func sendOTPOnEmail(
-            platform: String?,
             body: SendEmailOtpRequestSchema,
             onResponse: @escaping (_ response: EmailOtpSuccess?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
+ 
 
  
 
@@ -1341,7 +1285,7 @@ if let value = platform {
                 config: config,
                 method: "POST",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -1375,19 +1319,11 @@ if let value = platform {
         * Description: Sends a one-time password to the user's forgot email for verification request.
         **/
         public func sendForgotOTPOnEmail(
-            platform: String?,
             body: SendEmailForgotOtpRequestSchema,
             onResponse: @escaping (_ response: EmailOtpSuccess?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
+ 
 
  
 
@@ -1399,7 +1335,7 @@ if let value = platform {
                 config: config,
                 method: "POST",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -1433,19 +1369,11 @@ if let value = platform {
         * Description: Validates the OTP sent to the user's email address request.
         **/
         public func verifyEmailOTP(
-            platform: String?,
             body: VerifyEmailOtpRequestSchema,
             onResponse: @escaping (_ response: VerifyOtpSuccess?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
+ 
 
  
 
@@ -1457,7 +1385,7 @@ if let value = platform {
                 config: config,
                 method: "POST",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -1491,19 +1419,11 @@ if let value = platform {
         * Description: Validates the OTP sent to the user's forgot email address request.
         **/
         public func verifyEmailForgotOTP(
-            platform: String?,
             body: VerifyEmailForgotOtpRequestSchema,
             onResponse: @escaping (_ response: VerifyForgotOtpSuccess?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
+ 
 
  
 
@@ -1515,7 +1435,7 @@ if let value = platform {
                 config: config,
                 method: "POST",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -1707,19 +1627,11 @@ if let value = name {
         * Description: Use this API to update details in the user profile. Details can be first name, last name, gender, email, phone number, or profile picture.
         **/
         public func updateProfile(
-            platform: String?,
             body: EditProfileRequestSchema,
             onResponse: @escaping (_ response: ProfileEditSuccess?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
+ 
 
  
 
@@ -1731,7 +1643,7 @@ if let value = platform {
                 config: config,
                 method: "POST",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -1765,19 +1677,11 @@ if let value = platform {
         * Description: Adds a new mobile number to the user's profile.
         **/
         public func addMobileNumber(
-            platform: String?,
             body: EditMobileRequestSchema,
             onResponse: @escaping (_ response: VerifyMobileOTPSuccess?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
+ 
 
  
 
@@ -1789,7 +1693,7 @@ if let value = platform {
                 config: config,
                 method: "PUT",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -1961,19 +1865,11 @@ if let value = platform {
         * Description: Sends a verification link to a newly added mobile number.
         **/
         public func sendVerificationLinkToMobile(
-            platform: String?,
             body: SendVerificationLinkMobileRequestSchema,
             onResponse: @escaping (_ response: SendMobileVerifyLinkSuccess?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
+ 
 
  
 
@@ -1985,7 +1881,7 @@ if let value = platform {
                 config: config,
                 method: "POST",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -2019,19 +1915,11 @@ if let value = platform {
         * Description: Adds a new email address to the user's profile.
         **/
         public func addEmail(
-            platform: String?,
             body: EditEmailRequestSchema,
             onResponse: @escaping (_ response: VerifyEmailOTPSuccess?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
+ 
 
  
 
@@ -2043,7 +1931,7 @@ if let value = platform {
                 config: config,
                 method: "PUT",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -2209,19 +2097,11 @@ if let value = platform {
         * Description: Sends a verification link to a newly added email address.
         **/
         public func sendVerificationLinkToEmail(
-            platform: String?,
             body: EditEmailRequestSchema,
             onResponse: @escaping (_ response: SendEmailVerifyLinkSuccess?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
+ 
 
  
 
@@ -2233,7 +2113,7 @@ if let value = platform {
                 config: config,
                 method: "POST",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: body.dictionary,
                 responseType: "application/json",
@@ -2403,114 +2283,6 @@ var xQuery: [String: Any] = [:]
                     } else if let data = responseData {
                         
                         let response = Utility.decode(LogoutSuccess.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get user attributes
-        * Description: Use this API to get the list of user attributes
-        **/
-        public func getUserAttributes(
-            slug: String?,
-            
-            onResponse: @escaping (_ response: UserAttributes?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-if let value = slug {
-    
-    xQuery["slug"] = value
-    
-}
-
-
- 
-
-
-            
-            let fullUrl = relativeUrls["getUserAttributes"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(UserAttributes.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Update user attributes
-        * Description: Use this API to update user attributes
-        **/
-        public func updateUserAttributes(
-            body: UpdateUserAttributesRequest,
-            onResponse: @escaping (_ response: UserAttributes?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            let fullUrl = relativeUrls["updateUserAttributes"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "PATCH",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(UserAttributes.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

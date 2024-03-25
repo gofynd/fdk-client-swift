@@ -12,8 +12,6 @@ public extension ApplicationClient.Content {
         
         public var key: String?
         
-        public var value: [CustomObjectFieldValue]?
-        
         public var type: String?
         
         public var definitionId: String?
@@ -25,21 +23,17 @@ public extension ApplicationClient.Content {
             
             case key = "key"
             
-            case value = "value"
-            
             case type = "type"
             
             case definitionId = "definition_id"
             
         }
 
-        public init(definitionId: String? = nil, key: String? = nil, type: String? = nil, value: [CustomObjectFieldValue]? = nil, id: String? = nil) {
+        public init(definitionId: String? = nil, key: String? = nil, type: String? = nil, id: String? = nil) {
             
             self.id = id
             
             self.key = key
-            
-            self.value = value
             
             self.type = type
             
@@ -65,18 +59,6 @@ public extension ApplicationClient.Content {
             
             do {
                 key = try container.decode(String.self, forKey: .key)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                value = try container.decode([CustomObjectFieldValue].self, forKey: .value)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,10 +103,6 @@ public extension ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(key, forKey: .key)
-            
-            
-            
-            try? container.encodeIfPresent(value, forKey: .value)
             
             
             

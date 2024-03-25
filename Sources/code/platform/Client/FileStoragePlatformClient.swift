@@ -286,6 +286,27 @@ if let value = limit {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
         * Summary: Proxy file access.
@@ -294,7 +315,7 @@ if let value = limit {
         public func proxy(
             url: String,
             
-            onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProxyResponse?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -324,7 +345,7 @@ var xQuery: [String: Any] = [:]
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = String(decoding: data, as: UTF8.self)
+                        let response = Utility.decode(ProxyResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -335,13 +356,6 @@ var xQuery: [String: Any] = [:]
                     }
             });
         }
-        
-        
-        
-        
-        
-        
-        
         
         
     }

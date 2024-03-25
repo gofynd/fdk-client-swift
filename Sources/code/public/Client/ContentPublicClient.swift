@@ -18,7 +18,7 @@ extension PublicClient {
         * Description: Get credentials for support system
         **/
         public func getCredentialsByEntity(
-            entity: String?,
+            entity: String,
             
             onResponse: @escaping (_ response: CredentialsSchema?, _ error: FDKError?) -> Void
         ) {

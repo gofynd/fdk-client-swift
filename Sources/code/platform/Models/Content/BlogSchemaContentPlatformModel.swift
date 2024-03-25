@@ -42,6 +42,8 @@ public extension PlatformClient.Content {
         
         public var dateMeta: DateMeta?
         
+        public var publishDate: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -75,9 +77,11 @@ public extension PlatformClient.Content {
             
             case dateMeta = "date_meta"
             
+            case publishDate = "publish_date"
+            
         }
 
-        public init(application: String? = nil, archived: Bool? = nil, author: Author? = nil, content: [ResourceContent]? = nil, dateMeta: DateMeta? = nil, featureImage: Asset? = nil, published: Bool? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: CronSchedule? = nil) {
+        public init(application: String? = nil, archived: Bool? = nil, author: Author? = nil, content: [ResourceContent]? = nil, dateMeta: DateMeta? = nil, featureImage: Asset? = nil, published: Bool? = nil, publishDate: String? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: CronSchedule? = nil) {
             
             self.id = id
             
@@ -108,6 +112,8 @@ public extension PlatformClient.Content {
             self.title = title
             
             self.dateMeta = dateMeta
+            
+            self.publishDate = publishDate
             
         }
 
@@ -294,6 +300,18 @@ public extension PlatformClient.Content {
                 }
                 
             
+            
+                do {
+                    publishDate = try container.decode(String.self, forKey: .publishDate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -372,6 +390,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(dateMeta, forKey: .dateMeta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(publishDate, forKey: .publishDate)
             
             
         }
@@ -420,6 +443,8 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var dateMeta: DateMeta?
         
+        public var publishDate: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -453,9 +478,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case dateMeta = "date_meta"
             
+            case publishDate = "publish_date"
+            
         }
 
-        public init(application: String? = nil, archived: Bool? = nil, author: Author? = nil, content: [ResourceContent]? = nil, dateMeta: DateMeta? = nil, featureImage: Asset? = nil, published: Bool? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: CronSchedule? = nil) {
+        public init(application: String? = nil, archived: Bool? = nil, author: Author? = nil, content: [ResourceContent]? = nil, dateMeta: DateMeta? = nil, featureImage: Asset? = nil, published: Bool? = nil, publishDate: String? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: CronSchedule? = nil) {
             
             self.id = id
             
@@ -486,6 +513,8 @@ public extension PlatformClient.ApplicationClient.Content {
             self.title = title
             
             self.dateMeta = dateMeta
+            
+            self.publishDate = publishDate
             
         }
 
@@ -672,6 +701,18 @@ public extension PlatformClient.ApplicationClient.Content {
                 }
                 
             
+            
+                do {
+                    publishDate = try container.decode(String.self, forKey: .publishDate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -750,6 +791,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(dateMeta, forKey: .dateMeta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(publishDate, forKey: .publishDate)
             
             
         }

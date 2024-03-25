@@ -34,6 +34,8 @@ public extension ApplicationClient.PosCart {
         
         public var promotionGroup: String?
         
+        public var meta: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -63,9 +65,11 @@ public extension ApplicationClient.PosCart {
             
             case promotionGroup = "promotion_group"
             
+            case meta = "meta"
+            
         }
 
-        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, currency: CartCurrency? = nil, discountRules: [DiscountRulesApp]? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
+        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, currency: CartCurrency? = nil, discountRules: [DiscountRulesApp]? = nil, meta: [String: Any]? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
             
             self.promotionName = promotionName
             
@@ -92,6 +96,8 @@ public extension ApplicationClient.PosCart {
             self.currency = currency
             
             self.promotionGroup = promotionGroup
+            
+            self.meta = meta
             
         }
 
@@ -254,6 +260,18 @@ public extension ApplicationClient.PosCart {
             }
             
             
+            
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -309,6 +327,10 @@ public extension ApplicationClient.PosCart {
             
             
             try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }

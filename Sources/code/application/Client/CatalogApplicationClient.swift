@@ -11,65 +11,65 @@ extension ApplicationClient {
             self.config = config;
             var ulrs = [String: String]()
             
-            ulrs["getProductDetailBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/{slug}/") 
+            ulrs["getProductDetailBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/{slug}") 
             
-            ulrs["getProductSizesBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/{slug}/sizes/") 
+            ulrs["getProductSizesBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/{slug}/sizes") 
             
-            ulrs["getProductComparisonBySlugs"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/compare/") 
+            ulrs["getProductComparisonBySlugs"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/compare") 
             
-            ulrs["getSimilarComparisonProductBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/{slug}/similar/compare/") 
+            ulrs["getSimilarComparisonProductBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/{slug}/similar/compare") 
             
-            ulrs["getComparedFrequentlyProductBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/{slug}/similar/compared-frequently/") 
+            ulrs["getComparedFrequentlyProductBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/{slug}/similar/compared-frequently") 
             
-            ulrs["getProductVariantsBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/{slug}/variants/") 
+            ulrs["getProductVariantsBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/{slug}/variants") 
             
-            ulrs["getProductStockByIds"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/stock-status/") 
+            ulrs["getProductStockByIds"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/stock-status") 
             
-            ulrs["getProductStockForTimeByIds"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/stock-status/poll/") 
+            ulrs["getProductStockForTimeByIds"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/stock-status/poll") 
             
-            ulrs["getProducts"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products/") 
+            ulrs["getProducts"] = config.domain.appendAsPath("/service/application/catalog/v1.0/products") 
             
-            ulrs["getBrands"] = config.domain.appendAsPath("/service/application/catalog/v1.0/brands/") 
+            ulrs["getBrands"] = config.domain.appendAsPath("/service/application/catalog/v1.0/brands") 
             
-            ulrs["getBrandDetailBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/brands/{slug}/") 
+            ulrs["getBrandDetailBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/brands/{slug}") 
             
-            ulrs["getCategories"] = config.domain.appendAsPath("/service/application/catalog/v1.0/categories/") 
+            ulrs["getCategories"] = config.domain.appendAsPath("/service/application/catalog/v1.0/categories") 
             
-            ulrs["getCategoryDetailBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/categories/{slug}/") 
+            ulrs["getCategoryDetailBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/categories/{slug}") 
             
-            ulrs["getHomeProducts"] = config.domain.appendAsPath("/service/application/catalog/v1.0/home/listing/") 
+            ulrs["getHomeProducts"] = config.domain.appendAsPath("/service/application/catalog/v1.0/home/listing") 
             
-            ulrs["getDepartments"] = config.domain.appendAsPath("/service/application/catalog/v1.0/departments/") 
+            ulrs["getDepartments"] = config.domain.appendAsPath("/service/application/catalog/v1.0/departments") 
             
-            ulrs["getSearchResults"] = config.domain.appendAsPath("/service/application/catalog/v1.0/auto-complete/") 
+            ulrs["getSearchResults"] = config.domain.appendAsPath("/service/application/catalog/v1.0/auto-complete") 
             
-            ulrs["getCollections"] = config.domain.appendAsPath("/service/application/catalog/v1.0/collections/") 
+            ulrs["getCollections"] = config.domain.appendAsPath("/service/application/catalog/v1.0/collections") 
             
-            ulrs["getCollectionItemsBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/collections/{slug}/items/") 
+            ulrs["getCollectionItemsBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/collections/{slug}/items") 
             
-            ulrs["getCollectionDetailBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/collections/{slug}/") 
+            ulrs["getCollectionDetailBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/collections/{slug}") 
             
-            ulrs["getFollowedListing"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/") 
+            ulrs["getFollowedListing"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}") 
             
-            ulrs["unfollowById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/") 
+            ulrs["unfollowById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}") 
             
-            ulrs["followById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/") 
+            ulrs["followById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}") 
             
-            ulrs["getFollowerCountById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/") 
+            ulrs["getFollowerCountById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count") 
             
-            ulrs["getFollowIds"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/ids/") 
+            ulrs["getFollowIds"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/ids") 
             
-            ulrs["getStores"] = config.domain.appendAsPath("/service/application/catalog/v1.0/locations/") 
+            ulrs["getStores"] = config.domain.appendAsPath("/service/application/catalog/v2.0/locations") 
             
-            ulrs["getInStockLocations"] = config.domain.appendAsPath("/service/application/catalog/v1.0/in-stock/locations/") 
+            ulrs["getInStockLocations"] = config.domain.appendAsPath("/service/application/catalog/v2.0/in-stock/locations") 
             
-            ulrs["getLocationDetailsById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/locations/{location_id}/") 
+            ulrs["getLocationDetailsById"] = config.domain.appendAsPath("/service/application/catalog/v2.0/locations/{location_id}") 
             
-            ulrs["getProductBundlesBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/product-grouping/") 
+            ulrs["getProductBundlesBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/product-grouping") 
             
-            ulrs["getProductPriceBySlug"] = config.domain.appendAsPath("/service/application/catalog/v3.0/products/{slug}/sizes/{size}/price/") 
+            ulrs["getProductPriceBySlug"] = config.domain.appendAsPath("/service/application/catalog/v4.0/products/{slug}/sizes/{size}/price") 
             
-            ulrs["getProductSellersBySlug"] = config.domain.appendAsPath("/service/application/catalog/v3.0/products/{slug}/sizes/{size}/sellers/") 
+            ulrs["getProductSellersBySlug"] = config.domain.appendAsPath("/service/application/catalog/v4.0/products/{slug}/sizes/{size}/sellers") 
             
             self.relativeUrls = ulrs
         }
@@ -416,7 +416,7 @@ var xQuery: [String: Any] = [:]
         * Description: Retrieves the current stock status for products identified by their IDs.
         **/
         public func getProductStockByIds(
-            itemId: String?,
+            itemId: Int?,
             alu: String?,
             skuCode: String?,
             ean: String?,
@@ -1964,7 +1964,7 @@ if let value = pageSize {
         **/
         public func getFollowerCountById(
             collectionType: String,
-            collectionId: String,
+            collectionId: Int,
             
             onResponse: @escaping (_ response: FollowerCountResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2073,8 +2073,8 @@ if let value = collectionType {
         
         /**
         *
-        * Summary: Lists available stores.
-        * Description: Retrieves a list of all physical or online stores.
+        * Summary: Get store meta information.
+        * Description: Use this API to get a list of stores in a specific application.
         **/
         public func getStores(
             pageNo: Int?,
@@ -2084,7 +2084,6 @@ if let value = collectionType {
             range: Int?,
             latitude: Double?,
             longitude: Double?,
-            tags: String?,
             
             onResponse: @escaping (_ response: StoreListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2136,13 +2135,6 @@ if let value = latitude {
 if let value = longitude {
     
     xQuery["longitude"] = value
-    
-}
-
-
-if let value = tags {
-    
-    xQuery["tags"] = value
     
 }
 
@@ -2216,10 +2208,6 @@ if let value = tags {
         
         
         
-        
-        
-        
-        
         /**
         *
         * Summary: get paginator for getStores
@@ -2231,8 +2219,7 @@ if let value = tags {
             city: String?,
             range: Int?,
             latitude: Double?,
-            longitude: Double?,
-            tags: String?
+            longitude: Double?
             
             ) -> Paginator<StoreListingResponse> {
             let pageSize = pageSize ?? 20
@@ -2248,8 +2235,7 @@ if let value = tags {
                         city: city,
                         range: range,
                         latitude: latitude,
-                        longitude: longitude,
-                        tags: tags
+                        longitude: longitude
                     ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page.hasNext ?? false
@@ -2266,8 +2252,8 @@ if let value = tags {
         
         /**
         *
-        * Summary: Finds in-stock locations for products.
-        * Description: Lists locations where specified products are currently in stock.
+        * Summary: Get store meta information.
+        * Description: Use this API to get a list of stores in a specific application.
         **/
         public func getInStockLocations(
             pageNo: Int?,
@@ -2445,8 +2431,8 @@ if let value = longitude {
         
         /**
         *
-        * Summary: Retrieves location details by ID.
-        * Description: Retrieves detailed information about a specific location using its ID.
+        * Summary: Get store meta information.
+        * Description: Use this API to get meta details for a store.
         **/
         public func getLocationDetailsById(
             locationId: Int,
@@ -2503,7 +2489,7 @@ if let value = longitude {
         **/
         public func getProductBundlesBySlug(
             slug: String?,
-            id: String?,
+            id: Int?,
             
             onResponse: @escaping (_ response: ProductBundle?, _ error: FDKError?) -> Void
         ) {
@@ -2564,16 +2550,17 @@ if let value = id {
         
         /**
         *
-        * Summary: Retrieves product price by slug.
-        * Description: Retrieve the price of a product size at all the selling locations near to a PIN Code.
+        * Summary: Get the price of a product size at a PIN Code
+        * Description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
         **/
         public func getProductPriceBySlug(
             slug: String,
             size: String,
             storeId: Int?,
+            pincode: String?,
             moq: Int?,
             
-            onResponse: @escaping (_ response: ProductSizePriceResponseV3?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductSizePriceResponseV4?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -2581,6 +2568,13 @@ var xQuery: [String: Any] = [:]
 if let value = storeId {
     
     xQuery["store_id"] = value
+    
+}
+
+
+if let value = pincode {
+    
+    xQuery["pincode"] = value
     
 }
 
@@ -2619,7 +2613,7 @@ if let value = moq {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductSizePriceResponseV3.self, from: data)
+                        let response = Utility.decode(ProductSizePriceResponseV4.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2636,20 +2630,28 @@ if let value = moq {
         
         /**
         *
-        * Summary: Lists sellers for a product by slug.
-        * Description: Retrieve a list of all sellers offering a specific product identified by its slug. 
+        * Summary: Get the sellers of a product size at a PIN Code
+        * Description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
         **/
         public func getProductSellersBySlug(
             slug: String,
             size: String,
+            pincode: String?,
             strategy: String?,
             pageNo: Int?,
             pageSize: Int?,
             
-            onResponse: @escaping (_ response: ProductSizeSellersResponseV3?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductSizeSellersResponseV4?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
+
+if let value = pincode {
+    
+    xQuery["pincode"] = value
+    
+}
+
 
 if let value = strategy {
     
@@ -2699,7 +2701,7 @@ if let value = pageSize {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductSizeSellersResponseV3.self, from: data)
+                        let response = Utility.decode(ProductSizeSellersResponseV4.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2737,6 +2739,10 @@ if let value = pageSize {
         
         
         
+        
+        
+        
+        
         /**
         *
         * Summary: get paginator for getProductSellersBySlug
@@ -2745,17 +2751,19 @@ if let value = pageSize {
         public func getProductSellersBySlugPaginator(
             slug: String,
             size: String,
+            pincode: String?,
             strategy: String?,
             pageSize: Int?
             
-            ) -> Paginator<ProductSizeSellersResponseV3> {
+            ) -> Paginator<ProductSizeSellersResponseV4> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<ProductSizeSellersResponseV3>(pageSize: pageSize, type: "number")
+            let paginator = Paginator<ProductSizeSellersResponseV4>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getProductSellersBySlug(
                         
                         slug: slug,
                         size: size,
+                        pincode: pincode,
                         strategy: strategy,
                         pageNo: paginator.pageNo
                         ,

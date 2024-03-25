@@ -26,6 +26,8 @@ public extension ApplicationClient.Content {
         
         public var customJson: [String: Any]?
         
+        public var v: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -47,9 +49,11 @@ public extension ApplicationClient.Content {
             
             case customJson = "_custom_json"
             
+            case v = "__v"
+            
         }
 
-        public init(application: String? = nil, children: [String]? = nil, description: String? = nil, iconUrl: String? = nil, index: Int? = nil, slug: String? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil) {
+        public init(application: String? = nil, children: [String]? = nil, description: String? = nil, iconUrl: String? = nil, index: Int? = nil, slug: String? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil, v: Double? = nil) {
             
             self.index = index
             
@@ -68,6 +72,8 @@ public extension ApplicationClient.Content {
             self.iconUrl = iconUrl
             
             self.customJson = customJson
+            
+            self.v = v
             
         }
 
@@ -182,6 +188,18 @@ public extension ApplicationClient.Content {
             }
             
             
+            
+            do {
+                v = try container.decode(Double.self, forKey: .v)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -221,6 +239,10 @@ public extension ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(customJson, forKey: .customJson)
+            
+            
+            
+            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

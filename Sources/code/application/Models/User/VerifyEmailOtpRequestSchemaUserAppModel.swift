@@ -8,18 +8,22 @@ public extension ApplicationClient.User {
     */
     class VerifyEmailOtpRequestSchema: Codable {
         
-        public var email: String?
+        public var email: String
         
-        public var action: String?
+        public var requestId: String?
+        
+        public var action: String
         
         public var registerToken: String?
         
-        public var otp: String?
+        public var otp: String
         
 
         public enum CodingKeys: String, CodingKey {
             
             case email = "email"
+            
+            case requestId = "request_id"
             
             case action = "action"
             
@@ -29,9 +33,11 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(action: String? = nil, email: String? = nil, otp: String? = nil, registerToken: String? = nil) {
+        public init(action: String, email: String, otp: String, registerToken: String? = nil, requestId: String? = nil) {
             
             self.email = email
+            
+            self.requestId = requestId
             
             self.action = action
             
@@ -45,8 +51,13 @@ public extension ApplicationClient.User {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
+            email = try container.decode(String.self, forKey: .email)
+            
+            
+            
+            
             do {
-                email = try container.decode(String.self, forKey: .email)
+                requestId = try container.decode(String.self, forKey: .requestId)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,15 +68,8 @@ public extension ApplicationClient.User {
             
             
             
-            do {
-                action = try container.decode(String.self, forKey: .action)
+            action = try container.decode(String.self, forKey: .action)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
             
@@ -81,15 +85,8 @@ public extension ApplicationClient.User {
             
             
             
-            do {
-                otp = try container.decode(String.self, forKey: .otp)
+            otp = try container.decode(String.self, forKey: .otp)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
         }
@@ -99,6 +96,10 @@ public extension ApplicationClient.User {
             
             
             try? container.encodeIfPresent(email, forKey: .email)
+            
+            
+            
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
             
             
             

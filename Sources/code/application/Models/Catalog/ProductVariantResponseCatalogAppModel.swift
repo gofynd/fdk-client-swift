@@ -12,6 +12,8 @@ public extension ApplicationClient.Catalog {
         
         public var header: String?
         
+        public var logo: String?
+        
         public var items: [ProductVariantItemResponse]?
         
         public var key: String?
@@ -23,17 +25,21 @@ public extension ApplicationClient.Catalog {
             
             case header = "header"
             
+            case logo = "logo"
+            
             case items = "items"
             
             case key = "key"
             
         }
 
-        public init(displayType: String? = nil, header: String? = nil, items: [ProductVariantItemResponse]? = nil, key: String? = nil) {
+        public init(displayType: String? = nil, header: String? = nil, items: [ProductVariantItemResponse]? = nil, key: String? = nil, logo: String? = nil) {
             
             self.displayType = displayType
             
             self.header = header
+            
+            self.logo = logo
             
             self.items = items
             
@@ -59,6 +65,18 @@ public extension ApplicationClient.Catalog {
             
             do {
                 header = try container.decode(String.self, forKey: .header)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                logo = try container.decode(String.self, forKey: .logo)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,6 +121,10 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(header, forKey: .header)
+            
+            
+            
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             

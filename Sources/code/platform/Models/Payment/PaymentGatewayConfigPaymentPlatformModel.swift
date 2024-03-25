@@ -20,7 +20,7 @@ public extension PlatformClient.Payment {
         
         public var key: String
         
-        public var merchantSalt: String
+        public var merchantSalt: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -37,7 +37,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(configType: String, isActive: Bool? = nil, key: String, merchantSalt: String, secret: String) {
+        public init(configType: String, isActive: Bool? = nil, key: String, merchantSalt: String? = nil, secret: String) {
             
             self.secret = secret
             
@@ -82,9 +82,16 @@ public extension PlatformClient.Payment {
             
             
             
-                merchantSalt = try container.decode(String.self, forKey: .merchantSalt)
+                do {
+                    merchantSalt = try container.decode(String.self, forKey: .merchantSalt)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -140,7 +147,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var key: String
         
-        public var merchantSalt: String
+        public var merchantSalt: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -157,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(configType: String, isActive: Bool? = nil, key: String, merchantSalt: String, secret: String) {
+        public init(configType: String, isActive: Bool? = nil, key: String, merchantSalt: String? = nil, secret: String) {
             
             self.secret = secret
             
@@ -202,9 +209,16 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                merchantSalt = try container.decode(String.self, forKey: .merchantSalt)
+                do {
+                    merchantSalt = try container.decode(String.self, forKey: .merchantSalt)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         

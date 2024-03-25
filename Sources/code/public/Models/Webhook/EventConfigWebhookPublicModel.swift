@@ -30,6 +30,8 @@ public extension PublicClient.Webhook {
         
         public var updatedOn: String?
         
+        public var group: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -53,9 +55,11 @@ public extension PublicClient.Webhook {
             
             case updatedOn = "updated_on"
             
+            case group = "group"
+            
         }
 
-        public init(createdOn: String? = nil, description: String? = nil, displayName: String? = nil, eventCategory: String? = nil, eventName: String? = nil, eventSchema: [String: Any]? = nil, eventType: String? = nil, id: Int? = nil, updatedOn: String? = nil, version: String? = nil) {
+        public init(createdOn: String? = nil, description: String? = nil, displayName: String? = nil, eventCategory: String? = nil, eventName: String? = nil, eventSchema: [String: Any]? = nil, eventType: String? = nil, group: String? = nil, id: Int? = nil, updatedOn: String? = nil, version: String? = nil) {
             
             self.id = id
             
@@ -76,6 +80,8 @@ public extension PublicClient.Webhook {
             self.createdOn = createdOn
             
             self.updatedOn = updatedOn
+            
+            self.group = group
             
         }
 
@@ -202,6 +208,18 @@ public extension PublicClient.Webhook {
                 }
                 
             
+            
+                do {
+                    group = try container.decode(String.self, forKey: .group)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -245,6 +263,10 @@ public extension PublicClient.Webhook {
             
             
             try? container.encodeIfPresent(updatedOn, forKey: .updatedOn)
+            
+            
+            
+            try? container.encodeIfPresent(group, forKey: .group)
             
             
         }

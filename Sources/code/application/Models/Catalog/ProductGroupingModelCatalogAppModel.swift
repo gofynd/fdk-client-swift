@@ -20,7 +20,7 @@ public extension ApplicationClient.Catalog {
         
         public var companyId: Int?
         
-        public var pageVisibility: [[String: Any]]?
+        public var pageVisibility: [String]?
         
         public var modifiedOn: String
         
@@ -32,13 +32,13 @@ public extension ApplicationClient.Catalog {
         
         public var sameStoreAssignment: Bool?
         
-        public var id: [String: Any]?
+        public var id: String?
         
-        public var name: [String: Any]
+        public var name: String
         
-        public var choice: [String: Any]?
+        public var choice: String?
         
-        public var slug: [String: Any]?
+        public var slug: String?
         
         public var verifiedOn: String?
         
@@ -81,7 +81,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(choice: [String: Any]? = nil, companyId: Int? = nil, createdBy: UserDetail? = nil, createdOn: String, isActive: Bool? = nil, logo: String? = nil, meta: [String: Any]? = nil, modifiedBy: UserDetail? = nil, modifiedOn: String, name: [String: Any], pageVisibility: [[String: Any]]? = nil, products: [ProductInGroup], sameStoreAssignment: Bool? = nil, slug: [String: Any]? = nil, verifiedBy: UserDetail? = nil, verifiedOn: String? = nil, id: [String: Any]? = nil) {
+        public init(choice: String? = nil, companyId: Int? = nil, createdBy: UserDetail? = nil, createdOn: String, isActive: Bool? = nil, logo: String? = nil, meta: [String: Any]? = nil, modifiedBy: UserDetail? = nil, modifiedOn: String, name: String, pageVisibility: [String]? = nil, products: [ProductInGroup], sameStoreAssignment: Bool? = nil, slug: String? = nil, verifiedBy: UserDetail? = nil, verifiedOn: String? = nil, id: String? = nil) {
             
             self.logo = logo
             
@@ -189,7 +189,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                pageVisibility = try container.decode([[String: Any]].self, forKey: .pageVisibility)
+                pageVisibility = try container.decode([String].self, forKey: .pageVisibility)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -247,7 +247,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                id = try container.decode([String: Any].self, forKey: .id)
+                id = try container.decode(String.self, forKey: .id)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -258,13 +258,13 @@ public extension ApplicationClient.Catalog {
             
             
             
-            name = try container.decode([String: Any].self, forKey: .name)
+            name = try container.decode(String.self, forKey: .name)
             
             
             
             
             do {
-                choice = try container.decode([String: Any].self, forKey: .choice)
+                choice = try container.decode(String.self, forKey: .choice)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -276,7 +276,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                slug = try container.decode([String: Any].self, forKey: .slug)
+                slug = try container.decode(String.self, forKey: .slug)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

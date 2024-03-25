@@ -16,7 +16,7 @@ public extension PlatformClient.Payment {
         
         public var data: [PaymentStatusObject]?
         
-        public var success: String
+        public var success: Bool
         
         public var error: String?
         
@@ -37,7 +37,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(count: Int? = nil, data: [PaymentStatusObject]? = nil, error: String? = nil, status: Int, success: String) {
+        public init(count: Int? = nil, data: [PaymentStatusObject]? = nil, error: String? = nil, status: Int, success: Bool) {
             
             self.count = count
             
@@ -79,7 +79,7 @@ public extension PlatformClient.Payment {
                 
             
             
-                success = try container.decode(String.self, forKey: .success)
+                success = try container.decode(Bool.self, forKey: .success)
                 
             
             
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var data: [PaymentStatusObject]?
         
-        public var success: String
+        public var success: Bool
         
         public var error: String?
         
@@ -171,7 +171,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(count: Int? = nil, data: [PaymentStatusObject]? = nil, error: String? = nil, status: Int, success: String) {
+        public init(count: Int? = nil, data: [PaymentStatusObject]? = nil, error: String? = nil, status: Int, success: Bool) {
             
             self.count = count
             
@@ -213,7 +213,7 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
-                success = try container.decode(String.self, forKey: .success)
+                success = try container.decode(Bool.self, forKey: .success)
                 
             
             

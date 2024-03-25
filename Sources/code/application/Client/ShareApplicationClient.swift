@@ -11,19 +11,19 @@ extension ApplicationClient {
             self.config = config;
             var ulrs = [String: String]()
             
-            ulrs["getApplicationQRCode"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/") 
+            ulrs["getApplicationQRCode"] = config.domain.appendAsPath("/service/application/share/v1.0/qr") 
             
-            ulrs["getProductQRCodeBySlug"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/products/{slug}/") 
+            ulrs["getProductQRCodeBySlug"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/products/{slug}") 
             
-            ulrs["getCollectionQRCodeBySlug"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/collection/{slug}/") 
+            ulrs["getCollectionQRCodeBySlug"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/collection/{slug}") 
             
-            ulrs["getUrlQRCode"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/url/") 
+            ulrs["getUrlQRCode"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/url") 
             
-            ulrs["createShortLink"] = config.domain.appendAsPath("/service/application/share/v1.0/links/short-link/") 
+            ulrs["createShortLink"] = config.domain.appendAsPath("/service/application/share/v1.0/links/short-link") 
             
-            ulrs["getShortLinkByHash"] = config.domain.appendAsPath("/service/application/share/v1.0/links/short-link/{hash}/") 
+            ulrs["getShortLinkByHash"] = config.domain.appendAsPath("/service/application/share/v1.0/links/short-link/{hash}") 
             
-            ulrs["getOriginalShortLinkByHash"] = config.domain.appendAsPath("/service/application/share/v1.0/links/short-link/{hash}/original/") 
+            ulrs["getOriginalShortLinkByHash"] = config.domain.appendAsPath("/service/application/share/v1.0/links/short-link/{hash}/original") 
             
             self.relativeUrls = ulrs
         }

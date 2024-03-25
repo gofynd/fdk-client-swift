@@ -17,7 +17,11 @@ extension ApplicationClient {
             
             ulrs["getActiveCardAggregator"] = config.domain.appendAsPath("/service/application/payment/v1.0/card/aggregator") 
             
+            ulrs["updateUserCard"] = config.domain.appendAsPath("/service/application/payment/v1.0/card/aggregator") 
+            
             ulrs["getActiveUserCards"] = config.domain.appendAsPath("/service/application/payment/v1.0/cards") 
+            
+            ulrs["updateActiveCards"] = config.domain.appendAsPath("/service/application/payment/v1.0/cards") 
             
             ulrs["deleteUserCard"] = config.domain.appendAsPath("/service/application/payment/v1.0/card/remove") 
             
@@ -45,7 +49,7 @@ extension ApplicationClient {
             
             ulrs["resendOrCancelPayment"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/resend_or_cancel") 
             
-            ulrs["renderHTML"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/html/render/") 
+            ulrs["renderHTML"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/html/render") 
             
             ulrs["validateVPA"] = config.domain.appendAsPath("/service/application/payment/v1.0/validate-vpa") 
             
@@ -61,47 +65,67 @@ extension ApplicationClient {
             
             ulrs["getOrderBeneficiariesDetail"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/order/beneficiaries") 
             
-            ulrs["verifyOtpAndAddBeneficiaryForBank"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/verification/bank") 
-            
             ulrs["addBeneficiaryDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/account") 
             
+            ulrs["verifyOtpAndAddBeneficiaryForBank"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/verification/bank") 
+            
             ulrs["addRefundBankAccountUsingOTP"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/account/otp") 
+            
+            ulrs["getotpOrderBeneficiariesDetail"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/account/otp") 
             
             ulrs["verifyOtpAndAddBeneficiaryForWallet"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/verification/wallet") 
             
             ulrs["updateDefaultBeneficiary"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/beneficiary/default") 
             
-            ulrs["getPaymentLink"] = config.domain.appendAsPath("/service/application/payment/v1.0/create-payment-link/") 
+            ulrs["getBenficiaryOrder"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/beneficiaries/orders") 
             
-            ulrs["createPaymentLink"] = config.domain.appendAsPath("/service/application/payment/v1.0/create-payment-link/") 
+            ulrs["getPaymentLink"] = config.domain.appendAsPath("/service/application/payment/v1.0/create-payment-link") 
             
-            ulrs["resendPaymentLink"] = config.domain.appendAsPath("/service/application/payment/v1.0/resend-payment-link/") 
+            ulrs["createPaymentLink"] = config.domain.appendAsPath("/service/application/payment/v1.0/create-payment-link") 
             
-            ulrs["cancelPaymentLink"] = config.domain.appendAsPath("/service/application/payment/v1.0/cancel-payment-link/") 
+            ulrs["getPaymentLinkId"] = config.domain.appendAsPath("/service/application/payment/v1.0/create-payment-link/{id}") 
             
-            ulrs["getPaymentModeRoutesPaymentLink"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/options/link/") 
+            ulrs["resendPaymentLink"] = config.domain.appendAsPath("/service/application/payment/v1.0/resend-payment-link") 
             
-            ulrs["pollingPaymentLink"] = config.domain.appendAsPath("/service/application/payment/v1.0/polling-payment-link/") 
+            ulrs["getPaymentModeRoutesPaymentLink"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/options/link") 
             
-            ulrs["createOrderHandlerPaymentLink"] = config.domain.appendAsPath("/service/application/payment/v1.0/create-order/link/") 
+            ulrs["pollingPaymentLink"] = config.domain.appendAsPath("/service/application/payment/v1.0/polling-payment-link") 
             
-            ulrs["initialisePaymentPaymentLink"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/request/link/") 
+            ulrs["createOrderHandlerPaymentLink"] = config.domain.appendAsPath("/service/application/payment/v1.0/create-order/link") 
             
-            ulrs["checkAndUpdatePaymentStatusPaymentLink"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/confirm/polling/link/") 
+            ulrs["initialisePaymentPaymentLink"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/request/link") 
             
-            ulrs["customerCreditSummary"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/credit-summary/") 
+            ulrs["checkAndUpdatePaymentStatusPaymentLink"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/confirm/polling/link") 
             
-            ulrs["redirectToAggregator"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/redirect-to-aggregator/") 
+            ulrs["customerCreditSummary"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/credit-summary") 
             
-            ulrs["checkCredit"] = config.domain.appendAsPath("/service/application/payment/v1.0/check-credits/") 
+            ulrs["redirectToAggregator"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/redirect-to-aggregator") 
             
-            ulrs["customerOnboard"] = config.domain.appendAsPath("/service/application/payment/v1.0/credit-onboard/") 
+            ulrs["checkCredit"] = config.domain.appendAsPath("/service/application/payment/v1.0/check-credits") 
             
-            ulrs["outstandingOrderDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/outstanding-orders/") 
+            ulrs["customerOnboard"] = config.domain.appendAsPath("/service/application/payment/v1.0/credit-onboard") 
             
-            ulrs["paidOrderDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/paid-orders/") 
+            ulrs["outstandingOrderDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/outstanding-orders") 
             
-            ulrs["createPaymentOrder"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment-orders/") 
+            ulrs["cancelPaymentLink"] = config.domain.appendAsPath("/service/application/payment/v1.0/cancel-payment-link") 
+            
+            ulrs["paidOrderDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/paid-orders") 
+            
+            ulrs["createPaymentOrder"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment-orders") 
+            
+            ulrs["deleteBeneficiaryDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/refund/account/{beneficiary_id}") 
+            
+            ulrs["getRefundOptions"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/refundoptions") 
+            
+            ulrs["setRefundOptionforShipment"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/refundoptions") 
+            
+            ulrs["getSelectedRefundOption"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/selected_refund_options") 
+            
+            ulrs["getUserBeneficiariesDetailV2"] = config.domain.appendAsPath("/service/application/payment/v2.0/refund/user/beneficiary") 
+            
+            ulrs["validateBeneficiaryAddress"] = config.domain.appendAsPath("/service/application/payment/v1.0/validate/beneficiary-address") 
+            
+            ulrs["confirmPayment"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/confirm") 
             
             self.relativeUrls = ulrs
         }
@@ -115,8 +139,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetch payment aggregators.
-        * Description: Retrieves configuration details for available payment aggregators.
+        * Summary: Get payment gateway keys
+        * Description: Use this API to retrieve the payment gateway key, secrets, merchant, SDK/API details to complete a payment at front-end.
         **/
         public func getAggregatorsConfig(
             xApiToken: String?,
@@ -288,6 +312,56 @@ if let value = refresh {
         
         /**
         *
+        * Summary: card aggregator
+        * Description: Use this API to get card of user
+        **/
+        public func updateUserCard(
+            body: UpdateAggregatorCardRequest,
+            onResponse: @escaping (_ response: UpdateAggregatorCardResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["updateUserCard"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UpdateAggregatorCardResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
         * Summary: List user's cards.
         * Description: Retrieves all active cards linked to a user.
         **/
@@ -330,6 +404,56 @@ if let value = forceRefresh {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ListCardsResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: update a card
+        * Description: Use this API to update a card list added by a user on the payment gateway.
+        **/
+        public func updateActiveCards(
+            body: UpdateAggregatorCardRequest,
+            onResponse: @escaping (_ response: UpdateCardResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["updateActiveCards"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UpdateCardResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1449,8 +1573,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Verify IFSC.
-        * Description: Checks the validity of an IFSC code for bank transactions.
+        * Summary: Verify IFSC Code
+        * Description: Use this API to check whether the 11-digit IFSC code is valid and to fetch the bank details for refund.
         **/
         public func verifyIfscCode(
             ifscCode: String?,
@@ -1507,8 +1631,8 @@ if let value = ifscCode {
         
         /**
         *
-        * Summary: Order beneficiaries.
-        * Description: Retrieve the beneficiary details related to an order.
+        * Summary: Lists the beneficiary of a refund
+        * Description: Use this API to get the details of all active beneficiary added by a user for refund.
         **/
         public func getOrderBeneficiariesDetail(
             orderId: String,
@@ -1547,6 +1671,56 @@ var xQuery: [String: Any] = [:]
                     } else if let data = responseData {
                         
                         let response = Utility.decode(OrderBeneficiaryResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Save bank details for cancelled/returned order
+        * Description: Use this API to save the bank details for a returned or cancelled order to refund the amount.
+        **/
+        public func addBeneficiaryDetails(
+            body: AddBeneficiaryDetailsRequest,
+            onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["addBeneficiaryDetails"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(RefundAccountResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1613,62 +1787,12 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Add beneficiary.
-        * Description: Adds beneficiary details for future transactions.
-        **/
-        public func addBeneficiaryDetails(
-            body: AddBeneficiaryDetailsRequest,
-            onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            let fullUrl = relativeUrls["addBeneficiaryDetails"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(RefundAccountResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Add refund account.
-        * Description: Adds a bank account for refunds using OTP verification.
+        * Summary: Save bank details for cancelled/returned order
+        * Description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
         **/
         public func addRefundBankAccountUsingOTP(
             body: AddBeneficiaryDetailsOTPRequest,
-            onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PostAddBeneficiaryDetailsOTPResponse?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -1696,7 +1820,69 @@ var xQuery: [String: Any] = [:]
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(RefundAccountResponse.self, from: data)
+                        let response = Utility.decode(PostAddBeneficiaryDetailsOTPResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Lists the beneficiary of a refund
+        * Description: Use this API to get the details of all active beneficiary added by a user for refund.
+        **/
+        public func getotpOrderBeneficiariesDetail(
+            orderId: String,
+            requestHash: String,
+            
+            onResponse: @escaping (_ response: AddBeneficiaryDetailsOTPResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["order_id"] = orderId
+
+
+
+
+    xQuery["request_hash"] = requestHash
+
+
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["getotpOrderBeneficiariesDetail"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(AddBeneficiaryDetailsOTPResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1797,6 +1983,56 @@ var xQuery: [String: Any] = [:]
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SetDefaultBeneficiaryResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get Payment status and information for a list of order_ids
+        * Description: Use this API to get Payment status and information for a list of order_ids
+        **/
+        public func getBenficiaryOrder(
+            body: RefundOrderBenRequest,
+            onResponse: @escaping (_ response: RefundOrderBenResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["getBenficiaryOrder"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(RefundOrderBenResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1921,8 +2157,67 @@ if let value = paymentLinkId {
         
         /**
         *
-        * Summary: Resend link.
-        * Description: Resends an existing payment link to the user.
+        * Summary: Get payment link
+        * Description: Use this API to get a payment link
+        **/
+        public func getPaymentLinkId(
+            id: String,
+            paymentLinkId: String,
+            
+            onResponse: @escaping (_ response: GetPaymentLinkResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["payment_link_id"] = paymentLinkId
+
+
+
+ 
+
+
+            
+            var fullUrl = relativeUrls["getPaymentLinkId"] ?? ""
+            
+                fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetPaymentLinkResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Resend payment link
+        * Description: Use this API to resend a payment link for the customer
         **/
         public func resendPaymentLink(
             body: CancelOrResendPaymentLinkRequest,
@@ -1955,56 +2250,6 @@ if let value = paymentLinkId {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(ResendPaymentLinkResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Cancel link.
-        * Description: Cancels a previously generated payment link.
-        **/
-        public func cancelPaymentLink(
-            body: CancelOrResendPaymentLinkRequest,
-            onResponse: @escaping (_ response: CancelPaymentLinkResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            let fullUrl = relativeUrls["cancelPaymentLink"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CancelPaymentLinkResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2081,18 +2326,16 @@ var xQuery: [String: Any] = [:]
         * Description: Polls the status of a payment link for updates.
         **/
         public func pollingPaymentLink(
-            paymentLinkId: String?,
+            paymentLinkId: String,
             
             onResponse: @escaping (_ response: PollingPaymentLinkResponse?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
 
-if let value = paymentLinkId {
-    
-    xQuery["payment_link_id"] = value
-    
-}
+
+    xQuery["payment_link_id"] = paymentLinkId
+
 
 
  
@@ -2235,8 +2478,8 @@ if let value = paymentLinkId {
         
         /**
         *
-        * Summary: Update link status.
-        * Description: Checks and updates the status of payment via a link.
+        * Summary: Performs continuous polling to check status of payment on the server
+        * Description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
         **/
         public func checkAndUpdatePaymentStatusPaymentLink(
             body: PaymentStatusUpdateRequest,
@@ -2467,8 +2710,8 @@ if let value = aggregator {
         
         /**
         *
-        * Summary: Onboard customer.
-        * Description: Initiates the onboarding process for payment services.
+        * Summary: API to fetch the customer credit summary
+        * Description: Use this API to fetch the customer credit summary.
         **/
         public func customerOnboard(
             body: CustomerOnboardingRequest,
@@ -2559,6 +2802,56 @@ if let value = aggregator {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(OutstandingOrderDetailsResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Cancel payment link
+        * Description: Use this API to cancel a payment link for the customer
+        **/
+        public func cancelPaymentLink(
+            body: CancelOrResendPaymentLinkRequest,
+            onResponse: @escaping (_ response: CancelPaymentLinkResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["cancelPaymentLink"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CancelPaymentLinkResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2667,6 +2960,425 @@ if let value = aggregator {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(PaymentOrderResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Delete saved beneficiary details of customers
+        * Description: Use this API to delete the saved beneficiary details provided beneficiary Id.
+        **/
+        public func deleteBeneficiaryDetails(
+            beneficiaryId: String,
+            
+            onResponse: @escaping (_ response: DeleteRefundAccountResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            
+            var fullUrl = relativeUrls["deleteBeneficiaryDetails"] ?? ""
+            
+                fullUrl = fullUrl.replacingOccurrences(of: "{" + "beneficiary_id" + "}", with: "\(beneficiaryId)")
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "DELETE",
+                url: fullUrl,
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(DeleteRefundAccountResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Refund Options Handler to fetch available refund options.
+        * Description: Refund Options Handler to fetch available refund options
+        **/
+        public func getRefundOptions(
+            configuration: String,
+            productType: String?,
+            amount: String?,
+            orderType: String?,
+            
+            onResponse: @escaping (_ response: ShipmentRefundResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["configuration"] = configuration
+
+
+
+if let value = productType {
+    
+    xQuery["product_type"] = value
+    
+}
+
+
+if let value = amount {
+    
+    xQuery["amount"] = value
+    
+}
+
+
+if let value = orderType {
+    
+    xQuery["order_type"] = value
+    
+}
+
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["getRefundOptions"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ShipmentRefundResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Save refund source against shipment and order
+        * Description: Save refund source against shipment and order
+        **/
+        public func setRefundOptionforShipment(
+            body: ShipmentRefundRequest,
+            onResponse: @escaping (_ response: ShipmentRefundResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["setRefundOptionforShipment"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ShipmentRefundResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: API to get the selected refund options for shipment id
+        * Description: API to get the selected refund options for shipment id
+        **/
+        public func getSelectedRefundOption(
+            shipmentId: String,
+            orderId: String,
+            
+            onResponse: @escaping (_ response: SelectedRefundOptionResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["shipment_id"] = shipmentId
+
+
+
+
+    xQuery["order_id"] = orderId
+
+
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["getSelectedRefundOption"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SelectedRefundOptionResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Lists the beneficiary of a refund
+        * Description: Use this API to get the details of all active beneficiary added by a user for refund.
+        **/
+        public func getUserBeneficiariesDetailV2(
+            orderId: String?,
+            shipmentId: String?,
+            mop: String?,
+            
+            onResponse: @escaping (_ response: OrderBeneficiaryResponseSchemaV2?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = orderId {
+    
+    xQuery["order_id"] = value
+    
+}
+
+
+if let value = shipmentId {
+    
+    xQuery["shipment_id"] = value
+    
+}
+
+
+if let value = mop {
+    
+    xQuery["mop"] = value
+    
+}
+
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["getUserBeneficiariesDetailV2"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(OrderBeneficiaryResponseSchemaV2.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: API to Validate UPI ID and IFSC code
+        * Description: API to Validate UPI ID and IFSC code
+        **/
+        public func validateBeneficiaryAddress(
+            body: ValidateValidateAddressRequest,
+            onResponse: @escaping (_ response: ValidateValidateAddressResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["validateBeneficiaryAddress"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ValidateValidateAddressResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Confirm payment after successful payment from payment gateway
+        * Description: Use this API to confirm payment after payment gateway accepted payment.
+        **/
+        public func confirmPayment(
+            body: PaymentConfirmationRequest,
+            onResponse: @escaping (_ response: PaymentConfirmationResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["confirmPayment"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(PaymentConfirmationResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

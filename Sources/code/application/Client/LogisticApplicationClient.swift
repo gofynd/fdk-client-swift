@@ -11,13 +11,13 @@ extension ApplicationClient {
             self.config = config;
             var ulrs = [String: String]()
             
-            ulrs["getPincodeCity"] = config.domain.appendAsPath("/service/application/logistics/v1.0/pincode/{pincode}") 
-            
-            ulrs["getTatProduct"] = config.domain.appendAsPath("/service/application/logistics/v1.0/") 
-            
             ulrs["getAllCountries"] = config.domain.appendAsPath("/service/application/logistics/v1.0/country-list") 
             
             ulrs["getPincodeZones"] = config.domain.appendAsPath("/service/application/logistics/v1.0/pincode/zones") 
+            
+            ulrs["getZones"] = config.domain.appendAsPath("/service/application/logistics/v2.0/company/{company_id}/application/{application_id}/zones") 
+            
+            ulrs["getGeoAreas"] = config.domain.appendAsPath("/service/application/logistics/v1.0/company/{company_id}/application/{application_id}/geoareas") 
             
             ulrs["getOptimalLocations"] = config.domain.appendAsPath("/service/application/logistics/v1.0/reassign_stores") 
             
@@ -40,109 +40,6 @@ extension ApplicationClient {
             self.relativeUrls[key] = value
             }
         }
-        
-        
-        
-        /**
-        *
-        * Summary: Fetches city by pincode.
-        * Description: Retrieve the name of the city associated with a given pincode.
-        **/
-        public func getPincodeCity(
-            pincode: String,
-            
-            onResponse: @escaping (_ response: PincodeApiResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            var fullUrl = relativeUrls["getPincodeCity"] ?? ""
-            
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "pincode" + "}", with: "\(pincode)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(PincodeApiResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Retrieves product turnaround time.
-        * Description: Retrieve the estimated delivery time for a specific product.
-        **/
-        public func getTatProduct(
-            body: TATViewRequest,
-            onResponse: @escaping (_ response: TATViewResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            let fullUrl = relativeUrls["getTatProduct"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(TATViewResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
         
         
         
@@ -232,6 +129,270 @@ extension ApplicationClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetZoneFromPincodeViewResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Shows zones defined at the application level
+        * Description: Displays the list of zones defined at the application level.
+        **/
+        public func getZones(
+            companyId: Int,
+            applicationId: String,
+            stage: String?,
+            pageSize: Int?,
+            zoneIds: String?,
+            isActive: Bool?,
+            q: String?,
+            country: String?,
+            countryIsoCode: String?,
+            pincode: String?,
+            state: String?,
+            city: String?,
+            sector: String?,
+            
+            onResponse: @escaping (_ response: ListViewResponseV2?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = stage {
+    
+    xQuery["stage"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = zoneIds {
+    
+    xQuery["zone_ids"] = value
+    
+}
+
+
+if let value = isActive {
+    
+    xQuery["is_active"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = country {
+    
+    xQuery["country"] = value
+    
+}
+
+
+if let value = countryIsoCode {
+    
+    xQuery["country_iso_code"] = value
+    
+}
+
+
+if let value = pincode {
+    
+    xQuery["pincode"] = value
+    
+}
+
+
+if let value = state {
+    
+    xQuery["state"] = value
+    
+}
+
+
+if let value = city {
+    
+    xQuery["city"] = value
+    
+}
+
+
+if let value = sector {
+    
+    xQuery["sector"] = value
+    
+}
+
+
+ 
+
+
+            
+            var fullUrl = relativeUrls["getZones"] ?? ""
+            
+                fullUrl = fullUrl.replacingOccurrences(of: "{" + "company_id" + "}", with: "\(companyId)")
+            
+                fullUrl = fullUrl.replacingOccurrences(of: "{" + "application_id" + "}", with: "\(applicationId)")
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ListViewResponseV2.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get all geoareas in the current application.
+        * Description: Retrieves a listing view of created GeoAreas.
+        **/
+        public func getGeoAreas(
+            applicationId: String,
+            companyId: Int,
+            pageSize: Int?,
+            isActive: Bool?,
+            q: String?,
+            countryIsoCode: String?,
+            state: String?,
+            city: String?,
+            pincode: String?,
+            sector: String?,
+            
+            onResponse: @escaping (_ response: GeoAreaGetResponseBody?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = isActive {
+    
+    xQuery["is_active"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = countryIsoCode {
+    
+    xQuery["country_iso_code"] = value
+    
+}
+
+
+if let value = state {
+    
+    xQuery["state"] = value
+    
+}
+
+
+if let value = city {
+    
+    xQuery["city"] = value
+    
+}
+
+
+if let value = pincode {
+    
+    xQuery["pincode"] = value
+    
+}
+
+
+if let value = sector {
+    
+    xQuery["sector"] = value
+    
+}
+
+
+ 
+
+
+            
+            var fullUrl = relativeUrls["getGeoAreas"] ?? ""
+            
+                fullUrl = fullUrl.replacingOccurrences(of: "{" + "application_id" + "}", with: "\(applicationId)")
+            
+                fullUrl = fullUrl.replacingOccurrences(of: "{" + "company_id" + "}", with: "\(companyId)")
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GeoAreaGetResponseBody.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -424,6 +585,7 @@ if let value = pageSize {
             pageNo: Int?,
             pageSize: Int?,
             q: String?,
+            hierarchy: String?,
             
             onResponse: @escaping (_ response: GetCountries?, _ error: FDKError?) -> Void
         ) {
@@ -454,6 +616,13 @@ if let value = pageSize {
 if let value = q {
     
     xQuery["q"] = value
+    
+}
+
+
+if let value = hierarchy {
+    
+    xQuery["hierarchy"] = value
     
 }
 
@@ -491,6 +660,67 @@ if let value = q {
                         onResponse(nil, err)
                     }
             });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getCountries
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getCountriesPaginator(
+            onboarding: Bool?,
+            pageSize: Int?,
+            q: String?,
+            hierarchy: String?
+            
+            ) -> Paginator<GetCountries> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<GetCountries>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getCountries(
+                        
+                        onboarding: onboarding,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        q: q,
+                        hierarchy: hierarchy
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
         }
         
         
@@ -562,6 +792,8 @@ if let value = q {
             pageNo: Int?,
             pageSize: Int?,
             q: String?,
+            name: String?,
+            namesList: String?,
             
             onResponse: @escaping (_ response: GetLocalities?, _ error: FDKError?) -> Void
         ) {
@@ -610,6 +842,20 @@ if let value = q {
 }
 
 
+if let value = name {
+    
+    xQuery["name"] = value
+    
+}
+
+
+if let value = namesList {
+    
+    xQuery["names_list"] = value
+    
+}
+
+
  
 
 
@@ -645,6 +891,91 @@ if let value = q {
                         onResponse(nil, err)
                     }
             });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getLocalities
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getLocalitiesPaginator(
+            localityType: String,
+            country: String?,
+            state: String?,
+            city: String?,
+            pageSize: Int?,
+            q: String?,
+            name: String?,
+            namesList: String?
+            
+            ) -> Paginator<GetLocalities> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<GetLocalities>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getLocalities(
+                        
+                        localityType: localityType,
+                        country: country,
+                        state: state,
+                        city: city,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        q: q,
+                        name: name,
+                        namesList: namesList
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
         }
         
         

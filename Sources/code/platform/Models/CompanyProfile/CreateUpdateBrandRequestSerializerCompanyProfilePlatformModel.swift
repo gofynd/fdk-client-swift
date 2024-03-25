@@ -32,6 +32,8 @@ public extension PlatformClient.CompanyProfile {
         
         public var name: String
         
+        public var slug: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -55,9 +57,11 @@ public extension PlatformClient.CompanyProfile {
             
             case name = "name"
             
+            case slug = "slug"
+            
         }
 
-        public init(banner: BrandBannerSerializer, brandTier: String? = nil, companyId: Int? = nil, description: String? = nil, logo: String, name: String, synonyms: [String]? = nil, uid: Int? = nil, customJson: [String: Any]? = nil, localeLanguage: [String: Any]? = nil) {
+        public init(banner: BrandBannerSerializer, brandTier: String? = nil, companyId: Int? = nil, description: String? = nil, logo: String, name: String, slug: String? = nil, synonyms: [String]? = nil, uid: Int? = nil, customJson: [String: Any]? = nil, localeLanguage: [String: Any]? = nil) {
             
             self.customJson = customJson
             
@@ -78,6 +82,8 @@ public extension PlatformClient.CompanyProfile {
             self.banner = banner
             
             self.name = name
+            
+            self.slug = slug
             
         }
 
@@ -183,6 +189,18 @@ public extension PlatformClient.CompanyProfile {
                 
             
             
+            
+                do {
+                    slug = try container.decode(String.self, forKey: .slug)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -236,6 +254,11 @@ public extension PlatformClient.CompanyProfile {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
         }

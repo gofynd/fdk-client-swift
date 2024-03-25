@@ -60,23 +60,6 @@ extension PlatformClient {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: Get system notifications.
@@ -85,6 +68,8 @@ extension PlatformClient {
         public func getSystemNotifications(
             pageNo: Int?,
             pageSize: Int?,
+            sort: String?,
+            query: String?,
             
             onResponse: @escaping (_ response: SystemNotifications?, _ error: FDKError?) -> Void
         ) {
@@ -101,6 +86,20 @@ if let value = pageNo {
 if let value = pageSize {
     
     xQuery["page_size"] = value
+    
+}
+
+
+if let value = sort {
+    
+    xQuery["sort"] = value
+    
+}
+
+
+if let value = query {
+    
+    xQuery["query"] = value
     
 }
 
@@ -136,6 +135,84 @@ if let value = pageSize {
                     }
             });
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getSystemNotifications
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getSystemNotificationsPaginator(
+            pageSize: Int?,
+            sort: String?,
+            query: String?
+            
+            ) -> Paginator<SystemNotifications> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<SystemNotifications>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getSystemNotifications(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        sort: sort,
+                        query: query
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         

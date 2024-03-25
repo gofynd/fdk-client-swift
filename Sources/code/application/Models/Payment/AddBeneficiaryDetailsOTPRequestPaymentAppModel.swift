@@ -10,6 +10,8 @@ public extension ApplicationClient.Payment {
         
         public var orderId: String
         
+        public var requestHash: String?
+        
         public var details: BankDetailsForOTP
         
 
@@ -17,13 +19,17 @@ public extension ApplicationClient.Payment {
             
             case orderId = "order_id"
             
+            case requestHash = "request_hash"
+            
             case details = "details"
             
         }
 
-        public init(details: BankDetailsForOTP, orderId: String) {
+        public init(details: BankDetailsForOTP, orderId: String, requestHash: String? = nil) {
             
             self.orderId = orderId
+            
+            self.requestHash = requestHash
             
             self.details = details
             
@@ -38,6 +44,18 @@ public extension ApplicationClient.Payment {
             
             
             
+            do {
+                requestHash = try container.decode(String.self, forKey: .requestHash)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
             details = try container.decode(BankDetailsForOTP.self, forKey: .details)
             
             
@@ -49,6 +67,10 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(orderId, forKey: .orderId)
+            
+            
+            
+            try? container.encodeIfPresent(requestHash, forKey: .requestHash)
             
             
             

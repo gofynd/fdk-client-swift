@@ -24,6 +24,8 @@ public extension ApplicationClient.Payment {
         
         public var invalidId: Bool?
         
+        public var description: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -43,9 +45,11 @@ public extension ApplicationClient.Payment {
             
             case invalidId = "invalid_id"
             
+            case description = "description"
+            
         }
 
-        public init(amount: Double? = nil, cancelled: Bool? = nil, expired: Bool? = nil, invalidId: Bool? = nil, merchantName: String? = nil, merchantOrderId: String? = nil, msg: String? = nil, paymentTransactionId: String? = nil) {
+        public init(amount: Double? = nil, cancelled: Bool? = nil, description: String? = nil, expired: Bool? = nil, invalidId: Bool? = nil, merchantName: String? = nil, merchantOrderId: String? = nil, msg: String? = nil, paymentTransactionId: String? = nil) {
             
             self.paymentTransactionId = paymentTransactionId
             
@@ -62,6 +66,8 @@ public extension ApplicationClient.Payment {
             self.amount = amount
             
             self.invalidId = invalidId
+            
+            self.description = description
             
         }
 
@@ -164,6 +170,18 @@ public extension ApplicationClient.Payment {
             }
             
             
+            
+            do {
+                description = try container.decode(String.self, forKey: .description)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -199,6 +217,10 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(invalidId, forKey: .invalidId)
+            
+            
+            
+            try? container.encodeIfPresent(description, forKey: .description)
             
             
         }

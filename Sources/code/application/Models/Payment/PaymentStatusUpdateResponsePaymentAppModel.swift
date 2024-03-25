@@ -12,7 +12,7 @@ public extension ApplicationClient.Payment {
         
         public var success: Bool?
         
-        public var retry: Bool
+        public var retry: Bool?
         
         public var redirectUrl: String?
         
@@ -33,7 +33,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(aggregatorName: String, redirectUrl: String? = nil, retry: Bool, status: String, success: Bool? = nil) {
+        public init(aggregatorName: String, redirectUrl: String? = nil, retry: Bool? = nil, status: String, success: Bool? = nil) {
             
             self.status = status
             
@@ -68,8 +68,15 @@ public extension ApplicationClient.Payment {
             
             
             
-            retry = try container.decode(Bool.self, forKey: .retry)
+            do {
+                retry = try container.decode(Bool.self, forKey: .retry)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             

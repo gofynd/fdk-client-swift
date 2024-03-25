@@ -12,6 +12,8 @@ public extension PlatformClient.Finance {
     class RedemptionDetails: Codable {
         
         
+        public var meta: [String: Any]?
+        
         public var staffId: String?
         
         public var createdAt: String?
@@ -31,6 +33,8 @@ public extension PlatformClient.Finance {
 
         public enum CodingKeys: String, CodingKey {
             
+            case meta = "meta"
+            
             case staffId = "staff_id"
             
             case createdAt = "created_at"
@@ -49,7 +53,9 @@ public extension PlatformClient.Finance {
             
         }
 
-        public init(amountDebited: Int? = nil, createdAt: String? = nil, invoiceNumber: String? = nil, orderingChannel: String? = nil, orderId: String? = nil, shipmentId: String? = nil, staffId: String? = nil, storeId: String? = nil) {
+        public init(amountDebited: Int? = nil, createdAt: String? = nil, invoiceNumber: String? = nil, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderId: String? = nil, shipmentId: String? = nil, staffId: String? = nil, storeId: String? = nil) {
+            
+            self.meta = meta
             
             self.staffId = staffId
             
@@ -71,6 +77,18 @@ public extension PlatformClient.Finance {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -172,6 +190,11 @@ public extension PlatformClient.Finance {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
             
             
             

@@ -22,11 +22,11 @@ public extension PlatformClient.Finance {
         
         public var search: String?
         
-        public var status: [String]?
+        public var status: String?
         
         public var searchType: String?
         
-        public var pagesize: Int?
+        public var pageSize: Int?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -45,11 +45,11 @@ public extension PlatformClient.Finance {
             
             case searchType = "search_type"
             
-            case pagesize = "pagesize"
+            case pageSize = "page_size"
             
         }
 
-        public init(affiliateId: String? = nil, endDate: String? = nil, page: Int? = nil, pagesize: Int? = nil, search: String? = nil, searchType: String? = nil, startDate: String? = nil, status: [String]? = nil) {
+        public init(affiliateId: String? = nil, endDate: String? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, searchType: String? = nil, startDate: String? = nil, status: String? = nil) {
             
             self.page = page
             
@@ -65,7 +65,7 @@ public extension PlatformClient.Finance {
             
             self.searchType = searchType
             
-            self.pagesize = pagesize
+            self.pageSize = pageSize
             
         }
 
@@ -134,7 +134,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    status = try container.decode([String].self, forKey: .status)
+                    status = try container.decode(String.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,7 +158,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    pagesize = try container.decode(Int.self, forKey: .pagesize)
+                    pageSize = try container.decode(Int.self, forKey: .pageSize)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +210,7 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(pagesize, forKey: .pagesize)
+            try? container.encodeIfPresent(pageSize, forKey: .pageSize)
             
             
         }

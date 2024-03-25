@@ -14,7 +14,7 @@ public extension PlatformClient.Order {
         
         public var name: String
         
-        public var amount: [String: Any]
+        public var amount: Amount
         
         public var tax: Tax?
         
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(amount: [String: Any], code: String? = nil, name: String, tax: Tax? = nil, type: String) {
+        public init(amount: Amount, code: String? = nil, name: String, tax: Tax? = nil, type: String) {
             
             self.name = name
             
@@ -60,7 +60,7 @@ public extension PlatformClient.Order {
             
             
             
-                amount = try container.decode([String: Any].self, forKey: .amount)
+                amount = try container.decode(Amount.self, forKey: .amount)
                 
             
             
@@ -141,7 +141,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var name: String
         
-        public var amount: [String: Any]
+        public var amount: Amount
         
         public var tax: Tax?
         
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(amount: [String: Any], code: String? = nil, name: String, tax: Tax? = nil, type: String) {
+        public init(amount: Amount, code: String? = nil, name: String, tax: Tax? = nil, type: String) {
             
             self.name = name
             
@@ -187,7 +187,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                amount = try container.decode([String: Any].self, forKey: .amount)
+                amount = try container.decode(Amount.self, forKey: .amount)
                 
             
             

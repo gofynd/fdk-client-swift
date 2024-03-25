@@ -12,6 +12,12 @@ public extension PlatformClient.Catalog {
     class UpdateCollection: Codable {
         
         
+        public var action: Action?
+        
+        public var uid: String?
+        
+        public var appId: String?
+        
         public var customJson: [String: Any]?
         
         public var localeLanguage: [String: Any]?
@@ -58,8 +64,16 @@ public extension PlatformClient.Catalog {
         
         public var visibleFacetsKeys: [String]?
         
+        public var isSearchable: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
+            
+            case action = "action"
+            
+            case uid = "uid"
+            
+            case appId = "app_id"
             
             case customJson = "_custom_json"
             
@@ -107,9 +121,17 @@ public extension PlatformClient.Catalog {
             
             case visibleFacetsKeys = "visible_facets_keys"
             
+            case isSearchable = "is_searchable"
+            
         }
 
-        public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, badge: CollectionBadge? = nil, banners: CollectionBanner? = nil, description: String? = nil, isActive: Bool? = nil, isVisible: Bool? = nil, logo: CollectionImage? = nil, meta: [String: Any]? = nil, modifiedBy: UserInfo? = nil, name: String? = nil, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: SeoDetail? = nil, slug: String? = nil, sortOn: String? = nil, tags: [String]? = nil, type: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, localeLanguage: [String: Any]? = nil, schedule: CollectionSchedule? = nil) {
+        public init(action: Action? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: CollectionBadge? = nil, banners: CollectionBanner? = nil, description: String? = nil, isActive: Bool? = nil, isSearchable: Bool? = nil, isVisible: Bool? = nil, logo: CollectionImage? = nil, meta: [String: Any]? = nil, modifiedBy: UserInfo? = nil, name: String? = nil, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: SeoDetail? = nil, slug: String? = nil, sortOn: String? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, localeLanguage: [String: Any]? = nil, schedule: CollectionSchedule? = nil) {
+            
+            self.action = action
+            
+            self.uid = uid
+            
+            self.appId = appId
             
             self.customJson = customJson
             
@@ -157,10 +179,48 @@ public extension PlatformClient.Catalog {
             
             self.visibleFacetsKeys = visibleFacetsKeys
             
+            self.isSearchable = isSearchable
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    action = try container.decode(Action.self, forKey: .action)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    uid = try container.decode(String.self, forKey: .uid)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    appId = try container.decode(String.self, forKey: .appId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -438,10 +498,37 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    isSearchable = try container.decode(Bool.self, forKey: .isSearchable)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(action, forKey: .action)
+            
+            
+            
+            
+            try? container.encodeIfPresent(uid, forKey: .uid)
+            
+            
+            
+            
+            try? container.encodeIfPresent(appId, forKey: .appId)
+            
             
             
             
@@ -556,6 +643,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isSearchable, forKey: .isSearchable)
             
             
         }
@@ -574,6 +666,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class UpdateCollection: Codable {
         
         
+        public var action: Action?
+        
+        public var uid: String?
+        
+        public var appId: String?
+        
         public var customJson: [String: Any]?
         
         public var localeLanguage: [String: Any]?
@@ -620,8 +718,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var visibleFacetsKeys: [String]?
         
+        public var isSearchable: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
+            
+            case action = "action"
+            
+            case uid = "uid"
+            
+            case appId = "app_id"
             
             case customJson = "_custom_json"
             
@@ -669,9 +775,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case visibleFacetsKeys = "visible_facets_keys"
             
+            case isSearchable = "is_searchable"
+            
         }
 
-        public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, badge: CollectionBadge? = nil, banners: CollectionBanner? = nil, description: String? = nil, isActive: Bool? = nil, isVisible: Bool? = nil, logo: CollectionImage? = nil, meta: [String: Any]? = nil, modifiedBy: UserInfo? = nil, name: String? = nil, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: SeoDetail? = nil, slug: String? = nil, sortOn: String? = nil, tags: [String]? = nil, type: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, localeLanguage: [String: Any]? = nil, schedule: CollectionSchedule? = nil) {
+        public init(action: Action? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: CollectionBadge? = nil, banners: CollectionBanner? = nil, description: String? = nil, isActive: Bool? = nil, isSearchable: Bool? = nil, isVisible: Bool? = nil, logo: CollectionImage? = nil, meta: [String: Any]? = nil, modifiedBy: UserInfo? = nil, name: String? = nil, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: SeoDetail? = nil, slug: String? = nil, sortOn: String? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, localeLanguage: [String: Any]? = nil, schedule: CollectionSchedule? = nil) {
+            
+            self.action = action
+            
+            self.uid = uid
+            
+            self.appId = appId
             
             self.customJson = customJson
             
@@ -719,10 +833,48 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.visibleFacetsKeys = visibleFacetsKeys
             
+            self.isSearchable = isSearchable
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    action = try container.decode(Action.self, forKey: .action)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    uid = try container.decode(String.self, forKey: .uid)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    appId = try container.decode(String.self, forKey: .appId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -1000,10 +1152,37 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    isSearchable = try container.decode(Bool.self, forKey: .isSearchable)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(action, forKey: .action)
+            
+            
+            
+            
+            try? container.encodeIfPresent(uid, forKey: .uid)
+            
+            
+            
+            
+            try? container.encodeIfPresent(appId, forKey: .appId)
+            
             
             
             
@@ -1118,6 +1297,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isSearchable, forKey: .isSearchable)
             
             
         }

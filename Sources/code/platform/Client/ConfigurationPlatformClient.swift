@@ -45,6 +45,7 @@ extension PlatformClient {
         
         
         
+        
         /**
         *
         * Summary: Create application.
@@ -161,6 +162,65 @@ if let value = q {
             });
         }
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getApplications
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getApplicationsPaginator(
+            pageSize: Int?,
+            q: String?
+            
+            ) -> Paginator<ApplicationsResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ApplicationsResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getApplications(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        q: q
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
         
         
         
@@ -314,7 +374,7 @@ if let value = q {
         /**
         *
         * Summary: Get available opt-ins.
-        * Description: Retrieve a list of available opt-ins.  Retrieve a list of all available integrations in a company. 
+        * Description: Retrieve a list of available opt-ins.  Retrieve a list of all available integrations in a company.
         **/
         public func getAvailableOptIns(
             pageNo: Int?,
@@ -371,6 +431,57 @@ if let value = pageSize {
             });
         }
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getAvailableOptIns
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getAvailableOptInsPaginator(
+            pageSize: Int?
+            
+            ) -> Paginator<GetIntegrationsOptInsResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<GetIntegrationsOptInsResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getAvailableOptIns(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
         
         
         
@@ -437,6 +548,73 @@ if let value = pageSize {
             });
         }
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getSelectedOptIns
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getSelectedOptInsPaginator(
+            level: String,
+            uid: Int,
+            pageSize: Int?
+            
+            ) -> Paginator<GetIntegrationsOptInsResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<GetIntegrationsOptInsResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getSelectedOptIns(
+                        
+                        level: level,
+                        uid: uid,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
         
         
         
@@ -830,10 +1008,61 @@ if let value = pageSize {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Get store by brands.
-        * Description: Retrieve stores associated with specific brands. Retrieve a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail.
+        * Summary: get paginator for getCompanyByBrands
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getCompanyByBrandsPaginator(
+            pageSize: Int?,
+            
+            body: CompanyByBrandsRequest) -> Paginator<CompanyByBrandsResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<CompanyByBrandsResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getCompanyByBrands(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,body: body
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get stores by brand uids for the current company
+        * Description: Use this API to get a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail.
         **/
         public func getStoreByBrands(
             pageNo: Int?,
@@ -864,7 +1093,7 @@ if let value = pageSize {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/configuration/v1.0/company/\(companyId)/inventory/stores-by-brands",
+                url: "/service/platform/configuration/v2.0/company/\(companyId)/inventory/stores-by-brands",
                 query: xQuery,
                 body: body.dictionary,
                 headers: [],
@@ -890,6 +1119,57 @@ if let value = pageSize {
             });
         }
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getStoreByBrands
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getStoreByBrandsPaginator(
+            pageSize: Int?,
+            
+            body: StoreByBrandsRequest) -> Paginator<StoreByBrandsResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<StoreByBrandsResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getStoreByBrands(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,body: body
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
         
         
         
@@ -954,6 +1234,57 @@ if let value = pageSize {
             });
         }
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getOtherSellerApplications
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getOtherSellerApplicationsPaginator(
+            pageSize: Int?
+            
+            ) -> Paginator<OtherSellerApplications> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<OtherSellerApplications>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getOtherSellerApplications(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
         
         
         

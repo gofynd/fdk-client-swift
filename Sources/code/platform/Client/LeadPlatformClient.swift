@@ -24,7 +24,7 @@ extension PlatformClient {
             filters: Bool?,
             q: String?,
             status: String?,
-            priority: PriorityEnum?,
+            priority: String?,
             category: String?,
             pageNo: Int?,
             pageSize: Int?,
@@ -64,7 +64,7 @@ if let value = status {
 
 if let value = priority {
     
-    xQuery["priority"] = value.rawValue
+    xQuery["priority"] = value
     
 }
 
@@ -122,6 +122,105 @@ if let value = pageSize {
             });
         }
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getPlatformTickets
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getPlatformTicketsPaginator(
+            items: Bool?,
+            filters: Bool?,
+            q: String?,
+            status: String?,
+            priority: String?,
+            category: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<TicketList> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<TicketList>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getPlatformTickets(
+                        
+                        items: items,
+                        filters: filters,
+                        q: q,
+                        status: status,
+                        priority: priority,
+                        category: category,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
         
         
         
@@ -373,104 +472,6 @@ if let value = pageSize {
         
         
         
-        /**
-        *
-        * Summary: Get feedbacks.
-        * Description: Retrieve feedback information related to a ticket.
-        **/
-        public func getFeedbacks(
-            id: String,
-            
-            onResponse: @escaping (_ response: TicketFeedbackList?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(id)/feedback",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(TicketFeedbackList.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Submit feedback.
-        * Description: Provide feedback on a ticket and it's resolution.
-        **/
-        public func submitFeedback(
-            id: String,
-            body: TicketFeedbackPayload,
-            onResponse: @escaping (_ response: TicketFeedback?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(id)/feedback",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(TicketFeedback.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
         
         
         
@@ -587,7 +588,7 @@ if let value = pageSize {
         **/
         public func getGeneralConfig(
             
-            onResponse: @escaping (_ response: CloseVideoRoomResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GeneralConfigResponse?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -612,7 +613,7 @@ if let value = pageSize {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CloseVideoRoomResponse.self, from: data)
+                        let response = Utility.decode(GeneralConfigResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

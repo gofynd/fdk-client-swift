@@ -18,7 +18,7 @@ public extension PlatformClient.Order {
         
         public var billingInfo: BillingInfo
         
-        public var currencyInfo: [String: Any]?
+        public var currencyInfo: CurrencyInfo?
         
         public var externalOrderId: String?
         
@@ -30,11 +30,15 @@ public extension PlatformClient.Order {
         
         public var taxInfo: TaxInfo?
         
-        public var config: [String: Any]?
+        public var config: Config?
         
         public var paymentInfo: PaymentInfo
         
         public var userInfo: UserInfo?
+        
+        public var unlockBeforeTransition: Bool?
+        
+        public var lockAfterTransition: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -63,9 +67,13 @@ public extension PlatformClient.Order {
             
             case userInfo = "user_info"
             
+            case unlockBeforeTransition = "unlock_before_transition"
+            
+            case lockAfterTransition = "lock_after_transition"
+            
         }
 
-        public init(billingInfo: BillingInfo, charges: [Charge]? = nil, config: [String: Any]? = nil, currencyInfo: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, meta: [String: Any]? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
+        public init(billingInfo: BillingInfo, charges: [Charge]? = nil, config: Config? = nil, currencyInfo: CurrencyInfo? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, lockAfterTransition: Bool? = nil, meta: [String: Any]? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil, unlockBeforeTransition: Bool? = nil, userInfo: UserInfo? = nil) {
             
             self.shipments = shipments
             
@@ -91,6 +99,10 @@ public extension PlatformClient.Order {
             
             self.userInfo = userInfo
             
+            self.unlockBeforeTransition = unlockBeforeTransition
+            
+            self.lockAfterTransition = lockAfterTransition
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -113,7 +125,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    currencyInfo = try container.decode([String: Any].self, forKey: .currencyInfo)
+                    currencyInfo = try container.decode(CurrencyInfo.self, forKey: .currencyInfo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -185,7 +197,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    config = try container.decode([String: Any].self, forKey: .config)
+                    config = try container.decode(Config.self, forKey: .config)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -203,6 +215,30 @@ public extension PlatformClient.Order {
             
                 do {
                     userInfo = try container.decode(UserInfo.self, forKey: .userInfo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    unlockBeforeTransition = try container.decode(Bool.self, forKey: .unlockBeforeTransition)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    lockAfterTransition = try container.decode(Bool.self, forKey: .lockAfterTransition)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -275,6 +311,16 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(userInfo, forKey: .userInfo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
+            
+            
+            
+            
+            try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
             
             
         }
@@ -299,7 +345,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var billingInfo: BillingInfo
         
-        public var currencyInfo: [String: Any]?
+        public var currencyInfo: CurrencyInfo?
         
         public var externalOrderId: String?
         
@@ -311,11 +357,15 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var taxInfo: TaxInfo?
         
-        public var config: [String: Any]?
+        public var config: Config?
         
         public var paymentInfo: PaymentInfo
         
         public var userInfo: UserInfo?
+        
+        public var unlockBeforeTransition: Bool?
+        
+        public var lockAfterTransition: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -344,9 +394,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case userInfo = "user_info"
             
+            case unlockBeforeTransition = "unlock_before_transition"
+            
+            case lockAfterTransition = "lock_after_transition"
+            
         }
 
-        public init(billingInfo: BillingInfo, charges: [Charge]? = nil, config: [String: Any]? = nil, currencyInfo: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, meta: [String: Any]? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
+        public init(billingInfo: BillingInfo, charges: [Charge]? = nil, config: Config? = nil, currencyInfo: CurrencyInfo? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, lockAfterTransition: Bool? = nil, meta: [String: Any]? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil, unlockBeforeTransition: Bool? = nil, userInfo: UserInfo? = nil) {
             
             self.shipments = shipments
             
@@ -372,6 +426,10 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.userInfo = userInfo
             
+            self.unlockBeforeTransition = unlockBeforeTransition
+            
+            self.lockAfterTransition = lockAfterTransition
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -394,7 +452,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    currencyInfo = try container.decode([String: Any].self, forKey: .currencyInfo)
+                    currencyInfo = try container.decode(CurrencyInfo.self, forKey: .currencyInfo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -466,7 +524,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    config = try container.decode([String: Any].self, forKey: .config)
+                    config = try container.decode(Config.self, forKey: .config)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -484,6 +542,30 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     userInfo = try container.decode(UserInfo.self, forKey: .userInfo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    unlockBeforeTransition = try container.decode(Bool.self, forKey: .unlockBeforeTransition)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    lockAfterTransition = try container.decode(Bool.self, forKey: .lockAfterTransition)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -556,6 +638,16 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(userInfo, forKey: .userInfo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
+            
+            
+            
+            
+            try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
             
             
         }

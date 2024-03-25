@@ -12,6 +12,10 @@ public extension ApplicationClient.Lead {
         
         public var ticket: Ticket?
         
+        public var notifiedTo: [String]?
+        
+        public var response: FormResponse?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -19,13 +23,21 @@ public extension ApplicationClient.Lead {
             
             case ticket = "ticket"
             
+            case notifiedTo = "notified_to"
+            
+            case response = "response"
+            
         }
 
-        public init(message: String, ticket: Ticket? = nil) {
+        public init(message: String, notifiedTo: [String]? = nil, response: FormResponse? = nil, ticket: Ticket? = nil) {
             
             self.message = message
             
             self.ticket = ticket
+            
+            self.notifiedTo = notifiedTo
+            
+            self.response = response
             
         }
 
@@ -49,6 +61,30 @@ public extension ApplicationClient.Lead {
             }
             
             
+            
+            do {
+                notifiedTo = try container.decode([String].self, forKey: .notifiedTo)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                response = try container.decode(FormResponse.self, forKey: .response)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -60,6 +96,14 @@ public extension ApplicationClient.Lead {
             
             
             try? container.encodeIfPresent(ticket, forKey: .ticket)
+            
+            
+            
+            try? container.encodeIfPresent(notifiedTo, forKey: .notifiedTo)
+            
+            
+            
+            try? container.encodeIfPresent(response, forKey: .response)
             
             
         }

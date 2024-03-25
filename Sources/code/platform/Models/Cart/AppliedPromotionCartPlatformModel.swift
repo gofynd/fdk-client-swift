@@ -16,6 +16,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var articleQuantity: Int?
         
+        public var originalArticleQuantity: Int?
+        
         public var ownership: Ownership2?
         
         public var currency: CartCurrency?
@@ -44,10 +46,24 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var code: String?
         
+        public var offerLabel: String?
+        
+        public var returnAllowed: Bool?
+        
+        public var cancellationAllowed: Bool?
+        
+        public var promoCode: String?
+        
+        public var freeQuantity: Int?
+        
+        public var offerDescription: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case articleQuantity = "article_quantity"
+            
+            case originalArticleQuantity = "original_article_quantity"
             
             case ownership = "ownership"
             
@@ -77,11 +93,25 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case code = "code"
             
+            case offerLabel = "offer_label"
+            
+            case returnAllowed = "return_allowed"
+            
+            case cancellationAllowed = "cancellation_allowed"
+            
+            case promoCode = "promo_code"
+            
+            case freeQuantity = "free_quantity"
+            
+            case offerDescription = "offer_description"
+            
         }
 
-        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, code: String? = nil, currency: CartCurrency? = nil, discountRules: [DiscountRulesApp]? = nil, meta: [String: Any]? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership2? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
+        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, cancellationAllowed: Bool? = nil, code: String? = nil, currency: CartCurrency? = nil, discountRules: [DiscountRulesApp]? = nil, freeQuantity: Int? = nil, meta: [String: Any]? = nil, mrpPromotion: Bool? = nil, offerDescription: String? = nil, offerLabel: String? = nil, offerText: String? = nil, originalArticleQuantity: Int? = nil, ownership: Ownership2? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoCode: String? = nil, promoId: String? = nil, returnAllowed: Bool? = nil) {
             
             self.articleQuantity = articleQuantity
+            
+            self.originalArticleQuantity = originalArticleQuantity
             
             self.ownership = ownership
             
@@ -111,6 +141,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             self.code = code
             
+            self.offerLabel = offerLabel
+            
+            self.returnAllowed = returnAllowed
+            
+            self.cancellationAllowed = cancellationAllowed
+            
+            self.promoCode = promoCode
+            
+            self.freeQuantity = freeQuantity
+            
+            self.offerDescription = offerDescription
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -119,6 +161,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     articleQuantity = try container.decode(Int.self, forKey: .articleQuantity)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    originalArticleQuantity = try container.decode(Int.self, forKey: .originalArticleQuantity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -296,6 +350,78 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    offerLabel = try container.decode(String.self, forKey: .offerLabel)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    returnAllowed = try container.decode(Bool.self, forKey: .returnAllowed)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    cancellationAllowed = try container.decode(Bool.self, forKey: .cancellationAllowed)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    promoCode = try container.decode(String.self, forKey: .promoCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    freeQuantity = try container.decode(Int.self, forKey: .freeQuantity)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    offerDescription = try container.decode(String.self, forKey: .offerDescription)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -304,6 +430,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
+            
+            
+            
+            
+            try? container.encodeIfPresent(originalArticleQuantity, forKey: .originalArticleQuantity)
             
             
             
@@ -374,6 +505,36 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(code, forKey: .code)
+            
+            
+            
+            
+            try? container.encodeIfPresent(offerLabel, forKey: .offerLabel)
+            
+            
+            
+            
+            try? container.encodeIfPresent(returnAllowed, forKey: .returnAllowed)
+            
+            
+            
+            
+            try? container.encodeIfPresent(cancellationAllowed, forKey: .cancellationAllowed)
+            
+            
+            
+            
+            try? container.encodeIfPresent(promoCode, forKey: .promoCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(freeQuantity, forKey: .freeQuantity)
+            
+            
+            
+            
+            try? container.encodeIfPresent(offerDescription, forKey: .offerDescription)
             
             
         }

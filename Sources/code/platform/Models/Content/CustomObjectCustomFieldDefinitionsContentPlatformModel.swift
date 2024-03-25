@@ -33,7 +33,7 @@ public extension PlatformClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "id"
+            case id = "_id"
             
             case type = "type"
             
@@ -53,7 +53,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(action: String? = nil, description: String? = nil, id: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, required: Bool? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
+        public init(action: String? = nil, description: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, required: Bool? = nil, type: String? = nil, validations: [FieldValidations]? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -273,7 +273,7 @@ public extension PlatformClient.ApplicationClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "id"
+            case id = "_id"
             
             case type = "type"
             
@@ -293,7 +293,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(action: String? = nil, description: String? = nil, id: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, required: Bool? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
+        public init(action: String? = nil, description: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, required: Bool? = nil, type: String? = nil, validations: [FieldValidations]? = nil, id: String? = nil) {
             
             self.id = id
             

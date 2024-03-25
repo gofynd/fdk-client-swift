@@ -15,7 +15,7 @@ extension ApplicationClient {
             
             ulrs["createHistory"] = config.domain.appendAsPath("/service/application/lead/v1.0/ticket/{id}/history") 
             
-            ulrs["createTicket"] = config.domain.appendAsPath("/service/application/lead/v1.0/ticket/") 
+            ulrs["createTicket"] = config.domain.appendAsPath("/service/application/lead/v1.0/ticket") 
             
             ulrs["getCustomForm"] = config.domain.appendAsPath("/service/application/lead/v1.0/form/{slug}") 
             

@@ -18,6 +18,10 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var userId: String?
         
+        public var passwordLastModified: String?
+        
+        public var passwordHistory: [UserPasswordHistory]?
+        
         public var firstName: String?
         
         public var meta: [String: Any]?
@@ -55,6 +59,10 @@ public extension PlatformClient.ApplicationClient.User {
             
             case userId = "user_id"
             
+            case passwordLastModified = "password_last_modified"
+            
+            case passwordHistory = "password_history"
+            
             case firstName = "first_name"
             
             case meta = "meta"
@@ -87,11 +95,15 @@ public extension PlatformClient.ApplicationClient.User {
             
         }
 
-        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, createdAt: String? = nil, dob: String? = nil, emails: [Email]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
+        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, createdAt: String? = nil, dob: String? = nil, emails: [Email]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, passwordHistory: [UserPasswordHistory]? = nil, passwordLastModified: String? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
             
             self.applicationId = applicationId
             
             self.userId = userId
+            
+            self.passwordLastModified = passwordLastModified
+            
+            self.passwordHistory = passwordHistory
             
             self.firstName = firstName
             
@@ -143,6 +155,30 @@ public extension PlatformClient.ApplicationClient.User {
             
                 do {
                     userId = try container.decode(String.self, forKey: .userId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    passwordLastModified = try container.decode(String.self, forKey: .passwordLastModified)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    passwordHistory = try container.decode([UserPasswordHistory].self, forKey: .passwordHistory)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -345,6 +381,16 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(userId, forKey: .userId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(passwordLastModified, forKey: .passwordLastModified)
+            
+            
+            
+            
+            try? container.encodeIfPresent(passwordHistory, forKey: .passwordHistory)
             
             
             

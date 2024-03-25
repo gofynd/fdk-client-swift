@@ -22,6 +22,8 @@ public extension PlatformClient.Payment {
         
         public var paymentGateway: String?
         
+        public var key: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,9 +37,11 @@ public extension PlatformClient.Payment {
             
             case paymentGateway = "payment_gateway"
             
+            case key = "key"
+            
         }
 
-        public init(currentStatus: String? = nil, extraMeta: [String: Any]? = nil, orderId: String? = nil, paymentGateway: String? = nil, paymentId: String? = nil) {
+        public init(currentStatus: String? = nil, extraMeta: [String: Any]? = nil, key: String? = nil, orderId: String? = nil, paymentGateway: String? = nil, paymentId: String? = nil) {
             
             self.extraMeta = extraMeta
             
@@ -48,6 +52,8 @@ public extension PlatformClient.Payment {
             self.currentStatus = currentStatus
             
             self.paymentGateway = paymentGateway
+            
+            self.key = key
             
         }
 
@@ -114,6 +120,18 @@ public extension PlatformClient.Payment {
                 }
                 
             
+            
+                do {
+                    key = try container.decode(String.self, forKey: .key)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -142,6 +160,11 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
+            
+            
+            
+            
+            try? container.encodeIfPresent(key, forKey: .key)
             
             
         }
@@ -170,6 +193,8 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var paymentGateway: String?
         
+        public var key: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -183,9 +208,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case paymentGateway = "payment_gateway"
             
+            case key = "key"
+            
         }
 
-        public init(currentStatus: String? = nil, extraMeta: [String: Any]? = nil, orderId: String? = nil, paymentGateway: String? = nil, paymentId: String? = nil) {
+        public init(currentStatus: String? = nil, extraMeta: [String: Any]? = nil, key: String? = nil, orderId: String? = nil, paymentGateway: String? = nil, paymentId: String? = nil) {
             
             self.extraMeta = extraMeta
             
@@ -196,6 +223,8 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.currentStatus = currentStatus
             
             self.paymentGateway = paymentGateway
+            
+            self.key = key
             
         }
 
@@ -262,6 +291,18 @@ public extension PlatformClient.ApplicationClient.Payment {
                 }
                 
             
+            
+                do {
+                    key = try container.decode(String.self, forKey: .key)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -290,6 +331,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
+            
+            
+            
+            
+            try? container.encodeIfPresent(key, forKey: .key)
             
             
         }

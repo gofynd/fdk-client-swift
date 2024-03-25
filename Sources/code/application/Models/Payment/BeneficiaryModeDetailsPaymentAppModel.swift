@@ -12,13 +12,15 @@ public extension ApplicationClient.Payment {
         
         public var address: String?
         
-        public var mobile: String
+        public var mobile: String?
         
         public var bankName: String
         
         public var comment: String?
         
         public var ifscCode: String
+        
+        public var email: String?
         
         public var vpa: String?
         
@@ -28,7 +30,7 @@ public extension ApplicationClient.Payment {
         
         public var wallet: String?
         
-        public var email: String
+        public var beneficiaryId: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -45,6 +47,8 @@ public extension ApplicationClient.Payment {
             
             case ifscCode = "ifsc_code"
             
+            case email = "email"
+            
             case vpa = "vpa"
             
             case branchName = "branch_name"
@@ -53,11 +57,11 @@ public extension ApplicationClient.Payment {
             
             case wallet = "wallet"
             
-            case email = "email"
+            case beneficiaryId = "beneficiary_id"
             
         }
 
-        public init(accountHolder: String, accountNo: String, address: String? = nil, bankName: String, branchName: String, comment: String? = nil, email: String, ifscCode: String, mobile: String, vpa: String? = nil, wallet: String? = nil) {
+        public init(accountHolder: String, accountNo: String, address: String? = nil, bankName: String, beneficiaryId: String? = nil, branchName: String, comment: String? = nil, email: String? = nil, ifscCode: String, mobile: String? = nil, vpa: String? = nil, wallet: String? = nil) {
             
             self.accountNo = accountNo
             
@@ -71,6 +75,8 @@ public extension ApplicationClient.Payment {
             
             self.ifscCode = ifscCode
             
+            self.email = email
+            
             self.vpa = vpa
             
             self.branchName = branchName
@@ -79,7 +85,7 @@ public extension ApplicationClient.Payment {
             
             self.wallet = wallet
             
-            self.email = email
+            self.beneficiaryId = beneficiaryId
             
         }
 
@@ -104,8 +110,15 @@ public extension ApplicationClient.Payment {
             
             
             
-            mobile = try container.decode(String.self, forKey: .mobile)
+            do {
+                mobile = try container.decode(String.self, forKey: .mobile)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -128,6 +141,18 @@ public extension ApplicationClient.Payment {
             
             ifscCode = try container.decode(String.self, forKey: .ifscCode)
             
+            
+            
+            
+            do {
+                email = try container.decode(String.self, forKey: .email)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -165,8 +190,15 @@ public extension ApplicationClient.Payment {
             
             
             
-            email = try container.decode(String.self, forKey: .email)
+            do {
+                beneficiaryId = try container.decode(String.self, forKey: .beneficiaryId)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
         }
@@ -199,6 +231,10 @@ public extension ApplicationClient.Payment {
             
             
             
+            try? container.encodeIfPresent(email, forKey: .email)
+            
+            
+            
             try? container.encodeIfPresent(vpa, forKey: .vpa)
             
             
@@ -215,7 +251,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encodeIfPresent(beneficiaryId, forKey: .beneficiaryId)
             
             
         }

@@ -16,6 +16,8 @@ public extension ApplicationClient.Payment {
         
         public var beneficiaryId: String?
         
+        public var meta: ShipmentRefundRequestMeta?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -27,9 +29,11 @@ public extension ApplicationClient.Payment {
             
             case beneficiaryId = "beneficiary_id"
             
+            case meta = "meta"
+            
         }
 
-        public init(beneficiaryId: String? = nil, orderId: String, shipmentId: String, transferMode: String) {
+        public init(beneficiaryId: String? = nil, meta: ShipmentRefundRequestMeta? = nil, orderId: String, shipmentId: String, transferMode: String) {
             
             self.shipmentId = shipmentId
             
@@ -38,6 +42,8 @@ public extension ApplicationClient.Payment {
             self.transferMode = transferMode
             
             self.beneficiaryId = beneficiaryId
+            
+            self.meta = meta
             
         }
 
@@ -71,6 +77,18 @@ public extension ApplicationClient.Payment {
             }
             
             
+            
+            do {
+                meta = try container.decode(ShipmentRefundRequestMeta.self, forKey: .meta)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -90,6 +108,10 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(beneficiaryId, forKey: .beneficiaryId)
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }

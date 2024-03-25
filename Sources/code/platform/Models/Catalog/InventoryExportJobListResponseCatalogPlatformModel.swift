@@ -12,7 +12,7 @@ public extension PlatformClient.Catalog {
     class InventoryExportJobListResponse: Codable {
         
         
-        public var items: InventoryJobDetailResponse
+        public var items: [InventoryExportJobList]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(items: InventoryJobDetailResponse) {
+        public init(items: [InventoryExportJobList]? = nil) {
             
             self.items = items
             
@@ -31,9 +31,16 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                items = try container.decode(InventoryJobDetailResponse.self, forKey: .items)
+                do {
+                    items = try container.decode([InventoryExportJobList].self, forKey: .items)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -61,7 +68,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class InventoryExportJobListResponse: Codable {
         
         
-        public var items: InventoryJobDetailResponse
+        public var items: [InventoryExportJobList]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -70,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(items: InventoryJobDetailResponse) {
+        public init(items: [InventoryExportJobList]? = nil) {
             
             self.items = items
             
@@ -80,9 +87,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                items = try container.decode(InventoryJobDetailResponse.self, forKey: .items)
+                do {
+                    items = try container.decode([InventoryExportJobList].self, forKey: .items)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         

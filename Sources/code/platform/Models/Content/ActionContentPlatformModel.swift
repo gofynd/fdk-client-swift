@@ -14,8 +14,6 @@ public extension PlatformClient.Content {
         
         public var page: ActionPage?
         
-        public var popup: ActionPage?
-        
         public var type: String?
         
 
@@ -23,17 +21,13 @@ public extension PlatformClient.Content {
             
             case page = "page"
             
-            case popup = "popup"
-            
             case type = "type"
             
         }
 
-        public init(page: ActionPage? = nil, popup: ActionPage? = nil, type: String? = nil) {
+        public init(page: ActionPage? = nil, type: String? = nil) {
             
             self.page = page
-            
-            self.popup = popup
             
             self.type = type
             
@@ -45,18 +39,6 @@ public extension PlatformClient.Content {
             
                 do {
                     page = try container.decode(ActionPage.self, forKey: .page)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    popup = try container.decode(ActionPage.self, forKey: .popup)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,11 +68,6 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(page, forKey: .page)
-            
-            
-            
-            
-            try? container.encodeIfPresent(popup, forKey: .popup)
             
             
             
@@ -116,8 +93,6 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var page: ActionPage?
         
-        public var popup: ActionPage?
-        
         public var type: String?
         
 
@@ -125,17 +100,13 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case page = "page"
             
-            case popup = "popup"
-            
             case type = "type"
             
         }
 
-        public init(page: ActionPage? = nil, popup: ActionPage? = nil, type: String? = nil) {
+        public init(page: ActionPage? = nil, type: String? = nil) {
             
             self.page = page
-            
-            self.popup = popup
             
             self.type = type
             
@@ -147,18 +118,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     page = try container.decode(ActionPage.self, forKey: .page)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    popup = try container.decode(ActionPage.self, forKey: .popup)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -188,11 +147,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(page, forKey: .page)
-            
-            
-            
-            
-            try? container.encodeIfPresent(popup, forKey: .popup)
             
             
             

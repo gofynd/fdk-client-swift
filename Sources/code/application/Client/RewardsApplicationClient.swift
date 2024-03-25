@@ -204,6 +204,50 @@ if let value = pageSize {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getUserPointsHistory
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getUserPointsHistoryPaginator(
+            pageSize: Int?
+            
+            ) -> Paginator<PointsHistoryResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<PointsHistoryResponse>(pageSize: pageSize, type: "cursor")
+            paginator.onPage = {
+                self.getUserPointsHistory(
+                        
+                        pageId: paginator.pageId
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageId = response.page?.nextId
+                        
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
         /**
         *
         * Summary: Current points.

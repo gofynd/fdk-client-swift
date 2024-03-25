@@ -12,24 +12,24 @@ public extension PlatformClient.Content {
     class CustomObjectEntryBulkUploadResponse: Codable {
         
         
-        public var url: String?
+        public var message: String?
         
-        public var totalRecords: Int?
+        public var taskId: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case url = "url"
+            case message = "message"
             
-            case totalRecords = "total_records"
+            case taskId = "task_id"
             
         }
 
-        public init(totalRecords: Int? = nil, url: String? = nil) {
+        public init(message: String? = nil, taskId: String? = nil) {
             
-            self.url = url
+            self.message = message
             
-            self.totalRecords = totalRecords
+            self.taskId = taskId
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    url = try container.decode(String.self, forKey: .url)
+                    message = try container.decode(String.self, forKey: .message)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    totalRecords = try container.decode(Int.self, forKey: .totalRecords)
+                    taskId = try container.decode(String.self, forKey: .taskId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
-            try? container.encodeIfPresent(totalRecords, forKey: .totalRecords)
+            try? container.encodeIfPresent(taskId, forKey: .taskId)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Content {
     class CustomObjectEntryBulkUploadResponse: Codable {
         
         
-        public var url: String?
+        public var message: String?
         
-        public var totalRecords: Int?
+        public var taskId: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case url = "url"
+            case message = "message"
             
-            case totalRecords = "total_records"
+            case taskId = "task_id"
             
         }
 
-        public init(totalRecords: Int? = nil, url: String? = nil) {
+        public init(message: String? = nil, taskId: String? = nil) {
             
-            self.url = url
+            self.message = message
             
-            self.totalRecords = totalRecords
+            self.taskId = taskId
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    url = try container.decode(String.self, forKey: .url)
+                    message = try container.decode(String.self, forKey: .message)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    totalRecords = try container.decode(Int.self, forKey: .totalRecords)
+                    taskId = try container.decode(String.self, forKey: .taskId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
-            try? container.encodeIfPresent(totalRecords, forKey: .totalRecords)
+            try? container.encodeIfPresent(taskId, forKey: .taskId)
             
             
         }

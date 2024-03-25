@@ -30,7 +30,7 @@ public extension PlatformClient.Payment {
         
         public var cancelUrl: String
         
-        public var paymentMethods: [[String: Any]]
+        public var paymentMethods: [PaymentMode]
         
         public var created: String?
         
@@ -105,7 +105,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(aggregatorCustomerId: String? = nil, aggregatorOrderId: String, amount: Int, amountCaptured: Int, amountRefunded: Int? = nil, billingAddress: AddressDetail? = nil, cancelUrl: String, captured: Bool? = nil, created: String? = nil, currency: String, gid: String, gUserId: String, kind: String? = nil, locale: String? = nil, merchantLocale: String? = nil, meta: [String: Any]? = nil, mode: String, paymentId: String, paymentMethods: [[String: Any]], shippingAddress: AddressDetail? = nil, status: String, successUrl: String) {
+        public init(aggregatorCustomerId: String? = nil, aggregatorOrderId: String, amount: Int, amountCaptured: Int, amountRefunded: Int? = nil, billingAddress: AddressDetail? = nil, cancelUrl: String, captured: Bool? = nil, created: String? = nil, currency: String, gid: String, gUserId: String, kind: String? = nil, locale: String? = nil, merchantLocale: String? = nil, meta: [String: Any]? = nil, mode: String, paymentId: String, paymentMethods: [PaymentMode], shippingAddress: AddressDetail? = nil, status: String, successUrl: String) {
             
             self.paymentId = paymentId
             
@@ -223,7 +223,7 @@ public extension PlatformClient.Payment {
             
             
             
-                paymentMethods = try container.decode([[String: Any]].self, forKey: .paymentMethods)
+                paymentMethods = try container.decode([PaymentMode].self, forKey: .paymentMethods)
                 
             
             
@@ -485,7 +485,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var cancelUrl: String
         
-        public var paymentMethods: [[String: Any]]
+        public var paymentMethods: [PaymentMode]
         
         public var created: String?
         
@@ -560,7 +560,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(aggregatorCustomerId: String? = nil, aggregatorOrderId: String, amount: Int, amountCaptured: Int, amountRefunded: Int? = nil, billingAddress: AddressDetail? = nil, cancelUrl: String, captured: Bool? = nil, created: String? = nil, currency: String, gid: String, gUserId: String, kind: String? = nil, locale: String? = nil, merchantLocale: String? = nil, meta: [String: Any]? = nil, mode: String, paymentId: String, paymentMethods: [[String: Any]], shippingAddress: AddressDetail? = nil, status: String, successUrl: String) {
+        public init(aggregatorCustomerId: String? = nil, aggregatorOrderId: String, amount: Int, amountCaptured: Int, amountRefunded: Int? = nil, billingAddress: AddressDetail? = nil, cancelUrl: String, captured: Bool? = nil, created: String? = nil, currency: String, gid: String, gUserId: String, kind: String? = nil, locale: String? = nil, merchantLocale: String? = nil, meta: [String: Any]? = nil, mode: String, paymentId: String, paymentMethods: [PaymentMode], shippingAddress: AddressDetail? = nil, status: String, successUrl: String) {
             
             self.paymentId = paymentId
             
@@ -678,7 +678,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                paymentMethods = try container.decode([[String: Any]].self, forKey: .paymentMethods)
+                paymentMethods = try container.decode([PaymentMode].self, forKey: .paymentMethods)
                 
             
             

@@ -90,6 +90,8 @@ extension PlatformClient {
         
         
         
+        
+        
         /**
         *
         * Summary: Get custom field types
@@ -97,7 +99,7 @@ extension PlatformClient {
         **/
         public func getCustomFieldTypes(
             
-            onResponse: @escaping (_ response: CustomObjectByIdSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: MetafieldTypesSchema?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -122,7 +124,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CustomObjectByIdSchema.self, from: data)
+                        let response = Utility.decode(MetafieldTypesSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -324,7 +326,7 @@ if let value = search {
         * Description: Use this API to retrieve the definitions of custom fields using definition_id.
         **/
         public func getCustomFieldDefinition(
-            definitionId: String,
+            id: String,
             
             onResponse: @escaping (_ response: CustomFieldDefinitionDetailResSchema?, _ error: FDKError?) -> Void
         ) {
@@ -337,7 +339,7 @@ if let value = search {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/content/v1.0/company/\(companyId)/metafields/definitions/\(definitionId)",
+                url: "/service/platform/content/v1.0/company/\(companyId)/metafields/definitions/\(id)",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -373,7 +375,7 @@ if let value = search {
         * Description: Use this API to update a custom field definition for your application.
         **/
         public func updateCustomFieldDefinition(
-            definitionId: String,
+            id: String,
             body: CustomFieldDefinitionRequestSchema,
             onResponse: @escaping (_ response: CustomFieldDefinitionDetailResSchema?, _ error: FDKError?) -> Void
         ) {
@@ -386,7 +388,7 @@ if let value = search {
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
-                url: "/service/platform/content/v1.0/company/\(companyId)/metafields/definitions/\(definitionId)",
+                url: "/service/platform/content/v1.0/company/\(companyId)/metafields/definitions/\(id)",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -422,7 +424,7 @@ if let value = search {
         * Description: Use this API to delete the definitions of custom fields using definition_id. This will also delete related custom fields entries related to this definition.
         **/
         public func deleteCustomFieldDefinition(
-            definitionId: String,
+            id: String,
             
             onResponse: @escaping (_ response: CustomDataDeleteSchema?, _ error: FDKError?) -> Void
         ) {
@@ -435,7 +437,7 @@ if let value = search {
             PlatformAPIClient.execute(
                 config: config,
                 method: "DELETE",
-                url: "/service/platform/content/v1.0/company/\(companyId)/metafields/definitions/\(definitionId)",
+                url: "/service/platform/content/v1.0/company/\(companyId)/metafields/definitions/\(id)",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -583,6 +585,56 @@ if let value = search {
 
             PlatformAPIClient.execute(
                 config: config,
+                method: "POST",
+                url: "/service/platform/content/v1.0/company/\(companyId)/metafields/\(resource)/\(resourceId)",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CustomFieldsResponseByResourceIdSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Update custom field entries for gives resource and resource_id
+        * Description: Use this API to create the custom field entry for given resource and resource_id in param.
+        **/
+        public func updateCustomFieldByResourceId(
+            resource: String,
+            resourceId: String,
+            body: CustomFieldRequestSchema,
+            onResponse: @escaping (_ response: CustomFieldsResponseByResourceIdSchema?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
                 method: "PUT",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metafields/\(resource)/\(resourceId)",
                 query: nil,
@@ -599,6 +651,128 @@ if let value = search {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CustomFieldsResponseByResourceIdSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: delete custom fields of given resource and resource id
+        * Description: Use this API to delete the custom fields for given resource in param.
+        **/
+        public func deleteCustomFieldsByResourceId(
+            resource: String,
+            resourceId: String,
+            ids: String,
+            
+            onResponse: @escaping (_ response: CustomFieldsDeleteSchema?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["ids"] = ids
+
+
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "DELETE",
+                url: "/service/platform/content/v1.0/company/\(companyId)/metafields/\(resource)/\(resourceId)",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CustomFieldsDeleteSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Fetch bulk import and export job list.
+        * Description: Use this api to get list of jobs of bulk import and exports
+        **/
+        public func getCustomFieldJobs(
+            page: String,
+            pageSize: String,
+            actionType: String,
+            
+            onResponse: @escaping (_ response: CustomFieldBulkEntry?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["page"] = page
+
+
+
+
+    xQuery["page_size"] = pageSize
+
+
+
+
+    xQuery["action_type"] = actionType
+
+
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/content/v1.0/company/\(companyId)/metafields/jobs",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CustomFieldBulkEntry.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -736,7 +910,7 @@ if let value = search {
         * Description: Use this API to update a custom object definition for your application.
         **/
         public func getCustomObjectDefinition(
-            definitionId: String,
+            id: String,
             
             onResponse: @escaping (_ response: CustomObjectDefinitionSchema?, _ error: FDKError?) -> Void
         ) {
@@ -749,7 +923,7 @@ if let value = search {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/definitions/\(definitionId)",
+                url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/definitions/\(id)",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -785,7 +959,7 @@ if let value = search {
         * Description: Use this API to update a custom object definition for your application.
         **/
         public func updateCustomObjectDefinition(
-            definitionId: String,
+            id: String,
             body: CustomObjectDefinitionUpdateRequestSchema,
             onResponse: @escaping (_ response: CustomObjectDefinitionSchema?, _ error: FDKError?) -> Void
         ) {
@@ -798,7 +972,7 @@ if let value = search {
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
-                url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/definitions/\(definitionId)",
+                url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/definitions/\(id)",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -834,7 +1008,7 @@ if let value = search {
         * Description: Use this API to delete a custom object definition and related data for your application.
         **/
         public func deleteCustomObjectDefinition(
-            definitionId: String,
+            id: String,
             
             onResponse: @escaping (_ response: CustomObjectDefinitionDeleteResponseSchema?, _ error: FDKError?) -> Void
         ) {
@@ -847,7 +1021,7 @@ if let value = search {
             PlatformAPIClient.execute(
                 config: config,
                 method: "DELETE",
-                url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/definitions/\(definitionId)",
+                url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/definitions/\(id)",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -999,7 +1173,7 @@ if let value = definitionId {
         * Description: Use this API to retrieve the custom object details and their fields details and definitions and references.
         **/
         public func getCustomObject(
-            metaobjectId: String,
+            id: String,
             
             onResponse: @escaping (_ response: CustomObjectByIdSchema?, _ error: FDKError?) -> Void
         ) {
@@ -1012,7 +1186,7 @@ if let value = definitionId {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/\(metaobjectId)",
+                url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/\(id)",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -1027,55 +1201,6 @@ if let value = definitionId {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CustomObjectByIdSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Delete custom object
-        * Description: Use this API to delete the custom object entry by id. This will also delete related custom fields entries related to this custom object.
-        **/
-        public func deleteCustomObject(
-            metaobjectId: String,
-            
-            onResponse: @escaping (_ response: CustomDataDeleteSchema?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "DELETE",
-                url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/\(metaobjectId)",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CustomDataDeleteSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1097,9 +1222,9 @@ if let value = definitionId {
         * Description: Use this API to update a custom object detail for your application.
         **/
         public func updateCustomObject(
-            metaobjectId: String,
+            id: String,
             body: CustomObjectRequestSchema,
-            onResponse: @escaping (_ response: CustomObjectByIdSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CustomObjectSchema?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -1110,7 +1235,7 @@ if let value = definitionId {
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
-                url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/\(metaobjectId)",
+                url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/\(id)",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -1124,7 +1249,56 @@ if let value = definitionId {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CustomObjectByIdSchema.self, from: data)
+                        let response = Utility.decode(CustomObjectSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Delete custom object
+        * Description: Use this API to delete the custom object entry by id. This will also delete related custom fields entries related to this custom object.
+        **/
+        public func deleteCustomObject(
+            id: String,
+            
+            onResponse: @escaping (_ response: CustomDataDeleteSchema?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "DELETE",
+                url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/\(id)",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CustomDataDeleteSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1312,7 +1486,7 @@ var xQuery: [String: Any] = [:]
         public func sampleCustomObjectBulkEntry(
             definitionId: String,
             
-            onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -1327,7 +1501,7 @@ var xQuery: [String: Any] = [:]
                 query: nil,
                 body: nil,
                 headers: [],
-                responseType: "application/json",
+                responseType: "text/csv",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -1337,7 +1511,7 @@ var xQuery: [String: Any] = [:]
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = String(decoding: data, as: UTF8.self)
+                        let response = data
                         
                         onResponse(response, nil)
                     } else {
@@ -1348,6 +1522,9 @@ var xQuery: [String: Any] = [:]
                     }
             });
         }
+        
+        
+        
         
         
         

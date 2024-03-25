@@ -9,6 +9,8 @@ import Foundation
 
 
 
+
+
 public extension PlatformClient.Catalog {
 
     enum PageType: String, Codable, CaseIterable {

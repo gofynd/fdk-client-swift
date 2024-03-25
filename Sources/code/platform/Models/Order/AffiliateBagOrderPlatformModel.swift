@@ -40,6 +40,8 @@ public extension PlatformClient.Order {
         
         public var deliveryCharge: Double
         
+        public var tcsCharge: Double?
+        
         public var avlQty: Int
         
         public var priceMarked: Double
@@ -89,6 +91,8 @@ public extension PlatformClient.Order {
             
             case deliveryCharge = "delivery_charge"
             
+            case tcsCharge = "tcs_charge"
+            
             case avlQty = "avl_qty"
             
             case priceMarked = "price_marked"
@@ -109,7 +113,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(affiliateMeta: [String: Any], affiliateStoreId: String, amountPaid: Double, avlQty: Int, companyId: Int, deliveryCharge: Double, discount: Double, fyndStoreId: String, hsnCodeId: String, identifier: [String: Any], itemId: Int, itemSize: String, modifiedOn: String, pdfLinks: MarketPlacePdf? = nil, priceEffective: Double, priceMarked: Double, quantity: Int, sellerIdentifier: String, sku: String, storeId: Int, transferPrice: Int, unitPrice: Double, id: String) {
+        public init(affiliateMeta: [String: Any], affiliateStoreId: String, amountPaid: Double, avlQty: Int, companyId: Int, deliveryCharge: Double, discount: Double, fyndStoreId: String, hsnCodeId: String, identifier: [String: Any], itemId: Int, itemSize: String, modifiedOn: String, pdfLinks: MarketPlacePdf? = nil, priceEffective: Double, priceMarked: Double, quantity: Int, sellerIdentifier: String, sku: String, storeId: Int, tcsCharge: Double? = nil, transferPrice: Int, unitPrice: Double, id: String) {
             
             self.pdfLinks = pdfLinks
             
@@ -138,6 +142,8 @@ public extension PlatformClient.Order {
             self.itemId = itemId
             
             self.deliveryCharge = deliveryCharge
+            
+            self.tcsCharge = tcsCharge
             
             self.avlQty = avlQty
             
@@ -238,6 +244,18 @@ public extension PlatformClient.Order {
                 deliveryCharge = try container.decode(Double.self, forKey: .deliveryCharge)
                 
             
+            
+            
+                do {
+                    tcsCharge = try container.decode(Double.self, forKey: .tcsCharge)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 avlQty = try container.decode(Int.self, forKey: .avlQty)
@@ -357,6 +375,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(deliveryCharge, forKey: .deliveryCharge)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tcsCharge, forKey: .tcsCharge)
             
             
             
@@ -448,6 +471,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var deliveryCharge: Double
         
+        public var tcsCharge: Double?
+        
         public var avlQty: Int
         
         public var priceMarked: Double
@@ -497,6 +522,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case deliveryCharge = "delivery_charge"
             
+            case tcsCharge = "tcs_charge"
+            
             case avlQty = "avl_qty"
             
             case priceMarked = "price_marked"
@@ -517,7 +544,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(affiliateMeta: [String: Any], affiliateStoreId: String, amountPaid: Double, avlQty: Int, companyId: Int, deliveryCharge: Double, discount: Double, fyndStoreId: String, hsnCodeId: String, identifier: [String: Any], itemId: Int, itemSize: String, modifiedOn: String, pdfLinks: MarketPlacePdf? = nil, priceEffective: Double, priceMarked: Double, quantity: Int, sellerIdentifier: String, sku: String, storeId: Int, transferPrice: Int, unitPrice: Double, id: String) {
+        public init(affiliateMeta: [String: Any], affiliateStoreId: String, amountPaid: Double, avlQty: Int, companyId: Int, deliveryCharge: Double, discount: Double, fyndStoreId: String, hsnCodeId: String, identifier: [String: Any], itemId: Int, itemSize: String, modifiedOn: String, pdfLinks: MarketPlacePdf? = nil, priceEffective: Double, priceMarked: Double, quantity: Int, sellerIdentifier: String, sku: String, storeId: Int, tcsCharge: Double? = nil, transferPrice: Int, unitPrice: Double, id: String) {
             
             self.pdfLinks = pdfLinks
             
@@ -546,6 +573,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.itemId = itemId
             
             self.deliveryCharge = deliveryCharge
+            
+            self.tcsCharge = tcsCharge
             
             self.avlQty = avlQty
             
@@ -646,6 +675,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 deliveryCharge = try container.decode(Double.self, forKey: .deliveryCharge)
                 
             
+            
+            
+                do {
+                    tcsCharge = try container.decode(Double.self, forKey: .tcsCharge)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 avlQty = try container.decode(Int.self, forKey: .avlQty)
@@ -765,6 +806,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(deliveryCharge, forKey: .deliveryCharge)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tcsCharge, forKey: .tcsCharge)
             
             
             

@@ -30,6 +30,8 @@ public extension PlatformClient.Content {
         
         public var customJson: [String: Any]?
         
+        public var v: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -51,9 +53,11 @@ public extension PlatformClient.Content {
             
             case customJson = "_custom_json"
             
+            case v = "__v"
+            
         }
 
-        public init(action: Action? = nil, application: String? = nil, archived: Bool? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, platform: [String]? = nil, slug: String? = nil, customJson: [String: Any]? = nil, id: String? = nil) {
+        public init(action: Action? = nil, application: String? = nil, archived: Bool? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, platform: [String]? = nil, slug: String? = nil, customJson: [String: Any]? = nil, id: String? = nil, v: Double? = nil) {
             
             self.slug = slug
             
@@ -72,6 +76,8 @@ public extension PlatformClient.Content {
             self.archived = archived
             
             self.customJson = customJson
+            
+            self.v = v
             
         }
 
@@ -186,6 +192,18 @@ public extension PlatformClient.Content {
                 }
                 
             
+            
+                do {
+                    v = try container.decode(Double.self, forKey: .v)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -234,6 +252,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(customJson, forKey: .customJson)
+            
+            
+            
+            
+            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }
@@ -270,6 +293,8 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var customJson: [String: Any]?
         
+        public var v: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -291,9 +316,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case customJson = "_custom_json"
             
+            case v = "__v"
+            
         }
 
-        public init(action: Action? = nil, application: String? = nil, archived: Bool? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, platform: [String]? = nil, slug: String? = nil, customJson: [String: Any]? = nil, id: String? = nil) {
+        public init(action: Action? = nil, application: String? = nil, archived: Bool? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, platform: [String]? = nil, slug: String? = nil, customJson: [String: Any]? = nil, id: String? = nil, v: Double? = nil) {
             
             self.slug = slug
             
@@ -312,6 +339,8 @@ public extension PlatformClient.ApplicationClient.Content {
             self.archived = archived
             
             self.customJson = customJson
+            
+            self.v = v
             
         }
 
@@ -426,6 +455,18 @@ public extension PlatformClient.ApplicationClient.Content {
                 }
                 
             
+            
+                do {
+                    v = try container.decode(Double.self, forKey: .v)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -474,6 +515,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(customJson, forKey: .customJson)
+            
+            
+            
+            
+            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

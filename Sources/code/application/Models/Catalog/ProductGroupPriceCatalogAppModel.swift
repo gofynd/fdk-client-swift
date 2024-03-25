@@ -14,7 +14,7 @@ public extension ApplicationClient.Catalog {
         
         public var minMarked: Double?
         
-        public var currency: [String: Any]?
+        public var currency: String?
         
         public var maxMarked: Double?
         
@@ -33,7 +33,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(currency: [String: Any]? = nil, maxEffective: Double? = nil, maxMarked: Double? = nil, minEffective: Double? = nil, minMarked: Double? = nil) {
+        public init(currency: String? = nil, maxEffective: Double? = nil, maxMarked: Double? = nil, minEffective: Double? = nil, minMarked: Double? = nil) {
             
             self.maxEffective = maxEffective
             
@@ -88,7 +88,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                currency = try container.decode([String: Any].self, forKey: .currency)
+                currency = try container.decode(String.self, forKey: .currency)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

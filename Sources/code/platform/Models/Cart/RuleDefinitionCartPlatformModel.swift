@@ -24,9 +24,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var applicableOn: String
         
-        public var calculateOn: String
+        public var calculateOn: String?
         
-        public var valueType: String
+        public var valueType: String?
         
         public var scope: [String]?
         
@@ -51,7 +51,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(applicableOn: String, autoApply: Bool? = nil, calculateOn: String, currencyCode: String? = nil, isExact: Bool? = nil, scope: [String]? = nil, type: String, valueType: String) {
+        public init(applicableOn: String, autoApply: Bool? = nil, calculateOn: String? = nil, currencyCode: String? = nil, isExact: Bool? = nil, scope: [String]? = nil, type: String, valueType: String? = nil) {
             
             self.currencyCode = currencyCode
             
@@ -121,14 +121,28 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-                calculateOn = try container.decode(String.self, forKey: .calculateOn)
+                do {
+                    calculateOn = try container.decode(String.self, forKey: .calculateOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                valueType = try container.decode(String.self, forKey: .valueType)
+                do {
+                    valueType = try container.decode(String.self, forKey: .valueType)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

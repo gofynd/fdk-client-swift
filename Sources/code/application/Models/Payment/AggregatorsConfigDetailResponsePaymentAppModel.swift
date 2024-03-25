@@ -26,6 +26,14 @@ public extension ApplicationClient.Payment {
         
         public var ccavenue: AggregatorConfigDetail?
         
+        public var ajiodhan: AggregatorConfigDetail?
+        
+        public var potlee: AggregatorConfigDetail?
+        
+        public var qrRefundJiopay: AggregatorConfigDetail?
+        
+        public var offerxone: AggregatorConfigDetail?
+        
         public var env: String
         
 
@@ -49,11 +57,19 @@ public extension ApplicationClient.Payment {
             
             case ccavenue = "ccavenue"
             
+            case ajiodhan = "ajiodhan"
+            
+            case potlee = "potlee"
+            
+            case qrRefundJiopay = "qr_refund_jiopay"
+            
+            case offerxone = "offerxone"
+            
             case env = "env"
             
         }
 
-        public init(ccavenue: AggregatorConfigDetail? = nil, env: String, juspay: AggregatorConfigDetail? = nil, mswipe: AggregatorConfigDetail? = nil, payumoney: AggregatorConfigDetail? = nil, razorpay: AggregatorConfigDetail? = nil, rupifi: AggregatorConfigDetail? = nil, simpl: AggregatorConfigDetail? = nil, stripe: AggregatorConfigDetail? = nil, success: Bool) {
+        public init(ajiodhan: AggregatorConfigDetail? = nil, ccavenue: AggregatorConfigDetail? = nil, env: String, juspay: AggregatorConfigDetail? = nil, mswipe: AggregatorConfigDetail? = nil, offerxone: AggregatorConfigDetail? = nil, payumoney: AggregatorConfigDetail? = nil, potlee: AggregatorConfigDetail? = nil, qrRefundJiopay: AggregatorConfigDetail? = nil, razorpay: AggregatorConfigDetail? = nil, rupifi: AggregatorConfigDetail? = nil, simpl: AggregatorConfigDetail? = nil, stripe: AggregatorConfigDetail? = nil, success: Bool) {
             
             self.success = success
             
@@ -72,6 +88,14 @@ public extension ApplicationClient.Payment {
             self.stripe = stripe
             
             self.ccavenue = ccavenue
+            
+            self.ajiodhan = ajiodhan
+            
+            self.potlee = potlee
+            
+            self.qrRefundJiopay = qrRefundJiopay
+            
+            self.offerxone = offerxone
             
             self.env = env
             
@@ -182,6 +206,54 @@ public extension ApplicationClient.Payment {
             
             
             
+            do {
+                ajiodhan = try container.decode(AggregatorConfigDetail.self, forKey: .ajiodhan)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                potlee = try container.decode(AggregatorConfigDetail.self, forKey: .potlee)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                qrRefundJiopay = try container.decode(AggregatorConfigDetail.self, forKey: .qrRefundJiopay)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                offerxone = try container.decode(AggregatorConfigDetail.self, forKey: .offerxone)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
             env = try container.decode(String.self, forKey: .env)
             
             
@@ -225,6 +297,22 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(ccavenue, forKey: .ccavenue)
+            
+            
+            
+            try? container.encodeIfPresent(ajiodhan, forKey: .ajiodhan)
+            
+            
+            
+            try? container.encodeIfPresent(potlee, forKey: .potlee)
+            
+            
+            
+            try? container.encodeIfPresent(qrRefundJiopay, forKey: .qrRefundJiopay)
+            
+            
+            
+            try? container.encodeIfPresent(offerxone, forKey: .offerxone)
             
             
             

@@ -18,6 +18,8 @@ public extension ApplicationClient.Content {
         
         public var schema: String?
         
+        public var targetJson: [String: Any]?
+        
         public var active: Bool?
         
         public var createdAt: String?
@@ -26,10 +28,12 @@ public extension ApplicationClient.Content {
         
         public var application: String?
         
+        public var v: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "id"
+            case id = "_id"
             
             case title = "title"
             
@@ -39,6 +43,8 @@ public extension ApplicationClient.Content {
             
             case schema = "schema"
             
+            case targetJson = "target_json"
+            
             case active = "active"
             
             case createdAt = "created_at"
@@ -47,9 +53,11 @@ public extension ApplicationClient.Content {
             
             case application = "application"
             
+            case v = "__v"
+            
         }
 
-        public init(active: Bool? = nil, application: String? = nil, createdAt: String? = nil, description: String? = nil, id: String? = nil, pageType: String? = nil, schema: String? = nil, title: String? = nil, updatedAt: String? = nil) {
+        public init(active: Bool? = nil, application: String? = nil, createdAt: String? = nil, description: String? = nil, pageType: String? = nil, schema: String? = nil, targetJson: [String: Any]? = nil, title: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Double? = nil) {
             
             self.id = id
             
@@ -61,6 +69,8 @@ public extension ApplicationClient.Content {
             
             self.schema = schema
             
+            self.targetJson = targetJson
+            
             self.active = active
             
             self.createdAt = createdAt
@@ -68,6 +78,8 @@ public extension ApplicationClient.Content {
             self.updatedAt = updatedAt
             
             self.application = application
+            
+            self.v = v
             
         }
 
@@ -136,6 +148,18 @@ public extension ApplicationClient.Content {
             
             
             do {
+                targetJson = try container.decode([String: Any].self, forKey: .targetJson)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 active = try container.decode(Bool.self, forKey: .active)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -182,6 +206,18 @@ public extension ApplicationClient.Content {
             }
             
             
+            
+            do {
+                v = try container.decode(Double.self, forKey: .v)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -208,6 +244,10 @@ public extension ApplicationClient.Content {
             
             
             
+            try? container.encodeIfPresent(targetJson, forKey: .targetJson)
+            
+            
+            
             try? container.encodeIfPresent(active, forKey: .active)
             
             
@@ -221,6 +261,10 @@ public extension ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(application, forKey: .application)
+            
+            
+            
+            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

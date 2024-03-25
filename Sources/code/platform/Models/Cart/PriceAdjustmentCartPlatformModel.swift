@@ -40,6 +40,22 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var cartId: String
         
+        public var removeArticles: Bool?
+        
+        public var autoRemove: Bool?
+        
+        public var isActive: Bool?
+        
+        public var createdBy: String?
+        
+        public var cartValue: Double?
+        
+        public var modifiedBy: String?
+        
+        public var distributionLevel: String?
+        
+        public var distributionType: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -69,9 +85,25 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case cartId = "cart_id"
             
+            case removeArticles = "remove_articles"
+            
+            case autoRemove = "auto_remove"
+            
+            case isActive = "is_active"
+            
+            case createdBy = "created_by"
+            
+            case cartValue = "cart_value"
+            
+            case modifiedBy = "modified_by"
+            
+            case distributionLevel = "distribution_level"
+            
+            case distributionType = "distribution_type"
+            
         }
 
-        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, cartId: String, collection: Collection, id: String? = nil, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, restrictions: PriceAdjustmentRestrictions? = nil, type: String, value: Double) {
+        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, autoRemove: Bool? = nil, cartId: String, cartValue: Double? = nil, collection: Collection, createdBy: String? = nil, distributionLevel: String? = nil, distributionType: String? = nil, id: String? = nil, isActive: Bool? = nil, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, modifiedBy: String? = nil, removeArticles: Bool? = nil, restrictions: PriceAdjustmentRestrictions? = nil, type: String, value: Double) {
             
             self.value = value
             
@@ -98,6 +130,22 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.meta = meta
             
             self.cartId = cartId
+            
+            self.removeArticles = removeArticles
+            
+            self.autoRemove = autoRemove
+            
+            self.isActive = isActive
+            
+            self.createdBy = createdBy
+            
+            self.cartValue = cartValue
+            
+            self.modifiedBy = modifiedBy
+            
+            self.distributionLevel = distributionLevel
+            
+            self.distributionType = distributionType
             
         }
 
@@ -204,6 +252,102 @@ public extension PlatformClient.ApplicationClient.Cart {
                 
             
             
+            
+                do {
+                    removeArticles = try container.decode(Bool.self, forKey: .removeArticles)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    autoRemove = try container.decode(Bool.self, forKey: .autoRemove)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isActive = try container.decode(Bool.self, forKey: .isActive)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    createdBy = try container.decode(String.self, forKey: .createdBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    cartValue = try container.decode(Double.self, forKey: .cartValue)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    modifiedBy = try container.decode(String.self, forKey: .modifiedBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    distributionLevel = try container.decode(String.self, forKey: .distributionLevel)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    distributionType = try container.decode(String.self, forKey: .distributionType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -272,6 +416,46 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(cartId, forKey: .cartId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(removeArticles, forKey: .removeArticles)
+            
+            
+            
+            
+            try? container.encodeIfPresent(autoRemove, forKey: .autoRemove)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(cartValue, forKey: .cartValue)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(distributionLevel, forKey: .distributionLevel)
+            
+            
+            
+            
+            try? container.encodeIfPresent(distributionType, forKey: .distributionType)
             
             
         }

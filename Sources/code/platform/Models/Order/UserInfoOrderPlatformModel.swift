@@ -26,6 +26,10 @@ public extension PlatformClient.Order {
         
         public var primaryMobileNumber: String
         
+        public var isAuthenticated: Bool?
+        
+        public var meta: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -43,9 +47,13 @@ public extension PlatformClient.Order {
             
             case primaryMobileNumber = "primary_mobile_number"
             
+            case isAuthenticated = "is_authenticated"
+            
+            case meta = "meta"
+            
         }
 
-        public init(firstName: String, gender: String? = nil, lastName: String? = nil, primaryEmail: String, primaryMobileNumber: String, userId: String? = nil, userType: String? = nil) {
+        public init(firstName: String, gender: String? = nil, isAuthenticated: Bool? = nil, lastName: String? = nil, meta: [String: Any]? = nil, primaryEmail: String, primaryMobileNumber: String, userId: String? = nil, userType: String? = nil) {
             
             self.userId = userId
             
@@ -60,6 +68,10 @@ public extension PlatformClient.Order {
             self.lastName = lastName
             
             self.primaryMobileNumber = primaryMobileNumber
+            
+            self.isAuthenticated = isAuthenticated
+            
+            self.meta = meta
             
         }
 
@@ -129,6 +141,30 @@ public extension PlatformClient.Order {
                 
             
             
+            
+                do {
+                    isAuthenticated = try container.decode(Bool.self, forKey: .isAuthenticated)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -167,6 +203,16 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(primaryMobileNumber, forKey: .primaryMobileNumber)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isAuthenticated, forKey: .isAuthenticated)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }
@@ -199,6 +245,10 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var primaryMobileNumber: String
         
+        public var isAuthenticated: Bool?
+        
+        public var meta: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -216,9 +266,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case primaryMobileNumber = "primary_mobile_number"
             
+            case isAuthenticated = "is_authenticated"
+            
+            case meta = "meta"
+            
         }
 
-        public init(firstName: String, gender: String? = nil, lastName: String? = nil, primaryEmail: String, primaryMobileNumber: String, userId: String? = nil, userType: String? = nil) {
+        public init(firstName: String, gender: String? = nil, isAuthenticated: Bool? = nil, lastName: String? = nil, meta: [String: Any]? = nil, primaryEmail: String, primaryMobileNumber: String, userId: String? = nil, userType: String? = nil) {
             
             self.userId = userId
             
@@ -233,6 +287,10 @@ public extension PlatformClient.ApplicationClient.Order {
             self.lastName = lastName
             
             self.primaryMobileNumber = primaryMobileNumber
+            
+            self.isAuthenticated = isAuthenticated
+            
+            self.meta = meta
             
         }
 
@@ -302,6 +360,30 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
+            
+                do {
+                    isAuthenticated = try container.decode(Bool.self, forKey: .isAuthenticated)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -340,6 +422,16 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(primaryMobileNumber, forKey: .primaryMobileNumber)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isAuthenticated, forKey: .isAuthenticated)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }

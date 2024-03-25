@@ -12,11 +12,13 @@ public extension PlatformClient.Webhook {
     class SubscriberEventMapping: Codable {
         
         
-        public var id: Int?
+        public var id: Double?
         
-        public var eventId: Int?
+        public var eventId: Double?
         
-        public var subscriberId: Int?
+        public var subscriberId: Double?
+        
+        public var topic: String?
         
         public var createdOn: String?
         
@@ -29,17 +31,21 @@ public extension PlatformClient.Webhook {
             
             case subscriberId = "subscriber_id"
             
+            case topic = "topic"
+            
             case createdOn = "created_on"
             
         }
 
-        public init(createdOn: String? = nil, eventId: Int? = nil, id: Int? = nil, subscriberId: Int? = nil) {
+        public init(createdOn: String? = nil, eventId: Double? = nil, id: Double? = nil, subscriberId: Double? = nil, topic: String? = nil) {
             
             self.id = id
             
             self.eventId = eventId
             
             self.subscriberId = subscriberId
+            
+            self.topic = topic
             
             self.createdOn = createdOn
             
@@ -50,7 +56,7 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    id = try container.decode(Int.self, forKey: .id)
+                    id = try container.decode(Double.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +68,7 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    eventId = try container.decode(Int.self, forKey: .eventId)
+                    eventId = try container.decode(Double.self, forKey: .eventId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,7 +80,19 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    subscriberId = try container.decode(Int.self, forKey: .subscriberId)
+                    subscriberId = try container.decode(Double.self, forKey: .subscriberId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    topic = try container.decode(String.self, forKey: .topic)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -114,6 +132,11 @@ public extension PlatformClient.Webhook {
             
             
             try? container.encodeIfPresent(subscriberId, forKey: .subscriberId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(topic, forKey: .topic)
             
             
             

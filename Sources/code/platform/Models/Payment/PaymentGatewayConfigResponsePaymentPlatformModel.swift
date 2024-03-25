@@ -12,7 +12,7 @@ public extension PlatformClient.Payment {
     class PaymentGatewayConfigResponse: Codable {
         
         
-        public var aggregators: [[String: Any]]?
+        public var aggregators: [AggregatorConfig]?
         
         public var appId: String
         
@@ -41,7 +41,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(aggregators: [[String: Any]]? = nil, appId: String, created: Bool, displayFields: [String], excludedFields: [String], success: Bool) {
+        public init(aggregators: [AggregatorConfig]? = nil, appId: String, created: Bool, displayFields: [String], excludedFields: [String], success: Bool) {
             
             self.aggregators = aggregators
             
@@ -62,7 +62,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    aggregators = try container.decode([[String: Any]].self, forKey: .aggregators)
+                    aggregators = try container.decode([AggregatorConfig].self, forKey: .aggregators)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -148,7 +148,7 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PaymentGatewayConfigResponse: Codable {
         
         
-        public var aggregators: [[String: Any]]?
+        public var aggregators: [AggregatorConfig]?
         
         public var appId: String
         
@@ -177,7 +177,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(aggregators: [[String: Any]]? = nil, appId: String, created: Bool, displayFields: [String], excludedFields: [String], success: Bool) {
+        public init(aggregators: [AggregatorConfig]? = nil, appId: String, created: Bool, displayFields: [String], excludedFields: [String], success: Bool) {
             
             self.aggregators = aggregators
             
@@ -198,7 +198,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    aggregators = try container.decode([[String: Any]].self, forKey: .aggregators)
+                    aggregators = try container.decode([AggregatorConfig].self, forKey: .aggregators)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

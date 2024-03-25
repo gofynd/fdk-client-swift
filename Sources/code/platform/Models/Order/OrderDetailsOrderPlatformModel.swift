@@ -24,6 +24,8 @@ public extension PlatformClient.Order {
         
         public var deliveryCharges: Double?
         
+        public var tcsCharge: Double?
+        
         public var transactionId: String?
         
         public var collectBy: String?
@@ -89,6 +91,8 @@ public extension PlatformClient.Order {
             
             case deliveryCharges = "delivery_charges"
             
+            case tcsCharge = "tcs_charge"
+            
             case transactionId = "transaction_id"
             
             case collectBy = "collect_by"
@@ -141,7 +145,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(affiliateId: String? = nil, affiliateOrderDate: String? = nil, affiliateOrderId: String? = nil, cashbackApplied: Double? = nil, cashbackValue: Double? = nil, codCharges: Double? = nil, collectBy: String? = nil, couponValue: Double? = nil, createdAt: String? = nil, createdTime: String? = nil, currency: String? = nil, deliveryCharges: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, fyndOrderId: String? = nil, headers: [String: Any]? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, mongoCartId: Double? = nil, orderingChannel: String? = nil, orderingChannelLogo: String? = nil, orderValue: Double? = nil, paymentMethods: [String: Any]? = nil, paymentModeId: Double? = nil, prices: Prices? = nil, promotionEffectiveDiscount: Double? = nil, refundBy: String? = nil, taxDetails: TaxDetails? = nil, totalOrderValue: Double? = nil, transactionId: String? = nil, userId: String? = nil) {
+        public init(affiliateId: String? = nil, affiliateOrderDate: String? = nil, affiliateOrderId: String? = nil, cashbackApplied: Double? = nil, cashbackValue: Double? = nil, codCharges: Double? = nil, collectBy: String? = nil, couponValue: Double? = nil, createdAt: String? = nil, createdTime: String? = nil, currency: String? = nil, deliveryCharges: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, fyndOrderId: String? = nil, headers: [String: Any]? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, mongoCartId: Double? = nil, orderingChannel: String? = nil, orderingChannelLogo: String? = nil, orderValue: Double? = nil, paymentMethods: [String: Any]? = nil, paymentModeId: Double? = nil, prices: Prices? = nil, promotionEffectiveDiscount: Double? = nil, refundBy: String? = nil, taxDetails: TaxDetails? = nil, tcsCharge: Double? = nil, totalOrderValue: Double? = nil, transactionId: String? = nil, userId: String? = nil) {
             
             self.fyndOrderId = fyndOrderId
             
@@ -154,6 +158,8 @@ public extension PlatformClient.Order {
             self.mongoCartId = mongoCartId
             
             self.deliveryCharges = deliveryCharges
+            
+            self.tcsCharge = tcsCharge
             
             self.transactionId = transactionId
             
@@ -273,6 +279,18 @@ public extension PlatformClient.Order {
             
                 do {
                     deliveryCharges = try container.decode(Double.self, forKey: .deliveryCharges)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    tcsCharge = try container.decode(Double.self, forKey: .tcsCharge)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -615,6 +633,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(deliveryCharges, forKey: .deliveryCharges)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tcsCharge, forKey: .tcsCharge)
             
             
             
@@ -770,6 +793,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var deliveryCharges: Double?
         
+        public var tcsCharge: Double?
+        
         public var transactionId: String?
         
         public var collectBy: String?
@@ -835,6 +860,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case deliveryCharges = "delivery_charges"
             
+            case tcsCharge = "tcs_charge"
+            
             case transactionId = "transaction_id"
             
             case collectBy = "collect_by"
@@ -887,7 +914,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(affiliateId: String? = nil, affiliateOrderDate: String? = nil, affiliateOrderId: String? = nil, cashbackApplied: Double? = nil, cashbackValue: Double? = nil, codCharges: Double? = nil, collectBy: String? = nil, couponValue: Double? = nil, createdAt: String? = nil, createdTime: String? = nil, currency: String? = nil, deliveryCharges: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, fyndOrderId: String? = nil, headers: [String: Any]? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, mongoCartId: Double? = nil, orderingChannel: String? = nil, orderingChannelLogo: String? = nil, orderValue: Double? = nil, paymentMethods: [String: Any]? = nil, paymentModeId: Double? = nil, prices: Prices? = nil, promotionEffectiveDiscount: Double? = nil, refundBy: String? = nil, taxDetails: TaxDetails? = nil, totalOrderValue: Double? = nil, transactionId: String? = nil, userId: String? = nil) {
+        public init(affiliateId: String? = nil, affiliateOrderDate: String? = nil, affiliateOrderId: String? = nil, cashbackApplied: Double? = nil, cashbackValue: Double? = nil, codCharges: Double? = nil, collectBy: String? = nil, couponValue: Double? = nil, createdAt: String? = nil, createdTime: String? = nil, currency: String? = nil, deliveryCharges: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, fyndOrderId: String? = nil, headers: [String: Any]? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, mongoCartId: Double? = nil, orderingChannel: String? = nil, orderingChannelLogo: String? = nil, orderValue: Double? = nil, paymentMethods: [String: Any]? = nil, paymentModeId: Double? = nil, prices: Prices? = nil, promotionEffectiveDiscount: Double? = nil, refundBy: String? = nil, taxDetails: TaxDetails? = nil, tcsCharge: Double? = nil, totalOrderValue: Double? = nil, transactionId: String? = nil, userId: String? = nil) {
             
             self.fyndOrderId = fyndOrderId
             
@@ -900,6 +927,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.mongoCartId = mongoCartId
             
             self.deliveryCharges = deliveryCharges
+            
+            self.tcsCharge = tcsCharge
             
             self.transactionId = transactionId
             
@@ -1019,6 +1048,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     deliveryCharges = try container.decode(Double.self, forKey: .deliveryCharges)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    tcsCharge = try container.decode(Double.self, forKey: .tcsCharge)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1361,6 +1402,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(deliveryCharges, forKey: .deliveryCharges)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tcsCharge, forKey: .tcsCharge)
             
             
             

@@ -12,54 +12,42 @@ public extension PlatformClient.Finance {
     class Page: Codable {
         
         
-        public var itemTotal: Int?
-        
-        public var nextId: String?
-        
-        public var hasPrevious: Bool?
-        
-        public var hasNext: Bool?
+        public var itemCount: Int?
         
         public var current: Int?
         
-        public var type: String
+        public var hasNext: Bool?
         
         public var size: Int?
+        
+        public var type: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case itemTotal = "item_total"
-            
-            case nextId = "next_id"
-            
-            case hasPrevious = "has_previous"
-            
-            case hasNext = "has_next"
+            case itemCount = "item_count"
             
             case current = "current"
             
-            case type = "type"
+            case hasNext = "has_next"
             
             case size = "size"
             
+            case type = "type"
+            
         }
 
-        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, size: Int? = nil, type: String) {
+        public init(current: Int? = nil, hasNext: Bool? = nil, itemCount: Int? = nil, size: Int? = nil, type: String? = nil) {
             
-            self.itemTotal = itemTotal
-            
-            self.nextId = nextId
-            
-            self.hasPrevious = hasPrevious
-            
-            self.hasNext = hasNext
+            self.itemCount = itemCount
             
             self.current = current
             
-            self.type = type
+            self.hasNext = hasNext
             
             self.size = size
+            
+            self.type = type
             
         }
 
@@ -68,7 +56,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+                    itemCount = try container.decode(Int.self, forKey: .itemCount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,19 +68,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    nextId = try container.decode(String.self, forKey: .nextId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
+                    current = try container.decode(Int.self, forKey: .current)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,7 +92,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    current = try container.decode(Int.self, forKey: .current)
+                    size = try container.decode(Int.self, forKey: .size)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -127,13 +103,8 @@ public extension PlatformClient.Finance {
                 
             
             
-                type = try container.decode(String.self, forKey: .type)
-                
-            
-            
-            
                 do {
-                    size = try container.decode(Int.self, forKey: .size)
+                    type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,22 +121,7 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
-            
-            
-            
-            
-            try? container.encodeIfPresent(nextId, forKey: .nextId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
-            
-            
-            
-            
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+            try? container.encodeIfPresent(itemCount, forKey: .itemCount)
             
             
             
@@ -175,12 +131,17 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
             
             
             
             
             try? container.encodeIfPresent(size, forKey: .size)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
         }

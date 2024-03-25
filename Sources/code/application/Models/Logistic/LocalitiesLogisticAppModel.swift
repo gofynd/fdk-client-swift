@@ -18,6 +18,8 @@ public extension ApplicationClient.Logistic {
         
         public var type: String?
         
+        public var localities: [LocalityParent]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -31,9 +33,11 @@ public extension ApplicationClient.Logistic {
             
             case type = "type"
             
+            case localities = "localities"
+            
         }
 
-        public init(displayName: String? = nil, id: String? = nil, name: String? = nil, parentIds: [String]? = nil, type: String? = nil) {
+        public init(displayName: String? = nil, id: String? = nil, localities: [LocalityParent]? = nil, name: String? = nil, parentIds: [String]? = nil, type: String? = nil) {
             
             self.id = id
             
@@ -44,6 +48,8 @@ public extension ApplicationClient.Logistic {
             self.parentIds = parentIds
             
             self.type = type
+            
+            self.localities = localities
             
         }
 
@@ -110,6 +116,18 @@ public extension ApplicationClient.Logistic {
             }
             
             
+            
+            do {
+                localities = try container.decode([LocalityParent].self, forKey: .localities)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -133,6 +151,10 @@ public extension ApplicationClient.Logistic {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            try? container.encodeIfPresent(localities, forKey: .localities)
             
             
         }

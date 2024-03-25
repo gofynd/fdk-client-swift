@@ -14,7 +14,7 @@ public extension PlatformClient.Payment {
         
         public var status: String
         
-        public var message: String
+        public var message: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(message: String, status: String) {
+        public init(message: String? = nil, status: String) {
             
             self.status = status
             
@@ -42,9 +42,16 @@ public extension PlatformClient.Payment {
             
             
             
-                message = try container.decode(String.self, forKey: .message)
+                do {
+                    message = try container.decode(String.self, forKey: .message)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -79,7 +86,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var status: String
         
-        public var message: String
+        public var message: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -90,7 +97,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(message: String, status: String) {
+        public init(message: String? = nil, status: String) {
             
             self.status = status
             
@@ -107,9 +114,16 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                message = try container.decode(String.self, forKey: .message)
+                do {
+                    message = try container.decode(String.self, forKey: .message)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         

@@ -14,7 +14,7 @@ public extension PlatformClient.Payment {
         
         public var redirectUrl: String?
         
-        public var retry: Bool
+        public var retry: Bool?
         
         public var success: Bool?
         
@@ -37,7 +37,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(aggregatorName: String, redirectUrl: String? = nil, retry: Bool, status: String, success: Bool? = nil) {
+        public init(aggregatorName: String, redirectUrl: String? = nil, retry: Bool? = nil, status: String, success: Bool? = nil) {
             
             self.redirectUrl = redirectUrl
             
@@ -67,9 +67,16 @@ public extension PlatformClient.Payment {
                 
             
             
-                retry = try container.decode(Bool.self, forKey: .retry)
+                do {
+                    retry = try container.decode(Bool.self, forKey: .retry)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -141,7 +148,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var redirectUrl: String?
         
-        public var retry: Bool
+        public var retry: Bool?
         
         public var success: Bool?
         
@@ -164,7 +171,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(aggregatorName: String, redirectUrl: String? = nil, retry: Bool, status: String, success: Bool? = nil) {
+        public init(aggregatorName: String, redirectUrl: String? = nil, retry: Bool? = nil, status: String, success: Bool? = nil) {
             
             self.redirectUrl = redirectUrl
             
@@ -194,9 +201,16 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
-                retry = try container.decode(Bool.self, forKey: .retry)
+                do {
+                    retry = try container.decode(Bool.self, forKey: .retry)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

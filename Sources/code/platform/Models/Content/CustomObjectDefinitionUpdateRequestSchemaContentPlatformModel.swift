@@ -20,7 +20,7 @@ public extension PlatformClient.Content {
         
         public var displayNameKey: String?
         
-        public var fieldDefinitions: [CustomObjectCustomFieldDefinitions]?
+        public var fieldDefinitions: [CustomFieldDefinitionDetailResSchema]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -37,7 +37,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(description: String? = nil, displayNameKey: String? = nil, fieldDefinitions: [CustomObjectCustomFieldDefinitions]? = nil, name: String? = nil, type: String? = nil) {
+        public init(description: String? = nil, displayNameKey: String? = nil, fieldDefinitions: [CustomFieldDefinitionDetailResSchema]? = nil, name: String? = nil, type: String? = nil) {
             
             self.type = type
             
@@ -104,7 +104,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    fieldDefinitions = try container.decode([CustomObjectCustomFieldDefinitions].self, forKey: .fieldDefinitions)
+                    fieldDefinitions = try container.decode([CustomFieldDefinitionDetailResSchema].self, forKey: .fieldDefinitions)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -168,7 +168,7 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var displayNameKey: String?
         
-        public var fieldDefinitions: [CustomObjectCustomFieldDefinitions]?
+        public var fieldDefinitions: [CustomFieldDefinitionDetailResSchema]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -185,7 +185,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(description: String? = nil, displayNameKey: String? = nil, fieldDefinitions: [CustomObjectCustomFieldDefinitions]? = nil, name: String? = nil, type: String? = nil) {
+        public init(description: String? = nil, displayNameKey: String? = nil, fieldDefinitions: [CustomFieldDefinitionDetailResSchema]? = nil, name: String? = nil, type: String? = nil) {
             
             self.type = type
             
@@ -252,7 +252,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    fieldDefinitions = try container.decode([CustomObjectCustomFieldDefinitions].self, forKey: .fieldDefinitions)
+                    fieldDefinitions = try container.decode([CustomFieldDefinitionDetailResSchema].self, forKey: .fieldDefinitions)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

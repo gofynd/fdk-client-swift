@@ -16,13 +16,15 @@ public extension PlatformClient.Lead {
         
         public var status: String?
         
-        public var priority: PriorityEnum?
+        public var priority: String?
         
         public var category: String
         
         public var content: TicketContent
         
         public var customJson: [String: Any]?
+        
+        public var subscribers: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -39,9 +41,11 @@ public extension PlatformClient.Lead {
             
             case customJson = "_custom_json"
             
+            case subscribers = "subscribers"
+            
         }
 
-        public init(category: String, content: TicketContent, createdBy: [String: Any]? = nil, priority: PriorityEnum? = nil, status: String? = nil, customJson: [String: Any]? = nil) {
+        public init(category: String, content: TicketContent, createdBy: [String: Any]? = nil, priority: String? = nil, status: String? = nil, subscribers: [String]? = nil, customJson: [String: Any]? = nil) {
             
             self.createdBy = createdBy
             
@@ -54,6 +58,8 @@ public extension PlatformClient.Lead {
             self.content = content
             
             self.customJson = customJson
+            
+            self.subscribers = subscribers
             
         }
 
@@ -86,7 +92,7 @@ public extension PlatformClient.Lead {
             
             
                 do {
-                    priority = try container.decode(PriorityEnum.self, forKey: .priority)
+                    priority = try container.decode(String.self, forKey: .priority)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,6 +115,18 @@ public extension PlatformClient.Lead {
             
                 do {
                     customJson = try container.decode([String: Any].self, forKey: .customJson)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    subscribers = try container.decode([String].self, forKey: .subscribers)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -151,6 +169,11 @@ public extension PlatformClient.Lead {
             
             
             try? container.encodeIfPresent(customJson, forKey: .customJson)
+            
+            
+            
+            
+            try? container.encodeIfPresent(subscribers, forKey: .subscribers)
             
             
         }
@@ -173,13 +196,15 @@ public extension PlatformClient.ApplicationClient.Lead {
         
         public var status: String?
         
-        public var priority: PriorityEnum?
+        public var priority: String?
         
         public var category: String
         
         public var content: TicketContent
         
         public var customJson: [String: Any]?
+        
+        public var subscribers: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -196,9 +221,11 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             case customJson = "_custom_json"
             
+            case subscribers = "subscribers"
+            
         }
 
-        public init(category: String, content: TicketContent, createdBy: [String: Any]? = nil, priority: PriorityEnum? = nil, status: String? = nil, customJson: [String: Any]? = nil) {
+        public init(category: String, content: TicketContent, createdBy: [String: Any]? = nil, priority: String? = nil, status: String? = nil, subscribers: [String]? = nil, customJson: [String: Any]? = nil) {
             
             self.createdBy = createdBy
             
@@ -211,6 +238,8 @@ public extension PlatformClient.ApplicationClient.Lead {
             self.content = content
             
             self.customJson = customJson
+            
+            self.subscribers = subscribers
             
         }
 
@@ -243,7 +272,7 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
                 do {
-                    priority = try container.decode(PriorityEnum.self, forKey: .priority)
+                    priority = try container.decode(String.self, forKey: .priority)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -266,6 +295,18 @@ public extension PlatformClient.ApplicationClient.Lead {
             
                 do {
                     customJson = try container.decode([String: Any].self, forKey: .customJson)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    subscribers = try container.decode([String].self, forKey: .subscribers)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -308,6 +349,11 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
             try? container.encodeIfPresent(customJson, forKey: .customJson)
+            
+            
+            
+            
+            try? container.encodeIfPresent(subscribers, forKey: .subscribers)
             
             
         }

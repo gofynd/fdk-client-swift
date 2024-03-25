@@ -20,8 +20,6 @@ public extension ApplicationClient.Catalog {
         
         public var cron: [String: Any]?
         
-        public var schedule: [String: Any]?
-        
         public var query: [CollectionQuery]?
         
         public var description: String?
@@ -48,9 +46,19 @@ public extension ApplicationClient.Catalog {
         
         public var priority: Int?
         
-        public var tags: [String]?
+        public var tag: [String]?
         
         public var appId: String?
+        
+        public var published: Bool?
+        
+        public var tags: [String]?
+        
+        public var localeLanguage: [String: Any]?
+        
+        public var seo: [String: Any]?
+        
+        public var schedule: Schedule?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -66,8 +74,6 @@ public extension ApplicationClient.Catalog {
             case banners = "banners"
             
             case cron = "cron"
-            
-            case schedule = "_schedule"
             
             case query = "query"
             
@@ -95,13 +101,23 @@ public extension ApplicationClient.Catalog {
             
             case priority = "priority"
             
-            case tags = "tags"
+            case tag = "tag"
             
             case appId = "app_id"
             
+            case published = "published"
+            
+            case tags = "tags"
+            
+            case localeLanguage = "_locale_language"
+            
+            case seo = "seo"
+            
+            case schedule = "_schedule"
+            
         }
 
-        public init(action: ProductListingAction? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: [String: Any]? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, name: String? = nil, priority: Int? = nil, query: [CollectionQuery]? = nil, slug: String? = nil, sortOn: String? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, schedule: [String: Any]? = nil) {
+        public init(action: ProductListingAction? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: [String: Any]? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, name: String? = nil, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: [String: Any]? = nil, slug: String? = nil, sortOn: String? = nil, tag: [String]? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, localeLanguage: [String: Any]? = nil, schedule: Schedule? = nil) {
             
             self.isActive = isActive
             
@@ -114,8 +130,6 @@ public extension ApplicationClient.Catalog {
             self.banners = banners
             
             self.cron = cron
-            
-            self.schedule = schedule
             
             self.query = query
             
@@ -143,9 +157,19 @@ public extension ApplicationClient.Catalog {
             
             self.priority = priority
             
-            self.tags = tags
+            self.tag = tag
             
             self.appId = appId
+            
+            self.published = published
+            
+            self.tags = tags
+            
+            self.localeLanguage = localeLanguage
+            
+            self.seo = seo
+            
+            self.schedule = schedule
             
         }
 
@@ -215,18 +239,6 @@ public extension ApplicationClient.Catalog {
             
             do {
                 cron = try container.decode([String: Any].self, forKey: .cron)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                schedule = try container.decode([String: Any].self, forKey: .schedule)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -394,7 +406,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                tags = try container.decode([String].self, forKey: .tags)
+                tag = try container.decode([String].self, forKey: .tag)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -407,6 +419,66 @@ public extension ApplicationClient.Catalog {
             
             do {
                 appId = try container.decode(String.self, forKey: .appId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                published = try container.decode(Bool.self, forKey: .published)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                tags = try container.decode([String].self, forKey: .tags)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                localeLanguage = try container.decode([String: Any].self, forKey: .localeLanguage)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                seo = try container.decode([String: Any].self, forKey: .seo)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                schedule = try container.decode(Schedule.self, forKey: .schedule)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -443,10 +515,6 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(cron, forKey: .cron)
-            
-            
-            
-            try? container.encodeIfPresent(schedule, forKey: .schedule)
             
             
             
@@ -502,11 +570,31 @@ public extension ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(tags, forKey: .tags)
+            try? container.encodeIfPresent(tag, forKey: .tag)
             
             
             
             try? container.encodeIfPresent(appId, forKey: .appId)
+            
+            
+            
+            try? container.encodeIfPresent(published, forKey: .published)
+            
+            
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            try? container.encodeIfPresent(localeLanguage, forKey: .localeLanguage)
+            
+            
+            
+            try? container.encodeIfPresent(seo, forKey: .seo)
+            
+            
+            
+            try? container.encodeIfPresent(schedule, forKey: .schedule)
             
             
         }
