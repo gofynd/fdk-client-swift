@@ -12,6 +12,8 @@ public extension PlatformClient.Serviceability {
     class PackageMaterialResponse: Codable {
         
         
+        public var companyId: Int?
+        
         public var name: String
         
         public var id: String?
@@ -42,6 +44,8 @@ public extension PlatformClient.Serviceability {
         
         public var trackInventory: Bool?
         
+        public var isActive: Bool?
+        
         public var status: String
         
         public var maxWeight: Double?
@@ -50,8 +54,12 @@ public extension PlatformClient.Serviceability {
         
         public var autoCalculate: Bool?
         
+        public var mpStores: [PackageMpStores]?
+        
 
         public enum CodingKeys: String, CodingKey {
+            
+            case companyId = "company_id"
             
             case name = "name"
             
@@ -83,6 +91,8 @@ public extension PlatformClient.Serviceability {
             
             case trackInventory = "track_inventory"
             
+            case isActive = "is_active"
+            
             case status = "status"
             
             case maxWeight = "max_weight"
@@ -91,9 +101,13 @@ public extension PlatformClient.Serviceability {
             
             case autoCalculate = "auto_calculate"
             
+            case mpStores = "mp_stores"
+            
         }
 
-        public init(autoCalculate: Bool? = nil, channels: [Channel], errorRate: Double, height: Double, id: String? = nil, itemId: Int? = nil, length: Double, maxWeight: Double? = nil, media: [String]? = nil, name: String, packageType: String, packageVolWeight: Double? = nil, rules: [PackageMaterialRule]? = nil, size: String, status: String, storeIds: [Int], trackInventory: Bool? = nil, weight: Double, width: Double) {
+        public init(autoCalculate: Bool? = nil, channels: [Channel], companyId: Int? = nil, errorRate: Double, height: Double, id: String? = nil, isActive: Bool? = nil, itemId: Int? = nil, length: Double, maxWeight: Double? = nil, media: [String]? = nil, mpStores: [PackageMpStores]? = nil, name: String, packageType: String, packageVolWeight: Double? = nil, rules: [PackageMaterialRule]? = nil, size: String, status: String, storeIds: [Int], trackInventory: Bool? = nil, weight: Double, width: Double) {
+            
+            self.companyId = companyId
             
             self.name = name
             
@@ -125,6 +139,8 @@ public extension PlatformClient.Serviceability {
             
             self.trackInventory = trackInventory
             
+            self.isActive = isActive
+            
             self.status = status
             
             self.maxWeight = maxWeight
@@ -133,10 +149,24 @@ public extension PlatformClient.Serviceability {
             
             self.autoCalculate = autoCalculate
             
+            self.mpStores = mpStores
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    companyId = try container.decode(Int.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 name = try container.decode(String.self, forKey: .name)
@@ -249,6 +279,18 @@ public extension PlatformClient.Serviceability {
                 
             
             
+                do {
+                    isActive = try container.decode(Bool.self, forKey: .isActive)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 status = try container.decode(String.self, forKey: .status)
                 
             
@@ -289,10 +331,27 @@ public extension PlatformClient.Serviceability {
                 }
                 
             
+            
+                do {
+                    mpStores = try container.decode([PackageMpStores].self, forKey: .mpStores)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
             
             
             
@@ -371,6 +430,11 @@ public extension PlatformClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            
             try? container.encodeIfPresent(status, forKey: .status)
             
             
@@ -387,6 +451,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(autoCalculate, forKey: .autoCalculate)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mpStores, forKey: .mpStores)
             
             
         }
@@ -405,6 +474,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class PackageMaterialResponse: Codable {
         
         
+        public var companyId: Int?
+        
         public var name: String
         
         public var id: String?
@@ -435,6 +506,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var trackInventory: Bool?
         
+        public var isActive: Bool?
+        
         public var status: String
         
         public var maxWeight: Double?
@@ -443,8 +516,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var autoCalculate: Bool?
         
+        public var mpStores: [PackageMpStores]?
+        
 
         public enum CodingKeys: String, CodingKey {
+            
+            case companyId = "company_id"
             
             case name = "name"
             
@@ -476,6 +553,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case trackInventory = "track_inventory"
             
+            case isActive = "is_active"
+            
             case status = "status"
             
             case maxWeight = "max_weight"
@@ -484,9 +563,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case autoCalculate = "auto_calculate"
             
+            case mpStores = "mp_stores"
+            
         }
 
-        public init(autoCalculate: Bool? = nil, channels: [Channel], errorRate: Double, height: Double, id: String? = nil, itemId: Int? = nil, length: Double, maxWeight: Double? = nil, media: [String]? = nil, name: String, packageType: String, packageVolWeight: Double? = nil, rules: [PackageMaterialRule]? = nil, size: String, status: String, storeIds: [Int], trackInventory: Bool? = nil, weight: Double, width: Double) {
+        public init(autoCalculate: Bool? = nil, channels: [Channel], companyId: Int? = nil, errorRate: Double, height: Double, id: String? = nil, isActive: Bool? = nil, itemId: Int? = nil, length: Double, maxWeight: Double? = nil, media: [String]? = nil, mpStores: [PackageMpStores]? = nil, name: String, packageType: String, packageVolWeight: Double? = nil, rules: [PackageMaterialRule]? = nil, size: String, status: String, storeIds: [Int], trackInventory: Bool? = nil, weight: Double, width: Double) {
+            
+            self.companyId = companyId
             
             self.name = name
             
@@ -518,6 +601,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             self.trackInventory = trackInventory
             
+            self.isActive = isActive
+            
             self.status = status
             
             self.maxWeight = maxWeight
@@ -526,10 +611,24 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             self.autoCalculate = autoCalculate
             
+            self.mpStores = mpStores
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    companyId = try container.decode(Int.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 name = try container.decode(String.self, forKey: .name)
@@ -642,6 +741,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
+                do {
+                    isActive = try container.decode(Bool.self, forKey: .isActive)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 status = try container.decode(String.self, forKey: .status)
                 
             
@@ -682,10 +793,27 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 }
                 
             
+            
+                do {
+                    mpStores = try container.decode([PackageMpStores].self, forKey: .mpStores)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
             
             
             
@@ -764,6 +892,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            
             try? container.encodeIfPresent(status, forKey: .status)
             
             
@@ -780,6 +913,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(autoCalculate, forKey: .autoCalculate)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mpStores, forKey: .mpStores)
             
             
         }

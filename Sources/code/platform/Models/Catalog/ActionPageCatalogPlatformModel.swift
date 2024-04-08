@@ -12,22 +12,34 @@ public extension PlatformClient.Catalog {
     class ActionPage: Codable {
         
         
-        public var query: ActionProperties?
+        public var params: [String: [String]]?
         
-        public var type: String?
+        public var query: [String: [String]]?
+        
+        public var url: String?
+        
+        public var type: PageType
         
 
         public enum CodingKeys: String, CodingKey {
             
+            case params = "params"
+            
             case query = "query"
+            
+            case url = "url"
             
             case type = "type"
             
         }
 
-        public init(query: ActionProperties? = nil, type: String? = nil) {
+        public init(params: [String: [String]]? = nil, query: [String: [String]]? = nil, type: PageType, url: String? = nil) {
+            
+            self.params = params
             
             self.query = query
+            
+            self.url = url
             
             self.type = type
             
@@ -38,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    query = try container.decode(ActionProperties.self, forKey: .query)
+                    params = try container.decode([String: [String]].self, forKey: .params)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +62,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    type = try container.decode(String.self, forKey: .type)
+                    query = try container.decode([String: [String]].self, forKey: .query)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,6 +72,23 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    url = try container.decode(String.self, forKey: .url)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                type = try container.decode(PageType.self, forKey: .type)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -67,7 +96,17 @@ public extension PlatformClient.Catalog {
             
             
             
+            try? container.encodeIfPresent(params, forKey: .params)
+            
+            
+            
+            
             try? container.encodeIfPresent(query, forKey: .query)
+            
+            
+            
+            
+            try? container.encodeIfPresent(url, forKey: .url)
             
             
             
@@ -91,22 +130,34 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ActionPage: Codable {
         
         
-        public var query: ActionProperties?
+        public var params: [String: [String]]?
         
-        public var type: String?
+        public var query: [String: [String]]?
+        
+        public var url: String?
+        
+        public var type: PageType
         
 
         public enum CodingKeys: String, CodingKey {
             
+            case params = "params"
+            
             case query = "query"
+            
+            case url = "url"
             
             case type = "type"
             
         }
 
-        public init(query: ActionProperties? = nil, type: String? = nil) {
+        public init(params: [String: [String]]? = nil, query: [String: [String]]? = nil, type: PageType, url: String? = nil) {
+            
+            self.params = params
             
             self.query = query
+            
+            self.url = url
             
             self.type = type
             
@@ -117,7 +168,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    query = try container.decode(ActionProperties.self, forKey: .query)
+                    params = try container.decode([String: [String]].self, forKey: .params)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    type = try container.decode(String.self, forKey: .type)
+                    query = try container.decode([String: [String]].self, forKey: .query)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -139,6 +190,23 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    url = try container.decode(String.self, forKey: .url)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                type = try container.decode(PageType.self, forKey: .type)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -146,7 +214,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
+            try? container.encodeIfPresent(params, forKey: .params)
+            
+            
+            
+            
             try? container.encodeIfPresent(query, forKey: .query)
+            
+            
+            
+            
+            try? container.encodeIfPresent(url, forKey: .url)
             
             
             

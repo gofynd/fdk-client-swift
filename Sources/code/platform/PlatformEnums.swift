@@ -12,11 +12,47 @@ import Foundation
 
 
 
+public extension PlatformClient.Catalog {
+    
+    
+    
+}
+
+
+
+public extension PlatformClient.ApplicationClient.Catalog {
+    
+    
+    
+}
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+public extension PlatformClient.Content {
+    
+    
+    
+}
+
+
+
+public extension PlatformClient.ApplicationClient.Content {
+    
+    
+    
+}
 
 
 
@@ -143,6 +179,24 @@ public extension PlatformClient.ApplicationClient.Lead {
 
 
 
+
+
+
+
+
+public extension PlatformClient.Theme {
+    
+    
+    
+}
+
+
+
+public extension PlatformClient.ApplicationClient.Theme {
+    
+    
+    
+}
 
 
 

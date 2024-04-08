@@ -12,14 +12,18 @@ public extension PlatformClient.Serviceability {
     class CommonError: Codable {
         
         
-        public var statusCode: String?
+        public var batchId: String?
         
-        public var error: [String: Any]?
+        public var statusCode: Int?
         
-        public var success: String?
+        public var error: [ErrorResponse]?
+        
+        public var success: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case batchId = "batch_id"
             
             case statusCode = "status_code"
             
@@ -29,7 +33,9 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(error: [String: Any]? = nil, statusCode: String? = nil, success: String? = nil) {
+        public init(batchId: String? = nil, error: [ErrorResponse]? = nil, statusCode: Int? = nil, success: Bool? = nil) {
+            
+            self.batchId = batchId
             
             self.statusCode = statusCode
             
@@ -44,7 +50,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    statusCode = try container.decode(String.self, forKey: .statusCode)
+                    batchId = try container.decode(String.self, forKey: .batchId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +62,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    error = try container.decode([String: Any].self, forKey: .error)
+                    statusCode = try container.decode(Int.self, forKey: .statusCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +74,19 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    success = try container.decode(String.self, forKey: .success)
+                    error = try container.decode([ErrorResponse].self, forKey: .error)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    success = try container.decode(Bool.self, forKey: .success)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -82,6 +100,11 @@ public extension PlatformClient.Serviceability {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(batchId, forKey: .batchId)
+            
             
             
             
@@ -114,14 +137,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class CommonError: Codable {
         
         
-        public var statusCode: String?
+        public var batchId: String?
         
-        public var error: [String: Any]?
+        public var statusCode: Int?
         
-        public var success: String?
+        public var error: [ErrorResponse]?
+        
+        public var success: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case batchId = "batch_id"
             
             case statusCode = "status_code"
             
@@ -131,7 +158,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(error: [String: Any]? = nil, statusCode: String? = nil, success: String? = nil) {
+        public init(batchId: String? = nil, error: [ErrorResponse]? = nil, statusCode: Int? = nil, success: Bool? = nil) {
+            
+            self.batchId = batchId
             
             self.statusCode = statusCode
             
@@ -146,7 +175,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    statusCode = try container.decode(String.self, forKey: .statusCode)
+                    batchId = try container.decode(String.self, forKey: .batchId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,7 +187,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    error = try container.decode([String: Any].self, forKey: .error)
+                    statusCode = try container.decode(Int.self, forKey: .statusCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -170,7 +199,19 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    success = try container.decode(String.self, forKey: .success)
+                    error = try container.decode([ErrorResponse].self, forKey: .error)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    success = try container.decode(Bool.self, forKey: .success)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -184,6 +225,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(batchId, forKey: .batchId)
+            
             
             
             

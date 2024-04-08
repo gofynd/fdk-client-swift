@@ -12,10 +12,6 @@ public extension ApplicationClient.User {
         
         public var userId: String?
         
-        public var passwordLastModified: String?
-        
-        public var passwordHistory: [UserPasswordHistory]?
-        
         public var firstName: String?
         
         public var meta: [String: Any]?
@@ -44,16 +40,16 @@ public extension ApplicationClient.User {
         
         public var updatedAt: String?
         
+        public var externalId: String?
+        
+        public var rrId: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case applicationId = "application_id"
             
             case userId = "user_id"
-            
-            case passwordLastModified = "password_last_modified"
-            
-            case passwordHistory = "password_history"
             
             case firstName = "first_name"
             
@@ -83,17 +79,17 @@ public extension ApplicationClient.User {
             
             case updatedAt = "updated_at"
             
+            case externalId = "external_id"
+            
+            case rrId = "rr_id"
+            
         }
 
-        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, createdAt: String? = nil, dob: String? = nil, emails: [Email]? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, passwordHistory: [UserPasswordHistory]? = nil, passwordLastModified: String? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
+        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, createdAt: String? = nil, dob: String? = nil, emails: [Email]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, rrId: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
             
             self.applicationId = applicationId
             
             self.userId = userId
-            
-            self.passwordLastModified = passwordLastModified
-            
-            self.passwordHistory = passwordHistory
             
             self.firstName = firstName
             
@@ -123,6 +119,10 @@ public extension ApplicationClient.User {
             
             self.updatedAt = updatedAt
             
+            self.externalId = externalId
+            
+            self.rrId = rrId
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -143,30 +143,6 @@ public extension ApplicationClient.User {
             
             do {
                 userId = try container.decode(String.self, forKey: .userId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                passwordLastModified = try container.decode(String.self, forKey: .passwordLastModified)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                passwordHistory = try container.decode([UserPasswordHistory].self, forKey: .passwordHistory)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -344,6 +320,30 @@ public extension ApplicationClient.User {
             }
             
             
+            
+            do {
+                externalId = try container.decode(String.self, forKey: .externalId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                rrId = try container.decode(String.self, forKey: .rrId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -355,14 +355,6 @@ public extension ApplicationClient.User {
             
             
             try? container.encodeIfPresent(userId, forKey: .userId)
-            
-            
-            
-            try? container.encodeIfPresent(passwordLastModified, forKey: .passwordLastModified)
-            
-            
-            
-            try? container.encodeIfPresent(passwordHistory, forKey: .passwordHistory)
             
             
             
@@ -419,6 +411,14 @@ public extension ApplicationClient.User {
             
             
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
+            
+            
+            try? container.encodeIfPresent(externalId, forKey: .externalId)
+            
+            
+            
+            try? container.encodeIfPresent(rrId, forKey: .rrId)
             
             
         }

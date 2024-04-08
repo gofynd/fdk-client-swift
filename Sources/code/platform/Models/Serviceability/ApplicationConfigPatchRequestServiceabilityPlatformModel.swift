@@ -12,34 +12,28 @@ public extension PlatformClient.Serviceability {
     class ApplicationConfigPatchRequest: Codable {
         
         
-        public var buyboxConfig: BuyboxConfig?
+        public var courierPartnerConfig: CourierPartnerConfig?
         
         public var buyboxRuleConfig: BuyboxRuleConfig?
-        
-        public var promiseTypes: [PromiseType]?
         
         public var promiseConfig: PromiseConfig?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case buyboxConfig = "buybox_config"
+            case courierPartnerConfig = "courier_partner_config"
             
             case buyboxRuleConfig = "buybox_rule_config"
-            
-            case promiseTypes = "promise_types"
             
             case promiseConfig = "promise_config"
             
         }
 
-        public init(buyboxConfig: BuyboxConfig? = nil, buyboxRuleConfig: BuyboxRuleConfig? = nil, promiseConfig: PromiseConfig? = nil, promiseTypes: [PromiseType]? = nil) {
+        public init(buyboxRuleConfig: BuyboxRuleConfig? = nil, courierPartnerConfig: CourierPartnerConfig? = nil, promiseConfig: PromiseConfig? = nil) {
             
-            self.buyboxConfig = buyboxConfig
+            self.courierPartnerConfig = courierPartnerConfig
             
             self.buyboxRuleConfig = buyboxRuleConfig
-            
-            self.promiseTypes = promiseTypes
             
             self.promiseConfig = promiseConfig
             
@@ -50,7 +44,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    buyboxConfig = try container.decode(BuyboxConfig.self, forKey: .buyboxConfig)
+                    courierPartnerConfig = try container.decode(CourierPartnerConfig.self, forKey: .courierPartnerConfig)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,18 +57,6 @@ public extension PlatformClient.Serviceability {
             
                 do {
                     buyboxRuleConfig = try container.decode(BuyboxRuleConfig.self, forKey: .buyboxRuleConfig)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    promiseTypes = try container.decode([PromiseType].self, forKey: .promiseTypes)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,17 +85,12 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(buyboxConfig, forKey: .buyboxConfig)
+            try? container.encodeIfPresent(courierPartnerConfig, forKey: .courierPartnerConfig)
             
             
             
             
             try? container.encodeIfPresent(buyboxRuleConfig, forKey: .buyboxRuleConfig)
-            
-            
-            
-            
-            try? container.encodeIfPresent(promiseTypes, forKey: .promiseTypes)
             
             
             
@@ -137,34 +114,28 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ApplicationConfigPatchRequest: Codable {
         
         
-        public var buyboxConfig: BuyboxConfig?
+        public var courierPartnerConfig: CourierPartnerConfig?
         
         public var buyboxRuleConfig: BuyboxRuleConfig?
-        
-        public var promiseTypes: [PromiseType]?
         
         public var promiseConfig: PromiseConfig?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case buyboxConfig = "buybox_config"
+            case courierPartnerConfig = "courier_partner_config"
             
             case buyboxRuleConfig = "buybox_rule_config"
-            
-            case promiseTypes = "promise_types"
             
             case promiseConfig = "promise_config"
             
         }
 
-        public init(buyboxConfig: BuyboxConfig? = nil, buyboxRuleConfig: BuyboxRuleConfig? = nil, promiseConfig: PromiseConfig? = nil, promiseTypes: [PromiseType]? = nil) {
+        public init(buyboxRuleConfig: BuyboxRuleConfig? = nil, courierPartnerConfig: CourierPartnerConfig? = nil, promiseConfig: PromiseConfig? = nil) {
             
-            self.buyboxConfig = buyboxConfig
+            self.courierPartnerConfig = courierPartnerConfig
             
             self.buyboxRuleConfig = buyboxRuleConfig
-            
-            self.promiseTypes = promiseTypes
             
             self.promiseConfig = promiseConfig
             
@@ -175,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    buyboxConfig = try container.decode(BuyboxConfig.self, forKey: .buyboxConfig)
+                    courierPartnerConfig = try container.decode(CourierPartnerConfig.self, forKey: .courierPartnerConfig)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -188,18 +159,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
                 do {
                     buyboxRuleConfig = try container.decode(BuyboxRuleConfig.self, forKey: .buyboxRuleConfig)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    promiseTypes = try container.decode([PromiseType].self, forKey: .promiseTypes)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -228,17 +187,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(buyboxConfig, forKey: .buyboxConfig)
+            try? container.encodeIfPresent(courierPartnerConfig, forKey: .courierPartnerConfig)
             
             
             
             
             try? container.encodeIfPresent(buyboxRuleConfig, forKey: .buyboxRuleConfig)
-            
-            
-            
-            
-            try? container.encodeIfPresent(promiseTypes, forKey: .promiseTypes)
             
             
             

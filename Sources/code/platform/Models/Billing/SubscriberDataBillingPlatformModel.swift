@@ -14,9 +14,11 @@ public extension PlatformClient.Billing {
         
         public var pgUserExists: Bool?
         
-        public var id: String?
+        public var id: [String: Any]?
         
         public var pgCustomerId: String?
+        
+        public var defaultPaymentMethod: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -27,15 +29,19 @@ public extension PlatformClient.Billing {
             
             case pgCustomerId = "pg_customer_id"
             
+            case defaultPaymentMethod = "default_payment_method"
+            
         }
 
-        public init(id: String? = nil, pgCustomerId: String? = nil, pgUserExists: Bool? = nil) {
+        public init(defaultPaymentMethod: String? = nil, id: [String: Any]? = nil, pgCustomerId: String? = nil, pgUserExists: Bool? = nil) {
             
             self.pgUserExists = pgUserExists
             
             self.id = id
             
             self.pgCustomerId = pgCustomerId
+            
+            self.defaultPaymentMethod = defaultPaymentMethod
             
         }
 
@@ -56,7 +62,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    id = try container.decode(String.self, forKey: .id)
+                    id = try container.decode([String: Any].self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,6 +75,18 @@ public extension PlatformClient.Billing {
             
                 do {
                     pgCustomerId = try container.decode(String.self, forKey: .pgCustomerId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    defaultPaymentMethod = try container.decode(String.self, forKey: .defaultPaymentMethod)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,6 +114,11 @@ public extension PlatformClient.Billing {
             
             
             try? container.encodeIfPresent(pgCustomerId, forKey: .pgCustomerId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(defaultPaymentMethod, forKey: .defaultPaymentMethod)
             
             
         }

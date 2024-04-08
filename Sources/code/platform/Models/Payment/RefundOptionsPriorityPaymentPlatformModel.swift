@@ -16,6 +16,10 @@ public extension PlatformClient.Payment {
         
         public var items: [RefundItem]?
         
+        public var paymentGateways: [String]?
+        
+        public var offlineRefundCollectType: [String]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,13 +27,21 @@ public extension PlatformClient.Payment {
             
             case items = "items"
             
+            case paymentGateways = "payment_gateways"
+            
+            case offlineRefundCollectType = "offline_refund_collect_type"
+            
         }
 
-        public init(items: [RefundItem]? = nil, paymentModes: [String]? = nil) {
+        public init(items: [RefundItem]? = nil, offlineRefundCollectType: [String]? = nil, paymentGateways: [String]? = nil, paymentModes: [String]? = nil) {
             
             self.paymentModes = paymentModes
             
             self.items = items
+            
+            self.paymentGateways = paymentGateways
+            
+            self.offlineRefundCollectType = offlineRefundCollectType
             
         }
 
@@ -60,6 +72,30 @@ public extension PlatformClient.Payment {
                 }
                 
             
+            
+                do {
+                    paymentGateways = try container.decode([String].self, forKey: .paymentGateways)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    offlineRefundCollectType = try container.decode([String].self, forKey: .offlineRefundCollectType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -73,6 +109,16 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(items, forKey: .items)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentGateways, forKey: .paymentGateways)
+            
+            
+            
+            
+            try? container.encodeIfPresent(offlineRefundCollectType, forKey: .offlineRefundCollectType)
             
             
         }
@@ -95,6 +141,10 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var items: [RefundItem]?
         
+        public var paymentGateways: [String]?
+        
+        public var offlineRefundCollectType: [String]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -102,13 +152,21 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case items = "items"
             
+            case paymentGateways = "payment_gateways"
+            
+            case offlineRefundCollectType = "offline_refund_collect_type"
+            
         }
 
-        public init(items: [RefundItem]? = nil, paymentModes: [String]? = nil) {
+        public init(items: [RefundItem]? = nil, offlineRefundCollectType: [String]? = nil, paymentGateways: [String]? = nil, paymentModes: [String]? = nil) {
             
             self.paymentModes = paymentModes
             
             self.items = items
+            
+            self.paymentGateways = paymentGateways
+            
+            self.offlineRefundCollectType = offlineRefundCollectType
             
         }
 
@@ -139,6 +197,30 @@ public extension PlatformClient.ApplicationClient.Payment {
                 }
                 
             
+            
+                do {
+                    paymentGateways = try container.decode([String].self, forKey: .paymentGateways)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    offlineRefundCollectType = try container.decode([String].self, forKey: .offlineRefundCollectType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -152,6 +234,16 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(items, forKey: .items)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentGateways, forKey: .paymentGateways)
+            
+            
+            
+            
+            try? container.encodeIfPresent(offlineRefundCollectType, forKey: .offlineRefundCollectType)
             
             
         }

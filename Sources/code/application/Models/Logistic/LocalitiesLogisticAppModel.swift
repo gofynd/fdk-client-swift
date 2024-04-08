@@ -16,7 +16,13 @@ public extension ApplicationClient.Logistic {
         
         public var parentIds: [String]?
         
+        public var meta: [String: Any]?
+        
         public var type: String?
+        
+        public var latLong: PincodeLatLongData?
+        
+        public var parentUid: String?
         
         public var localities: [LocalityParent]?
         
@@ -31,13 +37,19 @@ public extension ApplicationClient.Logistic {
             
             case parentIds = "parent_ids"
             
+            case meta = "meta"
+            
             case type = "type"
+            
+            case latLong = "lat_long"
+            
+            case parentUid = "parent_uid"
             
             case localities = "localities"
             
         }
 
-        public init(displayName: String? = nil, id: String? = nil, localities: [LocalityParent]? = nil, name: String? = nil, parentIds: [String]? = nil, type: String? = nil) {
+        public init(displayName: String? = nil, id: String? = nil, latLong: PincodeLatLongData? = nil, localities: [LocalityParent]? = nil, meta: [String: Any]? = nil, name: String? = nil, parentIds: [String]? = nil, parentUid: String? = nil, type: String? = nil) {
             
             self.id = id
             
@@ -47,7 +59,13 @@ public extension ApplicationClient.Logistic {
             
             self.parentIds = parentIds
             
+            self.meta = meta
+            
             self.type = type
+            
+            self.latLong = latLong
+            
+            self.parentUid = parentUid
             
             self.localities = localities
             
@@ -106,7 +124,43 @@ public extension ApplicationClient.Logistic {
             
             
             do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 type = try container.decode(String.self, forKey: .type)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                latLong = try container.decode(PincodeLatLongData.self, forKey: .latLong)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                parentUid = try container.decode(String.self, forKey: .parentUid)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +204,19 @@ public extension ApplicationClient.Logistic {
             
             
             
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            try? container.encodeIfPresent(latLong, forKey: .latLong)
+            
+            
+            
+            try? container.encodeIfPresent(parentUid, forKey: .parentUid)
             
             
             

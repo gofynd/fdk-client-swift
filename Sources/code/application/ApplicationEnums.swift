@@ -12,6 +12,12 @@ import Foundation
 
 
 
+public extension ApplicationClient.Content {
+    
+    
+    
+}
+
 
 
 
@@ -73,6 +79,14 @@ public extension ApplicationClient.Lead {
 
 
 
+
+
+
+public extension ApplicationClient.Theme {
+    
+    
+    
+}
 
 
 

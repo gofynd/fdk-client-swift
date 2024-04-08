@@ -30,6 +30,30 @@ public extension PublicClient.Billing {
         
         public var modifiedAt: String?
         
+        public var v: Int?
+        
+        public var billingScheme: String?
+        
+        public var billType: String?
+        
+        public var priceUiType: String?
+        
+        public var recurring: PlanRecurring?
+        
+        public var transformQuantity: TransformQuantity?
+        
+        public var freeTier: FreeTier?
+        
+        public var currency: String?
+        
+        public var unitAmount: Int?
+        
+        public var quantity: Int?
+        
+        public var priceType: String?
+        
+        public var tiers: [[String: Any]]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -53,9 +77,33 @@ public extension PublicClient.Billing {
             
             case modifiedAt = "modified_at"
             
+            case v = "__v"
+            
+            case billingScheme = "billing_scheme"
+            
+            case billType = "bill_type"
+            
+            case priceUiType = "price_ui_type"
+            
+            case recurring = "recurring"
+            
+            case transformQuantity = "transform_quantity"
+            
+            case freeTier = "free_tier"
+            
+            case currency = "currency"
+            
+            case unitAmount = "unit_amount"
+            
+            case quantity = "quantity"
+            
+            case priceType = "price_type"
+            
+            case tiers = "tiers"
+            
         }
 
-        public init(componentId: String? = nil, createdAt: String? = nil, displayText: String? = nil, featureConfig: FeatureConfig? = nil, isActive: Bool? = nil, isDefault: Bool? = nil, modifiedAt: String? = nil, processingType: String? = nil, tags: [String]? = nil, id: String? = nil) {
+        public init(billingScheme: String? = nil, billType: String? = nil, componentId: String? = nil, createdAt: String? = nil, currency: String? = nil, displayText: String? = nil, featureConfig: FeatureConfig? = nil, freeTier: FreeTier? = nil, isActive: Bool? = nil, isDefault: Bool? = nil, modifiedAt: String? = nil, priceType: String? = nil, priceUiType: String? = nil, processingType: String? = nil, quantity: Int? = nil, recurring: PlanRecurring? = nil, tags: [String]? = nil, tiers: [[String: Any]]? = nil, transformQuantity: TransformQuantity? = nil, unitAmount: Int? = nil, id: String? = nil, v: Int? = nil) {
             
             self.isActive = isActive
             
@@ -76,6 +124,30 @@ public extension PublicClient.Billing {
             self.createdAt = createdAt
             
             self.modifiedAt = modifiedAt
+            
+            self.v = v
+            
+            self.billingScheme = billingScheme
+            
+            self.billType = billType
+            
+            self.priceUiType = priceUiType
+            
+            self.recurring = recurring
+            
+            self.transformQuantity = transformQuantity
+            
+            self.freeTier = freeTier
+            
+            self.currency = currency
+            
+            self.unitAmount = unitAmount
+            
+            self.quantity = quantity
+            
+            self.priceType = priceType
+            
+            self.tiers = tiers
             
         }
 
@@ -202,6 +274,150 @@ public extension PublicClient.Billing {
                 }
                 
             
+            
+                do {
+                    v = try container.decode(Int.self, forKey: .v)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    billingScheme = try container.decode(String.self, forKey: .billingScheme)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    billType = try container.decode(String.self, forKey: .billType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    priceUiType = try container.decode(String.self, forKey: .priceUiType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    recurring = try container.decode(PlanRecurring.self, forKey: .recurring)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    transformQuantity = try container.decode(TransformQuantity.self, forKey: .transformQuantity)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    freeTier = try container.decode(FreeTier.self, forKey: .freeTier)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    currency = try container.decode(String.self, forKey: .currency)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    unitAmount = try container.decode(Int.self, forKey: .unitAmount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    quantity = try container.decode(Int.self, forKey: .quantity)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    priceType = try container.decode(String.self, forKey: .priceType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    tiers = try container.decode([[String: Any]].self, forKey: .tiers)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -245,6 +461,54 @@ public extension PublicClient.Billing {
             
             
             try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
+            
+            
+            
+            try? container.encodeIfPresent(v, forKey: .v)
+            
+            
+            
+            try? container.encodeIfPresent(billingScheme, forKey: .billingScheme)
+            
+            
+            
+            try? container.encodeIfPresent(billType, forKey: .billType)
+            
+            
+            
+            try? container.encodeIfPresent(priceUiType, forKey: .priceUiType)
+            
+            
+            
+            try? container.encodeIfPresent(recurring, forKey: .recurring)
+            
+            
+            
+            try? container.encodeIfPresent(transformQuantity, forKey: .transformQuantity)
+            
+            
+            
+            try? container.encodeIfPresent(freeTier, forKey: .freeTier)
+            
+            
+            
+            try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            try? container.encodeIfPresent(unitAmount, forKey: .unitAmount)
+            
+            
+            
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            
+            
+            
+            try? container.encodeIfPresent(priceType, forKey: .priceType)
+            
+            
+            
+            try? container.encodeIfPresent(tiers, forKey: .tiers)
             
             
         }

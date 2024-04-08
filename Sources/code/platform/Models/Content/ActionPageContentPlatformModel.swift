@@ -18,7 +18,7 @@ public extension PlatformClient.Content {
         
         public var url: String?
         
-        public var type: String?
+        public var type: PageType
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,7 +33,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(params: [String: [String]]? = nil, query: [String: [String]]? = nil, type: String? = nil, url: String? = nil) {
+        public init(params: [String: [String]]? = nil, query: [String: [String]]? = nil, type: PageType, url: String? = nil) {
             
             self.params = params
             
@@ -85,16 +85,9 @@ public extension PlatformClient.Content {
                 
             
             
-                do {
-                    type = try container.decode(String.self, forKey: .type)
+                type = try container.decode(PageType.self, forKey: .type)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -143,7 +136,7 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var url: String?
         
-        public var type: String?
+        public var type: PageType
         
 
         public enum CodingKeys: String, CodingKey {
@@ -158,7 +151,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(params: [String: [String]]? = nil, query: [String: [String]]? = nil, type: String? = nil, url: String? = nil) {
+        public init(params: [String: [String]]? = nil, query: [String: [String]]? = nil, type: PageType, url: String? = nil) {
             
             self.params = params
             
@@ -210,16 +203,9 @@ public extension PlatformClient.ApplicationClient.Content {
                 
             
             
-                do {
-                    type = try container.decode(String.self, forKey: .type)
+                type = try container.decode(PageType.self, forKey: .type)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         

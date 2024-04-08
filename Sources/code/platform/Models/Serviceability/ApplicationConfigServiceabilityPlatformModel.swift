@@ -24,8 +24,6 @@ public extension PlatformClient.Serviceability {
         
         public var zones: ZoneConfig?
         
-        public var buyboxConfig: BuyboxConfig?
-        
         public var buyboxRuleConfig: BuyboxRuleConfig?
         
         public var promiseTypes: [PromiseType]?
@@ -47,8 +45,6 @@ public extension PlatformClient.Serviceability {
             
             case zones = "zones"
             
-            case buyboxConfig = "buybox_config"
-            
             case buyboxRuleConfig = "buybox_rule_config"
             
             case promiseTypes = "promise_types"
@@ -57,7 +53,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(applicationId: String? = nil, buyboxConfig: BuyboxConfig? = nil, buyboxRuleConfig: BuyboxRuleConfig? = nil, companyId: Int? = nil, manualPriority: [String]? = nil, promiseConfig: PromiseConfig? = nil, promiseTypes: [PromiseType]? = nil, ruleIds: [String]? = nil, sort: [String]? = nil, zones: ZoneConfig? = nil) {
+        public init(applicationId: String? = nil, buyboxRuleConfig: BuyboxRuleConfig? = nil, companyId: Int? = nil, manualPriority: [String]? = nil, promiseConfig: PromiseConfig? = nil, promiseTypes: [PromiseType]? = nil, ruleIds: [String]? = nil, sort: [String]? = nil, zones: ZoneConfig? = nil) {
             
             self.ruleIds = ruleIds
             
@@ -70,8 +66,6 @@ public extension PlatformClient.Serviceability {
             self.manualPriority = manualPriority
             
             self.zones = zones
-            
-            self.buyboxConfig = buyboxConfig
             
             self.buyboxRuleConfig = buyboxRuleConfig
             
@@ -158,18 +152,6 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    buyboxConfig = try container.decode(BuyboxConfig.self, forKey: .buyboxConfig)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     buyboxRuleConfig = try container.decode(BuyboxRuleConfig.self, forKey: .buyboxRuleConfig)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -237,11 +219,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(zones, forKey: .zones)
-            
-            
-            
-            
-            try? container.encodeIfPresent(buyboxConfig, forKey: .buyboxConfig)
             
             
             
@@ -287,8 +264,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var zones: ZoneConfig?
         
-        public var buyboxConfig: BuyboxConfig?
-        
         public var buyboxRuleConfig: BuyboxRuleConfig?
         
         public var promiseTypes: [PromiseType]?
@@ -310,8 +285,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case zones = "zones"
             
-            case buyboxConfig = "buybox_config"
-            
             case buyboxRuleConfig = "buybox_rule_config"
             
             case promiseTypes = "promise_types"
@@ -320,7 +293,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(applicationId: String? = nil, buyboxConfig: BuyboxConfig? = nil, buyboxRuleConfig: BuyboxRuleConfig? = nil, companyId: Int? = nil, manualPriority: [String]? = nil, promiseConfig: PromiseConfig? = nil, promiseTypes: [PromiseType]? = nil, ruleIds: [String]? = nil, sort: [String]? = nil, zones: ZoneConfig? = nil) {
+        public init(applicationId: String? = nil, buyboxRuleConfig: BuyboxRuleConfig? = nil, companyId: Int? = nil, manualPriority: [String]? = nil, promiseConfig: PromiseConfig? = nil, promiseTypes: [PromiseType]? = nil, ruleIds: [String]? = nil, sort: [String]? = nil, zones: ZoneConfig? = nil) {
             
             self.ruleIds = ruleIds
             
@@ -333,8 +306,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.manualPriority = manualPriority
             
             self.zones = zones
-            
-            self.buyboxConfig = buyboxConfig
             
             self.buyboxRuleConfig = buyboxRuleConfig
             
@@ -421,18 +392,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    buyboxConfig = try container.decode(BuyboxConfig.self, forKey: .buyboxConfig)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     buyboxRuleConfig = try container.decode(BuyboxRuleConfig.self, forKey: .buyboxRuleConfig)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -500,11 +459,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(zones, forKey: .zones)
-            
-            
-            
-            
-            try? container.encodeIfPresent(buyboxConfig, forKey: .buyboxConfig)
             
             
             

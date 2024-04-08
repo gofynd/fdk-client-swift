@@ -14,8 +14,6 @@ public extension PlatformClient.Content {
         
         public var slug: String?
         
-        public var action: Action?
-        
         public var platform: [String]?
         
         public var createdBy: CreatedBySchema?
@@ -37,8 +35,6 @@ public extension PlatformClient.Content {
             
             case slug = "slug"
             
-            case action = "action"
-            
             case platform = "platform"
             
             case createdBy = "created_by"
@@ -57,11 +53,9 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(action: Action? = nil, application: String? = nil, archived: Bool? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, platform: [String]? = nil, slug: String? = nil, customJson: [String: Any]? = nil, id: String? = nil, v: Double? = nil) {
+        public init(application: String? = nil, archived: Bool? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, platform: [String]? = nil, slug: String? = nil, customJson: [String: Any]? = nil, id: String? = nil, v: Double? = nil) {
             
             self.slug = slug
-            
-            self.action = action
             
             self.platform = platform
             
@@ -87,18 +81,6 @@ public extension PlatformClient.Content {
             
                 do {
                     slug = try container.decode(String.self, forKey: .slug)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    action = try container.decode(Action.self, forKey: .action)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -212,11 +194,6 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(slug, forKey: .slug)
-            
-            
-            
-            
-            try? container.encodeIfPresent(action, forKey: .action)
             
             
             
@@ -277,8 +254,6 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var slug: String?
         
-        public var action: Action?
-        
         public var platform: [String]?
         
         public var createdBy: CreatedBySchema?
@@ -300,8 +275,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case slug = "slug"
             
-            case action = "action"
-            
             case platform = "platform"
             
             case createdBy = "created_by"
@@ -320,11 +293,9 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(action: Action? = nil, application: String? = nil, archived: Bool? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, platform: [String]? = nil, slug: String? = nil, customJson: [String: Any]? = nil, id: String? = nil, v: Double? = nil) {
+        public init(application: String? = nil, archived: Bool? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, platform: [String]? = nil, slug: String? = nil, customJson: [String: Any]? = nil, id: String? = nil, v: Double? = nil) {
             
             self.slug = slug
-            
-            self.action = action
             
             self.platform = platform
             
@@ -350,18 +321,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     slug = try container.decode(String.self, forKey: .slug)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    action = try container.decode(Action.self, forKey: .action)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -475,11 +434,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(slug, forKey: .slug)
-            
-            
-            
-            
-            try? container.encodeIfPresent(action, forKey: .action)
             
             
             

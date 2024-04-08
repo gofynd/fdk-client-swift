@@ -14,6 +14,20 @@ public extension PlatformClient.Billing {
         
         public var id: String?
         
+        public var documents: [String: Any]?
+        
+        public var payment: [String: Any]?
+        
+        public var oldSettlement: Double?
+        
+        public var creditBalance: Double?
+        
+        public var discount: [String: Any]?
+        
+        public var taxation: [String: Any]?
+        
+        public var creditNoteAmount: Double?
+        
         public var client: InvoicesDataClient?
         
         public var autoAdvance: Bool?
@@ -67,6 +81,20 @@ public extension PlatformClient.Billing {
             
             case id = "_id"
             
+            case documents = "documents"
+            
+            case payment = "payment"
+            
+            case oldSettlement = "old_settlement"
+            
+            case creditBalance = "credit_balance"
+            
+            case discount = "discount"
+            
+            case taxation = "taxation"
+            
+            case creditNoteAmount = "credit_note_amount"
+            
             case client = "client"
             
             case autoAdvance = "auto_advance"
@@ -117,9 +145,23 @@ public extension PlatformClient.Billing {
             
         }
 
-        public init(attemp: Int? = nil, autoAdvance: Bool? = nil, client: InvoicesDataClient? = nil, collectionMethod: String? = nil, createdAt: String? = nil, currency: String? = nil, currentStatus: String? = nil, hashIdentifier: String? = nil, invoiceItems: [InvoiceItems]? = nil, invoiceUrl: String? = nil, modifiedAt: String? = nil, nextActionTime: String? = nil, number: String? = nil, paid: Bool? = nil, paymentMethod: InvoicesDataPaymentMethod? = nil, period: InvoicesDataPeriod? = nil, pgData: [String: Any]? = nil, receiptNumber: String? = nil, statementDescriptor: String? = nil, statusTrail: [InvoiceDetailsStatusTrail]? = nil, subscriberId: String? = nil, subscription: String? = nil, subtotal: Double? = nil, total: Double? = nil, id: String? = nil) {
+        public init(attemp: Int? = nil, autoAdvance: Bool? = nil, client: InvoicesDataClient? = nil, collectionMethod: String? = nil, createdAt: String? = nil, creditBalance: Double? = nil, creditNoteAmount: Double? = nil, currency: String? = nil, currentStatus: String? = nil, discount: [String: Any]? = nil, documents: [String: Any]? = nil, hashIdentifier: String? = nil, invoiceItems: [InvoiceItems]? = nil, invoiceUrl: String? = nil, modifiedAt: String? = nil, nextActionTime: String? = nil, number: String? = nil, oldSettlement: Double? = nil, paid: Bool? = nil, payment: [String: Any]? = nil, paymentMethod: InvoicesDataPaymentMethod? = nil, period: InvoicesDataPeriod? = nil, pgData: [String: Any]? = nil, receiptNumber: String? = nil, statementDescriptor: String? = nil, statusTrail: [InvoiceDetailsStatusTrail]? = nil, subscriberId: String? = nil, subscription: String? = nil, subtotal: Double? = nil, taxation: [String: Any]? = nil, total: Double? = nil, id: String? = nil) {
             
             self.id = id
+            
+            self.documents = documents
+            
+            self.payment = payment
+            
+            self.oldSettlement = oldSettlement
+            
+            self.creditBalance = creditBalance
+            
+            self.discount = discount
+            
+            self.taxation = taxation
+            
+            self.creditNoteAmount = creditNoteAmount
             
             self.client = client
             
@@ -177,6 +219,90 @@ public extension PlatformClient.Billing {
             
                 do {
                     id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    documents = try container.decode([String: Any].self, forKey: .documents)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    payment = try container.decode([String: Any].self, forKey: .payment)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    oldSettlement = try container.decode(Double.self, forKey: .oldSettlement)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    creditBalance = try container.decode(Double.self, forKey: .creditBalance)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    discount = try container.decode([String: Any].self, forKey: .discount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    taxation = try container.decode([String: Any].self, forKey: .taxation)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    creditNoteAmount = try container.decode(Double.self, forKey: .creditNoteAmount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -482,6 +608,41 @@ public extension PlatformClient.Billing {
             
             
             try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(documents, forKey: .documents)
+            
+            
+            
+            
+            try? container.encodeIfPresent(payment, forKey: .payment)
+            
+            
+            
+            
+            try? container.encodeIfPresent(oldSettlement, forKey: .oldSettlement)
+            
+            
+            
+            
+            try? container.encodeIfPresent(creditBalance, forKey: .creditBalance)
+            
+            
+            
+            
+            try? container.encodeIfPresent(discount, forKey: .discount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(taxation, forKey: .taxation)
+            
+            
+            
+            
+            try? container.encodeIfPresent(creditNoteAmount, forKey: .creditNoteAmount)
             
             
             

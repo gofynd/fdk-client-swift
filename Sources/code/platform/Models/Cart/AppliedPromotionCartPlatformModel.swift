@@ -14,6 +14,8 @@ public extension PlatformClient.ApplicationClient.Cart {
     class AppliedPromotion: Codable {
         
         
+        public var id: String?
+        
         public var articleQuantity: Int?
         
         public var originalArticleQuantity: Int?
@@ -61,6 +63,8 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public enum CodingKeys: String, CodingKey {
             
+            case id = "id"
+            
             case articleQuantity = "article_quantity"
             
             case originalArticleQuantity = "original_article_quantity"
@@ -107,7 +111,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, cancellationAllowed: Bool? = nil, code: String? = nil, currency: CartCurrency? = nil, discountRules: [DiscountRulesApp]? = nil, freeQuantity: Int? = nil, meta: [String: Any]? = nil, mrpPromotion: Bool? = nil, offerDescription: String? = nil, offerLabel: String? = nil, offerText: String? = nil, originalArticleQuantity: Int? = nil, ownership: Ownership2? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoCode: String? = nil, promoId: String? = nil, returnAllowed: Bool? = nil) {
+        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, cancellationAllowed: Bool? = nil, code: String? = nil, currency: CartCurrency? = nil, discountRules: [DiscountRulesApp]? = nil, freeQuantity: Int? = nil, id: String? = nil, meta: [String: Any]? = nil, mrpPromotion: Bool? = nil, offerDescription: String? = nil, offerLabel: String? = nil, offerText: String? = nil, originalArticleQuantity: Int? = nil, ownership: Ownership2? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoCode: String? = nil, promoId: String? = nil, returnAllowed: Bool? = nil) {
+            
+            self.id = id
             
             self.articleQuantity = articleQuantity
             
@@ -157,6 +163,18 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -426,6 +444,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
             
             
             

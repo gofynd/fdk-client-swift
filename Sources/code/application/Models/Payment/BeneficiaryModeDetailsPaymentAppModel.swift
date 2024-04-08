@@ -8,25 +8,25 @@ public extension ApplicationClient.Payment {
     */
     class BeneficiaryModeDetails: Codable {
         
-        public var accountNo: String
+        public var accountNo: String?
         
         public var address: String?
         
         public var mobile: String?
         
-        public var bankName: String
+        public var bankName: String?
         
         public var comment: String?
         
-        public var ifscCode: String
+        public var ifscCode: String?
         
         public var email: String?
         
         public var vpa: String?
         
-        public var branchName: String
+        public var branchName: String?
         
-        public var accountHolder: String
+        public var accountHolder: String?
         
         public var wallet: String?
         
@@ -61,7 +61,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(accountHolder: String, accountNo: String, address: String? = nil, bankName: String, beneficiaryId: String? = nil, branchName: String, comment: String? = nil, email: String? = nil, ifscCode: String, mobile: String? = nil, vpa: String? = nil, wallet: String? = nil) {
+        public init(accountHolder: String? = nil, accountNo: String? = nil, address: String? = nil, bankName: String? = nil, beneficiaryId: String? = nil, branchName: String? = nil, comment: String? = nil, email: String? = nil, ifscCode: String? = nil, mobile: String? = nil, vpa: String? = nil, wallet: String? = nil) {
             
             self.accountNo = accountNo
             
@@ -93,8 +93,15 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            accountNo = try container.decode(String.self, forKey: .accountNo)
+            do {
+                accountNo = try container.decode(String.self, forKey: .accountNo)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -122,8 +129,15 @@ public extension ApplicationClient.Payment {
             
             
             
-            bankName = try container.decode(String.self, forKey: .bankName)
+            do {
+                bankName = try container.decode(String.self, forKey: .bankName)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -139,8 +153,15 @@ public extension ApplicationClient.Payment {
             
             
             
-            ifscCode = try container.decode(String.self, forKey: .ifscCode)
+            do {
+                ifscCode = try container.decode(String.self, forKey: .ifscCode)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -168,13 +189,27 @@ public extension ApplicationClient.Payment {
             
             
             
-            branchName = try container.decode(String.self, forKey: .branchName)
+            do {
+                branchName = try container.decode(String.self, forKey: .branchName)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
+            do {
+                accountHolder = try container.decode(String.self, forKey: .accountHolder)
             
-            accountHolder = try container.decode(String.self, forKey: .accountHolder)
-            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             

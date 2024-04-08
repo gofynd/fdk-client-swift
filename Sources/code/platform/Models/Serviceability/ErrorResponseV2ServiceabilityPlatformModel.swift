@@ -12,22 +12,22 @@ public extension PlatformClient.Serviceability {
     class ErrorResponseV2: Codable {
         
         
-        public var value: Bool
+        public var success: Bool
         
         public var error: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case value = "value"
+            case success = "success"
             
             case error = "error"
             
         }
 
-        public init(error: String, value: Bool) {
+        public init(error: String, success: Bool) {
             
-            self.value = value
+            self.success = success
             
             self.error = error
             
@@ -37,7 +37,7 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                value = try container.decode(Bool.self, forKey: .value)
+                success = try container.decode(Bool.self, forKey: .success)
                 
             
             
@@ -53,7 +53,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
             
@@ -77,22 +77,22 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ErrorResponseV2: Codable {
         
         
-        public var value: Bool
+        public var success: Bool
         
         public var error: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case value = "value"
+            case success = "success"
             
             case error = "error"
             
         }
 
-        public init(error: String, value: Bool) {
+        public init(error: String, success: Bool) {
             
-            self.value = value
+            self.success = success
             
             self.error = error
             
@@ -102,7 +102,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                value = try container.decode(Bool.self, forKey: .value)
+                success = try container.decode(Bool.self, forKey: .success)
                 
             
             
@@ -118,7 +118,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
             

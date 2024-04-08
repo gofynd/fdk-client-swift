@@ -20,7 +20,7 @@ public extension PlatformClient.Lead {
         
         public var createdOn: CreatedOn?
         
-        public var createdBy: String?
+        public var createdBy: [String: Any]?
         
         public var id: String
         
@@ -53,7 +53,7 @@ public extension PlatformClient.Lead {
             
         }
 
-        public init(createdAt: String? = nil, createdBy: String? = nil, createdOn: CreatedOn? = nil, ticketId: String, type: String, updatedAt: String? = nil, value: [String: Any], id: String, v: Double? = nil) {
+        public init(createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, ticketId: String, type: String, updatedAt: String? = nil, value: [String: Any], id: String, v: Double? = nil) {
             
             self.type = type
             
@@ -107,7 +107,7 @@ public extension PlatformClient.Lead {
             
             
                 do {
-                    createdBy = try container.decode(String.self, forKey: .createdBy)
+                    createdBy = try container.decode([String: Any].self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -232,7 +232,7 @@ public extension PlatformClient.ApplicationClient.Lead {
         
         public var createdOn: CreatedOn?
         
-        public var createdBy: String?
+        public var createdBy: [String: Any]?
         
         public var id: String
         
@@ -265,7 +265,7 @@ public extension PlatformClient.ApplicationClient.Lead {
             
         }
 
-        public init(createdAt: String? = nil, createdBy: String? = nil, createdOn: CreatedOn? = nil, ticketId: String, type: String, updatedAt: String? = nil, value: [String: Any], id: String, v: Double? = nil) {
+        public init(createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, ticketId: String, type: String, updatedAt: String? = nil, value: [String: Any], id: String, v: Double? = nil) {
             
             self.type = type
             
@@ -319,7 +319,7 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
                 do {
-                    createdBy = try container.decode(String.self, forKey: .createdBy)
+                    createdBy = try container.decode([String: Any].self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

@@ -12,7 +12,7 @@ public extension PlatformClient.Payment {
     class SetBUPaymentLimit: Codable {
         
         
-        public var buisnessUnit: String
+        public var buisnessUnit: String?
         
         public var config: SetUserPaymentLimitConfig
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(buisnessUnit: String, config: SetUserPaymentLimitConfig) {
+        public init(buisnessUnit: String? = nil, config: SetUserPaymentLimitConfig) {
             
             self.buisnessUnit = buisnessUnit
             
@@ -37,9 +37,16 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                buisnessUnit = try container.decode(String.self, forKey: .buisnessUnit)
+                do {
+                    buisnessUnit = try container.decode(String.self, forKey: .buisnessUnit)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 config = try container.decode(SetUserPaymentLimitConfig.self, forKey: .config)
@@ -77,7 +84,7 @@ public extension PlatformClient.ApplicationClient.Payment {
     class SetBUPaymentLimit: Codable {
         
         
-        public var buisnessUnit: String
+        public var buisnessUnit: String?
         
         public var config: SetUserPaymentLimitConfig
         
@@ -90,7 +97,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(buisnessUnit: String, config: SetUserPaymentLimitConfig) {
+        public init(buisnessUnit: String? = nil, config: SetUserPaymentLimitConfig) {
             
             self.buisnessUnit = buisnessUnit
             
@@ -102,9 +109,16 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                buisnessUnit = try container.decode(String.self, forKey: .buisnessUnit)
+                do {
+                    buisnessUnit = try container.decode(String.self, forKey: .buisnessUnit)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 config = try container.decode(SetUserPaymentLimitConfig.self, forKey: .config)

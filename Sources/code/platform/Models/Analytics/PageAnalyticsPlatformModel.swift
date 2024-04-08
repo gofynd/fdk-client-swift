@@ -14,83 +14,59 @@ public extension PlatformClient.ApplicationClient.Analytics {
     class Page: Codable {
         
         
-        public var current: Int?
-        
-        public var size: Int?
-        
         public var itemTotal: Int?
         
-        public var totalPage: Int?
-        
-        public var hasNext: Bool?
+        public var nextId: String?
         
         public var hasPrevious: Bool?
         
-        public var type: String?
+        public var hasNext: Bool?
+        
+        public var current: Int?
+        
+        public var type: String
+        
+        public var size: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case current = "current"
-            
-            case size = "size"
-            
             case itemTotal = "item_total"
             
-            case totalPage = "total_page"
-            
-            case hasNext = "has_next"
+            case nextId = "next_id"
             
             case hasPrevious = "has_previous"
             
+            case hasNext = "has_next"
+            
+            case current = "current"
+            
             case type = "type"
+            
+            case size = "size"
             
         }
 
-        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, totalPage: Int? = nil, type: String? = nil) {
-            
-            self.current = current
-            
-            self.size = size
+        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, size: Int? = nil, type: String) {
             
             self.itemTotal = itemTotal
             
-            self.totalPage = totalPage
-            
-            self.hasNext = hasNext
+            self.nextId = nextId
             
             self.hasPrevious = hasPrevious
             
+            self.hasNext = hasNext
+            
+            self.current = current
+            
             self.type = type
+            
+            self.size = size
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    current = try container.decode(Int.self, forKey: .current)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    size = try container.decode(Int.self, forKey: .size)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -106,19 +82,7 @@ public extension PlatformClient.ApplicationClient.Analytics {
             
             
                 do {
-                    totalPage = try container.decode(Int.self, forKey: .totalPage)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    hasNext = try container.decode(Bool.self, forKey: .hasNext)
+                    nextId = try container.decode(String.self, forKey: .nextId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +106,36 @@ public extension PlatformClient.ApplicationClient.Analytics {
             
             
                 do {
-                    type = try container.decode(String.self, forKey: .type)
+                    hasNext = try container.decode(Bool.self, forKey: .hasNext)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    current = try container.decode(Int.self, forKey: .current)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                type = try container.decode(String.self, forKey: .type)
+                
+            
+            
+            
+                do {
+                    size = try container.decode(Int.self, forKey: .size)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -159,27 +152,12 @@ public extension PlatformClient.ApplicationClient.Analytics {
             
             
             
-            try? container.encodeIfPresent(current, forKey: .current)
-            
-            
-            
-            
-            try? container.encodeIfPresent(size, forKey: .size)
-            
-            
-            
-            
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
             
             
             
             
-            try? container.encodeIfPresent(totalPage, forKey: .totalPage)
-            
-            
-            
-            
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+            try? container.encodeIfPresent(nextId, forKey: .nextId)
             
             
             
@@ -189,7 +167,22 @@ public extension PlatformClient.ApplicationClient.Analytics {
             
             
             
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+            
+            
+            
+            
+            try? container.encodeIfPresent(current, forKey: .current)
+            
+            
+            
+            
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(size, forKey: .size)
             
             
         }

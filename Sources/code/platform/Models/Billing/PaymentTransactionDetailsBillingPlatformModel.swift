@@ -28,7 +28,7 @@ public extension PlatformClient.Billing {
         
         public var collectionType: String?
         
-        public var meta: Meta?
+        public var meta: TransactionMeta?
         
         public var createdAt: String?
         
@@ -61,7 +61,7 @@ public extension PlatformClient.Billing {
             
         }
 
-        public init(aggregator: [String: Any]? = nil, amount: Double? = nil, collectionType: String? = nil, createdAt: String? = nil, currency: String? = nil, currentStatus: String? = nil, entityType: String? = nil, meta: Meta? = nil, modifiedAt: String? = nil, subscriberId: String? = nil, id: String? = nil) {
+        public init(aggregator: [String: Any]? = nil, amount: Double? = nil, collectionType: String? = nil, createdAt: String? = nil, currency: String? = nil, currentStatus: String? = nil, entityType: String? = nil, meta: TransactionMeta? = nil, modifiedAt: String? = nil, subscriberId: String? = nil, id: String? = nil) {
             
             self.aggregator = aggregator
             
@@ -188,7 +188,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    meta = try container.decode(Meta.self, forKey: .meta)
+                    meta = try container.decode(TransactionMeta.self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

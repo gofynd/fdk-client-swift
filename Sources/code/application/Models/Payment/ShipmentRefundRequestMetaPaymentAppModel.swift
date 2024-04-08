@@ -16,6 +16,8 @@ public extension ApplicationClient.Payment {
         
         public var notes: String?
         
+        public var billingEmployeeCode: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -27,9 +29,11 @@ public extension ApplicationClient.Payment {
             
             case notes = "notes"
             
+            case billingEmployeeCode = "billing_employee_code"
+            
         }
 
-        public init(name: String? = nil, notes: String? = nil, shipmentId: String? = nil, utr: String? = nil) {
+        public init(billingEmployeeCode: String? = nil, name: String? = nil, notes: String? = nil, shipmentId: String? = nil, utr: String? = nil) {
             
             self.shipmentId = shipmentId
             
@@ -38,6 +42,8 @@ public extension ApplicationClient.Payment {
             self.utr = utr
             
             self.notes = notes
+            
+            self.billingEmployeeCode = billingEmployeeCode
             
         }
 
@@ -92,6 +98,18 @@ public extension ApplicationClient.Payment {
             }
             
             
+            
+            do {
+                billingEmployeeCode = try container.decode(String.self, forKey: .billingEmployeeCode)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -111,6 +129,10 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(notes, forKey: .notes)
+            
+            
+            
+            try? container.encodeIfPresent(billingEmployeeCode, forKey: .billingEmployeeCode)
             
             
         }

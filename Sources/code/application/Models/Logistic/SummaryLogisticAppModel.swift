@@ -12,7 +12,7 @@ public extension ApplicationClient.Logistic {
         
         public var productsCount: Int?
         
-        public var regions: [Region]?
+        public var regions: [RegionSchema]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension ApplicationClient.Logistic {
             
         }
 
-        public init(productsCount: Int? = nil, regions: [Region]? = nil, storesCount: Int? = nil) {
+        public init(productsCount: Int? = nil, regions: [RegionSchema]? = nil, storesCount: Int? = nil) {
             
             self.storesCount = storesCount
             
@@ -64,7 +64,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                regions = try container.decode([Region].self, forKey: .regions)
+                regions = try container.decode([RegionSchema].self, forKey: .regions)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

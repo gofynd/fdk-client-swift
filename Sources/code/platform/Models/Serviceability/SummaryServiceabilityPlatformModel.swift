@@ -16,7 +16,7 @@ public extension PlatformClient.Serviceability {
         
         public var productsCount: Int?
         
-        public var regions: [Region]?
+        public var regions: [RegionSchema]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,7 +29,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(productsCount: Int? = nil, regions: [Region]? = nil, storesCount: Int? = nil) {
+        public init(productsCount: Int? = nil, regions: [RegionSchema]? = nil, storesCount: Int? = nil) {
             
             self.storesCount = storesCount
             
@@ -68,7 +68,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    regions = try container.decode([Region].self, forKey: .regions)
+                    regions = try container.decode([RegionSchema].self, forKey: .regions)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,7 +118,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var productsCount: Int?
         
-        public var regions: [Region]?
+        public var regions: [RegionSchema]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -131,7 +131,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(productsCount: Int? = nil, regions: [Region]? = nil, storesCount: Int? = nil) {
+        public init(productsCount: Int? = nil, regions: [RegionSchema]? = nil, storesCount: Int? = nil) {
             
             self.storesCount = storesCount
             
@@ -170,7 +170,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    regions = try container.decode([Region].self, forKey: .regions)
+                    regions = try container.decode([RegionSchema].self, forKey: .regions)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

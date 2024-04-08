@@ -12,54 +12,54 @@ public extension PlatformClient.Webhook {
     class Page: Codable {
         
         
-        public var current: Double?
+        public var itemTotal: Int?
         
-        public var hasNext: Bool?
+        public var nextId: String?
         
         public var hasPrevious: Bool?
         
-        public var totalPage: Int?
+        public var hasNext: Bool?
         
-        public var itemTotal: Double?
+        public var current: Int?
         
-        public var size: Double?
+        public var type: String
         
-        public var type: String?
+        public var size: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case current = "current"
+            case itemTotal = "item_total"
             
-            case hasNext = "has_next"
+            case nextId = "next_id"
             
             case hasPrevious = "has_previous"
             
-            case totalPage = "total_page"
+            case hasNext = "has_next"
             
-            case itemTotal = "item_total"
-            
-            case size = "size"
+            case current = "current"
             
             case type = "type"
             
+            case size = "size"
+            
         }
 
-        public init(current: Double? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Double? = nil, size: Double? = nil, totalPage: Int? = nil, type: String? = nil) {
-            
-            self.current = current
-            
-            self.hasNext = hasNext
-            
-            self.hasPrevious = hasPrevious
-            
-            self.totalPage = totalPage
+        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, size: Int? = nil, type: String) {
             
             self.itemTotal = itemTotal
             
-            self.size = size
+            self.nextId = nextId
+            
+            self.hasPrevious = hasPrevious
+            
+            self.hasNext = hasNext
+            
+            self.current = current
             
             self.type = type
+            
+            self.size = size
             
         }
 
@@ -68,7 +68,7 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    current = try container.decode(Double.self, forKey: .current)
+                    itemTotal = try container.decode(Int.self, forKey: .itemTotal)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,7 +80,7 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    hasNext = try container.decode(Bool.self, forKey: .hasNext)
+                    nextId = try container.decode(String.self, forKey: .nextId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +104,7 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    totalPage = try container.decode(Int.self, forKey: .totalPage)
+                    hasNext = try container.decode(Bool.self, forKey: .hasNext)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,7 +116,7 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    itemTotal = try container.decode(Double.self, forKey: .itemTotal)
+                    current = try container.decode(Int.self, forKey: .current)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -127,20 +127,13 @@ public extension PlatformClient.Webhook {
                 
             
             
-                do {
-                    size = try container.decode(Double.self, forKey: .size)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                type = try container.decode(String.self, forKey: .type)
                 
             
             
+            
                 do {
-                    type = try container.decode(String.self, forKey: .type)
+                    size = try container.decode(Int.self, forKey: .size)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -157,12 +150,12 @@ public extension PlatformClient.Webhook {
             
             
             
-            try? container.encodeIfPresent(current, forKey: .current)
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
             
             
             
             
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+            try? container.encodeIfPresent(nextId, forKey: .nextId)
             
             
             
@@ -172,22 +165,22 @@ public extension PlatformClient.Webhook {
             
             
             
-            try? container.encodeIfPresent(totalPage, forKey: .totalPage)
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
             
             
             
             
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
-            
-            
-            
-            
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(current, forKey: .current)
             
             
             
             
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(size, forKey: .size)
             
             
         }

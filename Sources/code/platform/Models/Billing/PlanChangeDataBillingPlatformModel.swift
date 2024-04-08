@@ -12,17 +12,19 @@ public extension PlatformClient.Billing {
     class PlanChangeData: Codable {
         
         
-        public var total: Int?
+        public var total: Double?
         
-        public var creditNoteAmount: Int?
+        public var creditNoteAmount: Double?
         
-        public var taxableAmount: Int?
+        public var settlement: Double?
         
-        public var gstAmount: Int?
+        public var taxableAmount: Double?
         
-        public var grossTotal: Int?
+        public var gstAmount: Double?
         
-        public var gst: Int?
+        public var grossTotal: Double?
+        
+        public var gst: Double?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -30,6 +32,8 @@ public extension PlatformClient.Billing {
             case total = "total"
             
             case creditNoteAmount = "credit_note_amount"
+            
+            case settlement = "settlement"
             
             case taxableAmount = "taxable_amount"
             
@@ -41,11 +45,13 @@ public extension PlatformClient.Billing {
             
         }
 
-        public init(creditNoteAmount: Int? = nil, grossTotal: Int? = nil, gst: Int? = nil, gstAmount: Int? = nil, taxableAmount: Int? = nil, total: Int? = nil) {
+        public init(creditNoteAmount: Double? = nil, grossTotal: Double? = nil, gst: Double? = nil, gstAmount: Double? = nil, settlement: Double? = nil, taxableAmount: Double? = nil, total: Double? = nil) {
             
             self.total = total
             
             self.creditNoteAmount = creditNoteAmount
+            
+            self.settlement = settlement
             
             self.taxableAmount = taxableAmount
             
@@ -62,7 +68,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    total = try container.decode(Int.self, forKey: .total)
+                    total = try container.decode(Double.self, forKey: .total)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,7 +80,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    creditNoteAmount = try container.decode(Int.self, forKey: .creditNoteAmount)
+                    creditNoteAmount = try container.decode(Double.self, forKey: .creditNoteAmount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +92,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    taxableAmount = try container.decode(Int.self, forKey: .taxableAmount)
+                    settlement = try container.decode(Double.self, forKey: .settlement)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,7 +104,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    gstAmount = try container.decode(Int.self, forKey: .gstAmount)
+                    taxableAmount = try container.decode(Double.self, forKey: .taxableAmount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,7 +116,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    grossTotal = try container.decode(Int.self, forKey: .grossTotal)
+                    gstAmount = try container.decode(Double.self, forKey: .gstAmount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -122,7 +128,19 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    gst = try container.decode(Int.self, forKey: .gst)
+                    grossTotal = try container.decode(Double.self, forKey: .grossTotal)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    gst = try container.decode(Double.self, forKey: .gst)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -145,6 +163,11 @@ public extension PlatformClient.Billing {
             
             
             try? container.encodeIfPresent(creditNoteAmount, forKey: .creditNoteAmount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(settlement, forKey: .settlement)
             
             
             

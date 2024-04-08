@@ -12,7 +12,7 @@ public extension PlatformClient.Serviceability {
     class StorePrioritySchema: Codable {
         
         
-        public var id: String?
+        public var id: Int?
         
         public var name: String?
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(id: String? = nil, name: String? = nil) {
+        public init(id: Int? = nil, name: String? = nil) {
             
             self.id = id
             
@@ -38,7 +38,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    id = try container.decode(String.self, forKey: .id)
+                    id = try container.decode(Int.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class StorePrioritySchema: Codable {
         
         
-        public var id: String?
+        public var id: Int?
         
         public var name: String?
         
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(id: String? = nil, name: String? = nil) {
+        public init(id: Int? = nil, name: String? = nil) {
             
             self.id = id
             
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    id = try container.decode(String.self, forKey: .id)
+                    id = try container.decode(Int.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

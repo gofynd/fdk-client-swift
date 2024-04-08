@@ -12,7 +12,7 @@ public extension PlatformClient.Billing {
     class CreateOneTimeChargeResponse: Codable {
         
         
-        public var charge: OneTimeChargeEntity?
+        public var charge: Charge?
         
         public var confirmUrl: String?
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Billing {
             
         }
 
-        public init(charge: OneTimeChargeEntity? = nil, confirmUrl: String? = nil) {
+        public init(charge: Charge? = nil, confirmUrl: String? = nil) {
             
             self.charge = charge
             
@@ -38,7 +38,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    charge = try container.decode(OneTimeChargeEntity.self, forKey: .charge)
+                    charge = try container.decode(Charge.self, forKey: .charge)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

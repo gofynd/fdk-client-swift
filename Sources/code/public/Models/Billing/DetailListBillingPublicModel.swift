@@ -10,9 +10,7 @@ public extension PublicClient.Billing {
     class DetailList: Codable {
         
         
-        public var plans: [Plan]?
-        
-        public var trialPlan: Plan?
+        public var plans: [PlanDetails]?
         
         public var componentGroups: [String]?
         
@@ -21,17 +19,13 @@ public extension PublicClient.Billing {
             
             case plans = "plans"
             
-            case trialPlan = "trial_plan"
-            
             case componentGroups = "component_groups"
             
         }
 
-        public init(componentGroups: [String]? = nil, plans: [Plan]? = nil, trialPlan: Plan? = nil) {
+        public init(componentGroups: [String]? = nil, plans: [PlanDetails]? = nil) {
             
             self.plans = plans
-            
-            self.trialPlan = trialPlan
             
             self.componentGroups = componentGroups
             
@@ -42,19 +36,7 @@ public extension PublicClient.Billing {
             
             
                 do {
-                    plans = try container.decode([Plan].self, forKey: .plans)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    trialPlan = try container.decode(Plan.self, forKey: .trialPlan)
+                    plans = try container.decode([PlanDetails].self, forKey: .plans)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,10 +65,6 @@ public extension PublicClient.Billing {
             
             
             try? container.encodeIfPresent(plans, forKey: .plans)
-            
-            
-            
-            try? container.encodeIfPresent(trialPlan, forKey: .trialPlan)
             
             
             

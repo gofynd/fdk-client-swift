@@ -14,6 +14,10 @@ public extension PublicClient.Billing {
         
         public var intervalCount: Double?
         
+        public var aggregateUsage: String?
+        
+        public var usageType: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -21,13 +25,21 @@ public extension PublicClient.Billing {
             
             case intervalCount = "interval_count"
             
+            case aggregateUsage = "aggregate_usage"
+            
+            case usageType = "usage_type"
+            
         }
 
-        public init(interval: String? = nil, intervalCount: Double? = nil) {
+        public init(aggregateUsage: String? = nil, interval: String? = nil, intervalCount: Double? = nil, usageType: String? = nil) {
             
             self.interval = interval
             
             self.intervalCount = intervalCount
+            
+            self.aggregateUsage = aggregateUsage
+            
+            self.usageType = usageType
             
         }
 
@@ -58,6 +70,30 @@ public extension PublicClient.Billing {
                 }
                 
             
+            
+                do {
+                    aggregateUsage = try container.decode(String.self, forKey: .aggregateUsage)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    usageType = try container.decode(String.self, forKey: .usageType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -69,6 +105,14 @@ public extension PublicClient.Billing {
             
             
             try? container.encodeIfPresent(intervalCount, forKey: .intervalCount)
+            
+            
+            
+            try? container.encodeIfPresent(aggregateUsage, forKey: .aggregateUsage)
+            
+            
+            
+            try? container.encodeIfPresent(usageType, forKey: .usageType)
             
             
         }

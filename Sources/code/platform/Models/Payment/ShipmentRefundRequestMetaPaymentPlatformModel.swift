@@ -20,6 +20,8 @@ public extension PlatformClient.Payment {
         
         public var notes: String?
         
+        public var billingEmployeeCode: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -31,9 +33,11 @@ public extension PlatformClient.Payment {
             
             case notes = "notes"
             
+            case billingEmployeeCode = "billing_employee_code"
+            
         }
 
-        public init(name: String? = nil, notes: String? = nil, shipmentId: String? = nil, utr: String? = nil) {
+        public init(billingEmployeeCode: String? = nil, name: String? = nil, notes: String? = nil, shipmentId: String? = nil, utr: String? = nil) {
             
             self.shipmentId = shipmentId
             
@@ -42,6 +46,8 @@ public extension PlatformClient.Payment {
             self.utr = utr
             
             self.notes = notes
+            
+            self.billingEmployeeCode = billingEmployeeCode
             
         }
 
@@ -96,6 +102,18 @@ public extension PlatformClient.Payment {
                 }
                 
             
+            
+                do {
+                    billingEmployeeCode = try container.decode(String.self, forKey: .billingEmployeeCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -119,6 +137,11 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(notes, forKey: .notes)
+            
+            
+            
+            
+            try? container.encodeIfPresent(billingEmployeeCode, forKey: .billingEmployeeCode)
             
             
         }
@@ -145,6 +168,8 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var notes: String?
         
+        public var billingEmployeeCode: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -156,9 +181,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case notes = "notes"
             
+            case billingEmployeeCode = "billing_employee_code"
+            
         }
 
-        public init(name: String? = nil, notes: String? = nil, shipmentId: String? = nil, utr: String? = nil) {
+        public init(billingEmployeeCode: String? = nil, name: String? = nil, notes: String? = nil, shipmentId: String? = nil, utr: String? = nil) {
             
             self.shipmentId = shipmentId
             
@@ -167,6 +194,8 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.utr = utr
             
             self.notes = notes
+            
+            self.billingEmployeeCode = billingEmployeeCode
             
         }
 
@@ -221,6 +250,18 @@ public extension PlatformClient.ApplicationClient.Payment {
                 }
                 
             
+            
+                do {
+                    billingEmployeeCode = try container.decode(String.self, forKey: .billingEmployeeCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -244,6 +285,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(notes, forKey: .notes)
+            
+            
+            
+            
+            try? container.encodeIfPresent(billingEmployeeCode, forKey: .billingEmployeeCode)
             
             
         }

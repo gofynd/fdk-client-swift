@@ -18,7 +18,7 @@ public extension PlatformClient.Communication {
         
         public var expiry: OtpConfigurationExpiry
         
-        public var rateLimit: OtpConfigRateLimit?
+        public var rateLimit: OtpConfigRateLimit
         
         public var applicationId: String?
         
@@ -41,7 +41,7 @@ public extension PlatformClient.Communication {
             
         }
 
-        public init(applicationId: String? = nil, companyId: String? = nil, expiry: OtpConfigurationExpiry, otpLength: Int, rateLimit: OtpConfigRateLimit? = nil, type: String) {
+        public init(applicationId: String? = nil, companyId: String? = nil, expiry: OtpConfigurationExpiry, otpLength: Int, rateLimit: OtpConfigRateLimit, type: String) {
             
             self.otpLength = otpLength
             
@@ -76,16 +76,9 @@ public extension PlatformClient.Communication {
             
             
             
-                do {
-                    rateLimit = try container.decode(OtpConfigRateLimit.self, forKey: .rateLimit)
+                rateLimit = try container.decode(OtpConfigRateLimit.self, forKey: .rateLimit)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -168,7 +161,7 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var expiry: OtpConfigurationExpiry
         
-        public var rateLimit: OtpConfigRateLimit?
+        public var rateLimit: OtpConfigRateLimit
         
         public var applicationId: String?
         
@@ -191,7 +184,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
         }
 
-        public init(applicationId: String? = nil, companyId: String? = nil, expiry: OtpConfigurationExpiry, otpLength: Int, rateLimit: OtpConfigRateLimit? = nil, type: String) {
+        public init(applicationId: String? = nil, companyId: String? = nil, expiry: OtpConfigurationExpiry, otpLength: Int, rateLimit: OtpConfigRateLimit, type: String) {
             
             self.otpLength = otpLength
             
@@ -226,16 +219,9 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
-                do {
-                    rateLimit = try container.decode(OtpConfigRateLimit.self, forKey: .rateLimit)
+                rateLimit = try container.decode(OtpConfigRateLimit.self, forKey: .rateLimit)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {

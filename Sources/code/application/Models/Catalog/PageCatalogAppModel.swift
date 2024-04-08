@@ -8,60 +8,54 @@ public extension ApplicationClient.Catalog {
     */
     class Page: Codable {
         
+        public var itemTotal: Int?
+        
         public var nextId: String?
-        
-        public var size: Int?
-        
-        public var current: Int?
-        
-        public var hasNext: Bool?
         
         public var hasPrevious: Bool?
         
-        public var total: Int?
+        public var hasNext: Bool?
+        
+        public var current: Int?
         
         public var type: String
         
-        public var itemTotal: Int?
+        public var size: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
+            case itemTotal = "item_total"
+            
             case nextId = "next_id"
-            
-            case size = "size"
-            
-            case current = "current"
-            
-            case hasNext = "has_next"
             
             case hasPrevious = "has_previous"
             
-            case total = "total"
+            case hasNext = "has_next"
+            
+            case current = "current"
             
             case type = "type"
             
-            case itemTotal = "item_total"
+            case size = "size"
             
         }
 
-        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, size: Int? = nil, total: Int? = nil, type: String) {
+        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, size: Int? = nil, type: String) {
+            
+            self.itemTotal = itemTotal
             
             self.nextId = nextId
             
-            self.size = size
-            
-            self.current = current
+            self.hasPrevious = hasPrevious
             
             self.hasNext = hasNext
             
-            self.hasPrevious = hasPrevious
-            
-            self.total = total
+            self.current = current
             
             self.type = type
             
-            self.itemTotal = itemTotal
+            self.size = size
             
         }
 
@@ -70,43 +64,19 @@ public extension ApplicationClient.Catalog {
             
             
             do {
+                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 nextId = try container.decode(String.self, forKey: .nextId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                size = try container.decode(Int.self, forKey: .size)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                current = try container.decode(Int.self, forKey: .current)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                hasNext = try container.decode(Bool.self, forKey: .hasNext)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -130,7 +100,19 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                total = try container.decode(Int.self, forKey: .total)
+                hasNext = try container.decode(Bool.self, forKey: .hasNext)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                current = try container.decode(Int.self, forKey: .current)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -147,7 +129,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+                size = try container.decode(Int.self, forKey: .size)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,19 +145,11 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
+            
+            
+            
             try? container.encodeIfPresent(nextId, forKey: .nextId)
-            
-            
-            
-            try? container.encodeIfPresent(size, forKey: .size)
-            
-            
-            
-            try? container.encodeIfPresent(current, forKey: .current)
-            
-            
-            
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
             
             
             
@@ -183,7 +157,11 @@ public extension ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(total, forKey: .total)
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+            
+            
+            
+            try? container.encodeIfPresent(current, forKey: .current)
             
             
             
@@ -191,7 +169,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
+            try? container.encodeIfPresent(size, forKey: .size)
             
             
         }

@@ -448,7 +448,7 @@ if let value = date {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/announcements",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/announcements/",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -670,7 +670,7 @@ if let value = method {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/ninja/click2call",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/ninja/click2call/",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -926,7 +926,7 @@ if let value = bagId {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/ninja/send-sms",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/ninja/send-sms/",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -1214,7 +1214,7 @@ if let value = bagId {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/debug/order_status",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/debug/order_status/",
                 query: nil,
                 body: body.dictionary,
                 headers: [],

@@ -20,8 +20,6 @@ public extension PlatformClient.Serviceability {
         
         public var parentId: [String]
         
-        public var parentUid: String
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -33,11 +31,9 @@ public extension PlatformClient.Serviceability {
             
             case parentId = "parent_id"
             
-            case parentUid = "parent_uid"
-            
         }
 
-        public init(displayName: String, parentId: [String], parentUid: String, subType: String, uid: String) {
+        public init(displayName: String, parentId: [String], subType: String, uid: String) {
             
             self.uid = uid
             
@@ -46,8 +42,6 @@ public extension PlatformClient.Serviceability {
             self.subType = subType
             
             self.parentId = parentId
-            
-            self.parentUid = parentUid
             
         }
 
@@ -74,11 +68,6 @@ public extension PlatformClient.Serviceability {
                 
             
             
-            
-                parentUid = try container.decode(String.self, forKey: .parentUid)
-                
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -102,11 +91,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(parentId, forKey: .parentId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(parentUid, forKey: .parentUid)
             
             
         }
@@ -133,8 +117,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var parentId: [String]
         
-        public var parentUid: String
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -146,11 +128,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case parentId = "parent_id"
             
-            case parentUid = "parent_uid"
-            
         }
 
-        public init(displayName: String, parentId: [String], parentUid: String, subType: String, uid: String) {
+        public init(displayName: String, parentId: [String], subType: String, uid: String) {
             
             self.uid = uid
             
@@ -159,8 +139,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.subType = subType
             
             self.parentId = parentId
-            
-            self.parentUid = parentUid
             
         }
 
@@ -187,11 +165,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
-            
-                parentUid = try container.decode(String.self, forKey: .parentUid)
-                
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -215,11 +188,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(parentId, forKey: .parentId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(parentUid, forKey: .parentUid)
             
             
         }

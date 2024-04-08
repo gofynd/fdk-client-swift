@@ -14,7 +14,11 @@ public extension PlatformClient.Serviceability {
         
         public var name: String
         
-        public var geoareaId: String?
+        public var applicationId: String?
+        
+        public var companyId: Int?
+        
+        public var geoareaId: String
         
         public var isActive: Bool
         
@@ -37,6 +41,10 @@ public extension PlatformClient.Serviceability {
             
             case name = "name"
             
+            case applicationId = "application_id"
+            
+            case companyId = "company_id"
+            
             case geoareaId = "geoarea_id"
             
             case isActive = "is_active"
@@ -57,9 +65,13 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(areas: [AreaExpanded], createdBy: String? = nil, createdOn: String? = nil, geoareaId: String? = nil, isActive: Bool, modifiedBy: String? = nil, modifiedOn: String? = nil, name: String, regionType: String, type: String) {
+        public init(applicationId: String? = nil, areas: [AreaExpanded], companyId: Int? = nil, createdBy: String? = nil, createdOn: String? = nil, geoareaId: String, isActive: Bool, modifiedBy: String? = nil, modifiedOn: String? = nil, name: String, regionType: String, type: String) {
             
             self.name = name
+            
+            self.applicationId = applicationId
+            
+            self.companyId = companyId
             
             self.geoareaId = geoareaId
             
@@ -91,7 +103,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    geoareaId = try container.decode(String.self, forKey: .geoareaId)
+                    applicationId = try container.decode(String.self, forKey: .applicationId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -100,6 +112,23 @@ public extension PlatformClient.Serviceability {
                     
                 }
                 
+            
+            
+                do {
+                    companyId = try container.decode(Int.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                geoareaId = try container.decode(String.self, forKey: .geoareaId)
+                
+            
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -177,6 +206,16 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
             
@@ -242,7 +281,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var name: String
         
-        public var geoareaId: String?
+        public var applicationId: String?
+        
+        public var companyId: Int?
+        
+        public var geoareaId: String
         
         public var isActive: Bool
         
@@ -265,6 +308,10 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case name = "name"
             
+            case applicationId = "application_id"
+            
+            case companyId = "company_id"
+            
             case geoareaId = "geoarea_id"
             
             case isActive = "is_active"
@@ -285,9 +332,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(areas: [AreaExpanded], createdBy: String? = nil, createdOn: String? = nil, geoareaId: String? = nil, isActive: Bool, modifiedBy: String? = nil, modifiedOn: String? = nil, name: String, regionType: String, type: String) {
+        public init(applicationId: String? = nil, areas: [AreaExpanded], companyId: Int? = nil, createdBy: String? = nil, createdOn: String? = nil, geoareaId: String, isActive: Bool, modifiedBy: String? = nil, modifiedOn: String? = nil, name: String, regionType: String, type: String) {
             
             self.name = name
+            
+            self.applicationId = applicationId
+            
+            self.companyId = companyId
             
             self.geoareaId = geoareaId
             
@@ -319,7 +370,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    geoareaId = try container.decode(String.self, forKey: .geoareaId)
+                    applicationId = try container.decode(String.self, forKey: .applicationId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -328,6 +379,23 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                     
                 }
                 
+            
+            
+                do {
+                    companyId = try container.decode(Int.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                geoareaId = try container.decode(String.self, forKey: .geoareaId)
+                
+            
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -405,6 +473,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
             

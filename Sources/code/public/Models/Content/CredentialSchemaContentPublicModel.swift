@@ -10,7 +10,9 @@ public extension PublicClient.Content {
     class CredentialSchema: Codable {
         
         
-        public var configuration: [String: Any]?
+        public var id: String?
+        
+        public var configuration: ConfigurationSchema?
         
         public var entityType: String?
         
@@ -18,8 +20,16 @@ public extension PublicClient.Content {
         
         public var isEnable: Bool?
         
+        public var updatedAt: String?
+        
+        public var createdAt: String?
+        
+        public var v: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
+            
+            case id = "_id"
             
             case configuration = "configuration"
             
@@ -29,9 +39,17 @@ public extension PublicClient.Content {
             
             case isEnable = "is_enable"
             
+            case updatedAt = "updated_at"
+            
+            case createdAt = "created_at"
+            
+            case v = "__v"
+            
         }
 
-        public init(configuration: [String: Any]? = nil, entityType: String? = nil, isEnable: Bool? = nil, type: String? = nil) {
+        public init(configuration: ConfigurationSchema? = nil, createdAt: String? = nil, entityType: String? = nil, isEnable: Bool? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Double? = nil) {
+            
+            self.id = id
             
             self.configuration = configuration
             
@@ -41,6 +59,12 @@ public extension PublicClient.Content {
             
             self.isEnable = isEnable
             
+            self.updatedAt = updatedAt
+            
+            self.createdAt = createdAt
+            
+            self.v = v
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,7 +72,19 @@ public extension PublicClient.Content {
             
             
                 do {
-                    configuration = try container.decode([String: Any].self, forKey: .configuration)
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    configuration = try container.decode(ConfigurationSchema.self, forKey: .configuration)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,10 +130,50 @@ public extension PublicClient.Content {
                 }
                 
             
+            
+                do {
+                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    createdAt = try container.decode(String.self, forKey: .createdAt)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    v = try container.decode(Double.self, forKey: .v)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
             
             
             try? container.encodeIfPresent(configuration, forKey: .configuration)
@@ -113,6 +189,18 @@ public extension PublicClient.Content {
             
             
             try? container.encodeIfPresent(isEnable, forKey: .isEnable)
+            
+            
+            
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
+            
+            
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+            
+            
+            
+            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

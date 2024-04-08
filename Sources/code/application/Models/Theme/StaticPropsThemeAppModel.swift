@@ -16,7 +16,7 @@ public extension ApplicationClient.Theme {
         
         public var orderTracking: [String: Any]?
         
-        public var manifest: [String: Any]?
+        public var manifest: ManifestConfig?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,7 +33,7 @@ public extension ApplicationClient.Theme {
             
         }
 
-        public init(auth: AuthConfig? = nil, colors: Colors? = nil, manifest: [String: Any]? = nil, orderTracking: [String: Any]? = nil, palette: PaletteConfig? = nil) {
+        public init(auth: AuthConfig? = nil, colors: Colors? = nil, manifest: ManifestConfig? = nil, orderTracking: [String: Any]? = nil, palette: PaletteConfig? = nil) {
             
             self.colors = colors
             
@@ -100,7 +100,7 @@ public extension ApplicationClient.Theme {
             
             
             do {
-                manifest = try container.decode([String: Any].self, forKey: .manifest)
+                manifest = try container.decode(ManifestConfig.self, forKey: .manifest)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

@@ -12,6 +12,8 @@ public extension PlatformClient.Serviceability {
     class CourierPartnerSchemeModel: Codable {
         
         
+        public var name: String?
+        
         public var extensionId: String
         
         public var schemeId: String
@@ -33,6 +35,8 @@ public extension PlatformClient.Serviceability {
 
         public enum CodingKeys: String, CodingKey {
             
+            case name = "name"
+            
             case extensionId = "extension_id"
             
             case schemeId = "scheme_id"
@@ -53,7 +57,9 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(deliveryType: String, extensionId: String, feature: CourierPartnerSchemeFeatures, paymentMode: [String], region: String, schemeId: String, stage: String, transportType: String, weight: ArithmeticOperations) {
+        public init(deliveryType: String, extensionId: String, feature: CourierPartnerSchemeFeatures, name: String? = nil, paymentMode: [String], region: String, schemeId: String, stage: String, transportType: String, weight: ArithmeticOperations) {
+            
+            self.name = name
             
             self.extensionId = extensionId
             
@@ -77,6 +83,18 @@ public extension PlatformClient.Serviceability {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 extensionId = try container.decode(String.self, forKey: .extensionId)
@@ -127,6 +145,11 @@ public extension PlatformClient.Serviceability {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
             
             
             
@@ -189,6 +212,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class CourierPartnerSchemeModel: Codable {
         
         
+        public var name: String?
+        
         public var extensionId: String
         
         public var schemeId: String
@@ -210,6 +235,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         public enum CodingKeys: String, CodingKey {
             
+            case name = "name"
+            
             case extensionId = "extension_id"
             
             case schemeId = "scheme_id"
@@ -230,7 +257,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(deliveryType: String, extensionId: String, feature: CourierPartnerSchemeFeatures, paymentMode: [String], region: String, schemeId: String, stage: String, transportType: String, weight: ArithmeticOperations) {
+        public init(deliveryType: String, extensionId: String, feature: CourierPartnerSchemeFeatures, name: String? = nil, paymentMode: [String], region: String, schemeId: String, stage: String, transportType: String, weight: ArithmeticOperations) {
+            
+            self.name = name
             
             self.extensionId = extensionId
             
@@ -254,6 +283,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 extensionId = try container.decode(String.self, forKey: .extensionId)
@@ -304,6 +345,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
             
             
             

@@ -12,7 +12,13 @@ public extension PlatformClient.Lead {
     class UserSchema: Codable {
         
         
+        public var applicationId: String?
+        
+        public var userId: String?
+        
         public var firstName: String?
+        
+        public var meta: [String: Any]?
         
         public var lastName: String?
         
@@ -20,9 +26,9 @@ public extension PlatformClient.Lead {
         
         public var emails: [Email]?
         
-        public var passwordHistory: [UserPasswordHistory]?
-        
         public var gender: String?
+        
+        public var dob: String?
         
         public var active: Bool?
         
@@ -32,22 +38,26 @@ public extension PlatformClient.Lead {
         
         public var accountType: String?
         
-        public var uid: String?
-        
-        public var debug: Debug?
-        
-        public var hasOldPasswordHash: Bool?
-        
         public var id: String?
         
         public var createdAt: String?
         
         public var updatedAt: String?
         
+        public var externalId: String?
+        
+        public var rrId: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
+            case applicationId = "application_id"
+            
+            case userId = "user_id"
+            
             case firstName = "first_name"
+            
+            case meta = "meta"
             
             case lastName = "last_name"
             
@@ -55,9 +65,9 @@ public extension PlatformClient.Lead {
             
             case emails = "emails"
             
-            case passwordHistory = "password_history"
-            
             case gender = "gender"
+            
+            case dob = "dob"
             
             case active = "active"
             
@@ -67,23 +77,27 @@ public extension PlatformClient.Lead {
             
             case accountType = "account_type"
             
-            case uid = "uid"
-            
-            case debug = "debug"
-            
-            case hasOldPasswordHash = "has_old_password_hash"
-            
             case id = "_id"
             
             case createdAt = "created_at"
             
             case updatedAt = "updated_at"
             
+            case externalId = "external_id"
+            
+            case rrId = "rr_id"
+            
         }
 
-        public init(accountType: String? = nil, active: Bool? = nil, createdAt: String? = nil, debug: Debug? = nil, emails: [Email]? = nil, firstName: String? = nil, gender: String? = nil, hasOldPasswordHash: Bool? = nil, lastName: String? = nil, passwordHistory: [UserPasswordHistory]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, uid: String? = nil, updatedAt: String? = nil, username: String? = nil, id: String? = nil) {
+        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, createdAt: String? = nil, dob: String? = nil, emails: [Email]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, rrId: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
+            
+            self.applicationId = applicationId
+            
+            self.userId = userId
             
             self.firstName = firstName
+            
+            self.meta = meta
             
             self.lastName = lastName
             
@@ -91,9 +105,9 @@ public extension PlatformClient.Lead {
             
             self.emails = emails
             
-            self.passwordHistory = passwordHistory
-            
             self.gender = gender
+            
+            self.dob = dob
             
             self.active = active
             
@@ -103,17 +117,15 @@ public extension PlatformClient.Lead {
             
             self.accountType = accountType
             
-            self.uid = uid
-            
-            self.debug = debug
-            
-            self.hasOldPasswordHash = hasOldPasswordHash
-            
             self.id = id
             
             self.createdAt = createdAt
             
             self.updatedAt = updatedAt
+            
+            self.externalId = externalId
+            
+            self.rrId = rrId
             
         }
 
@@ -122,7 +134,43 @@ public extension PlatformClient.Lead {
             
             
                 do {
+                    applicationId = try container.decode(String.self, forKey: .applicationId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    userId = try container.decode(String.self, forKey: .userId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     firstName = try container.decode(String.self, forKey: .firstName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -170,7 +218,7 @@ public extension PlatformClient.Lead {
             
             
                 do {
-                    passwordHistory = try container.decode([UserPasswordHistory].self, forKey: .passwordHistory)
+                    gender = try container.decode(String.self, forKey: .gender)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -182,7 +230,7 @@ public extension PlatformClient.Lead {
             
             
                 do {
-                    gender = try container.decode(String.self, forKey: .gender)
+                    dob = try container.decode(String.self, forKey: .dob)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -242,42 +290,6 @@ public extension PlatformClient.Lead {
             
             
                 do {
-                    uid = try container.decode(String.self, forKey: .uid)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    debug = try container.decode(Debug.self, forKey: .debug)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    hasOldPasswordHash = try container.decode(Bool.self, forKey: .hasOldPasswordHash)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -312,6 +324,30 @@ public extension PlatformClient.Lead {
                 }
                 
             
+            
+                do {
+                    externalId = try container.decode(String.self, forKey: .externalId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    rrId = try container.decode(String.self, forKey: .rrId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -319,7 +355,22 @@ public extension PlatformClient.Lead {
             
             
             
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(userId, forKey: .userId)
+            
+            
+            
+            
             try? container.encodeIfPresent(firstName, forKey: .firstName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
@@ -339,12 +390,12 @@ public extension PlatformClient.Lead {
             
             
             
-            try? container.encodeIfPresent(passwordHistory, forKey: .passwordHistory)
-            
-            
-            
-            
             try? container.encodeIfPresent(gender, forKey: .gender)
+            
+            
+            
+            
+            try? container.encodeIfPresent(dob, forKey: .dob)
             
             
             
@@ -369,21 +420,6 @@ public extension PlatformClient.Lead {
             
             
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
-            
-            
-            
-            
-            try? container.encodeIfPresent(debug, forKey: .debug)
-            
-            
-            
-            
-            try? container.encodeIfPresent(hasOldPasswordHash, forKey: .hasOldPasswordHash)
-            
-            
-            
-            
             try? container.encodeIfPresent(id, forKey: .id)
             
             
@@ -395,6 +431,16 @@ public extension PlatformClient.Lead {
             
             
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(externalId, forKey: .externalId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(rrId, forKey: .rrId)
             
             
         }
@@ -413,7 +459,13 @@ public extension PlatformClient.ApplicationClient.Lead {
     class UserSchema: Codable {
         
         
+        public var applicationId: String?
+        
+        public var userId: String?
+        
         public var firstName: String?
+        
+        public var meta: [String: Any]?
         
         public var lastName: String?
         
@@ -421,9 +473,9 @@ public extension PlatformClient.ApplicationClient.Lead {
         
         public var emails: [Email]?
         
-        public var passwordHistory: [UserPasswordHistory]?
-        
         public var gender: String?
+        
+        public var dob: String?
         
         public var active: Bool?
         
@@ -433,22 +485,26 @@ public extension PlatformClient.ApplicationClient.Lead {
         
         public var accountType: String?
         
-        public var uid: String?
-        
-        public var debug: Debug?
-        
-        public var hasOldPasswordHash: Bool?
-        
         public var id: String?
         
         public var createdAt: String?
         
         public var updatedAt: String?
         
+        public var externalId: String?
+        
+        public var rrId: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
+            case applicationId = "application_id"
+            
+            case userId = "user_id"
+            
             case firstName = "first_name"
+            
+            case meta = "meta"
             
             case lastName = "last_name"
             
@@ -456,9 +512,9 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             case emails = "emails"
             
-            case passwordHistory = "password_history"
-            
             case gender = "gender"
+            
+            case dob = "dob"
             
             case active = "active"
             
@@ -468,23 +524,27 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             case accountType = "account_type"
             
-            case uid = "uid"
-            
-            case debug = "debug"
-            
-            case hasOldPasswordHash = "has_old_password_hash"
-            
             case id = "_id"
             
             case createdAt = "created_at"
             
             case updatedAt = "updated_at"
             
+            case externalId = "external_id"
+            
+            case rrId = "rr_id"
+            
         }
 
-        public init(accountType: String? = nil, active: Bool? = nil, createdAt: String? = nil, debug: Debug? = nil, emails: [Email]? = nil, firstName: String? = nil, gender: String? = nil, hasOldPasswordHash: Bool? = nil, lastName: String? = nil, passwordHistory: [UserPasswordHistory]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, uid: String? = nil, updatedAt: String? = nil, username: String? = nil, id: String? = nil) {
+        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, createdAt: String? = nil, dob: String? = nil, emails: [Email]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, rrId: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
+            
+            self.applicationId = applicationId
+            
+            self.userId = userId
             
             self.firstName = firstName
+            
+            self.meta = meta
             
             self.lastName = lastName
             
@@ -492,9 +552,9 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             self.emails = emails
             
-            self.passwordHistory = passwordHistory
-            
             self.gender = gender
+            
+            self.dob = dob
             
             self.active = active
             
@@ -504,17 +564,15 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             self.accountType = accountType
             
-            self.uid = uid
-            
-            self.debug = debug
-            
-            self.hasOldPasswordHash = hasOldPasswordHash
-            
             self.id = id
             
             self.createdAt = createdAt
             
             self.updatedAt = updatedAt
+            
+            self.externalId = externalId
+            
+            self.rrId = rrId
             
         }
 
@@ -523,7 +581,43 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
                 do {
+                    applicationId = try container.decode(String.self, forKey: .applicationId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    userId = try container.decode(String.self, forKey: .userId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     firstName = try container.decode(String.self, forKey: .firstName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -571,7 +665,7 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
                 do {
-                    passwordHistory = try container.decode([UserPasswordHistory].self, forKey: .passwordHistory)
+                    gender = try container.decode(String.self, forKey: .gender)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -583,7 +677,7 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
                 do {
-                    gender = try container.decode(String.self, forKey: .gender)
+                    dob = try container.decode(String.self, forKey: .dob)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -643,42 +737,6 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
                 do {
-                    uid = try container.decode(String.self, forKey: .uid)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    debug = try container.decode(Debug.self, forKey: .debug)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    hasOldPasswordHash = try container.decode(Bool.self, forKey: .hasOldPasswordHash)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -713,6 +771,30 @@ public extension PlatformClient.ApplicationClient.Lead {
                 }
                 
             
+            
+                do {
+                    externalId = try container.decode(String.self, forKey: .externalId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    rrId = try container.decode(String.self, forKey: .rrId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -720,7 +802,22 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
             
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(userId, forKey: .userId)
+            
+            
+            
+            
             try? container.encodeIfPresent(firstName, forKey: .firstName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
@@ -740,12 +837,12 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
             
-            try? container.encodeIfPresent(passwordHistory, forKey: .passwordHistory)
-            
-            
-            
-            
             try? container.encodeIfPresent(gender, forKey: .gender)
+            
+            
+            
+            
+            try? container.encodeIfPresent(dob, forKey: .dob)
             
             
             
@@ -770,21 +867,6 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
-            
-            
-            
-            
-            try? container.encodeIfPresent(debug, forKey: .debug)
-            
-            
-            
-            
-            try? container.encodeIfPresent(hasOldPasswordHash, forKey: .hasOldPasswordHash)
-            
-            
-            
-            
             try? container.encodeIfPresent(id, forKey: .id)
             
             
@@ -796,6 +878,16 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(externalId, forKey: .externalId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(rrId, forKey: .rrId)
             
             
         }
