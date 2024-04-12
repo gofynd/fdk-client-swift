@@ -5,31 +5,31 @@ import Foundation
 
 public extension PlatformClient.Billing {
     /*
-        Model: MethodNetworks
+        Model: Details
         Used By: Billing
     */
 
-    class MethodNetworks: Codable {
+    class Details: Codable {
         
         
-        public var available: [String]?
+        public var feeComponents: [FeeComponents]?
         
-        public var preferred: String?
+        public var features: [Features]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case available = "available"
+            case feeComponents = "fee_components"
             
-            case preferred = "preferred"
+            case features = "features"
             
         }
 
-        public init(available: [String]? = nil, preferred: String? = nil) {
+        public init(features: [Features]? = nil, feeComponents: [FeeComponents]? = nil) {
             
-            self.available = available
+            self.feeComponents = feeComponents
             
-            self.preferred = preferred
+            self.features = features
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    available = try container.decode([String].self, forKey: .available)
+                    feeComponents = try container.decode([FeeComponents].self, forKey: .feeComponents)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    preferred = try container.decode(String.self, forKey: .preferred)
+                    features = try container.decode([Features].self, forKey: .features)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Billing {
             
             
             
-            try? container.encodeIfPresent(available, forKey: .available)
+            try? container.encodeIfPresent(feeComponents, forKey: .feeComponents)
             
             
             
             
-            try? container.encodeIfPresent(preferred, forKey: .preferred)
+            try? container.encodeIfPresent(features, forKey: .features)
             
             
         }

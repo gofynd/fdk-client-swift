@@ -14,22 +14,16 @@ public extension PlatformClient.Billing {
         
         public var pan: String?
         
-        public var gst: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case pan = "pan"
             
-            case gst = "gst"
-            
         }
 
-        public init(gst: String? = nil, pan: String? = nil) {
+        public init(pan: String? = nil) {
             
             self.pan = pan
-            
-            self.gst = gst
             
         }
 
@@ -48,18 +42,6 @@ public extension PlatformClient.Billing {
                 }
                 
             
-            
-                do {
-                    gst = try container.decode(String.self, forKey: .gst)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -68,11 +50,6 @@ public extension PlatformClient.Billing {
             
             
             try? container.encodeIfPresent(pan, forKey: .pan)
-            
-            
-            
-            
-            try? container.encodeIfPresent(gst, forKey: .gst)
             
             
         }

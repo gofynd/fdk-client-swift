@@ -5,61 +5,61 @@ import Foundation
 
 public extension PlatformClient.Billing {
     /*
-        Model: MethodDetails
+        Model: FeeComponents
         Used By: Billing
     */
 
-    class MethodDetails: Codable {
+    class FeeComponents: Codable {
         
         
-        public var id: String?
+        public var brand: [String]?
         
-        public var type: String?
+        public var location: [String]?
         
-        public var mandateAvailable: Bool?
+        public var channel: [[String: Any]]?
         
-        public var mandateAmount: Double?
+        public var businessLead: String?
         
-        public var pgPaymentMethodId: String?
+        public var settlementType: String?
         
-        public var isDefault: Bool?
+        public var settleCyclePeriod: [String: Any]?
         
-        public var data: SubscriptionMethodData?
+        public var components: [[String: Any]]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "id"
+            case brand = "brand"
             
-            case type = "type"
+            case location = "location"
             
-            case mandateAvailable = "mandate_available"
+            case channel = "channel"
             
-            case mandateAmount = "mandate_amount"
+            case businessLead = "business_lead"
             
-            case pgPaymentMethodId = "pg_payment_method_id"
+            case settlementType = "settlement_type"
             
-            case isDefault = "is_default"
+            case settleCyclePeriod = "settle_cycle_period"
             
-            case data = "data"
+            case components = "components"
             
         }
 
-        public init(data: SubscriptionMethodData? = nil, id: String? = nil, isDefault: Bool? = nil, mandateAmount: Double? = nil, mandateAvailable: Bool? = nil, pgPaymentMethodId: String? = nil, type: String? = nil) {
+        public init(brand: [String]? = nil, businessLead: String? = nil, channel: [[String: Any]]? = nil, components: [[String: Any]]? = nil, location: [String]? = nil, settlementType: String? = nil, settleCyclePeriod: [String: Any]? = nil) {
             
-            self.id = id
+            self.brand = brand
             
-            self.type = type
+            self.location = location
             
-            self.mandateAvailable = mandateAvailable
+            self.channel = channel
             
-            self.mandateAmount = mandateAmount
+            self.businessLead = businessLead
             
-            self.pgPaymentMethodId = pgPaymentMethodId
+            self.settlementType = settlementType
             
-            self.isDefault = isDefault
+            self.settleCyclePeriod = settleCyclePeriod
             
-            self.data = data
+            self.components = components
             
         }
 
@@ -68,7 +68,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    id = try container.decode(String.self, forKey: .id)
+                    brand = try container.decode([String].self, forKey: .brand)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,7 +80,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    type = try container.decode(String.self, forKey: .type)
+                    location = try container.decode([String].self, forKey: .location)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,7 +92,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    mandateAvailable = try container.decode(Bool.self, forKey: .mandateAvailable)
+                    channel = try container.decode([[String: Any]].self, forKey: .channel)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +104,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    mandateAmount = try container.decode(Double.self, forKey: .mandateAmount)
+                    businessLead = try container.decode(String.self, forKey: .businessLead)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,7 +116,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    pgPaymentMethodId = try container.decode(String.self, forKey: .pgPaymentMethodId)
+                    settlementType = try container.decode(String.self, forKey: .settlementType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -128,7 +128,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    isDefault = try container.decode(Bool.self, forKey: .isDefault)
+                    settleCyclePeriod = try container.decode([String: Any].self, forKey: .settleCyclePeriod)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -140,7 +140,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    data = try container.decode(SubscriptionMethodData.self, forKey: .data)
+                    components = try container.decode([[String: Any]].self, forKey: .components)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -157,37 +157,37 @@ public extension PlatformClient.Billing {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(brand, forKey: .brand)
             
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(location, forKey: .location)
             
             
             
             
-            try? container.encodeIfPresent(mandateAvailable, forKey: .mandateAvailable)
+            try? container.encodeIfPresent(channel, forKey: .channel)
             
             
             
             
-            try? container.encodeIfPresent(mandateAmount, forKey: .mandateAmount)
+            try? container.encodeIfPresent(businessLead, forKey: .businessLead)
             
             
             
             
-            try? container.encodeIfPresent(pgPaymentMethodId, forKey: .pgPaymentMethodId)
+            try? container.encodeIfPresent(settlementType, forKey: .settlementType)
             
             
             
             
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+            try? container.encodeIfPresent(settleCyclePeriod, forKey: .settleCyclePeriod)
             
             
             
             
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(components, forKey: .components)
             
             
         }

@@ -5,37 +5,43 @@ import Foundation
 
 public extension PlatformClient.Billing {
     /*
-        Model: TopupReq
+        Model: EntityResponse
         Used By: Billing
     */
 
-    class TopupReq: Codable {
+    class EntityResponse: Codable {
         
         
-        public var amount: Int?
+        public var success: Bool?
         
-        public var currency: String?
+        public var page: Int?
         
-        public var providerType: String?
+        public var pageSize: Int?
+        
+        public var items: [Details]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case amount = "amount"
+            case success = "success"
             
-            case currency = "currency"
+            case page = "page"
             
-            case providerType = "provider_type"
+            case pageSize = "page_size"
+            
+            case items = "items"
             
         }
 
-        public init(amount: Int? = nil, currency: String? = nil, providerType: String? = nil) {
+        public init(items: [Details]? = nil, page: Int? = nil, pageSize: Int? = nil, success: Bool? = nil) {
             
-            self.amount = amount
+            self.success = success
             
-            self.currency = currency
+            self.page = page
             
-            self.providerType = providerType
+            self.pageSize = pageSize
+            
+            self.items = items
             
         }
 
@@ -44,7 +50,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    amount = try container.decode(Int.self, forKey: .amount)
+                    success = try container.decode(Bool.self, forKey: .success)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +62,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    currency = try container.decode(String.self, forKey: .currency)
+                    page = try container.decode(Int.self, forKey: .page)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +74,19 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    providerType = try container.decode(String.self, forKey: .providerType)
+                    pageSize = try container.decode(Int.self, forKey: .pageSize)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    items = try container.decode([Details].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,17 +103,22 @@ public extension PlatformClient.Billing {
             
             
             
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
             
             
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(page, forKey: .page)
             
             
             
             
-            try? container.encodeIfPresent(providerType, forKey: .providerType)
+            try? container.encodeIfPresent(pageSize, forKey: .pageSize)
+            
+            
+            
+            
+            try? container.encodeIfPresent(items, forKey: .items)
             
             
         }

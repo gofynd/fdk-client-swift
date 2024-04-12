@@ -12,13 +12,13 @@ public extension PlatformClient.Billing {
     class CreateOneTimeCharge: Codable {
         
         
-        public var name: String?
+        public var name: String
         
-        public var charge: OneTimeChargeItem?
+        public var charge: OneTimeChargeItem
         
         public var isTest: Bool?
         
-        public var returnUrl: String?
+        public var returnUrl: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,7 +33,7 @@ public extension PlatformClient.Billing {
             
         }
 
-        public init(charge: OneTimeChargeItem? = nil, isTest: Bool? = nil, name: String? = nil, returnUrl: String? = nil) {
+        public init(charge: OneTimeChargeItem, isTest: Bool? = nil, name: String, returnUrl: String) {
             
             self.name = name
             
@@ -49,28 +49,14 @@ public extension PlatformClient.Billing {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                name = try container.decode(String.self, forKey: .name)
                 
             
             
-                do {
-                    charge = try container.decode(OneTimeChargeItem.self, forKey: .charge)
+            
+                charge = try container.decode(OneTimeChargeItem.self, forKey: .charge)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -85,16 +71,9 @@ public extension PlatformClient.Billing {
                 
             
             
-                do {
-                    returnUrl = try container.decode(String.self, forKey: .returnUrl)
+                returnUrl = try container.decode(String.self, forKey: .returnUrl)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         

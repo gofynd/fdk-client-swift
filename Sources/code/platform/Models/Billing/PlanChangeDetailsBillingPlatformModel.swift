@@ -12,22 +12,22 @@ public extension PlatformClient.Billing {
     class PlanChangeDetails: Codable {
         
         
-        public var status: String?
+        public var success: Bool?
         
         public var data: PlanChangeData?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case status = "status"
+            case success = "success"
             
             case data = "data"
             
         }
 
-        public init(data: PlanChangeData? = nil, status: String? = nil) {
+        public init(data: PlanChangeData? = nil, success: Bool? = nil) {
             
-            self.status = status
+            self.success = success
             
             self.data = data
             
@@ -38,7 +38,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    status = try container.decode(String.self, forKey: .status)
+                    success = try container.decode(Bool.self, forKey: .success)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,7 +67,7 @@ public extension PlatformClient.Billing {
             
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
             

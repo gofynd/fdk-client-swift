@@ -26,7 +26,7 @@ public extension PlatformClient.Billing {
         
         public var description: String?
         
-        public var isTest: [String: Any]?
+        public var isTest: Bool?
         
         public var endingBalance: EndingBalance?
         
@@ -69,7 +69,7 @@ public extension PlatformClient.Billing {
             
         }
 
-        public init(amount: Int? = nil, author: Author? = nil, createdAt: String? = nil, currency: String? = nil, description: String? = nil, endingBalance: EndingBalance? = nil, entity: [String: Any]? = nil, isTest: [String: Any]? = nil, modifiedAt: String? = nil, payment: PaymentData? = nil, subscriberId: String? = nil, type: String? = nil, id: String? = nil) {
+        public init(amount: Int? = nil, author: Author? = nil, createdAt: String? = nil, currency: String? = nil, description: String? = nil, endingBalance: EndingBalance? = nil, entity: [String: Any]? = nil, isTest: Bool? = nil, modifiedAt: String? = nil, payment: PaymentData? = nil, subscriberId: String? = nil, type: String? = nil, id: String? = nil) {
             
             self.entity = entity
             
@@ -188,7 +188,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    isTest = try container.decode([String: Any].self, forKey: .isTest)
+                    isTest = try container.decode(Bool.self, forKey: .isTest)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

@@ -12,13 +12,13 @@ public extension PlatformClient.Billing {
     class ChargeLineItem: Codable {
         
         
-        public var name: String?
+        public var name: String
         
-        public var term: String?
+        public var term: String
         
-        public var pricingType: String?
+        public var pricingType: String
         
-        public var price: EntityChargePrice?
+        public var price: EntityChargePrice
         
         public var recurring: EntityChargeRecurring?
         
@@ -53,7 +53,7 @@ public extension PlatformClient.Billing {
             
         }
 
-        public init(cappedAmount: Double? = nil, isTest: Bool? = nil, metadata: [String: Any]? = nil, name: String? = nil, price: EntityChargePrice? = nil, pricingType: String? = nil, recurring: EntityChargeRecurring? = nil, term: String? = nil, trialDays: Int? = nil) {
+        public init(cappedAmount: Double? = nil, isTest: Bool? = nil, metadata: [String: Any]? = nil, name: String, price: EntityChargePrice, pricingType: String, recurring: EntityChargeRecurring? = nil, term: String, trialDays: Int? = nil) {
             
             self.name = name
             
@@ -79,52 +79,24 @@ public extension PlatformClient.Billing {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                name = try container.decode(String.self, forKey: .name)
                 
             
             
-                do {
-                    term = try container.decode(String.self, forKey: .term)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                term = try container.decode(String.self, forKey: .term)
                 
             
             
-                do {
-                    pricingType = try container.decode(String.self, forKey: .pricingType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                pricingType = try container.decode(String.self, forKey: .pricingType)
                 
             
             
-                do {
-                    price = try container.decode(EntityChargePrice.self, forKey: .price)
+            
+                price = try container.decode(EntityChargePrice.self, forKey: .price)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {

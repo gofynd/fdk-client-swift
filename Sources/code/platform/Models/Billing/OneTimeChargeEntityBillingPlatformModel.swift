@@ -12,20 +12,6 @@ public extension PlatformClient.Billing {
     class OneTimeChargeEntity: Codable {
         
         
-        public var term: String?
-        
-        public var chargeType: String?
-        
-        public var cappedAmount: Double?
-        
-        public var billingDate: String?
-        
-        public var createdAt: String?
-        
-        public var modifiedAt: String?
-        
-        public var v: Double?
-        
         public var id: String?
         
         public var name: String?
@@ -57,20 +43,6 @@ public extension PlatformClient.Billing {
 
         public enum CodingKeys: String, CodingKey {
             
-            case term = "term"
-            
-            case chargeType = "charge_type"
-            
-            case cappedAmount = "capped_amount"
-            
-            case billingDate = "billing_date"
-            
-            case createdAt = "created_at"
-            
-            case modifiedAt = "modified_at"
-            
-            case v = "__v"
-            
             case id = "_id"
             
             case name = "name"
@@ -101,21 +73,7 @@ public extension PlatformClient.Billing {
             
         }
 
-        public init(activatedOn: String? = nil, billingDate: String? = nil, cancelledOn: String? = nil, cappedAmount: Double? = nil, chargeType: String? = nil, createdAt: String? = nil, entityId: String? = nil, entityType: String? = nil, isTest: Bool? = nil, meta: [String: Any]? = nil, metadata: [String: Any]? = nil, modifiedAt: String? = nil, name: String? = nil, price: EntityChargePrice? = nil, pricingType: String? = nil, returnUrl: String? = nil, status: String? = nil, subscriberId: String? = nil, term: String? = nil, id: String? = nil, v: Double? = nil) {
-            
-            self.term = term
-            
-            self.chargeType = chargeType
-            
-            self.cappedAmount = cappedAmount
-            
-            self.billingDate = billingDate
-            
-            self.createdAt = createdAt
-            
-            self.modifiedAt = modifiedAt
-            
-            self.v = v
+        public init(activatedOn: String? = nil, cancelledOn: String? = nil, entityId: String? = nil, entityType: String? = nil, isTest: Bool? = nil, meta: [String: Any]? = nil, metadata: [String: Any]? = nil, name: String? = nil, price: EntityChargePrice? = nil, pricingType: String? = nil, returnUrl: String? = nil, status: String? = nil, subscriberId: String? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -149,90 +107,6 @@ public extension PlatformClient.Billing {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    term = try container.decode(String.self, forKey: .term)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    chargeType = try container.decode(String.self, forKey: .chargeType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    cappedAmount = try container.decode(Double.self, forKey: .cappedAmount)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    billingDate = try container.decode(String.self, forKey: .billingDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    createdAt = try container.decode(String.self, forKey: .createdAt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    v = try container.decode(Double.self, forKey: .v)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -406,41 +280,6 @@ public extension PlatformClient.Billing {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(term, forKey: .term)
-            
-            
-            
-            
-            try? container.encodeIfPresent(chargeType, forKey: .chargeType)
-            
-            
-            
-            
-            try? container.encodeIfPresent(cappedAmount, forKey: .cappedAmount)
-            
-            
-            
-            
-            try? container.encodeIfPresent(billingDate, forKey: .billingDate)
-            
-            
-            
-            
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
-            
             
             
             

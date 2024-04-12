@@ -5,55 +5,55 @@ import Foundation
 
 public extension PlatformClient.Billing {
     /*
-        Model: DowngradePlanReq
+        Model: Features
         Used By: Billing
     */
 
-    class DowngradePlanReq: Codable {
+    class Features: Codable {
         
         
-        public var uniqueId: String?
+        public var name: String?
         
-        public var type: String?
+        public var slug: String?
         
-        public var productSuite: String?
+        public var description: String?
         
-        public var planId: String?
+        public var group: String?
         
-        public var reason: String?
+        public var enabled: Bool?
         
-        public var platform: String?
+        public var displayText: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case uniqueId = "unique_id"
+            case name = "name"
             
-            case type = "type"
+            case slug = "slug"
             
-            case productSuite = "product_suite"
+            case description = "description"
             
-            case planId = "plan_id"
+            case group = "group"
             
-            case reason = "reason"
+            case enabled = "enabled"
             
-            case platform = "platform"
+            case displayText = "display_text"
             
         }
 
-        public init(planId: String? = nil, platform: String? = nil, productSuite: String? = nil, reason: String? = nil, type: String? = nil, uniqueId: String? = nil) {
+        public init(description: String? = nil, displayText: String? = nil, enabled: Bool? = nil, group: String? = nil, name: String? = nil, slug: String? = nil) {
             
-            self.uniqueId = uniqueId
+            self.name = name
             
-            self.type = type
+            self.slug = slug
             
-            self.productSuite = productSuite
+            self.description = description
             
-            self.planId = planId
+            self.group = group
             
-            self.reason = reason
+            self.enabled = enabled
             
-            self.platform = platform
+            self.displayText = displayText
             
         }
 
@@ -62,7 +62,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    uniqueId = try container.decode(String.self, forKey: .uniqueId)
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,7 +74,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    type = try container.decode(String.self, forKey: .type)
+                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +86,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    productSuite = try container.decode(String.self, forKey: .productSuite)
+                    description = try container.decode(String.self, forKey: .description)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,7 +98,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    planId = try container.decode(String.self, forKey: .planId)
+                    group = try container.decode(String.self, forKey: .group)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,7 +110,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    reason = try container.decode(String.self, forKey: .reason)
+                    enabled = try container.decode(Bool.self, forKey: .enabled)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -122,7 +122,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    platform = try container.decode(String.self, forKey: .platform)
+                    displayText = try container.decode(String.self, forKey: .displayText)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -139,32 +139,32 @@ public extension PlatformClient.Billing {
             
             
             
-            try? container.encodeIfPresent(uniqueId, forKey: .uniqueId)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
             
-            try? container.encodeIfPresent(productSuite, forKey: .productSuite)
+            try? container.encodeIfPresent(description, forKey: .description)
             
             
             
             
-            try? container.encodeIfPresent(planId, forKey: .planId)
+            try? container.encodeIfPresent(group, forKey: .group)
             
             
             
             
-            try? container.encodeIfPresent(reason, forKey: .reason)
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
             
             
             
             
-            try? container.encodeIfPresent(platform, forKey: .platform)
+            try? container.encodeIfPresent(displayText, forKey: .displayText)
             
             
         }

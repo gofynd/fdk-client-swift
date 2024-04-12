@@ -1,35 +1,33 @@
 
 
 import Foundation
-
-
-public extension PlatformClient.Billing {
+public extension PublicClient.Billing {
     /*
-        Model: PostDowngradeRes
+        Model: InternalServerError
         Used By: Billing
     */
 
-    class PostDowngradeRes: Codable {
+    class InternalServerError: Codable {
         
         
-        public var success: Bool?
+        public var message: String?
         
-        public var data: DowngradeRes?
+        public var code: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
+            case message = "message"
             
-            case data = "data"
+            case code = "code"
             
         }
 
-        public init(data: DowngradeRes? = nil, success: Bool? = nil) {
+        public init(code: String? = nil, message: String? = nil) {
             
-            self.success = success
+            self.message = message
             
-            self.data = data
+            self.code = code
             
         }
 
@@ -38,7 +36,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    success = try container.decode(Bool.self, forKey: .success)
+                    message = try container.decode(String.self, forKey: .message)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +48,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    data = try container.decode(DowngradeRes.self, forKey: .data)
+                    code = try container.decode(String.self, forKey: .code)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -66,20 +64,14 @@ public extension PlatformClient.Billing {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
-            try? container.encodeIfPresent(success, forKey: .success)
-            
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
         }
         
     }
 }
-
-
-
-

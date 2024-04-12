@@ -14,7 +14,7 @@ public extension PlatformClient.Billing {
         
         public var success: Bool?
         
-        public var data: [MethodDetails]?
+        public var data: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Billing {
             
         }
 
-        public init(data: [MethodDetails]? = nil, success: Bool? = nil) {
+        public init(data: [String]? = nil, success: Bool? = nil) {
             
             self.success = success
             
@@ -50,7 +50,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    data = try container.decode([MethodDetails].self, forKey: .data)
+                    data = try container.decode([String].self, forKey: .data)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

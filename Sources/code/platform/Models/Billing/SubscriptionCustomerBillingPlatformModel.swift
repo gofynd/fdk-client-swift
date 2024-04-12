@@ -32,16 +32,6 @@ public extension PlatformClient.Billing {
         
         public var data: [String: Any]?
         
-        public var documents: [String: Any]?
-        
-        public var consent: Bool?
-        
-        public var comms: Bool?
-        
-        public var creditBalance: Int?
-        
-        public var businessCountryInfo: BusinessCountryInfo?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -65,19 +55,9 @@ public extension PlatformClient.Billing {
             
             case data = "data"
             
-            case documents = "documents"
-            
-            case consent = "consent"
-            
-            case comms = "comms"
-            
-            case creditBalance = "credit_balance"
-            
-            case businessCountryInfo = "business_country_info"
-            
         }
 
-        public init(billingAddress: SubscriptionBillingAddress? = nil, businessCountryInfo: BusinessCountryInfo? = nil, comms: Bool? = nil, consent: Bool? = nil, createdAt: String? = nil, creditBalance: Int? = nil, data: [String: Any]? = nil, documents: [String: Any]? = nil, email: String? = nil, modifiedAt: String? = nil, name: String? = nil, phone: Phone? = nil, type: String? = nil, uniqueId: String? = nil, id: String? = nil) {
+        public init(billingAddress: SubscriptionBillingAddress? = nil, createdAt: String? = nil, data: [String: Any]? = nil, email: String? = nil, modifiedAt: String? = nil, name: String? = nil, phone: Phone? = nil, type: String? = nil, uniqueId: String? = nil, id: String? = nil) {
             
             self.phone = phone
             
@@ -98,16 +78,6 @@ public extension PlatformClient.Billing {
             self.modifiedAt = modifiedAt
             
             self.data = data
-            
-            self.documents = documents
-            
-            self.consent = consent
-            
-            self.comms = comms
-            
-            self.creditBalance = creditBalance
-            
-            self.businessCountryInfo = businessCountryInfo
             
         }
 
@@ -234,66 +204,6 @@ public extension PlatformClient.Billing {
                 }
                 
             
-            
-                do {
-                    documents = try container.decode([String: Any].self, forKey: .documents)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    consent = try container.decode(Bool.self, forKey: .consent)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    comms = try container.decode(Bool.self, forKey: .comms)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    creditBalance = try container.decode(Int.self, forKey: .creditBalance)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    businessCountryInfo = try container.decode(BusinessCountryInfo.self, forKey: .businessCountryInfo)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -347,31 +257,6 @@ public extension PlatformClient.Billing {
             
             
             try? container.encodeIfPresent(data, forKey: .data)
-            
-            
-            
-            
-            try? container.encodeIfPresent(documents, forKey: .documents)
-            
-            
-            
-            
-            try? container.encodeIfPresent(consent, forKey: .consent)
-            
-            
-            
-            
-            try? container.encodeIfPresent(comms, forKey: .comms)
-            
-            
-            
-            
-            try? container.encodeIfPresent(creditBalance, forKey: .creditBalance)
-            
-            
-            
-            
-            try? container.encodeIfPresent(businessCountryInfo, forKey: .businessCountryInfo)
             
             
         }

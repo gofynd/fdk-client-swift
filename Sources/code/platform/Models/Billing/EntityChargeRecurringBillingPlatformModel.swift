@@ -12,7 +12,7 @@ public extension PlatformClient.Billing {
     class EntityChargeRecurring: Codable {
         
         
-        public var interval: String?
+        public var interval: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension PlatformClient.Billing {
             
         }
 
-        public init(interval: String? = nil) {
+        public init(interval: String) {
             
             self.interval = interval
             
@@ -31,16 +31,9 @@ public extension PlatformClient.Billing {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    interval = try container.decode(String.self, forKey: .interval)
+                interval = try container.decode(String.self, forKey: .interval)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
