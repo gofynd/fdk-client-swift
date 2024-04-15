@@ -418,7 +418,7 @@ if let value = search {
         
         /**
         *
-        * Summary: Delete custom fields definition.
+        * Summary: Delete custom fields definition
         * Description: Use this API to delete the definitions of custom fields using definition_id. This will also delete related custom fields entries related to this definition.
         **/
         public func deleteCustomFieldDefinition(
@@ -1142,7 +1142,7 @@ if let value = definitionId {
         
         /**
         *
-        * Summary: Fetch bulk import and export job list.
+        * Summary: Fetch bulk import and export job list
         * Description: Use this api to get list of jobs of bulk import and exports
         **/
         public func getJobs(

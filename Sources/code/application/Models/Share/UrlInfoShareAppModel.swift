@@ -10,8 +10,6 @@ public extension ApplicationClient.Share {
         
         public var original: String?
         
-        public var short: String?
-        
         public var hash: String?
         
 
@@ -19,17 +17,13 @@ public extension ApplicationClient.Share {
             
             case original = "original"
             
-            case short = "short"
-            
             case hash = "hash"
             
         }
 
-        public init(hash: String? = nil, original: String? = nil, short: String? = nil) {
+        public init(hash: String? = nil, original: String? = nil) {
             
             self.original = original
-            
-            self.short = short
             
             self.hash = hash
             
@@ -41,18 +35,6 @@ public extension ApplicationClient.Share {
             
             do {
                 original = try container.decode(String.self, forKey: .original)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                short = try container.decode(String.self, forKey: .short)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,10 +63,6 @@ public extension ApplicationClient.Share {
             
             
             try? container.encodeIfPresent(original, forKey: .original)
-            
-            
-            
-            try? container.encodeIfPresent(short, forKey: .short)
             
             
             

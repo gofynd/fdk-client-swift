@@ -36,6 +36,10 @@ public extension PlatformClient.Order {
         
         public var userInfo: UserInfo?
         
+        public var orderingStoreId: Int?
+        
+        public var orderPlatform: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -63,9 +67,13 @@ public extension PlatformClient.Order {
             
             case userInfo = "user_info"
             
+            case orderingStoreId = "ordering_store_id"
+            
+            case orderPlatform = "order_platform"
+            
         }
 
-        public init(billingInfo: BillingInfo, charges: [Charge]? = nil, config: [String: Any]? = nil, currencyInfo: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, meta: [String: Any]? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
+        public init(billingInfo: BillingInfo, charges: [Charge]? = nil, config: [String: Any]? = nil, currencyInfo: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, meta: [String: Any]? = nil, orderingStoreId: Int? = nil, orderPlatform: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
             
             self.shipments = shipments
             
@@ -90,6 +98,10 @@ public extension PlatformClient.Order {
             self.paymentInfo = paymentInfo
             
             self.userInfo = userInfo
+            
+            self.orderingStoreId = orderingStoreId
+            
+            self.orderPlatform = orderPlatform
             
         }
 
@@ -212,6 +224,30 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    orderingStoreId = try container.decode(Int.self, forKey: .orderingStoreId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderPlatform = try container.decode(String.self, forKey: .orderPlatform)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -275,6 +311,16 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(userInfo, forKey: .userInfo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingStoreId, forKey: .orderingStoreId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderPlatform, forKey: .orderPlatform)
             
             
         }
@@ -317,6 +363,10 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var userInfo: UserInfo?
         
+        public var orderingStoreId: Int?
+        
+        public var orderPlatform: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -344,9 +394,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case userInfo = "user_info"
             
+            case orderingStoreId = "ordering_store_id"
+            
+            case orderPlatform = "order_platform"
+            
         }
 
-        public init(billingInfo: BillingInfo, charges: [Charge]? = nil, config: [String: Any]? = nil, currencyInfo: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, meta: [String: Any]? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
+        public init(billingInfo: BillingInfo, charges: [Charge]? = nil, config: [String: Any]? = nil, currencyInfo: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, meta: [String: Any]? = nil, orderingStoreId: Int? = nil, orderPlatform: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
             
             self.shipments = shipments
             
@@ -371,6 +425,10 @@ public extension PlatformClient.ApplicationClient.Order {
             self.paymentInfo = paymentInfo
             
             self.userInfo = userInfo
+            
+            self.orderingStoreId = orderingStoreId
+            
+            self.orderPlatform = orderPlatform
             
         }
 
@@ -493,6 +551,30 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    orderingStoreId = try container.decode(Int.self, forKey: .orderingStoreId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderPlatform = try container.decode(String.self, forKey: .orderPlatform)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -556,6 +638,16 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(userInfo, forKey: .userInfo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingStoreId, forKey: .orderingStoreId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderPlatform, forKey: .orderPlatform)
             
             
         }

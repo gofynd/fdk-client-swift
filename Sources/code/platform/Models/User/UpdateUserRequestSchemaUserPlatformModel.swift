@@ -22,6 +22,8 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var externalId: String?
         
+        public var rrId: String?
+        
         public var meta: [String: Any]?
         
         public var phoneNumbers: [UserPhoneNumbers]?
@@ -39,6 +41,8 @@ public extension PlatformClient.ApplicationClient.User {
             
             case externalId = "external_id"
             
+            case rrId = "rr_id"
+            
             case meta = "meta"
             
             case phoneNumbers = "phone_numbers"
@@ -47,7 +51,7 @@ public extension PlatformClient.ApplicationClient.User {
             
         }
 
-        public init(emails: [UserEmails]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [UserPhoneNumbers]? = nil) {
+        public init(emails: [UserEmails]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [UserPhoneNumbers]? = nil, rrId: String? = nil) {
             
             self.firstName = firstName
             
@@ -56,6 +60,8 @@ public extension PlatformClient.ApplicationClient.User {
             self.gender = gender
             
             self.externalId = externalId
+            
+            self.rrId = rrId
             
             self.meta = meta
             
@@ -107,6 +113,18 @@ public extension PlatformClient.ApplicationClient.User {
             
                 do {
                     externalId = try container.decode(String.self, forKey: .externalId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    rrId = try container.decode(String.self, forKey: .rrId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -175,6 +193,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(externalId, forKey: .externalId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(rrId, forKey: .rrId)
             
             
             

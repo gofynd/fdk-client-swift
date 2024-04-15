@@ -45,8 +45,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get Pincode API
-        * Description: Get pincode data
+        * Summary: Fetches city by pincode
+        * Description: Retrieve the name of the city associated with a given pincode.
         **/
         public func getPincodeCity(
             pincode: String,
@@ -98,8 +98,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get TAT API
-        * Description: Get TAT data
+        * Summary: Retrieves product turnaround time
+        * Description: Retrieve the estimated delivery time for a specific product.
         **/
         public func getTatProduct(
             body: TATViewRequest,
@@ -148,8 +148,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get Country List
-        * Description: Get all countries
+        * Summary: Lists all countries
+        * Description: Retrieve a list of all countries supported by the system.
         **/
         public func getAllCountries(
             
@@ -198,8 +198,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: GET zone from the Pincode.
-        * Description: This API returns zone from the Pincode View.
+        * Summary: Fetches zones by pincode
+        * Description: Retreive the logistical zones corresponding to a given pincode.
         **/
         public func getPincodeZones(
             body: GetZoneFromPincodeViewRequest,
@@ -248,8 +248,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: GET zone from the Pincode.
-        * Description: This API returns zone from the Pincode View.
+        * Summary: Finds optimal locations
+        * Description: Retrieve the most efficient locations for logistics purposes.
         **/
         public func getOptimalLocations(
             body: ReAssignStoreRequest,
@@ -298,8 +298,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: GET locations from the Pincode.
-        * Description: This API returns store from the Pincode View.
+        * Summary: Fetches available locations
+        * Description: Retrieves a list of all locations of countries, states, cities. 
         **/
         public func getLocations(
             xApplicationId: String,
@@ -416,7 +416,7 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get all countries and associated data.
+        * Summary: Get all countries and associated data
         * Description: Retrieve of all countries.
         **/
         public func getCountries(
@@ -498,7 +498,7 @@ if let value = q {
         
         /**
         *
-        * Summary: Get single country and associated data.
+        * Summary: Get single country and associated data
         * Description: Retrieve data for a single country and address format.
         **/
         public func getCountry(
@@ -551,7 +551,7 @@ if let value = q {
         
         /**
         *
-        * Summary: Get Localities.
+        * Summary: Get Localities
         * Description: Get Localities data.
         **/
         public func getLocalities(

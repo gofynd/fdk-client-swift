@@ -12,7 +12,7 @@ public extension PlatformClient.Serviceability {
     class ListViewResponse: Codable {
         
         
-        public var page: [ZoneDataItem]
+        public var page: ZoneDataItem
         
         public var items: [ListViewItems]
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(items: [ListViewItems], page: [ZoneDataItem]) {
+        public init(items: [ListViewItems], page: ZoneDataItem) {
             
             self.page = page
             
@@ -37,7 +37,7 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                page = try container.decode([ZoneDataItem].self, forKey: .page)
+                page = try container.decode(ZoneDataItem.self, forKey: .page)
                 
             
             
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ListViewResponse: Codable {
         
         
-        public var page: [ZoneDataItem]
+        public var page: ZoneDataItem
         
         public var items: [ListViewItems]
         
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(items: [ListViewItems], page: [ZoneDataItem]) {
+        public init(items: [ListViewItems], page: ZoneDataItem) {
             
             self.page = page
             
@@ -102,7 +102,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                page = try container.decode([ZoneDataItem].self, forKey: .page)
+                page = try container.decode(ZoneDataItem.self, forKey: .page)
                 
             
             

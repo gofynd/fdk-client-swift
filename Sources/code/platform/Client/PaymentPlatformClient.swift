@@ -19,8 +19,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get All Payouts
-        * Description: Get All Payouts
+        * Summary: Get all payouts
+        * Description: Retrieve a list of all payout transactions.
         **/
         public func getAllPayouts(
             uniqueExternalId: String?,
@@ -75,8 +75,8 @@ if let value = uniqueExternalId {
         
         /**
         *
-        * Summary: Save Payout
-        * Description: Save Payout
+        * Summary: Save payout
+        * Description: Store and process a payout transaction.
         **/
         public func savePayout(
             body: PayoutRequest,
@@ -123,8 +123,8 @@ if let value = uniqueExternalId {
         
         /**
         *
-        * Summary: Update Payout
-        * Description: Update Payout
+        * Summary: Update payout
+        * Description: Modify the details of a payout transaction.
         **/
         public func updatePayout(
             uniqueTransferNo: String,
@@ -172,8 +172,8 @@ if let value = uniqueExternalId {
         
         /**
         *
-        * Summary: Partial Update Payout
-        * Description: Partial Update Payout
+        * Summary: Activate/Deactivate payout
+        * Description: Enable or disable payout functionality.
         **/
         public func activateAndDectivatePayout(
             uniqueTransferNo: String,
@@ -221,8 +221,8 @@ if let value = uniqueExternalId {
         
         /**
         *
-        * Summary: Delete Payout
-        * Description: Delete Payout
+        * Summary: Delete payout
+        * Description: Remove a payout transaction from the system.
         **/
         public func deletePayout(
             uniqueTransferNo: String,
@@ -270,8 +270,8 @@ if let value = uniqueExternalId {
         
         /**
         *
-        * Summary: List Subscription Payment Method
-        * Description: Get all  Subscription  Payment Method
+        * Summary: Get subscription payment method
+        * Description: Retrieve payment methods for subscriptions.
         **/
         public func getSubscriptionPaymentMethod(
             uniqueExternalId: String?,
@@ -326,8 +326,8 @@ if let value = uniqueExternalId {
         
         /**
         *
-        * Summary: Delete Subscription Payment Method
-        * Description: Uses this api to Delete Subscription Payment Method
+        * Summary: Delete subscription payment method
+        * Description: Remove a payment method from subscription options.
         **/
         public func deleteSubscriptionPaymentMethod(
             uniqueExternalId: String,
@@ -386,8 +386,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: List Subscription Config
-        * Description: Get all  Subscription Config details
+        * Summary: Get subscription config
+        * Description: Retrieve configuration settings for subscriptions.
         **/
         public func getSubscriptionConfig(
             
@@ -434,8 +434,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Save Subscription Setup Intent
-        * Description: Uses this api to Save Subscription Setup Intent
+        * Summary: Save subscription setup intent
+        * Description: Store and process setup intent for subscriptions.
         **/
         public func saveSubscriptionSetupIntent(
             body: SaveSubscriptionSetupIntentRequest,
@@ -484,8 +484,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Ifsc Code Verification
-        * Description: Get True or False for correct IFSC Code for adding bank details for refund
+        * Summary: Verify IFSC code
+        * Description: Check the authenticity of an IFSC code.
         **/
         public func verifyIfscCode(
             ifscCode: String?,

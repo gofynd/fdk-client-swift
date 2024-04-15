@@ -36,7 +36,7 @@ public extension PlatformClient.Order {
         
         public var brandId: Int?
         
-        public var modifiedOn: Int?
+        public var modifiedOn: String?
         
         public var id: Int?
         
@@ -73,7 +73,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(brandId: Int? = nil, brandName: String, company: String? = nil, createdOn: String? = nil, creditNoteAllowed: Bool? = nil, creditNoteExpiryDays: Int? = nil, id: Int? = nil, invoicePrefix: String? = nil, isVirtualInvoice: Bool? = nil, logo: String? = nil, modifiedOn: Int? = nil, pickupLocation: String? = nil, scriptLastRan: String? = nil, startDate: String? = nil) {
+        public init(brandId: Int? = nil, brandName: String, company: String? = nil, createdOn: String? = nil, creditNoteAllowed: Bool? = nil, creditNoteExpiryDays: Int? = nil, id: Int? = nil, invoicePrefix: String? = nil, isVirtualInvoice: Bool? = nil, logo: String? = nil, modifiedOn: String? = nil, pickupLocation: String? = nil, scriptLastRan: String? = nil, startDate: String? = nil) {
             
             self.creditNoteExpiryDays = creditNoteExpiryDays
             
@@ -247,7 +247,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    modifiedOn = try container.decode(Int.self, forKey: .modifiedOn)
+                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -384,7 +384,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var brandId: Int?
         
-        public var modifiedOn: Int?
+        public var modifiedOn: String?
         
         public var id: Int?
         
@@ -421,7 +421,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(brandId: Int? = nil, brandName: String, company: String? = nil, createdOn: String? = nil, creditNoteAllowed: Bool? = nil, creditNoteExpiryDays: Int? = nil, id: Int? = nil, invoicePrefix: String? = nil, isVirtualInvoice: Bool? = nil, logo: String? = nil, modifiedOn: Int? = nil, pickupLocation: String? = nil, scriptLastRan: String? = nil, startDate: String? = nil) {
+        public init(brandId: Int? = nil, brandName: String, company: String? = nil, createdOn: String? = nil, creditNoteAllowed: Bool? = nil, creditNoteExpiryDays: Int? = nil, id: Int? = nil, invoicePrefix: String? = nil, isVirtualInvoice: Bool? = nil, logo: String? = nil, modifiedOn: String? = nil, pickupLocation: String? = nil, scriptLastRan: String? = nil, startDate: String? = nil) {
             
             self.creditNoteExpiryDays = creditNoteExpiryDays
             
@@ -595,7 +595,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    modifiedOn = try container.decode(Int.self, forKey: .modifiedOn)
+                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

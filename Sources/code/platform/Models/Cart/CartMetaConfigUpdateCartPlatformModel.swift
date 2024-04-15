@@ -16,6 +16,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var minCartValue: Int?
         
+        public var maxCartValue: Int?
+        
         public var bulkCoupons: Bool?
         
         public var maxCartItems: Int?
@@ -35,6 +37,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case minCartValue = "min_cart_value"
             
+            case maxCartValue = "max_cart_value"
+            
             case bulkCoupons = "bulk_coupons"
             
             case maxCartItems = "max_cart_items"
@@ -51,9 +55,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(bulkCoupons: Bool? = nil, deliveryCharges: DeliveryCharges? = nil, enabled: Bool? = nil, giftDisplayText: String? = nil, giftPricing: Double? = nil, maxCartItems: Int? = nil, minCartValue: Int? = nil, revenueEngineCoupon: Bool? = nil) {
+        public init(bulkCoupons: Bool? = nil, deliveryCharges: DeliveryCharges? = nil, enabled: Bool? = nil, giftDisplayText: String? = nil, giftPricing: Double? = nil, maxCartItems: Int? = nil, maxCartValue: Int? = nil, minCartValue: Int? = nil, revenueEngineCoupon: Bool? = nil) {
             
             self.minCartValue = minCartValue
+            
+            self.maxCartValue = maxCartValue
             
             self.bulkCoupons = bulkCoupons
             
@@ -77,6 +83,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     minCartValue = try container.decode(Int.self, forKey: .minCartValue)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    maxCartValue = try container.decode(Int.self, forKey: .maxCartValue)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -178,6 +196,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(minCartValue, forKey: .minCartValue)
+            
+            
+            
+            
+            try? container.encodeIfPresent(maxCartValue, forKey: .maxCartValue)
             
             
             

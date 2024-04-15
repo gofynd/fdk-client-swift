@@ -12,7 +12,7 @@ public extension PlatformClient.Order {
     class Store: Codable {
         
         
-        public var phone: Int
+        public var phone: String
         
         public var isActive: Bool?
         
@@ -157,7 +157,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(address1: String, address2: String? = nil, alohomoraUserId: Int? = nil, brandStoreTags: [String]? = nil, city: String, code: String? = nil, companyId: Int, contactPerson: String, country: String, createdAt: String, displayAddress: String? = nil, fulfillmentChannel: String, isActive: Bool? = nil, isArchived: Bool? = nil, isEnabledForRecon: Bool? = nil, latitude: Double? = nil, locationType: String, loginUsername: String? = nil, longitude: Double? = nil, mallArea: String? = nil, mallName: String? = nil, meta: StoreMeta, name: String, orderIntegrationId: String? = nil, packagingMaterialCount: Int? = nil, parentStoreId: Int? = nil, phone: Int, pincode: String, state: String, storeActiveFrom: String? = nil, storeAddressJson: StoreAddress? = nil, storeEmail: String, sId: String? = nil, updatedAt: String? = nil, vatNo: String? = nil) {
+        public init(address1: String, address2: String? = nil, alohomoraUserId: Int? = nil, brandStoreTags: [String]? = nil, city: String, code: String? = nil, companyId: Int, contactPerson: String, country: String, createdAt: String, displayAddress: String? = nil, fulfillmentChannel: String, isActive: Bool? = nil, isArchived: Bool? = nil, isEnabledForRecon: Bool? = nil, latitude: Double? = nil, locationType: String, loginUsername: String? = nil, longitude: Double? = nil, mallArea: String? = nil, mallName: String? = nil, meta: StoreMeta, name: String, orderIntegrationId: String? = nil, packagingMaterialCount: Int? = nil, parentStoreId: Int? = nil, phone: String, pincode: String, state: String, storeActiveFrom: String? = nil, storeAddressJson: StoreAddress? = nil, storeEmail: String, sId: String? = nil, updatedAt: String? = nil, vatNo: String? = nil) {
             
             self.phone = phone
             
@@ -235,7 +235,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                phone = try container.decode(Int.self, forKey: .phone)
+                phone = try container.decode(String.self, forKey: .phone)
                 
             
             
@@ -752,7 +752,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class Store: Codable {
         
         
-        public var phone: Int
+        public var phone: String
         
         public var isActive: Bool?
         
@@ -897,7 +897,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(address1: String, address2: String? = nil, alohomoraUserId: Int? = nil, brandStoreTags: [String]? = nil, city: String, code: String? = nil, companyId: Int, contactPerson: String, country: String, createdAt: String, displayAddress: String? = nil, fulfillmentChannel: String, isActive: Bool? = nil, isArchived: Bool? = nil, isEnabledForRecon: Bool? = nil, latitude: Double? = nil, locationType: String, loginUsername: String? = nil, longitude: Double? = nil, mallArea: String? = nil, mallName: String? = nil, meta: StoreMeta, name: String, orderIntegrationId: String? = nil, packagingMaterialCount: Int? = nil, parentStoreId: Int? = nil, phone: Int, pincode: String, state: String, storeActiveFrom: String? = nil, storeAddressJson: StoreAddress? = nil, storeEmail: String, sId: String? = nil, updatedAt: String? = nil, vatNo: String? = nil) {
+        public init(address1: String, address2: String? = nil, alohomoraUserId: Int? = nil, brandStoreTags: [String]? = nil, city: String, code: String? = nil, companyId: Int, contactPerson: String, country: String, createdAt: String, displayAddress: String? = nil, fulfillmentChannel: String, isActive: Bool? = nil, isArchived: Bool? = nil, isEnabledForRecon: Bool? = nil, latitude: Double? = nil, locationType: String, loginUsername: String? = nil, longitude: Double? = nil, mallArea: String? = nil, mallName: String? = nil, meta: StoreMeta, name: String, orderIntegrationId: String? = nil, packagingMaterialCount: Int? = nil, parentStoreId: Int? = nil, phone: String, pincode: String, state: String, storeActiveFrom: String? = nil, storeAddressJson: StoreAddress? = nil, storeEmail: String, sId: String? = nil, updatedAt: String? = nil, vatNo: String? = nil) {
             
             self.phone = phone
             
@@ -975,7 +975,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                phone = try container.decode(Int.self, forKey: .phone)
+                phone = try container.decode(String.self, forKey: .phone)
                 
             
             

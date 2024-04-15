@@ -181,8 +181,8 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Get with single coupon details or coupon list
-            * Description: Get coupon list with pagination
+            * Summary: Retrieve available coupons
+            * Description: Retrieve a list of available coupons for use in the shopping cart.
             **/
             public func getCoupons(
                 pageNo: Int?,
@@ -291,111 +291,10 @@ if let value = code {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
-            * Summary: get paginator for getCoupons
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getCouponsPaginator(
-                pageSize: Int?,
-                isArchived: Bool?,
-                title: String?,
-                isPublic: Bool?,
-                isDisplay: Bool?,
-                typeSlug: String?,
-                code: String?
-                
-                ) -> Paginator<CouponsResponse> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<CouponsResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getCoupons(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            isArchived: isArchived,
-                            title: title,
-                            isPublic: isPublic,
-                            isDisplay: isDisplay,
-                            typeSlug: typeSlug,
-                            code: code
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Create new coupon
-            * Description: Create new coupon
+            * Summary: Create a new coupon
+            * Description: Generate and add a new coupon to the cart.
             **/
             public func createCoupon(
                 body: CouponAdd,
@@ -442,8 +341,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Get with single coupon details or coupon list
-            * Description: Get single coupon details with `id` in path param
+            * Summary: Get coupon details by ID
+            * Description: Retrieve detailed information about a specific coupon using its unique ID.
             **/
             public func getCouponById(
                 id: String,
@@ -491,8 +390,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Update existing coupon configuration
-            * Description: Update coupon with id sent in `id`
+            * Summary: Update a coupon
+            * Description: Modify the details and settings of an existing coupon in the cart system.
             **/
             public func updateCoupon(
                 id: String,
@@ -540,8 +439,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Update coupon archive state and schedule
-            * Description: Update archive/unarchive and change schedule for coupon
+            * Summary: Partially update a coupon
+            * Description: Make partial modifications to the settings of an existing coupon in the cart system.
             **/
             public func updateCouponPartially(
                 id: String,
@@ -589,8 +488,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Get promotion list
-            * Description: Get promotion list with pagination
+            * Summary: Retrieve available promotions
+            * Description: Retrieve a list of available promotions to apply to the cart.
             **/
             public func getPromotions(
                 pageNo: Int?,
@@ -699,111 +598,10 @@ if let value = promotionId {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
-            * Summary: get paginator for getPromotions
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getPromotionsPaginator(
-                pageSize: Int?,
-                q: String?,
-                isActive: Bool?,
-                promoGroup: String?,
-                promotionType: String?,
-                fpPanel: String?,
-                promotionId: String?
-                
-                ) -> Paginator<PromotionsResponse> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<PromotionsResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getPromotions(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            q: q,
-                            isActive: isActive,
-                            promoGroup: promoGroup,
-                            promotionType: promotionType,
-                            fpPanel: fpPanel,
-                            promotionId: promotionId
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Create new promotion
-            * Description: Create new promotion
+            * Summary: Create a new promotion
+            * Description: Generate and add a new promotion to the cart system 
             **/
             public func createPromotion(
                 body: PromotionAdd,
@@ -850,8 +648,8 @@ if let value = promotionId {
             
             /**
             *
-            * Summary: Get with single promotion details or promotion list
-            * Description: Get single promotion details with `id` in path param
+            * Summary: Get promotion details by ID
+            * Description: Retrieve detailed information about a specific promotion using its unique ID.
             **/
             public func getPromotionById(
                 id: String,
@@ -899,8 +697,8 @@ if let value = promotionId {
             
             /**
             *
-            * Summary: Update existing promotion configuration
-            * Description: Update promotion with id sent in `id`
+            * Summary: Update a promotion
+            * Description: Modify the details and settings of an existing promotion in the cart system.
             **/
             public func updatePromotion(
                 id: String,
@@ -948,8 +746,8 @@ if let value = promotionId {
             
             /**
             *
-            * Summary: Update promotion publish state and schedule
-            * Description: Update publish/unpublish and change schedule for promotion
+            * Summary: Partially update a promotion
+            * Description: Make partial modifications to the settings of an existing promotion in the cart system.
             **/
             public func updatePromotionPartially(
                 id: String,
@@ -997,8 +795,8 @@ if let value = promotionId {
             
             /**
             *
-            * Summary: Fetch all promos that are set as active
-            * Description: Use this API to get list of all the active promos/coupons.
+            * Summary: Get promotion and coupon configuration
+            * Description: Retrieve configuration settings for promotions and coupons.
             **/
             public func getPromosCouponConfig(
                 entityType: String?,
@@ -1061,8 +859,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Update cart meta configuration
-            * Description: Update cart meta configuration
+            * Summary: Update cart metadata configuration
+            * Description: Modify the configuration settings for cart metadata.
             **/
             public func updateCartMetaConfig(
                 cartMetaId: String,
@@ -1206,8 +1004,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Update price adjustment configuration
-            * Description: Update price adjustment configuration
+            * Summary: Update price adjustments
+            * Description: Modify price adjustments for items in the cart.
             **/
             public func updatePriceAdjustment(
                 id: String,
@@ -1255,8 +1053,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Remove price adjustment
-            * Description: Remove price adjustment
+            * Summary: Remove price adjustments
+            * Description: Remove price adjustments applied to items in the cart.
             **/
             public func removePriceAdjustment(
                 id: String,
@@ -1304,8 +1102,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Create new price adjustment
-            * Description: Create new price adjustment
+            * Summary: Add price adjustments
+            * Description: Apply price adjustments to items in the cart.
             **/
             public func addPriceAdjustment(
                 body: PriceAdjustmentAdd,
@@ -1352,8 +1150,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Fetch Cart Details
-            * Description: Get all the details of cart for a list of provided `cart_items`
+            * Summary: Fetch and validate cart items
+            * Description: Retrieve and validate items currently in the cart.
             **/
             public func fetchAndvalidateCartItems(
                 body: OpenapiCartDetailsRequest,
@@ -1400,8 +1198,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Check Pincode Serviceability
-            * Description: Check Pincode serviceability for cart items provided in `cart_items` and address pincode in `shipping_address`
+            * Summary: Check cart serviceability
+            * Description: Verify if the items in the cart are serviceable.
             **/
             public func checkCartServiceability(
                 body: OpenApiCartServiceabilityRequest,
@@ -1448,8 +1246,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Create Fynd order with cart details
-            * Description: Generate Fynd order for cart details send with provided `cart_items`
+            * Summary: Proceed to cart checkout
+            * Description: Initiate the checkout process for the items in the cart.
             **/
             public func checkoutCart(
                 body: OpenApiPlatformCheckoutReq,
@@ -1496,8 +1294,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Get with abandoned cart list
-            * Description: Get abandoned cart list with pagination
+            * Summary: Retrieve abandoned carts
+            * Description: Retrieve abandoned carts for analysis and potential recovery.
             **/
             public func getAbandonedCart(
                 pageNo: Int?,
@@ -1598,103 +1396,10 @@ if let value = sortOn {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
-            * Summary: get paginator for getAbandonedCart
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getAbandonedCartPaginator(
-                pageSize: Int?,
-                fromDate: String?,
-                toDate: String?,
-                anonymousCart: Bool?,
-                lastId: String?,
-                sortOn: String?
-                
-                ) -> Paginator<AbandonedCartResponse> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<AbandonedCartResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getAbandonedCart(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            fromDate: fromDate,
-                            toDate: toDate,
-                            anonymousCart: anonymousCart,
-                            lastId: lastId,
-                            sortOn: sortOn
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Fetch all items added to the cart
-            * Description: Use this API to get details of all the items added to a cart.
+            * Summary: Get abandoned cart details
+            * Description: Retrieve detailed information about a specific abandoned cart.
             **/
             public func getAbandonedCartDetails(
                 id: String?,
@@ -1773,8 +1478,8 @@ if let value = c {
             
             /**
             *
-            * Summary: Add items to abandoned cart
-            * Description: Use this API to add items to the abandoned cart.
+            * Summary: Add items to the cart
+            * Description: Add items to the shopping cart 
             **/
             public func addItems(
                 cartId: String,
@@ -1830,8 +1535,8 @@ if let value = b {
             
             /**
             *
-            * Summary: Update items in the abandoned cart
-            * Description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs operation Operation for current api call.update_item for update items. remove_item for removing items. item_id "/platform/content/v1/products/" "/platform/content/v1/products/:slug/sizes/" quantity item quantity (must be greater than or equal to 1) article_id "/content​/v1​/products​/:identifier​/sizes​/price​/"  item position in the cart (must be greater than or equal to 0)
+            * Summary: Update cart items
+            * Description: Modify items and their quantities in the shopping cart.
             **/
             public func updateCart(
                 cartId: String,
@@ -1887,8 +1592,8 @@ if let value = b {
             
             /**
             *
-            * Summary: Get coupon options enums with display values
-            * Description: Get coupon enum values for fields in valid coupon object. Used for front end to create, update and filter coupon lists via fields
+            * Summary: Get coupon option values
+            * Description: Retrieve available values for coupon options.
             **/
             public func getCouponOptionValues(
                 
@@ -1935,8 +1640,8 @@ if let value = b {
             
             /**
             *
-            * Summary: Check if coupon is already created with coupon code
-            * Description: Check if sent coupon code is already existing coupon code. As coupon code is to be unique.
+            * Summary: Check if a coupon code exists
+            * Description: Verify the existence of a specific coupon code.
             **/
             public func getCouponCodeExists(
                 code: String?,
@@ -1991,8 +1696,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Check if promotion is already created with promotion code
-            * Description: Check if sent promotion code is already existing promotion code. As promotion code is to be unique.
+            * Summary: Check if a promotion code exists
+            * Description: Verify the existence of a specific promotion code.
             **/
             public func getPromotionCodeExists(
                 code: String?,
@@ -2047,8 +1752,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Create Fynd order with overriding cart details
-            * Description: Generate Fynd order while overriding cart details sent with provided `cart_items`
+            * Summary: Override the cart
+            * Description: Override the current cart with a new configuration.
             **/
             public func overrideCart(
                 body: OverrideCheckoutReq,
@@ -2143,8 +1848,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Get details of a shared cart
-            * Description: Use this API to get the shared cart details as per the token generated using the share-cart API.
+            * Summary: Get items shared via a cart link
+            * Description: Retrieve the items shared with you via a cart link.
             **/
             public func getCartSharedItems(
                 token: String,
@@ -2192,8 +1897,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Merge or replace existing cart
-            * Description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace.
+            * Summary: Update cart with shared items
+            * Description: Modify your cart by adding shared items from a cart link.
             **/
             public func updateCartWithSharedItems(
                 token: String,
@@ -2250,8 +1955,8 @@ if let value = cartId {
             
             /**
             *
-            * Summary: Get cart list for store os user
-            * Description: Get all carts for the store os user which is created for customer
+            * Summary: Retrieve a list of carts
+            * Description: Retrieve a list of saved shopping carts.
             **/
             public func getCartList(
                 fromDate: String?,
@@ -2322,8 +2027,8 @@ if let value = filterOn {
             
             /**
             *
-            * Summary: Update user id for store os customer
-            * Description: Update user id for store os customer after creating customer
+            * Summary: Update cart user details
+            * Description: Modify user-related details for a shopping cart.
             **/
             public func updateCartUser(
                 id: String?,
@@ -2378,8 +2083,8 @@ if let value = id {
             
             /**
             *
-            * Summary: Fetch all items added to the customer cart using cart id
-            * Description: Use this API to get details of all the items added to a cart.
+            * Summary: Get cart details
+            * Description: Retrieve detailed information about a shopping cart.
             **/
             public func getCart(
                 id: String?,
@@ -2474,8 +2179,8 @@ if let value = buyNow {
             
             /**
             *
-            * Summary: Add items to cart
-            * Description: Use this API to add items to the cart.
+            * Summary: Add items via platform integration
+            * Description: Add items to the cart through platform integration.
             **/
             public func platformAddItems(
                 i: Bool?,
@@ -2634,8 +2339,8 @@ if let value = buyNow {
             
             /**
             *
-            * Summary: Delete cart once user made successful checkout
-            * Description: Use this API to delete the cart.
+            * Summary: Delete a cart
+            * Description: Delete a specific shopping cart from the system.
             **/
             public func deleteCart(
                 id: String?,
@@ -2690,8 +2395,8 @@ if let value = id {
             
             /**
             *
-            * Summary: Count items in the customer's cart
-            * Description: Use this API to get the total number of items present in cart.
+            * Summary: Get the item count in a cart
+            * Description: Retrieve the total number of items in a shopping cart.
             **/
             public func getItemCount(
                 id: String?,
@@ -2754,8 +2459,8 @@ if let value = buyNow {
             
             /**
             *
-            * Summary: Fetch Coupon
-            * Description: Use this API to get a list of available coupons along with their details.
+            * Summary: Get app-specific coupons
+            * Description: Retrieve coupons specific to the mobile app.
             **/
             public func getAppCoupons(
                 id: String?,
@@ -2834,8 +2539,8 @@ if let value = storeId {
             
             /**
             *
-            * Summary: Apply Coupon for platform pos user
-            * Description: Use this API to apply coupons on items in the cart.
+            * Summary: Apply a coupon to the cart
+            * Description: Apply a selected coupon to the items in the shopping cart.
             **/
             public func applyCoupon(
                 i: Bool?,
@@ -2922,8 +2627,8 @@ if let value = buyNow {
             
             /**
             *
-            * Summary: Remove Applied Coupon for platform pos user
-            * Description: Remove Coupon applied on the cart by passing uid in request body.
+            * Summary: Remove a coupon from the cart
+            * Description: Remove a coupon from the items in the shopping cart.
             **/
             public func removeCoupon(
                 uid: String?,
@@ -3090,8 +2795,8 @@ if let value = userId {
             
             /**
             *
-            * Summary: Add address to an account
-            * Description: Use this API to add an address to an account.
+            * Summary: Add a new user address
+            * Description: Create and add a new user address for cart checkout.
             **/
             public func addAddress(
                 body: PlatformAddress,
@@ -3243,8 +2948,8 @@ if let value = userId {
             
             /**
             *
-            * Summary: Update address added to an account
-            * Description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in Address can be updated. These attributes are:is_default_address landmark area pincode email address_type name address_id address
+            * Summary: Update address
+            * Description: Modify the shipping address for an order.
             **/
             public func updateAddress(
                 id: String,
@@ -3292,8 +2997,8 @@ if let value = userId {
             
             /**
             *
-            * Summary: Remove address associated with an account
-            * Description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
+            * Summary: Remove a user address
+            * Description: Delete an existing user address from the system.
             **/
             public func removeAddress(
                 id: String,
@@ -3541,8 +3246,8 @@ if let value = orderType {
             
             /**
             *
-            * Summary: Update shipment delivery type and quantity before checkout
-            * Description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery.
+            * Summary: Update shipment details
+            * Description: Modify the details and settings of cart shipments.
             **/
             public func updateShipments(
                 i: Bool?,
@@ -3637,8 +3342,8 @@ if let value = orderType {
             
             /**
             *
-            * Summary: Update the cart meta for platform pos user
-            * Description: Use this API to update cart meta like checkout_mode and gstin.
+            * Summary: Update cart metadata
+            * Description: Modify the metadata associated with the shopping cart.
             **/
             public func updateCartMeta(
                 id: String?,
@@ -3701,8 +3406,8 @@ if let value = buyNow {
             
             /**
             *
-            * Summary: Checkout all items in the cart
-            * Description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
+            * Summary: Platform-specific cart checkout
+            * Description: Initiate cart checkout through platform-specific integration.
             **/
             public func platformCheckoutCart(
                 id: String?,
@@ -3757,8 +3462,8 @@ if let value = id {
             
             /**
             *
-            * Summary: Get available delivery modes for cart
-            * Description: Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of store-address API.
+            * Summary: Get available delivery modes
+            * Description: Retrieve a list of available delivery modes for cart checkout.
             **/
             public func getAvailableDeliveryModes(
                 areaCode: String,
@@ -3819,8 +3524,8 @@ if let value = id {
             
             /**
             *
-            * Summary: Get list of stores for give uids
-            * Description: Use this API to get the store details by entering the unique identifier of the pickup stores shown in the response of available-delivery-mode API.
+            * Summary: Get store address by UID
+            * Description: Retrieve the store address using a unique identifier (UID).
             **/
             public func getStoreAddressByUid(
                 storeUid: Int,
@@ -3873,8 +3578,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update cart payment
-            * Description: Use this API to update cart payment.
+            * Summary: Select a payment mode
+            * Description: Choose a payment mode for cart checkout.
             **/
             public func selectPaymentMode(
                 id: String?,
@@ -3945,8 +3650,8 @@ if let value = orderType {
             
             /**
             *
-            * Summary: Verify the coupon eligibility against the payment mode
-            * Description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
+            * Summary: Validate a coupon for payment
+            * Description:  Verify the validity of a coupon code for the payment process.
             **/
             public func validateCouponForPayment(
                 id: String?,
@@ -4049,8 +3754,8 @@ if let value = merchantCode {
             
             /**
             *
-            * Summary: Checkout all items in the cart
-            * Description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
+            * Summary: Platform-specific cart checkout v2
+            * Description: Initiate cart checkout through an updated platform-specific integration.
             **/
             public func platformCheckoutCartV2(
                 id: String?,
@@ -4105,8 +3810,8 @@ if let value = id {
             
             /**
             *
-            * Summary: Update cart payment
-            * Description: Use this API to update cart payment.
+            * Summary: Select a payment mode v2
+            * Description: Choose a payment mode for cart checkout in the updated platform integration.
             **/
             public func selectPaymentModeV2(
                 id: String?,
@@ -4192,8 +3897,8 @@ if let value = orderType {
             
             /**
             *
-            * Summary: Analytics data of catalog and inventory.
-            * Description: Catalog Insights api returns the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the app.
+            * Summary: Get catalog insights
+            * Description: Retrieve the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the application.
             **/
             public func getCatalogInsights(
                 brand: String?,
@@ -4248,8 +3953,8 @@ if let value = brand {
             
             /**
             *
-            * Summary: List all the brands for the application
-            * Description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
+            * Summary: Get application brand listing
+            * Description: Retrieve brand listings related to the application. A brand is the name under which a product is being sold
             **/
             public func getApplicationBrandListing(
                 pageNo: Int?,
@@ -4381,8 +4086,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Update a single custom json.
-            * Description: This API helps to update data associated to a item custom meta.
+            * Summary: Update application brand
+            * Description: Modify data associated to a item custom meta.
             **/
             public func updateAppBrand(
                 brandUid: String,
@@ -4430,8 +4135,8 @@ if let value = q {
             
             /**
             *
-            * Summary: List all the brands
-            * Description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
+            * Summary: Get application brands
+            * Description: List all the brands. A brand is the name under which a product is being sold. 
             **/
             public func getApplicationBrands(
                 department: String?,
@@ -4595,8 +4300,8 @@ if let value = brandId {
             
             /**
             *
-            * Summary: List all the categories
-            * Description: List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse`
+            * Summary: Get categories
+            * Description: Retrieve a list of categories. Optionally pass filter the brands by the department.
             **/
             public func getCategories(
                 department: String?,
@@ -4651,8 +4356,8 @@ if let value = department {
             
             /**
             *
-            * Summary: List all the brands for the application
-            * Description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
+            * Summary: Get application category listing
+            * Description: Retrieve category listings related to the application. A brand is the name under which a product is being sold.
             **/
             public func getApplicationCategoryListing(
                 departmentId: Int?,
@@ -4800,8 +4505,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Update a single custom json.
-            * Description: This API helps to update data associated to a item custom meta.
+            * Summary: Update application category
+            * Description: Modify category data related to the application. Helps to update data associated to a item custom meta.
             **/
             public func updateAppCategory(
                 categoryUid: String,
@@ -4849,8 +4554,8 @@ if let value = q {
             
             /**
             *
-            * Summary: List all the collections
-            * Description: A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
+            * Summary: Retrieve all collections
+            * Description: A Collection allows you to organize your products into hierarchical groups.
             **/
             public func getAllCollections(
                 q: String?,
@@ -4951,10 +4656,103 @@ if let value = pageSize {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: get paginator for getAllCollections
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getAllCollectionsPaginator(
+                q: String?,
+                scheduleStatus: String?,
+                type: String?,
+                tags: [String]?,
+                isActive: Bool?,
+                pageSize: Int?
+                
+                ) -> Paginator<GetCollectionListingResponse> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<GetCollectionListingResponse>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getAllCollections(
+                            
+                            q: q,
+                            scheduleStatus: scheduleStatus,
+                            type: type,
+                            tags: tags,
+                            isActive: isActive,
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
             /**
             *
             * Summary: Add a Collection
-            * Description: Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
+            * Description: Create a collection to the catalog.
             **/
             public func createCollection(
                 body: CreateCollection,
@@ -5001,8 +4799,153 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get query filters to configure a collection
-            * Description: Get query filters to configure a collection
+            * Summary: Get values of the selected value for the filter options
+            * Description: Get query filters keys to configure a collection
+            **/
+            public func getApplicationFilterValues(
+                filterKey: String,
+                c: String?,
+                collectionId: String?,
+                pageNo: Int?,
+                pageSize: Int?,
+                q: String?,
+                
+                onResponse: @escaping (_ response: GetQueryFiltersValuesResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+if let value = c {
+    
+    xQuery["c"] = value
+    
+}
+
+
+if let value = collectionId {
+    
+    xQuery["collection_id"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/filterOptions/\(filterKey)/values",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(GetQueryFiltersValuesResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get filters keys of the filter options
+            * Description: Get query filters keys to configure a collection
+            **/
+            public func getApplicationFilterKeys(
+                c: String?,
+                
+                onResponse: @escaping (_ response: GetQueryFiltersKeysResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+if let value = c {
+    
+    xQuery["c"] = value
+    
+}
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/filter-options/keys",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(GetQueryFiltersKeysResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Retrieve query filters
+            * Description: Retrieve query filters to configure a collection
             **/
             public func getQueryFilters(
                 
@@ -5049,7 +4992,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Delete a Collection
+            * Summary: Delete a collection
             * Description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
             **/
             public func deleteCollection(
@@ -5225,8 +5168,8 @@ if let value = pageSize {
             **/
             public func addCollectionItems(
                 id: String,
-                body: CollectionItemUpdate,
-                onResponse: @escaping (_ response: UpdatedResponse?, _ error: FDKError?) -> Void
+                body: CollectionItemUpdateSchema,
+                onResponse: @escaping (_ response: CommonResponseSchemaCollection?, _ error: FDKError?) -> Void
             ) {
                 
  
@@ -5251,7 +5194,7 @@ if let value = pageSize {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UpdatedResponse.self, from: data)
+                            let response = Utility.decode(CommonResponseSchemaCollection.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5269,8 +5212,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get a particular collection
-            * Description: Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
+            * Summary: Get collection details
+            * Description: Get the details of a collection by its slug.
             **/
             public func getCollectionDetail(
                 slug: String,
@@ -5318,8 +5261,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: List all the departments for the application
-            * Description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the application departments. If successful, returns the list of departments specified in `ApplicationDepartmentListingResponse`
+            * Summary: Get application department listing
+            * Description: Retrieve department listings related to the application. Departments are a way to categorise similar products. A product can lie in multiple departments.
             **/
             public func getApplicationDepartmentListing(
                 pageNo: Int?,
@@ -5451,8 +5394,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Update a single custom json.
-            * Description: This API helps to update data associated to a item custom meta.
+            * Summary: Update application department
+            * Description: Modify department data related to the application.
             **/
             public func updateAppDepartment(
                 departmentUid: String,
@@ -5500,8 +5443,8 @@ if let value = q {
             
             /**
             *
-            * Summary: List all the departments
-            * Description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
+            * Summary: Get departments
+            * Description: Retrieve a list of departments. Departments are a way to categorise similar products. A product can lie in multiple departments.
             **/
             public func getDepartments(
                 
@@ -5548,8 +5491,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get the stock of a product
-            * Description: Retrieve the available Inventory of the products. Use this API to get the Inventory status of products with the filters of timestamp, store_ids, brand_ids, item_id - Items - Pagination
+            * Summary: Get application inventory
+            * Description: Retrieve inventory data related to the application. Retrieve the available Inventory of the products. Use this API to get the Inventory status of products with the filters of timestamp, store_ids, brand_ids, item_id, Items, Pagination
             **/
             public func getAppInventory(
                 itemIds: [Int]?,
@@ -5652,8 +5595,8 @@ if let value = pageId {
             
             /**
             *
-            * Summary: Get list of locations
-            * Description: This API allows to view all the locations asscoiated to a application.
+            * Summary: Get application locations
+            * Description: Retrieve locations specific to the application. View all the locations asscoiated to a application.
             **/
             public func getAppLocations(
                 storeType: String?,
@@ -5865,8 +5808,8 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Get configured details for catalog
-            * Description: configured details for catalog.
+            * Summary: Retrieve configurations
+            * Description: Retrieve a configured details for catalog.
             **/
             public func getConfigurations(
                 
@@ -5913,7 +5856,7 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Add configuration for products & listings
+            * Summary: Create configuration for product listing
             * Description: Add configuration for products & listing.
             **/
             public func createConfigurationProductListing(
@@ -5961,8 +5904,8 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Get configuration meta  details for catalog for admin panel
-            * Description: configuration meta  details for catalog.
+            * Summary: Retrieve catalog configuration
+            * Description: Retrieve configuration meta details for the catalog.
             **/
             public func getCatalogConfiguration(
                 
@@ -6009,8 +5952,8 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Get configured details for catalog
-            * Description: configured details for catalog.
+            * Summary: Retrieve configuration by type
+            * Description: Retrieve configuration details based on a specific type in the catalog.
             **/
             public func getConfigurationByType(
                 type: String,
@@ -6058,7 +6001,7 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Add configuration for categories and brands
+            * Summary: Create configuration by type
             * Description: Add configuration for categories & brands.
             **/
             public func createConfigurationByType(
@@ -6107,7 +6050,7 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Get company application product data.
+            * Summary: Retrieve application product data
             * Description: Products are the core resource of an application. If successful, returns a Company Application Product resource in the response body depending upon filter sent.
             **/
             public func getAppProduct(
@@ -6156,8 +6099,8 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Update a single custom meta.
-            * Description: This API helps to update data associated to a item custom meta.
+            * Summary: Update application product data
+            * Description: Allows to update data associated to a item custom meta.
             **/
             public func updateAppProduct(
                 itemId: String,
@@ -6205,8 +6148,8 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: List the products
-            * Description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ApplicationProductListingResponse`
+            * Summary: Get application products
+            * Description: Retrieve products associated with the application. List all the products associated with a brand, collection or category in a requested sort order.
             **/
             public func getAppicationProducts(
                 q: String?,
@@ -6467,8 +6410,8 @@ if let value = itemIds {
             
             /**
             *
-            * Summary: Get Inventory for company
-            * Description: This API allows get Inventory data for particular company grouped by size and store.
+            * Summary: Get discounted inventory by size identifier
+            * Description: Allows to retrieve Inventory data for particular company grouped by size and store.
             **/
             public func getDiscountedInventoryBySizeIdentifier(
                 itemId: Int,
@@ -6547,10 +6490,95 @@ if let value = locationIds {
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             /**
             *
-            * Summary: Get a product
-            * Description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
+            * Summary: get paginator for getDiscountedInventoryBySizeIdentifier
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getDiscountedInventoryBySizeIdentifierPaginator(
+                itemId: Int,
+                sizeIdentifier: String,
+                pageSize: Int?,
+                q: String?,
+                locationIds: [Int]?
+                
+                ) -> Paginator<InventorySellerIdentifierResponsePaginated> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<InventorySellerIdentifierResponsePaginated>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getDiscountedInventoryBySizeIdentifier(
+                            
+                            itemId: itemId,
+                            sizeIdentifier: sizeIdentifier,
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            ,
+                            q: q,
+                            locationIds: locationIds
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get product details by slug
+            * Description: Retrieve detailed product information using a product slug. Products are the core resource of an application. Products can be associated by categories, collections, brands and more.
             **/
             public func getProductDetailBySlug(
                 slug: String,
@@ -6598,8 +6626,8 @@ if let value = locationIds {
             
             /**
             *
-            * Summary: Get applicationwise products
-            * Description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. If successful, returns a Product resource in the response body specified in `ApplicationProductListingResponseDatabasePowered`
+            * Summary: Get application products
+            * Description: Retrieve products specific to the application. Products are the core resource of an application. Products can be associated by categories, collections, brands and more.
             **/
             public func getAppProducts(
                 brandIds: [Int]?,
@@ -6704,6 +6732,107 @@ if let value = q {
                 });
             }
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: get paginator for getAppProducts
+            * Description: fetch the next page by calling .next(...) function
+            **/
+            public func getAppProductsPaginator(
+                brandIds: [Int]?,
+                categoryIds: [Int]?,
+                departmentIds: [Int]?,
+                tags: [String]?,
+                itemIds: [Int]?,
+                pageSize: Int?,
+                q: String?
+                
+                ) -> Paginator<RawProductListingResponse> {
+                let pageSize = pageSize ?? 20
+                let paginator = Paginator<RawProductListingResponse>(pageSize: pageSize, type: "number")
+                paginator.onPage = {
+                    self.getAppProducts(
+                            
+                            brandIds: brandIds,
+                            categoryIds: categoryIds,
+                            departmentIds: departmentIds,
+                            tags: tags,
+                            itemIds: itemIds,
+                            pageNo: paginator.pageNo
+                            ,
+                            pageSize: paginator.pageSize
+                            ,
+                            q: q
+                        ) { response, error in                    
+                        if let response = response {
+                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        }
+                        paginator.onNext?(response, error)
+                    }
+                }
+                return paginator
+            }
             
             
             
@@ -7046,7 +7175,7 @@ if let value = q {
             
             /**
             *
-            * Summary: List all Autocomplete Keyword Listing
+            * Summary: Get autocomplete configuration
             * Description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
             **/
             public func getAutocompleteConfig(
@@ -7094,8 +7223,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Add a Custom Autocomplete Keywords
-            * Description: Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
+            * Summary: Create custom autocomplete rules
+            * Description: Generate and add custom autocomplete rules to the catalog.
             **/
             public func createCustomAutocompleteRule(
                 body: CreateAutocompleteKeyword,
@@ -7142,7 +7271,7 @@ if let value = q {
             
             /**
             *
-            * Summary: Delete a Autocomplete Keywords
+            * Summary: Delete autocomplete keywords
             * Description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
             **/
             public func deleteAutocompleteKeyword(
@@ -7191,8 +7320,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get a Autocomplete Keywords Details
-            * Description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
+            * Summary: Get autocomplete keyword details
+            * Description: Retrieve detailed information about a specific autocomplete keyword.
             **/
             public func getAutocompleteKeywordDetail(
                 id: String,
@@ -7240,7 +7369,7 @@ if let value = q {
             
             /**
             *
-            * Summary: Create & Update Autocomplete Keyword
+            * Summary: Update autocomplete keywords
             * Description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
             **/
             public func updateAutocompleteKeyword(
@@ -7289,8 +7418,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Delete search configuration for an application
-            * Description: This view allows you to reset search config for an application
+            * Summary: Delete Search Configuration
+            * Description: Delete search configuration in the catalog.
             **/
             public func deleteSearchConfiguration(
                 
@@ -7337,8 +7466,8 @@ if let value = q {
             
             /**
             *
-            * Summary: List search configuration for an application
-            * Description: This view allows you to add/modify searchable attributes for an application
+            * Summary: Get Search Configuration
+            * Description: Get search configuration in the catalog.
             **/
             public func getSearchConfiguration(
                 
@@ -7385,8 +7514,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Update search configuration for an application
-            * Description: This view allows you to modify searchable attributes for an application
+            * Summary: Create search configuration
+            * Description: Create search configuration for the catalog.
             **/
             public func createSearchConfiguration(
                 body: CreateSearchConfigurationRequest,
@@ -7481,7 +7610,7 @@ if let value = q {
             
             /**
             *
-            * Summary: List all Search Custom Keyword Listing
+            * Summary: Get all search keywords
             * Description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
             **/
             public func getAllSearchKeyword(
@@ -7529,8 +7658,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Add a Custom Search Keywords
-            * Description: Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
+            * Summary: Create custom search keywords
+            * Description: Create a Custom Search Keywords. 
             **/
             public func createCustomKeyword(
                 body: CreateSearchKeyword,
@@ -7577,7 +7706,7 @@ if let value = q {
             
             /**
             *
-            * Summary: Delete a Search Keywords
+            * Summary: Delete search keywords
             * Description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
             **/
             public func deleteSearchKeywords(
@@ -7626,8 +7755,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get a Search Keywords Details
-            * Description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
+            * Summary: Retrieve search keywords
+            * Description: Retrieve a list of search keywords from the catalog.
             **/
             public func getSearchKeywords(
                 id: String,
@@ -7675,7 +7804,7 @@ if let value = q {
             
             /**
             *
-            * Summary: Update Search Keyword
+            * Summary: Update search keywords
             * Description: Update Search Keyword by its id. On successful request, returns the updated collection
             **/
             public func updateSearchKeywords(
@@ -7724,8 +7853,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Update a single custom json.
-            * Description: This API helps to update data associated to a item custom meta.
+            * Summary: Update application location
+            * Description: Modify location data related to the application. Helps to update data associated to a item custom meta
             **/
             public func updateAppLocation(
                 storeUid: String,
@@ -7833,8 +7962,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Update allow single flag for filters of the application.
-            * Description: Update allow single flag for filters of the application.
+            * Summary: Update 'Allow Single' setting
+            * Description: Modify allow single flag for filters of the application.
             **/
             public func updateAllowSingle(
                 body: AllowSingleRequest,
@@ -7881,8 +8010,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Update the default sort key configuration for the application.
-            * Description: Update the default sort key configuration for the application.
+            * Summary: Update default sorting
+            * Description: Modify the default sort key configuration for the application.
             **/
             public func updateDefaultSort(
                 body: DefaultKeyRequest,
@@ -7929,8 +8058,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get the details of the application configured configurations of listing config types.
-            * Description: Get the details of the application configured configurations of listing config types.
+            * Summary: Retrieve listing configurations
+            * Description: Retrieve the details of the application configured configurations of listing config types.
             **/
             public func getListingConfigurations(
                 configType: String,
@@ -8002,8 +8131,8 @@ if let value = search {
             
             /**
             *
-            * Summary: Add configuration for listings
-            * Description: Add configuration for listing.
+            * Summary: Create listing configuration
+            * Description: Add configuration for catalog listing.
             **/
             public func createListingConfiguration(
                 configType: String,
@@ -8051,8 +8180,8 @@ if let value = search {
             
             /**
             *
-            * Summary: Get the details of the application configured configurations of group config types.
-            * Description: Get the details of the application configured configurations of group config types.
+            * Summary: Retrieve group configurations
+            * Description: Retrieve the details of the application configured configurations of group config types.
             **/
             public func getGroupConfigurations(
                 configType: String,
@@ -8132,8 +8261,8 @@ if let value = templateSlug {
             
             /**
             *
-            * Summary: Create configuration for Group config types.
-            * Description: Create configuration for Group config types.
+            * Summary: Create group configuration
+            * Description: Create configuration for group configuration types.
             **/
             public func createGroupConfiguration(
                 configType: String,
@@ -8181,7 +8310,7 @@ if let value = templateSlug {
             
             /**
             *
-            * Summary: Delete configuration of the product config type of the application.
+            * Summary: Delete group configuration
             * Description: Delete configuration of the product config type of the application.
             **/
             public func deleteGroupConfiguration(
@@ -8231,8 +8360,8 @@ if let value = templateSlug {
             
             /**
             *
-            * Summary: Update the group configurations for the application.
-            * Description: Update the group configurations for the application.
+            * Summary: Update group configuration
+            * Description: Modify the group configurations for the application.
             **/
             public func updateGroupConfiguration(
                 configType: String,
@@ -8281,8 +8410,8 @@ if let value = templateSlug {
             
             /**
             *
-            * Summary: Delete configuration for listings
-            * Description: Delete configuration for listing.
+            * Summary: Delete listing configuration
+            * Description: Remove a specific listing configuration from the catalog.
             **/
             public func deleteListingConfiguration(
                 configType: String,
@@ -8331,8 +8460,8 @@ if let value = templateSlug {
             
             /**
             *
-            * Summary: Update configuration for listings
-            * Description: Update configuration for listing.
+            * Summary: Update listing configuration
+            * Description: Modify the details and settings of an existing listing configuration.
             **/
             public func updateListingConfiguration(
                 configType: String,
@@ -8381,8 +8510,8 @@ if let value = templateSlug {
             
             /**
             *
-            * Summary: Get configuration metadata details for catalog for admin panel
-            * Description: Get the configuraion metadata details for catalog.
+            * Summary: Retrieve configuration metadata
+            * Description: Retrieve the configuraion metadata details for catalog.
             **/
             public func getConfigurationMetadata(
                 configType: String,
@@ -8495,8 +8624,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get app providers
-            * Description: Using this API will return a list of application providers.
+            * Summary: Get application providers
+            * Description: Retrieve a list of providers associated with the platform.
             **/
             public func getAppProviders(
                 
@@ -8543,8 +8672,8 @@ if let value = q {
             
             /**
             *
-            * Summary: update app providers
-            * Description: Using this API will update the application providers.
+            * Summary: Update application providers
+            * Description: Modify provider information for the platform.
             **/
             public func updateAppProviders(
                 body: AppProviderReq,
@@ -8592,7 +8721,7 @@ if let value = q {
             /**
             *
             * Summary: Get global providers
-            * Description: Using this API, will retrieve a list of global providers.
+            * Description: Retrieve a list of global communication providers.
             **/
             public func getGlobalProviders(
                 
@@ -8640,7 +8769,7 @@ if let value = q {
             /**
             *
             * Summary: Get email providers
-            * Description: Get email providers
+            * Description: Retrieve a list of email communication providers.
             **/
             public func getEmailProviders(
                 pageNo: Int?,
@@ -8717,79 +8846,10 @@ if let value = query {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: get paginator for getEmailProviders
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getEmailProvidersPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?,
-                query: [String: Any]?
-                
-                ) -> Paginator<EmailProviders> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<EmailProviders>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getEmailProviders(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            sort: sort,
-                            query: query
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
             /**
             *
             * Summary: Create email provider
-            * Description: Create email provider
+            * Description: Generate and add a new email communication provider.
             **/
             public func createEmailProvider(
                 body: EmailProviderReq,
@@ -8836,8 +8896,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get email provider by id
-            * Description: Get email provider by id
+            * Summary: Get email provider by ID
+            * Description: Retrieve detailed information about a specific email communication provider.
             **/
             public func getEmailProviderById(
                 id: String,
@@ -8885,8 +8945,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Update email provider by id
-            * Description: Update email provider by id
+            * Summary: Update email provider by ID
+            * Description: Modify the settings of a specific email communication provider.
             **/
             public func updateEmailProviderById(
                 id: String,
@@ -8934,8 +8994,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Delete email provider by id
-            * Description: Delete email provider by id
+            * Summary: Delete email provider by ID
+            * Description: Remove a specific email communication provider from the platform.
             **/
             public func deleteEmailProviderById(
                 id: String,
@@ -8983,8 +9043,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get sms providers
-            * Description: Get sms providers
+            * Summary: Get SMS providers
+            * Description: Retrieve a list of SMS communication providers.
             **/
             public func getSmsProviders(
                 pageNo: Int?,
@@ -9063,8 +9123,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Create sms provider
-            * Description: Create sms provider
+            * Summary: Create SMS provider
+            * Description: Add a new SMS communication provider.
             **/
             public func createSmsProvider(
                 body: SmsProviderReq,
@@ -9111,8 +9171,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get default sms providers
-            * Description: Get default sms providers
+            * Summary: Get default SMS providers
+            * Description: Retrieve the default SMS communication providers.
             **/
             public func getDefaultSmsProviders(
                 
@@ -9159,8 +9219,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get sms provider by id
-            * Description: Get sms provider by id
+            * Summary: Get SMS provider by ID
+            * Description: Retrieve detailed information about a specific SMS communication provider.
             **/
             public func getSmsProviderById(
                 id: String,
@@ -9208,8 +9268,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Update sms provider by id
-            * Description: Update sms provider by id
+            * Summary: Update SMS provider by ID
+            * Description: Modify specific SMS communication provider.
             **/
             public func updateSmsProviderById(
                 id: String,
@@ -9257,8 +9317,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Delete sms provider by id
-            * Description: Delete sms provider by id
+            * Summary: Delete SMS provider by ID
+            * Description: Remove a specific SMS communication provider.
             **/
             public func deleteSmsProviderById(
                 id: String,
@@ -9307,7 +9367,7 @@ if let value = query {
             /**
             *
             * Summary: Get campaigns
-            * Description: Get campaigns
+            * Description: Retrieve a list of communication campaigns.
             **/
             public func getCampaigns(
                 query: [String: Any]?,
@@ -9387,7 +9447,7 @@ if let value = sort {
             /**
             *
             * Summary: Create campaign
-            * Description: Create campaign
+            * Description: Add a new communication campaign.
             **/
             public func createCampaign(
                 body: CampaignReq,
@@ -9434,8 +9494,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Get campaign by id
-            * Description: Get campaign by id
+            * Summary: Get campaign by ID
+            * Description: Retrieve detailed information about a specific communication campaign.
             **/
             public func getCampaignById(
                 id: String,
@@ -9483,8 +9543,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Update campaign by id
-            * Description: Update campaign by id
+            * Summary: Update campaign by ID
+            * Description: Modify the settings of a specific communication campaign.
             **/
             public func updateCampaignById(
                 id: String,
@@ -9532,8 +9592,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Get stats of campaign by id
-            * Description: Get stats of campaign by id
+            * Summary: Get campaign statistics by ID
+            * Description: Retrieve statistical data for a specific communication campaign.
             **/
             public func getStatsOfCampaignById(
                 id: String,
@@ -9581,8 +9641,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Get big query row count by id
-            * Description: Get big query row count by id
+            * Summary: Get BigQuery row count by ID
+            * Description: Retrieve big query row count by id
             **/
             public func getBigQueryRowCountById(
                 id: String,
@@ -9630,7 +9690,7 @@ if let value = sort {
             
             /**
             *
-            * Summary: Create big query row count
+            * Summary: Create BigQuery row count
             * Description: Create big query row count
             **/
             public func createBigQueryRowCount(
@@ -9678,8 +9738,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Get big query headers by id
-            * Description: Get big query headers by id
+            * Summary: Get BigQuery headers by ID
+            * Description: Retrieve header information from BigQuery for a specific campaign.
             **/
             public func getBigQueryHeadersById(
                 id: String,
@@ -9727,7 +9787,7 @@ if let value = sort {
             
             /**
             *
-            * Summary: Create big query n count
+            * Summary: Create BigQuery N-count
             * Description: Create big query n count
             **/
             public func createBigQueryNCount(
@@ -9775,7 +9835,7 @@ if let value = sort {
             
             /**
             *
-            * Summary: Create big query headers
+            * Summary: Create BigQuery headers
             * Description: Create big query headers
             **/
             public func createBigQueryHeaders(
@@ -9824,7 +9884,7 @@ if let value = sort {
             /**
             *
             * Summary: Get system audiences
-            * Description: Get system audiences
+            * Description: Retrieve system-defined audiences for communication.
             **/
             public func getSystemAudiences(
                 
@@ -9872,7 +9932,7 @@ if let value = sort {
             /**
             *
             * Summary: Get audiences
-            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get audiences.
+            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign.
             **/
             public func getAudiences(
                 pageNo: Int?,
@@ -9949,79 +10009,10 @@ if let value = query {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: get paginator for getAudiences
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getAudiencesPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?,
-                query: [String: Any]?
-                
-                ) -> Paginator<Audiences> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<Audiences>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getAudiences(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            sort: sort,
-                            query: query
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
             /**
             *
             * Summary: Create audience
-            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to create audience.
+            * Description: Add audience which is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. 
             **/
             public func createAudience(
                 body: AudienceReq,
@@ -10068,8 +10059,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get audience by id
-            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get audiences by Id.
+            * Summary: Get audience by ID
+            * Description: Retrieve detailed information about a specific custom communication audience.
             **/
             public func getAudienceById(
                 id: String,
@@ -10117,8 +10108,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Update audience by id
-            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to update audience by id.
+            * Summary: Update audience by ID
+            * Description: Modify the settings of a specific custom communication audience.
             **/
             public func updateAudienceById(
                 id: String,
@@ -10166,8 +10157,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Delete audience by id
-            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to delete audience by id.
+            * Summary: Delete audience by ID
+            * Description: Remove a specific custom communication audience.
             **/
             public func deleteAudienceById(
                 id: String,
@@ -10216,7 +10207,7 @@ if let value = query {
             /**
             *
             * Summary: Get dummy data sources
-            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get dummy data sources.
+            * Description: Retrieve a list of dummy data sources for testing.
             **/
             public func getDummyDatasources(
                 
@@ -10263,8 +10254,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get dummy data sources meta
-            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get dummy data sources meta.
+            * Summary: Get dummy data sources metadata
+            * Description: Retrieve metadata information about dummy data sources.
             **/
             public func getDummyDatasourcesMeta(
                 id: Int,
@@ -10312,8 +10303,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get n sample records from csv
-            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get n sample records from csv.
+            * Summary: Get N sample records in CSV 
+            * Description: Retrieve a specified number of sample records from a CSV data source using a GET request.
             **/
             public func getNSampleRecordsFromCsvByGet(
                 
@@ -10360,8 +10351,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get n sample records from csv
-            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get n sample records from csv
+            * Summary: Get N sample records from CSV
+            * Description: Retrieve a specified number of sample records from a CSV data source.
             **/
             public func getNSampleRecordsFromCsv(
                 body: GetNRecordsCsvReq,
@@ -10409,7 +10400,7 @@ if let value = query {
             /**
             *
             * Summary: Get email templates
-            * Description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all email templates.
+            * Description: Retrieve a list of available email communication templates.
             **/
             public func getEmailTemplates(
                 pageNo: Int?,
@@ -10486,79 +10477,10 @@ if let value = query {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: get paginator for getEmailTemplates
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getEmailTemplatesPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?,
-                query: [String: Any]?
-                
-                ) -> Paginator<EmailTemplates> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<EmailTemplates>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getEmailTemplates(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            sort: sort,
-                            query: query
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
             /**
             *
             * Summary: Create email template
-            * Description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to create an email template.
+            * Description: Generate and add a new email communication template.
             **/
             public func createEmailTemplate(
                 body: EmailTemplateReq,
@@ -10606,7 +10528,7 @@ if let value = query {
             /**
             *
             * Summary: Get system email templates
-            * Description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all system email templates.
+            * Description: Retrieve system-defined email communication templates.
             **/
             public func getSystemEmailTemplates(
                 
@@ -10653,8 +10575,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get email template by id
-            * Description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get an email template by id.
+            * Summary: Get email template by ID
+            * Description: Retrieve detailed information about a specific email communication template.
             **/
             public func getEmailTemplateById(
                 id: String,
@@ -10702,8 +10624,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Update email template by id
-            * Description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to update an email template by id.
+            * Summary: Update email template by ID
+            * Description: Modify the content and settings of a specific email communication template.
             **/
             public func updateEmailTemplateById(
                 id: String,
@@ -10751,8 +10673,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Delete email template by id
-            * Description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to delete an email template by id.
+            * Summary: Delete email template by ID
+            * Description: Email templates are predefined formats linked to various events for delivering messages to users. Remove a specific email communication template by its ID.
             **/
             public func deleteEmailTemplateById(
                 id: String,
@@ -10801,7 +10723,7 @@ if let value = query {
             /**
             *
             * Summary: Get subscribed email templates
-            * Description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all subscribed email templates.
+            * Description: Retrieve email communication templates that are subscribed to.
             **/
             public func getSubscribedEmailTemplates(
                 pageNo: Int?,
@@ -10870,71 +10792,10 @@ if let value = query {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
-            * Summary: get paginator for getSubscribedEmailTemplates
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getSubscribedEmailTemplatesPaginator(
-                pageSize: Int?,
-                query: [String: Any]?
-                
-                ) -> Paginator<EmailTemplates> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<EmailTemplates>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getSubscribedEmailTemplates(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            query: query
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Get sms templates
-            * Description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all sms templates.
+            * Summary: Get SMS templates
+            * Description: Retrieve a list of available SMS communication templates.
             **/
             public func getSmsTemplates(
                 pageNo: Int?,
@@ -11011,79 +10872,10 @@ if let value = query {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
-            * Summary: get paginator for getSmsTemplates
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getSmsTemplatesPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?,
-                query: [String: Any]?
-                
-                ) -> Paginator<SmsTemplates> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<SmsTemplates>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getSmsTemplates(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            sort: sort,
-                            query: query
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Create sms template
-            * Description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to create an sms template.
+            * Summary: Create SMS template
+            * Description: Add a new SMS communication template.
             **/
             public func createSmsTemplate(
                 body: SmsTemplateReq,
@@ -11130,8 +10922,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get system sms templates
-            * Description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all system sms templates.
+            * Summary: Get system SMS templates
+            * Description: Retrieve system-defined SMS communication templates.
             **/
             public func getSystemSmsTemplates(
                 
@@ -11178,8 +10970,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get sms template by id
-            * Description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get an sms template by ID.
+            * Summary: Get SMS template by ID
+            * Description: Retrieve detailed information about a specific SMS communication template.
             **/
             public func getSmsTemplateById(
                 id: String,
@@ -11227,8 +11019,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Update sms template by id
-            * Description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to update an sms template by ID.
+            * Summary: Update SMS template by ID
+            * Description: Modify the content and settings of a specific SMS communication template.
             **/
             public func updateSmsTemplateById(
                 id: String,
@@ -11276,8 +11068,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Delete sms template by id
-            * Description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to delete an sms template by ID.
+            * Summary: Delete SMS template by ID
+            * Description: Remove a specific SMS communication template.
             **/
             public func deleteSmsTemplateById(
                 id: String,
@@ -11325,8 +11117,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get subscribed sms templates
-            * Description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all subscribed sms templates.
+            * Summary: Get subscribed SMS templates
+            * Description: Retrieve SMS communication templates that are subscribed to.
             **/
             public func getSubscribedSmsTemplates(
                 pageNo: Int?,
@@ -11395,71 +11187,10 @@ if let value = query {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
-            * Summary: get paginator for getSubscribedSmsTemplates
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getSubscribedSmsTemplatesPaginator(
-                pageSize: Int?,
-                query: [String: Any]?
-                
-                ) -> Paginator<SmsTemplates> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<SmsTemplates>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getSubscribedSmsTemplates(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            query: query
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Send email or sms synchronously
-            * Description: Send email or sms synchronously
+            * Summary: Send communication synchronously
+            * Description: Initiate and send communication in real-time.
             **/
             public func sendCommunicationSynchronously(
                 body: EngineRequest,
@@ -11506,8 +11237,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Send email or sms asynchronously
-            * Description: Send email or sms asynchronously
+            * Summary: Send communication asynchronously
+            * Description: Initiate and send communication with the option for asynchronous processing.
             **/
             public func sendCommunicationAsynchronously(
                 body: EngineRequest,
@@ -11555,7 +11286,7 @@ if let value = query {
             /**
             *
             * Summary: Get event subscriptions
-            * Description: Get event subscriptions
+            * Description: Retrieve a list of event subscriptions related to communication.
             **/
             public func getEventSubscriptions(
                 pageNo: Int?,
@@ -11620,67 +11351,6 @@ if let value = populate {
                 });
             }
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: get paginator for getEventSubscriptions
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getEventSubscriptionsPaginator(
-                pageSize: Int?,
-                populate: String?
-                
-                ) -> Paginator<EventSubscriptions> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<EventSubscriptions>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getEventSubscriptions(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            populate: populate
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
             
             
             
@@ -11938,8 +11608,8 @@ if let value = populate {
             
             /**
             *
-            * Summary: get global variables
-            * Description: get global variables
+            * Summary: Get global variables
+            * Description: Retrieve global variables used in communication.
             **/
             public func getGlobalVariables(
                 
@@ -11986,8 +11656,8 @@ if let value = populate {
             
             /**
             *
-            * Summary: post global variables
-            * Description: psot global variables
+            * Summary: Post global variables
+            * Description: Update and post global variables for communication.
             **/
             public func postGlobalVariables(
                 body: GlobalVariablesReq,
@@ -12035,7 +11705,7 @@ if let value = populate {
             /**
             *
             * Summary: Get jobs
-            * Description: Get jobs
+            * Description: Retrieve a list of communication jobs.
             **/
             public func getJobs(
                 pageNo: Int?,
@@ -12112,75 +11782,6 @@ if let value = query {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: get paginator for getJobs
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getJobsPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?,
-                query: [String: Any]?
-                
-                ) -> Paginator<Jobs> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<Jobs>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getJobs(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            sort: sort,
-                            query: query
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
             /**
             *
             * Summary: Create jobs
@@ -12232,7 +11833,7 @@ if let value = query {
             /**
             *
             * Summary: Trigger campaign job
-            * Description: Trigger campaign job
+            * Description: Initiate a job to execute a communication campaign.
             **/
             public func triggerCampaignJob(
                 body: TriggerJobRequest,
@@ -12280,7 +11881,7 @@ if let value = query {
             /**
             *
             * Summary: Get job logs
-            * Description: Get job logs
+            * Description: Retrieve logs and details related to communication jobs.
             **/
             public func getJobLogs(
                 pageNo: Int?,
@@ -12357,79 +11958,10 @@ if let value = query {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: get paginator for getJobLogs
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getJobLogsPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?,
-                query: [String: Any]?
-                
-                ) -> Paginator<JobLogs> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<JobLogs>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getJobLogs(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            sort: sort,
-                            query: query
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
             /**
             *
             * Summary: Get communication logs
-            * Description: Get communication logs
+            * Description: Retrieve logs and records of communication activities.
             **/
             public func getCommunicationLogs(
                 pageId: String?,
@@ -12507,80 +12039,10 @@ if let value = query {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
-            * Summary: get paginator for getCommunicationLogs
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getCommunicationLogsPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?,
-                query: [String: Any]?
-                
-                ) -> Paginator<Logs> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<Logs>(pageSize: pageSize, type: "cursor")
-                paginator.onPage = {
-                    self.getCommunicationLogs(
-                            
-                            pageId: paginator.pageId
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            sort: sort,
-                            query: query
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageId = response.page?.nextId
-                            
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Send OTP using email and sms
-            * Description: Send OTP Comms via email and sms
+            * Summary: Send OTP
+            * Description: Send a one-time password (OTP) for authentication or verification.
             **/
             public func sendOtp(
                 body: SendOtpCommsReq,
@@ -12627,8 +12089,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Verify OTP sent via email and sms
-            * Description: Verify OTP sent via email and sms
+            * Summary: Verify OTP
+            * Description: Verify the one-time password (OTP) for authentication or verification.
             **/
             public func verfiyOtp(
                 body: VerifyOtpCommsReq,
@@ -12786,8 +12248,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get configuration of latest mobile build
-            * Description: Fetch latest build configuration, such as app name, landing page image, splash image used in a mobile build.
+            * Summary: Get build configuration
+            * Description: Retrieve latest build configuration, such as app name, landing page image, splash image used in a mobile build.
             **/
             public func getBuildConfig(
                 platformType: String,
@@ -12835,7 +12297,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Update the configuration for next mobile build
+            * Summary: Update build configuration
             * Description: Modify the existing build configuration, such as app name, landing page image, splash image used in a mobile build.
             **/
             public func updateBuildConfig(
@@ -12884,8 +12346,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get details of previous mobile builds
-            * Description: Fetch version details of the app, this includes the build status, build date, version name, latest version, and a lot more.
+            * Summary: Get previous versions
+            * Description: Retrieve version details of the app, this includes the build status, build date, version name, latest version, and a lot more.
             **/
             public func getPreviousVersions(
                 platformType: String,
@@ -12933,7 +12395,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Get the sales channel configuration and features
+            * Summary: Get application features
             * Description: Shows feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
             **/
             public func getAppFeatures(
@@ -12981,7 +12443,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Update the sales channel configuration and features
+            * Summary: Update application features
             * Description: Modify the feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
             **/
             public func updateAppFeatures(
@@ -13029,7 +12491,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Update features of application
+            * Summary: Modify application features
             * Description: Update features of application
             **/
             public func modifyAppFeatures(
@@ -13077,7 +12539,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Get sales channel details
+            * Summary: Get application basic details
             * Description: Shows basic sales channel details like name, description, logo, domain, company ID, and other related information.
             **/
             public func getAppBasicDetails(
@@ -13125,7 +12587,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Update sales channel details
+            * Summary: Update application basic details
             * Description: Modify sales channel details like name, description, logo, domain, company ID, and other related information.
             **/
             public func updateAppBasicDetails(
@@ -13173,7 +12635,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Get current information of the sales channel
+            * Summary: Get application contact information
             * Description: Fetch data such as social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application.
             **/
             public func getAppContactInfo(
@@ -13221,7 +12683,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Save or update current information of the sales channel
+            * Summary: Update application contact information
             * Description: Modify the social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application.
             **/
             public func updateAppContactInfo(
@@ -13269,8 +12731,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get social tokens for the sales channel
-            * Description: Use this API to retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth. **Note** - Token values are encrypted with AES encryption using a secret key.
+            * Summary: Get application API tokens
+            * Description: Retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth. 
             **/
             public func getAppApiTokens(
                 
@@ -13317,8 +12779,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Add or update social tokens for the sales channel
-            * Description: Use this API to add or edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth.
+            * Summary: Update application API tokens
+            * Description: Add or edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth.
             **/
             public func updateAppApiTokens(
                 body: TokenResponse,
@@ -13365,8 +12827,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get companies enabled in the sales channel inventory
-            * Description: Fetch info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application
+            * Summary: Get application companies
+            * Description: Retrieve info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application
             **/
             public func getAppCompanies(
                 uid: Int?,
@@ -13435,71 +12897,10 @@ if let value = pageSize {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
-            * Summary: get paginator for getAppCompanies
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getAppCompaniesPaginator(
-                uid: Int?,
-                pageSize: Int?
-                
-                ) -> Paginator<CompaniesResponse> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<CompaniesResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getAppCompanies(
-                            
-                            uid: uid,
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Get stores enabled in the sales channel inventory
-            * Description: Fetch info of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application
+            * Summary: Get application stores
+            * Description: Retrieve information of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application
             **/
             public func getAppStores(
                 pageNo: Int?,
@@ -13560,63 +12961,10 @@ if let value = pageSize {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
-            * Summary: get paginator for getAppStores
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getAppStoresPaginator(
-                pageSize: Int?
-                
-                ) -> Paginator<StoresResponse> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<StoresResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getAppStores(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Get sales channel configuration
-            * Description: Use this API to fetch configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
+            * Summary: Get inventory configuration
+            * Description: Retrieve configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
             **/
             public func getInventoryConfig(
                 
@@ -13663,7 +13011,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Update sales channel configuration
+            * Summary: Update inventory configuration
             * Description: Modify the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
             **/
             public func updateInventoryConfig(
@@ -13711,7 +13059,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Partially update sales channel configuration
+            * Summary: Partially update inventory configuration
             * Description: Partially update the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
             **/
             public func partiallyUpdateInventoryConfig(
@@ -13759,8 +13107,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get currencies supported in the application
-            * Description: Get a list of currencies supported in the current sales channel. Moreover, get the cuurency that is set as the default one in the application.
+            * Summary: Get application currency configuration
+            * Description: Retrieve a list of currencies supported in the current sales channel. Moreover, get the cuurency that is set as the default one in the application.
             **/
             public func getAppCurrencyConfig(
                 
@@ -13807,8 +13155,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Update initial sales channel supported currency
-            * Description: Use this API to add and edit the currencies supported in the application. Initially, INR will be enabled by default.
+            * Summary: Update application currency configuration
+            * Description: Modify currency configuration settings for the application. Add and edit the currencies supported in the application. Initially, INR will be enabled by default.
             **/
             public func updateAppCurrencyConfig(
                 body: AppSupportedCurrency,
@@ -13855,8 +13203,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get currencies enabled in the application
-            * Description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+            * Summary: Get supported currencies
+            * Description: Retrieve a list of supported currencies for the application. A list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
             **/
             public func getAppSupportedCurrency(
                 
@@ -13903,8 +13251,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get ordering store by filter
-            * Description: Use this API to use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
+            * Summary: Get ordering stores by filter
+            * Description: Retrieve ordering stores based on specified filters. Use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
             **/
             public func getOrderingStoresByFilter(
                 pageNo: Int?,
@@ -13965,63 +13313,10 @@ if let value = pageSize {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
-            * Summary: get paginator for getOrderingStoresByFilter
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getOrderingStoresByFilterPaginator(
-                pageSize: Int?,
-                
-                body: FilterOrderingStoreRequest) -> Paginator<OrderingStores> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<OrderingStores>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getOrderingStoresByFilter(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,body: body
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Add/Update ordering store config
-            * Description: Use this API to edit the details of the deployment stores (the selling locations where the application will be utilised for placing orders)
+            * Summary: Update ordering store configuration
+            * Description: Modify configuration settings for ordering stores. Edit the details of the deployment stores (the selling locations where the application will be utilised for placing orders)
             **/
             public func updateOrderingStoreConfig(
                 body: OrderingStoreConfig,
@@ -14068,8 +13363,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get ordering store config
-            * Description: Fetch the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
+            * Summary: Get ordering store configuration
+            * Description: Retrieve configuration settings for ordering stores. Retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
             **/
             public func getOrderingStoreConfig(
                 
@@ -14116,8 +13411,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get deployment stores
-            * Description: Use this API to retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders).
+            * Summary: Get staff ordering stores
+            * Description: Retrieve ordering stores accessible to staff members. Retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders).
             **/
             public func getStaffOrderingStores(
                 pageNo: Int?,
@@ -14186,70 +13481,9 @@ if let value = q {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
-            * Summary: get paginator for getStaffOrderingStores
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getStaffOrderingStoresPaginator(
-                pageSize: Int?,
-                q: String?
-                
-                ) -> Paginator<OrderingStoresResponse> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<OrderingStoresResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getStaffOrderingStores(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            q: q
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Get an Ordering Store signed cookie on selection of ordering store.
+            * Summary: Get an Ordering Store signed cookie on selection of ordering store
             * Description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart.
             **/
             public func getOrderingStoreCookie(
@@ -14297,7 +13531,7 @@ if let value = q {
             
             /**
             *
-            * Summary: Unset the Ordering Store signed cookie.
+            * Summary: Unset the Ordering Store signed cookie
             * Description: Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app.
             **/
             public func removeOrderingStoreCookie(
@@ -14345,8 +13579,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Fetch all the domains added to an  application (sales channel website), including pre-defined domain (free domain) or custom domain (owned by the brand). Know the verification status of each domain name, and find out which one is the primary domain, short link domain, or both.
-            * Description: Get list of domains
+            * Summary: Get domains
+            * Description: Get list of domains. 
             **/
             public func getDomains(
                 
@@ -14393,8 +13627,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Add new domain to current sales channel
-            * Description: Add a new domain to current sales channel, including pre-defined domain (free domain) or custom domain (owned by the brand)
+            * Summary: Add domain
+            * Description: Add a new domain. Add a new domain to current sales channel, including pre-defined domain (free domain) or custom domain (owned by the brand)
             **/
             public func addDomain(
                 body: DomainAddRequest,
@@ -14441,8 +13675,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Remove attached domain from current sales channel
-            * Description: Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain.
+            * Summary: Remove domain by ID
+            * Description: Delete a specific domain from the application. Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain.
             **/
             public func removeDomainById(
                 id: String,
@@ -14490,8 +13724,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Change the type of domain in the current sales channel
-            * Description: Primary domain is used as the URL of your website. Short link domain is comparatively smaller and used while generating short links. Use this API to change a domain to either Primary or a Shortlink domain.
+            * Summary: Change domain type
+            * Description: Modify the type of a specific domain. Primary domain is used as the URL of your website. Short link domain is comparatively smaller and used while generating short links.
             **/
             public func changeDomainType(
                 body: UpdateDomainTypeRequest,
@@ -14538,8 +13772,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get the status of connected domain
-            * Description: Shows if the A records and TXT records of the domain correctly points to appropriate IP on Fynd Servers.
+            * Summary: Get domain status
+            * Description: Retrieve the status of a specific domain. Shows if the A records and TXT records of the domain correctly points to appropriate IP on Fynd Servers.
             **/
             public func getDomainStatus(
                 body: DomainStatusRequest,
@@ -14588,12 +13822,12 @@ if let value = q {
             
             /**
             *
-            * Summary: Get sales channel data by ID
-            * Description: Use application ID to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, token, etc.
+            * Summary: Get application by ID
+            * Description: Retrieve detailed information about a specific application. Use application ID to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, token, etc.
             **/
             public func getApplicationById(
                 
-                onResponse: @escaping (_ response: Application?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ApplicationById?, _ error: FDKError?) -> Void
             ) {
                 
  
@@ -14618,7 +13852,7 @@ if let value = q {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(Application.self, from: data)
+                            let response = Utility.decode(ApplicationById.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -14667,8 +13901,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get a list of announcements
-            * Description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve a list of announcements.	
+            * Summary: Get announcements list
+            * Description: Retrieve a list of announcements.
             **/
             public func getAnnouncementsList(
                 pageNo: Int?,
@@ -14729,63 +13963,10 @@ if let value = pageSize {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
-            * Summary: get paginator for getAnnouncementsList
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getAnnouncementsListPaginator(
-                pageSize: Int?
-                
-                ) -> Paginator<GetAnnouncementListSchema> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<GetAnnouncementListSchema>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getAnnouncementsList(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Create an announcement
-            * Description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to create an announcement.
+            * Summary: Create announcement
+            * Description: Generate and add a new announcement.
             **/
             public func createAnnouncement(
                 body: AdminAnnouncementSchema,
@@ -14833,7 +14014,7 @@ if let value = pageSize {
             /**
             *
             * Summary: Get announcement by ID
-            * Description: Use this API to retrieve an announcement and its details such as the target platform and pages on which it's applicable
+            * Description: Retrieve detailed information about a specific announcement.
             **/
             public func getAnnouncementById(
                 announcementId: String,
@@ -14881,8 +14062,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Update an announcement
-            * Description: Use this API to edit an existing announcement and its details such as the target platform and pages on which it's applicable
+            * Summary: Update announcement
+            * Description: Modify the content and settings of a specific announcement.
             **/
             public func updateAnnouncement(
                 announcementId: String,
@@ -14930,8 +14111,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Update the schedule and the publish status of an announcement
-            * Description: Use this API to edit the duration, i.e. start date-time and end date-time of an announcement. Moreover, you can enable/disable an announcement using this API.
+            * Summary: Update announcement schedule
+            * Description: Modify the scheduling of a specific announcement.
             **/
             public func updateAnnouncementSchedule(
                 announcementId: String,
@@ -14979,8 +14160,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Delete announcement by id
-            * Description: Use this API to delete an existing announcement.
+            * Summary: Delete announcement
+            * Description: Remove a specific announcement.
             **/
             public func deleteAnnouncement(
                 announcementId: String,
@@ -15028,8 +14209,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Create a blog
-            * Description: Use this API to create a blog.
+            * Summary: Create blog
+            * Description: Generate and add a new blog.
             **/
             public func createBlog(
                 body: BlogRequest,
@@ -15077,7 +14258,7 @@ if let value = pageSize {
             /**
             *
             * Summary: Get blogs
-            * Description: Use this API to get a list of blogs along with their details, such as the title, reading time, publish status, feature image, tags, author, etc.
+            * Description: Retrieve a list of available blogs.
             **/
             public func getBlogs(
                 pageNo: Int?,
@@ -15138,63 +14319,10 @@ if let value = pageSize {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
-            * Summary: get paginator for getBlogs
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getBlogsPaginator(
-                pageSize: Int?
-                
-                ) -> Paginator<BlogGetResponse> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<BlogGetResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getBlogs(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Update a blog
-            * Description: Use this API to update the details of an existing blog which includes title, feature image, content, SEO details, expiry, etc.
+            * Summary: Update blog
+            * Description: Modify the content and settings of a specific blog.
             **/
             public func updateBlog(
                 id: String,
@@ -15242,8 +14370,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Delete blogs
-            * Description: Use this API to delete a blog.
+            * Summary: Delete blog
+            * Description: Remove a specific blog.
             **/
             public func deleteBlog(
                 id: String,
@@ -15291,8 +14419,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get components of a blog
-            * Description: Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
+            * Summary: Get component by ID
+            * Description: Retrieve detailed information about a specific component.
             **/
             public func getComponentById(
                 slug: String,
@@ -15340,8 +14468,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Adds a data loader
-            * Description: Use this API to add data loader. This includes the data loader name, operationId, service name and its type (url/function) with corresponding value.
+            * Summary: Add data loader
+            * Description: Create and add a new data loader.
             **/
             public func addDataLoader(
                 body: DataLoaderSchema,
@@ -15388,8 +14516,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get all the data loaders in an application
-            * Description: Use this to get all data loaders of an application
+            * Summary: Get data loaders
+            * Description: Retrieve a list of data loaders.
             **/
             public func getDataLoaders(
                 
@@ -15436,8 +14564,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Delete data loader in application
-            * Description: Use this API to delete data loader.
+            * Summary: Delete data loader
+            * Description: Remove a specific data loader.
             **/
             public func deleteDataLoader(
                 dataLoaderId: String,
@@ -15485,8 +14613,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Edit a data loader by id
-            * Description: Use this API to edit the details of an existing data loader by its ID.
+            * Summary: Edit data loader
+            * Description: Modify the settings of a specific data loader.
             **/
             public func editDataLoader(
                 dataLoaderId: String,
@@ -15583,8 +14711,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Select a data loader by id
-            * Description: Use this API to select a data loader to be used in applications.
+            * Summary: Select data loader
+            * Description: Choose and set a data loader for use.
             **/
             public func selectDataLoader(
                 dataLoaderId: String,
@@ -15632,8 +14760,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Reset a data loader by serive name and operation Id
-            * Description: Use this API to reselect a data loader.
+            * Summary: Reset data loader
+            * Description: Clear and reset data loader settings.
             **/
             public func resetDataLoader(
                 service: String,
@@ -15682,8 +14810,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get a list of FAQ categories
-            * Description: FAQs can be divided into categories. Use this API to get a list of FAQ categories.
+            * Summary: Get FAQ categories
+            * Description: Retrieve a list of FAQ categories.
             **/
             public func getFaqCategories(
                 
@@ -15730,8 +14858,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get an FAQ category by slug or id
-            * Description: FAQs can be divided into categories. Use this API to get an FAQ categories using its slug or ID.
+            * Summary: Get FAQ category by slug or ID
+            * Description: Retrieve detailed information about a specific FAQ category.
             **/
             public func getFaqCategoryBySlugOrId(
                 idOrSlug: String,
@@ -15779,8 +14907,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Create an FAQ category
-            * Description: FAQs help users to solve an issue or know more about a process. FAQs can be categorized separately, for e.g. some questions can be related to payment, some could be related to purchase, shipping, navigating, etc. Use this API to create an FAQ category.
+            * Summary: Create FAQ category
+            * Description: Generate and add a new FAQ category.
             **/
             public func createFaqCategory(
                 body: CreateFaqCategoryRequestSchema,
@@ -15827,8 +14955,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Update an FAQ category
-            * Description: Use this API to edit an existing FAQ category.
+            * Summary: Update FAQ category
+            * Description: Modify the content and settings of a specific FAQ category.
             **/
             public func updateFaqCategory(
                 id: String,
@@ -15876,8 +15004,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Delete an FAQ category
-            * Description: Use this API to delete an FAQ category.
+            * Summary: Delete FAQ category
+            * Description: Remove a specific FAQ category.
             **/
             public func deleteFaqCategory(
                 id: String,
@@ -15925,8 +15053,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get question and answers within an FAQ category
-            * Description: Use this API to retrieve all the commonly asked question and answers belonging to an FAQ category.
+            * Summary: Get FAQs by category ID or slug
+            * Description: Retrieve a list of FAQs within a specific category.
             **/
             public func getFaqsByCategoryIdOrSlug(
                 idOrSlug: String,
@@ -15974,8 +15102,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Create an FAQ
-            * Description: FAQs help users to solve an issue or know more about a process. Use this API to create an FAQ for a given FAQ category.
+            * Summary: Add FAQ
+            * Description: Create and add a new FAQ.
             **/
             public func addFaq(
                 categoryId: String,
@@ -16023,8 +15151,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Update an FAQ
-            * Description: Use this API to edit an existing FAQ.
+            * Summary: Update FAQ
+            * Description: Modify the content and settings of a specific FAQ.
             **/
             public func updateFaq(
                 categoryId: String,
@@ -16073,8 +15201,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Delete an FAQ
-            * Description: Use this API to delete an existing FAQ.
+            * Summary: Delete FAQ
+            * Description: Remove a specific FAQ.
             **/
             public func deleteFaq(
                 categoryId: String,
@@ -16123,8 +15251,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get an FAQ
-            * Description: Use this API to retrieve a specific FAQ. You will get the question and answer of that FAQ.
+            * Summary: Get FAQ by ID or slug
+            * Description: Retrieve detailed information about a specific FAQ.
             **/
             public func getFaqByIdOrSlug(
                 idOrSlug: String,
@@ -16172,8 +15300,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get SEO meta tag title for content
-            * Description: Use this API to get GPT3 generated SEO meta tag title for content
+            * Summary: Generate SEO title
+            * Description: Create an SEO-friendly title for content.
             **/
             public func generateSEOTitle(
                 type: GenerationEntityType,
@@ -16222,7 +15350,7 @@ if let value = pageSize {
             /**
             *
             * Summary: Get landing pages
-            * Description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch a list of landing pages.
+            * Description: Retrieve a list of landing pages.
             **/
             public func getLandingPages(
                 pageNo: Int?,
@@ -16283,63 +15411,10 @@ if let value = pageSize {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
-            * Summary: get paginator for getLandingPages
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getLandingPagesPaginator(
-                pageSize: Int?
-                
-                ) -> Paginator<LandingPageGetResponse> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<LandingPageGetResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getLandingPages(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Create a landing page
-            * Description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to create a landing page.
+            * Summary: Create landing page
+            * Description: Generate and add a new landing page.
             **/
             public func createLandingPage(
                 body: LandingPageSchema,
@@ -16386,8 +15461,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Update a landing page
-            * Description: Use this API to edit the details of an existing landing page.
+            * Summary: Update landing page
+            * Description: Modify the content and settings of a specific landing page.
             **/
             public func updateLandingPage(
                 id: String,
@@ -16435,8 +15510,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Delete a landing page
-            * Description: Use this API to delete an existing landing page.
+            * Summary: Delete landing page
+            * Description: Remove a specific landing page.
             **/
             public func deleteLandingPage(
                 id: String,
@@ -16484,8 +15559,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get legal information
-            * Description: Use this API to get the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
+            * Summary: Get legal related information for applicaiton
+            * Description: Retrieve legal information and terms.
             **/
             public func getLegalInformation(
                 
@@ -16532,8 +15607,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Save legal information
-            * Description: Use this API to edit, update and save the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
+            * Summary: Update legal related information for application
+            * Description: Modify legal information and terms.
             **/
             public func updateLegalInformation(
                 body: ApplicationLegal,
@@ -16580,8 +15655,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get navigations
-            * Description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the orientation, links, sub-navigations, etc.
+            * Summary: Get navigation items
+            * Description: Retrieve a list of navigational elements.
             **/
             public func getNavigations(
                 devicePlatform: String,
@@ -16648,71 +15723,10 @@ if let value = pageSize {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
-            * Summary: get paginator for getNavigations
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getNavigationsPaginator(
-                devicePlatform: String,
-                pageSize: Int?
-                
-                ) -> Paginator<NavigationGetResponse> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<NavigationGetResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getNavigations(
-                            
-                            devicePlatform: devicePlatform,
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Create a navigation
-            * Description: Navigation is the arrangement of navigational items to ease the accessibility of resources for users on a website. Use this API to create a navigation.
+            * Summary: Create navigation items
+            * Description: Generate and add a new navigation element.
             **/
             public func createNavigation(
                 body: NavigationRequest,
@@ -16760,7 +15774,7 @@ if let value = pageSize {
             /**
             *
             * Summary: Get default navigations
-            * Description: On any website (application), there are navigations that are present by default. Use this API to retrieve those default navigations.
+            * Description: Retrieve default navigation elements.
             **/
             public func getDefaultNavigations(
                 
@@ -16807,8 +15821,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get a navigation by slug
-            * Description: Use this API to retrieve a navigation by its slug.
+            * Summary: Get navigation by slug
+            * Description: Retrieve detailed information about a specific navigation element.
             **/
             public func getNavigationBySlug(
                 slug: String,
@@ -16862,8 +15876,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update a navigation
-            * Description: Use this API to edit the details of an existing navigation.
+            * Summary: Update navigation
+            * Description: Modify the content and settings of a specific navigation element.
             **/
             public func updateNavigation(
                 id: String,
@@ -16911,8 +15925,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Delete a navigation
-            * Description: Use this API to delete an existing navigation.
+            * Summary: Delete navigation
+            * Description: Remove a specific navigation element.
             **/
             public func deleteNavigation(
                 id: String,
@@ -16961,7 +15975,7 @@ var xQuery: [String: Any] = [:]
             /**
             *
             * Summary: Get page meta
-            * Description: Use this API to get the meta of custom pages (blog, page) and default system pages (e.g. home/brand/category/collection).
+            * Description: Retrieve metadata for a specific page.
             **/
             public func getPageMeta(
                 
@@ -17008,8 +16022,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get page spec
-            * Description: Use this API to get the specifications of a page, such as page type, display name, params and query.
+            * Summary: Get page specification
+            * Description: Retrieve specifications and details for a specific page.
             **/
             public func getPageSpec(
                 
@@ -17056,8 +16070,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Create a page preview
-            * Description: Use this API to create a page preview to check the appearance of a custom page.
+            * Summary: Create page preview
+            * Description: Generate and add a new page preview.
             **/
             public func createPagePreview(
                 body: PageRequest,
@@ -17104,8 +16118,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Change the publish status of a page
-            * Description: Use this API to change the publish status of an existing page. Allows you to publish and unpublish the page.
+            * Summary: Update page preview
+            * Description: Modify the content and settings of a specific page preview.
             **/
             public func updatePagePreview(
                 slug: String,
@@ -17153,8 +16167,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Delete a page
-            * Description: Use this API to delete an existing page.
+            * Summary: Delete page
+            * Description: Remove a page from the platform.
             **/
             public func deletePage(
                 id: String,
@@ -17202,8 +16216,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Save path based redirection rules
-            * Description: Use this API to add redirection rules
+            * Summary: Add path redirection rules
+            * Description: Create and add rules for path redirection.
             **/
             public func addPathRedirectionRules(
                 body: PathMappingSchema,
@@ -17250,8 +16264,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get path based redirection rules
-            * Description: Use this API to get path based redirection rules.
+            * Summary: Get path redirection rules
+            * Description: Retrieve a list of path redirection rules.
             **/
             public func getPathRedirectionRules(
                 pageSize: Int?,
@@ -17314,8 +16328,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get path based redirection rule
-            * Description: Use this API to get path based redirection rule.
+            * Summary: Get path redirection rule
+            * Description: Retrieve detailed information about a specific path redirection rule.
             **/
             public func getPathRedirectionRule(
                 pathId: String,
@@ -17363,8 +16377,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Update path based redirection rules
-            * Description: Use this API to update redirection rules
+            * Summary: Update path redirection rules
+            * Description: Modify settings for path redirection rules.
             **/
             public func updatePathRedirectionRules(
                 pathId: String,
@@ -17412,8 +16426,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Delete path based redirection rules
-            * Description: Use this API to delete redirection rules
+            * Summary: Delete path redirection rules
+            * Description: Remove specific path redirection rules.
             **/
             public func deletePathRedirectionRules(
                 pathId: String,
@@ -17461,8 +16475,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get SEO configuration of an application
-            * Description: Use this API to know how the SEO is configured in the application. This includes the sitemap, robot.txt, custom meta tags, etc.
+            * Summary: Get SEO configuration for an application
+            * Description: Retrieve configuration settings for SEO.
             **/
             public func getSEOConfiguration(
                 
@@ -17509,8 +16523,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Update SEO of application
-            * Description: Use this API to edit the SEO details of an application. This includes the sitemap, robot.txt, custom meta tags, etc.
+            * Summary: Update SEO configuration for an application
+            * Description: Modify configuration settings for SEO.
             **/
             public func updateSEOConfiguration(
                 body: SeoComponent,
@@ -18221,7 +17235,7 @@ var xQuery: [String: Any] = [:]
             /**
             *
             * Summary: Get support information
-            * Description: Use this API to get the contact details for customer support, including emails and phone numbers.
+            * Description: Retrieve information related to customer support.
             **/
             public func getSupportInformation(
                 
@@ -18268,8 +17282,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update the support data of an application
-            * Description: Use this API to edit the existing contact details for customer support, including emails and phone numbers.
+            * Summary: Update support related info for an application
+            * Description: Modify information related to customer support.
             **/
             public func updateSupportInformation(
                 body: Support,
@@ -18316,8 +17330,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update the exisitng tags for an application by replacing with provided tags
-            * Description: Use this API to edit and override all existing tags. All existing tags will be replaced by the new tags provided in body. 
+            * Summary: Update HTML tag
+            * Description: Modify settings for an injectable tag.
             **/
             public func updateInjectableTag(
                 body: CreateTagRequestSchema,
@@ -18364,8 +17378,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get all the tags in an application
-            * Description: Use this API to get the CSS and JS injected in the application in the form of tags.
+            * Summary: Get all HTML tags
+            * Description: Retrieve a list of injectable tags.
             **/
             public func getInjectableTags(
                 all: Bool?,
@@ -18420,8 +17434,8 @@ if let value = all {
             
             /**
             *
-            * Summary: Add a tag
-            * Description: CSS and JS can be injected in the application (website) with the help of tags. Use this API to create such tags by entering the tag name, tag type (css/js), url and position of the tag.
+            * Summary: Create HTML tag
+            * Description: Create and add a new injectable tag.
             **/
             public func addInjectableTag(
                 body: CreateTagRequestSchema,
@@ -18468,8 +17482,8 @@ if let value = all {
             
             /**
             *
-            * Summary: Remove a tag
-            * Description: Use this API to delete an existing tag.
+            * Summary: Remove HTML tag
+            * Description: Delete a specific injectable tag.
             **/
             public func removeInjectableTag(
                 body: RemoveHandpickedSchema,
@@ -18516,8 +17530,8 @@ if let value = all {
             
             /**
             *
-            * Summary: Edit a tag by id
-            * Description: Use this API to edit the details of an existing tag by its ID.
+            * Summary: Update HTML tag
+            * Description: Modify settings for an injectable tag.
             **/
             public func editInjectableTag(
                 tagId: String,
@@ -18566,7 +17580,7 @@ if let value = all {
             /**
             *
             * Summary: Get blog by slug
-            * Description: Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
+            * Description: Retrieve detailed information about a specific blog using its slug.
             **/
             public func getBlogBySlug(
                 slug: String,
@@ -18614,8 +17628,8 @@ if let value = all {
             
             /**
             *
-            * Summary: Create a page
-            * Description: Use this API to create a custom page using a title, seo, publish status, feature image, tags, meta, etc.
+            * Summary: Create page
+            * Description: Generate and add a new page to the platform.
             **/
             public func createPage(
                 body: PageRequest,
@@ -18662,8 +17676,8 @@ if let value = all {
             
             /**
             *
-            * Summary: Get a list of pages
-            * Description: Use this API to retrieve a list of pages.
+            * Summary: Get pages
+            * Description: Retrieve a list of available pages.
             **/
             public func getPages(
                 pageNo: Int?,
@@ -18724,63 +17738,10 @@ if let value = pageSize {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
-            * Summary: get paginator for getPages
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getPagesPaginator(
-                pageSize: Int?
-                
-                ) -> Paginator<PageGetResponse> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<PageGetResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getPages(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Update a page
-            * Description: Use this API to edit the details of an existing page, such as its title, seo, publish status, feature image, tags, schedule, etc.
+            * Summary: Update page
+            * Description: Modify and update the content of a page.
             **/
             public func updatePage(
                 id: String,
@@ -18829,7 +17790,7 @@ if let value = pageSize {
             /**
             *
             * Summary: Get page by slug
-            * Description: Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc.
+            * Description: Retrieve detailed information about a specific page using its slug.
             **/
             public func getPageBySlug(
                 slug: String,
@@ -19227,7 +18188,7 @@ if let value = search {
             
             /**
             *
-            * Summary: Delete custom fields definition.
+            * Summary: Delete custom fields definition
             * Description: Use this API to delete the definitions of custom fields using definition_id. This will also delete related custom fields entries related to this definition.
             **/
             public func deleteAppCustomFieldDefinition(
@@ -19276,7 +18237,7 @@ if let value = search {
             
             /**
             *
-            * Summary: Get list of custom fields of given resource
+            * Summary: Get list of custom fields of gives resource
             * Description: Use this API to retrieve the custom fields for given resource in param.
             **/
             public func getAppCustomFields(
@@ -19951,7 +18912,7 @@ if let value = definitionId {
             
             /**
             *
-            * Summary: Fetch bulk import and export job list.
+            * Summary: Fetch bulk import and export job list
             * Description: Use this api to get list of jobs of bulk import and exports
             **/
             public func getAppJobs(
@@ -20181,26 +19142,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
-            * Description: Uploads an arbitrarily sized buffer or blob.
-
-It has three Major Steps:
-* Start
-* Upload
-* Complete
-
-### Start
-Initiates the assets upload using `appStartUpload`.
-It returns the storage link in response.
-
-### Upload
-Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-Make a `PUT` request on storage link received from `appStartUpload` api with file (Buffer or Blob) as a request body.
-
-### Complete
-After successfully upload, call `appCompleteUpload` api to complete the upload process.
-This operation will return the url for the uploaded file.
-
+            * Summary: Application start upload
+            * Description: Start uploading a file from an application and returns a storage link in response.
             **/
             public func appStartUpload(
                 namespace: String,
@@ -20248,26 +19191,8 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
-            * Description: Uploads an arbitrarily sized buffer or blob.
-
-It has three Major Steps:
-* Start
-* Upload
-* Complete
-
-### Start
-Initiates the assets upload using `appStartUpload`.
-It returns the storage link in response.
-
-### Upload
-Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-Make a `PUT` request on storage link received from `appStartUpload` api with file (Buffer or Blob) as a request body.
-
-### Complete
-After successfully upload, call `appCompleteUpload` api to complete the upload process.
-This operation will return the url for the uploaded file.
-
+            * Summary: Application complete upload
+            * Description: Finish uploading a file from an application.
             **/
             public func appCompleteUpload(
                 namespace: String,
@@ -20317,8 +19242,8 @@ This operation will return the url for the uploaded file.
             
             /**
             *
-            * Summary: Copy Files
-            * Description: Copy Files
+            * Summary: Application copy files
+            * Description: Copy files from an application to another location.
             **/
             public func appCopyFiles(
                 sync: Bool?,
@@ -20374,8 +19299,8 @@ if let value = sync {
             
             /**
             *
-            * Summary: Browse Files
-            * Description: Browse Files
+            * Summary: Application browse files
+            * Description: Browse files within an application.
             **/
             public func appbrowse(
                 namespace: String,
@@ -20521,8 +19446,8 @@ if let value = search {
             
             /**
             *
-            * Summary: Get all the supported invoice pdf types
-            * Description: Get all the supported invoice pdf types such as Invoice, Label, Delivery challan
+            * Summary: Get PDF types
+            * Description: Retrieve a list of available PDF types.
             **/
             public func getPdfTypes(
                 countryCode: String?,
@@ -20577,8 +19502,8 @@ if let value = countryCode {
             
             /**
             *
-            * Summary: Get Dummy pdf data for invoice or label
-            * Description: Get Dummy pdf data for invoice or label
+            * Summary: Get default PDF data
+            * Description: Retrieve default data for PDF generation.
             **/
             public func getDefaultPdfData(
                 pdfTypeId: Int,
@@ -20639,8 +19564,8 @@ if let value = countryCode {
             
             /**
             *
-            * Summary: Update html template for invoice or label
-            * Description: Update html template for invoice such as Invoice, Label, Deliver challan
+            * Summary: Update HTML Template
+            * Description: Update the HTML Template.
             **/
             public func updateHtmlTemplate(
                 id: String,
@@ -20756,8 +19681,8 @@ if let value = countryCode {
             
             /**
             *
-            * Summary: Update html template for invoice or label
-            * Description: Update html template for invoice such as Invoice, Label, Deliver challan
+            * Summary: Save HTML template
+            * Description: Store an HTML template.
             **/
             public func saveHtmlTemplate(
                 body: PdfConfig,
@@ -20804,8 +19729,8 @@ if let value = countryCode {
             
             /**
             *
-            * Summary: Default html template
-            * Description: Get default html template data for invoice or label
+            * Summary: Get default PDF template
+            * Description: Retrieve the default PDF template.
             **/
             public func getDefaultPdfTemplate(
                 pdfTypeId: Int,
@@ -20872,7 +19797,7 @@ if let value = countryCode {
             
             /**
             *
-            * Summary: Generate Payment Receipt for Jiomart Digital
+            * Summary: Generate payment receipt
             * Description: Generate Payment Receipt for Jiomart Digital
             **/
             public func generatePaymentReceipt(
@@ -21235,8 +20160,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Get specific custom form using it's slug
-            * Description: Get specific custom form using it's slug, this is used to view the form.
+            * Summary: Get custom form
+            * Description: Retrieve information about a custom form which includes corresponding field details and any validation regex required against that field or not
             **/
             public func getCustomForm(
                 slug: String,
@@ -21284,8 +20209,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Edit the given custom form
-            * Description: Edit the given custom form field such as adding or deleting input, assignee, title, decription, notification and polling information.
+            * Summary: Edit custom form
+            * Description: Modify the content and assosciated settings of a custom form.
             **/
             public func editCustomForm(
                 slug: String,
@@ -21382,8 +20307,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Get list of custom form
-            * Description: Get list of custom form for given application
+            * Summary: Get custom forms
+            * Description: Retrieve a list of available custom forms.
             **/
             public func getCustomForms(
                 
@@ -21430,8 +20355,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Creates a new custom form
-            * Description: Creates a new custom form for given application
+            * Summary: Create custom form
+            * Description: Create a new custom form for application users to fill
             **/
             public func createCustomForm(
                 body: CreateCustomFormPayload,
@@ -21578,8 +20503,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Open a video room.
-            * Description: Open a video room.
+            * Summary: Open video room
+            * Description: Initiate and open a video room.
             **/
             public func openVideoRoom(
                 body: CreateVideoRoomPayload,
@@ -21626,8 +20551,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Close the video room and force all participants to leave.
-            * Description: Close the video room and force all participants to leave.
+            * Summary: Close video room
+            * Description: Terminate and close an active video room.
             **/
             public func closeVideoRoom(
                 uniqueName: String,
@@ -21694,11 +20619,10 @@ if let value = category {
             
             
             
-            
             /**
             *
-            * Summary: PincodeView update of MOP.
-            * Description: This API updates Pincode method of payment.
+            * Summary: Update pincode MOP (Mode of Payment) view
+            * Description: Modify and update views related to pincode MOP.
             **/
             public func updatePincodeMopView(
                 body: PincodeMopData,
@@ -21745,8 +20669,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Bulk Update of pincode in the application.
-            * Description: This API constructs bulk write operations to update the MOP data for each pincode in the payload.
+            * Summary: Update pincode bulk view
+            * Description: Modify and update views related to bulk operations on pincode.
             **/
             public func updatePincodeBulkView(
                 body: PincodeMopBulkData,
@@ -21793,8 +20717,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Pincode count view of application.
-            * Description: This API returns count of active pincode.
+            * Summary: Update pincode CoD (Cash on Delivery) listing
+            * Description: Modify and update listings for CoD based on pincode.
             **/
             public func updatePincodeCoDListing(
                 body: PincodeCodStatusListingRequest,
@@ -21841,8 +20765,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Auditlog configuration of application.
-            * Description: This API returns Audit logs of Pincode.
+            * Summary: Update pincode audit history
+            * Description: Modify and update audit history records for pincode-related activities.
             **/
             public func updatePincodeAuditHistory(
                 body: PincodeMopUpdateAuditHistoryRequest,
@@ -21893,7 +20817,7 @@ if let value = category {
             
             /**
             *
-            * Summary: Updating of Courier Rule.
+            * Summary: Updating of Courier Rule
             * Description: This API updates and returns Courier Rule.
             **/
             public func updateCourierRule(
@@ -21942,7 +20866,7 @@ if let value = category {
             
             /**
             *
-            * Summary: Fetch of Courier Rule.
+            * Summary: Fetch of Courier Rule
             * Description: This API returns Courier Rule.
             **/
             public func getCourierPartnerRule(
@@ -21991,7 +20915,7 @@ if let value = category {
             
             /**
             *
-            * Summary: Create Courier Rules.
+            * Summary: Create Courier Rules
             * Description: Creates Courier Rules with rule configuration and dp priority
             **/
             public func createCourierPartnerRule(
@@ -22211,7 +21135,7 @@ if let value = status {
             
             /**
             *
-            * Summary: Self-ship configuration of application.
+            * Summary: Self-ship configuration of application
             * Description: This API updates Self-ship configuration of the application.
             **/
             public func patchApplicationServiceabilitySelfShipment(
@@ -22259,7 +21183,7 @@ if let value = status {
             
             /**
             *
-            * Summary: Self-ship configuration of application.
+            * Summary: Self-ship configuration of application
             * Description: This API returns Self-ship configuration of the application.
             **/
             public func getApplicationServiceabilitySelfShipment(
@@ -22724,6 +21648,7 @@ if let value = status {
             }
             
             
+            
         }
         
         
@@ -23009,8 +21934,8 @@ if let value = excludeLockedShipments {
             
             /**
             *
-            * Summary: Track shipment
-            * Description: Track Shipment by shipment id, for application based on application Id
+            * Summary: Track shipment on the platform
+            * Description: Track shipment by Shipment ID for application based on application Id
             **/
             public func trackShipmentPlatform(
                 shipmentId: String,
@@ -23063,8 +21988,8 @@ if let value = excludeLockedShipments {
             
             /**
             *
-            * Summary: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
-            * Description: Using action, get reasons behind full or partial cancellation of a shipment
+            * Summary: Get platform shipment reasons
+            * Description: Retrieve reasons behind full or partial cancellation of a shipment
             **/
             public func getPlatformShipmentReasons(
                 action: String,
@@ -23132,8 +22057,8 @@ if let value = excludeLockedShipments {
             
             /**
             *
-            * Summary: Create proxy URL for the external URL
-            * Description: Use this API to generate proxy URL for the external URL
+            * Summary: Add proxy path
+            * Description: Create and add a new proxy path.
             **/
             public func addProxyPath(
                 extensionId: String,
@@ -23181,8 +22106,8 @@ if let value = excludeLockedShipments {
             
             /**
             *
-            * Summary: Remove proxy URL for the external URL
-            * Description: Use this API to remove the proxy URL which is already generated for the external URL
+            * Summary: Remove proxy path
+            * Description: Delete a proxy path from the platform.
             **/
             public func removeProxyPath(
                 extensionId: String,
@@ -23246,8 +22171,8 @@ if let value = excludeLockedShipments {
             
             /**
             *
-            * Summary: Get All Brand Payment Gateway Config Secret
-            * Description: Get All Brand Payment Gateway Config Secret
+            * Summary: Get brand payment gateway config
+            * Description: Retrieve configuration settings for brand payment gateways.
             **/
             public func getBrandPaymentGatewayConfig(
                 aggregator: String?,
@@ -23310,8 +22235,8 @@ if let value = configType {
             
             /**
             *
-            * Summary: Save Config Secret For Brand Payment Gateway
-            * Description: Save Config Secret For Brand Payment Gateway
+            * Summary: Save brand payment gateway config
+            * Description: Store and update configuration settings for brand payment gateways.
             **/
             public func saveBrandPaymentGatewayConfig(
                 body: PaymentGatewayConfigRequest,
@@ -23358,8 +22283,8 @@ if let value = configType {
             
             /**
             *
-            * Summary: Get All Valid Payment Options
-            * Description: Use this API to get Get All Valid Payment Options for making payment
+            * Summary: Get payment mode routes
+            * Description: Retrieve routes and options for payment modes.
             **/
             public func getPaymentModeRoutes(
                 refresh: Bool,
@@ -23443,8 +22368,8 @@ if let value = shipmentId {
             
             /**
             *
-            * Summary: Get bank details
-            * Description: Use this API to get saved bank details for returned/cancelled order using order id.
+            * Summary: Get bank account details
+            * Description: Retrieve bank account information using an open API.
             **/
             public func getBankAccountDetailsOpenAPI(
                 orderId: String,
@@ -23505,8 +22430,8 @@ if let value = requestHash {
             
             /**
             *
-            * Summary: Save bank details for cancelled/returned order
-            * Description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
+            * Summary: Add refund bank account using OTP
+            * Description: Register a refund bank account with OTP verification.
             **/
             public func addRefundBankAccountUsingOTP(
                 body: AddBeneficiaryDetailsOTPRequest,
@@ -23554,8 +22479,8 @@ if let value = requestHash {
             
             /**
             *
-            * Summary: List Order Beneficiary
-            * Description: Get all active  beneficiary details added by the user for refund
+            * Summary: Get user order beneficiaries
+            * Description: Retrieve beneficiaries associated with a user orders.
             **/
             public func getUserOrderBeneficiaries(
                 orderId: String,
@@ -23608,8 +22533,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: List User Beneficiary
-            * Description: Get all active  beneficiary details added by the user for refund
+            * Summary: Get user beneficiaries
+            * Description: Retrieve beneficiaries associated with a user.
             **/
             public func getUserBeneficiaries(
                 orderId: String,
@@ -23662,8 +22587,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Confirm payment after successful payment from payment gateway
-            * Description: Use this API to confirm payment after payment gateway accepted payment.
+            * Summary: Confirm payment
+            * Description: Authenticate and confirm a payment.
             **/
             public func confirmPayment(
                 body: PaymentConfirmationRequest,
@@ -23710,8 +22635,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get COD limit for user
-            * Description: Use this API to get user cod limit and reamining limit for the payment
+            * Summary: Get user COD limit routes
+            * Description: Retrieve routes and limits for user cash-on-delivery (COD) transactions.
             **/
             public func getUserCODlimitRoutes(
                 merchantUserId: String,
@@ -23770,8 +22695,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Set COD option for user for payment
-            * Description: Use this API to set cod option as true or false for the payment
+            * Summary: Set user COD limit routes
+            * Description: Configure routes and limits for user COD transactions.
             **/
             public func setUserCODlimitRoutes(
                 body: SetCODForUserRequest,
@@ -23818,8 +22743,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: get some information about the store and edc device
-            * Description: Use this API to get info of devices linked to a particular app.
+            * Summary: EDC aggregators and model list
+            * Description: Retrieve a list of EDC (Electronic Data Capture) aggregators and models.
             **/
             public func edcAggregatorsAndModelList(
                 
@@ -23866,8 +22791,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: get some information about the store and edc device
-            * Description: Use this API to get info of devices linked to a particular app.
+            * Summary: EDC device stats
+            * Description: Get statistics and data related to EDC devices.
             **/
             public func edcDeviceStats(
                 
@@ -23914,8 +22839,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: map new edc device to the terminal
-            * Description: Use this API to map new edc device to the terminal
+            * Summary: Update EDC device
+            * Description: Modify the settings and details of an EDC device.
             **/
             public func updateEdcDevice(
                 body: EdcAddRequest,
@@ -23962,8 +22887,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: get details of a single edc device
-            * Description: Use this API to get details of a single edc device
+            * Summary: Get EDC device
+            * Description: Retrieve detailed information about an EDC device.
             **/
             public func getEdcDevice(
                 terminalUniqueIdentifier: String,
@@ -24011,8 +22936,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update store id and device tag of edc device
-            * Description: Use this API to Update store id and device tag of edc device
+            * Summary: Add EDC device
+            * Description: Register and add a new EDC device.
             **/
             public func addEdcDevice(
                 terminalUniqueIdentifier: String,
@@ -24060,8 +22985,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: get all the device list of an app
-            * Description: Use this API to get all devices linked to a particular app.
+            * Summary: EDC device list
+            * Description: Retrieve a list of available EDC devices.
             **/
             public func edcDeviceList(
                 pageNo: Int?,
@@ -24148,8 +23073,8 @@ if let value = deviceTag {
             
             /**
             *
-            * Summary: Get All Valid Payment Options
-            * Description: Use this API to get Get All Valid Payment Options for making payment
+            * Summary: Get POS payment mode routes
+            * Description: Retrieve payment options and aggregator for point-of-sale (POS).
             **/
             public func getPosPaymentModeRoutes(
                 amount: Int,
@@ -24286,8 +23211,8 @@ if let value = shipmentId {
             
             /**
             *
-            * Summary: Initialize a payment (server-to-server) for UPI and BharatQR
-            * Description: PUse this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
+            * Summary: Initialize payment
+            * Description: Start the payment initiation process for UPI and QR code.
             **/
             public func initialisePayment(
                 body: PaymentInitializationRequest,
@@ -24334,8 +23259,8 @@ if let value = shipmentId {
             
             /**
             *
-            * Summary: Performs continuous polling to check status of payment on the server
-            * Description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
+            * Summary: Check and update payment status
+            * Description: Verify and modify the status of a payment.
             **/
             public func checkAndUpdatePaymentStatus(
                 body: PaymentStatusUpdateRequest,
@@ -24382,8 +23307,8 @@ if let value = shipmentId {
             
             /**
             *
-            * Summary: API to resend and cancel a payment link which was already generated.
-            * Description: Use this API to perform resend or cancel a payment link based on request payload.
+            * Summary: Resend or cancel payment
+            * Description: Resend or cancel a payment link.
             **/
             public func resendOrCancelPayment(
                 body: ResendOrCancelPaymentRequest,
@@ -24430,8 +23355,8 @@ if let value = shipmentId {
             
             /**
             *
-            * Summary: Get Payment status and information for a list of order_ids
-            * Description: Use this API to get Payment status and information for a list of order_ids
+            * Summary: Payment status bulk
+            * Description: Retrieve the status of multiple payments in bulk.
             **/
             public func paymentStatusBulk(
                 body: PaymentStatusBulkHandlerRequest,
@@ -24478,8 +23403,8 @@ if let value = shipmentId {
             
             /**
             *
-            * Summary: API to Get the url to call for oauth
-            * Description: Use this API to Get the url to call for oauth.
+            * Summary: Get OAuth URL
+            * Description: Retrieve an OAuth URL for PG API authentication.
             **/
             public func oauthGetUrl(
                 aggregator: String,
@@ -24543,8 +23468,8 @@ if let value = failureRedirectUrl {
             
             /**
             *
-            * Summary: API to Revoke oauth for razorpay partnership
-            * Description: Use this API to Revoke oauth for razorpay partnership
+            * Summary: Revoke OAuth token
+            * Description: Invalidate an OAuth token.
             **/
             public func revokeOauthToken(
                 aggregator: String,
@@ -24592,8 +23517,8 @@ if let value = failureRedirectUrl {
             
             /**
             *
-            * Summary: API to register repayment details
-            * Description: Use this API to register any repayment record in the db and notify the aggrgator
+            * Summary: Repayment details for BNPL
+            * Description: Retrieve information about repayment transactions.
             **/
             public func repaymentDetails(
                 body: RepaymentDetailsSerialiserPayAll,
@@ -24640,8 +23565,8 @@ if let value = failureRedirectUrl {
             
             /**
             *
-            * Summary: API to push Ajiodhan merchant data to Gringotts system
-            * Description: Use this API to push Ajiodhan merchant data to Gringotts system
+            * Summary: Merchant onboarding for BNPL
+            * Description: Initiate the onboarding process for a merchant.
             **/
             public func merchantOnBoarding(
                 body: MerchantOnBoardingRequest,
@@ -24688,8 +23613,8 @@ if let value = failureRedirectUrl {
             
             /**
             *
-            * Summary: Validate customer for payment
-            * Description: Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi.
+            * Summary: Verify customer for payment
+            * Description: Retrieve a link for making payments.
             **/
             public func verifyCustomerForPayment(
                 body: ValidateCustomerRequest,
@@ -24737,7 +23662,7 @@ if let value = failureRedirectUrl {
             /**
             *
             * Summary: Get payment link
-            * Description: Use this API to get a payment link
+            * Description: Retrieve a link for making payments.
             **/
             public func getPaymentLink(
                 paymentLinkId: String?,
@@ -24793,7 +23718,7 @@ if let value = paymentLinkId {
             /**
             *
             * Summary: Create payment link
-            * Description: Use this API to create a payment link for the customer
+            * Description: Generate a new link for accepting payments.
             **/
             public func createPaymentLink(
                 body: CreatePaymentLinkRequest,
@@ -24840,8 +23765,8 @@ if let value = paymentLinkId {
             
             /**
             *
-            * Summary: Used for polling if payment successful or not
-            * Description: Use this API to poll if payment through payment was successful or not
+            * Summary: Polling payment link
+            * Description: Continuously check the status of a payment link.
             **/
             public func pollingPaymentLink(
                 paymentLinkId: String?,
@@ -24897,7 +23822,7 @@ if let value = paymentLinkId {
             /**
             *
             * Summary: Resend payment link
-            * Description: Use this API to resend a payment link for the customer
+            * Description: Reissue a payment link to a recipient.
             **/
             public func resendPaymentLink(
                 body: CancelOrResendPaymentLinkRequest,
@@ -24945,7 +23870,7 @@ if let value = paymentLinkId {
             /**
             *
             * Summary: Cancel payment link
-            * Description: Use this API to cancel a payment link for the customer
+            * Description: Deactivate and cancel a payment link.
             **/
             public func cancelPaymentLink(
                 body: CancelOrResendPaymentLinkRequest,
@@ -25188,8 +24113,8 @@ if let value = paymentLinkId {
             
             /**
             *
-            * Summary: List Payment Options Method Codes
-            * Description: Get all active List Payment Options Method Codes
+            * Summary: Get payment mode code
+            * Description: Retrieve options for payment codes.
             **/
             public func getPaymentCodeOption(
                 
@@ -25293,8 +24218,8 @@ if let value = lineItem {
             
             /**
             *
-            * Summary: API to update status of a payment.
-            * Description: A payment_session is initiated against a global identifier (gid) which is identifies the entity payment is initiated against. e.g. order_id, cart_id. This endpoint is to update the status of the said payment_session.
+            * Summary: Update payment session
+            * Description: Modify the details of a payment session.
             **/
             public func updatePaymentSession(
                 gid: String,
@@ -25342,8 +24267,8 @@ if let value = lineItem {
             
             /**
             *
-            * Summary: API to update the status of a refund
-            * Description: A refund_session is initiated against a refund request, and this endpoint is to update the status against the refund request_id. A gid is unique indentifier of the entity against which payment was received e.g. an order.
+            * Summary: Update refund session
+            * Description: Modify the details of a refund session.
             **/
             public func updateRefundSession(
                 gid: String,
@@ -25392,8 +24317,8 @@ if let value = lineItem {
             
             /**
             *
-            * Summary: Get Payment modes and COD details.
-            * Description: This api fetches all the available PGs for merchant and its offline payment mode details.
+            * Summary: Get merchant payment option
+            * Description: Retrieve all the available Paymet Gateways for merchant and its offline payment mode details.
             **/
             public func getMerchantPaymentOption(
                 
@@ -25440,7 +24365,7 @@ if let value = lineItem {
             
             /**
             *
-            * Summary: Update Payment modes and COD details.
+            * Summary: Patch merchant payment option
             * Description: To updated online payment as active/inactive or offline payment configuration like cod charges, anonymous cod allowed flags.
             **/
             public func patchMerchantPaymentOption(
@@ -25488,8 +24413,8 @@ if let value = lineItem {
             
             /**
             *
-            * Summary: Get Aggregator, payment mode and sub payment mode.
-            * Description: Get Aggregator, payment mode and sub payment mode details.
+            * Summary: Get merchant aggregator payment mode details
+            * Description: swagger not found. so operationId not found
             **/
             public func getMerchantAggregatorPaymentModeDetails(
                 aggregatorId: Int,
@@ -25549,8 +24474,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update Aggregator, payment mode and sub payment mode.
-            * Description: Update Aggregator, payment mode and sub payment mode details.
+            * Summary: Patch merchant aggregator payment mode details
+            * Description: swagger not found. so operationId not found
             **/
             public func patchMerchantAggregatorPaymentModeDetails(
                 aggregatorId: Int,
@@ -25598,8 +24523,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get Aggregators available to be added as PG.
-            * Description: Get Aggregators available to be added as PG.
+            * Summary: Get PG (Payment Gateway) config aggregators
+            * Description: swagger not found. so operationId not found
             **/
             public func getPGConfigAggregators(
                 
@@ -25646,8 +24571,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: API to get merchant refund priority
-            * Description: API to get merchant refund priority
+            * Summary: Get merchant refund priority
+            * Description: Get merchant refund priority.
             **/
             public func getMerchantRefundPriority(
                 configType: String,
@@ -25695,8 +24620,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: API to create merchant refund priority
-            * Description: API to update merchant refund priority
+            * Summary: Crete merchant refund priority
+            * Description: Crete merchant refund priority.
             **/
             public func createMerchantRefundPriority(
                 configType: String,
@@ -25841,7 +24766,7 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get app version required for Payment Mode.
+            * Summary: Get app version required for Payment Mode
             * Description: This api provide read operations on the app version required for Payment Mode or sub payment mode for an Aggregator.
             **/
             public func getMerchantAggregatorAppVersion(
@@ -25918,7 +24843,7 @@ if let value = subPaymentMode {
             
             /**
             *
-            * Summary: Update app version required for Payment Mode.
+            * Summary: Update app version required for Payment Mode
             * Description: This api provide wrote operations on the app version required for Payment Mode or sub payment mode for an Aggregator.
             **/
             public func patchMerchantPaymentOptionVersion(
@@ -25982,8 +24907,8 @@ if let value = subPaymentMode {
             
             /**
             *
-            * Summary: List of giveaways of the current application.
-            * Description: Fetch the detailed compilation of live, completed, and scheduled point-based giveaways created.
+            * Summary: Display giveaways
+            * Description: Retrieve and display available giveaways.
             **/
             public func showGiveaways(
                 pageId: String,
@@ -26042,8 +24967,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: List of giveaways of the current application.
-            * Description: Creates a new giveaway in the current application, specifying the target audience, points allocation, as well as the name and display name of the giveaway.
+            * Summary: Save giveaway
+            * Description: Store and manage details of a giveaway.
             **/
             public func saveGiveAway(
                 body: Giveaway,
@@ -26090,8 +25015,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get giveaway by ID.
-            * Description: Retrieve the specific giveaway by giveaway ID. It will show all the details of the requested giveaway.
+            * Summary: Get giveaway by ID
+            * Description: Retrieve specific giveaway details by its unique identifier.
             **/
             public func getGiveawayById(
                 id: String,
@@ -26139,8 +25064,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Updates the giveaway by it's ID.
-            * Description: Make the necessary updates to the giveaway based on its giveaway ID.
+            * Summary: Update giveaway
+            * Description: Modify and update information about a giveaway.
             **/
             public func updateGiveAway(
                 id: String,
@@ -26188,8 +25113,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: List of offers of the current application.
-            * Description: Retrieve the list of offers within the current application, including order_discount, order, sign_up, and referral, along with their respective details.
+            * Summary: Show offers
+            * Description: Display available offers for users.
             **/
             public func showOffers(
                 
@@ -26236,8 +25161,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Fetch a offer by its name
-            * Description: Fetch the specific offer details and configuration by the name of the offer.
+            * Summary: Get offer by name
+            * Description: Retrieve an offer by its name.
             **/
             public func getOfferByName(
                 name: String,
@@ -26286,7 +25211,7 @@ var xQuery: [String: Any] = [:]
             /**
             *
             * Summary: Update offer by name
-            * Description: Update the specific offer details and its configuration by offer name.
+            * Description: Modify and manage an offer using its name.
             **/
             public func updateOfferByName(
                 name: String,
@@ -26335,7 +25260,7 @@ var xQuery: [String: Any] = [:]
             /**
             *
             * Summary: Update user status
-            * Description: Update the user status by marking them as a block or unblock. It can be done by changing the active flag in request body.
+            * Description: Change and update the status of a user in the rewards system.
             **/
             public func updateUserStatus(
                 userId: String,
@@ -26383,8 +25308,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get user reward details
-            * Description: Fetches the user details and the user reward details with their current reward points for the specific user.
+            * Summary: Get user details
+            * Description: Retrieve comprehensive details about a user in the rewards program.
             **/
             public func getUserDetails(
                 userId: String,
@@ -26432,8 +25357,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get all transactions of reward points
-            * Description: Fetches a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
+            * Summary: Get user points history
+            * Description: Retrieve the history of points earned and redeemed by a user.
             **/
             public func getUserPointsHistory(
                 userId: String,
@@ -26495,72 +25420,10 @@ if let value = pageSize {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
-            * Summary: get paginator for getUserPointsHistory
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getUserPointsHistoryPaginator(
-                userId: String,
-                pageSize: Int?
-                
-                ) -> Paginator<HistoryRes> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<HistoryRes>(pageSize: pageSize, type: "cursor")
-                paginator.onPage = {
-                    self.getUserPointsHistory(
-                            
-                            userId: userId,
-                            pageId: paginator.pageId
-                            ,
-                            pageSize: paginator.pageSize
-                            
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageId = response.page?.nextId
-                            
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Get all valid android paths
-            * Description: Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fraudulent device.
+            * Summary: Get rewards configuration
+            * Description: Retrieve the configuration settings for the rewards program.
             **/
             public func getRewardsConfiguration(
                 
@@ -26607,8 +25470,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Updates the collection with given android paths.
-            * Description: Updates the configuration or inserts new records with the given android paths.
+            * Summary: Set rewards configuration
+            * Description: Configure and modify the settings for the rewards program.
             **/
             public func setRewardsConfiguration(
                 body: ConfigurationRequest,
@@ -26671,7 +25534,7 @@ if let value = pageSize {
             /**
             *
             * Summary: Create short link
-            * Description: Create short link
+            * Description: Generate a shortened URL link for sharing.
             **/
             public func createShortLink(
                 body: ShortLinkReq,
@@ -26719,14 +25582,16 @@ if let value = pageSize {
             /**
             *
             * Summary: Get short links
-            * Description: Get short links
+            * Description: Retrieve a list of all generated short links.
             **/
             public func getShortLinks(
                 pageNo: Int?,
                 pageSize: Int?,
                 createdBy: String?,
                 active: String?,
-                q: String?,
+                shortUrl: String?,
+                originalUrl: String?,
+                title: String?,
                 
                 onResponse: @escaping (_ response: ShortLinkList?, _ error: FDKError?) -> Void
             ) {
@@ -26761,9 +25626,23 @@ if let value = active {
 }
 
 
-if let value = q {
+if let value = shortUrl {
     
-    xQuery["q"] = value
+    xQuery["short_url"] = value
+    
+}
+
+
+if let value = originalUrl {
+    
+    xQuery["original_url"] = value
+    
+}
+
+
+if let value = title {
+    
+    xQuery["title"] = value
     
 }
 
@@ -26807,7 +25686,7 @@ if let value = q {
             /**
             *
             * Summary: Get short link by hash
-            * Description: Get short link by hash
+            * Description: Retrieve a specific short link by its unique hash.
             **/
             public func getShortLinkByHash(
                 hash: String,
@@ -26855,8 +25734,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Update short link by id
-            * Description: Update short link by id
+            * Summary: Update short link by ID
+            * Description: Update details of a specific short link by its ID.
             **/
             public func updateShortLinkById(
                 id: String,
@@ -26904,8 +25783,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get click statistics for a short link
-            * Description: Retrieve click statistics for a given short link ID.
+            * Summary: Get short link click statistics
+            * Description: Retrieve statistics and analytics for clicks on a short link.
             **/
             public func getShortLinkClickStats(
                 surlId: String,
@@ -26973,8 +25852,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get all pages of a theme
-            * Description: Use this API to retrieve all the available pages of a theme by its ID.
+            * Summary: Get all pages
+            * Description: Retrieve a list of all available pages.
             **/
             public func getAllPages(
                 themeId: String,
@@ -27022,8 +25901,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Create a page 
-            * Description: Use this API to create a page for a theme by its ID.
+            * Summary: Create page
+            * Description: Generate and add a new page to the platform.
             **/
             public func createPage(
                 themeId: String,
@@ -27071,8 +25950,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update multiple pages of a theme
-            * Description: Use this API to update multiple pages of a theme by its ID.
+            * Summary: Update multiple pages
+            * Description: Modify multiple pages simultaneously.
             **/
             public func updateMultiplePages(
                 themeId: String,
@@ -27120,8 +25999,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get page of a theme
-            * Description: Use this API to retrieve a page of a theme.
+            * Summary: Get page
+            * Description: Retrieve detailed information about a specific page.
             **/
             public func getPage(
                 themeId: String,
@@ -27170,8 +26049,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Updates a page 
-            * Description: Use this API to update a page for a theme by its ID.
+            * Summary: Update page
+            * Description: Modify and update the content of a page.
             **/
             public func updatePage(
                 themeId: String,
@@ -27220,8 +26099,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Deletes a page 
-            * Description: Use this API to delete a page for a theme by its ID and page_value.
+            * Summary: Delete page
+            * Description: Remove a page from the platform.
             **/
             public func deletePage(
                 themeId: String,
@@ -27270,8 +26149,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get a list of themes from the theme library
-            * Description: Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to fetch a list of themes from the library along with their configuration details. 
+            * Summary: Get theme library
+            * Description: Retrieve themes available in the platform's library.
             **/
             public func getThemeLibrary(
                 pageSize: Int?,
@@ -27334,8 +26213,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Add a theme to the theme library
-            * Description: Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to choose a theme and add it to the theme library.
+            * Summary: Add to theme library
+            * Description: Store and add a theme to the platform's library.
             **/
             public func addToThemeLibrary(
                 body: AddThemeRequestSchema,
@@ -27382,8 +26261,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get all public themes
-            * Description: Use this API to get a list of free themes that you can apply to your website.
+            * Summary: Get public themes
+            * Description: Retrieve themes that are publicly accessible.
             **/
             public func getPublicThemes(
                 pageSize: Int?,
@@ -27446,8 +26325,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get all the supported fonts in a theme
-            * Description: Font is a collection of characters with a similar design. Use this API to retrieve a list of website fonts.
+            * Summary: Get fonts
+            * Description: Retrieve a list of available fonts.
             **/
             public func getFonts(
                 
@@ -27494,8 +26373,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Publish a theme
-            * Description: Use this API to publish a theme that is either newly created or edited.
+            * Summary: Publish theme
+            * Description: Make a theme accessible for use.
             **/
             public func publishTheme(
                 themeId: String,
@@ -27543,8 +26422,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Unpublish a theme
-            * Description: Use this API to remove an existing theme from the list of available themes.
+            * Summary: Unpublish theme
+            * Description: Remove a published theme from public access.
             **/
             public func unpublishTheme(
                 themeId: String,
@@ -27592,8 +26471,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Archive a theme
-            * Description: Use this API to store an existing theme but not delete it so that it can be used in future if required. 
+            * Summary: Archive theme
+            * Description: Store a theme in an archive.
             **/
             public func archiveTheme(
                 themeId: String,
@@ -27641,8 +26520,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Unarchive a theme
-            * Description: Use this API to restore an archived theme and bring it back for editing or publishing. 
+            * Summary: Unarchive theme
+            * Description: Retrieve a theme from the archive.
             **/
             public func unarchiveTheme(
                 themeId: String,
@@ -27694,8 +26573,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get all the themes for a specific application
-            * Description: Get all the themes for a specific application
+            * Summary: Get application themes
+            * Description: Retrieve themes available for an application.
             **/
             public func getApplicationThemes(
                 
@@ -27742,8 +26621,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get the count of themes for a specific application
-            * Description: Get the count of themes for a specific application
+            * Summary: Get application themes count
+            * Description: Count the number of themes available for an application.
             **/
             public func getApplicationThemesCount(
                 
@@ -27790,8 +26669,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get Theme By Theme Id
-            * Description: Get Theme By Theme Id
+            * Summary: Get theme by ID
+            * Description: Retrieve a theme by its unique identifier.
             **/
             public func getThemeById(
                 themeId: String,
@@ -27839,8 +26718,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Update theme for a specific company and application
-            * Description: Update theme for a specific company and application
+            * Summary: Update theme
+            * Description: Modify and update the content and settings of a theme
             **/
             public func updateTheme(
                 themeId: String,
@@ -27888,8 +26767,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Delete a theme
-            * Description: This endpoint is used to delete a theme from the specified company and application.
+            * Summary: Delete theme
+            * Description: Remove a theme from the platform.
             **/
             public func deleteTheme(
                 themeId: String,
@@ -27937,8 +26816,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Add a theme to an application
-            * Description: Add a theme to an application by providing the marketplace theme ID.
+            * Summary: Add theme to application
+            * Description: Include a theme in an application's design.
             **/
             public func addThemeToApplication(
                 body: ThemeReq,
@@ -27985,8 +26864,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Update Theme Name
-            * Description: Update the name of a theme for a specific company and application.
+            * Summary: Update theme name
+            * Description: Modify the name of a theme.
             **/
             public func updateThemeName(
                 themeId: String,
@@ -28034,8 +26913,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Apply theme to a specific application
-            * Description: Apply theme to a specific application by providing company_id, application_id, and theme_id.
+            * Summary: Apply theme
+            * Description: Set and apply a theme to an application or page.
             **/
             public func applyTheme(
                 themeId: String,
@@ -28083,8 +26962,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Duplicate a Theme
-            * Description: This endpoint duplicates a Theme in the specified application.
+            * Summary: Duplicate theme
+            * Description: Create a copy of an existing theme.
             **/
             public func duplicateTheme(
                 themeId: String,
@@ -28132,8 +27011,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get the Applied theme of an Application
-            * Description: Get Applied Theme of an Application by Application Id
+            * Summary: Get applied theme
+            * Description: Retrieve the currently applied theme.
             **/
             public func getAppliedTheme(
                 
@@ -28180,8 +27059,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get Theme Preview By Theme Id
-            * Description: Get Theme Preview By Theme Id
+            * Summary: Get theme for preview
+            * Description: Retrieve a theme for previewing before application.
             **/
             public func getThemeForPreview(
                 themeId: String,
@@ -28229,8 +27108,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Fetch last modified timestamp
-            * Description: Use this API to fetch Last-Modified timestamp in header metadata.
+            * Summary: Get theme last modified
+            * Description: Retrieve the last modification of a theme.
             **/
             public func getThemeLastModified(
                 themeId: String,
@@ -28278,8 +27157,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Check if the theme is upgradable
-            * Description: This API endpoint checks if the theme is upgradable for a specific company and application.
+            * Summary: Is upgradable
+            * Description: Determine if a theme is eligible for an upgrade.
             **/
             public func isUpgradable(
                 themeId: String,
@@ -28327,8 +27206,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Upgrade an application
-            * Description: This endpoint allows you to upgrade an application.
+            * Summary: Upgrade theme
+            * Description: Enhance and update a theme to a new version.
             **/
             public func upgradeTheme(
                 themeId: String,
@@ -28391,8 +27270,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get a list of customers
-            * Description: Use this API to retrieve a list of customers who have registered in the application.
+            * Summary: Get customers
+            * Description: Retrieve a list of customer profiles.
             **/
             public func getCustomers(
                 q: String?,
@@ -28463,8 +27342,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Search an existing user.
-            * Description: Use this API to retrieve an existing user from a list.
+            * Summary: Search users
+            * Description: Search and filter user profiles.
             **/
             public func searchUsers(
                 q: String?,
@@ -28528,7 +27407,7 @@ if let value = query {
             /**
             *
             * Summary: Create user
-            * Description: Create user
+            * Description: Register and add a new user to the platform.
             **/
             public func createUser(
                 body: CreateUserRequestSchema,
@@ -28575,8 +27454,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Block/Unblock user
-            * Description: Block/Unblock user
+            * Summary: Block/unblock users
+            * Description: Control user access by blocking or unblocking their accounts.
             **/
             public func blockOrUnblockUsers(
                 body: BlockUserRequestSchema,
@@ -28606,6 +27485,331 @@ if let value = query {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(BlockUserSuccess.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Undelete user
+            * Description: Restore a previously deleted user account.
+            **/
+            public func unDeleteUser(
+                body: UnDeleteUserRequestSchema,
+                onResponse: @escaping (_ response: UnDeleteUserSuccess?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/undelete",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(UnDeleteUserSuccess.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Update user
+            * Description: Modify and update user profile information.
+            **/
+            public func updateUser(
+                userId: String,
+                body: UpdateUserRequestSchema,
+                onResponse: @escaping (_ response: CreateUserResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/\(userId)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CreateUserResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Create user session
+            * Description: Establish a session for user interactions.
+            **/
+            public func createUserSession(
+                body: CreateUserSessionRequestSchema,
+                onResponse: @escaping (_ response: CreateUserSessionResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/session",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CreateUserSessionResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Delete session
+            * Description: Terminate an active user session.
+            **/
+            public func deleteSession(
+                id: String,
+                sessionId: String,
+                reason: String,
+                
+                onResponse: @escaping (_ response: SessionDeleteResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["id"] = id
+
+
+
+
+    xQuery["session_id"] = sessionId
+
+
+
+
+    xQuery["reason"] = reason
+
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/session",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SessionDeleteResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get active sessions
+            * Description: Retrieve a list of currently active user sessions.
+            **/
+            public func getActiveSessions(
+                id: String,
+                
+                onResponse: @escaping (_ response: SessionListResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["id"] = id
+
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/sessions",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SessionListResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Delete active sessions
+            * Description: End multiple active user sessions.
+            **/
+            public func deleteActiveSessions(
+                id: String,
+                reason: String,
+                
+                onResponse: @escaping (_ response: SessionsDeleteResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["id"] = id
+
+
+
+
+    xQuery["reason"] = reason
+
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/sessions",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SessionsDeleteResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -28671,333 +27875,8 @@ if let value = query {
             
             /**
             *
-            * Summary: undelete user who deleted from application and have not elapsed the platform configured delete days
-            * Description: undelete user who deleted from application and have not elapsed the platform configured delete days
-            **/
-            public func unDeleteUser(
-                body: UnDeleteUserRequestSchema,
-                onResponse: @escaping (_ response: UnDeleteUserSuccess?, _ error: FDKError?) -> Void
-            ) {
-                
- 
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "PUT",
-                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/undelete",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(UnDeleteUserSuccess.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Update user
-            * Description: Use this API to update user details, Note: Existing emails and phone numbers of user will be replaced directly if phone_numbers or emails field sent in request data.
-            **/
-            public func updateUser(
-                userId: String,
-                body: UpdateUserRequestSchema,
-                onResponse: @escaping (_ response: CreateUserResponseSchema?, _ error: FDKError?) -> Void
-            ) {
-                
- 
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "PUT",
-                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/\(userId)",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(CreateUserResponseSchema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Create user session
-            * Description: Create user session
-            **/
-            public func createUserSession(
-                body: CreateUserSessionRequestSchema,
-                onResponse: @escaping (_ response: CreateUserSessionResponseSchema?, _ error: FDKError?) -> Void
-            ) {
-                
- 
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "POST",
-                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/session",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(CreateUserSessionResponseSchema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Delete a session for a user
-            * Description: Use this API to Delete a session of customers who have registered in the application.
-            **/
-            public func deleteSession(
-                id: String,
-                sessionId: String,
-                reason: String,
-                
-                onResponse: @escaping (_ response: SessionDeleteResponseSchema?, _ error: FDKError?) -> Void
-            ) {
-                
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["id"] = id
-
-
-
-
-    xQuery["session_id"] = sessionId
-
-
-
-
-    xQuery["reason"] = reason
-
-
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "DELETE",
-                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/session",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(SessionDeleteResponseSchema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Get a list of all session with info for a user
-            * Description: Use this API to retrieve a list of session with info of customers who have registered in the application.
-            **/
-            public func getActiveSessions(
-                id: String,
-                
-                onResponse: @escaping (_ response: SessionListResponseSchema?, _ error: FDKError?) -> Void
-            ) {
-                
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["id"] = id
-
-
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "GET",
-                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/sessions",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(SessionListResponseSchema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Delete a list of all session for a user
-            * Description: Use this API to Delete a list of session of customers who have registered in the application.
-            **/
-            public func deleteActiveSessions(
-                id: String,
-                reason: String,
-                
-                onResponse: @escaping (_ response: SessionsDeleteResponseSchema?, _ error: FDKError?) -> Void
-            ) {
-                
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["id"] = id
-
-
-
-
-    xQuery["reason"] = reason
-
-
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "DELETE",
-                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/sessions",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(SessionsDeleteResponseSchema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Get platform configurations
-            * Description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
+            * Summary: Get platform config
+            * Description: Retrieve configuration settings for the platform.
             **/
             public func getPlatformConfig(
                 
@@ -29044,8 +27923,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update platform configurations
-            * Description: Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text.
+            * Summary: Update platform config
+            * Description: Modify and update platform configuration settings.
             **/
             public func updatePlatformConfig(
                 body: PlatformSchema,
@@ -29092,8 +27971,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Create an User Group
-            * Description: Use this API to create new user Group
+            * Summary: Create user group
+            * Description: Form and add a new user group.
             **/
             public func createUserGroup(
                 body: CreateUserGroup,
@@ -29140,8 +28019,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get User Groups mathcing criteria
-            * Description: Use this API to get User Groups mathing criteria passed in query
+            * Summary: Get user groups
+            * Description: Retrieve a list of user groups.
             **/
             public func getUserGroups(
                 pageNo: String?,
@@ -29236,8 +28115,8 @@ if let value = groupUid {
             
             /**
             *
-            * Summary: Update an User Group
-            * Description: Use this API to update an existing user Group
+            * Summary: Update user group
+            * Description: Modify and update user group details.
             **/
             public func updateUserGroup(
                 groupId: String,
@@ -29285,8 +28164,8 @@ if let value = groupUid {
             
             /**
             *
-            * Summary: Get an User Group by Id
-            * Description: Use this API to get details of an existing user Group
+            * Summary: Get user group by ID
+            * Description: Retrieve a user group by its unique identifier.
             **/
             public func getUserGroupById(
                 groupId: String,
@@ -29335,7 +28214,7 @@ if let value = groupUid {
             /**
             *
             * Summary: Add or Remove an user from particular user group and update user group details
-            * Description: Use this API to update user group details and add or remove an user to the user group.
+            * Description: Update user group partially on the platform.
             **/
             public func updateUserGroupPartially(
                 groupId: String,

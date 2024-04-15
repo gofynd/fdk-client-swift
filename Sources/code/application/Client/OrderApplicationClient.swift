@@ -47,8 +47,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get all orders
-        * Description: Use this API to retrieve all the orders.
+        * Summary: Lists customer orders
+        * Description: Retrieves all orders associated with a customer account.
         **/
         public func getOrders(
             status: Int?,
@@ -59,6 +59,7 @@ extension ApplicationClient {
             startDate: String?,
             endDate: String?,
             customMeta: String?,
+            allowInactive: Bool?,
             
             onResponse: @escaping (_ response: OrderList?, _ error: FDKError?) -> Void
         ) {
@@ -121,6 +122,13 @@ if let value = customMeta {
 }
 
 
+if let value = allowInactive {
+    
+    xQuery["allow_inactive"] = value
+    
+}
+
+
  
 
 
@@ -161,8 +169,8 @@ if let value = customMeta {
         
         /**
         *
-        * Summary: Get details of an order
-        * Description: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
+        * Summary: Fetches order by ID
+        * Description: Retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
         **/
         public func getOrderById(
             orderId: String,
@@ -222,8 +230,8 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: Get POS Order
-        * Description: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
+        * Summary: Retrieves POS order details
+        * Description: Retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
         **/
         public func getPosOrderById(
             orderId: String,
@@ -275,8 +283,8 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: Get details of a shipment
-        * Description: Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
+        * Summary: Fetches shipment by ID
+        * Description: Retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
         **/
         public func getShipmentById(
             shipmentId: String,
@@ -336,8 +344,8 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: Get Invoice of a shipment
-        * Description: Use this API to retrieve shipment invoice.
+        * Summary: Retrieves invoice for shipment
+        * Description: Retrieve the invoice corresponding to a specific shipment ID.
         **/
         public func getInvoiceByShipmentId(
             shipmentId: String,
@@ -389,8 +397,8 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: Track shipment
-        * Description: Track Shipment by shipment id, for application based on application Id
+        * Summary: Tracks shipment status
+        * Description: Track Shipment by shipment id, for application based on application Id.
         **/
         public func trackShipment(
             shipmentId: String,
@@ -442,8 +450,8 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: Get Customer Details by Shipment Id
-        * Description: Use this API to retrieve customer details such as mobileno using Shipment ID.
+        * Summary: Retrieves shipment customer
+        * Description: Retrieve customer details such as mobile number using Shipment ID.
         **/
         public func getCustomerDetailsByShipmentId(
             orderId: String,
@@ -498,8 +506,8 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: Send and Resend Otp code to Order-Shipment customer
-        * Description: Use this API to send OTP to the customer of the mapped Shipment.
+        * Summary: Sends OTP to customer
+        * Description: Sends a one-time password (OTP) to the customer for shipment verification.
         **/
         public func sendOtpToShipmentCustomer(
             orderId: String,
@@ -554,8 +562,8 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: Verify Otp code
-        * Description: Use this API to verify OTP and create a session token with custom payload.
+        * Summary: Verifies OTP
+        * Description: Confirms the OTP sent to the shipment customer for verification.
         **/
         public func verifyOtpShipmentCustomer(
             orderId: String,
@@ -610,8 +618,8 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: Get reasons behind full or partial cancellation of a shipment
-        * Description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+        * Summary: Lists bag reasons
+        * Description: Retrieves reasons that led to the cancellation for the status of shipment bags.
         **/
         public func getShipmentBagReasons(
             shipmentId: String,
@@ -666,8 +674,8 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: Get reasons behind full or partial cancellation of a shipment
-        * Description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+        * Summary: Lists shipment reasons
+        * Description: Retrieve reasons explaining various shipment statuses.
         **/
         public func getShipmentReasons(
             shipmentId: String,
@@ -719,8 +727,8 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: Update the shipment status
-        * Description: Use this API to update the status of a shipment using its shipment ID.
+        * Summary: Updates shipment status
+        * Description: Modifies the current status of a specific shipment using its shipment ID.
         **/
         public func updateShipmentStatus(
             shipmentId: String,

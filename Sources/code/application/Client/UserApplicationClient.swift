@@ -29,11 +29,11 @@ extension ApplicationClient {
             
             ulrs["sendResetPasswordMobile"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/login/password/mobile/reset") 
             
+            ulrs["sendResetToken"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/login/password/reset/token") 
+            
             ulrs["forgotPassword"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/login/password/reset/forgot") 
             
             ulrs["resetForgotPassword"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/login/password/forgot") 
-            
-            ulrs["sendResetToken"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/login/password/reset/token") 
             
             ulrs["loginWithToken"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/login/token") 
             
@@ -46,10 +46,6 @@ extension ApplicationClient {
             ulrs["hasPassword"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/has-password") 
             
             ulrs["updatePassword"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/password") 
-            
-            ulrs["deleteUser"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/delete") 
-            
-            ulrs["logout"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/logout") 
             
             ulrs["sendOTPOnMobile"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/otp/mobile/send") 
             
@@ -93,6 +89,10 @@ extension ApplicationClient {
             
             ulrs["userExists"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/user-exists") 
             
+            ulrs["deleteUser"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/delete") 
+            
+            ulrs["logout"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/logout") 
+            
             ulrs["getUserAttributes"] = config.domain.appendAsPath("/service/application/user/profile/v1.0/user-attributes") 
             
             ulrs["updateUserAttributes"] = config.domain.appendAsPath("/service/application/user/profile/v1.0/user-attributes") 
@@ -109,8 +109,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Login or Register using Facebook
-        * Description: Use this API to login or register using Facebook credentials.
+        * Summary: Facebook login
+        * Description: Enables login through Facebook accounts.
         **/
         public func loginWithFacebook(
             platform: String?,
@@ -167,8 +167,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Login or Register using Google
-        * Description: Use this API to login or register using Google Account credentials.
+        * Summary: Google login
+        * Description: Enables login through Google accounts.
         **/
         public func loginWithGoogle(
             platform: String?,
@@ -225,8 +225,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Login or Register using Google on Android
-        * Description: Use this API to login or register in Android app using Google Account credentials.
+        * Summary: Android Google login
+        * Description: Facilitates Google login specifically for Android users.
         **/
         public func loginWithGoogleAndroid(
             platform: String?,
@@ -283,8 +283,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Login or Register using Google on iOS
-        * Description: Use this API to login or register in iOS app using Google Account credentials.
+        * Summary: iOS Google login
+        * Description: Facilitates Google login specifically for iOS users.
         **/
         public func loginWithGoogleIOS(
             platform: String?,
@@ -341,8 +341,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Login or Register using Apple on iOS
-        * Description: Use this API to login or register in iOS app using Apple Account credentials.
+        * Summary: Apple iOS login
+        * Description: Enables login through Apple ID specifically for iOS users.
         **/
         public func loginWithAppleIOS(
             platform: String?,
@@ -399,8 +399,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Login or Register with OTP
-        * Description: Use this API to login or register with a One-time Password (OTP) sent via Email or SMS.
+        * Summary: OTP login
+        * Description: Allows users to log in using a one-time password.
         **/
         public func loginWithOTP(
             platform: String?,
@@ -457,8 +457,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Login or Register with password
-        * Description: Use this API to login or register using an email address and password.
+        * Summary: Email/password login
+        * Description: Enables login using an email and password combination.
         **/
         public func loginWithEmailAndPassword(
             body: PasswordLoginRequestSchema,
@@ -507,8 +507,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Reset Password
-        * Description: Use this API to reset a password using the link sent on email.
+        * Summary: Reset password (Email)
+        * Description: Sends a password reset link to the user's email.
         **/
         public func sendResetPasswordEmail(
             platform: String?,
@@ -565,13 +565,13 @@ if let value = platform {
         
         /**
         *
-        * Summary: Reset Password
-        * Description: Use this API to reset a password using the link sent on mobile.
+        * Summary: Reset password (Mobile)
+        * Description: Sends a password reset OTP to the user's mobile number.
         **/
         public func sendResetPasswordMobile(
             platform: String?,
             body: SendResetPasswordMobileRequestSchema,
-            onResponse: @escaping (_ response: ResetPasswordSuccess?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -606,107 +606,7 @@ if let value = platform {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ResetPasswordSuccess.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Forgot Password
-        * Description: Use this API to reset a password using the code sent on email or SMS.
-        **/
-        public func forgotPassword(
-            body: ForgotPasswordRequestSchema,
-            onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            let fullUrl = relativeUrls["forgotPassword"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(LoginSuccess.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Reset forgot Password
-        * Description: Use this API to reset a password using the code sent on email or SMS.
-        **/
-        public func resetForgotPassword(
-            body: ForgotPasswordRequestSchema,
-            onResponse: @escaping (_ response: ResetForgotPasswordSuccess?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            let fullUrl = relativeUrls["resetForgotPassword"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ResetForgotPasswordSuccess.self, from: data)
+                        let response = data.dictionary
                         
                         onResponse(response, nil)
                     } else {
@@ -773,6 +673,106 @@ if let value = platform {
         
         /**
         *
+        * Summary: Forgot password
+        * Description: Initiates the password recovery process for the user.
+        **/
+        public func forgotPassword(
+            body: ForgotPasswordRequestSchema,
+            onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["forgotPassword"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(LoginSuccess.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Forgot password
+        * Description: Initiates the password recovery process for the user.
+        **/
+        public func resetForgotPassword(
+            body: ForgotPasswordRequestSchema,
+            onResponse: @escaping (_ response: ResetForgotPasswordSuccess?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["resetForgotPassword"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ResetForgotPasswordSuccess.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
         * Summary: Login or Register with token
         * Description: Use this API to login or register using a token for authentication.
         **/
@@ -823,8 +823,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Registration using a form
-        * Description: Use this API to perform user registration by sending form data in the request body.
+        * Summary: User registration
+        * Description: Enables new users to register using a form.
         **/
         public func registerWithForm(
             platform: String?,
@@ -882,7 +882,7 @@ if let value = platform {
         /**
         *
         * Summary: Verify email
-        * Description: Use this API to send a verification code to verify an email.
+        * Description: Verifies the user's email address.
         **/
         public func verifyEmail(
             body: CodeRequestBodySchema,
@@ -932,7 +932,7 @@ if let value = platform {
         /**
         *
         * Summary: Verify mobile
-        * Description: Use this API to send a verification code to verify a mobile number.
+        * Description: Verifies the user's mobile number.
         **/
         public func verifyMobile(
             body: CodeRequestBodySchema,
@@ -982,7 +982,7 @@ if let value = platform {
         /**
         *
         * Summary: Check password
-        * Description: Use this API to check if user has created a password for login.
+        * Description: Checks if the user has set a password for the account.
         **/
         public func hasPassword(
             
@@ -1031,8 +1031,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Update user password
-        * Description: Use this API to update the password.
+        * Summary: Update password
+        * Description: Allows users to update their existing password.
         **/
         public func updatePassword(
             body: UpdatePasswordRequestSchema,
@@ -1081,108 +1081,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: verify otp and delete user
-        * Description: verify otp and delete user
-        **/
-        public func deleteUser(
-            body: DeleteApplicationUserRequestSchema,
-            onResponse: @escaping (_ response: DeleteUserSuccess?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            let fullUrl = relativeUrls["deleteUser"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(DeleteUserSuccess.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Logs out currently logged in user
-        * Description: Use this API to check to logout a user from the app.
-        **/
-        public func logout(
-            
-            onResponse: @escaping (_ response: LogoutSuccess?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            let fullUrl = relativeUrls["logout"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(LogoutSuccess.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Send OTP on mobile
-        * Description: Use this API to send an OTP to a mobile number.
+        * Summary: Send mobile OTP
+        * Description: Sends a one-time password to the user's mobile for verification.
         **/
         public func sendOTPOnMobile(
             platform: String?,
@@ -1239,8 +1139,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Send Forgot OTP on mobile
-        * Description: Use this API to send an Forgot OTP to a mobile number.
+        * Summary: Send forgot OTP on mobile
+        * Description: Sends a one-time password to the user's forgot mobile for verification request.
         **/
         public func sendForgotOTPOnMobile(
             platform: String?,
@@ -1297,8 +1197,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Verify OTP on mobile
-        * Description: Use this API to verify the OTP received on a mobile number.
+        * Summary: Verify mobile OTP
+        * Description: Validates the OTP sent to the user's mobile.
         **/
         public func verifyMobileOTP(
             platform: String?,
@@ -1413,8 +1313,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Send OTP on email
-        * Description: Use this API to send an OTP to an email ID.
+        * Summary: Send email OTP
+        * Description: Sends a one-time password to the user's email for verification.
         **/
         public func sendOTPOnEmail(
             platform: String?,
@@ -1471,8 +1371,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Send Forgot OTP on email
-        * Description: Use this API to send an Forgot OTP to an email ID.
+        * Summary: Send Forgot OTP Email
+        * Description: Sends a one-time password to the user's forgot email for verification request.
         **/
         public func sendForgotOTPOnEmail(
             platform: String?,
@@ -1529,8 +1429,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Verify OTP on email
-        * Description: Use this API to verify the OTP received on an email ID.
+        * Summary: Verify Email OTP
+        * Description: Validates the OTP sent to the user's email address request.
         **/
         public func verifyEmailOTP(
             platform: String?,
@@ -1587,8 +1487,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Verify Forgot OTP on email
-        * Description: Use this API to verify the Forgot OTP received on an email ID.
+        * Summary: Verify Email Forgot OTP
+        * Description: Validates the OTP sent to the user's forgot email address request.
         **/
         public func verifyEmailForgotOTP(
             platform: String?,
@@ -1645,8 +1545,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Get logged in user
-        * Description: Use this API  to get the details of a logged in user.
+        * Summary: Current user
+        * Description: Retrieve information about the currently logged-in user.
         **/
         public func getLoggedInUser(
             
@@ -1745,8 +1645,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Get platform configurations
-        * Description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
+        * Summary: Platform config
+        * Description: Retrieve configuration settings related to the user platform.
         **/
         public func getPlatformConfig(
             name: String?,
@@ -1861,8 +1761,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Add mobile number to profile
-        * Description: Use this API to add a new mobile number to a profile.
+        * Summary: Add mobile
+        * Description: Adds a new mobile number to the user's profile.
         **/
         public func addMobileNumber(
             platform: String?,
@@ -2007,8 +1907,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Set mobile as primary
-        * Description: Use this API to set a mobile number as primary. Primary number is a verified number used for all future communications.
+        * Summary: Set primary mobile
+        * Description: Sets a mobile number as the primary contact for the user.
         **/
         public func setMobileNumberAsPrimary(
             body: SendVerificationLinkMobileRequestSchema,
@@ -2057,8 +1957,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Send verification link to mobile
-        * Description: Use this API to send a verification link to a mobile number
+        * Summary: Verify new mobile
+        * Description: Sends a verification link to a newly added mobile number.
         **/
         public func sendVerificationLinkToMobile(
             platform: String?,
@@ -2115,8 +2015,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Add email to profile
-        * Description: Use this API to add a new email address to a profile
+        * Summary: Add email
+        * Description: Adds a new email address to the user's profile.
         **/
         public func addEmail(
             platform: String?,
@@ -2173,8 +2073,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Delete email from profile
-        * Description: Use this API to delete an email address from a profile
+        * Summary: Delete email
+        * Description: Removes an email address from the user's profile.
         **/
         public func deleteEmail(
             platform: String?,
@@ -2255,8 +2155,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Set email as primary
-        * Description: Use this API to set an email address as primary. Primary email ID is a email address used for all future communications.
+        * Summary: Set primary email
+        * Description: Sets an email address as the primary contact for the user.
         **/
         public func setEmailAsPrimary(
             body: EditEmailRequestSchema,
@@ -2305,8 +2205,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Send verification link to email
-        * Description: Use this API to send verification link to an email address.
+        * Summary: Verify new email
+        * Description: Sends a verification link to a newly added email address.
         **/
         public func sendVerificationLinkToEmail(
             platform: String?,
@@ -2403,6 +2303,106 @@ var xQuery: [String: Any] = [:]
                     } else if let data = responseData {
                         
                         let response = Utility.decode(UserExistsResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: verify otp and delete user
+        * Description: verify otp and delete user
+        **/
+        public func deleteUser(
+            body: DeleteApplicationUserRequestSchema,
+            onResponse: @escaping (_ response: DeleteUserSuccess?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["deleteUser"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(DeleteUserSuccess.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Logs out currently logged in user
+        * Description: Use this API to check to logout a user from the app.
+        **/
+        public func logout(
+            
+            onResponse: @escaping (_ response: LogoutSuccess?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["logout"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(LogoutSuccess.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

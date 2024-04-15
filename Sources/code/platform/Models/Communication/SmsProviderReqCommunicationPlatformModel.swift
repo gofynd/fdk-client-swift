@@ -14,6 +14,8 @@ public extension PlatformClient.Communication {
         
         public var name: String?
         
+        public var token: String?
+        
         public var description: String?
         
         public var sender: String?
@@ -55,6 +57,8 @@ public extension PlatformClient.Communication {
             
             case name = "name"
             
+            case token = "token"
+            
             case description = "description"
             
             case sender = "sender"
@@ -93,9 +97,11 @@ public extension PlatformClient.Communication {
             
         }
 
-        public init(apikey: String? = nil, apiKey: String? = nil, authkey: String? = nil, description: String? = nil, entityid: String? = nil, entityId: String? = nil, feedid: String? = nil, host: String? = nil, name: String? = nil, overrideDnd: Bool? = nil, password: String? = nil, port: Int? = nil, provider: String? = nil, sender: String? = nil, senderid: String? = nil, senderId: String? = nil, type: String? = nil, username: String? = nil, versionId: Int? = nil) {
+        public init(apikey: String? = nil, apiKey: String? = nil, authkey: String? = nil, description: String? = nil, entityid: String? = nil, entityId: String? = nil, feedid: String? = nil, host: String? = nil, name: String? = nil, overrideDnd: Bool? = nil, password: String? = nil, port: Int? = nil, provider: String? = nil, sender: String? = nil, senderid: String? = nil, senderId: String? = nil, token: String? = nil, type: String? = nil, username: String? = nil, versionId: Int? = nil) {
             
             self.name = name
+            
+            self.token = token
             
             self.description = description
             
@@ -141,6 +147,18 @@ public extension PlatformClient.Communication {
             
                 do {
                     name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    token = try container.decode(String.self, forKey: .token)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -374,6 +392,11 @@ public extension PlatformClient.Communication {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(token, forKey: .token)
             
             
             
@@ -484,6 +507,8 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var name: String?
         
+        public var token: String?
+        
         public var description: String?
         
         public var sender: String?
@@ -525,6 +550,8 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             case name = "name"
             
+            case token = "token"
+            
             case description = "description"
             
             case sender = "sender"
@@ -563,9 +590,11 @@ public extension PlatformClient.ApplicationClient.Communication {
             
         }
 
-        public init(apikey: String? = nil, apiKey: String? = nil, authkey: String? = nil, description: String? = nil, entityid: String? = nil, entityId: String? = nil, feedid: String? = nil, host: String? = nil, name: String? = nil, overrideDnd: Bool? = nil, password: String? = nil, port: Int? = nil, provider: String? = nil, sender: String? = nil, senderid: String? = nil, senderId: String? = nil, type: String? = nil, username: String? = nil, versionId: Int? = nil) {
+        public init(apikey: String? = nil, apiKey: String? = nil, authkey: String? = nil, description: String? = nil, entityid: String? = nil, entityId: String? = nil, feedid: String? = nil, host: String? = nil, name: String? = nil, overrideDnd: Bool? = nil, password: String? = nil, port: Int? = nil, provider: String? = nil, sender: String? = nil, senderid: String? = nil, senderId: String? = nil, token: String? = nil, type: String? = nil, username: String? = nil, versionId: Int? = nil) {
             
             self.name = name
+            
+            self.token = token
             
             self.description = description
             
@@ -611,6 +640,18 @@ public extension PlatformClient.ApplicationClient.Communication {
             
                 do {
                     name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    token = try container.decode(String.self, forKey: .token)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -844,6 +885,11 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(token, forKey: .token)
             
             
             

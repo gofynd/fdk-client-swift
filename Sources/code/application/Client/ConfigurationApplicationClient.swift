@@ -55,8 +55,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get current sales channel details
-        * Description: Use this API to get the current sales channel details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
+        * Summary: Fetches application details
+        * Description: Retrieve the current sales channel details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
         **/
         public func getApplication(
             
@@ -105,8 +105,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get sales channel, owner and seller information
-        * Description: Use this API to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
+        * Summary: Retrieves application owner details
+        * Description: Retrieve the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, etc. Also retrieves the seller and owner information such as address, email address, and phone number.
         **/
         public func getOwnerInfo(
             
@@ -155,8 +155,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get basic details of the application
-        * Description: Use this API to retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc.
+        * Summary: Retrieves basic app info
+        * Description: Retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc.
         **/
         public func getBasicDetails(
             
@@ -205,8 +205,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get integration tokens
-        * Description: Use this API to retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook. **Note** - Token values are encrypted with AES encryption using a secret key. Kindly reach out to the developers for obtaining the secret key.
+        * Summary: Fetches API tokens
+        * Description: Retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook.
         **/
         public func getIntegrationTokens(
             
@@ -255,8 +255,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get all deployment stores
-        * Description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
+        * Summary: Lists order-enabled stores
+        * Description: Retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
         **/
         public func getOrderingStores(
             pageNo: Int?,
@@ -327,59 +327,10 @@ if let value = q {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
-        * Summary: get paginator for getOrderingStores
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getOrderingStoresPaginator(
-            pageSize: Int?,
-            q: String?
-            
-            ) -> Paginator<OrderingStores> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<OrderingStores>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getOrderingStores(
-                        
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        ,
-                        q: q
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get ordering store details
-        * Description: Use this API to retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders).
+        * Summary: Retrieves store details by ID
+        * Description: Retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders). 
         **/
         public func getStoreDetailById(
             storeId: Int,
@@ -431,8 +382,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Get features of application
-        * Description: Use this API to retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more.
+        * Summary: Fetches app features
+        * Description: Retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more.
         **/
         public func getFeatures(
             
@@ -481,8 +432,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Get application information
-        * Description: Use this API to retrieve information about the social links, address and contact information of the company/seller/brand operating the application.
+        * Summary: Retrieves contact details
+        * Description: Retrieve information about the social links, address and contact information of the company/seller/brand operating the application.
         **/
         public func getContactInfo(
             
@@ -531,8 +482,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Get all currencies list
-        * Description: Use this API to get a list of currencies available. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+        * Summary: Lists supported currencies
+        * Description: Retrieve a list of currencies available. Also get the name, code, symbol, and the decimal digits of the currencies. 
         **/
         public func getCurrencies(
             
@@ -581,8 +532,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Get currency by its ID
-        * Description: Use this API to retrieve a currency using its ID.
+        * Summary: Fetches currency by ID
+        * Description: Retrieve details of a specific currency using its ID. 
         **/
         public func getCurrencyById(
             id: String,
@@ -634,8 +585,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Get currencies enabled in the application
-        * Description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+        * Summary: Retrieves app-specific currencies
+        * Description: Retrieve a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
         **/
         public func getAppCurrencies(
             
@@ -684,8 +635,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Get list of languages
-        * Description: Use this API to get a list of languages supported in the application
+        * Summary: Lists available languages
+        * Description: Retrieves all languages supported by the app.
         **/
         public func getLanguages(
             
@@ -734,8 +685,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Get an Ordering Store signed cookie on selection of ordering store.
-        * Description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart.
+        * Summary: Retrieves store selection cookie
+        * Description: Retrieve an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart. 
         **/
         public func getOrderingStoreCookie(
             body: OrderingStoreSelectRequest,
@@ -784,8 +735,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Unset the Ordering Store signed cookie.
-        * Description: Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app.
+        * Summary: Deletes store cookie
+        * Description: Unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app.
         **/
         public func removeOrderingStoreCookie(
             
@@ -834,8 +785,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Get a list of staff.
-        * Description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
+        * Summary: Lists app staff members
+        * Description: Retrieve a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
         **/
         public func getAppStaffList(
             pageNo: Int?,
@@ -930,77 +881,10 @@ if let value = userName {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
-        * Summary: get paginator for getAppStaffList
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getAppStaffListPaginator(
-            pageSize: Int?,
-            orderIncent: Bool?,
-            orderingStore: Int?,
-            user: String?,
-            userName: String?
-            
-            ) -> Paginator<AppStaffListResponse> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<AppStaffListResponse>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getAppStaffList(
-                        
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        ,
-                        orderIncent: orderIncent,
-                        orderingStore: orderingStore,
-                        user: user,
-                        userName: userName
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get a list of staff.
-        * Description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
+        * Summary: Fetches detailed staff info
+        * Description: Retrieve a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
         **/
         public func getAppStaffs(
             orderIncent: Bool?,

@@ -20,7 +20,7 @@ public extension PlatformClient.Order {
         
         public var taxCollectedAtSource: Double?
         
-        public var gstinCode: Double?
+        public var gstinCode: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(brandCalculatedAmount: Double? = nil, gstinCode: Double? = nil, gstFee: Double? = nil, taxCollectedAtSource: Double? = nil, valueOfGood: Double? = nil) {
+        public init(brandCalculatedAmount: Double? = nil, gstinCode: String? = nil, gstFee: Double? = nil, taxCollectedAtSource: Double? = nil, valueOfGood: Double? = nil) {
             
             self.valueOfGood = valueOfGood
             
@@ -104,7 +104,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    gstinCode = try container.decode(Double.self, forKey: .gstinCode)
+                    gstinCode = try container.decode(String.self, forKey: .gstinCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -168,7 +168,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var taxCollectedAtSource: Double?
         
-        public var gstinCode: Double?
+        public var gstinCode: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -185,7 +185,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(brandCalculatedAmount: Double? = nil, gstinCode: Double? = nil, gstFee: Double? = nil, taxCollectedAtSource: Double? = nil, valueOfGood: Double? = nil) {
+        public init(brandCalculatedAmount: Double? = nil, gstinCode: String? = nil, gstFee: Double? = nil, taxCollectedAtSource: Double? = nil, valueOfGood: Double? = nil) {
             
             self.valueOfGood = valueOfGood
             
@@ -252,7 +252,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    gstinCode = try container.decode(Double.self, forKey: .gstinCode)
+                    gstinCode = try container.decode(String.self, forKey: .gstinCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

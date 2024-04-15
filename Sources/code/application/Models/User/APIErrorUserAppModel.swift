@@ -16,7 +16,11 @@ public extension ApplicationClient.User {
         
         public var requestId: String?
         
+        public var error: String?
+        
         public var meta: [String: Any]?
+        
+        public var authenticated: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,11 +33,15 @@ public extension ApplicationClient.User {
             
             case requestId = "request_id"
             
+            case error = "error"
+            
             case meta = "meta"
+            
+            case authenticated = "authenticated"
             
         }
 
-        public init(code: String? = nil, info: String? = nil, message: String? = nil, meta: [String: Any]? = nil, requestId: String? = nil) {
+        public init(authenticated: Bool? = nil, code: String? = nil, error: String? = nil, info: String? = nil, message: String? = nil, meta: [String: Any]? = nil, requestId: String? = nil) {
             
             self.code = code
             
@@ -43,7 +51,11 @@ public extension ApplicationClient.User {
             
             self.requestId = requestId
             
+            self.error = error
+            
             self.meta = meta
+            
+            self.authenticated = authenticated
             
         }
 
@@ -100,7 +112,31 @@ public extension ApplicationClient.User {
             
             
             do {
+                error = try container.decode(String.self, forKey: .error)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                authenticated = try container.decode(Bool.self, forKey: .authenticated)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,7 +168,15 @@ public extension ApplicationClient.User {
             
             
             
+            try? container.encodeIfPresent(error, forKey: .error)
+            
+            
+            
             try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            try? container.encodeIfPresent(authenticated, forKey: .authenticated)
             
             
         }

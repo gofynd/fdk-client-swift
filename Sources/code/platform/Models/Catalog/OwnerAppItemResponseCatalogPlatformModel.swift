@@ -22,6 +22,10 @@ public extension PlatformClient.Catalog {
         
         public var seo: SEOData?
         
+        public var customJson: [String: Any]?
+        
+        public var customMeta: [MetaFields]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,9 +39,13 @@ public extension PlatformClient.Catalog {
             
             case seo = "seo"
             
+            case customJson = "_custom_json"
+            
+            case customMeta = "_custom_meta"
+            
         }
 
-        public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: MOQData? = nil, seo: SEOData? = nil) {
+        public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: MOQData? = nil, seo: SEOData? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
             
             self.altText = altText
             
@@ -48,6 +56,10 @@ public extension PlatformClient.Catalog {
             self.moq = moq
             
             self.seo = seo
+            
+            self.customJson = customJson
+            
+            self.customMeta = customMeta
             
         }
 
@@ -114,6 +126,30 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    customJson = try container.decode([String: Any].self, forKey: .customJson)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    customMeta = try container.decode([MetaFields].self, forKey: .customMeta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -142,6 +178,16 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(seo, forKey: .seo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
             
             
         }
@@ -170,6 +216,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var seo: SEOData?
         
+        public var customJson: [String: Any]?
+        
+        public var customMeta: [MetaFields]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -183,9 +233,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case seo = "seo"
             
+            case customJson = "_custom_json"
+            
+            case customMeta = "_custom_meta"
+            
         }
 
-        public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: MOQData? = nil, seo: SEOData? = nil) {
+        public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: MOQData? = nil, seo: SEOData? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
             
             self.altText = altText
             
@@ -196,6 +250,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.moq = moq
             
             self.seo = seo
+            
+            self.customJson = customJson
+            
+            self.customMeta = customMeta
             
         }
 
@@ -262,6 +320,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    customJson = try container.decode([String: Any].self, forKey: .customJson)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    customMeta = try container.decode([MetaFields].self, forKey: .customMeta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -290,6 +372,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(seo, forKey: .seo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
             
             
         }

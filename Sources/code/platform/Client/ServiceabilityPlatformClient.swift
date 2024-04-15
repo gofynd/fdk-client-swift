@@ -144,8 +144,8 @@ if let value = sector {
         
         /**
         *
-        * Summary: Creates a new Zone
-        * Description: Creates a new zone with the specified mapping. A zone enables serviceability based on given regions. By creating a zone and including specific regions, you can ensure that the stores associated with the zone are serviceable for those added regions. This functionality is particularly useful when you need to ensure serviceability for multiple regions by grouping them into a single zone.
+        * Summary: Create zone
+        * Description: Generate and add a new zone.
         **/
         public func createZone(
             body: CreateZoneData,
@@ -290,8 +290,8 @@ if let value = sector {
         
         /**
         *
-        * Summary: GET stores data
-        * Description: This API returns stores data.
+        * Summary: Get all stores
+        * Description: Retrieve a list of all available stores data.
         **/
         public func getAllStores(
             
@@ -321,54 +321,6 @@ if let value = sector {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetStoresViewResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get serviceable store of the item
-        * Description: This API returns serviceable store of the item.
-        **/
-        public func getOptimalLocations(
-            body: ReAssignStoreRequest,
-            onResponse: @escaping (_ response: ReAssignStoreResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/logistics/v1.0/company/\(companyId)/reassign",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ReAssignStoreResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -438,7 +390,7 @@ if let value = sector {
         
         /**
         *
-        * Summary: Getting Courier Account list of a company.
+        * Summary: Getting Courier Account list of a company
         * Description: This API returns Courier Account of a company.
         **/
         public func getCourierPartnerAccounts(
@@ -526,7 +478,7 @@ if let value = transportType {
         
         /**
         *
-        * Summary: Update Courier Account in database.
+        * Summary: Update Courier Account in database
         * Description: Updates Courier Account
         **/
         public func updateCourierPartnerAccount(
@@ -575,7 +527,7 @@ if let value = transportType {
         
         /**
         *
-        * Summary: Getting Courier Account of a company from database.
+        * Summary: Getting Courier Account of a company from database
         * Description: This API returns response DpAccount of a company from mongo database.
         **/
         public func getCourierPartnerAccount(
@@ -628,7 +580,7 @@ if let value = transportType {
         
         /**
         *
-        * Summary: Apply Courier Rule to company.
+        * Summary: Apply Courier Rule to company
         * Description: Apply Courier Rule to company with rules priority
         **/
         public func updateCompanyConfiguration(
@@ -676,7 +628,7 @@ if let value = transportType {
         
         /**
         *
-        * Summary: Get All Courier Rules applied to company.
+        * Summary: Get All Courier Rules applied to company
         * Description: This API returns all Courier Rules applied for company.
         **/
         public func getCompanyConfiguration(
@@ -1181,7 +1133,7 @@ if let value = endDate {
         
         /**
         *
-        * Summary: Upsert of PackageMaterial in database.
+        * Summary: Upsert of PackageMaterial in database
         * Description: This API returns response of upsert of PackageMaterial in mongo database.
         **/
         public func createPackageMaterial(
@@ -1229,7 +1181,7 @@ if let value = endDate {
         
         /**
         *
-        * Summary: Fetching of PackageMaterials from database.
+        * Summary: Fetching of PackageMaterials from database
         * Description: This API returns response of PackageMaterials from mongo database.
         **/
         public func getPackageMaterialList(
@@ -1317,7 +1269,7 @@ if let value = packageType {
         
         /**
         *
-        * Summary: Upsert of Package Material Rule in database.
+        * Summary: Upsert of Package Material Rule in database
         * Description: This API returns response of upsert of Package Material Rule in mongo database.
         **/
         public func createPackageMaterialRule(
@@ -1365,7 +1317,7 @@ if let value = packageType {
         
         /**
         *
-        * Summary: Fetching of Package Material Rules from database.
+        * Summary: Fetching of Package Material Rules from database
         * Description: This API returns response of Package Materials Rules from mongo database.
         **/
         public func getPackageMaterialRules(
@@ -1437,7 +1389,7 @@ if let value = isActive {
         
         /**
         *
-        * Summary: Fetching of Package Material Rules into database.
+        * Summary: Fetching of Package Material Rules into database
         * Description: This API updates Package Material Rules into mongo database.
         **/
         public func updatePackageMaterialRule(
@@ -1486,7 +1438,7 @@ if let value = isActive {
         
         /**
         *
-        * Summary: Fetching of Package Material from database.
+        * Summary: Fetching of Package Material from database
         * Description: This API returns response of Package Material from mongo database.
         **/
         public func getPackageMaterialRule(
@@ -1535,7 +1487,7 @@ if let value = isActive {
         
         /**
         *
-        * Summary: Update Package Material to database.
+        * Summary: Update Package Material to database
         * Description: This API updates Package Materials from into mongo database.
         **/
         public func updatePackageMaterials(
@@ -1584,7 +1536,7 @@ if let value = isActive {
         
         /**
         *
-        * Summary: Fetching of Package Material from database.
+        * Summary: Fetching of Package Material from database
         * Description: This API returns response of Package Material from mongo database.
         **/
         public func getPackageMaterials(
@@ -1627,6 +1579,54 @@ if let value = isActive {
             });
         }
         
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Retrieve optimal locations
+        * Description: Retrieve optimal locations based on the specific criteria
+        **/
+        public func getOptimalLocations(
+            body: OptimlLocationsRequestSchema,
+            onResponse: @escaping (_ response: OptimalLocationsResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/logistics/v1.0/company/\(companyId)/optimal-locations",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(OptimalLocationsResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
         
         
     }

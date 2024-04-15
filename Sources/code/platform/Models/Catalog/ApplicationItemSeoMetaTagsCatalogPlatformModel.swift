@@ -12,7 +12,7 @@ public extension PlatformClient.Catalog {
     class ApplicationItemSeoMetaTags: Codable {
         
         
-        public var title: String?
+        public var title: String
         
         public var items: [ApplicationItemSeoMetaTagItem]?
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(items: [ApplicationItemSeoMetaTagItem]? = nil, title: String? = nil) {
+        public init(items: [ApplicationItemSeoMetaTagItem]? = nil, title: String) {
             
             self.title = title
             
@@ -37,16 +37,9 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    title = try container.decode(String.self, forKey: .title)
+                title = try container.decode(String.self, forKey: .title)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -91,7 +84,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ApplicationItemSeoMetaTags: Codable {
         
         
-        public var title: String?
+        public var title: String
         
         public var items: [ApplicationItemSeoMetaTagItem]?
         
@@ -104,7 +97,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(items: [ApplicationItemSeoMetaTagItem]? = nil, title: String? = nil) {
+        public init(items: [ApplicationItemSeoMetaTagItem]? = nil, title: String) {
             
             self.title = title
             
@@ -116,16 +109,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    title = try container.decode(String.self, forKey: .title)
+                title = try container.decode(String.self, forKey: .title)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {

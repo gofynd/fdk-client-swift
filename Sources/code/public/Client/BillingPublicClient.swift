@@ -19,7 +19,7 @@ extension PublicClient {
 
         **/
         public func getStandardPlans(
-            platformType: String,
+            platform: String,
             
             onResponse: @escaping (_ response: DetailList?, _ error: FDKError?) -> Void
         ) {
@@ -27,7 +27,7 @@ extension PublicClient {
 var xQuery: [String: Any] = [:] 
 
 
-    xQuery["platform_type"] = platformType
+    xQuery["platform"] = platform
 
 
 

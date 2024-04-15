@@ -67,10 +67,12 @@ extension PlatformClient {
         
         
         
+        
+        
         /**
         *
-        * Summary: Get product categories list
-        * Description: This API gets meta associated to product categories.
+        * Summary: List categories
+        * Description: Retrieve a list of meta associated available product categories in the catalog.
         **/
         public func listCategories(
             level: String?,
@@ -171,10 +173,101 @@ if let value = slug {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Create product categories
-        * Description: This API lets user create product categories
+        * Summary: get paginator for listCategories
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func listCategoriesPaginator(
+            level: String?,
+            department: Int?,
+            q: String?,
+            pageSize: Int?,
+            uids: [Int]?,
+            slug: String?
+            
+            ) -> Paginator<CategoryResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<CategoryResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.listCategories(
+                        
+                        level: level,
+                        department: department,
+                        q: q,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        uids: uids,
+                        slug: slug
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Create categories
+        * Description: Lets user create product categories on for the seller on the platform.
         **/
         public func createCategories(
             body: CategoryRequestBody,
@@ -221,8 +314,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Get product category by uid
-        * Description: This API gets meta associated to product categories.
+        * Summary: Get category data
+        * Description: Retrieve detailed information about a specific category with the associated meta.
         **/
         public func getCategoryData(
             uid: String,
@@ -270,8 +363,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Update product categories
-        * Description: Update a product category using this api
+        * Summary: Update category data
+        * Description: Modify data for an existing category in the catalog.
         **/
         public func updateCategory(
             uid: String,
@@ -319,8 +412,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Analytics data of catalog and inventory that are being cross-selled.
-        * Description: Analytics data of catalog and inventory that are being cross-selled.
+        * Summary: Get seller insights
+        * Description: Retrieve insights and analytics related to sellers within the catalog.
         **/
         public func getSellerInsights(
             sellerAppId: String,
@@ -368,7 +461,7 @@ if let value = slug {
         
         /**
         *
-        * Summary: List all Departments.
+        * Summary: List department data
         * Description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type.
         **/
         public func listDepartmentsData(
@@ -470,10 +563,101 @@ if let value = slug {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Create the department.
-        * Description: Create departments using the API.
+        * Summary: get paginator for listDepartmentsData
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func listDepartmentsDataPaginator(
+            itemType: String?,
+            pageSize: Int?,
+            name: String?,
+            search: String?,
+            isActive: Bool?,
+            slug: String?
+            
+            ) -> Paginator<DepartmentsResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<DepartmentsResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.listDepartmentsData(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        itemType: itemType,
+                        pageSize: paginator.pageSize
+                        ,
+                        name: name,
+                        search: search,
+                        isActive: isActive,
+                        slug: slug
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Create departments
+        * Description: Create departments with this resource.
         **/
         public func createDepartments(
             body: DepartmentCreateUpdate,
@@ -520,8 +704,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Get specific departments details by passing in unique id of the department.
-        * Description: Allows you to get department data, by uid.
+        * Summary: Get department data
+        * Description: Retrieve detailed information about a specific department by UID.
         **/
         public func getDepartmentData(
             uid: String,
@@ -569,8 +753,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Update the department by their uid.
-        * Description: Update the department by their uid using this API.
+        * Summary: Update department data
+        * Description: Modify the department by their uid using this API.
         **/
         public func updateDepartment(
             uid: String,
@@ -618,8 +802,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Allows you to list all values for Templates, Brands or Type
-        * Description: The filter type query parameter defines what type of data to return. The type of query returns the valid values for the same
+        * Summary: List template brand type values
+        * Description: Retrieve values related to template brand types. The filter type query parameter defines what type of data to return. The type of query returns the valid values for the same
         **/
         public func listTemplateBrandTypeValues(
             filter: String,
@@ -688,8 +872,8 @@ if let value = itemType {
         
         /**
         *
-        * Summary: Bulk Create or Update Hsn Code.
-        * Description: Bulk Create or Update Hsn Code.
+        * Summary: Bulk update HSN codes
+        * Description: Perform bulk updates of HSN codes for products.
         **/
         public func bulkHsnCode(
             body: BulkHsnUpsert,
@@ -736,8 +920,8 @@ if let value = itemType {
         
         /**
         *
-        * Summary: Fetch Hsn Code.
-        * Description: Fetch Hsn Code.
+        * Summary: Get HSN code
+        * Description: Retrieve the HSN code for a product.
         **/
         public func getHsnCode(
             id: String,
@@ -785,8 +969,8 @@ if let value = itemType {
         
         /**
         *
-        * Summary: Update Hsn Code.
-        * Description: Update Hsn Code.
+        * Summary: Update HSN code
+        * Description: Modify the HSN code associated with a product.
         **/
         public func updateHsnCode(
             id: String,
@@ -834,8 +1018,8 @@ if let value = itemType {
         
         /**
         *
-        * Summary: Get Inventory for company
-        * Description: This API allows get Inventories data for particular company.
+        * Summary: Retrieve inventories
+        * Description: Allows to get Inventories data for particular company.
         **/
         public func getInventories(
             itemId: String?,
@@ -944,10 +1128,109 @@ if let value = sizeIdentifier {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Get a list of all bulk Inventory upload jobs.
-        * Description: This API helps to get bulk Inventory upload jobs data.
+        * Summary: get paginator for getInventories
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getInventoriesPaginator(
+            itemId: String?,
+            size: String?,
+            pageSize: Int?,
+            q: String?,
+            sellable: Bool?,
+            storeIds: [Int]?,
+            sizeIdentifier: String?
+            
+            ) -> Paginator<GetInventoriesResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<GetInventoriesResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getInventories(
+                        
+                        itemId: itemId,
+                        size: size,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        q: q,
+                        sellable: sellable,
+                        storeIds: storeIds,
+                        sizeIdentifier: sizeIdentifier
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Retrieve inventory bulk upload history
+        * Description: Helps to get bulk Inventory upload jobs data.
         **/
         public func getInventoryBulkUploadHistory(
             pageNo: Int?,
@@ -1008,10 +1291,61 @@ if let value = pageSize {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Create a Bulk Inventory upload Job.
-        * Description: This API helps to create a bulk Inventory upload job.
+        * Summary: get paginator for getInventoryBulkUploadHistory
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getInventoryBulkUploadHistoryPaginator(
+            pageSize: Int?
+            
+            ) -> Paginator<BulkInventoryGet> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<BulkInventoryGet>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getInventoryBulkUploadHistory(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Create bulk inventory upload job
+        * Description: Helps to create a bulk Inventory upload job.
         **/
         public func createBulkInventoryJob(
             body: BulkJob,
@@ -1058,8 +1392,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Delete Bulk Inventory job.
-        * Description: This API allows to delete bulk Inventory job associated with company.
+        * Summary: Delete inventory bulk upload job
+        * Description: Allows to delete bulk Inventory job associated with company.
         **/
         public func deleteBulkInventoryJob(
             batchId: String,
@@ -1107,8 +1441,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Create products in bulk associated with given batch Id.
-        * Description: This API helps to create products in bulk push to kafka for approval/creation.
+        * Summary: Create bulk inventory
+        * Description: Helps to create products in bulk push to kafka for approval/creation.
         **/
         public func createBulkInventory(
             batchId: String,
@@ -1156,8 +1490,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get Inventory export history.
-        * Description: This API helps to get Inventory export history.
+        * Summary: Retrieve inventory export data
+        * Description: Helps to retrieve Inventory export history.
         **/
         public func getInventoryExport(
             
@@ -1204,8 +1538,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Create a Inventory export Job.
-        * Description: This API helps to create a Inventory export job.
+        * Summary: Create inventory export job
+        * Description: Helps to create a Inventory export job.
         **/
         public func createInventoryExportJob(
             body: InventoryExportRequest,
@@ -1252,8 +1586,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get List of different filters for inventory export
-        * Description: This API allows get List of different filters like brand, store, and type for inventory export.
+        * Summary: Export inventory configuration
+        * Description: Retrieve List of different filters like brand, store, and type for inventory export.
         **/
         public func exportInventoryConfig(
             filterType: String?,
@@ -1308,8 +1642,8 @@ if let value = filterType {
         
         /**
         *
-        * Summary: Download Product Template View
-        * Description: Allows you to download product template data
+        * Summary: Download inventory template view
+        * Description: Allows you to download product template data.
         **/
         public func downloadInventoryTemplateView(
             itemType: String,
@@ -1362,8 +1696,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Validate Product Template Schema
-        * Description: Allows you to list all product templates validation values for all the fields present in the database
+        * Summary: Validate product template schema
+        * Description: Allows you to list all product templates validation values for all the fields present in the database.
         **/
         public func validateProductTemplateSchema(
             itemType: String,
@@ -1416,8 +1750,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Location Reassignment
-        * Description: 
+        * Summary: Get optimal locations
+        * Description: Retrieve the most suitable locations based on certain criteria.
         **/
         public func getOptimalLocations(
             body: AssignStore,
@@ -1464,7 +1798,7 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get opt-in infomation.
+        * Summary: Get opt-in infomation
         * Description: Use this API to fetch opt-in information for all the platforms. If successful, returns a logs in the response body as specified in `GetOptInPlatformSchema`
         **/
         public func getMarketplaceOptinDetail(
@@ -1512,7 +1846,7 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get the Company Brand details of Optin.
+        * Summary: Get the Company Brand details of Optin
         * Description: Get the details of the Brands associated with the given company_id passed.
         **/
         public func getCompanyBrandDetail(
@@ -1600,7 +1934,7 @@ if let value = marketplace {
         
         /**
         *
-        * Summary: Get the Company details.
+        * Summary: Get the Company details
         * Description: Get the details of the company associated with the given company_id passed.
         **/
         public func getCompanyDetail(
@@ -1648,8 +1982,8 @@ if let value = marketplace {
         
         /**
         *
-        * Summary: Get the Company metrics
-        * Description: Get the Company metrics associated with the company ID passed.
+        * Summary: Get company metrics
+        * Description: Allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
         **/
         public func getCompanyMetrics(
             
@@ -1696,8 +2030,8 @@ if let value = marketplace {
         
         /**
         *
-        * Summary: Get the Store details.
-        * Description: Get the details of the store associated with the company ID passed.
+        * Summary: Get store details
+        * Description: Retrieve the details of the store associated with the company ID passed.
         **/
         public func getStoreDetail(
             q: String?,
@@ -1766,9 +2100,68 @@ if let value = pageSize {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Create/Update opt-in infomation.
+        * Summary: get paginator for getStoreDetail
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getStoreDetailPaginator(
+            q: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<OptinStoreDetails> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<OptinStoreDetails>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getStoreDetail(
+                        
+                        q: q,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Create/Update opt-in infomation
         * Description: Use this API to create/update opt-in information for given platform. If successful, returns data in the response body as specified in `OptInPostResponseSchema`
         **/
         public func createMarketplaceOptin(
@@ -1817,8 +2210,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get list of all the attributes by their l3_categories
-        * Description: This API allows to list all the attributes by their l3_categories.
+        * Summary: Get product attributes
+        * Description: List all the attributes by their L3 categories.
         **/
         public func getProductAttributes(
             category: String,
@@ -1879,8 +2272,8 @@ if let value = filter {
         
         /**
         *
-        * Summary: Get gender attribute details
-        * Description: This API allows to view the gender attribute details.
+        * Summary: Get gender attribute
+        * Description: Retrieve the gender attribute for catalog listings.
         **/
         public func getGenderAttribute(
             attributeSlug: String,
@@ -1928,8 +2321,8 @@ if let value = filter {
         
         /**
         *
-        * Summary: List all Product Bundles
-        * Description: Get all product bundles for a particular company
+        * Summary: Retrieve product bundles
+        * Description: Retrieve a list of product bundles available in the catalog.
         **/
         public func getProductBundle(
             q: String?,
@@ -1992,8 +2385,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Create Product Bundle
-        * Description: Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
+        * Summary: Create a product bundle
+        * Description: Create product bundle in the catalog.
         **/
         public func createProductBundle(
             body: ProductBundleRequest,
@@ -2040,8 +2433,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Get a particular Product Bundle details
-        * Description: Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
+        * Summary: Get product bundle details
+        * Description: Retrieve detailed information about a specific product bundle.
         **/
         public func getProductBundleDetail(
             id: String,
@@ -2089,8 +2482,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Update a Product Bundle
-        * Description: Update a Product Bundle by its id. On successful request, returns the updated product bundle
+        * Summary: Update a product bundle
+        * Description: Modify the details of an existing product bundle.
         **/
         public func updateProductBundle(
             id: String,
@@ -2138,8 +2531,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Get a list of all bulk asset jobs.
-        * Description: This API helps to get bulk asset jobs data associated to a particular company.
+        * Summary: Retrieve product assets in bulk
+        * Description: Helps to retrieve bulk asset jobs data associated to a particular company.
         **/
         public func getProductAssetsInBulk(
             pageNo: Int?,
@@ -2200,10 +2593,61 @@ if let value = pageSize {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Create a Bulk asset upload Job.
-        * Description: This API helps to create a bulk asset upload job.
+        * Summary: get paginator for getProductAssetsInBulk
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getProductAssetsInBulkPaginator(
+            pageSize: Int?
+            
+            ) -> Paginator<BulkAssetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<BulkAssetResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getProductAssetsInBulk(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Create product assets in bulk
+        * Description: Helps to create a bulk asset upload job.
         **/
         public func createProductAssetsInBulk(
             body: ProductBulkAssets,
@@ -2250,8 +2694,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get a list of all bulk product upload jobs.
-        * Description: This API helps to get bulk product upload jobs data.
+        * Summary: Retrieve product bulk upload history
+        * Description: Helps to get bulk product upload jobs data.
         **/
         public func getProductBulkUploadHistory(
             search: String?,
@@ -2320,9 +2764,68 @@ if let value = pageSize {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Create a Bulk product to upload job.
+        * Summary: get paginator for getProductBulkUploadHistory
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getProductBulkUploadHistoryPaginator(
+            search: String?,
+            pageSize: Int?
+            
+            ) -> Paginator<ProductBulkRequestList> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ProductBulkRequestList>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getProductBulkUploadHistory(
+                        
+                        search: search,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Create a Bulk product to upload job
         * Description: This API helps to create a bulk products upload job.
         **/
         public func createBulkProductUploadJob(
@@ -2370,8 +2873,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Delete Bulk product job.
-        * Description: This API allows to delete bulk product job associated with company.
+        * Summary: Delete product bulk upload job
+        * Description: Allows to delete bulk product job associated with company.
         **/
         public func deleteProductBulkJob(
             batchId: Int,
@@ -2419,8 +2922,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Create products in bulk associated with given batch Id.
-        * Description: This API helps to create products in bulk push to kafka for approval/creation.
+        * Summary: Create products in bulk
+        * Description: Helps to create products in bulk push to kafka for approval/creation.
         **/
         public func createProductsInBulk(
             batchId: String,
@@ -2468,8 +2971,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Allows you to list all product templates export list details
-        * Description: Can view details including trigger data, task id , etc.
+        * Summary: List product template export details
+        * Description: Retrieve export details related to product templates. Can view details including trigger data, task id , etc.
         **/
         public func listProductTemplateExportDetails(
             
@@ -2516,8 +3019,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: List HSN Codes
-        * Description: Allows you to list all hsn Codes
+        * Summary: List HSN codes
+        * Description: Retrieve a list of Harmonized System Nomenclature (HSN) codes.
         **/
         public func listHSNCodes(
             
@@ -2564,8 +3067,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get a list of all tags associated with company.
-        * Description: This API helps to get tags data associated to a particular company.
+        * Summary: Get product tags
+        * Description: Retrieve tags data associated to a particular company.
         **/
         public func getProductTags(
             
@@ -2612,8 +3115,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: List all Templates
-        * Description: Allows you to list all product templates, also can filter by department
+        * Summary: List product templates
+        * Description: Allows you to list all product templates, also can filter by department.
         **/
         public func listProductTemplate(
             department: String,
@@ -2666,8 +3169,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: List Department specifiec product categories
-        * Description: Allows you to list all product categories values for the departments specified
+        * Summary: List product template categories
+        * Description: Allows you to list all product categories values for the departments specified.
         **/
         public func listProductTemplateCategories(
             departments: String,
@@ -2726,8 +3229,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Download Product Template View
-        * Description: Allows you to download product template data
+        * Summary: Download product template views
+        * Description: Allows you to download product template data.
         **/
         public func downloadProductTemplateViews(
             slug: String,
@@ -2791,8 +3294,8 @@ if let value = type {
         
         /**
         *
-        * Summary: Validate Product Template Schema
-        * Description: Allows you to list all product templates validation values for all the fields present in the database
+        * Summary: Validate product template
+        * Description: Allows you to list all product templates validation values for all the fields present in the database.
         **/
         public func validateProductTemplate(
             slug: String,
@@ -2856,8 +3359,8 @@ if let value = bulk {
         
         /**
         *
-        * Summary: Validate product/size data
-        * Description: This API validates product data.
+        * Summary: Get product validation
+        * Description: Retrieve validation data for a specific product.
         **/
         public func getProductValidation(
             
@@ -2904,8 +3407,8 @@ if let value = bulk {
         
         /**
         *
-        * Summary: Get Inventory for company
-        * Description: This API allows get Inventory data for particular company grouped by size and store.
+        * Summary: Get inventory by size identifier
+        * Description: Allows to retrieve Inventory data for particular company grouped by size and store.
         **/
         public func getInventoryBySizeIdentifier(
             itemId: Int,
@@ -2984,10 +3487,93 @@ if let value = locationIds {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Get a single product size.
-        * Description: This API helps to get data associated to a particular product size.
+        * Summary: get paginator for getInventoryBySizeIdentifier
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getInventoryBySizeIdentifierPaginator(
+            itemId: Int,
+            sizeIdentifier: String,
+            pageSize: Int?,
+            q: String?,
+            locationIds: [Int]?
+            
+            ) -> Paginator<InventorySellerIdentifierResponsePaginated> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<InventorySellerIdentifierResponsePaginated>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getInventoryBySizeIdentifier(
+                        
+                        itemId: itemId,
+                        sizeIdentifier: sizeIdentifier,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        q: q,
+                        locationIds: locationIds
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get product size details
+        * Description: Retrieve data associated to a particular product size.
         **/
         public func getProductSize(
             itemCode: String?,
@@ -3059,8 +3645,8 @@ if let value = uid {
         
         /**
         *
-        * Summary: Delete a Size associated with product.
-        * Description: This API allows to delete size associated with product.
+        * Summary: Delete product size
+        * Description: Allows to delete size associated with product.
         **/
         public func deleteSize(
             itemId: Int,
@@ -3109,8 +3695,8 @@ if let value = uid {
         
         /**
         *
-        * Summary: Get Inventory for company
-        * Description: This API allows get Inventory data for particular company grouped by size and store.
+        * Summary: Get inventory by size
+        * Description: Allows to retrieve Inventory data for particular company grouped by size and store.
         **/
         public func getInventoryBySize(
             itemId: Int,
@@ -3189,10 +3775,93 @@ if let value = sellable {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Add Inventory for particular size and store.
-        * Description: This API allows add Inventory for particular size and store.
+        * Summary: get paginator for getInventoryBySize
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getInventoryBySizePaginator(
+            itemId: Int,
+            size: String,
+            pageSize: Int?,
+            q: String?,
+            sellable: Bool?
+            
+            ) -> Paginator<InventoryResponsePaginated> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<InventoryResponsePaginated>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getInventoryBySize(
+                        
+                        itemId: itemId,
+                        size: size,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        q: q,
+                        sellable: sellable
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Add Inventory for particular size and store
+        * Description: Allows add Inventory for particular size and store.
         **/
         public func addInventory(
             itemId: Int,
@@ -3241,8 +3910,8 @@ if let value = sellable {
         
         /**
         *
-        * Summary: Get product list
-        * Description: This API gets meta associated to products.
+        * Summary: Get variants of products
+        * Description: Retrieve variants of a specific product.
         **/
         public func getVariantsOfProducts(
             itemId: Int,
@@ -3305,10 +3974,77 @@ if let value = pageSize {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Get list of size guides
-        * Description: This API allows to view all the size guides associated to the seller.
+        * Summary: get paginator for getVariantsOfProducts
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getVariantsOfProductsPaginator(
+            itemId: Int,
+            variantType: String,
+            pageSize: Int?
+            
+            ) -> Paginator<ProductVariantsResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ProductVariantsResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getVariantsOfProducts(
+                        
+                        itemId: itemId,
+                        variantType: variantType,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Retrieve size guides
+        * Description: Allows to view all the size guides associated to the seller.
         **/
         public func getSizeGuides(
             active: Bool?,
@@ -3403,8 +4139,8 @@ if let value = brandId {
         
         /**
         *
-        * Summary: Create a size guide.
-        * Description: This API allows to create a size guide associated to a brand.
+        * Summary: Create a size guide
+        * Description: Allows to create a size guide associated to a brand.
         **/
         public func createSizeGuide(
             body: ValidateSizeGuide,
@@ -3451,8 +4187,8 @@ if let value = brandId {
         
         /**
         *
-        * Summary: Get a single size guide.
-        * Description: This API helps to get data associated to a size guide.
+        * Summary: Get size guide details
+        * Description: Retrieve data associated about a specific size guide.
         **/
         public func getSizeGuide(
             id: String,
@@ -3500,8 +4236,8 @@ if let value = brandId {
         
         /**
         *
-        * Summary: Edit a size guide.
-        * Description: This API allows to edit a size guide.
+        * Summary: Update a size guide
+        * Description: Allows to edit a size guide.
         **/
         public func updateSizeGuide(
             id: String,
@@ -3560,8 +4296,8 @@ if let value = brandId {
         
         /**
         *
-        * Summary: Hsn Code List.
-        * Description: Hsn Code List.
+        * Summary: Get all product HSN codes
+        * Description: Retrieve all HSN codes associated with products.
         **/
         public func getAllProductHsnCodes(
             pageNo: Int?,
@@ -3640,8 +4376,8 @@ if let value = type {
         
         /**
         *
-        * Summary: Hsn Code List.
-        * Description: Hsn Code List.
+        * Summary: Get single product HSN code
+        * Description: Retrieve the HSN code for a single product.
         **/
         public func getSingleProductHSNCode(
             reportingHsn: String,
@@ -3689,8 +4425,8 @@ if let value = type {
         
         /**
         *
-        * Summary: Add Inventory for particular size and store.
-        * Description: This API allows add Inventory for particular size and store.
+        * Summary: Update inventories
+        * Description: Allows to add Inventory for particular size and store.
         **/
         public func updateInventories(
             body: InventoryRequestSchemaV2,
@@ -3737,8 +4473,8 @@ if let value = type {
         
         /**
         *
-        * Summary: Get the history of the inventory export.
-        * Description: This API helps you the get the history of inventory jobs depending on the filtered criteria.
+        * Summary: List inventory exports
+        * Description: Helps you the retrieve the history of inventory jobs depending on the filtered criteria.
         **/
         public func listInventoryExport(
             status: String?,
@@ -3817,8 +4553,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Create an inventory export job.
-        * Description: This API helps to create a Inventory export job.
+        * Summary: Create inventory export
+        * Description: Helps to create a Inventory export job.
         **/
         public func createInventoryExport(
             body: InventoryCreateRequest,
@@ -3865,8 +4601,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Get product list
-        * Description: This API gets meta associated to products.
+        * Summary: Retrieve products
+        * Description: Retrieve a list of products available
         **/
         public func getProducts(
             brandIds: [Int]?,
@@ -3983,10 +4719,117 @@ if let value = pageSize {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Create a product.
-        * Description: This API allows to create product.
+        * Summary: get paginator for getProducts
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getProductsPaginator(
+            brandIds: [Int]?,
+            categoryIds: [Int]?,
+            itemIds: [Int]?,
+            departmentIds: [Int]?,
+            itemCode: [String]?,
+            q: String?,
+            tags: [String]?,
+            pageSize: Int?
+            
+            ) -> Paginator<ProductListingResponseV2> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ProductListingResponseV2>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getProducts(
+                        
+                        brandIds: brandIds,
+                        categoryIds: categoryIds,
+                        itemIds: itemIds,
+                        departmentIds: departmentIds,
+                        itemCode: itemCode,
+                        q: q,
+                        tags: tags,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Create a product
+        * Description: Allows to create product.
         **/
         public func createProduct(
             body: ProductCreateUpdateSchemaV2,
@@ -4033,8 +4876,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Create a Bulk product to upload job.
-        * Description: This API helps to create a bulk products upload job.
+        * Summary: Upload bulk products
+        * Description: Helps to create a bulk products upload job.
         **/
         public func uploadBulkProducts(
             department: String,
@@ -4093,8 +4936,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Allows you to list all product templates export list details
-        * Description: Can view details including trigger data, task id , etc.
+        * Summary: Retrieve product export jobs
+        * Description: View details including trigger data, task id , etc.
         **/
         public func getProductExportJobs(
             status: String?,
@@ -4173,8 +5016,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Create a product export job.
-        * Description: This API helps to create a Inventory export job.
+        * Summary: Create product export job
+        * Description: Helps to create a Inventory export job.
         **/
         public func createProductExportJob(
             body: ProductTemplateDownloadsExport,
@@ -4221,8 +5064,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Delete a product.
-        * Description: This API allows to delete product.
+        * Summary: Delete a product
+        * Description: Remove a specific product in the catalog
         **/
         public func deleteProduct(
             itemId: Int,
@@ -4270,8 +5113,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Get a single product.
-        * Description: This API helps to get data associated to a particular product.
+        * Summary: Get product details
+        * Description: Retrieve data associated to a particular product.
         **/
         public func getProduct(
             itemId: Int,
@@ -4335,8 +5178,8 @@ if let value = itemCode {
         
         /**
         *
-        * Summary: Edit a product.
-        * Description: This API allows to edit product.
+        * Summary: Edit a product
+        * Description: Modify the details and settings of an existing product in the catalog.
         **/
         public func editProduct(
             itemId: Int,
@@ -4384,8 +5227,8 @@ if let value = itemCode {
         
         /**
         *
-        * Summary: All Sizes for a given Product
-        * Description: This API allows to get  All Sizes for a given Product.
+        * Summary: Get all product sizes
+        * Description: Retrieve all available sizes for a product.
         **/
         public func allSizes(
             itemId: Int,
@@ -4433,8 +5276,8 @@ if let value = itemCode {
         
         /**
         *
-        * Summary: Add Inventory for particular size and store.
-        * Description: This API allows add Inventory for particular size and store.
+        * Summary: Delete realtime inventory
+        * Description: Remove specific realtime inventory data.
         **/
         public func deleteRealtimeInventory(
             itemId: Int,
@@ -4483,8 +5326,8 @@ if let value = itemCode {
         
         /**
         *
-        * Summary: Add Inventory for particular size and store.
-        * Description: This API allows add Inventory for particular size and store.
+        * Summary: Update realtime inventory
+        * Description: Allows to add Inventory for particular size and store.
         **/
         public func updateRealtimeInventory(
             itemId: Int,
