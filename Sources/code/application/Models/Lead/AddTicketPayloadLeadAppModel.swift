@@ -12,7 +12,7 @@ public extension ApplicationClient.Lead {
         
         public var status: String?
         
-        public var priority: String?
+        public var priority: PriorityEnum?
         
         public var category: String
         
@@ -41,7 +41,7 @@ public extension ApplicationClient.Lead {
             
         }
 
-        public init(category: String, content: TicketContent, createdBy: [String: Any]? = nil, priority: String? = nil, status: String? = nil, subscribers: [String]? = nil, customJson: [String: Any]? = nil) {
+        public init(category: String, content: TicketContent, createdBy: [String: Any]? = nil, priority: PriorityEnum? = nil, status: String? = nil, subscribers: [String]? = nil, customJson: [String: Any]? = nil) {
             
             self.createdBy = createdBy
             
@@ -88,7 +88,7 @@ public extension ApplicationClient.Lead {
             
             
             do {
-                priority = try container.decode(String.self, forKey: .priority)
+                priority = try container.decode(PriorityEnum.self, forKey: .priority)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -138,7 +138,9 @@ public extension ApplicationClient.Lead {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            
             
             
             
@@ -146,7 +148,9 @@ public extension ApplicationClient.Lead {
             
             
             
+            
             try? container.encodeIfPresent(priority, forKey: .priority)
+            
             
             
             
@@ -154,11 +158,14 @@ public extension ApplicationClient.Lead {
             
             
             
+            
             try? container.encodeIfPresent(content, forKey: .content)
             
             
             
+            
             try? container.encodeIfPresent(customJson, forKey: .customJson)
+            
             
             
             

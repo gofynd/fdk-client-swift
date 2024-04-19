@@ -98,19 +98,23 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            
+            try? container.encode(code, forKey: .code)
             
             
             
-            try? container.encodeIfPresent(packageName, forKey: .packageName)
+            
+            try? container.encode(packageName, forKey: .packageName)
             
             
             
-            try? container.encodeIfPresent(logos, forKey: .logos)
+            
+            try? container.encode(logos, forKey: .logos)
             
             
             
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            
+            try? container.encode(displayName, forKey: .displayName)
             
             
         }

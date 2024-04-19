@@ -28,6 +28,8 @@ public extension PlatformClient.Catalog {
         
         public var slug: String?
         
+        public var synonyms: [String]?
+        
         public var tags: [String]?
         
         public var uid: Int?
@@ -51,13 +53,15 @@ public extension PlatformClient.Catalog {
             
             case slug = "slug"
             
+            case synonyms = "synonyms"
+            
             case tags = "tags"
             
             case uid = "uid"
             
         }
 
-        public init(isActive: Bool? = nil, logo: String, name: String, platforms: [String: Any]? = nil, priorityOrder: Int, slug: String? = nil, tags: [String]? = nil, uid: Int? = nil, cls: String? = nil, customJson: [String: Any]? = nil) {
+        public init(isActive: Bool? = nil, logo: String, name: String, platforms: [String: Any]? = nil, priorityOrder: Int, slug: String? = nil, synonyms: [String]? = nil, tags: [String]? = nil, uid: Int? = nil, cls: String? = nil, customJson: [String: Any]? = nil) {
             
             self.cls = cls
             
@@ -74,6 +78,8 @@ public extension PlatformClient.Catalog {
             self.priorityOrder = priorityOrder
             
             self.slug = slug
+            
+            self.synonyms = synonyms
             
             self.tags = tags
             
@@ -161,6 +167,18 @@ public extension PlatformClient.Catalog {
             
             
                 do {
+                    synonyms = try container.decode([String].self, forKey: .synonyms)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     tags = try container.decode([String].self, forKey: .tags)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -226,6 +244,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            
+            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
             
             
             
@@ -270,6 +293,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var slug: String?
         
+        public var synonyms: [String]?
+        
         public var tags: [String]?
         
         public var uid: Int?
@@ -293,13 +318,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case slug = "slug"
             
+            case synonyms = "synonyms"
+            
             case tags = "tags"
             
             case uid = "uid"
             
         }
 
-        public init(isActive: Bool? = nil, logo: String, name: String, platforms: [String: Any]? = nil, priorityOrder: Int, slug: String? = nil, tags: [String]? = nil, uid: Int? = nil, cls: String? = nil, customJson: [String: Any]? = nil) {
+        public init(isActive: Bool? = nil, logo: String, name: String, platforms: [String: Any]? = nil, priorityOrder: Int, slug: String? = nil, synonyms: [String]? = nil, tags: [String]? = nil, uid: Int? = nil, cls: String? = nil, customJson: [String: Any]? = nil) {
             
             self.cls = cls
             
@@ -316,6 +343,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.priorityOrder = priorityOrder
             
             self.slug = slug
+            
+            self.synonyms = synonyms
             
             self.tags = tags
             
@@ -403,6 +432,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
+                    synonyms = try container.decode([String].self, forKey: .synonyms)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     tags = try container.decode([String].self, forKey: .tags)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -468,6 +509,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            
+            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
             
             
             

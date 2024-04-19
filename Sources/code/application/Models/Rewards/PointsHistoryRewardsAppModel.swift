@@ -278,7 +278,9 @@ public extension ApplicationClient.Rewards {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(id, forKey: .id)
+            
             
             
             
@@ -286,7 +288,9 @@ public extension ApplicationClient.Rewards {
             
             
             
+            
             try? container.encodeIfPresent(claimed, forKey: .claimed)
+            
             
             
             
@@ -294,7 +298,9 @@ public extension ApplicationClient.Rewards {
             
             
             
+            
             try? container.encodeIfPresent(expiresOn, forKey: .expiresOn)
+            
             
             
             
@@ -302,7 +308,9 @@ public extension ApplicationClient.Rewards {
             
             
             
+            
             try? container.encodeIfPresent(points, forKey: .points)
+            
             
             
             
@@ -310,7 +318,9 @@ public extension ApplicationClient.Rewards {
             
             
             
+            
             try? container.encodeIfPresent(text1, forKey: .text1)
+            
             
             
             
@@ -318,7 +328,9 @@ public extension ApplicationClient.Rewards {
             
             
             
+            
             try? container.encodeIfPresent(text3, forKey: .text3)
+            
             
             
             
@@ -326,7 +338,9 @@ public extension ApplicationClient.Rewards {
             
             
             
+            
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
             
             
             

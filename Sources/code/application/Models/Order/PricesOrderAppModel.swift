@@ -10,8 +10,6 @@ public extension ApplicationClient.Order {
         
         public var deliveryCharge: Double?
         
-        public var tcsCharge: Double?
-        
         public var couponValue: Double?
         
         public var brandCalculatedAmount: Double?
@@ -54,14 +52,10 @@ public extension ApplicationClient.Order {
         
         public var fyndCredits: Double?
         
-        public var amountToBeCollected: Double?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case deliveryCharge = "delivery_charge"
-            
-            case tcsCharge = "tcs_charge"
             
             case couponValue = "coupon_value"
             
@@ -105,15 +99,11 @@ public extension ApplicationClient.Order {
             
             case fyndCredits = "fynd_credits"
             
-            case amountToBeCollected = "amount_to_be_collected"
-            
         }
 
-        public init(addedToFyndCash: Bool? = nil, amountPaid: Double? = nil, amountPaidRoundoff: Double? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double? = nil, cashback: Double? = nil, cashbackApplied: Double? = nil, codCharges: Double? = nil, couponEffectiveDiscount: Double? = nil, couponValue: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, gstTaxPercentage: Double? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, promotionEffectiveDiscount: Double? = nil, refundAmount: Double? = nil, refundCredit: Double? = nil, tcsCharge: Double? = nil, transferPrice: Double? = nil, valueOfGood: Double? = nil) {
+        public init(addedToFyndCash: Bool? = nil, amountPaid: Double? = nil, amountPaidRoundoff: Double? = nil, brandCalculatedAmount: Double? = nil, cashback: Double? = nil, cashbackApplied: Double? = nil, codCharges: Double? = nil, couponEffectiveDiscount: Double? = nil, couponValue: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, gstTaxPercentage: Double? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, promotionEffectiveDiscount: Double? = nil, refundAmount: Double? = nil, refundCredit: Double? = nil, transferPrice: Double? = nil, valueOfGood: Double? = nil) {
             
             self.deliveryCharge = deliveryCharge
-            
-            self.tcsCharge = tcsCharge
             
             self.couponValue = couponValue
             
@@ -157,8 +147,6 @@ public extension ApplicationClient.Order {
             
             self.fyndCredits = fyndCredits
             
-            self.amountToBeCollected = amountToBeCollected
-            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -167,18 +155,6 @@ public extension ApplicationClient.Order {
             
             do {
                 deliveryCharge = try container.decode(Double.self, forKey: .deliveryCharge)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                tcsCharge = try container.decode(Double.self, forKey: .tcsCharge)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -440,29 +416,15 @@ public extension ApplicationClient.Order {
             }
             
             
-            
-            do {
-                amountToBeCollected = try container.decode(Double.self, forKey: .amountToBeCollected)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(deliveryCharge, forKey: .deliveryCharge)
             
-            
-            
-            try? container.encodeIfPresent(tcsCharge, forKey: .tcsCharge)
             
             
             
@@ -470,7 +432,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
+            
             
             
             
@@ -478,7 +442,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
+            
             
             
             
@@ -486,7 +452,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
+            
             
             
             
@@ -494,7 +462,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(gstTaxPercentage, forKey: .gstTaxPercentage)
+            
             
             
             
@@ -502,7 +472,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
+            
             
             
             
@@ -510,7 +482,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(transferPrice, forKey: .transferPrice)
+            
             
             
             
@@ -518,7 +492,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
+            
             
             
             
@@ -526,7 +502,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(refundCredit, forKey: .refundCredit)
+            
             
             
             
@@ -534,7 +512,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(promotionEffectiveDiscount, forKey: .promotionEffectiveDiscount)
+            
             
             
             
@@ -542,15 +522,13 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
             
             
             
+            
             try? container.encodeIfPresent(fyndCredits, forKey: .fyndCredits)
-            
-            
-            
-            try? container.encodeIfPresent(amountToBeCollected, forKey: .amountToBeCollected)
             
             
         }

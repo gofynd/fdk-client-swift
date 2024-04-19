@@ -12,22 +12,16 @@ public extension PlatformClient.Theme {
     class UMDJs: Codable {
         
         
-        public var link: String?
-        
         public var links: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case link = "link"
-            
             case links = "links"
             
         }
 
-        public init(link: String? = nil, links: [String]? = nil) {
-            
-            self.link = link
+        public init(links: [String]? = nil) {
             
             self.links = links
             
@@ -35,18 +29,6 @@ public extension PlatformClient.Theme {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    link = try container.decode(String.self, forKey: .link)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -64,11 +46,6 @@ public extension PlatformClient.Theme {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(link, forKey: .link)
-            
             
             
             
@@ -91,22 +68,16 @@ public extension PlatformClient.ApplicationClient.Theme {
     class UMDJs: Codable {
         
         
-        public var link: String?
-        
         public var links: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case link = "link"
-            
             case links = "links"
             
         }
 
-        public init(link: String? = nil, links: [String]? = nil) {
-            
-            self.link = link
+        public init(links: [String]? = nil) {
             
             self.links = links
             
@@ -114,18 +85,6 @@ public extension PlatformClient.ApplicationClient.Theme {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    link = try container.decode(String.self, forKey: .link)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -143,11 +102,6 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(link, forKey: .link)
-            
             
             
             

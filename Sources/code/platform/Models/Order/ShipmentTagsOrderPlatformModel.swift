@@ -85,17 +85,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encode(slug, forKey: .slug)
             
             
             
             
-            try? container.encodeIfPresent(entityType, forKey: .entityType)
+            try? container.encode(entityType, forKey: .entityType)
             
             
             
             
-            try? container.encodeIfPresent(displayText, forKey: .displayText)
+            try? container.encode(displayText, forKey: .displayText)
             
             
         }
@@ -187,17 +187,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encode(slug, forKey: .slug)
             
             
             
             
-            try? container.encodeIfPresent(entityType, forKey: .entityType)
+            try? container.encode(entityType, forKey: .entityType)
             
             
             
             
-            try? container.encodeIfPresent(displayText, forKey: .displayText)
+            try? container.encode(displayText, forKey: .displayText)
             
             
         }

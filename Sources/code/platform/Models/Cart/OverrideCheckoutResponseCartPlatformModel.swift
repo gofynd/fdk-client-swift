@@ -18,7 +18,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var cart: [String: Any]
         
-        public var success: Bool
+        public var success: String
         
         public var orderId: String
         
@@ -39,7 +39,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(cart: [String: Any], data: [String: Any], message: String, orderId: String, success: Bool) {
+        public init(cart: [String: Any], data: [String: Any], message: String, orderId: String, success: String) {
             
             self.data = data
             
@@ -67,7 +67,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-                success = try container.decode(Bool.self, forKey: .success)
+                success = try container.decode(String.self, forKey: .success)
                 
             
             

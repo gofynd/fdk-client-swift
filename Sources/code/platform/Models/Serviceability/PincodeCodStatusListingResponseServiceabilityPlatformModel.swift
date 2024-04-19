@@ -14,7 +14,7 @@ public extension PlatformClient.Serviceability {
         
         public var country: String
         
-        public var data: [PincodeCodDataSchema]
+        public var data: [PincodeCodStatusListingResponse]
         
         public var success: Bool
         
@@ -41,7 +41,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(country: String, data: [PincodeCodDataSchema], errors: [Error]? = nil, page: PincodeCodStatusListingPage, success: Bool, summary: PincodeCodStatusListingSummary) {
+        public init(country: String, data: [PincodeCodStatusListingResponse], errors: [Error]? = nil, page: PincodeCodStatusListingPage, success: Bool, summary: PincodeCodStatusListingSummary) {
             
             self.country = country
             
@@ -66,7 +66,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-                data = try container.decode([PincodeCodDataSchema].self, forKey: .data)
+                data = try container.decode([PincodeCodStatusListingResponse].self, forKey: .data)
                 
             
             
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var country: String
         
-        public var data: [PincodeCodDataSchema]
+        public var data: [PincodeCodStatusListingResponse]
         
         public var success: Bool
         
@@ -177,7 +177,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(country: String, data: [PincodeCodDataSchema], errors: [Error]? = nil, page: PincodeCodStatusListingPage, success: Bool, summary: PincodeCodStatusListingSummary) {
+        public init(country: String, data: [PincodeCodStatusListingResponse], errors: [Error]? = nil, page: PincodeCodStatusListingPage, success: Bool, summary: PincodeCodStatusListingSummary) {
             
             self.country = country
             
@@ -202,7 +202,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                data = try container.decode([PincodeCodDataSchema].self, forKey: .data)
+                data = try container.decode([PincodeCodStatusListingResponse].self, forKey: .data)
                 
             
             

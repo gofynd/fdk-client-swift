@@ -28,24 +28,6 @@ public extension PlatformClient.FileStorage {
         
         public var totalInWords: String?
         
-        public var giftPrice: Double?
-        
-        public var totalQuantity: Double?
-        
-        public var subTotal: Double?
-        
-        public var discount: Double?
-        
-        public var promotion: Double?
-        
-        public var coupon: Double?
-        
-        public var reward: Double?
-        
-        public var roundOff: Double?
-        
-        public var totalValueOfGoods: Double?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -65,27 +47,9 @@ public extension PlatformClient.FileStorage {
             
             case totalInWords = "total_in_words"
             
-            case giftPrice = "gift_price"
-            
-            case totalQuantity = "total_quantity"
-            
-            case subTotal = "sub_total"
-            
-            case discount = "discount"
-            
-            case promotion = "promotion"
-            
-            case coupon = "coupon"
-            
-            case reward = "reward"
-            
-            case roundOff = "round_off"
-            
-            case totalValueOfGoods = "total_value_of_goods"
-            
         }
 
-        public init(codCharges: Double? = nil, coupon: Double? = nil, deliveryCharges: Double? = nil, deliveryChargeText: String? = nil, discount: Double? = nil, fyndDiscounts: Double? = nil, giftPrice: Double? = nil, grandTotal: Double? = nil, products: [ItemsProductTable]? = nil, promotion: Double? = nil, reward: Double? = nil, roundOff: Double? = nil, subTotal: Double? = nil, totalInWords: String? = nil, totalItems: Double? = nil, totalQuantity: Double? = nil, totalValueOfGoods: Double? = nil) {
+        public init(codCharges: Double? = nil, deliveryCharges: Double? = nil, deliveryChargeText: String? = nil, fyndDiscounts: Double? = nil, grandTotal: Double? = nil, products: [ItemsProductTable]? = nil, totalInWords: String? = nil, totalItems: Double? = nil) {
             
             self.totalItems = totalItems
             
@@ -102,24 +66,6 @@ public extension PlatformClient.FileStorage {
             self.fyndDiscounts = fyndDiscounts
             
             self.totalInWords = totalInWords
-            
-            self.giftPrice = giftPrice
-            
-            self.totalQuantity = totalQuantity
-            
-            self.subTotal = subTotal
-            
-            self.discount = discount
-            
-            self.promotion = promotion
-            
-            self.coupon = coupon
-            
-            self.reward = reward
-            
-            self.roundOff = roundOff
-            
-            self.totalValueOfGoods = totalValueOfGoods
             
         }
 
@@ -222,114 +168,6 @@ public extension PlatformClient.FileStorage {
                 }
                 
             
-            
-                do {
-                    giftPrice = try container.decode(Double.self, forKey: .giftPrice)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    totalQuantity = try container.decode(Double.self, forKey: .totalQuantity)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    subTotal = try container.decode(Double.self, forKey: .subTotal)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    discount = try container.decode(Double.self, forKey: .discount)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    promotion = try container.decode(Double.self, forKey: .promotion)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    coupon = try container.decode(Double.self, forKey: .coupon)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    reward = try container.decode(Double.self, forKey: .reward)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    roundOff = try container.decode(Double.self, forKey: .roundOff)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    totalValueOfGoods = try container.decode(Double.self, forKey: .totalValueOfGoods)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -373,51 +211,6 @@ public extension PlatformClient.FileStorage {
             
             
             try? container.encodeIfPresent(totalInWords, forKey: .totalInWords)
-            
-            
-            
-            
-            try? container.encodeIfPresent(giftPrice, forKey: .giftPrice)
-            
-            
-            
-            
-            try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
-            
-            
-            
-            
-            try? container.encodeIfPresent(subTotal, forKey: .subTotal)
-            
-            
-            
-            
-            try? container.encodeIfPresent(discount, forKey: .discount)
-            
-            
-            
-            
-            try? container.encodeIfPresent(promotion, forKey: .promotion)
-            
-            
-            
-            
-            try? container.encodeIfPresent(coupon, forKey: .coupon)
-            
-            
-            
-            
-            try? container.encodeIfPresent(reward, forKey: .reward)
-            
-            
-            
-            
-            try? container.encodeIfPresent(roundOff, forKey: .roundOff)
-            
-            
-            
-            
-            try? container.encodeIfPresent(totalValueOfGoods, forKey: .totalValueOfGoods)
             
             
         }
@@ -452,24 +245,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var totalInWords: String?
         
-        public var giftPrice: Double?
-        
-        public var totalQuantity: Double?
-        
-        public var subTotal: Double?
-        
-        public var discount: Double?
-        
-        public var promotion: Double?
-        
-        public var coupon: Double?
-        
-        public var reward: Double?
-        
-        public var roundOff: Double?
-        
-        public var totalValueOfGoods: Double?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -489,27 +264,9 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             case totalInWords = "total_in_words"
             
-            case giftPrice = "gift_price"
-            
-            case totalQuantity = "total_quantity"
-            
-            case subTotal = "sub_total"
-            
-            case discount = "discount"
-            
-            case promotion = "promotion"
-            
-            case coupon = "coupon"
-            
-            case reward = "reward"
-            
-            case roundOff = "round_off"
-            
-            case totalValueOfGoods = "total_value_of_goods"
-            
         }
 
-        public init(codCharges: Double? = nil, coupon: Double? = nil, deliveryCharges: Double? = nil, deliveryChargeText: String? = nil, discount: Double? = nil, fyndDiscounts: Double? = nil, giftPrice: Double? = nil, grandTotal: Double? = nil, products: [ItemsProductTable]? = nil, promotion: Double? = nil, reward: Double? = nil, roundOff: Double? = nil, subTotal: Double? = nil, totalInWords: String? = nil, totalItems: Double? = nil, totalQuantity: Double? = nil, totalValueOfGoods: Double? = nil) {
+        public init(codCharges: Double? = nil, deliveryCharges: Double? = nil, deliveryChargeText: String? = nil, fyndDiscounts: Double? = nil, grandTotal: Double? = nil, products: [ItemsProductTable]? = nil, totalInWords: String? = nil, totalItems: Double? = nil) {
             
             self.totalItems = totalItems
             
@@ -526,24 +283,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             self.fyndDiscounts = fyndDiscounts
             
             self.totalInWords = totalInWords
-            
-            self.giftPrice = giftPrice
-            
-            self.totalQuantity = totalQuantity
-            
-            self.subTotal = subTotal
-            
-            self.discount = discount
-            
-            self.promotion = promotion
-            
-            self.coupon = coupon
-            
-            self.reward = reward
-            
-            self.roundOff = roundOff
-            
-            self.totalValueOfGoods = totalValueOfGoods
             
         }
 
@@ -646,114 +385,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
                 }
                 
             
-            
-                do {
-                    giftPrice = try container.decode(Double.self, forKey: .giftPrice)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    totalQuantity = try container.decode(Double.self, forKey: .totalQuantity)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    subTotal = try container.decode(Double.self, forKey: .subTotal)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    discount = try container.decode(Double.self, forKey: .discount)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    promotion = try container.decode(Double.self, forKey: .promotion)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    coupon = try container.decode(Double.self, forKey: .coupon)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    reward = try container.decode(Double.self, forKey: .reward)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    roundOff = try container.decode(Double.self, forKey: .roundOff)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    totalValueOfGoods = try container.decode(Double.self, forKey: .totalValueOfGoods)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -797,51 +428,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(totalInWords, forKey: .totalInWords)
-            
-            
-            
-            
-            try? container.encodeIfPresent(giftPrice, forKey: .giftPrice)
-            
-            
-            
-            
-            try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
-            
-            
-            
-            
-            try? container.encodeIfPresent(subTotal, forKey: .subTotal)
-            
-            
-            
-            
-            try? container.encodeIfPresent(discount, forKey: .discount)
-            
-            
-            
-            
-            try? container.encodeIfPresent(promotion, forKey: .promotion)
-            
-            
-            
-            
-            try? container.encodeIfPresent(coupon, forKey: .coupon)
-            
-            
-            
-            
-            try? container.encodeIfPresent(reward, forKey: .reward)
-            
-            
-            
-            
-            try? container.encodeIfPresent(roundOff, forKey: .roundOff)
-            
-            
-            
-            
-            try? container.encodeIfPresent(totalValueOfGoods, forKey: .totalValueOfGoods)
             
             
         }

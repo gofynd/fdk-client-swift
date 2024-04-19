@@ -176,7 +176,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(address1, forKey: .address1)
+            try? container.encode(address1, forKey: .address1)
             
             
             
@@ -201,7 +201,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(address2, forKey: .address2)
+            try? container.encode(address2, forKey: .address2)
             
             
             
@@ -399,7 +399,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(address1, forKey: .address1)
+            try? container.encode(address1, forKey: .address1)
             
             
             
@@ -424,7 +424,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(address2, forKey: .address2)
+            try? container.encode(address2, forKey: .address2)
             
             
             

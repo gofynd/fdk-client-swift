@@ -38,10 +38,6 @@ public extension PlatformClient.FileStorage {
         
         public var tax: Tax?
         
-        public var meta: [String: Any]?
-        
-        public var countryOfOrigin: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -71,13 +67,9 @@ public extension PlatformClient.FileStorage {
             
             case tax = "tax"
             
-            case meta = "meta"
-            
-            case countryOfOrigin = "country_of_origin"
-            
         }
 
-        public init(brand: Brand? = nil, countryOfOrigin: String? = nil, discount: Double? = nil, hsnCode: String? = nil, itemCode: String? = nil, meta: [String: Any]? = nil, mrp: Double? = nil, name: String? = nil, sellerIdentifier: String? = nil, size: String? = nil, tax: Tax? = nil, taxableAmount: Double? = nil, total: Double? = nil, totalTaxableAmount: Double? = nil, totalUnits: Double? = nil) {
+        public init(brand: Brand? = nil, discount: Double? = nil, hsnCode: String? = nil, itemCode: String? = nil, mrp: Double? = nil, name: String? = nil, sellerIdentifier: String? = nil, size: String? = nil, tax: Tax? = nil, taxableAmount: Double? = nil, total: Double? = nil, totalTaxableAmount: Double? = nil, totalUnits: Double? = nil) {
             
             self.name = name
             
@@ -104,10 +96,6 @@ public extension PlatformClient.FileStorage {
             self.totalTaxableAmount = totalTaxableAmount
             
             self.tax = tax
-            
-            self.meta = meta
-            
-            self.countryOfOrigin = countryOfOrigin
             
         }
 
@@ -270,30 +258,6 @@ public extension PlatformClient.FileStorage {
                 }
                 
             
-            
-                do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    countryOfOrigin = try container.decode(String.self, forKey: .countryOfOrigin)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -362,16 +326,6 @@ public extension PlatformClient.FileStorage {
             
             
             try? container.encodeIfPresent(tax, forKey: .tax)
-            
-            
-            
-            
-            try? container.encodeIfPresent(meta, forKey: .meta)
-            
-            
-            
-            
-            try? container.encodeIfPresent(countryOfOrigin, forKey: .countryOfOrigin)
             
             
         }
@@ -416,10 +370,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var tax: Tax?
         
-        public var meta: [String: Any]?
-        
-        public var countryOfOrigin: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -449,13 +399,9 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             case tax = "tax"
             
-            case meta = "meta"
-            
-            case countryOfOrigin = "country_of_origin"
-            
         }
 
-        public init(brand: Brand? = nil, countryOfOrigin: String? = nil, discount: Double? = nil, hsnCode: String? = nil, itemCode: String? = nil, meta: [String: Any]? = nil, mrp: Double? = nil, name: String? = nil, sellerIdentifier: String? = nil, size: String? = nil, tax: Tax? = nil, taxableAmount: Double? = nil, total: Double? = nil, totalTaxableAmount: Double? = nil, totalUnits: Double? = nil) {
+        public init(brand: Brand? = nil, discount: Double? = nil, hsnCode: String? = nil, itemCode: String? = nil, mrp: Double? = nil, name: String? = nil, sellerIdentifier: String? = nil, size: String? = nil, tax: Tax? = nil, taxableAmount: Double? = nil, total: Double? = nil, totalTaxableAmount: Double? = nil, totalUnits: Double? = nil) {
             
             self.name = name
             
@@ -482,10 +428,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             self.totalTaxableAmount = totalTaxableAmount
             
             self.tax = tax
-            
-            self.meta = meta
-            
-            self.countryOfOrigin = countryOfOrigin
             
         }
 
@@ -648,30 +590,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
                 }
                 
             
-            
-                do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    countryOfOrigin = try container.decode(String.self, forKey: .countryOfOrigin)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -740,16 +658,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(tax, forKey: .tax)
-            
-            
-            
-            
-            try? container.encodeIfPresent(meta, forKey: .meta)
-            
-            
-            
-            
-            try? container.encodeIfPresent(countryOfOrigin, forKey: .countryOfOrigin)
             
             
         }

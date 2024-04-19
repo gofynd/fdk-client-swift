@@ -181,7 +181,9 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(parents, forKey: .parents)
+            
             
             
             
@@ -189,7 +191,9 @@ public extension ApplicationClient.Logistic {
             
             
             
+            
             try? container.encodeIfPresent(displayName, forKey: .displayName)
+            
             
             
             
@@ -197,7 +201,9 @@ public extension ApplicationClient.Logistic {
             
             
             
+            
             try? container.encodeIfPresent(metaCode, forKey: .metaCode)
+            
             
             
             
@@ -205,11 +211,14 @@ public extension ApplicationClient.Logistic {
             
             
             
+            
             try? container.encodeIfPresent(subType, forKey: .subType)
             
             
             
+            
             try? container.encodeIfPresent(name, forKey: .name)
+            
             
             
             

@@ -116,7 +116,9 @@ public extension ApplicationClient.Rewards {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(redeemed, forKey: .redeemed)
+            
             
             
             
@@ -124,11 +126,14 @@ public extension ApplicationClient.Rewards {
             
             
             
+            
             try? container.encodeIfPresent(referrerInfo, forKey: .referrerInfo)
             
             
             
+            
             try? container.encodeIfPresent(referrerId, forKey: .referrerId)
+            
             
             
             

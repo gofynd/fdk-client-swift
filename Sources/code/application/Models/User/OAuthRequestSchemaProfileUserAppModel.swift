@@ -134,7 +134,9 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(lastName, forKey: .lastName)
+            
             
             
             
@@ -142,7 +144,9 @@ public extension ApplicationClient.User {
             
             
             
+            
             try? container.encodeIfPresent(id, forKey: .id)
+            
             
             
             
@@ -150,7 +154,9 @@ public extension ApplicationClient.User {
             
             
             
+            
             try? container.encodeIfPresent(fullName, forKey: .fullName)
+            
             
             
             

@@ -20,7 +20,7 @@ public extension PlatformClient.Configuration {
         
         public var constants: [String: Any]?
         
-        public var companies: [String]?
+        public var companies: [[String: Any]]?
         
         public var support: [String]?
         
@@ -28,19 +28,15 @@ public extension PlatformClient.Configuration {
         
         public var name: String?
         
-        public var slug: String?
-        
         public var meta: [IntegrationMeta]?
         
         public var icon: String?
-        
-        public var hidden: Bool?
         
         public var owner: String?
         
         public var createdAt: String?
         
-        public var modifiedAt: String?
+        public var updatedAt: String?
         
         public var token: String?
         
@@ -67,19 +63,15 @@ public extension PlatformClient.Configuration {
             
             case name = "name"
             
-            case slug = "slug"
-            
             case meta = "meta"
             
             case icon = "icon"
-            
-            case hidden = "hidden"
             
             case owner = "owner"
             
             case createdAt = "created_at"
             
-            case modifiedAt = "modified_at"
+            case updatedAt = "updated_at"
             
             case token = "token"
             
@@ -89,7 +81,7 @@ public extension PlatformClient.Configuration {
             
         }
 
-        public init(companies: [String]? = nil, constants: [String: Any]? = nil, createdAt: String? = nil, description: String? = nil, descriptionHtml: String? = nil, hidden: Bool? = nil, icon: String? = nil, meta: [IntegrationMeta]? = nil, modifiedAt: String? = nil, name: String? = nil, owner: String? = nil, secret: String? = nil, slug: String? = nil, support: [String]? = nil, token: String? = nil, validators: Validators? = nil, id: String? = nil, v: Int? = nil) {
+        public init(companies: [[String: Any]]? = nil, constants: [String: Any]? = nil, createdAt: String? = nil, description: String? = nil, descriptionHtml: String? = nil, icon: String? = nil, meta: [IntegrationMeta]? = nil, name: String? = nil, owner: String? = nil, secret: String? = nil, support: [String]? = nil, token: String? = nil, updatedAt: String? = nil, validators: Validators? = nil, id: String? = nil, v: Int? = nil) {
             
             self.validators = validators
             
@@ -107,19 +99,15 @@ public extension PlatformClient.Configuration {
             
             self.name = name
             
-            self.slug = slug
-            
             self.meta = meta
             
             self.icon = icon
-            
-            self.hidden = hidden
             
             self.owner = owner
             
             self.createdAt = createdAt
             
-            self.modifiedAt = modifiedAt
+            self.updatedAt = updatedAt
             
             self.token = token
             
@@ -182,7 +170,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    companies = try container.decode([String].self, forKey: .companies)
+                    companies = try container.decode([[String: Any]].self, forKey: .companies)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -230,18 +218,6 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    slug = try container.decode(String.self, forKey: .slug)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     meta = try container.decode([IntegrationMeta].self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -255,18 +231,6 @@ public extension PlatformClient.Configuration {
             
                 do {
                     icon = try container.decode(String.self, forKey: .icon)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    hidden = try container.decode(Bool.self, forKey: .hidden)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -302,7 +266,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
+                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -395,22 +359,12 @@ public extension PlatformClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(slug, forKey: .slug)
-            
-            
-            
-            
             try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
             
             try? container.encodeIfPresent(icon, forKey: .icon)
-            
-            
-            
-            
-            try? container.encodeIfPresent(hidden, forKey: .hidden)
             
             
             
@@ -425,7 +379,7 @@ public extension PlatformClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
             
@@ -467,7 +421,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var constants: [String: Any]?
         
-        public var companies: [String]?
+        public var companies: [[String: Any]]?
         
         public var support: [String]?
         
@@ -475,19 +429,15 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var name: String?
         
-        public var slug: String?
-        
         public var meta: [IntegrationMeta]?
         
         public var icon: String?
-        
-        public var hidden: Bool?
         
         public var owner: String?
         
         public var createdAt: String?
         
-        public var modifiedAt: String?
+        public var updatedAt: String?
         
         public var token: String?
         
@@ -514,19 +464,15 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case name = "name"
             
-            case slug = "slug"
-            
             case meta = "meta"
             
             case icon = "icon"
-            
-            case hidden = "hidden"
             
             case owner = "owner"
             
             case createdAt = "created_at"
             
-            case modifiedAt = "modified_at"
+            case updatedAt = "updated_at"
             
             case token = "token"
             
@@ -536,7 +482,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
         }
 
-        public init(companies: [String]? = nil, constants: [String: Any]? = nil, createdAt: String? = nil, description: String? = nil, descriptionHtml: String? = nil, hidden: Bool? = nil, icon: String? = nil, meta: [IntegrationMeta]? = nil, modifiedAt: String? = nil, name: String? = nil, owner: String? = nil, secret: String? = nil, slug: String? = nil, support: [String]? = nil, token: String? = nil, validators: Validators? = nil, id: String? = nil, v: Int? = nil) {
+        public init(companies: [[String: Any]]? = nil, constants: [String: Any]? = nil, createdAt: String? = nil, description: String? = nil, descriptionHtml: String? = nil, icon: String? = nil, meta: [IntegrationMeta]? = nil, name: String? = nil, owner: String? = nil, secret: String? = nil, support: [String]? = nil, token: String? = nil, updatedAt: String? = nil, validators: Validators? = nil, id: String? = nil, v: Int? = nil) {
             
             self.validators = validators
             
@@ -554,19 +500,15 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             self.name = name
             
-            self.slug = slug
-            
             self.meta = meta
             
             self.icon = icon
-            
-            self.hidden = hidden
             
             self.owner = owner
             
             self.createdAt = createdAt
             
-            self.modifiedAt = modifiedAt
+            self.updatedAt = updatedAt
             
             self.token = token
             
@@ -629,7 +571,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    companies = try container.decode([String].self, forKey: .companies)
+                    companies = try container.decode([[String: Any]].self, forKey: .companies)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -677,18 +619,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    slug = try container.decode(String.self, forKey: .slug)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     meta = try container.decode([IntegrationMeta].self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -702,18 +632,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
                 do {
                     icon = try container.decode(String.self, forKey: .icon)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    hidden = try container.decode(Bool.self, forKey: .hidden)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -749,7 +667,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
+                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -842,22 +760,12 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(slug, forKey: .slug)
-            
-            
-            
-            
             try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
             
             try? container.encodeIfPresent(icon, forKey: .icon)
-            
-            
-            
-            
-            try? container.encodeIfPresent(hidden, forKey: .hidden)
             
             
             
@@ -872,7 +780,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
             

@@ -187,7 +187,7 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(displayDate, forKey: .displayDate)
+            try? container.encode(displayDate, forKey: .displayDate)
             
             
         }

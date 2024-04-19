@@ -22,7 +22,7 @@ public extension ApplicationClient.Configuration {
         
         public var storeCode: String?
         
-        public var pincode: String?
+        public var pincode: Int?
         
         public var code: String?
         
@@ -49,7 +49,7 @@ public extension ApplicationClient.Configuration {
             
         }
 
-        public init(address: OptedStoreAddress? = nil, code: String? = nil, displayName: String? = nil, name: String? = nil, pincode: String? = nil, storeCode: String? = nil, storeType: String? = nil, uid: Int? = nil, id: String? = nil) {
+        public init(address: OptedStoreAddress? = nil, code: String? = nil, displayName: String? = nil, name: String? = nil, pincode: Int? = nil, storeCode: String? = nil, storeType: String? = nil, uid: Int? = nil, id: String? = nil) {
             
             self.address = address
             
@@ -160,7 +160,7 @@ public extension ApplicationClient.Configuration {
             
             
             do {
-                pincode = try container.decode(String.self, forKey: .pincode)
+                pincode = try container.decode(Int.self, forKey: .pincode)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -188,7 +188,9 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(address, forKey: .address)
+            
             
             
             
@@ -196,7 +198,9 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(uid, forKey: .uid)
+            
             
             
             
@@ -204,7 +208,9 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(displayName, forKey: .displayName)
+            
             
             
             
@@ -212,11 +218,14 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(storeCode, forKey: .storeCode)
             
             
             
+            
             try? container.encodeIfPresent(pincode, forKey: .pincode)
+            
             
             
             

@@ -10,7 +10,7 @@ public extension ApplicationClient.Payment {
         
         public var status: String
         
-        public var cartId: [String]?
+        public var cartId: String?
         
         public var success: Bool
         
@@ -41,7 +41,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(aggregator: String, cartId: [String]? = nil, deliveryAddressId: String? = nil, message: String, orderId: String, status: String, success: Bool) {
+        public init(aggregator: String, cartId: String? = nil, deliveryAddressId: String? = nil, message: String, orderId: String, status: String, success: Bool) {
             
             self.status = status
             
@@ -69,7 +69,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                cartId = try container.decode([String].self, forKey: .cartId)
+                cartId = try container.decode(String.self, forKey: .cartId)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,11 +117,14 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(status, forKey: .status)
             
             
             
-            try? container.encodeIfPresent(cartId, forKey: .cartId)
+            
+            try? container.encode(cartId, forKey: .cartId)
+            
             
             
             
@@ -129,7 +132,9 @@ public extension ApplicationClient.Payment {
             
             
             
+            
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            
             
             
             
@@ -137,11 +142,13 @@ public extension ApplicationClient.Payment {
             
             
             
+            
             try? container.encodeIfPresent(orderId, forKey: .orderId)
             
             
             
-            try? container.encodeIfPresent(deliveryAddressId, forKey: .deliveryAddressId)
+            
+            try? container.encode(deliveryAddressId, forKey: .deliveryAddressId)
             
             
         }

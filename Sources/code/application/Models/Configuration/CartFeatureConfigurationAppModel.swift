@@ -116,7 +116,9 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(gstInput, forKey: .gstInput)
+            
             
             
             
@@ -124,11 +126,14 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(placingForCustomer, forKey: .placingForCustomer)
             
             
             
+            
             try? container.encodeIfPresent(googleMap, forKey: .googleMap)
+            
             
             
             

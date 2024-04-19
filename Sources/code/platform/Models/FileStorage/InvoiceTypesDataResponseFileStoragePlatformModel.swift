@@ -26,9 +26,7 @@ public extension PlatformClient.FileStorage {
         
         public var visibility: Bool
         
-        public var storeOs: Bool
-        
-        public var countryCode: String
+        public var countryCode: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -47,13 +45,11 @@ public extension PlatformClient.FileStorage {
             
             case visibility = "visibility"
             
-            case storeOs = "store_os"
-            
             case countryCode = "country_code"
             
         }
 
-        public init(countryCode: String, format: [String], name: String, pdfTypeId: Int, status: Bool? = nil, storeOs: Bool, visibility: Bool, id: String, v: Int) {
+        public init(countryCode: String? = nil, format: [String], name: String, pdfTypeId: Int, status: Bool? = nil, visibility: Bool, id: String, v: Int) {
             
             self.status = status
             
@@ -68,8 +64,6 @@ public extension PlatformClient.FileStorage {
             self.v = v
             
             self.visibility = visibility
-            
-            self.storeOs = storeOs
             
             self.countryCode = countryCode
             
@@ -121,14 +115,16 @@ public extension PlatformClient.FileStorage {
             
             
             
-                storeOs = try container.decode(Bool.self, forKey: .storeOs)
+                do {
+                    countryCode = try container.decode(String.self, forKey: .countryCode)
                 
-            
-            
-            
-                countryCode = try container.decode(String.self, forKey: .countryCode)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
-            
             
         }
         
@@ -168,11 +164,6 @@ public extension PlatformClient.FileStorage {
             
             
             try? container.encodeIfPresent(visibility, forKey: .visibility)
-            
-            
-            
-            
-            try? container.encodeIfPresent(storeOs, forKey: .storeOs)
             
             
             
@@ -210,9 +201,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var visibility: Bool
         
-        public var storeOs: Bool
-        
-        public var countryCode: String
+        public var countryCode: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -231,13 +220,11 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             case visibility = "visibility"
             
-            case storeOs = "store_os"
-            
             case countryCode = "country_code"
             
         }
 
-        public init(countryCode: String, format: [String], name: String, pdfTypeId: Int, status: Bool? = nil, storeOs: Bool, visibility: Bool, id: String, v: Int) {
+        public init(countryCode: String? = nil, format: [String], name: String, pdfTypeId: Int, status: Bool? = nil, visibility: Bool, id: String, v: Int) {
             
             self.status = status
             
@@ -252,8 +239,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             self.v = v
             
             self.visibility = visibility
-            
-            self.storeOs = storeOs
             
             self.countryCode = countryCode
             
@@ -305,14 +290,16 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-                storeOs = try container.decode(Bool.self, forKey: .storeOs)
+                do {
+                    countryCode = try container.decode(String.self, forKey: .countryCode)
                 
-            
-            
-            
-                countryCode = try container.decode(String.self, forKey: .countryCode)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
-            
             
         }
         
@@ -352,11 +339,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(visibility, forKey: .visibility)
-            
-            
-            
-            
-            try? container.encodeIfPresent(storeOs, forKey: .storeOs)
             
             
             

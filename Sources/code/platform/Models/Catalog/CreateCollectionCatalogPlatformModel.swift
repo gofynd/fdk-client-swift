@@ -22,7 +22,7 @@ public extension PlatformClient.Catalog {
         
         public var allowSort: Bool?
         
-        public var appId: String?
+        public var appId: String
         
         public var badge: CollectionBadge?
         
@@ -53,8 +53,6 @@ public extension PlatformClient.Catalog {
         public var seo: SeoDetail?
         
         public var slug: String
-        
-        public var isSearchable: Bool?
         
         public var sortOn: String?
         
@@ -109,8 +107,6 @@ public extension PlatformClient.Catalog {
             
             case slug = "slug"
             
-            case isSearchable = "is_searchable"
-            
             case sortOn = "sort_on"
             
             case tags = "tags"
@@ -121,7 +117,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: CollectionBadge? = nil, banners: CollectionBanner, createdBy: UserInfo? = nil, description: String? = nil, isActive: Bool? = nil, isSearchable: Bool? = nil, isVisible: Bool? = nil, logo: CollectionImage, meta: [String: Any]? = nil, modifiedBy: UserInfo? = nil, name: String, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: SeoDetail? = nil, slug: String, sortOn: String? = nil, tags: [String]? = nil, type: String, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, localeLanguage: [String: Any]? = nil, schedule: CollectionSchedule? = nil) {
+        public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String, badge: CollectionBadge? = nil, banners: CollectionBanner, createdBy: UserInfo? = nil, description: String? = nil, isActive: Bool? = nil, isVisible: Bool? = nil, logo: CollectionImage, meta: [String: Any]? = nil, modifiedBy: UserInfo? = nil, name: String, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: SeoDetail? = nil, slug: String, sortOn: String? = nil, tags: [String]? = nil, type: String, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, localeLanguage: [String: Any]? = nil, schedule: CollectionSchedule? = nil) {
             
             self.customJson = customJson
             
@@ -164,8 +160,6 @@ public extension PlatformClient.Catalog {
             self.seo = seo
             
             self.slug = slug
-            
-            self.isSearchable = isSearchable
             
             self.sortOn = sortOn
             
@@ -241,16 +235,9 @@ public extension PlatformClient.Catalog {
                 
             
             
-                do {
-                    appId = try container.decode(String.self, forKey: .appId)
+                appId = try container.decode(String.self, forKey: .appId)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -406,18 +393,6 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    isSearchable = try container.decode(Bool.self, forKey: .isSearchable)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     sortOn = try container.decode(String.self, forKey: .sortOn)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -504,7 +479,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            try? container.encode(createdBy, forKey: .createdBy)
             
             
             
@@ -534,7 +509,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+            try? container.encode(modifiedBy, forKey: .modifiedBy)
             
             
             
@@ -565,11 +540,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(slug, forKey: .slug)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isSearchable, forKey: .isSearchable)
             
             
             
@@ -618,7 +588,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var allowSort: Bool?
         
-        public var appId: String?
+        public var appId: String
         
         public var badge: CollectionBadge?
         
@@ -649,8 +619,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var seo: SeoDetail?
         
         public var slug: String
-        
-        public var isSearchable: Bool?
         
         public var sortOn: String?
         
@@ -705,8 +673,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case slug = "slug"
             
-            case isSearchable = "is_searchable"
-            
             case sortOn = "sort_on"
             
             case tags = "tags"
@@ -717,7 +683,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: CollectionBadge? = nil, banners: CollectionBanner, createdBy: UserInfo? = nil, description: String? = nil, isActive: Bool? = nil, isSearchable: Bool? = nil, isVisible: Bool? = nil, logo: CollectionImage, meta: [String: Any]? = nil, modifiedBy: UserInfo? = nil, name: String, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: SeoDetail? = nil, slug: String, sortOn: String? = nil, tags: [String]? = nil, type: String, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, localeLanguage: [String: Any]? = nil, schedule: CollectionSchedule? = nil) {
+        public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String, badge: CollectionBadge? = nil, banners: CollectionBanner, createdBy: UserInfo? = nil, description: String? = nil, isActive: Bool? = nil, isVisible: Bool? = nil, logo: CollectionImage, meta: [String: Any]? = nil, modifiedBy: UserInfo? = nil, name: String, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: SeoDetail? = nil, slug: String, sortOn: String? = nil, tags: [String]? = nil, type: String, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, localeLanguage: [String: Any]? = nil, schedule: CollectionSchedule? = nil) {
             
             self.customJson = customJson
             
@@ -760,8 +726,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.seo = seo
             
             self.slug = slug
-            
-            self.isSearchable = isSearchable
             
             self.sortOn = sortOn
             
@@ -837,16 +801,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                do {
-                    appId = try container.decode(String.self, forKey: .appId)
+                appId = try container.decode(String.self, forKey: .appId)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -1002,18 +959,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    isSearchable = try container.decode(Bool.self, forKey: .isSearchable)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     sortOn = try container.decode(String.self, forKey: .sortOn)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -1100,7 +1045,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            try? container.encode(createdBy, forKey: .createdBy)
             
             
             
@@ -1130,7 +1075,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+            try? container.encode(modifiedBy, forKey: .modifiedBy)
             
             
             
@@ -1161,11 +1106,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(slug, forKey: .slug)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isSearchable, forKey: .isSearchable)
             
             
             

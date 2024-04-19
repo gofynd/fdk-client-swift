@@ -12,60 +12,30 @@ public extension PlatformClient.Finance {
     class GetEngineData: Codable {
         
         
-        public var status: String?
-        
-        public var filters: GetEngineFilters?
+        public var tableName: String?
         
         public var project: [String]?
         
-        public var tableName: String?
-        
-        public var search: [String: Any]?
-        
-        public var page: Int?
-        
-        public var pageSize: Int?
-        
-        public var orderBy: String?
+        public var filters: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case status = "status"
-            
-            case filters = "filters"
+            case tableName = "table_name"
             
             case project = "project"
             
-            case tableName = "table_name"
-            
-            case search = "search"
-            
-            case page = "page"
-            
-            case pageSize = "page_size"
-            
-            case orderBy = "order_by"
+            case filters = "filters"
             
         }
 
-        public init(filters: GetEngineFilters? = nil, orderBy: String? = nil, page: Int? = nil, pageSize: Int? = nil, project: [String]? = nil, search: [String: Any]? = nil, status: String? = nil, tableName: String? = nil) {
-            
-            self.status = status
-            
-            self.filters = filters
-            
-            self.project = project
+        public init(filters: [String: Any]? = nil, project: [String]? = nil, tableName: String? = nil) {
             
             self.tableName = tableName
             
-            self.search = search
+            self.project = project
             
-            self.page = page
-            
-            self.pageSize = pageSize
-            
-            self.orderBy = orderBy
+            self.filters = filters
             
         }
 
@@ -74,19 +44,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    status = try container.decode(String.self, forKey: .status)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    filters = try container.decode(GetEngineFilters.self, forKey: .filters)
+                    tableName = try container.decode(String.self, forKey: .tableName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,55 +68,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    tableName = try container.decode(String.self, forKey: .tableName)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    search = try container.decode([String: Any].self, forKey: .search)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    page = try container.decode(Int.self, forKey: .page)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    pageSize = try container.decode(Int.self, forKey: .pageSize)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    orderBy = try container.decode(String.self, forKey: .orderBy)
+                    filters = try container.decode([String: Any].self, forKey: .filters)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -175,12 +85,7 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encodeIfPresent(tableName, forKey: .tableName)
             
             
             
@@ -190,27 +95,7 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(tableName, forKey: .tableName)
-            
-            
-            
-            
-            try? container.encodeIfPresent(search, forKey: .search)
-            
-            
-            
-            
-            try? container.encodeIfPresent(page, forKey: .page)
-            
-            
-            
-            
-            try? container.encodeIfPresent(pageSize, forKey: .pageSize)
-            
-            
-            
-            
-            try? container.encodeIfPresent(orderBy, forKey: .orderBy)
+            try? container.encodeIfPresent(filters, forKey: .filters)
             
             
         }

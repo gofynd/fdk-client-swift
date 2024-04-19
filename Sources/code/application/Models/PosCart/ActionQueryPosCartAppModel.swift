@@ -44,6 +44,7 @@ public extension ApplicationClient.PosCart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(productSlug, forKey: .productSlug)
             
             

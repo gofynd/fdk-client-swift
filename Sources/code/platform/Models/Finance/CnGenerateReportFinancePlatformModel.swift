@@ -16,7 +16,7 @@ public extension PlatformClient.Finance {
         
         public var endDate: String?
         
-        public var pageSize: Int?
+        public var pagesize: Int?
         
         public var filters: CnGenerateReportFilters?
         
@@ -39,7 +39,7 @@ public extension PlatformClient.Finance {
             
             case endDate = "end_date"
             
-            case pageSize = "page_size"
+            case pagesize = "pagesize"
             
             case filters = "filters"
             
@@ -57,13 +57,13 @@ public extension PlatformClient.Finance {
             
         }
 
-        public init(affiliateId: String? = nil, endDate: String? = nil, filters: CnGenerateReportFilters? = nil, meta: GenerateReportFilters? = nil, page: Int? = nil, pageSize: Int? = nil, reportId: String? = nil, search: String? = nil, searchType: String? = nil, startDate: String? = nil) {
+        public init(affiliateId: String? = nil, endDate: String? = nil, filters: CnGenerateReportFilters? = nil, meta: GenerateReportFilters? = nil, page: Int? = nil, pagesize: Int? = nil, reportId: String? = nil, search: String? = nil, searchType: String? = nil, startDate: String? = nil) {
             
             self.page = page
             
             self.endDate = endDate
             
-            self.pageSize = pageSize
+            self.pagesize = pagesize
             
             self.filters = filters
             
@@ -110,7 +110,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    pageSize = try container.decode(Int.self, forKey: .pageSize)
+                    pagesize = try container.decode(Int.self, forKey: .pagesize)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -221,7 +221,7 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(pageSize, forKey: .pageSize)
+            try? container.encodeIfPresent(pagesize, forKey: .pagesize)
             
             
             

@@ -134,7 +134,9 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(primaryColor, forKey: .primaryColor)
+            
             
             
             
@@ -142,7 +144,9 @@ public extension ApplicationClient.Theme {
             
             
             
+            
             try? container.encodeIfPresent(accentColor, forKey: .accentColor)
+            
             
             
             
@@ -150,7 +154,9 @@ public extension ApplicationClient.Theme {
             
             
             
+            
             try? container.encodeIfPresent(buttonSecondaryColor, forKey: .buttonSecondaryColor)
+            
             
             
             

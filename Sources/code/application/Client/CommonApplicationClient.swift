@@ -27,8 +27,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Searches through applications.
-        * Description: Provide application name or domain url. 
+        * Summary: Search Application
+        * Description: Provide application name or domain url
         **/
         public func searchApplication(
             authorization: String?,
@@ -92,8 +92,8 @@ if let value = authorization {
         
         /**
         *
-        * Summary: Fetches available locations.
-        * Description: Retrieves a list of all locations of countries, states, cities. 
+        * Summary: Get countries, states, cities
+        * Description: Get countries, states, cities
         **/
         public func getLocations(
             locationType: String?,

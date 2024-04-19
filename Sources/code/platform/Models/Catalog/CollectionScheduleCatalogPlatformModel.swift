@@ -121,17 +121,17 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(cron, forKey: .cron)
+            try? container.encode(cron, forKey: .cron)
             
             
             
             
-            try? container.encodeIfPresent(duration, forKey: .duration)
+            try? container.encode(duration, forKey: .duration)
             
             
             
             
-            try? container.encodeIfPresent(end, forKey: .end)
+            try? container.encode(end, forKey: .end)
             
             
             
@@ -269,17 +269,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(cron, forKey: .cron)
+            try? container.encode(cron, forKey: .cron)
             
             
             
             
-            try? container.encodeIfPresent(duration, forKey: .duration)
+            try? container.encode(duration, forKey: .duration)
             
             
             
             
-            try? container.encodeIfPresent(end, forKey: .end)
+            try? container.encode(end, forKey: .end)
             
             
             

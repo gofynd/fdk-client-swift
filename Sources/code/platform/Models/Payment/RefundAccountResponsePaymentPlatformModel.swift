@@ -14,7 +14,7 @@ public extension PlatformClient.Payment {
         
         public var isVerifiedFlag: Bool?
         
-        public var message: String?
+        public var message: String
         
         public var data: [String: Any]?
         
@@ -33,7 +33,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String? = nil, success: Bool) {
+        public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
             
             self.isVerifiedFlag = isVerifiedFlag
             
@@ -61,16 +61,9 @@ public extension PlatformClient.Payment {
                 
             
             
-                do {
-                    message = try container.decode(String.self, forKey: .message)
+                message = try container.decode(String.self, forKey: .message)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -132,7 +125,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var isVerifiedFlag: Bool?
         
-        public var message: String?
+        public var message: String
         
         public var data: [String: Any]?
         
@@ -151,7 +144,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String? = nil, success: Bool) {
+        public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
             
             self.isVerifiedFlag = isVerifiedFlag
             
@@ -179,16 +172,9 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
-                do {
-                    message = try container.decode(String.self, forKey: .message)
+                message = try container.decode(String.self, forKey: .message)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {

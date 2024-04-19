@@ -121,27 +121,27 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
+            try? container.encode(uniqueExternalId, forKey: .uniqueExternalId)
             
             
             
             
-            try? container.encodeIfPresent(mobile, forKey: .mobile)
+            try? container.encode(mobile, forKey: .mobile)
             
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encode(name, forKey: .name)
             
             
             
             
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encode(email, forKey: .email)
             
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encode(id, forKey: .id)
             
             
         }
@@ -269,27 +269,27 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(uniqueExternalId, forKey: .uniqueExternalId)
+            try? container.encode(uniqueExternalId, forKey: .uniqueExternalId)
             
             
             
             
-            try? container.encodeIfPresent(mobile, forKey: .mobile)
+            try? container.encode(mobile, forKey: .mobile)
             
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encode(name, forKey: .name)
             
             
             
             
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encode(email, forKey: .email)
             
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encode(id, forKey: .id)
             
             
         }

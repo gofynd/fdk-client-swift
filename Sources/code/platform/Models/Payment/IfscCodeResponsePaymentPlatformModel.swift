@@ -12,18 +12,18 @@ public extension PlatformClient.Payment {
     class IfscCodeResponse: Codable {
         
         
-        public var success: Bool?
-        
         public var branchName: String
+        
+        public var success: Bool?
         
         public var bankName: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
-            
             case branchName = "branch_name"
+            
+            case success = "success"
             
             case bankName = "bank_name"
             
@@ -31,9 +31,9 @@ public extension PlatformClient.Payment {
 
         public init(bankName: String, branchName: String, success: Bool? = nil) {
             
-            self.success = success
-            
             self.branchName = branchName
+            
+            self.success = success
             
             self.bankName = bankName
             
@@ -41,6 +41,11 @@ public extension PlatformClient.Payment {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                branchName = try container.decode(String.self, forKey: .branchName)
+                
+            
             
             
                 do {
@@ -55,11 +60,6 @@ public extension PlatformClient.Payment {
                 
             
             
-                branchName = try container.decode(String.self, forKey: .branchName)
-                
-            
-            
-            
                 bankName = try container.decode(String.self, forKey: .bankName)
                 
             
@@ -71,12 +71,12 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
-            
-            
-            
-            
             try? container.encodeIfPresent(branchName, forKey: .branchName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
             
@@ -100,18 +100,18 @@ public extension PlatformClient.ApplicationClient.Payment {
     class IfscCodeResponse: Codable {
         
         
-        public var success: Bool?
-        
         public var branchName: String
+        
+        public var success: Bool?
         
         public var bankName: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
-            
             case branchName = "branch_name"
+            
+            case success = "success"
             
             case bankName = "bank_name"
             
@@ -119,9 +119,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public init(bankName: String, branchName: String, success: Bool? = nil) {
             
-            self.success = success
-            
             self.branchName = branchName
+            
+            self.success = success
             
             self.bankName = bankName
             
@@ -129,6 +129,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                branchName = try container.decode(String.self, forKey: .branchName)
+                
+            
             
             
                 do {
@@ -143,11 +148,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
-                branchName = try container.decode(String.self, forKey: .branchName)
-                
-            
-            
-            
                 bankName = try container.decode(String.self, forKey: .bankName)
                 
             
@@ -159,12 +159,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
-            
-            
-            
-            
             try? container.encodeIfPresent(branchName, forKey: .branchName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
             

@@ -73,7 +73,9 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(api, forKey: .api)
+            
+            try? container.encode(api, forKey: .api)
+            
             
             
             
@@ -81,7 +83,8 @@ public extension ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(customerId, forKey: .customerId)
+            
+            try? container.encode(customerId, forKey: .customerId)
             
             
         }

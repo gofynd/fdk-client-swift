@@ -98,7 +98,9 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
             
             
             
@@ -106,11 +108,13 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(status, forKey: .status)
             
             
             
-            try? container.encodeIfPresent(journeyType, forKey: .journeyType)
+            
+            try? container.encode(journeyType, forKey: .journeyType)
             
             
         }

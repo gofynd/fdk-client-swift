@@ -14,10 +14,6 @@ public extension ApplicationClient.Theme {
         
         public var palette: PaletteConfig?
         
-        public var orderTracking: [String: Any]?
-        
-        public var manifest: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -27,23 +23,15 @@ public extension ApplicationClient.Theme {
             
             case palette = "palette"
             
-            case orderTracking = "order_tracking"
-            
-            case manifest = "manifest"
-            
         }
 
-        public init(auth: AuthConfig? = nil, colors: Colors? = nil, manifest: [String: Any]? = nil, orderTracking: [String: Any]? = nil, palette: PaletteConfig? = nil) {
+        public init(auth: AuthConfig? = nil, colors: Colors? = nil, palette: PaletteConfig? = nil) {
             
             self.colors = colors
             
             self.auth = auth
             
             self.palette = palette
-            
-            self.orderTracking = orderTracking
-            
-            self.manifest = manifest
             
         }
 
@@ -86,37 +74,15 @@ public extension ApplicationClient.Theme {
             }
             
             
-            
-            do {
-                orderTracking = try container.decode([String: Any].self, forKey: .orderTracking)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                manifest = try container.decode([String: Any].self, forKey: .manifest)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(colors, forKey: .colors)
+            
             
             
             
@@ -124,15 +90,8 @@ public extension ApplicationClient.Theme {
             
             
             
+            
             try? container.encodeIfPresent(palette, forKey: .palette)
-            
-            
-            
-            try? container.encodeIfPresent(orderTracking, forKey: .orderTracking)
-            
-            
-            
-            try? container.encodeIfPresent(manifest, forKey: .manifest)
             
             
         }

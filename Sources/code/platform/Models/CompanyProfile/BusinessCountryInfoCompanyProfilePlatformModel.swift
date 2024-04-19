@@ -12,13 +12,9 @@ public extension PlatformClient.CompanyProfile {
     class BusinessCountryInfo: Codable {
         
         
-        public var countryCode: String
+        public var countryCode: String?
         
-        public var country: String
-        
-        public var currency: CountryCurrencyInfo
-        
-        public var timezone: String
+        public var country: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -27,21 +23,13 @@ public extension PlatformClient.CompanyProfile {
             
             case country = "country"
             
-            case currency = "currency"
-            
-            case timezone = "timezone"
-            
         }
 
-        public init(country: String, countryCode: String, currency: CountryCurrencyInfo, timezone: String) {
+        public init(country: String? = nil, countryCode: String? = nil) {
             
             self.countryCode = countryCode
             
             self.country = country
-            
-            self.currency = currency
-            
-            self.timezone = timezone
             
         }
 
@@ -49,24 +37,28 @@ public extension PlatformClient.CompanyProfile {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                countryCode = try container.decode(String.self, forKey: .countryCode)
+                do {
+                    countryCode = try container.decode(String.self, forKey: .countryCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                country = try container.decode(String.self, forKey: .country)
+                do {
+                    country = try container.decode(String.self, forKey: .country)
                 
-            
-            
-            
-                currency = try container.decode(CountryCurrencyInfo.self, forKey: .currency)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
-            
-            
-            
-                timezone = try container.decode(String.self, forKey: .timezone)
-                
-            
             
         }
         
@@ -81,16 +73,6 @@ public extension PlatformClient.CompanyProfile {
             
             
             try? container.encodeIfPresent(country, forKey: .country)
-            
-            
-            
-            
-            try? container.encodeIfPresent(currency, forKey: .currency)
-            
-            
-            
-            
-            try? container.encodeIfPresent(timezone, forKey: .timezone)
             
             
         }

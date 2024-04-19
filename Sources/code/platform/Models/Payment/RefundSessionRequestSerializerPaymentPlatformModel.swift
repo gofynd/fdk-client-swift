@@ -22,15 +22,9 @@ public extension PlatformClient.Payment {
         
         public var paymentDetails: PaymentSessionDetail
         
-        public var checksum: String?
-        
-        public var totalAmount: Int
-        
         public var refundDetails: [RefundSessionDetail]?
         
-        public var error: ErrorDescription?
-        
-        public var message: String?
+        public var totalAmount: Int
         
 
         public enum CodingKeys: String, CodingKey {
@@ -45,19 +39,13 @@ public extension PlatformClient.Payment {
             
             case paymentDetails = "payment_details"
             
-            case checksum = "checksum"
+            case refundDetails = "refund_details"
             
             case totalAmount = "total_amount"
             
-            case refundDetails = "refund_details"
-            
-            case error = "error"
-            
-            case message = "message"
-            
         }
 
-        public init(checksum: String? = nil, currency: String, error: ErrorDescription? = nil, gid: String, message: String? = nil, meta: [String: Any]? = nil, paymentDetails: PaymentSessionDetail, refundDetails: [RefundSessionDetail]? = nil, status: String, totalAmount: Int) {
+        public init(currency: String, gid: String, meta: [String: Any]? = nil, paymentDetails: PaymentSessionDetail, refundDetails: [RefundSessionDetail]? = nil, status: String, totalAmount: Int) {
             
             self.meta = meta
             
@@ -69,15 +57,9 @@ public extension PlatformClient.Payment {
             
             self.paymentDetails = paymentDetails
             
-            self.checksum = checksum
-            
-            self.totalAmount = totalAmount
-            
             self.refundDetails = refundDetails
             
-            self.error = error
-            
-            self.message = message
+            self.totalAmount = totalAmount
             
         }
 
@@ -118,7 +100,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    checksum = try container.decode(String.self, forKey: .checksum)
+                    refundDetails = try container.decode([RefundSessionDetail].self, forKey: .refundDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,42 +114,6 @@ public extension PlatformClient.Payment {
                 totalAmount = try container.decode(Int.self, forKey: .totalAmount)
                 
             
-            
-            
-                do {
-                    refundDetails = try container.decode([RefundSessionDetail].self, forKey: .refundDetails)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    error = try container.decode(ErrorDescription.self, forKey: .error)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    message = try container.decode(String.self, forKey: .message)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
@@ -201,27 +147,12 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(checksum, forKey: .checksum)
-            
-            
-            
-            
-            try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
-            
-            
-            
-            
             try? container.encodeIfPresent(refundDetails, forKey: .refundDetails)
             
             
             
             
-            try? container.encodeIfPresent(error, forKey: .error)
-            
-            
-            
-            
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
             
             
         }
@@ -250,15 +181,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var paymentDetails: PaymentSessionDetail
         
-        public var checksum: String?
-        
-        public var totalAmount: Int
-        
         public var refundDetails: [RefundSessionDetail]?
         
-        public var error: ErrorDescription?
-        
-        public var message: String?
+        public var totalAmount: Int
         
 
         public enum CodingKeys: String, CodingKey {
@@ -273,19 +198,13 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case paymentDetails = "payment_details"
             
-            case checksum = "checksum"
+            case refundDetails = "refund_details"
             
             case totalAmount = "total_amount"
             
-            case refundDetails = "refund_details"
-            
-            case error = "error"
-            
-            case message = "message"
-            
         }
 
-        public init(checksum: String? = nil, currency: String, error: ErrorDescription? = nil, gid: String, message: String? = nil, meta: [String: Any]? = nil, paymentDetails: PaymentSessionDetail, refundDetails: [RefundSessionDetail]? = nil, status: String, totalAmount: Int) {
+        public init(currency: String, gid: String, meta: [String: Any]? = nil, paymentDetails: PaymentSessionDetail, refundDetails: [RefundSessionDetail]? = nil, status: String, totalAmount: Int) {
             
             self.meta = meta
             
@@ -297,15 +216,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             self.paymentDetails = paymentDetails
             
-            self.checksum = checksum
-            
-            self.totalAmount = totalAmount
-            
             self.refundDetails = refundDetails
             
-            self.error = error
-            
-            self.message = message
+            self.totalAmount = totalAmount
             
         }
 
@@ -346,7 +259,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    checksum = try container.decode(String.self, forKey: .checksum)
+                    refundDetails = try container.decode([RefundSessionDetail].self, forKey: .refundDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -360,42 +273,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 totalAmount = try container.decode(Int.self, forKey: .totalAmount)
                 
             
-            
-            
-                do {
-                    refundDetails = try container.decode([RefundSessionDetail].self, forKey: .refundDetails)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    error = try container.decode(ErrorDescription.self, forKey: .error)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    message = try container.decode(String.self, forKey: .message)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
@@ -429,27 +306,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(checksum, forKey: .checksum)
-            
-            
-            
-            
-            try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
-            
-            
-            
-            
             try? container.encodeIfPresent(refundDetails, forKey: .refundDetails)
             
             
             
             
-            try? container.encodeIfPresent(error, forKey: .error)
-            
-            
-            
-            
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
             
             
         }

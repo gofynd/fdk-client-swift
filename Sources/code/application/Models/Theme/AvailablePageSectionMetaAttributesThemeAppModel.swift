@@ -44,6 +44,7 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(attributes, forKey: .attributes)
             
             

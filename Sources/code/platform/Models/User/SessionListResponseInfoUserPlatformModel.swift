@@ -24,8 +24,6 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var expireIn: String?
         
-        public var location: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -39,11 +37,9 @@ public extension PlatformClient.ApplicationClient.User {
             
             case expireIn = "expire_in"
             
-            case location = "location"
-            
         }
 
-        public init(domain: String? = nil, expireIn: String? = nil, ip: String? = nil, location: String? = nil, sessionId: String? = nil, userAgent: String? = nil) {
+        public init(domain: String? = nil, expireIn: String? = nil, ip: String? = nil, sessionId: String? = nil, userAgent: String? = nil) {
             
             self.sessionId = sessionId
             
@@ -54,8 +50,6 @@ public extension PlatformClient.ApplicationClient.User {
             self.domain = domain
             
             self.expireIn = expireIn
-            
-            self.location = location
             
         }
 
@@ -122,18 +116,6 @@ public extension PlatformClient.ApplicationClient.User {
                 }
                 
             
-            
-                do {
-                    location = try container.decode(String.self, forKey: .location)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -162,11 +144,6 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(expireIn, forKey: .expireIn)
-            
-            
-            
-            
-            try? container.encodeIfPresent(location, forKey: .location)
             
             
         }

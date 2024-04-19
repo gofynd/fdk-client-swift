@@ -152,7 +152,9 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(price, forKey: .price)
+            
             
             
             
@@ -160,7 +162,9 @@ public extension ApplicationClient.Cart {
             
             
             
+            
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+            
             
             
             
@@ -168,11 +172,14 @@ public extension ApplicationClient.Cart {
             
             
             
+            
             try? container.encodeIfPresent(total, forKey: .total)
             
             
             
+            
             try? container.encodeIfPresent(autoApplied, forKey: .autoApplied)
+            
             
             
             

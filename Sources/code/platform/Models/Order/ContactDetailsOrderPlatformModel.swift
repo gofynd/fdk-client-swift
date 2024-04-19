@@ -67,12 +67,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(phone, forKey: .phone)
+            try? container.encode(phone, forKey: .phone)
             
             
             
             
-            try? container.encodeIfPresent(emails, forKey: .emails)
+            try? container.encode(emails, forKey: .emails)
             
             
         }
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(phone, forKey: .phone)
+            try? container.encode(phone, forKey: .phone)
             
             
             
             
-            try? container.encodeIfPresent(emails, forKey: .emails)
+            try? container.encode(emails, forKey: .emails)
             
             
         }

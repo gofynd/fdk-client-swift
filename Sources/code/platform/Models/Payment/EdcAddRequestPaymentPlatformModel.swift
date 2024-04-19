@@ -129,7 +129,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(deviceTag, forKey: .deviceTag)
+            try? container.encode(deviceTag, forKey: .deviceTag)
             
             
         }
@@ -265,7 +265,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(deviceTag, forKey: .deviceTag)
+            try? container.encode(deviceTag, forKey: .deviceTag)
             
             
         }

@@ -131,7 +131,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encode(pincode, forKey: .pincode)
             
             
             
@@ -279,7 +279,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encode(pincode, forKey: .pincode)
             
             
             

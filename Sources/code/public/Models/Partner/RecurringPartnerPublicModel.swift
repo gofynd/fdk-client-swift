@@ -82,11 +82,14 @@ public extension PublicClient.Partner {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(recurringTime, forKey: .recurringTime)
             
             
             
+            
             try? container.encodeIfPresent(yearlyAmount, forKey: .yearlyAmount)
+            
             
             
             

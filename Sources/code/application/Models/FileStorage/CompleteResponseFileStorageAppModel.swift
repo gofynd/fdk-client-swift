@@ -194,7 +194,9 @@ public extension ApplicationClient.FileStorage {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(id, forKey: .id)
+            
             
             
             
@@ -202,7 +204,9 @@ public extension ApplicationClient.FileStorage {
             
             
             
+            
             try? container.encodeIfPresent(filePath, forKey: .filePath)
+            
             
             
             
@@ -210,7 +214,9 @@ public extension ApplicationClient.FileStorage {
             
             
             
+            
             try? container.encodeIfPresent(namespace, forKey: .namespace)
+            
             
             
             
@@ -218,7 +224,9 @@ public extension ApplicationClient.FileStorage {
             
             
             
+            
             try? container.encodeIfPresent(size, forKey: .size)
+            
             
             
             
@@ -226,7 +234,9 @@ public extension ApplicationClient.FileStorage {
             
             
             
+            
             try? container.encodeIfPresent(cdn, forKey: .cdn)
+            
             
             
             
@@ -234,7 +244,9 @@ public extension ApplicationClient.FileStorage {
             
             
             
+            
             try? container.encodeIfPresent(tags, forKey: .tags)
+            
             
             
             
@@ -242,7 +254,9 @@ public extension ApplicationClient.FileStorage {
             
             
             
+            
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            
             
             
             

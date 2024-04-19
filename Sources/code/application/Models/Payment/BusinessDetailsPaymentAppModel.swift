@@ -30,8 +30,6 @@ public extension ApplicationClient.Payment {
         
         public var address: KYCAddress?
         
-        public var state: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -57,11 +55,9 @@ public extension ApplicationClient.Payment {
             
             case address = "address"
             
-            case state = "state"
-            
         }
 
-        public init(address: KYCAddress? = nil, businessOwnershipType: String? = nil, businessType: String? = nil, entityType: String? = nil, fda: String? = nil, fssai: String? = nil, gstin: String? = nil, name: String? = nil, pan: String? = nil, shopAndEstablishment: [String: Any]? = nil, state: String? = nil, vintage: String? = nil) {
+        public init(address: KYCAddress? = nil, businessOwnershipType: String? = nil, businessType: String? = nil, entityType: String? = nil, fda: String? = nil, fssai: String? = nil, gstin: String? = nil, name: String? = nil, pan: String? = nil, shopAndEstablishment: [String: Any]? = nil, vintage: String? = nil) {
             
             self.businessOwnershipType = businessOwnershipType
             
@@ -84,8 +80,6 @@ public extension ApplicationClient.Payment {
             self.name = name
             
             self.address = address
-            
-            self.state = state
             
         }
 
@@ -224,41 +218,35 @@ public extension ApplicationClient.Payment {
             }
             
             
-            
-            do {
-                state = try container.decode(String.self, forKey: .state)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(businessOwnershipType, forKey: .businessOwnershipType)
+            
+            try? container.encode(businessOwnershipType, forKey: .businessOwnershipType)
             
             
             
-            try? container.encodeIfPresent(vintage, forKey: .vintage)
+            
+            try? container.encode(vintage, forKey: .vintage)
             
             
             
-            try? container.encodeIfPresent(gstin, forKey: .gstin)
+            
+            try? container.encode(gstin, forKey: .gstin)
             
             
             
-            try? container.encodeIfPresent(pan, forKey: .pan)
+            
+            try? container.encode(pan, forKey: .pan)
             
             
             
-            try? container.encodeIfPresent(entityType, forKey: .entityType)
+            
+            try? container.encode(entityType, forKey: .entityType)
+            
             
             
             
@@ -266,27 +254,28 @@ public extension ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(fssai, forKey: .fssai)
+            
+            try? container.encode(fssai, forKey: .fssai)
             
             
             
-            try? container.encodeIfPresent(fda, forKey: .fda)
+            
+            try? container.encode(fda, forKey: .fda)
             
             
             
-            try? container.encodeIfPresent(businessType, forKey: .businessType)
+            
+            try? container.encode(businessType, forKey: .businessType)
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            
+            try? container.encode(name, forKey: .name)
+            
             
             
             
             try? container.encodeIfPresent(address, forKey: .address)
-            
-            
-            
-            try? container.encodeIfPresent(state, forKey: .state)
             
             
         }

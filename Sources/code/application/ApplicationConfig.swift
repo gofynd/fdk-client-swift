@@ -35,23 +35,12 @@ public class ApplicationConfig {
 
 public extension ApplicationConfig {
     class LocationDetails: Codable {
-        var pincode: String?
-        var country: String?
+        var pincode: String
+        var country: String
         var city: String?
         var location: LatLong?
-        var countryIsoCode: String?
-        var sector:String?
         
-        enum CodingKeys: String, CodingKey {
-            case pincode
-            case country
-            case city
-            case location
-            case countryIsoCode = "country_iso_code"
-            case sector
-        }
-
-        public init(pincode: String?, country: String?, city: String? = nil, latitude: String? = nil, longitude: String? = nil,countryIsoCode: String? = nil, sector:String? = nil) {
+        public init(pincode: String, country: String, city: String? = nil, latitude: String? = nil, longitude: String? = nil) {
             self.pincode = pincode
             self.country = country
             self.city = city
@@ -59,13 +48,11 @@ public extension ApplicationConfig {
                let long = longitude {
                 self.location = LatLong(longitude: long, latitude: lat)
             }
-            self.countryIsoCode = countryIsoCode
-            self.sector = sector
         }
     }
 
     struct LatLong : Codable {
-        var longitude: String?
-        var latitude: String?
+        var longitude: String
+        var latitude: String
     }
 }

@@ -10,8 +10,6 @@ public extension ApplicationClient.Order {
         
         public var payment: ShipmentPayment?
         
-        public var paymentInfo: [ShipmentPayment]?
-        
         public var orderType: String?
         
         public var showDownloadInvoice: Bool?
@@ -56,8 +54,6 @@ public extension ApplicationClient.Order {
         
         public var shipmentCreatedAt: String?
         
-        public var shipmentCreatedTs: String?
-        
         public var sizeInfo: [String: Any]?
         
         public var bags: [Bags]?
@@ -84,18 +80,10 @@ public extension ApplicationClient.Order {
         
         public var deliveryDate: String?
         
-        public var order: OrderRequest?
-        
-        public var meta: [String: Any]?
-        
-        public var canPayRemainingAmount: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case payment = "payment"
-            
-            case paymentInfo = "payment_info"
             
             case orderType = "order_type"
             
@@ -141,8 +129,6 @@ public extension ApplicationClient.Order {
             
             case shipmentCreatedAt = "shipment_created_at"
             
-            case shipmentCreatedTs = "shipment_created_ts"
-            
             case sizeInfo = "size_info"
             
             case bags = "bags"
@@ -169,19 +155,11 @@ public extension ApplicationClient.Order {
             
             case deliveryDate = "delivery_date"
             
-            case order = "order"
-            
-            case meta = "meta"
-            
-            case canPayRemainingAmount = "can_pay_remaining_amount"
-            
         }
 
-        public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canPayRemainingAmount: Bool? = nil, canReturn: Bool? = nil, comment: String? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: DeliveryAddress? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, invoice: Invoice? = nil, meta: [String: Any]? = nil, needHelpUrl: String? = nil, order: OrderRequest? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, paymentInfo: [ShipmentPayment]? = nil, prices: Prices? = nil, promise: Promise? = nil, refundDetails: [String: Any]? = nil, returnableDate: String? = nil, returnMeta: [String: Any]? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
+        public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, comment: String? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: DeliveryAddress? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, invoice: Invoice? = nil, needHelpUrl: String? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, prices: Prices? = nil, promise: Promise? = nil, refundDetails: [String: Any]? = nil, returnableDate: String? = nil, returnMeta: [String: Any]? = nil, shipmentCreatedAt: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
             
             self.payment = payment
-            
-            self.paymentInfo = paymentInfo
             
             self.orderType = orderType
             
@@ -227,8 +205,6 @@ public extension ApplicationClient.Order {
             
             self.shipmentCreatedAt = shipmentCreatedAt
             
-            self.shipmentCreatedTs = shipmentCreatedTs
-            
             self.sizeInfo = sizeInfo
             
             self.bags = bags
@@ -255,12 +231,6 @@ public extension ApplicationClient.Order {
             
             self.deliveryDate = deliveryDate
             
-            self.order = order
-            
-            self.meta = meta
-            
-            self.canPayRemainingAmount = canPayRemainingAmount
-            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -269,18 +239,6 @@ public extension ApplicationClient.Order {
             
             do {
                 payment = try container.decode(ShipmentPayment.self, forKey: .payment)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                paymentInfo = try container.decode([ShipmentPayment].self, forKey: .paymentInfo)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -556,18 +514,6 @@ public extension ApplicationClient.Order {
             
             
             do {
-                shipmentCreatedTs = try container.decode(String.self, forKey: .shipmentCreatedTs)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 sizeInfo = try container.decode([String: Any].self, forKey: .sizeInfo)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -722,57 +668,20 @@ public extension ApplicationClient.Order {
             }
             
             
-            
-            do {
-                order = try container.decode(OrderRequest.self, forKey: .order)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                canPayRemainingAmount = try container.decode(Bool.self, forKey: .canPayRemainingAmount)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(payment, forKey: .payment)
             
             
             
-            try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
             
+            try? container.encode(orderType, forKey: .orderType)
             
-            
-            try? container.encodeIfPresent(orderType, forKey: .orderType)
             
             
             
@@ -780,7 +689,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(canCancel, forKey: .canCancel)
+            
             
             
             
@@ -788,7 +699,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            
             
             
             
@@ -796,7 +709,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(customMeta, forKey: .customMeta)
+            
             
             
             
@@ -804,7 +719,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(comment, forKey: .comment)
+            
             
             
             
@@ -812,7 +729,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(showTrackLink, forKey: .showTrackLink)
+            
             
             
             
@@ -820,7 +739,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
+            
             
             
             
@@ -828,7 +749,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(trakingNo, forKey: .trakingNo)
+            
             
             
             
@@ -836,7 +759,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(promise, forKey: .promise)
+            
             
             
             
@@ -844,7 +769,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(totalDetails, forKey: .totalDetails)
+            
             
             
             
@@ -852,7 +779,9 @@ public extension ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(returnableDate, forKey: .returnableDate)
+            
+            try? container.encode(returnableDate, forKey: .returnableDate)
+            
             
             
             
@@ -860,11 +789,9 @@ public extension ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(shipmentCreatedTs, forKey: .shipmentCreatedTs)
-            
-            
             
             try? container.encodeIfPresent(sizeInfo, forKey: .sizeInfo)
+            
             
             
             
@@ -872,7 +799,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(dpName, forKey: .dpName)
+            
             
             
             
@@ -880,7 +809,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(beneficiaryDetails, forKey: .beneficiaryDetails)
+            
             
             
             
@@ -888,7 +819,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(canReturn, forKey: .canReturn)
+            
             
             
             
@@ -896,7 +829,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(trackUrl, forKey: .trackUrl)
+            
             
             
             
@@ -904,7 +839,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(needHelpUrl, forKey: .needHelpUrl)
+            
             
             
             
@@ -912,19 +849,8 @@ public extension ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(deliveryDate, forKey: .deliveryDate)
             
-            
-            
-            try? container.encodeIfPresent(order, forKey: .order)
-            
-            
-            
-            try? container.encodeIfPresent(meta, forKey: .meta)
-            
-            
-            
-            try? container.encodeIfPresent(canPayRemainingAmount, forKey: .canPayRemainingAmount)
+            try? container.encode(deliveryDate, forKey: .deliveryDate)
             
             
         }

@@ -30,8 +30,6 @@ public extension ApplicationClient.Content {
         
         public var navigation: [NavigationReference]?
         
-        public var v: Double?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -57,11 +55,9 @@ public extension ApplicationClient.Content {
             
             case navigation = "navigation"
             
-            case v = "__v"
-            
         }
 
-        public init(application: String? = nil, archived: Bool? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, name: String? = nil, navigation: [NavigationReference]? = nil, orientation: Orientation? = nil, platform: [String]? = nil, slug: String? = nil, version: Double? = nil, id: String? = nil, v: Double? = nil) {
+        public init(application: String? = nil, archived: Bool? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, name: String? = nil, navigation: [NavigationReference]? = nil, orientation: Orientation? = nil, platform: [String]? = nil, slug: String? = nil, version: Double? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -84,8 +80,6 @@ public extension ApplicationClient.Content {
             self.version = version
             
             self.navigation = navigation
-            
-            self.v = v
             
         }
 
@@ -224,25 +218,15 @@ public extension ApplicationClient.Content {
             }
             
             
-            
-            do {
-                v = try container.decode(Double.self, forKey: .v)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(id, forKey: .id)
+            
             
             
             
@@ -250,7 +234,9 @@ public extension ApplicationClient.Content {
             
             
             
+            
             try? container.encodeIfPresent(archived, forKey: .archived)
+            
             
             
             
@@ -258,7 +244,9 @@ public extension ApplicationClient.Content {
             
             
             
+            
             try? container.encodeIfPresent(slug, forKey: .slug)
+            
             
             
             
@@ -266,7 +254,9 @@ public extension ApplicationClient.Content {
             
             
             
+            
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            
             
             
             
@@ -274,7 +264,9 @@ public extension ApplicationClient.Content {
             
             
             
+            
             try? container.encodeIfPresent(orientation, forKey: .orientation)
+            
             
             
             
@@ -282,11 +274,8 @@ public extension ApplicationClient.Content {
             
             
             
+            
             try? container.encodeIfPresent(navigation, forKey: .navigation)
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

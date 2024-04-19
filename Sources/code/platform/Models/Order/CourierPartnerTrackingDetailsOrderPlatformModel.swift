@@ -12,90 +12,90 @@ public extension PlatformClient.Order {
     class CourierPartnerTrackingDetails: Codable {
         
         
-        public var awb: String
-        
-        public var dpLocation: String?
-        
-        public var dpName: String
+        public var operationalStatus: String
         
         public var dpStatus: String
         
+        public var shipmentId: String
+        
+        public var awb: String
+        
         public var dpStatusUpdatedAt: String
         
-        public var estimatedDeliveryDate: String?
+        public var remark: String?
         
         public var id: Int?
+        
+        public var dpLocation: String?
+        
+        public var estimatedDeliveryDate: String?
         
         public var journey: String
         
         public var meta: [String: Any]?
         
-        public var operationalStatus: String
+        public var dpName: String
         
         public var promisedDeliveryDate: String?
-        
-        public var remark: String?
-        
-        public var shipmentId: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case awb = "awb"
-            
-            case dpLocation = "dp_location"
-            
-            case dpName = "dp_name"
+            case operationalStatus = "operational_status"
             
             case dpStatus = "dp_status"
             
+            case shipmentId = "shipment_id"
+            
+            case awb = "awb"
+            
             case dpStatusUpdatedAt = "dp_status_updated_at"
             
-            case estimatedDeliveryDate = "estimated_delivery_date"
+            case remark = "remark"
             
             case id = "id"
+            
+            case dpLocation = "dp_location"
+            
+            case estimatedDeliveryDate = "estimated_delivery_date"
             
             case journey = "journey"
             
             case meta = "meta"
             
-            case operationalStatus = "operational_status"
+            case dpName = "dp_name"
             
             case promisedDeliveryDate = "promised_delivery_date"
-            
-            case remark = "remark"
-            
-            case shipmentId = "shipment_id"
             
         }
 
         public init(awb: String, dpLocation: String? = nil, dpName: String, dpStatus: String, dpStatusUpdatedAt: String, estimatedDeliveryDate: String? = nil, id: Int? = nil, journey: String, meta: [String: Any]? = nil, operationalStatus: String, promisedDeliveryDate: String? = nil, remark: String? = nil, shipmentId: String) {
             
-            self.awb = awb
-            
-            self.dpLocation = dpLocation
-            
-            self.dpName = dpName
+            self.operationalStatus = operationalStatus
             
             self.dpStatus = dpStatus
             
+            self.shipmentId = shipmentId
+            
+            self.awb = awb
+            
             self.dpStatusUpdatedAt = dpStatusUpdatedAt
             
-            self.estimatedDeliveryDate = estimatedDeliveryDate
+            self.remark = remark
             
             self.id = id
+            
+            self.dpLocation = dpLocation
+            
+            self.estimatedDeliveryDate = estimatedDeliveryDate
             
             self.journey = journey
             
             self.meta = meta
             
-            self.operationalStatus = operationalStatus
+            self.dpName = dpName
             
             self.promisedDeliveryDate = promisedDeliveryDate
-            
-            self.remark = remark
-            
-            self.shipmentId = shipmentId
             
         }
 
@@ -103,9 +103,53 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
+                operationalStatus = try container.decode(String.self, forKey: .operationalStatus)
+                
+            
+            
+            
+                dpStatus = try container.decode(String.self, forKey: .dpStatus)
+                
+            
+            
+            
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                
+            
+            
+            
                 awb = try container.decode(String.self, forKey: .awb)
                 
             
+            
+            
+                dpStatusUpdatedAt = try container.decode(String.self, forKey: .dpStatusUpdatedAt)
+                
+            
+            
+            
+                do {
+                    remark = try container.decode(String.self, forKey: .remark)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(Int.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -120,35 +164,8 @@ public extension PlatformClient.Order {
                 
             
             
-                dpName = try container.decode(String.self, forKey: .dpName)
-                
-            
-            
-            
-                dpStatus = try container.decode(String.self, forKey: .dpStatus)
-                
-            
-            
-            
-                dpStatusUpdatedAt = try container.decode(String.self, forKey: .dpStatusUpdatedAt)
-                
-            
-            
-            
                 do {
                     estimatedDeliveryDate = try container.decode(String.self, forKey: .estimatedDeliveryDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    id = try container.decode(Int.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -176,7 +193,7 @@ public extension PlatformClient.Order {
                 
             
             
-                operationalStatus = try container.decode(String.self, forKey: .operationalStatus)
+                dpName = try container.decode(String.self, forKey: .dpName)
                 
             
             
@@ -192,23 +209,6 @@ public extension PlatformClient.Order {
                 }
                 
             
-            
-                do {
-                    remark = try container.decode(String.self, forKey: .remark)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
-                
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -216,17 +216,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(awb, forKey: .awb)
-            
-            
-            
-            
-            try? container.encodeIfPresent(dpLocation, forKey: .dpLocation)
-            
-            
-            
-            
-            try? container.encodeIfPresent(dpName, forKey: .dpName)
+            try? container.encodeIfPresent(operationalStatus, forKey: .operationalStatus)
             
             
             
@@ -236,17 +226,37 @@ public extension PlatformClient.Order {
             
             
             
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(awb, forKey: .awb)
+            
+            
+            
+            
             try? container.encodeIfPresent(dpStatusUpdatedAt, forKey: .dpStatusUpdatedAt)
             
             
             
             
-            try? container.encodeIfPresent(estimatedDeliveryDate, forKey: .estimatedDeliveryDate)
+            try? container.encode(remark, forKey: .remark)
             
             
             
             
             try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encode(dpLocation, forKey: .dpLocation)
+            
+            
+            
+            
+            try? container.encode(estimatedDeliveryDate, forKey: .estimatedDeliveryDate)
             
             
             
@@ -261,22 +271,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(operationalStatus, forKey: .operationalStatus)
+            try? container.encodeIfPresent(dpName, forKey: .dpName)
             
             
             
             
-            try? container.encodeIfPresent(promisedDeliveryDate, forKey: .promisedDeliveryDate)
-            
-            
-            
-            
-            try? container.encodeIfPresent(remark, forKey: .remark)
-            
-            
-            
-            
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            try? container.encode(promisedDeliveryDate, forKey: .promisedDeliveryDate)
             
             
         }
@@ -295,90 +295,90 @@ public extension PlatformClient.ApplicationClient.Order {
     class CourierPartnerTrackingDetails: Codable {
         
         
-        public var awb: String
-        
-        public var dpLocation: String?
-        
-        public var dpName: String
+        public var operationalStatus: String
         
         public var dpStatus: String
         
+        public var shipmentId: String
+        
+        public var awb: String
+        
         public var dpStatusUpdatedAt: String
         
-        public var estimatedDeliveryDate: String?
+        public var remark: String?
         
         public var id: Int?
+        
+        public var dpLocation: String?
+        
+        public var estimatedDeliveryDate: String?
         
         public var journey: String
         
         public var meta: [String: Any]?
         
-        public var operationalStatus: String
+        public var dpName: String
         
         public var promisedDeliveryDate: String?
-        
-        public var remark: String?
-        
-        public var shipmentId: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case awb = "awb"
-            
-            case dpLocation = "dp_location"
-            
-            case dpName = "dp_name"
+            case operationalStatus = "operational_status"
             
             case dpStatus = "dp_status"
             
+            case shipmentId = "shipment_id"
+            
+            case awb = "awb"
+            
             case dpStatusUpdatedAt = "dp_status_updated_at"
             
-            case estimatedDeliveryDate = "estimated_delivery_date"
+            case remark = "remark"
             
             case id = "id"
+            
+            case dpLocation = "dp_location"
+            
+            case estimatedDeliveryDate = "estimated_delivery_date"
             
             case journey = "journey"
             
             case meta = "meta"
             
-            case operationalStatus = "operational_status"
+            case dpName = "dp_name"
             
             case promisedDeliveryDate = "promised_delivery_date"
-            
-            case remark = "remark"
-            
-            case shipmentId = "shipment_id"
             
         }
 
         public init(awb: String, dpLocation: String? = nil, dpName: String, dpStatus: String, dpStatusUpdatedAt: String, estimatedDeliveryDate: String? = nil, id: Int? = nil, journey: String, meta: [String: Any]? = nil, operationalStatus: String, promisedDeliveryDate: String? = nil, remark: String? = nil, shipmentId: String) {
             
-            self.awb = awb
-            
-            self.dpLocation = dpLocation
-            
-            self.dpName = dpName
+            self.operationalStatus = operationalStatus
             
             self.dpStatus = dpStatus
             
+            self.shipmentId = shipmentId
+            
+            self.awb = awb
+            
             self.dpStatusUpdatedAt = dpStatusUpdatedAt
             
-            self.estimatedDeliveryDate = estimatedDeliveryDate
+            self.remark = remark
             
             self.id = id
+            
+            self.dpLocation = dpLocation
+            
+            self.estimatedDeliveryDate = estimatedDeliveryDate
             
             self.journey = journey
             
             self.meta = meta
             
-            self.operationalStatus = operationalStatus
+            self.dpName = dpName
             
             self.promisedDeliveryDate = promisedDeliveryDate
-            
-            self.remark = remark
-            
-            self.shipmentId = shipmentId
             
         }
 
@@ -386,9 +386,53 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
+                operationalStatus = try container.decode(String.self, forKey: .operationalStatus)
+                
+            
+            
+            
+                dpStatus = try container.decode(String.self, forKey: .dpStatus)
+                
+            
+            
+            
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                
+            
+            
+            
                 awb = try container.decode(String.self, forKey: .awb)
                 
             
+            
+            
+                dpStatusUpdatedAt = try container.decode(String.self, forKey: .dpStatusUpdatedAt)
+                
+            
+            
+            
+                do {
+                    remark = try container.decode(String.self, forKey: .remark)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(Int.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -403,35 +447,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-                dpName = try container.decode(String.self, forKey: .dpName)
-                
-            
-            
-            
-                dpStatus = try container.decode(String.self, forKey: .dpStatus)
-                
-            
-            
-            
-                dpStatusUpdatedAt = try container.decode(String.self, forKey: .dpStatusUpdatedAt)
-                
-            
-            
-            
                 do {
                     estimatedDeliveryDate = try container.decode(String.self, forKey: .estimatedDeliveryDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    id = try container.decode(Int.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -459,7 +476,7 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-                operationalStatus = try container.decode(String.self, forKey: .operationalStatus)
+                dpName = try container.decode(String.self, forKey: .dpName)
                 
             
             
@@ -475,23 +492,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
-            
-                do {
-                    remark = try container.decode(String.self, forKey: .remark)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
-                
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -499,17 +499,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(awb, forKey: .awb)
-            
-            
-            
-            
-            try? container.encodeIfPresent(dpLocation, forKey: .dpLocation)
-            
-            
-            
-            
-            try? container.encodeIfPresent(dpName, forKey: .dpName)
+            try? container.encodeIfPresent(operationalStatus, forKey: .operationalStatus)
             
             
             
@@ -519,17 +509,37 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(awb, forKey: .awb)
+            
+            
+            
+            
             try? container.encodeIfPresent(dpStatusUpdatedAt, forKey: .dpStatusUpdatedAt)
             
             
             
             
-            try? container.encodeIfPresent(estimatedDeliveryDate, forKey: .estimatedDeliveryDate)
+            try? container.encode(remark, forKey: .remark)
             
             
             
             
             try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encode(dpLocation, forKey: .dpLocation)
+            
+            
+            
+            
+            try? container.encode(estimatedDeliveryDate, forKey: .estimatedDeliveryDate)
             
             
             
@@ -544,22 +554,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(operationalStatus, forKey: .operationalStatus)
+            try? container.encodeIfPresent(dpName, forKey: .dpName)
             
             
             
             
-            try? container.encodeIfPresent(promisedDeliveryDate, forKey: .promisedDeliveryDate)
-            
-            
-            
-            
-            try? container.encodeIfPresent(remark, forKey: .remark)
-            
-            
-            
-            
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            try? container.encode(promisedDeliveryDate, forKey: .promisedDeliveryDate)
             
             
         }

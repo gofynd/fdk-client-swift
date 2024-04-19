@@ -12,7 +12,7 @@ public extension PlatformClient.Catalog {
     class DepartmentCreateErrorResponse: Codable {
         
         
-        public var error: [String: Any]?
+        public var error: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(error: [String: Any]? = nil) {
+        public init(error: String? = nil) {
             
             self.error = error
             
@@ -32,7 +32,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    error = try container.decode([String: Any].self, forKey: .error)
+                    error = try container.decode(String.self, forKey: .error)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class DepartmentCreateErrorResponse: Codable {
         
         
-        public var error: [String: Any]?
+        public var error: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(error: [String: Any]? = nil) {
+        public init(error: String? = nil) {
             
             self.error = error
             
@@ -88,7 +88,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    error = try container.decode([String: Any].self, forKey: .error)
+                    error = try container.decode(String.self, forKey: .error)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

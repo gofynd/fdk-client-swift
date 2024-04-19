@@ -116,7 +116,9 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(active, forKey: .active)
+            
             
             
             
@@ -124,11 +126,14 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(verified, forKey: .verified)
             
             
             
+            
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            
             
             
             

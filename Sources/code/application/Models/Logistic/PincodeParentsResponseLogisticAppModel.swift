@@ -98,7 +98,9 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(subType, forKey: .subType)
+            
             
             
             
@@ -106,7 +108,9 @@ public extension ApplicationClient.Logistic {
             
             
             
+            
             try? container.encodeIfPresent(name, forKey: .name)
+            
             
             
             

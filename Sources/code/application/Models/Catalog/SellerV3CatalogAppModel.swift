@@ -80,11 +80,14 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(uid, forKey: .uid)
             
             
             
+            
             try? container.encodeIfPresent(name, forKey: .name)
+            
             
             
             

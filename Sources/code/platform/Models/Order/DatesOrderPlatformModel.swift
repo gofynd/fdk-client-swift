@@ -67,12 +67,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(deliveryDate, forKey: .deliveryDate)
+            try? container.encode(deliveryDate, forKey: .deliveryDate)
             
             
             
             
-            try? container.encodeIfPresent(orderCreated, forKey: .orderCreated)
+            try? container.encode(orderCreated, forKey: .orderCreated)
             
             
         }
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(deliveryDate, forKey: .deliveryDate)
+            try? container.encode(deliveryDate, forKey: .deliveryDate)
             
             
             
             
-            try? container.encodeIfPresent(orderCreated, forKey: .orderCreated)
+            try? container.encode(orderCreated, forKey: .orderCreated)
             
             
         }

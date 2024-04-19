@@ -228,7 +228,9 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(min, forKey: .min)
+            
             
             
             
@@ -236,7 +238,9 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(selectedMax, forKey: .selectedMax)
+            
             
             
             
@@ -244,7 +248,9 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(queryFormat, forKey: .queryFormat)
+            
             
             
             
@@ -252,7 +258,9 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(selectedMin, forKey: .selectedMin)
+            
             
             
             
@@ -260,7 +268,9 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(isSelected, forKey: .isSelected)
+            
             
             
             
@@ -268,7 +278,9 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(count, forKey: .count)
+            
             
             
             

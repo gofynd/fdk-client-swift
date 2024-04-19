@@ -8,7 +8,7 @@ public extension ApplicationClient.Payment {
     */
     class CustomerOnboardingRequest: Codable {
         
-        public var personalInfo: UserPersonalInfoInDetails?
+        public var personalInfo: UserPersonalInfoInDetails
         
         public var mcc: String?
         
@@ -41,7 +41,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(aggregator: String, businessInfo: BusinessDetails? = nil, device: DeviceDetails? = nil, marketplaceInfo: MarketplaceInfo? = nil, mcc: String? = nil, personalInfo: UserPersonalInfoInDetails? = nil, source: String) {
+        public init(aggregator: String, businessInfo: BusinessDetails? = nil, device: DeviceDetails? = nil, marketplaceInfo: MarketplaceInfo? = nil, mcc: String? = nil, personalInfo: UserPersonalInfoInDetails, source: String) {
             
             self.personalInfo = personalInfo
             
@@ -63,15 +63,8 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            do {
-                personalInfo = try container.decode(UserPersonalInfoInDetails.self, forKey: .personalInfo)
+            personalInfo = try container.decode(UserPersonalInfoInDetails.self, forKey: .personalInfo)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
             
@@ -138,11 +131,14 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(personalInfo, forKey: .personalInfo)
             
             
             
-            try? container.encodeIfPresent(mcc, forKey: .mcc)
+            
+            try? container.encode(mcc, forKey: .mcc)
+            
             
             
             
@@ -150,7 +146,9 @@ public extension ApplicationClient.Payment {
             
             
             
+            
             try? container.encodeIfPresent(marketplaceInfo, forKey: .marketplaceInfo)
+            
             
             
             
@@ -158,7 +156,9 @@ public extension ApplicationClient.Payment {
             
             
             
+            
             try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
+            
             
             
             

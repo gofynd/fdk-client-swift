@@ -190,7 +190,9 @@ public extension PublicClient.Inventory {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(id, forKey: .id)
+            
             
             
             
@@ -198,7 +200,9 @@ public extension PublicClient.Inventory {
             
             
             
+            
             try? container.encodeIfPresent(level, forKey: .level)
+            
             
             
             
@@ -206,7 +210,9 @@ public extension PublicClient.Inventory {
             
             
             
+            
             try? container.encodeIfPresent(opted, forKey: .opted)
+            
             
             
             
@@ -214,11 +220,14 @@ public extension PublicClient.Inventory {
             
             
             
+            
             try? container.encodeIfPresent(token, forKey: .token)
             
             
             
+            
             try? container.encodeIfPresent(name, forKey: .name)
+            
             
             
             

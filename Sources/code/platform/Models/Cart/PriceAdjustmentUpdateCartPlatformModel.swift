@@ -22,8 +22,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var applyExpiry: String?
         
-        public var restrictions: PriceAdjustmentRestrictions?
-        
         public var articleLevelDistribution: Bool
         
         public var collection: Collection
@@ -36,15 +34,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var articleIds: [Article]
         
-        public var removeArticles: Bool?
-        
-        public var autoRemove: Bool?
-        
         public var meta: [String: Any]?
         
         public var cartId: String
-        
-        public var allowRefund: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -56,8 +48,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             case message = "message"
             
             case applyExpiry = "apply_expiry"
-            
-            case restrictions = "restrictions"
             
             case articleLevelDistribution = "article_level_distribution"
             
@@ -71,19 +61,13 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case articleIds = "article_ids"
             
-            case removeArticles = "remove_articles"
-            
-            case autoRemove = "auto_remove"
-            
             case meta = "meta"
             
             case cartId = "cart_id"
             
-            case allowRefund = "allow_refund"
-            
         }
 
-        public init(allowedRefund: Bool? = nil, allowRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, autoRemove: Bool? = nil, cartId: String, collection: Collection, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, modifiedBy: String? = nil, removeArticles: Bool? = nil, restrictions: PriceAdjustmentRestrictions? = nil, type: String, value: Double) {
+        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, cartId: String, collection: Collection, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, modifiedBy: String? = nil, type: String, value: Double) {
             
             self.modifiedBy = modifiedBy
             
@@ -92,8 +76,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.message = message
             
             self.applyExpiry = applyExpiry
-            
-            self.restrictions = restrictions
             
             self.articleLevelDistribution = articleLevelDistribution
             
@@ -107,15 +89,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             self.articleIds = articleIds
             
-            self.removeArticles = removeArticles
-            
-            self.autoRemove = autoRemove
-            
             self.meta = meta
             
             self.cartId = cartId
-            
-            self.allowRefund = allowRefund
             
         }
 
@@ -147,18 +123,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     applyExpiry = try container.decode(String.self, forKey: .applyExpiry)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    restrictions = try container.decode(PriceAdjustmentRestrictions.self, forKey: .restrictions)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -207,30 +171,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    removeArticles = try container.decode(Bool.self, forKey: .removeArticles)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    autoRemove = try container.decode(Bool.self, forKey: .autoRemove)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     meta = try container.decode([String: Any].self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -245,18 +185,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 cartId = try container.decode(String.self, forKey: .cartId)
                 
             
-            
-            
-                do {
-                    allowRefund = try container.decode(Bool.self, forKey: .allowRefund)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
@@ -281,11 +209,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(applyExpiry, forKey: .applyExpiry)
-            
-            
-            
-            
-            try? container.encodeIfPresent(restrictions, forKey: .restrictions)
             
             
             
@@ -320,27 +243,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(removeArticles, forKey: .removeArticles)
-            
-            
-            
-            
-            try? container.encodeIfPresent(autoRemove, forKey: .autoRemove)
-            
-            
-            
-            
             try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
             
             try? container.encodeIfPresent(cartId, forKey: .cartId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(allowRefund, forKey: .allowRefund)
             
             
         }

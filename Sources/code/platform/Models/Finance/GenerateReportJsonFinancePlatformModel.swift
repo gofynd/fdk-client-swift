@@ -12,54 +12,48 @@ public extension PlatformClient.Finance {
     class GenerateReportJson: Codable {
         
         
-        public var data: [String: Any]?
-        
-        public var itemCount: Int?
+        public var items: [[String]]?
         
         public var page: Page?
         
         public var endDate: String?
         
+        public var headers: [String]?
+        
         public var startDate: String?
         
-        public var items: [[String]]?
-        
-        public var headers: [String]?
+        public var itemCount: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case data = "data"
-            
-            case itemCount = "item_count"
+            case items = "items"
             
             case page = "page"
             
             case endDate = "end_date"
             
+            case headers = "headers"
+            
             case startDate = "start_date"
             
-            case items = "items"
-            
-            case headers = "headers"
+            case itemCount = "item_count"
             
         }
 
-        public init(data: [String: Any]? = nil, endDate: String? = nil, headers: [String]? = nil, items: [[String]]? = nil, itemCount: Int? = nil, page: Page? = nil, startDate: String? = nil) {
+        public init(endDate: String? = nil, headers: [String]? = nil, items: [[String]]? = nil, itemCount: Int? = nil, page: Page? = nil, startDate: String? = nil) {
             
-            self.data = data
-            
-            self.itemCount = itemCount
+            self.items = items
             
             self.page = page
             
             self.endDate = endDate
             
+            self.headers = headers
+            
             self.startDate = startDate
             
-            self.items = items
-            
-            self.headers = headers
+            self.itemCount = itemCount
             
         }
 
@@ -68,19 +62,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    data = try container.decode([String: Any].self, forKey: .data)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    itemCount = try container.decode(Int.self, forKey: .itemCount)
+                    items = try container.decode([[String]].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,6 +98,18 @@ public extension PlatformClient.Finance {
             
             
                 do {
+                    headers = try container.decode([String].self, forKey: .headers)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     startDate = try container.decode(String.self, forKey: .startDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -128,19 +122,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    items = try container.decode([[String]].self, forKey: .items)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    headers = try container.decode([String].self, forKey: .headers)
+                    itemCount = try container.decode(Int.self, forKey: .itemCount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -157,12 +139,7 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(data, forKey: .data)
-            
-            
-            
-            
-            try? container.encodeIfPresent(itemCount, forKey: .itemCount)
+            try? container.encodeIfPresent(items, forKey: .items)
             
             
             
@@ -177,17 +154,17 @@ public extension PlatformClient.Finance {
             
             
             
+            try? container.encodeIfPresent(headers, forKey: .headers)
+            
+            
+            
+            
             try? container.encodeIfPresent(startDate, forKey: .startDate)
             
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
-            
-            
-            
-            
-            try? container.encodeIfPresent(headers, forKey: .headers)
+            try? container.encodeIfPresent(itemCount, forKey: .itemCount)
             
             
         }

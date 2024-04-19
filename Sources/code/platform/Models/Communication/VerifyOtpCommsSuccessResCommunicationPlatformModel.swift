@@ -20,8 +20,6 @@ public extension PlatformClient.Communication {
         
         public var message: String?
         
-        public var email: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -33,11 +31,9 @@ public extension PlatformClient.Communication {
             
             case message = "message"
             
-            case email = "email"
-            
         }
 
-        public init(countryCode: String? = nil, email: String? = nil, message: String? = nil, mobile: String? = nil, success: Bool? = nil) {
+        public init(countryCode: String? = nil, message: String? = nil, mobile: String? = nil, success: Bool? = nil) {
             
             self.success = success
             
@@ -46,8 +42,6 @@ public extension PlatformClient.Communication {
             self.countryCode = countryCode
             
             self.message = message
-            
-            self.email = email
             
         }
 
@@ -102,18 +96,6 @@ public extension PlatformClient.Communication {
                 }
                 
             
-            
-                do {
-                    email = try container.decode(String.self, forKey: .email)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -137,11 +119,6 @@ public extension PlatformClient.Communication {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            
-            try? container.encodeIfPresent(email, forKey: .email)
             
             
         }
@@ -168,8 +145,6 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var message: String?
         
-        public var email: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -181,11 +156,9 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             case message = "message"
             
-            case email = "email"
-            
         }
 
-        public init(countryCode: String? = nil, email: String? = nil, message: String? = nil, mobile: String? = nil, success: Bool? = nil) {
+        public init(countryCode: String? = nil, message: String? = nil, mobile: String? = nil, success: Bool? = nil) {
             
             self.success = success
             
@@ -194,8 +167,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             self.countryCode = countryCode
             
             self.message = message
-            
-            self.email = email
             
         }
 
@@ -250,18 +221,6 @@ public extension PlatformClient.ApplicationClient.Communication {
                 }
                 
             
-            
-                do {
-                    email = try container.decode(String.self, forKey: .email)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -285,11 +244,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            
-            try? container.encodeIfPresent(email, forKey: .email)
             
             
         }

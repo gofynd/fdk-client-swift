@@ -38,8 +38,6 @@ public extension PlatformClient.Payment {
         
         public var merchantTransactionId: String
         
-        public var uniqueLinkId: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -69,11 +67,9 @@ public extension PlatformClient.Payment {
             
             case merchantTransactionId = "merchant_transaction_id"
             
-            case uniqueLinkId = "unique_link_id"
-            
         }
 
-        public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, deviceId: String? = nil, email: String, merchantOrderId: String, merchantTransactionId: String, method: String, orderId: String, status: String, uniqueLinkId: String? = nil, vpa: String? = nil) {
+        public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, deviceId: String? = nil, email: String, merchantOrderId: String, merchantTransactionId: String, method: String, orderId: String, status: String, vpa: String? = nil) {
             
             self.deviceId = deviceId
             
@@ -100,8 +96,6 @@ public extension PlatformClient.Payment {
             self.method = method
             
             self.merchantTransactionId = merchantTransactionId
-            
-            self.uniqueLinkId = uniqueLinkId
             
         }
 
@@ -187,18 +181,6 @@ public extension PlatformClient.Payment {
                 
             
             
-            
-                do {
-                    uniqueLinkId = try container.decode(String.self, forKey: .uniqueLinkId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -206,7 +188,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(deviceId, forKey: .deviceId)
+            try? container.encode(deviceId, forKey: .deviceId)
             
             
             
@@ -241,7 +223,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            try? container.encode(amount, forKey: .amount)
             
             
             
@@ -267,11 +249,6 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(merchantTransactionId, forKey: .merchantTransactionId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(uniqueLinkId, forKey: .uniqueLinkId)
             
             
         }
@@ -316,8 +293,6 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var merchantTransactionId: String
         
-        public var uniqueLinkId: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -347,11 +322,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case merchantTransactionId = "merchant_transaction_id"
             
-            case uniqueLinkId = "unique_link_id"
-            
         }
 
-        public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, deviceId: String? = nil, email: String, merchantOrderId: String, merchantTransactionId: String, method: String, orderId: String, status: String, uniqueLinkId: String? = nil, vpa: String? = nil) {
+        public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, deviceId: String? = nil, email: String, merchantOrderId: String, merchantTransactionId: String, method: String, orderId: String, status: String, vpa: String? = nil) {
             
             self.deviceId = deviceId
             
@@ -378,8 +351,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.method = method
             
             self.merchantTransactionId = merchantTransactionId
-            
-            self.uniqueLinkId = uniqueLinkId
             
         }
 
@@ -465,18 +436,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
-            
-                do {
-                    uniqueLinkId = try container.decode(String.self, forKey: .uniqueLinkId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -484,7 +443,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(deviceId, forKey: .deviceId)
+            try? container.encode(deviceId, forKey: .deviceId)
             
             
             
@@ -519,7 +478,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            try? container.encode(amount, forKey: .amount)
             
             
             
@@ -545,11 +504,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(merchantTransactionId, forKey: .merchantTransactionId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(uniqueLinkId, forKey: .uniqueLinkId)
             
             
         }

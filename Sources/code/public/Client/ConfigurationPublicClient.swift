@@ -14,8 +14,8 @@ extension PublicClient {
         
         /**
         *
-        * Summary: Search application.
-        * Description: Provide application name or domain url.
+        * Summary: Search Application
+        * Description: Provide application name or domain url
         **/
         public func searchApplication(
             authorization: String?,
@@ -45,7 +45,7 @@ if let value = authorization {
             PublicAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/public/configuration/v1.0/application/search-application",
+                url: "/service/common/configuration/v1.0/application/search-application",
                 query: xQuery,
                 extraHeaders:  xHeaders,
                 body: nil,
@@ -108,7 +108,7 @@ if let value = id {
             PublicAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/public/configuration/v1.0/location",
+                url: "/service/common/configuration/v1.0/location",
                 query: xQuery,
                 extraHeaders:  [],
                 body: nil,

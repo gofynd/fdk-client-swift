@@ -170,7 +170,9 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(firebase, forKey: .firebase)
+            
             
             
             
@@ -178,7 +180,9 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(segment, forKey: .segment)
+            
             
             
             
@@ -186,7 +190,9 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(freshchat, forKey: .freshchat)
+            
             
             
             
@@ -194,7 +200,9 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(fyndRewards, forKey: .fyndRewards)
+            
             
             
             

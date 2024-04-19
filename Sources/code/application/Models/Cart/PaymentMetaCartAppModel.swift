@@ -98,7 +98,9 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
+            
             
             
             
@@ -106,11 +108,13 @@ public extension ApplicationClient.Cart {
             
             
             
+            
             try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
             
             
             
-            try? container.encodeIfPresent(paymentIdentifier, forKey: .paymentIdentifier)
+            
+            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
             
             
         }

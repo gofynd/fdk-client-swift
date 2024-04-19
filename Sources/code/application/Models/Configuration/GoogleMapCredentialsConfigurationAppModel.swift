@@ -50,6 +50,7 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(apiKey?.asBase64, forKey: .apiKey)
             
             

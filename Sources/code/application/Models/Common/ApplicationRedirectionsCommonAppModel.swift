@@ -80,11 +80,14 @@ public extension ApplicationClient.Common {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(redirectFrom, forKey: .redirectFrom)
             
             
             
+            
             try? container.encodeIfPresent(redirectTo, forKey: .redirectTo)
+            
             
             
             

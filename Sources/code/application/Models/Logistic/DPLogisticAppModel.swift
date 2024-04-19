@@ -171,7 +171,9 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(fmPriority, forKey: .fmPriority)
+            
             
             
             
@@ -179,7 +181,9 @@ public extension ApplicationClient.Logistic {
             
             
             
+            
             try? container.encodeIfPresent(rvpPriority, forKey: .rvpPriority)
+            
             
             
             
@@ -187,11 +191,14 @@ public extension ApplicationClient.Logistic {
             
             
             
+            
             try? container.encodeIfPresent(operations, forKey: .operations)
             
             
             
-            try? container.encodeIfPresent(areaCode, forKey: .areaCode)
+            
+            try? container.encode(areaCode, forKey: .areaCode)
+            
             
             
             
@@ -199,11 +206,14 @@ public extension ApplicationClient.Logistic {
             
             
             
+            
             try? container.encodeIfPresent(internalAccountId, forKey: .internalAccountId)
             
             
             
-            try? container.encodeIfPresent(externalAccountId, forKey: .externalAccountId)
+            
+            try? container.encode(externalAccountId, forKey: .externalAccountId)
+            
             
             
             

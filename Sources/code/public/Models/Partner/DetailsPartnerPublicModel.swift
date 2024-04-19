@@ -154,7 +154,9 @@ public extension PublicClient.Partner {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(benefits, forKey: .benefits)
+            
             
             
             
@@ -162,7 +164,9 @@ public extension PublicClient.Partner {
             
             
             
+            
             try? container.encodeIfPresent(description, forKey: .description)
+            
             
             
             
@@ -170,11 +174,14 @@ public extension PublicClient.Partner {
             
             
             
+            
             try? container.encodeIfPresent(videoUrl, forKey: .videoUrl)
             
             
             
+            
             try? container.encodeIfPresent(youtube, forKey: .youtube)
+            
             
             
             

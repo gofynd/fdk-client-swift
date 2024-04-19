@@ -16,8 +16,6 @@ public extension PlatformClient.Payment {
         
         public var showBeneficiaryDetails: Bool?
         
-        public var bank: [OrderBeneficiaryDetails]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -25,17 +23,13 @@ public extension PlatformClient.Payment {
             
             case showBeneficiaryDetails = "show_beneficiary_details"
             
-            case bank = "bank"
-            
         }
 
-        public init(bank: [OrderBeneficiaryDetails]? = nil, beneficiaries: [OrderBeneficiaryDetails]? = nil, showBeneficiaryDetails: Bool? = nil) {
+        public init(beneficiaries: [OrderBeneficiaryDetails]? = nil, showBeneficiaryDetails: Bool? = nil) {
             
             self.beneficiaries = beneficiaries
             
             self.showBeneficiaryDetails = showBeneficiaryDetails
-            
-            self.bank = bank
             
         }
 
@@ -66,18 +60,6 @@ public extension PlatformClient.Payment {
                 }
                 
             
-            
-                do {
-                    bank = try container.decode([OrderBeneficiaryDetails].self, forKey: .bank)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -85,17 +67,12 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(beneficiaries, forKey: .beneficiaries)
+            try? container.encode(beneficiaries, forKey: .beneficiaries)
             
             
             
             
             try? container.encodeIfPresent(showBeneficiaryDetails, forKey: .showBeneficiaryDetails)
-            
-            
-            
-            
-            try? container.encodeIfPresent(bank, forKey: .bank)
             
             
         }
@@ -118,8 +95,6 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var showBeneficiaryDetails: Bool?
         
-        public var bank: [OrderBeneficiaryDetails]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -127,17 +102,13 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case showBeneficiaryDetails = "show_beneficiary_details"
             
-            case bank = "bank"
-            
         }
 
-        public init(bank: [OrderBeneficiaryDetails]? = nil, beneficiaries: [OrderBeneficiaryDetails]? = nil, showBeneficiaryDetails: Bool? = nil) {
+        public init(beneficiaries: [OrderBeneficiaryDetails]? = nil, showBeneficiaryDetails: Bool? = nil) {
             
             self.beneficiaries = beneficiaries
             
             self.showBeneficiaryDetails = showBeneficiaryDetails
-            
-            self.bank = bank
             
         }
 
@@ -168,18 +139,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 }
                 
             
-            
-                do {
-                    bank = try container.decode([OrderBeneficiaryDetails].self, forKey: .bank)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -187,17 +146,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(beneficiaries, forKey: .beneficiaries)
+            try? container.encode(beneficiaries, forKey: .beneficiaries)
             
             
             
             
             try? container.encodeIfPresent(showBeneficiaryDetails, forKey: .showBeneficiaryDetails)
-            
-            
-            
-            
-            try? container.encodeIfPresent(bank, forKey: .bank)
             
             
         }

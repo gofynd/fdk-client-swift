@@ -116,7 +116,9 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(header, forKey: .header)
+            
             
             
             
@@ -124,11 +126,14 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(total, forKey: .total)
             
             
             
+            
             try? container.encodeIfPresent(key, forKey: .key)
+            
             
             
             

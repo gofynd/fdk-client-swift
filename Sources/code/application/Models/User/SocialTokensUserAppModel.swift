@@ -10,7 +10,7 @@ public extension ApplicationClient.User {
         
         public var facebook: Facebook?
         
-        public var accountkit: Accountkit?
+        public var accountKit: Accountkit?
         
         public var google: Google?
         
@@ -19,17 +19,17 @@ public extension ApplicationClient.User {
             
             case facebook = "facebook"
             
-            case accountkit = "accountkit"
+            case accountKit = "account_kit"
             
             case google = "google"
             
         }
 
-        public init(accountkit: Accountkit? = nil, facebook: Facebook? = nil, google: Google? = nil) {
+        public init(accountKit: Accountkit? = nil, facebook: Facebook? = nil, google: Google? = nil) {
             
             self.facebook = facebook
             
-            self.accountkit = accountkit
+            self.accountKit = accountKit
             
             self.google = google
             
@@ -52,7 +52,7 @@ public extension ApplicationClient.User {
             
             
             do {
-                accountkit = try container.decode(Accountkit.self, forKey: .accountkit)
+                accountKit = try container.decode(Accountkit.self, forKey: .accountKit)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,11 +80,14 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(facebook, forKey: .facebook)
             
             
             
-            try? container.encodeIfPresent(accountkit, forKey: .accountkit)
+            
+            try? container.encodeIfPresent(accountKit, forKey: .accountKit)
+            
             
             
             

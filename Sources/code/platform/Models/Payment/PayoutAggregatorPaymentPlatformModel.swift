@@ -85,17 +85,17 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
+            try? container.encode(aggregatorId, forKey: .aggregatorId)
             
             
             
             
-            try? container.encodeIfPresent(aggregatorFundId, forKey: .aggregatorFundId)
+            try? container.encode(aggregatorFundId, forKey: .aggregatorFundId)
             
             
             
             
-            try? container.encodeIfPresent(payoutDetailsId, forKey: .payoutDetailsId)
+            try? container.encode(payoutDetailsId, forKey: .payoutDetailsId)
             
             
         }
@@ -187,17 +187,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
+            try? container.encode(aggregatorId, forKey: .aggregatorId)
             
             
             
             
-            try? container.encodeIfPresent(aggregatorFundId, forKey: .aggregatorFundId)
+            try? container.encode(aggregatorFundId, forKey: .aggregatorFundId)
             
             
             
             
-            try? container.encodeIfPresent(payoutDetailsId, forKey: .payoutDetailsId)
+            try? container.encode(payoutDetailsId, forKey: .payoutDetailsId)
             
             
         }

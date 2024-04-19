@@ -158,7 +158,9 @@ public extension PublicClient.Inventory {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(integrationData, forKey: .integrationData)
+            
             
             
             
@@ -166,7 +168,9 @@ public extension PublicClient.Inventory {
             
             
             
+            
             try? container.encodeIfPresent(integration, forKey: .integration)
+            
             
             
             
@@ -174,7 +178,9 @@ public extension PublicClient.Inventory {
             
             
             
+            
             try? container.encodeIfPresent(taskDetails, forKey: .taskDetails)
+            
             
             
             
@@ -182,7 +188,9 @@ public extension PublicClient.Inventory {
             
             
             
+            
             try? container.encodeIfPresent(jobCode, forKey: .jobCode)
+            
             
             
             

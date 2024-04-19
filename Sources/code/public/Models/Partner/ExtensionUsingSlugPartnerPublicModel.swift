@@ -352,7 +352,9 @@ public extension PublicClient.Partner {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(category, forKey: .category)
+            
             
             
             
@@ -360,7 +362,9 @@ public extension PublicClient.Partner {
             
             
             
+            
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+            
             
             
             
@@ -368,7 +372,9 @@ public extension PublicClient.Partner {
             
             
             
+            
             try? container.encodeIfPresent(details, forKey: .details)
+            
             
             
             
@@ -376,7 +382,9 @@ public extension PublicClient.Partner {
             
             
             
+            
             try? container.encodeIfPresent(isComingSoon, forKey: .isComingSoon)
+            
             
             
             
@@ -384,7 +392,9 @@ public extension PublicClient.Partner {
             
             
             
+            
             try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
+            
             
             
             
@@ -392,7 +402,9 @@ public extension PublicClient.Partner {
             
             
             
+            
             try? container.encodeIfPresent(organizationId, forKey: .organizationId)
+            
             
             
             
@@ -400,7 +412,9 @@ public extension PublicClient.Partner {
             
             
             
+            
             try? container.encodeIfPresent(plans, forKey: .plans)
+            
             
             
             
@@ -408,7 +422,9 @@ public extension PublicClient.Partner {
             
             
             
+            
             try? container.encodeIfPresent(reviewInstructions, forKey: .reviewInstructions)
+            
             
             
             
@@ -416,7 +432,9 @@ public extension PublicClient.Partner {
             
             
             
+            
             try? container.encodeIfPresent(slug, forKey: .slug)
+            
             
             
             

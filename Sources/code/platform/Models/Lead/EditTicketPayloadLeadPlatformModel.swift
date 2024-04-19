@@ -22,7 +22,7 @@ public extension PlatformClient.Lead {
         
         public var status: String?
         
-        public var priority: String?
+        public var priority: PriorityEnum?
         
         public var assignedTo: AgentChangePayload?
         
@@ -49,7 +49,7 @@ public extension PlatformClient.Lead {
             
         }
 
-        public init(assignedTo: AgentChangePayload? = nil, category: String? = nil, content: TicketContent? = nil, priority: String? = nil, source: String? = nil, status: String? = nil, subCategory: String? = nil, tags: [String]? = nil) {
+        public init(assignedTo: AgentChangePayload? = nil, category: String? = nil, content: TicketContent? = nil, priority: PriorityEnum? = nil, source: String? = nil, status: String? = nil, subCategory: String? = nil, tags: [String]? = nil) {
             
             self.content = content
             
@@ -134,7 +134,7 @@ public extension PlatformClient.Lead {
             
             
                 do {
-                    priority = try container.decode(String.self, forKey: .priority)
+                    priority = try container.decode(PriorityEnum.self, forKey: .priority)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -239,7 +239,7 @@ public extension PlatformClient.ApplicationClient.Lead {
         
         public var status: String?
         
-        public var priority: String?
+        public var priority: PriorityEnum?
         
         public var assignedTo: AgentChangePayload?
         
@@ -266,7 +266,7 @@ public extension PlatformClient.ApplicationClient.Lead {
             
         }
 
-        public init(assignedTo: AgentChangePayload? = nil, category: String? = nil, content: TicketContent? = nil, priority: String? = nil, source: String? = nil, status: String? = nil, subCategory: String? = nil, tags: [String]? = nil) {
+        public init(assignedTo: AgentChangePayload? = nil, category: String? = nil, content: TicketContent? = nil, priority: PriorityEnum? = nil, source: String? = nil, status: String? = nil, subCategory: String? = nil, tags: [String]? = nil) {
             
             self.content = content
             
@@ -351,7 +351,7 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
                 do {
-                    priority = try container.decode(String.self, forKey: .priority)
+                    priority = try container.decode(PriorityEnum.self, forKey: .priority)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

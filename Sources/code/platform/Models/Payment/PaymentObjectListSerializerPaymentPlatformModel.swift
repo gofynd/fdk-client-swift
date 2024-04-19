@@ -270,7 +270,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(refundObject, forKey: .refundObject)
+            try? container.encode(refundObject, forKey: .refundObject)
             
             
             
@@ -280,7 +280,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(paymentId, forKey: .paymentId)
+            try? container.encode(paymentId, forKey: .paymentId)
             
             
             
@@ -295,7 +295,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(aggregatorPaymentObject, forKey: .aggregatorPaymentObject)
+            try? container.encode(aggregatorPaymentObject, forKey: .aggregatorPaymentObject)
             
             
             
@@ -612,7 +612,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(refundObject, forKey: .refundObject)
+            try? container.encode(refundObject, forKey: .refundObject)
             
             
             
@@ -622,7 +622,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(paymentId, forKey: .paymentId)
+            try? container.encode(paymentId, forKey: .paymentId)
             
             
             
@@ -637,7 +637,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(aggregatorPaymentObject, forKey: .aggregatorPaymentObject)
+            try? container.encode(aggregatorPaymentObject, forKey: .aggregatorPaymentObject)
             
             
             

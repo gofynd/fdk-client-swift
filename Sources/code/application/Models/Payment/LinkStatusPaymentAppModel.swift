@@ -8,9 +8,9 @@ public extension ApplicationClient.Payment {
     */
     class LinkStatus: Codable {
         
-        public var status: String
+        public var status: Bool
         
-        public var message: String?
+        public var message: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(message: String? = nil, status: String) {
+        public init(message: String, status: Bool) {
             
             self.status = status
             
@@ -33,20 +33,13 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            status = try container.decode(String.self, forKey: .status)
+            status = try container.decode(Bool.self, forKey: .status)
             
             
             
             
-            do {
-                message = try container.decode(String.self, forKey: .message)
+            message = try container.decode(String.self, forKey: .message)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
         }
@@ -55,7 +48,9 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(status, forKey: .status)
+            
             
             
             

@@ -26,15 +26,13 @@ public extension ApplicationClient.Configuration {
         
         public var order: OrderFeature?
         
-        public var buybox: BuyboxFeature?
-        
         public var id: String?
         
         public var app: String?
         
         public var createdAt: String?
         
-        public var modifiedAt: String?
+        public var updatedAt: String?
         
         public var v: Int?
         
@@ -59,21 +57,19 @@ public extension ApplicationClient.Configuration {
             
             case order = "order"
             
-            case buybox = "buybox"
-            
             case id = "_id"
             
             case app = "app"
             
             case createdAt = "created_at"
             
-            case modifiedAt = "modified_at"
+            case updatedAt = "updated_at"
             
             case v = "__v"
             
         }
 
-        public init(app: String? = nil, buybox: BuyboxFeature? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, homePage: HomePageFeature? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, pcr: PcrFeature? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, id: String? = nil, v: Int? = nil) {
+        public init(app: String? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, homePage: HomePageFeature? = nil, landingPage: LandingPageFeature? = nil, order: OrderFeature? = nil, pcr: PcrFeature? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.productDetail = productDetail
             
@@ -93,15 +89,13 @@ public extension ApplicationClient.Configuration {
             
             self.order = order
             
-            self.buybox = buybox
-            
             self.id = id
             
             self.app = app
             
             self.createdAt = createdAt
             
-            self.modifiedAt = modifiedAt
+            self.updatedAt = updatedAt
             
             self.v = v
             
@@ -220,18 +214,6 @@ public extension ApplicationClient.Configuration {
             
             
             do {
-                buybox = try container.decode(BuyboxFeature.self, forKey: .buybox)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 id = try container.decode(String.self, forKey: .id)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -268,7 +250,7 @@ public extension ApplicationClient.Configuration {
             
             
             do {
-                modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
+                updatedAt = try container.decode(String.self, forKey: .updatedAt)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -296,7 +278,9 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(productDetail, forKey: .productDetail)
+            
             
             
             
@@ -304,7 +288,9 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(registrationPage, forKey: .registrationPage)
+            
             
             
             
@@ -312,7 +298,9 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(common, forKey: .common)
+            
             
             
             
@@ -320,7 +308,9 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(qr, forKey: .qr)
+            
             
             
             
@@ -328,11 +318,9 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(order, forKey: .order)
             
-            
-            
-            try? container.encodeIfPresent(buybox, forKey: .buybox)
             
             
             
@@ -340,7 +328,9 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(app, forKey: .app)
+            
             
             
             
@@ -348,7 +338,9 @@ public extension ApplicationClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
+            
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
             
             
             

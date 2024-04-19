@@ -8,7 +8,7 @@ public extension ApplicationClient.User {
     */
     class TokenRequestBodySchema: Codable {
         
-        public var token: String
+        public var token: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -17,7 +17,7 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(token: String) {
+        public init(token: String? = nil) {
             
             self.token = token
             
@@ -27,14 +27,22 @@ public extension ApplicationClient.User {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            token = try container.decode(String.self, forKey: .token)
+            do {
+                token = try container.decode(String.self, forKey: .token)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
             
             
             try? container.encodeIfPresent(token, forKey: .token)

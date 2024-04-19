@@ -37,7 +37,8 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(cardId, forKey: .cardId)
+            
+            try? container.encode(cardId, forKey: .cardId)
             
             
         }

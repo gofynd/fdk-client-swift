@@ -20,7 +20,7 @@ public extension PlatformClient.Order {
         
         public var errorTrace: String?
         
-        public var error: String?
+        public var error: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(error: String? = nil, errorTrace: String? = nil, message: String, status: Int? = nil, success: Bool? = nil) {
+        public init(error: String, errorTrace: String? = nil, message: String, status: Int? = nil, success: Bool? = nil) {
             
             self.status = status
             
@@ -96,16 +96,9 @@ public extension PlatformClient.Order {
                 
             
             
-                do {
-                    error = try container.decode(String.self, forKey: .error)
+                error = try container.decode(String.self, forKey: .error)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -114,22 +107,22 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encode(status, forKey: .status)
             
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encode(success, forKey: .success)
             
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encode(message, forKey: .message)
             
             
             
             
-            try? container.encodeIfPresent(errorTrace, forKey: .errorTrace)
+            try? container.encode(errorTrace, forKey: .errorTrace)
             
             
             
@@ -161,7 +154,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var errorTrace: String?
         
-        public var error: String?
+        public var error: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -178,7 +171,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(error: String? = nil, errorTrace: String? = nil, message: String, status: Int? = nil, success: Bool? = nil) {
+        public init(error: String, errorTrace: String? = nil, message: String, status: Int? = nil, success: Bool? = nil) {
             
             self.status = status
             
@@ -237,16 +230,9 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-                do {
-                    error = try container.decode(String.self, forKey: .error)
+                error = try container.decode(String.self, forKey: .error)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -255,22 +241,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encode(status, forKey: .status)
             
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encode(success, forKey: .success)
             
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encode(message, forKey: .message)
             
             
             
             
-            try? container.encodeIfPresent(errorTrace, forKey: .errorTrace)
+            try? container.encode(errorTrace, forKey: .errorTrace)
             
             
             

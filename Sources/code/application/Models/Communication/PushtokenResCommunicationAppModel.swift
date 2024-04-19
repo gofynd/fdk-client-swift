@@ -224,7 +224,9 @@ public extension ApplicationClient.Communication {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(id, forKey: .id)
+            
             
             
             
@@ -232,7 +234,9 @@ public extension ApplicationClient.Communication {
             
             
             
+            
             try? container.encodeIfPresent(pushToken, forKey: .pushToken)
+            
             
             
             
@@ -240,7 +244,9 @@ public extension ApplicationClient.Communication {
             
             
             
+            
             try? container.encodeIfPresent(type, forKey: .type)
+            
             
             
             
@@ -248,7 +254,9 @@ public extension ApplicationClient.Communication {
             
             
             
+            
             try? container.encodeIfPresent(applicationId, forKey: .applicationId)
+            
             
             
             
@@ -256,11 +264,14 @@ public extension ApplicationClient.Communication {
             
             
             
+            
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
             
             
             
+            
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
             
             
             

@@ -100,7 +100,9 @@ public extension PublicClient.Partner {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(icon, forKey: .icon)
+            
             
             
             
@@ -108,7 +110,9 @@ public extension PublicClient.Partner {
             
             
             
+            
             try? container.encodeIfPresent(name, forKey: .name)
+            
             
             
             

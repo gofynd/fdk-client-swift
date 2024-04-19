@@ -152,7 +152,9 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
+            
             
             
             
@@ -160,7 +162,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
+            
             
             
             
@@ -168,11 +172,14 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(amount, forKey: .amount)
             
             
             
+            
             try? container.encodeIfPresent(promotionType, forKey: .promotionType)
+            
             
             
             

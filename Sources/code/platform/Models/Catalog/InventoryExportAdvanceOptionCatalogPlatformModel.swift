@@ -126,7 +126,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(fromDate, forKey: .fromDate)
+            try? container.encode(fromDate, forKey: .fromDate)
             
             
             
@@ -141,7 +141,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(toDate, forKey: .toDate)
+            try? container.encode(toDate, forKey: .toDate)
             
             
         }
@@ -274,7 +274,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(fromDate, forKey: .fromDate)
+            try? container.encode(fromDate, forKey: .fromDate)
             
             
             
@@ -289,7 +289,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(toDate, forKey: .toDate)
+            try? container.encode(toDate, forKey: .toDate)
             
             
         }

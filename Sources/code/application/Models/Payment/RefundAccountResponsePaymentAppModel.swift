@@ -10,7 +10,7 @@ public extension ApplicationClient.Payment {
         
         public var isVerifiedFlag: Bool?
         
-        public var data: RefundData?
+        public var data: [String: Any]?
         
         public var success: Bool
         
@@ -29,7 +29,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(data: RefundData? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
+        public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
             
             self.isVerifiedFlag = isVerifiedFlag
             
@@ -58,7 +58,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                data = try container.decode(RefundData.self, forKey: .data)
+                data = try container.decode([String: Any].self, forKey: .data)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,9 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
+            
             
             
             
@@ -92,7 +94,9 @@ public extension ApplicationClient.Payment {
             
             
             
+            
             try? container.encodeIfPresent(success, forKey: .success)
+            
             
             
             

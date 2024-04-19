@@ -118,7 +118,9 @@ public extension PublicClient.Inventory {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(executed, forKey: .executed)
+            
             
             
             
@@ -126,11 +128,14 @@ public extension PublicClient.Inventory {
             
             
             
+            
             try? container.encodeIfPresent(jobCode, forKey: .jobCode)
             
             
             
+            
             try? container.encodeIfPresent(dailyJob, forKey: .dailyJob)
+            
             
             
             

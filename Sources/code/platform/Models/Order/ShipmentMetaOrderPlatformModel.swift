@@ -791,12 +791,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(trackingUrl, forKey: .trackingUrl)
+            try? container.encode(trackingUrl, forKey: .trackingUrl)
             
             
             
             
-            try? container.encodeIfPresent(estimatedDeliveryDate, forKey: .estimatedDeliveryDate)
+            try? container.encode(estimatedDeliveryDate, forKey: .estimatedDeliveryDate)
             
             
             
@@ -821,17 +821,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(returnAwbNumber, forKey: .returnAwbNumber)
+            try? container.encode(returnAwbNumber, forKey: .returnAwbNumber)
             
             
             
             
-            try? container.encodeIfPresent(isSelfShip, forKey: .isSelfShip)
+            try? container.encode(isSelfShip, forKey: .isSelfShip)
             
             
             
             
-            try? container.encodeIfPresent(boxType, forKey: .boxType)
+            try? container.encode(boxType, forKey: .boxType)
             
             
             
@@ -841,17 +841,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(returnAffiliateShipmentId, forKey: .returnAffiliateShipmentId)
+            try? container.encode(returnAffiliateShipmentId, forKey: .returnAffiliateShipmentId)
             
             
             
             
-            try? container.encodeIfPresent(parentDpId, forKey: .parentDpId)
+            try? container.encode(parentDpId, forKey: .parentDpId)
             
             
             
             
-            try? container.encodeIfPresent(shipmentWeight, forKey: .shipmentWeight)
+            try? container.encode(shipmentWeight, forKey: .shipmentWeight)
             
             
             
@@ -861,37 +861,37 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(dpOptions, forKey: .dpOptions)
+            try? container.encode(dpOptions, forKey: .dpOptions)
             
             
             
             
-            try? container.encodeIfPresent(assignDpFromSb, forKey: .assignDpFromSb)
+            try? container.encode(assignDpFromSb, forKey: .assignDpFromSb)
             
             
             
             
-            try? container.encodeIfPresent(dueDate, forKey: .dueDate)
+            try? container.encode(dueDate, forKey: .dueDate)
             
             
             
             
-            try? container.encodeIfPresent(storeInvoiceUpdatedDate, forKey: .storeInvoiceUpdatedDate)
+            try? container.encode(storeInvoiceUpdatedDate, forKey: .storeInvoiceUpdatedDate)
             
             
             
             
-            try? container.encodeIfPresent(forwardAffiliateShipmentId, forKey: .forwardAffiliateShipmentId)
+            try? container.encode(forwardAffiliateShipmentId, forKey: .forwardAffiliateShipmentId)
             
             
             
             
-            try? container.encodeIfPresent(returnStoreNode, forKey: .returnStoreNode)
+            try? container.encode(returnStoreNode, forKey: .returnStoreNode)
             
             
             
             
-            try? container.encodeIfPresent(fulfilmentPriorityText, forKey: .fulfilmentPriorityText)
+            try? container.encode(fulfilmentPriorityText, forKey: .fulfilmentPriorityText)
             
             
             
@@ -901,12 +901,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(externalLink, forKey: .externalLink)
+            try? container.encode(externalLink, forKey: .externalLink)
             
             
             
             
-            try? container.encodeIfPresent(awbNumber, forKey: .awbNumber)
+            try? container.encode(awbNumber, forKey: .awbNumber)
             
             
             
@@ -916,42 +916,42 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(orderType, forKey: .orderType)
+            try? container.encode(orderType, forKey: .orderType)
             
             
             
             
-            try? container.encodeIfPresent(ewaybillInfo, forKey: .ewaybillInfo)
+            try? container.encode(ewaybillInfo, forKey: .ewaybillInfo)
             
             
             
             
-            try? container.encodeIfPresent(dpId, forKey: .dpId)
+            try? container.encode(dpId, forKey: .dpId)
             
             
             
             
-            try? container.encodeIfPresent(shipmentVolumetricWeight, forKey: .shipmentVolumetricWeight)
+            try? container.encode(shipmentVolumetricWeight, forKey: .shipmentVolumetricWeight)
             
             
             
             
-            try? container.encodeIfPresent(marketplaceStoreId, forKey: .marketplaceStoreId)
+            try? container.encode(marketplaceStoreId, forKey: .marketplaceStoreId)
             
             
             
             
-            try? container.encodeIfPresent(returnDetails, forKey: .returnDetails)
+            try? container.encode(returnDetails, forKey: .returnDetails)
             
             
             
             
-            try? container.encodeIfPresent(dpSortKey, forKey: .dpSortKey)
+            try? container.encode(dpSortKey, forKey: .dpSortKey)
             
             
             
             
-            try? container.encodeIfPresent(packagingName, forKey: .packagingName)
+            try? container.encode(packagingName, forKey: .packagingName)
             
             
             
@@ -961,17 +961,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(autoTriggerDpAssignmentAcf, forKey: .autoTriggerDpAssignmentAcf)
+            try? container.encode(autoTriggerDpAssignmentAcf, forKey: .autoTriggerDpAssignmentAcf)
             
             
             
             
-            try? container.encodeIfPresent(dpName, forKey: .dpName)
+            try? container.encode(dpName, forKey: .dpName)
             
             
             
             
-            try? container.encodeIfPresent(poNumber, forKey: .poNumber)
+            try? container.encode(poNumber, forKey: .poNumber)
             
             
             
@@ -981,27 +981,27 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(b2CBuyerDetails, forKey: .b2CBuyerDetails)
+            try? container.encode(b2CBuyerDetails, forKey: .b2CBuyerDetails)
             
             
             
             
-            try? container.encodeIfPresent(forwardAffiliateOrderId, forKey: .forwardAffiliateOrderId)
+            try? container.encode(forwardAffiliateOrderId, forKey: .forwardAffiliateOrderId)
             
             
             
             
-            try? container.encodeIfPresent(returnAffiliateOrderId, forKey: .returnAffiliateOrderId)
+            try? container.encode(returnAffiliateOrderId, forKey: .returnAffiliateOrderId)
             
             
             
             
-            try? container.encodeIfPresent(bagWeight, forKey: .bagWeight)
+            try? container.encode(bagWeight, forKey: .bagWeight)
             
             
             
             
-            try? container.encodeIfPresent(refundTo, forKey: .refundTo)
+            try? container.encode(refundTo, forKey: .refundTo)
             
             
         }
@@ -1799,12 +1799,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(trackingUrl, forKey: .trackingUrl)
+            try? container.encode(trackingUrl, forKey: .trackingUrl)
             
             
             
             
-            try? container.encodeIfPresent(estimatedDeliveryDate, forKey: .estimatedDeliveryDate)
+            try? container.encode(estimatedDeliveryDate, forKey: .estimatedDeliveryDate)
             
             
             
@@ -1829,17 +1829,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(returnAwbNumber, forKey: .returnAwbNumber)
+            try? container.encode(returnAwbNumber, forKey: .returnAwbNumber)
             
             
             
             
-            try? container.encodeIfPresent(isSelfShip, forKey: .isSelfShip)
+            try? container.encode(isSelfShip, forKey: .isSelfShip)
             
             
             
             
-            try? container.encodeIfPresent(boxType, forKey: .boxType)
+            try? container.encode(boxType, forKey: .boxType)
             
             
             
@@ -1849,17 +1849,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(returnAffiliateShipmentId, forKey: .returnAffiliateShipmentId)
+            try? container.encode(returnAffiliateShipmentId, forKey: .returnAffiliateShipmentId)
             
             
             
             
-            try? container.encodeIfPresent(parentDpId, forKey: .parentDpId)
+            try? container.encode(parentDpId, forKey: .parentDpId)
             
             
             
             
-            try? container.encodeIfPresent(shipmentWeight, forKey: .shipmentWeight)
+            try? container.encode(shipmentWeight, forKey: .shipmentWeight)
             
             
             
@@ -1869,37 +1869,37 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(dpOptions, forKey: .dpOptions)
+            try? container.encode(dpOptions, forKey: .dpOptions)
             
             
             
             
-            try? container.encodeIfPresent(assignDpFromSb, forKey: .assignDpFromSb)
+            try? container.encode(assignDpFromSb, forKey: .assignDpFromSb)
             
             
             
             
-            try? container.encodeIfPresent(dueDate, forKey: .dueDate)
+            try? container.encode(dueDate, forKey: .dueDate)
             
             
             
             
-            try? container.encodeIfPresent(storeInvoiceUpdatedDate, forKey: .storeInvoiceUpdatedDate)
+            try? container.encode(storeInvoiceUpdatedDate, forKey: .storeInvoiceUpdatedDate)
             
             
             
             
-            try? container.encodeIfPresent(forwardAffiliateShipmentId, forKey: .forwardAffiliateShipmentId)
+            try? container.encode(forwardAffiliateShipmentId, forKey: .forwardAffiliateShipmentId)
             
             
             
             
-            try? container.encodeIfPresent(returnStoreNode, forKey: .returnStoreNode)
+            try? container.encode(returnStoreNode, forKey: .returnStoreNode)
             
             
             
             
-            try? container.encodeIfPresent(fulfilmentPriorityText, forKey: .fulfilmentPriorityText)
+            try? container.encode(fulfilmentPriorityText, forKey: .fulfilmentPriorityText)
             
             
             
@@ -1909,12 +1909,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(externalLink, forKey: .externalLink)
+            try? container.encode(externalLink, forKey: .externalLink)
             
             
             
             
-            try? container.encodeIfPresent(awbNumber, forKey: .awbNumber)
+            try? container.encode(awbNumber, forKey: .awbNumber)
             
             
             
@@ -1924,42 +1924,42 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(orderType, forKey: .orderType)
+            try? container.encode(orderType, forKey: .orderType)
             
             
             
             
-            try? container.encodeIfPresent(ewaybillInfo, forKey: .ewaybillInfo)
+            try? container.encode(ewaybillInfo, forKey: .ewaybillInfo)
             
             
             
             
-            try? container.encodeIfPresent(dpId, forKey: .dpId)
+            try? container.encode(dpId, forKey: .dpId)
             
             
             
             
-            try? container.encodeIfPresent(shipmentVolumetricWeight, forKey: .shipmentVolumetricWeight)
+            try? container.encode(shipmentVolumetricWeight, forKey: .shipmentVolumetricWeight)
             
             
             
             
-            try? container.encodeIfPresent(marketplaceStoreId, forKey: .marketplaceStoreId)
+            try? container.encode(marketplaceStoreId, forKey: .marketplaceStoreId)
             
             
             
             
-            try? container.encodeIfPresent(returnDetails, forKey: .returnDetails)
+            try? container.encode(returnDetails, forKey: .returnDetails)
             
             
             
             
-            try? container.encodeIfPresent(dpSortKey, forKey: .dpSortKey)
+            try? container.encode(dpSortKey, forKey: .dpSortKey)
             
             
             
             
-            try? container.encodeIfPresent(packagingName, forKey: .packagingName)
+            try? container.encode(packagingName, forKey: .packagingName)
             
             
             
@@ -1969,17 +1969,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(autoTriggerDpAssignmentAcf, forKey: .autoTriggerDpAssignmentAcf)
+            try? container.encode(autoTriggerDpAssignmentAcf, forKey: .autoTriggerDpAssignmentAcf)
             
             
             
             
-            try? container.encodeIfPresent(dpName, forKey: .dpName)
+            try? container.encode(dpName, forKey: .dpName)
             
             
             
             
-            try? container.encodeIfPresent(poNumber, forKey: .poNumber)
+            try? container.encode(poNumber, forKey: .poNumber)
             
             
             
@@ -1989,27 +1989,27 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(b2CBuyerDetails, forKey: .b2CBuyerDetails)
+            try? container.encode(b2CBuyerDetails, forKey: .b2CBuyerDetails)
             
             
             
             
-            try? container.encodeIfPresent(forwardAffiliateOrderId, forKey: .forwardAffiliateOrderId)
+            try? container.encode(forwardAffiliateOrderId, forKey: .forwardAffiliateOrderId)
             
             
             
             
-            try? container.encodeIfPresent(returnAffiliateOrderId, forKey: .returnAffiliateOrderId)
+            try? container.encode(returnAffiliateOrderId, forKey: .returnAffiliateOrderId)
             
             
             
             
-            try? container.encodeIfPresent(bagWeight, forKey: .bagWeight)
+            try? container.encode(bagWeight, forKey: .bagWeight)
             
             
             
             
-            try? container.encodeIfPresent(refundTo, forKey: .refundTo)
+            try? container.encode(refundTo, forKey: .refundTo)
             
             
         }

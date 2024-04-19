@@ -16,12 +16,6 @@ public extension PlatformClient.Theme {
         
         public var isDefault: Bool?
         
-        public var release: Release?
-        
-        public var createdAt: String?
-        
-        public var updatedAt: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -29,25 +23,13 @@ public extension PlatformClient.Theme {
             
             case isDefault = "is_default"
             
-            case release = "release"
-            
-            case createdAt = "created_at"
-            
-            case updatedAt = "updated_at"
-            
         }
 
-        public init(createdAt: String? = nil, isDefault: Bool? = nil, release: Release? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(isDefault: Bool? = nil, id: String? = nil) {
             
             self.id = id
             
             self.isDefault = isDefault
-            
-            self.release = release
-            
-            self.createdAt = createdAt
-            
-            self.updatedAt = updatedAt
             
         }
 
@@ -78,42 +60,6 @@ public extension PlatformClient.Theme {
                 }
                 
             
-            
-                do {
-                    release = try container.decode(Release.self, forKey: .release)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    createdAt = try container.decode(String.self, forKey: .createdAt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -127,21 +73,6 @@ public extension PlatformClient.Theme {
             
             
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
-            
-            
-            
-            
-            try? container.encodeIfPresent(release, forKey: .release)
-            
-            
-            
-            
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
         }
@@ -164,12 +95,6 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public var isDefault: Bool?
         
-        public var release: Release?
-        
-        public var createdAt: String?
-        
-        public var updatedAt: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -177,25 +102,13 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             case isDefault = "is_default"
             
-            case release = "release"
-            
-            case createdAt = "created_at"
-            
-            case updatedAt = "updated_at"
-            
         }
 
-        public init(createdAt: String? = nil, isDefault: Bool? = nil, release: Release? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(isDefault: Bool? = nil, id: String? = nil) {
             
             self.id = id
             
             self.isDefault = isDefault
-            
-            self.release = release
-            
-            self.createdAt = createdAt
-            
-            self.updatedAt = updatedAt
             
         }
 
@@ -226,42 +139,6 @@ public extension PlatformClient.ApplicationClient.Theme {
                 }
                 
             
-            
-                do {
-                    release = try container.decode(Release.self, forKey: .release)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    createdAt = try container.decode(String.self, forKey: .createdAt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -275,21 +152,6 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
-            
-            
-            
-            
-            try? container.encodeIfPresent(release, forKey: .release)
-            
-            
-            
-            
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
         }

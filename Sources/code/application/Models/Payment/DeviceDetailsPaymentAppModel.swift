@@ -152,31 +152,38 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(identificationNumber, forKey: .identificationNumber)
+            
+            try? container.encode(identificationNumber, forKey: .identificationNumber)
             
             
             
-            try? container.encodeIfPresent(identifierType, forKey: .identifierType)
+            
+            try? container.encode(identifierType, forKey: .identifierType)
             
             
             
-            try? container.encodeIfPresent(deviceModel, forKey: .deviceModel)
+            
+            try? container.encode(deviceModel, forKey: .deviceModel)
             
             
             
-            try? container.encodeIfPresent(deviceMake, forKey: .deviceMake)
+            
+            try? container.encode(deviceMake, forKey: .deviceMake)
             
             
             
-            try? container.encodeIfPresent(deviceType, forKey: .deviceType)
+            
+            try? container.encode(deviceType, forKey: .deviceType)
             
             
             
-            try? container.encodeIfPresent(os, forKey: .os)
+            
+            try? container.encode(os, forKey: .os)
             
             
             
-            try? container.encodeIfPresent(osVersion, forKey: .osVersion)
+            
+            try? container.encode(osVersion, forKey: .osVersion)
             
             
         }

@@ -32,8 +32,6 @@ public extension PlatformClient.Order {
         
         public var deliveryCharge: Double
         
-        public var tcsCharge: Double?
-        
         public var gstTag: String
         
         public var hsnCode: String
@@ -61,8 +59,6 @@ public extension PlatformClient.Order {
         public var fyndCredits: Double
         
         public var gstTaxPercentage: Double
-        
-        public var amountToBeCollected: Double?
         
         public var identifiers: Identifier
         
@@ -93,8 +89,6 @@ public extension PlatformClient.Order {
             
             case deliveryCharge = "delivery_charge"
             
-            case tcsCharge = "tcs_charge"
-            
             case gstTag = "gst_tag"
             
             case hsnCode = "hsn_code"
@@ -123,8 +117,6 @@ public extension PlatformClient.Order {
             
             case gstTaxPercentage = "gst_tax_percentage"
             
-            case amountToBeCollected = "amount_to_be_collected"
-            
             case identifiers = "identifiers"
             
             case totalUnits = "total_units"
@@ -133,7 +125,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(addedToFyndCash: Bool, amountPaid: Double, amountPaidRoundoff: Int? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double, cashback: Double, cashbackApplied: Double, codCharges: Double, couponEffectiveDiscount: Double, couponValue: Double, deliveryCharge: Double, discount: Double, fyndCredits: Double, gstFee: Double, gstTag: String, gstTaxPercentage: Double, hsnCode: String, identifiers: Identifier, itemName: String, priceEffective: Double, priceMarked: Double, promotionEffectiveDiscount: Double, refundCredit: Double, size: String, taxCollectedAtSource: Double? = nil, tcsCharge: Double? = nil, totalUnits: Int, transferPrice: Double, valueOfGood: Double) {
+        public init(addedToFyndCash: Bool, amountPaid: Double, amountPaidRoundoff: Int? = nil, brandCalculatedAmount: Double, cashback: Double, cashbackApplied: Double, codCharges: Double, couponEffectiveDiscount: Double, couponValue: Double, deliveryCharge: Double, discount: Double, fyndCredits: Double, gstFee: Double, gstTag: String, gstTaxPercentage: Double, hsnCode: String, identifiers: Identifier, itemName: String, priceEffective: Double, priceMarked: Double, promotionEffectiveDiscount: Double, refundCredit: Double, size: String, taxCollectedAtSource: Double? = nil, totalUnits: Int, transferPrice: Double, valueOfGood: Double) {
             
             self.refundCredit = refundCredit
             
@@ -154,8 +146,6 @@ public extension PlatformClient.Order {
             self.brandCalculatedAmount = brandCalculatedAmount
             
             self.deliveryCharge = deliveryCharge
-            
-            self.tcsCharge = tcsCharge
             
             self.gstTag = gstTag
             
@@ -184,8 +174,6 @@ public extension PlatformClient.Order {
             self.fyndCredits = fyndCredits
             
             self.gstTaxPercentage = gstTaxPercentage
-            
-            self.amountToBeCollected = amountToBeCollected
             
             self.identifiers = identifiers
             
@@ -263,18 +251,6 @@ public extension PlatformClient.Order {
             
             
             
-                do {
-                    tcsCharge = try container.decode(Double.self, forKey: .tcsCharge)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 gstTag = try container.decode(String.self, forKey: .gstTag)
                 
             
@@ -345,18 +321,6 @@ public extension PlatformClient.Order {
             
             
             
-                do {
-                    amountToBeCollected = try container.decode(Double.self, forKey: .amountToBeCollected)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 identifiers = try container.decode(Identifier.self, forKey: .identifiers)
                 
             
@@ -383,7 +347,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(amountPaidRoundoff, forKey: .amountPaidRoundoff)
+            try? container.encode(amountPaidRoundoff, forKey: .amountPaidRoundoff)
             
             
             
@@ -413,7 +377,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
+            try? container.encode(taxCollectedAtSource, forKey: .taxCollectedAtSource)
             
             
             
@@ -424,11 +388,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(deliveryCharge, forKey: .deliveryCharge)
-            
-            
-            
-            
-            try? container.encodeIfPresent(tcsCharge, forKey: .tcsCharge)
             
             
             
@@ -499,11 +458,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(gstTaxPercentage, forKey: .gstTaxPercentage)
-            
-            
-            
-            
-            try? container.encodeIfPresent(amountToBeCollected, forKey: .amountToBeCollected)
             
             
             
@@ -557,8 +511,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var deliveryCharge: Double
         
-        public var tcsCharge: Double?
-        
         public var gstTag: String
         
         public var hsnCode: String
@@ -586,8 +538,6 @@ public extension PlatformClient.ApplicationClient.Order {
         public var fyndCredits: Double
         
         public var gstTaxPercentage: Double
-        
-        public var amountToBeCollected: Double?
         
         public var identifiers: Identifier
         
@@ -618,8 +568,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case deliveryCharge = "delivery_charge"
             
-            case tcsCharge = "tcs_charge"
-            
             case gstTag = "gst_tag"
             
             case hsnCode = "hsn_code"
@@ -648,8 +596,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case gstTaxPercentage = "gst_tax_percentage"
             
-            case amountToBeCollected = "amount_to_be_collected"
-            
             case identifiers = "identifiers"
             
             case totalUnits = "total_units"
@@ -658,7 +604,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(addedToFyndCash: Bool, amountPaid: Double, amountPaidRoundoff: Int? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double, cashback: Double, cashbackApplied: Double, codCharges: Double, couponEffectiveDiscount: Double, couponValue: Double, deliveryCharge: Double, discount: Double, fyndCredits: Double, gstFee: Double, gstTag: String, gstTaxPercentage: Double, hsnCode: String, identifiers: Identifier, itemName: String, priceEffective: Double, priceMarked: Double, promotionEffectiveDiscount: Double, refundCredit: Double, size: String, taxCollectedAtSource: Double? = nil, tcsCharge: Double? = nil, totalUnits: Int, transferPrice: Double, valueOfGood: Double) {
+        public init(addedToFyndCash: Bool, amountPaid: Double, amountPaidRoundoff: Int? = nil, brandCalculatedAmount: Double, cashback: Double, cashbackApplied: Double, codCharges: Double, couponEffectiveDiscount: Double, couponValue: Double, deliveryCharge: Double, discount: Double, fyndCredits: Double, gstFee: Double, gstTag: String, gstTaxPercentage: Double, hsnCode: String, identifiers: Identifier, itemName: String, priceEffective: Double, priceMarked: Double, promotionEffectiveDiscount: Double, refundCredit: Double, size: String, taxCollectedAtSource: Double? = nil, totalUnits: Int, transferPrice: Double, valueOfGood: Double) {
             
             self.refundCredit = refundCredit
             
@@ -679,8 +625,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.brandCalculatedAmount = brandCalculatedAmount
             
             self.deliveryCharge = deliveryCharge
-            
-            self.tcsCharge = tcsCharge
             
             self.gstTag = gstTag
             
@@ -709,8 +653,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.fyndCredits = fyndCredits
             
             self.gstTaxPercentage = gstTaxPercentage
-            
-            self.amountToBeCollected = amountToBeCollected
             
             self.identifiers = identifiers
             
@@ -788,18 +730,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                do {
-                    tcsCharge = try container.decode(Double.self, forKey: .tcsCharge)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 gstTag = try container.decode(String.self, forKey: .gstTag)
                 
             
@@ -870,18 +800,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                do {
-                    amountToBeCollected = try container.decode(Double.self, forKey: .amountToBeCollected)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 identifiers = try container.decode(Identifier.self, forKey: .identifiers)
                 
             
@@ -908,7 +826,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(amountPaidRoundoff, forKey: .amountPaidRoundoff)
+            try? container.encode(amountPaidRoundoff, forKey: .amountPaidRoundoff)
             
             
             
@@ -938,7 +856,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
+            try? container.encode(taxCollectedAtSource, forKey: .taxCollectedAtSource)
             
             
             
@@ -949,11 +867,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(deliveryCharge, forKey: .deliveryCharge)
-            
-            
-            
-            
-            try? container.encodeIfPresent(tcsCharge, forKey: .tcsCharge)
             
             
             
@@ -1024,11 +937,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(gstTaxPercentage, forKey: .gstTaxPercentage)
-            
-            
-            
-            
-            try? container.encodeIfPresent(amountToBeCollected, forKey: .amountToBeCollected)
             
             
             

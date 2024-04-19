@@ -91,7 +91,9 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(reasons, forKey: .reasons)
+            
             
             
             
@@ -99,7 +101,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(dataUpdates, forKey: .dataUpdates)
+            
             
             
             

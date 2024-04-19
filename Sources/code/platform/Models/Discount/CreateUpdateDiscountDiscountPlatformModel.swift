@@ -18,7 +18,9 @@ public extension PlatformClient.Discount {
         
         public var isActive: Bool
         
-        public var appId: String
+        public var appIds: [String]
+        
+        public var extensionIds: [String]
         
         public var jobType: String
         
@@ -34,7 +36,7 @@ public extension PlatformClient.Discount {
         
         public var storeIds: [Int]?
         
-        public var factoryTypeIds: [String]?
+        public var zoneIds: [String]?
         
         public var validity: ValidityObject
         
@@ -49,7 +51,9 @@ public extension PlatformClient.Discount {
             
             case isActive = "is_active"
             
-            case appId = "app_id"
+            case appIds = "app_ids"
+            
+            case extensionIds = "extension_ids"
             
             case jobType = "job_type"
             
@@ -65,7 +69,7 @@ public extension PlatformClient.Discount {
             
             case storeIds = "store_ids"
             
-            case factoryTypeIds = "factory_type_ids"
+            case zoneIds = "zone_ids"
             
             case validity = "validity"
             
@@ -73,7 +77,7 @@ public extension PlatformClient.Discount {
             
         }
 
-        public init(appId: String, brandIds: [Int]? = nil, companyId: Int, discountLevel: String, discountMeta: DiscountMeta? = nil, discountType: String, factoryTypeIds: [String]? = nil, filePath: String? = nil, isActive: Bool, jobType: String, name: String, storeIds: [Int]? = nil, validity: ValidityObject, value: Int? = nil) {
+        public init(appIds: [String], brandIds: [Int]? = nil, companyId: Int, discountLevel: String, discountMeta: DiscountMeta? = nil, discountType: String, extensionIds: [String], filePath: String? = nil, isActive: Bool, jobType: String, name: String, storeIds: [Int]? = nil, validity: ValidityObject, value: Int? = nil, zoneIds: [String]? = nil) {
             
             self.name = name
             
@@ -81,7 +85,9 @@ public extension PlatformClient.Discount {
             
             self.isActive = isActive
             
-            self.appId = appId
+            self.appIds = appIds
+            
+            self.extensionIds = extensionIds
             
             self.jobType = jobType
             
@@ -97,7 +103,7 @@ public extension PlatformClient.Discount {
             
             self.storeIds = storeIds
             
-            self.factoryTypeIds = factoryTypeIds
+            self.zoneIds = zoneIds
             
             self.validity = validity
             
@@ -124,7 +130,12 @@ public extension PlatformClient.Discount {
             
             
             
-                appId = try container.decode(String.self, forKey: .appId)
+                appIds = try container.decode([String].self, forKey: .appIds)
+                
+            
+            
+            
+                extensionIds = try container.decode([String].self, forKey: .extensionIds)
                 
             
             
@@ -193,7 +204,7 @@ public extension PlatformClient.Discount {
             
             
                 do {
-                    factoryTypeIds = try container.decode([String].self, forKey: .factoryTypeIds)
+                    zoneIds = try container.decode([String].self, forKey: .zoneIds)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -242,7 +253,12 @@ public extension PlatformClient.Discount {
             
             
             
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(appIds, forKey: .appIds)
+            
+            
+            
+            
+            try? container.encodeIfPresent(extensionIds, forKey: .extensionIds)
             
             
             
@@ -282,7 +298,7 @@ public extension PlatformClient.Discount {
             
             
             
-            try? container.encodeIfPresent(factoryTypeIds, forKey: .factoryTypeIds)
+            try? container.encodeIfPresent(zoneIds, forKey: .zoneIds)
             
             
             

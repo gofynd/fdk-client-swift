@@ -16,7 +16,7 @@ public extension PlatformClient.Finance {
         
         public var affiliateId: String?
         
-        public var meta: [String: Any]?
+        public var meta: GetCnConfigResponseMeta?
         
         public var sellerId: Int?
         
@@ -49,7 +49,7 @@ public extension PlatformClient.Finance {
             
         }
 
-        public init(affiliateId: String? = nil, currencyType: String? = nil, isCnAsRefundMethod: Bool? = nil, meta: [String: Any]? = nil, notificationEvents: CreditNoteConfigNotificationEvents? = nil, redemptionOrderingChannel: [String]? = nil, sellerId: Int? = nil, validity: Int? = nil) {
+        public init(affiliateId: String? = nil, currencyType: String? = nil, isCnAsRefundMethod: Bool? = nil, meta: GetCnConfigResponseMeta? = nil, notificationEvents: CreditNoteConfigNotificationEvents? = nil, redemptionOrderingChannel: [String]? = nil, sellerId: Int? = nil, validity: Int? = nil) {
             
             self.isCnAsRefundMethod = isCnAsRefundMethod
             
@@ -98,7 +98,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
+                    meta = try container.decode(GetCnConfigResponseMeta.self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

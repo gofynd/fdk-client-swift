@@ -18,6 +18,8 @@ public extension ApplicationClient.Lead {
         
         public var description: String?
         
+        public var priority: Priority
+        
         public var loginRequired: Bool
         
         public var shouldNotify: Bool
@@ -32,17 +34,7 @@ public extension ApplicationClient.Lead {
         
         public var pollForAssignment: PollForAssignment?
         
-        public var availableAssignees: [String]?
-        
         public var id: String
-        
-        public var createdAt: String?
-        
-        public var updatedAt: String?
-        
-        public var v: Double?
-        
-        public var createdBy: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -56,6 +48,8 @@ public extension ApplicationClient.Lead {
             case title = "title"
             
             case description = "description"
+            
+            case priority = "priority"
             
             case loginRequired = "login_required"
             
@@ -71,21 +65,11 @@ public extension ApplicationClient.Lead {
             
             case pollForAssignment = "poll_for_assignment"
             
-            case availableAssignees = "available_assignees"
-            
             case id = "_id"
-            
-            case createdAt = "created_at"
-            
-            case updatedAt = "updated_at"
-            
-            case v = "__v"
-            
-            case createdBy = "created_by"
             
         }
 
-        public init(applicationId: String, availableAssignees: [String]? = nil, createdAt: String? = nil, createdBy: String? = nil, createdOn: CreatedOn? = nil, description: String? = nil, headerImage: String? = nil, inputs: [[String: Any]], loginRequired: Bool, pollForAssignment: PollForAssignment? = nil, shouldNotify: Bool, slug: String, submitButton: SubmitButton? = nil, successMessage: String? = nil, title: String, updatedAt: String? = nil, id: String, v: Double? = nil) {
+        public init(applicationId: String, createdOn: CreatedOn? = nil, description: String? = nil, headerImage: String? = nil, inputs: [[String: Any]], loginRequired: Bool, pollForAssignment: PollForAssignment? = nil, priority: Priority, shouldNotify: Bool, slug: String, submitButton: SubmitButton? = nil, successMessage: String? = nil, title: String, id: String) {
             
             self.applicationId = applicationId
             
@@ -96,6 +80,8 @@ public extension ApplicationClient.Lead {
             self.title = title
             
             self.description = description
+            
+            self.priority = priority
             
             self.loginRequired = loginRequired
             
@@ -111,17 +97,7 @@ public extension ApplicationClient.Lead {
             
             self.pollForAssignment = pollForAssignment
             
-            self.availableAssignees = availableAssignees
-            
             self.id = id
-            
-            self.createdAt = createdAt
-            
-            self.updatedAt = updatedAt
-            
-            self.v = v
-            
-            self.createdBy = createdBy
             
         }
 
@@ -165,6 +141,11 @@ public extension ApplicationClient.Lead {
             } catch {
                 
             }
+            
+            
+            
+            priority = try container.decode(Priority.self, forKey: .priority)
+            
             
             
             
@@ -231,68 +212,8 @@ public extension ApplicationClient.Lead {
             
             
             
-            do {
-                availableAssignees = try container.decode([String].self, forKey: .availableAssignees)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
             id = try container.decode(String.self, forKey: .id)
             
-            
-            
-            
-            do {
-                createdAt = try container.decode(String.self, forKey: .createdAt)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                updatedAt = try container.decode(String.self, forKey: .updatedAt)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                v = try container.decode(Double.self, forKey: .v)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                createdBy = try container.decode(String.self, forKey: .createdBy)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
         }
@@ -301,7 +222,9 @@ public extension ApplicationClient.Lead {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(applicationId, forKey: .applicationId)
+            
             
             
             
@@ -309,7 +232,9 @@ public extension ApplicationClient.Lead {
             
             
             
+            
             try? container.encodeIfPresent(headerImage, forKey: .headerImage)
+            
             
             
             
@@ -317,7 +242,14 @@ public extension ApplicationClient.Lead {
             
             
             
+            
             try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(priority, forKey: .priority)
+            
             
             
             
@@ -325,7 +257,9 @@ public extension ApplicationClient.Lead {
             
             
             
+            
             try? container.encodeIfPresent(shouldNotify, forKey: .shouldNotify)
+            
             
             
             
@@ -333,7 +267,9 @@ public extension ApplicationClient.Lead {
             
             
             
+            
             try? container.encodeIfPresent(submitButton, forKey: .submitButton)
+            
             
             
             
@@ -341,7 +277,9 @@ public extension ApplicationClient.Lead {
             
             
             
+            
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            
             
             
             
@@ -349,27 +287,8 @@ public extension ApplicationClient.Lead {
             
             
             
-            try? container.encodeIfPresent(availableAssignees, forKey: .availableAssignees)
-            
-            
             
             try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
-            
-            
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
-            
-            
-            
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
             
             
         }

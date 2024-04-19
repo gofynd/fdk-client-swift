@@ -98,7 +98,9 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(saleBadgeBackground, forKey: .saleBadgeBackground)
+            
             
             
             
@@ -106,7 +108,9 @@ public extension ApplicationClient.Theme {
             
             
             
+            
             try? container.encodeIfPresent(saleDiscountText, forKey: .saleDiscountText)
+            
             
             
             

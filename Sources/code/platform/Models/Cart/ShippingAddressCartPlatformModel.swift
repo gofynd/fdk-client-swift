@@ -332,17 +332,17 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encode(country, forKey: .country)
             
             
             
             
-            try? container.encodeIfPresent(state, forKey: .state)
+            try? container.encode(state, forKey: .state)
             
             
             
             
-            try? container.encodeIfPresent(city, forKey: .city)
+            try? container.encode(city, forKey: .city)
             
             
             

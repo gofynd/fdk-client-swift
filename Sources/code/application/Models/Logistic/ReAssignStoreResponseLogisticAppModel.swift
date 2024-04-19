@@ -88,7 +88,9 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
+            
             
             
             
@@ -96,11 +98,14 @@ public extension ApplicationClient.Logistic {
             
             
             
+            
             try? container.encodeIfPresent(success, forKey: .success)
             
             
             
+            
             try? container.encodeIfPresent(error, forKey: .error)
+            
             
             
             

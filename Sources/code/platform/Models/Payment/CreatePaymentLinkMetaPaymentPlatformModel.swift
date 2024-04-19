@@ -20,7 +20,7 @@ public extension PlatformClient.Payment {
         
         public var assignCardId: String?
         
-        public var pincode: String?
+        public var pincode: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -37,7 +37,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(amount: String, assignCardId: String? = nil, cartId: String, checkoutMode: String, pincode: String? = nil) {
+        public init(amount: String, assignCardId: String? = nil, cartId: String, checkoutMode: String, pincode: String) {
             
             self.cartId = cartId
             
@@ -82,16 +82,9 @@ public extension PlatformClient.Payment {
                 
             
             
-                do {
-                    pincode = try container.decode(String.self, forKey: .pincode)
+                pincode = try container.decode(String.self, forKey: .pincode)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -115,7 +108,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(assignCardId, forKey: .assignCardId)
+            try? container.encode(assignCardId, forKey: .assignCardId)
             
             
             
@@ -147,7 +140,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var assignCardId: String?
         
-        public var pincode: String?
+        public var pincode: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -164,7 +157,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(amount: String, assignCardId: String? = nil, cartId: String, checkoutMode: String, pincode: String? = nil) {
+        public init(amount: String, assignCardId: String? = nil, cartId: String, checkoutMode: String, pincode: String) {
             
             self.cartId = cartId
             
@@ -209,16 +202,9 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
-                do {
-                    pincode = try container.decode(String.self, forKey: .pincode)
+                pincode = try container.decode(String.self, forKey: .pincode)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -242,7 +228,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(assignCardId, forKey: .assignCardId)
+            try? container.encode(assignCardId, forKey: .assignCardId)
             
             
             

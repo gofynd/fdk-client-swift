@@ -30,8 +30,6 @@ public extension PlatformClient.Configuration {
         
         public var anonymousCod: Bool?
         
-        public var userCodLimit: Double?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -53,11 +51,9 @@ public extension PlatformClient.Configuration {
             
             case anonymousCod = "anonymous_cod"
             
-            case userCodLimit = "user_cod_limit"
-            
         }
 
-        public init(anonymousCod: Bool? = nil, callbackUrl: CallbackUrl? = nil, codAmountLimit: Double? = nil, codCharges: Double? = nil, enabled: Bool? = nil, methods: Methods? = nil, modeOfPayment: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, source: String? = nil, userCodLimit: Double? = nil) {
+        public init(anonymousCod: Bool? = nil, callbackUrl: CallbackUrl? = nil, codAmountLimit: Double? = nil, codCharges: Double? = nil, enabled: Bool? = nil, methods: Methods? = nil, modeOfPayment: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, source: String? = nil) {
             
             self.callbackUrl = callbackUrl
             
@@ -76,8 +72,6 @@ public extension PlatformClient.Configuration {
             self.codCharges = codCharges
             
             self.anonymousCod = anonymousCod
-            
-            self.userCodLimit = userCodLimit
             
         }
 
@@ -192,18 +186,6 @@ public extension PlatformClient.Configuration {
                 }
                 
             
-            
-                do {
-                    userCodLimit = try container.decode(Double.self, forKey: .userCodLimit)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -252,11 +234,6 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(anonymousCod, forKey: .anonymousCod)
-            
-            
-            
-            
-            try? container.encodeIfPresent(userCodLimit, forKey: .userCodLimit)
             
             
         }
@@ -293,8 +270,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var anonymousCod: Bool?
         
-        public var userCodLimit: Double?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -316,11 +291,9 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case anonymousCod = "anonymous_cod"
             
-            case userCodLimit = "user_cod_limit"
-            
         }
 
-        public init(anonymousCod: Bool? = nil, callbackUrl: CallbackUrl? = nil, codAmountLimit: Double? = nil, codCharges: Double? = nil, enabled: Bool? = nil, methods: Methods? = nil, modeOfPayment: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, source: String? = nil, userCodLimit: Double? = nil) {
+        public init(anonymousCod: Bool? = nil, callbackUrl: CallbackUrl? = nil, codAmountLimit: Double? = nil, codCharges: Double? = nil, enabled: Bool? = nil, methods: Methods? = nil, modeOfPayment: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, source: String? = nil) {
             
             self.callbackUrl = callbackUrl
             
@@ -339,8 +312,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.codCharges = codCharges
             
             self.anonymousCod = anonymousCod
-            
-            self.userCodLimit = userCodLimit
             
         }
 
@@ -455,18 +426,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
-            
-                do {
-                    userCodLimit = try container.decode(Double.self, forKey: .userCodLimit)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -515,11 +474,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(anonymousCod, forKey: .anonymousCod)
-            
-            
-            
-            
-            try? container.encodeIfPresent(userCodLimit, forKey: .userCodLimit)
             
             
         }

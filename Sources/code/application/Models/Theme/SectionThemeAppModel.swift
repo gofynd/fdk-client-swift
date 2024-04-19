@@ -116,7 +116,9 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(blocks, forKey: .blocks)
+            
             
             
             
@@ -124,11 +126,14 @@ public extension ApplicationClient.Theme {
             
             
             
+            
             try? container.encodeIfPresent(name, forKey: .name)
             
             
             
+            
             try? container.encodeIfPresent(props, forKey: .props)
+            
             
             
             

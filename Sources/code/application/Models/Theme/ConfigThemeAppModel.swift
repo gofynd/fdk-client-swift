@@ -14,7 +14,7 @@ public extension ApplicationClient.Theme {
         
         public var globalSchema: GlobalSchema?
         
-        public var preset: [String: Any]?
+        public var preset: Preset?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,7 +29,7 @@ public extension ApplicationClient.Theme {
             
         }
 
-        public init(current: String, globalSchema: GlobalSchema? = nil, list: [ThemeConfiguration], preset: [String: Any]? = nil) {
+        public init(current: String, globalSchema: GlobalSchema? = nil, list: [ThemeConfiguration], preset: Preset? = nil) {
             
             self.current = current
             
@@ -68,7 +68,7 @@ public extension ApplicationClient.Theme {
             
             
             do {
-                preset = try container.decode([String: Any].self, forKey: .preset)
+                preset = try container.decode(Preset.self, forKey: .preset)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,7 +84,9 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(current, forKey: .current)
+            
             
             
             
@@ -92,7 +94,9 @@ public extension ApplicationClient.Theme {
             
             
             
+            
             try? container.encodeIfPresent(globalSchema, forKey: .globalSchema)
+            
             
             
             

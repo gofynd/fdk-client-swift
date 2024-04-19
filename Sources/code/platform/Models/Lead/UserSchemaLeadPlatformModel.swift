@@ -46,8 +46,6 @@ public extension PlatformClient.Lead {
         
         public var externalId: String?
         
-        public var rrId: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -85,11 +83,9 @@ public extension PlatformClient.Lead {
             
             case externalId = "external_id"
             
-            case rrId = "rr_id"
-            
         }
 
-        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, createdAt: String? = nil, dob: String? = nil, emails: [Email]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, rrId: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
+        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, createdAt: String? = nil, dob: String? = nil, emails: [Email]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
             
             self.applicationId = applicationId
             
@@ -124,8 +120,6 @@ public extension PlatformClient.Lead {
             self.updatedAt = updatedAt
             
             self.externalId = externalId
-            
-            self.rrId = rrId
             
         }
 
@@ -336,18 +330,6 @@ public extension PlatformClient.Lead {
                 }
                 
             
-            
-                do {
-                    rrId = try container.decode(String.self, forKey: .rrId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -436,11 +418,6 @@ public extension PlatformClient.Lead {
             
             
             try? container.encodeIfPresent(externalId, forKey: .externalId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(rrId, forKey: .rrId)
             
             
         }
@@ -493,8 +470,6 @@ public extension PlatformClient.ApplicationClient.Lead {
         
         public var externalId: String?
         
-        public var rrId: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -532,11 +507,9 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             case externalId = "external_id"
             
-            case rrId = "rr_id"
-            
         }
 
-        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, createdAt: String? = nil, dob: String? = nil, emails: [Email]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, rrId: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
+        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, createdAt: String? = nil, dob: String? = nil, emails: [Email]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
             
             self.applicationId = applicationId
             
@@ -571,8 +544,6 @@ public extension PlatformClient.ApplicationClient.Lead {
             self.updatedAt = updatedAt
             
             self.externalId = externalId
-            
-            self.rrId = rrId
             
         }
 
@@ -783,18 +754,6 @@ public extension PlatformClient.ApplicationClient.Lead {
                 }
                 
             
-            
-                do {
-                    rrId = try container.decode(String.self, forKey: .rrId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -883,11 +842,6 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
             try? container.encodeIfPresent(externalId, forKey: .externalId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(rrId, forKey: .rrId)
             
             
         }

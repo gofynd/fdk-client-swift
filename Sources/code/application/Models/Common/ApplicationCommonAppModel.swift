@@ -476,7 +476,9 @@ public extension ApplicationClient.Common {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(website, forKey: .website)
+            
             
             
             
@@ -484,7 +486,9 @@ public extension ApplicationClient.Common {
             
             
             
+            
             try? container.encodeIfPresent(auth, forKey: .auth)
+            
             
             
             
@@ -492,7 +496,9 @@ public extension ApplicationClient.Common {
             
             
             
+            
             try? container.encodeIfPresent(channelType, forKey: .channelType)
+            
             
             
             
@@ -500,7 +506,9 @@ public extension ApplicationClient.Common {
             
             
             
+            
             try? container.encodeIfPresent(isInternal, forKey: .isInternal)
+            
             
             
             
@@ -508,7 +516,9 @@ public extension ApplicationClient.Common {
             
             
             
+            
             try? container.encodeIfPresent(id, forKey: .id)
+            
             
             
             
@@ -516,7 +526,9 @@ public extension ApplicationClient.Common {
             
             
             
+            
             try? container.encodeIfPresent(owner, forKey: .owner)
+            
             
             
             
@@ -524,7 +536,9 @@ public extension ApplicationClient.Common {
             
             
             
+            
             try? container.encodeIfPresent(token, forKey: .token)
+            
             
             
             
@@ -532,7 +546,9 @@ public extension ApplicationClient.Common {
             
             
             
+            
             try? container.encodeIfPresent(meta, forKey: .meta)
+            
             
             
             
@@ -540,7 +556,9 @@ public extension ApplicationClient.Common {
             
             
             
+            
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
             
             
             
@@ -548,7 +566,9 @@ public extension ApplicationClient.Common {
             
             
             
+            
             try? container.encodeIfPresent(banner, forKey: .banner)
+            
             
             
             
@@ -556,7 +576,9 @@ public extension ApplicationClient.Common {
             
             
             
+            
             try? container.encodeIfPresent(favicon, forKey: .favicon)
+            
             
             
             
@@ -564,11 +586,14 @@ public extension ApplicationClient.Common {
             
             
             
+            
             try? container.encodeIfPresent(appType, forKey: .appType)
             
             
             
+            
             try? container.encodeIfPresent(mobileLogo, forKey: .mobileLogo)
+            
             
             
             

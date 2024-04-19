@@ -14,22 +14,16 @@ public extension PlatformClient.Order {
         
         public var shipmentId: String
         
-        public var einvoiceType: String
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case shipmentId = "shipment_id"
             
-            case einvoiceType = "einvoice_type"
-            
         }
 
-        public init(einvoiceType: String, shipmentId: String) {
+        public init(shipmentId: String) {
             
             self.shipmentId = shipmentId
-            
-            self.einvoiceType = einvoiceType
             
         }
 
@@ -41,11 +35,6 @@ public extension PlatformClient.Order {
                 
             
             
-            
-                einvoiceType = try container.decode(String.self, forKey: .einvoiceType)
-                
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -54,11 +43,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(einvoiceType, forKey: .einvoiceType)
             
             
         }
@@ -79,22 +63,16 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var shipmentId: String
         
-        public var einvoiceType: String
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case shipmentId = "shipment_id"
             
-            case einvoiceType = "einvoice_type"
-            
         }
 
-        public init(einvoiceType: String, shipmentId: String) {
+        public init(shipmentId: String) {
             
             self.shipmentId = shipmentId
-            
-            self.einvoiceType = einvoiceType
             
         }
 
@@ -106,11 +84,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-            
-                einvoiceType = try container.decode(String.self, forKey: .einvoiceType)
-                
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -119,11 +92,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(einvoiceType, forKey: .einvoiceType)
             
             
         }

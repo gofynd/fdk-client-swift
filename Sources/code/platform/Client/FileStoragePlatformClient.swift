@@ -16,8 +16,26 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Start file upload.
-        * Description: Inititates the process of uploading a file to storage location, and returns a storage link in response.
+        * Summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
+        * Description: Uploads an arbitrarily sized buffer or blob.
+
+It has three Major Steps:
+* Start
+* Upload
+* Complete
+
+### Start
+Initiates the assets upload using `startUpload`.
+It returns the storage link in response.
+
+### Upload
+Use the storage link to upload a file (Buffer or Blob) to the File Storage.
+Make a `PUT` request on storage link received from `startUpload` api with file (Buffer or Blob) as a request body.
+
+### Complete
+After successfully upload, call `completeUpload` api to complete the upload process.
+This operation will return the url for the uploaded file.
+
         **/
         public func startUpload(
             namespace: String,
@@ -65,8 +83,26 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Complete file upload.
-        * Description: Starts the process of uploading a file to storage location, and returns a storage link in response.
+        * Summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
+        * Description: Uploads an arbitrarily sized buffer or blob.
+
+It has three Major Steps:
+* Start
+* Upload
+* Complete
+
+### Start
+Initiates the assets upload using `startUpload`.
+It returns the storage link in response.
+
+### Upload
+Use the storage link to upload a file (Buffer or Blob) to the File Storage.
+Make a `PUT` request on storage link received from `startUpload` api with file (Buffer or Blob) as a request body.
+
+### Complete
+After successfully upload, call `completeUpload` api to complete the upload process.
+This operation will return the url for the uploaded file.
+
         **/
         public func completeUpload(
             namespace: String,
@@ -116,8 +152,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get signed URLs.
-        * Description: Retrieve signed URLs for file access.
+        * Summary: Gives signed urls to access private files
+        * Description: Describe here
         **/
         public func getSignUrls(
             body: SignUrlRequest,
@@ -164,8 +200,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Copy files.
-        * Description: Duplicate files to another location.
+        * Summary: Copy Files
+        * Description: Copy Files
         **/
         public func copyFiles(
             sync: Bool?,
@@ -221,8 +257,8 @@ if let value = sync {
         
         /**
         *
-        * Summary: Browse files.
-        * Description: View and navigate through available files.
+        * Summary: Browse Files
+        * Description: Browse Files
         **/
         public func browse(
             namespace: String,
@@ -285,37 +321,15 @@ if let value = limit {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
-        * Summary: Proxy file access.
-        * Description: Access files through a proxy.
+        * Summary: Proxy
+        * Description: Proxy
         **/
         public func proxy(
             url: String,
             
-            onResponse: @escaping (_ response: ProxyResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -345,7 +359,7 @@ var xQuery: [String: Any] = [:]
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProxyResponse.self, from: data)
+                        let response = String(decoding: data, as: UTF8.self)
                         
                         onResponse(response, nil)
                     } else {
@@ -356,6 +370,13 @@ var xQuery: [String: Any] = [:]
                     }
             });
         }
+        
+        
+        
+        
+        
+        
+        
         
         
     }

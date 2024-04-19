@@ -170,7 +170,9 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(id, forKey: .id)
+            
             
             
             
@@ -178,7 +180,9 @@ public extension ApplicationClient.Cart {
             
             
             
+            
             try? container.encodeIfPresent(offerText, forKey: .offerText)
+            
             
             
             
@@ -186,7 +190,9 @@ public extension ApplicationClient.Cart {
             
             
             
+            
             try? container.encodeIfPresent(validTill, forKey: .validTill)
+            
             
             
             
@@ -194,7 +200,9 @@ public extension ApplicationClient.Cart {
             
             
             
+            
             try? container.encodeIfPresent(freeGiftItems, forKey: .freeGiftItems)
+            
             
             
             

@@ -12,10 +12,6 @@ public extension PlatformClient.Finance {
     class InvoiceListingResponse: Codable {
         
         
-        public var success: Bool?
-        
-        public var headers: [String]?
-        
         public var unpaidInvoiceData: UnpaidInvoiceDataItems?
         
         public var items: [InvoiceListingResponseItems]?
@@ -27,10 +23,6 @@ public extension PlatformClient.Finance {
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
-            
-            case headers = "headers"
-            
             case unpaidInvoiceData = "unpaid_invoice_data"
             
             case items = "items"
@@ -41,11 +33,7 @@ public extension PlatformClient.Finance {
             
         }
 
-        public init(headers: [String]? = nil, items: [InvoiceListingResponseItems]? = nil, itemCount: Int? = nil, page: Page? = nil, success: Bool? = nil, unpaidInvoiceData: UnpaidInvoiceDataItems? = nil) {
-            
-            self.success = success
-            
-            self.headers = headers
+        public init(items: [InvoiceListingResponseItems]? = nil, itemCount: Int? = nil, page: Page? = nil, unpaidInvoiceData: UnpaidInvoiceDataItems? = nil) {
             
             self.unpaidInvoiceData = unpaidInvoiceData
             
@@ -59,30 +47,6 @@ public extension PlatformClient.Finance {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    success = try container.decode(Bool.self, forKey: .success)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    headers = try container.decode([String].self, forKey: .headers)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -136,16 +100,6 @@ public extension PlatformClient.Finance {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(success, forKey: .success)
-            
-            
-            
-            
-            try? container.encodeIfPresent(headers, forKey: .headers)
-            
             
             
             

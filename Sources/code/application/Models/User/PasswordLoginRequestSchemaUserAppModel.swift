@@ -8,12 +8,16 @@ public extension ApplicationClient.User {
     */
     class PasswordLoginRequestSchema: Codable {
         
-        public var password: String
+        public var captchaCode: String?
         
-        public var username: String
+        public var password: String?
+        
+        public var username: String?
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case captchaCode = "captcha_code"
             
             case password = "password"
             
@@ -21,7 +25,9 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(password: String, username: String) {
+        public init(captchaCode: String? = nil, password: String? = nil, username: String? = nil) {
+            
+            self.captchaCode = captchaCode
             
             self.password = password
             
@@ -33,13 +39,39 @@ public extension ApplicationClient.User {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            password = try container.decode(String.self, forKey: .password)
+            do {
+                captchaCode = try container.decode(String.self, forKey: .captchaCode)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
+            do {
+                password = try container.decode(String.self, forKey: .password)
             
-            username = try container.decode(String.self, forKey: .username)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
+            
+            
+            do {
+                username = try container.decode(String.self, forKey: .username)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
         }
@@ -48,7 +80,14 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
+            try? container.encodeIfPresent(captchaCode, forKey: .captchaCode)
+            
+            
+            
+            
             try? container.encodeIfPresent(password, forKey: .password)
+            
             
             
             

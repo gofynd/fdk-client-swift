@@ -18,8 +18,6 @@ public extension ApplicationClient.Theme {
         
         public var preset: [String: Any]?
         
-        public var source: String?
-        
         public var predicate: AvailablePagePredicate?
         
 
@@ -35,13 +33,11 @@ public extension ApplicationClient.Theme {
             
             case preset = "preset"
             
-            case source = "source"
-            
             case predicate = "predicate"
             
         }
 
-        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil, source: String? = nil) {
+        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil) {
             
             self.name = name
             
@@ -52,8 +48,6 @@ public extension ApplicationClient.Theme {
             self.blocks = blocks
             
             self.preset = preset
-            
-            self.source = source
             
             self.predicate = predicate
             
@@ -124,18 +118,6 @@ public extension ApplicationClient.Theme {
             
             
             do {
-                source = try container.decode(String.self, forKey: .source)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 predicate = try container.decode(AvailablePagePredicate.self, forKey: .predicate)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -152,7 +134,9 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(name, forKey: .name)
+            
             
             
             
@@ -160,7 +144,9 @@ public extension ApplicationClient.Theme {
             
             
             
+            
             try? container.encodeIfPresent(props, forKey: .props)
+            
             
             
             
@@ -168,11 +154,9 @@ public extension ApplicationClient.Theme {
             
             
             
+            
             try? container.encodeIfPresent(preset, forKey: .preset)
             
-            
-            
-            try? container.encodeIfPresent(source, forKey: .source)
             
             
             

@@ -45,11 +45,10 @@ extension PlatformClient {
         
         
         
-        
         /**
         *
-        * Summary: Create application.
-        * Description: Generate and add a new application. Applications are sales channel websites which can be configured, personalized and customized. Use this API to create a new application in the current company.
+        * Summary: Create a new sales channel
+        * Description: Applications are sales channel websites which can be configured, personalized and customized. Use this API to create a new application in the current company.
         **/
         public func createApplication(
             body: CreateApplicationRequest,
@@ -96,8 +95,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get applications.
-        * Description: Retrieve a list of available applications. Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company.
+        * Summary: Get list of registered sales channels under company
+        * Description: Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company.
         **/
         public func getApplications(
             pageNo: Int?,
@@ -228,8 +227,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Get currencies.
-        * Description: Retrieve a list of available currencies. Use this API to get a list of currencies allowed in the company. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+        * Summary: Get all currencies
+        * Description: Use this API to get a list of currencies allowed in the company. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
         **/
         public func getCurrencies(
             
@@ -276,8 +275,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Get domain availability.
-        * Description: Check the availability of a specific domain. Use this API to check the domain availability before linking it to application. Also sends domain suggestions that are similar to the queried domain. Note - Custom domain search is currently powered by GoDaddy provider.
+        * Summary: Check domain availability before linking to application
+        * Description: Use this API to check the domain availability before linking it to application. Also sends domain suggestions that are similar to the queried domain. Note - Custom domain search is currently powered by GoDaddy provider.
         **/
         public func getDomainAvailibility(
             body: DomainSuggestionsRequest,
@@ -324,11 +323,11 @@ if let value = q {
         
         /**
         *
-        * Summary: Get integration by ID.
-        * Description: Retrieve detailed information about a specific integration. Retrieve the details of an integration (such as Ginesys, SAP, etc.) using its ID.
+        * Summary: Get integration data by its ID
+        * Description: Use this API to fetch the details of an integration (such as Ginesys, SAP, etc.) using its ID
         **/
         public func getIntegrationById(
-            id: String,
+            id: Int,
             
             onResponse: @escaping (_ response: Integration?, _ error: FDKError?) -> Void
         ) {
@@ -373,8 +372,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Get available opt-ins.
-        * Description: Retrieve a list of available opt-ins.  Retrieve a list of all available integrations in a company.
+        * Summary: Get all available integration opt-ins
+        * Description: Use this API to get a list of all available integrations in a company
         **/
         public func getAvailableOptIns(
             pageNo: Int?,
@@ -488,8 +487,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get selected opt-ins.
-        * Description: Retrieve a list of selected opt-ins. Retrieve the store-level/company-level integrations configured in a company
+        * Summary: Get company/store level integration opt-ins
+        * Description: Use this API to get the store-level/company-level integrations configured in a company
         **/
         public func getSelectedOptIns(
             level: String,
@@ -621,8 +620,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get integration level configuration.
-        * Description: Retrieve configuration settings for integration levels. Retrieve the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc.
+        * Summary: Get integration level config
+        * Description: Use this API to get the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc.
         **/
         public func getIntegrationLevelConfig(
             id: String,
@@ -687,8 +686,8 @@ if let value = checkPermission {
         
         /**
         *
-        * Summary: Update level integration.
-        * Description: Modify level integration. Update the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company).
+        * Summary: Update a store level integration you opted
+        * Description: Use this API to update the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company).
         **/
         public func updateLevelIntegration(
             id: String,
@@ -737,8 +736,8 @@ if let value = checkPermission {
         
         /**
         *
-        * Summary: Get integration by level ID.
-        * Description: Retrieve integration details for a specific level. Retrieve the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company).
+        * Summary: Get integration config at a particular level (store/company)
+        * Description: Use this API to get the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company).
         **/
         public func getIntegrationByLevelId(
             id: String,
@@ -788,8 +787,8 @@ if let value = checkPermission {
         
         /**
         *
-        * Summary: Update level UID integration.
-        * Description: Modify UID-based integration. Update the level of integration by store UID
+        * Summary: Update integration level by store UID
+        * Description: Update the level of integration by store UID
         **/
         public func updateLevelUidIntegration(
             id: String,
@@ -839,8 +838,8 @@ if let value = checkPermission {
         
         /**
         *
-        * Summary: Get active integrations for a level.
-        * Description: Check if a store is already opted-in for any integration
+        * Summary: Check active integration at store
+        * Description: Use this API to check if a store is already opted-in for any integration
         **/
         public func getLevelActiveIntegrations(
             id: String,
@@ -891,7 +890,7 @@ if let value = checkPermission {
         /**
         *
         * Summary: Get brands by company.
-        * Description: Retrieve all the brands added in a company. Get all the brand names, along with URLs of their logo, banner, and portrait image.
+        * Description: Use this API to get all the brands added in a company. Get all the brand names, along with URLs of their logo, banner, and portrait image.
         **/
         public func getBrandsByCompany(
             q: String?,
@@ -946,8 +945,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Get company by brands.
-        * Description: Retrieve companies associated with specific brands. Retrieve a list of companies by the brands they deal.
+        * Summary: Get company by brand uids
+        * Description: Use this API to get a list of companies by the brands they deal
         **/
         public func getCompanyByBrands(
             pageNo: Int?,
@@ -1093,7 +1092,7 @@ if let value = pageSize {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/configuration/v2.0/company/\(companyId)/inventory/stores-by-brands",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/inventory/stores-by-brands",
                 query: xQuery,
                 body: body.dictionary,
                 headers: [],
@@ -1176,8 +1175,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get other seller applications.
-        * Description: Retrieve applications from other sellers. Retrieve all other seller applications that were not created within the current company. but have opted for the current company's inventory.
+        * Summary: Get other seller sales channels
+        * Description: Use this API to fetch all other seller applications that were not created within the current company. but have opted for the current company's inventory
         **/
         public func getOtherSellerApplications(
             pageNo: Int?,
@@ -1291,8 +1290,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get other seller application by ID.
-        * Description: Retrieve details of a seller application that was not created within the current company. but has opted for the current company's inventory
+        * Summary: Get other seller's sales channel by ID
+        * Description: Use application ID to fetch details of a seller application that was not created within the current company. but has opted for the current company's inventory
         **/
         public func getOtherSellerApplicationById(
             id: String,
@@ -1340,8 +1339,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Opt out from an application.
-        * Description: Choose to opt-out your company or store from other seller application. The specific seller application will no longer fetch inventory from your company or store.
+        * Summary: Opt-out company or store from other seller application
+        * Description: Use this API to opt-out your company or store from other seller application. The specific seller application will no longer fetch inventory from your company or store.
         **/
         public func optOutFromApplication(
             id: String,

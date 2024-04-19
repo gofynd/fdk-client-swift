@@ -34,8 +34,6 @@ public extension ApplicationClient.Payment {
         
         public var email: String
         
-        public var uniqueLinkId: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -65,11 +63,9 @@ public extension ApplicationClient.Payment {
             
             case email = "email"
             
-            case uniqueLinkId = "unique_link_id"
-            
         }
 
-        public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, deviceId: String? = nil, email: String, merchantOrderId: String, method: String, orderId: String, razorpayPaymentId: String? = nil, timeout: Int? = nil, uniqueLinkId: String? = nil, vpa: String? = nil) {
+        public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, deviceId: String? = nil, email: String, merchantOrderId: String, method: String, orderId: String, razorpayPaymentId: String? = nil, timeout: Int? = nil, vpa: String? = nil) {
             
             self.razorpayPaymentId = razorpayPaymentId
             
@@ -96,8 +92,6 @@ public extension ApplicationClient.Payment {
             self.amount = amount
             
             self.email = email
-            
-            self.uniqueLinkId = uniqueLinkId
             
         }
 
@@ -197,25 +191,15 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            do {
-                uniqueLinkId = try container.decode(String.self, forKey: .uniqueLinkId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(razorpayPaymentId, forKey: .razorpayPaymentId)
+            
+            try? container.encode(razorpayPaymentId, forKey: .razorpayPaymentId)
+            
             
             
             
@@ -223,7 +207,9 @@ public extension ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(deviceId, forKey: .deviceId)
+            
+            try? container.encode(deviceId, forKey: .deviceId)
+            
             
             
             
@@ -231,7 +217,9 @@ public extension ApplicationClient.Payment {
             
             
             
+            
             try? container.encodeIfPresent(customerId, forKey: .customerId)
+            
             
             
             
@@ -239,11 +227,14 @@ public extension ApplicationClient.Payment {
             
             
             
+            
             try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
             
             
             
-            try? container.encodeIfPresent(vpa, forKey: .vpa)
+            
+            try? container.encode(vpa, forKey: .vpa)
+            
             
             
             
@@ -251,23 +242,23 @@ public extension ApplicationClient.Payment {
             
             
             
+            
             try? container.encodeIfPresent(currency, forKey: .currency)
             
             
             
-            try? container.encodeIfPresent(timeout, forKey: .timeout)
+            
+            try? container.encode(timeout, forKey: .timeout)
             
             
             
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            
+            try? container.encode(amount, forKey: .amount)
+            
             
             
             
             try? container.encodeIfPresent(email, forKey: .email)
-            
-            
-            
-            try? container.encodeIfPresent(uniqueLinkId, forKey: .uniqueLinkId)
             
             
         }

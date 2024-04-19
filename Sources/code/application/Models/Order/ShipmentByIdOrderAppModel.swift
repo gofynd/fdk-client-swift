@@ -44,6 +44,7 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(shipment, forKey: .shipment)
             
             

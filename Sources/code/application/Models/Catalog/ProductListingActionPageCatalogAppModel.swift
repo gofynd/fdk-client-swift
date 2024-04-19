@@ -10,9 +10,9 @@ public extension ApplicationClient.Catalog {
         
         public var type: String?
         
-        public var query: QueryParams?
+        public var query: [String: Any]?
         
-        public var params: Params?
+        public var params: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(params: Params? = nil, query: QueryParams? = nil, type: String? = nil) {
+        public init(params: [String: Any]? = nil, query: [String: Any]? = nil, type: String? = nil) {
             
             self.type = type
             
@@ -52,7 +52,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                query = try container.decode(QueryParams.self, forKey: .query)
+                query = try container.decode([String: Any].self, forKey: .query)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                params = try container.decode(Params.self, forKey: .params)
+                params = try container.decode([String: Any].self, forKey: .params)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,11 +80,14 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(type, forKey: .type)
             
             
             
+            
             try? container.encodeIfPresent(query, forKey: .query)
+            
             
             
             

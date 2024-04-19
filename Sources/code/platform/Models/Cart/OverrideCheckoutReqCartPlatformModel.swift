@@ -195,7 +195,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(paymentIdentifier, forKey: .paymentIdentifier)
+            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
             
             
             
@@ -220,7 +220,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(orderingStore, forKey: .orderingStore)
+            try? container.encode(orderingStore, forKey: .orderingStore)
             
             
             

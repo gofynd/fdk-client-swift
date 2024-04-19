@@ -80,11 +80,14 @@ public extension ApplicationClient.Communication {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(email, forKey: .email)
             
             
             
+            
             try? container.encodeIfPresent(sms, forKey: .sms)
+            
             
             
             

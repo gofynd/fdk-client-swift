@@ -8,8 +8,6 @@ public extension ApplicationClient.User {
     */
     class EditProfileRequestSchema: Codable {
         
-        public var ci: Bool?
-        
         public var firstName: String?
         
         public var lastName: String?
@@ -35,8 +33,6 @@ public extension ApplicationClient.User {
 
         public enum CodingKeys: String, CodingKey {
             
-            case ci = "ci"
-            
             case firstName = "first_name"
             
             case lastName = "last_name"
@@ -61,9 +57,7 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(androidHash: String? = nil, ci: Bool? = nil, countryCode: String? = nil, dob: String? = nil, email: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, mobile: EditProfileMobileSchema? = nil, profilePicUrl: String? = nil, registerToken: String? = nil, sender: String? = nil) {
-            
-            self.ci = ci
+        public init(androidHash: String? = nil, countryCode: String? = nil, dob: String? = nil, email: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, mobile: EditProfileMobileSchema? = nil, profilePicUrl: String? = nil, registerToken: String? = nil, sender: String? = nil) {
             
             self.firstName = firstName
             
@@ -91,18 +85,6 @@ public extension ApplicationClient.User {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-            do {
-                ci = try container.decode(Bool.self, forKey: .ci)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
             
             
             do {
@@ -242,11 +224,9 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(ci, forKey: .ci)
-            
-            
             
             try? container.encodeIfPresent(firstName, forKey: .firstName)
+            
             
             
             
@@ -254,7 +234,9 @@ public extension ApplicationClient.User {
             
             
             
+            
             try? container.encodeIfPresent(mobile, forKey: .mobile)
+            
             
             
             
@@ -262,7 +244,9 @@ public extension ApplicationClient.User {
             
             
             
+            
             try? container.encodeIfPresent(email, forKey: .email)
+            
             
             
             
@@ -270,7 +254,9 @@ public extension ApplicationClient.User {
             
             
             
+            
             try? container.encodeIfPresent(dob, forKey: .dob)
+            
             
             
             
@@ -278,11 +264,14 @@ public extension ApplicationClient.User {
             
             
             
+            
             try? container.encodeIfPresent(androidHash, forKey: .androidHash)
             
             
             
+            
             try? container.encodeIfPresent(sender, forKey: .sender)
+            
             
             
             

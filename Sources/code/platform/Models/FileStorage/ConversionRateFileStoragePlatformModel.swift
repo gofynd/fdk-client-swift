@@ -14,7 +14,7 @@ public extension PlatformClient.FileStorage {
         
         public var base: String?
         
-        public var rates: [String: Any]?
+        public var rates: Rates?
         
         public var timestamp: Double?
         
@@ -29,7 +29,7 @@ public extension PlatformClient.FileStorage {
             
         }
 
-        public init(base: String? = nil, rates: [String: Any]? = nil, timestamp: Double? = nil) {
+        public init(base: String? = nil, rates: Rates? = nil, timestamp: Double? = nil) {
             
             self.base = base
             
@@ -56,7 +56,7 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    rates = try container.decode([String: Any].self, forKey: .rates)
+                    rates = try container.decode(Rates.self, forKey: .rates)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,7 +116,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var base: String?
         
-        public var rates: [String: Any]?
+        public var rates: Rates?
         
         public var timestamp: Double?
         
@@ -131,7 +131,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
         }
 
-        public init(base: String? = nil, rates: [String: Any]? = nil, timestamp: Double? = nil) {
+        public init(base: String? = nil, rates: Rates? = nil, timestamp: Double? = nil) {
             
             self.base = base
             
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    rates = try container.decode([String: Any].self, forKey: .rates)
+                    rates = try container.decode(Rates.self, forKey: .rates)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

@@ -14,22 +14,16 @@ public extension PlatformClient.Configuration {
         
         public var publicKey: String?
         
-        public var privateKey: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case publicKey = "public_key"
             
-            case privateKey = "private_key"
-            
         }
 
-        public init(privateKey: String? = nil, publicKey: String? = nil) {
+        public init(publicKey: String? = nil) {
             
             self.publicKey = publicKey
-            
-            self.privateKey = privateKey
             
         }
 
@@ -53,23 +47,6 @@ public extension PlatformClient.Configuration {
                 }
                 
             
-            
-                do {
-                    privateKey = try container.decode(String.self, forKey: .privateKey)
-                
-                    if let strong_privateKey = privateKey,
-                       let privateKeyData = Data(base64Encoded: strong_privateKey) {
-                        privateKey = String(data: privateKeyData, encoding: .utf8) ?? privateKey
-                    }
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -79,13 +56,6 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(publicKey?.asBase64, forKey: .publicKey)
-            
-            
-            
-            
-            
-            
-            try? container.encodeIfPresent(privateKey?.asBase64, forKey: .privateKey)
             
             
             
@@ -107,22 +77,16 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var publicKey: String?
         
-        public var privateKey: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case publicKey = "public_key"
             
-            case privateKey = "private_key"
-            
         }
 
-        public init(privateKey: String? = nil, publicKey: String? = nil) {
+        public init(publicKey: String? = nil) {
             
             self.publicKey = publicKey
-            
-            self.privateKey = privateKey
             
         }
 
@@ -146,23 +110,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
-            
-                do {
-                    privateKey = try container.decode(String.self, forKey: .privateKey)
-                
-                    if let strong_privateKey = privateKey,
-                       let privateKeyData = Data(base64Encoded: strong_privateKey) {
-                        privateKey = String(data: privateKeyData, encoding: .utf8) ?? privateKey
-                    }
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -172,13 +119,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(publicKey?.asBase64, forKey: .publicKey)
-            
-            
-            
-            
-            
-            
-            try? container.encodeIfPresent(privateKey?.asBase64, forKey: .privateKey)
             
             
             

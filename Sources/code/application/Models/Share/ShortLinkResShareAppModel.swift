@@ -386,7 +386,9 @@ public extension ApplicationClient.Share {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(title, forKey: .title)
+            
             
             
             
@@ -394,7 +396,9 @@ public extension ApplicationClient.Share {
             
             
             
+            
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            
             
             
             
@@ -402,7 +406,9 @@ public extension ApplicationClient.Share {
             
             
             
+            
             try? container.encodeIfPresent(fallback, forKey: .fallback)
+            
             
             
             
@@ -410,7 +416,9 @@ public extension ApplicationClient.Share {
             
             
             
+            
             try? container.encodeIfPresent(id, forKey: .id)
+            
             
             
             
@@ -418,7 +426,9 @@ public extension ApplicationClient.Share {
             
             
             
+            
             try? container.encodeIfPresent(expireAt, forKey: .expireAt)
+            
             
             
             
@@ -426,7 +436,9 @@ public extension ApplicationClient.Share {
             
             
             
+            
             try? container.encodeIfPresent(userId, forKey: .userId)
+            
             
             
             
@@ -434,7 +446,9 @@ public extension ApplicationClient.Share {
             
             
             
+            
             try? container.encodeIfPresent(meta, forKey: .meta)
+            
             
             
             
@@ -442,7 +456,9 @@ public extension ApplicationClient.Share {
             
             
             
+            
             try? container.encodeIfPresent(personalized, forKey: .personalized)
+            
             
             
             
@@ -450,7 +466,9 @@ public extension ApplicationClient.Share {
             
             
             
+            
             try? container.encodeIfPresent(redirects, forKey: .redirects)
+            
             
             
             
@@ -458,7 +476,9 @@ public extension ApplicationClient.Share {
             
             
             
+            
             try? container.encodeIfPresent(socialMediaTags, forKey: .socialMediaTags)
+            
             
             
             

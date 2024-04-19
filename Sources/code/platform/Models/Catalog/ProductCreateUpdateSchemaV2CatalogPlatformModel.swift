@@ -74,7 +74,7 @@ public extension PlatformClient.Catalog {
         
         public var sizeGuide: String?
         
-        public var sizes: [ProductCreateUpdateSizesSchema]
+        public var sizes: [[String: Any]]
         
         public var slug: String
         
@@ -185,7 +185,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(action: String? = nil, attributes: [String: Any]? = nil, brandUid: Int, bulkJobId: String? = nil, categorySlug: String, changeRequestId: String? = nil, companyId: Int, countryOfOrigin: String, currency: String, customOrder: CustomOrder? = nil, departments: [Int], description: String? = nil, highlights: [String]? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, isImageLessProduct: Bool? = nil, isSet: Bool? = nil, itemCode: String, itemType: String, media: [Media]? = nil, multiSize: Bool? = nil, name: String, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish1? = nil, requester: String? = nil, returnConfig: ReturnConfig, shortDescription: String? = nil, sizes: [ProductCreateUpdateSizesSchema], sizeGuide: String? = nil, slug: String, tags: [String]? = nil, taxIdentifier: TaxIdentifier, teaserTag: TeaserTag? = nil, templateTag: String, trader: [Trader], uid: Int? = nil, variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(action: String? = nil, attributes: [String: Any]? = nil, brandUid: Int, bulkJobId: String? = nil, categorySlug: String, changeRequestId: String? = nil, companyId: Int, countryOfOrigin: String, currency: String, customOrder: CustomOrder? = nil, departments: [Int], description: String? = nil, highlights: [String]? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, isImageLessProduct: Bool? = nil, isSet: Bool? = nil, itemCode: String, itemType: String, media: [Media]? = nil, multiSize: Bool? = nil, name: String, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish1? = nil, requester: String? = nil, returnConfig: ReturnConfig, shortDescription: String? = nil, sizes: [[String: Any]], sizeGuide: String? = nil, slug: String, tags: [String]? = nil, taxIdentifier: TaxIdentifier, teaserTag: TeaserTag? = nil, templateTag: String, trader: [Trader], uid: Int? = nil, variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.customJson = customJson
             
@@ -579,7 +579,7 @@ public extension PlatformClient.Catalog {
                 
             
             
-                sizes = try container.decode([ProductCreateUpdateSizesSchema].self, forKey: .sizes)
+                sizes = try container.decode([[String: Any]].self, forKey: .sizes)
                 
             
             
@@ -712,7 +712,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(changeRequestId, forKey: .changeRequestId)
+            try? container.encode(changeRequestId, forKey: .changeRequestId)
             
             
             
@@ -747,7 +747,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(highlights, forKey: .highlights)
+            try? container.encode(highlights, forKey: .highlights)
             
             
             
@@ -782,7 +782,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(media, forKey: .media)
+            try? container.encode(media, forKey: .media)
             
             
             
@@ -872,7 +872,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encode(uid, forKey: .uid)
             
             
             
@@ -968,7 +968,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var sizeGuide: String?
         
-        public var sizes: [ProductCreateUpdateSizesSchema]
+        public var sizes: [[String: Any]]
         
         public var slug: String
         
@@ -1079,7 +1079,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(action: String? = nil, attributes: [String: Any]? = nil, brandUid: Int, bulkJobId: String? = nil, categorySlug: String, changeRequestId: String? = nil, companyId: Int, countryOfOrigin: String, currency: String, customOrder: CustomOrder? = nil, departments: [Int], description: String? = nil, highlights: [String]? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, isImageLessProduct: Bool? = nil, isSet: Bool? = nil, itemCode: String, itemType: String, media: [Media]? = nil, multiSize: Bool? = nil, name: String, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish1? = nil, requester: String? = nil, returnConfig: ReturnConfig, shortDescription: String? = nil, sizes: [ProductCreateUpdateSizesSchema], sizeGuide: String? = nil, slug: String, tags: [String]? = nil, taxIdentifier: TaxIdentifier, teaserTag: TeaserTag? = nil, templateTag: String, trader: [Trader], uid: Int? = nil, variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(action: String? = nil, attributes: [String: Any]? = nil, brandUid: Int, bulkJobId: String? = nil, categorySlug: String, changeRequestId: String? = nil, companyId: Int, countryOfOrigin: String, currency: String, customOrder: CustomOrder? = nil, departments: [Int], description: String? = nil, highlights: [String]? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, isImageLessProduct: Bool? = nil, isSet: Bool? = nil, itemCode: String, itemType: String, media: [Media]? = nil, multiSize: Bool? = nil, name: String, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish1? = nil, requester: String? = nil, returnConfig: ReturnConfig, shortDescription: String? = nil, sizes: [[String: Any]], sizeGuide: String? = nil, slug: String, tags: [String]? = nil, taxIdentifier: TaxIdentifier, teaserTag: TeaserTag? = nil, templateTag: String, trader: [Trader], uid: Int? = nil, variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.customJson = customJson
             
@@ -1473,7 +1473,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                sizes = try container.decode([ProductCreateUpdateSizesSchema].self, forKey: .sizes)
+                sizes = try container.decode([[String: Any]].self, forKey: .sizes)
                 
             
             
@@ -1606,7 +1606,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(changeRequestId, forKey: .changeRequestId)
+            try? container.encode(changeRequestId, forKey: .changeRequestId)
             
             
             
@@ -1641,7 +1641,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(highlights, forKey: .highlights)
+            try? container.encode(highlights, forKey: .highlights)
             
             
             
@@ -1676,7 +1676,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(media, forKey: .media)
+            try? container.encode(media, forKey: .media)
             
             
             
@@ -1766,7 +1766,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encode(uid, forKey: .uid)
             
             
             

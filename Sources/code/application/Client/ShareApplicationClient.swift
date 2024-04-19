@@ -11,19 +11,19 @@ extension ApplicationClient {
             self.config = config;
             var ulrs = [String: String]()
             
-            ulrs["getApplicationQRCode"] = config.domain.appendAsPath("/service/application/share/v1.0/qr") 
+            ulrs["getApplicationQRCode"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/") 
             
-            ulrs["getProductQRCodeBySlug"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/products/{slug}") 
+            ulrs["getProductQRCodeBySlug"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/products/{slug}/") 
             
-            ulrs["getCollectionQRCodeBySlug"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/collection/{slug}") 
+            ulrs["getCollectionQRCodeBySlug"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/collection/{slug}/") 
             
-            ulrs["getUrlQRCode"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/url") 
+            ulrs["getUrlQRCode"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/url/") 
             
-            ulrs["createShortLink"] = config.domain.appendAsPath("/service/application/share/v1.0/links/short-link") 
+            ulrs["createShortLink"] = config.domain.appendAsPath("/service/application/share/v1.0/links/short-link/") 
             
-            ulrs["getShortLinkByHash"] = config.domain.appendAsPath("/service/application/share/v1.0/links/short-link/{hash}") 
+            ulrs["getShortLinkByHash"] = config.domain.appendAsPath("/service/application/share/v1.0/links/short-link/{hash}/") 
             
-            ulrs["getOriginalShortLinkByHash"] = config.domain.appendAsPath("/service/application/share/v1.0/links/short-link/{hash}/original") 
+            ulrs["getOriginalShortLinkByHash"] = config.domain.appendAsPath("/service/application/share/v1.0/links/short-link/{hash}/original/") 
             
             self.relativeUrls = ulrs
         }
@@ -37,8 +37,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: App QR code.
-        * Description: Generates a QR code for the application for easy sharing.
+        * Summary: Create QR Code of an app
+        * Description: Use this API to create a QR code of an app for sharing it with users who want to use the app.
         **/
         public func getApplicationQRCode(
             
@@ -87,8 +87,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Product QR code.
-        * Description: Creates a QR code for a specific product identified by its slug.
+        * Summary: Create QR Code of a product
+        * Description: Use this API to create a QR code of a product for sharing it with users who want to view/purchase the product.
         **/
         public func getProductQRCodeBySlug(
             slug: String,
@@ -140,8 +140,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Collection QR code.
-        * Description: Generates a QR code for a specific product collection using its slug.
+        * Summary: Create QR Code of a collection
+        * Description: Use this API to create a QR code of a collection of products for sharing it with users who want to view/purchase the collection.
         **/
         public func getCollectionQRCodeBySlug(
             slug: String,
@@ -193,8 +193,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: URL to QR code.
-        * Description: Converts a given URL into a scannable QR code.
+        * Summary: Create QR Code of a URL
+        * Description: Use this API to create a QR code of a URL for sharing it with users who want to visit the link.
         **/
         public func getUrlQRCode(
             url: String,
@@ -249,8 +249,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Shorten URL.
-        * Description: Creates a shortened version of a given URL for easier sharing.
+        * Summary: Create a short link
+        * Description: Use this API to create a short link that is easy to write/share/read as compared to long URLs.
         **/
         public func createShortLink(
             body: ShortLinkReq,
@@ -299,8 +299,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Fetch short link.
-        * Description: Retrieves a previously created short link using its hash identifier.
+        * Summary: Get short link by hash
+        * Description: Use this API to get a short link by using a hash value.
         **/
         public func getShortLinkByHash(
             hash: String,
@@ -352,8 +352,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Original URL.
-        * Description: Retrieve the original link from a short-link by using a hash value.
+        * Summary: Get original link by hash
+        * Description: Use this API to retrieve the original link from a short-link by using a hash value.
         **/
         public func getOriginalShortLinkByHash(
             hash: String,

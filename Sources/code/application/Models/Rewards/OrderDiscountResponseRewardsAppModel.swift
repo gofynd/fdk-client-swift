@@ -116,7 +116,9 @@ public extension ApplicationClient.Rewards {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(orderAmount, forKey: .orderAmount)
+            
             
             
             
@@ -124,11 +126,14 @@ public extension ApplicationClient.Rewards {
             
             
             
+            
             try? container.encodeIfPresent(discount, forKey: .discount)
             
             
             
+            
             try? container.encodeIfPresent(baseDiscount, forKey: .baseDiscount)
+            
             
             
             

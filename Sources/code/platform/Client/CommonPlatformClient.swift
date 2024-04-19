@@ -16,7 +16,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Search for applications.
+        * Summary: Search Application
         * Description: Provide application name or domain url
         **/
         public func searchApplication(
@@ -79,8 +79,8 @@ if let value = authorization {
         
         /**
         *
-        * Summary: Get company locations.
-        * Description: Retrieve a list of locations associated with the company.
+        * Summary: Get countries, states, cities
+        * Description: Retrieve a list of countries, states, or cities based on the provided location_type and id parameters.
         **/
         public func getLocations(
             locationType: String?,

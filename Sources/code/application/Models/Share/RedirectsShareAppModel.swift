@@ -98,7 +98,9 @@ public extension ApplicationClient.Share {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(ios, forKey: .ios)
+            
             
             
             
@@ -106,7 +108,9 @@ public extension ApplicationClient.Share {
             
             
             
+            
             try? container.encodeIfPresent(web, forKey: .web)
+            
             
             
             

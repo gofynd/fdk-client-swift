@@ -22,8 +22,6 @@ public extension PlatformClient.FileStorage {
         
         public var awbNumberLabelBarcodeGenerator: AwbNumberLabelBarcodeGenerator?
         
-        public var awbNumberBarcodeGenerator: AwbNumberBarcodeGenerator?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -37,11 +35,9 @@ public extension PlatformClient.FileStorage {
             
             case awbNumberLabelBarcodeGenerator = "awb_number_label_barcode_generator"
             
-            case awbNumberBarcodeGenerator = "awb_number_barcode_generator"
-            
         }
 
-        public init(awbNumberBarcodeGenerator: AwbNumberBarcodeGenerator? = nil, awbNumberLabelBarcodeGenerator: AwbNumberLabelBarcodeGenerator? = nil, digitalsignatureGenerator: DigitalsignatureGenerator? = nil, shipmentIdBarcodeGenerator: ShipmentIdBarcodeGenerator? = nil, signedQrcodeGenerator: SignedQrcodeGenerator? = nil, upiQrcodeGenerator: UpiQrcodeGenerator? = nil) {
+        public init(awbNumberLabelBarcodeGenerator: AwbNumberLabelBarcodeGenerator? = nil, digitalsignatureGenerator: DigitalsignatureGenerator? = nil, shipmentIdBarcodeGenerator: ShipmentIdBarcodeGenerator? = nil, signedQrcodeGenerator: SignedQrcodeGenerator? = nil, upiQrcodeGenerator: UpiQrcodeGenerator? = nil) {
             
             self.shipmentIdBarcodeGenerator = shipmentIdBarcodeGenerator
             
@@ -52,8 +48,6 @@ public extension PlatformClient.FileStorage {
             self.digitalsignatureGenerator = digitalsignatureGenerator
             
             self.awbNumberLabelBarcodeGenerator = awbNumberLabelBarcodeGenerator
-            
-            self.awbNumberBarcodeGenerator = awbNumberBarcodeGenerator
             
         }
 
@@ -120,18 +114,6 @@ public extension PlatformClient.FileStorage {
                 }
                 
             
-            
-                do {
-                    awbNumberBarcodeGenerator = try container.decode(AwbNumberBarcodeGenerator.self, forKey: .awbNumberBarcodeGenerator)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -160,11 +142,6 @@ public extension PlatformClient.FileStorage {
             
             
             try? container.encodeIfPresent(awbNumberLabelBarcodeGenerator, forKey: .awbNumberLabelBarcodeGenerator)
-            
-            
-            
-            
-            try? container.encodeIfPresent(awbNumberBarcodeGenerator, forKey: .awbNumberBarcodeGenerator)
             
             
         }
@@ -193,8 +170,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var awbNumberLabelBarcodeGenerator: AwbNumberLabelBarcodeGenerator?
         
-        public var awbNumberBarcodeGenerator: AwbNumberBarcodeGenerator?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -208,11 +183,9 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             case awbNumberLabelBarcodeGenerator = "awb_number_label_barcode_generator"
             
-            case awbNumberBarcodeGenerator = "awb_number_barcode_generator"
-            
         }
 
-        public init(awbNumberBarcodeGenerator: AwbNumberBarcodeGenerator? = nil, awbNumberLabelBarcodeGenerator: AwbNumberLabelBarcodeGenerator? = nil, digitalsignatureGenerator: DigitalsignatureGenerator? = nil, shipmentIdBarcodeGenerator: ShipmentIdBarcodeGenerator? = nil, signedQrcodeGenerator: SignedQrcodeGenerator? = nil, upiQrcodeGenerator: UpiQrcodeGenerator? = nil) {
+        public init(awbNumberLabelBarcodeGenerator: AwbNumberLabelBarcodeGenerator? = nil, digitalsignatureGenerator: DigitalsignatureGenerator? = nil, shipmentIdBarcodeGenerator: ShipmentIdBarcodeGenerator? = nil, signedQrcodeGenerator: SignedQrcodeGenerator? = nil, upiQrcodeGenerator: UpiQrcodeGenerator? = nil) {
             
             self.shipmentIdBarcodeGenerator = shipmentIdBarcodeGenerator
             
@@ -223,8 +196,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             self.digitalsignatureGenerator = digitalsignatureGenerator
             
             self.awbNumberLabelBarcodeGenerator = awbNumberLabelBarcodeGenerator
-            
-            self.awbNumberBarcodeGenerator = awbNumberBarcodeGenerator
             
         }
 
@@ -291,18 +262,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
                 }
                 
             
-            
-                do {
-                    awbNumberBarcodeGenerator = try container.decode(AwbNumberBarcodeGenerator.self, forKey: .awbNumberBarcodeGenerator)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -331,11 +290,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(awbNumberLabelBarcodeGenerator, forKey: .awbNumberLabelBarcodeGenerator)
-            
-            
-            
-            
-            try? container.encodeIfPresent(awbNumberBarcodeGenerator, forKey: .awbNumberBarcodeGenerator)
             
             
         }

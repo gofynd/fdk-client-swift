@@ -81,7 +81,9 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(unit, forKey: .unit)
+            
             
             
             
@@ -89,11 +91,14 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(length, forKey: .length)
             
             
             
+            
             try? container.encodeIfPresent(width, forKey: .width)
+            
             
             
             

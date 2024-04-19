@@ -260,7 +260,9 @@ public extension ApplicationClient.PosCart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(maxDiscountValue, forKey: .maxDiscountValue)
+            
             
             
             
@@ -268,7 +270,9 @@ public extension ApplicationClient.PosCart {
             
             
             
+            
             try? container.encodeIfPresent(isApplied, forKey: .isApplied)
+            
             
             
             
@@ -276,15 +280,19 @@ public extension ApplicationClient.PosCart {
             
             
             
+            
             try? container.encodeIfPresent(type, forKey: .type)
             
             
             
-            try? container.encodeIfPresent(couponType, forKey: .couponType)
+            
+            try? container.encode(couponType, forKey: .couponType)
             
             
             
-            try? container.encodeIfPresent(subTitle, forKey: .subTitle)
+            
+            try? container.encode(subTitle, forKey: .subTitle)
+            
             
             
             
@@ -292,7 +300,9 @@ public extension ApplicationClient.PosCart {
             
             
             
-            try? container.encodeIfPresent(description, forKey: .description)
+            
+            try? container.encode(description, forKey: .description)
+            
             
             
             
@@ -300,7 +310,9 @@ public extension ApplicationClient.PosCart {
             
             
             
+            
             try? container.encodeIfPresent(minimumCartValue, forKey: .minimumCartValue)
+            
             
             
             
@@ -308,7 +320,8 @@ public extension ApplicationClient.PosCart {
             
             
             
-            try? container.encodeIfPresent(title, forKey: .title)
+            
+            try? container.encode(title, forKey: .title)
             
             
         }

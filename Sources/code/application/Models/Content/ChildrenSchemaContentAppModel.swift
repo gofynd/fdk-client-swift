@@ -116,7 +116,9 @@ public extension ApplicationClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(question, forKey: .question)
+            
             
             
             
@@ -124,11 +126,14 @@ public extension ApplicationClient.Content {
             
             
             
+            
             try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
+            
             try? container.encodeIfPresent(application, forKey: .application)
+            
             
             
             

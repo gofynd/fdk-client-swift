@@ -32,8 +32,6 @@ public extension PlatformClient.Payment {
         
         public var aggregatorName: String?
         
-        public var error: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -57,11 +55,9 @@ public extension PlatformClient.Payment {
             
             case aggregatorName = "aggregator_name"
             
-            case error = "error"
-            
         }
 
-        public init(aggregatorName: String? = nil, amount: Double? = nil, error: String? = nil, httpStatus: Int? = nil, message: String? = nil, orderId: String? = nil, paymentLinkId: String? = nil, redirectUrl: String? = nil, status: String? = nil, statusCode: Int? = nil, success: Bool? = nil) {
+        public init(aggregatorName: String? = nil, amount: Double? = nil, httpStatus: Int? = nil, message: String? = nil, orderId: String? = nil, paymentLinkId: String? = nil, redirectUrl: String? = nil, status: String? = nil, statusCode: Int? = nil, success: Bool? = nil) {
             
             self.message = message
             
@@ -82,8 +78,6 @@ public extension PlatformClient.Payment {
             self.status = status
             
             self.aggregatorName = aggregatorName
-            
-            self.error = error
             
         }
 
@@ -210,18 +204,6 @@ public extension PlatformClient.Payment {
                 }
                 
             
-            
-                do {
-                    error = try container.decode(String.self, forKey: .error)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -229,57 +211,52 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encode(message, forKey: .message)
             
             
             
             
-            try? container.encodeIfPresent(httpStatus, forKey: .httpStatus)
+            try? container.encode(httpStatus, forKey: .httpStatus)
             
             
             
             
-            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
+            try? container.encode(statusCode, forKey: .statusCode)
             
             
             
             
-            try? container.encodeIfPresent(redirectUrl, forKey: .redirectUrl)
+            try? container.encode(redirectUrl, forKey: .redirectUrl)
             
             
             
             
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            try? container.encode(amount, forKey: .amount)
             
             
             
             
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encode(orderId, forKey: .orderId)
             
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encode(success, forKey: .success)
             
             
             
             
-            try? container.encodeIfPresent(paymentLinkId, forKey: .paymentLinkId)
+            try? container.encode(paymentLinkId, forKey: .paymentLinkId)
             
             
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encode(status, forKey: .status)
             
             
             
             
-            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
-            
-            
-            
-            
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encode(aggregatorName, forKey: .aggregatorName)
             
             
         }
@@ -318,8 +295,6 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var aggregatorName: String?
         
-        public var error: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -343,11 +318,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case aggregatorName = "aggregator_name"
             
-            case error = "error"
-            
         }
 
-        public init(aggregatorName: String? = nil, amount: Double? = nil, error: String? = nil, httpStatus: Int? = nil, message: String? = nil, orderId: String? = nil, paymentLinkId: String? = nil, redirectUrl: String? = nil, status: String? = nil, statusCode: Int? = nil, success: Bool? = nil) {
+        public init(aggregatorName: String? = nil, amount: Double? = nil, httpStatus: Int? = nil, message: String? = nil, orderId: String? = nil, paymentLinkId: String? = nil, redirectUrl: String? = nil, status: String? = nil, statusCode: Int? = nil, success: Bool? = nil) {
             
             self.message = message
             
@@ -368,8 +341,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.status = status
             
             self.aggregatorName = aggregatorName
-            
-            self.error = error
             
         }
 
@@ -496,18 +467,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 }
                 
             
-            
-                do {
-                    error = try container.decode(String.self, forKey: .error)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -515,57 +474,52 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encode(message, forKey: .message)
             
             
             
             
-            try? container.encodeIfPresent(httpStatus, forKey: .httpStatus)
+            try? container.encode(httpStatus, forKey: .httpStatus)
             
             
             
             
-            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
+            try? container.encode(statusCode, forKey: .statusCode)
             
             
             
             
-            try? container.encodeIfPresent(redirectUrl, forKey: .redirectUrl)
+            try? container.encode(redirectUrl, forKey: .redirectUrl)
             
             
             
             
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            try? container.encode(amount, forKey: .amount)
             
             
             
             
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encode(orderId, forKey: .orderId)
             
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encode(success, forKey: .success)
             
             
             
             
-            try? container.encodeIfPresent(paymentLinkId, forKey: .paymentLinkId)
+            try? container.encode(paymentLinkId, forKey: .paymentLinkId)
             
             
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encode(status, forKey: .status)
             
             
             
             
-            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
-            
-            
-            
-            
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encode(aggregatorName, forKey: .aggregatorName)
             
             
         }

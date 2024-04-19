@@ -62,7 +62,9 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(items, forKey: .items)
+            
             
             
             

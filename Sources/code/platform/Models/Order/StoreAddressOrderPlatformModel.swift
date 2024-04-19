@@ -24,8 +24,6 @@ public extension PlatformClient.Order {
         
         public var address1: String
         
-        public var displayAddress: String?
-        
         public var version: String?
         
         public var addressCategory: String
@@ -67,8 +65,6 @@ public extension PlatformClient.Order {
             
             case address1 = "address1"
             
-            case displayAddress = "display_address"
-            
             case version = "version"
             
             case addressCategory = "address_category"
@@ -97,7 +93,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(address1: String, address2: String? = nil, addressCategory: String, addressType: String, area: String? = nil, city: String, contactPerson: String, country: String, countryCode: String, createdAt: String, displayAddress: String? = nil, email: String? = nil, landmark: String? = nil, latitude: Double, longitude: Double, phone: String, pincode: Int, state: String, updatedAt: String, version: String? = nil) {
+        public init(address1: String, address2: String? = nil, addressCategory: String, addressType: String, area: String? = nil, city: String, contactPerson: String, country: String, countryCode: String, createdAt: String, email: String? = nil, landmark: String? = nil, latitude: Double, longitude: Double, phone: String, pincode: Int, state: String, updatedAt: String, version: String? = nil) {
             
             self.phone = phone
             
@@ -110,8 +106,6 @@ public extension PlatformClient.Order {
             self.addressType = addressType
             
             self.address1 = address1
-            
-            self.displayAddress = displayAddress
             
             self.version = version
             
@@ -173,18 +167,6 @@ public extension PlatformClient.Order {
                 address1 = try container.decode(String.self, forKey: .address1)
                 
             
-            
-            
-                do {
-                    displayAddress = try container.decode(String.self, forKey: .displayAddress)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -293,7 +275,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(phone, forKey: .phone)
+            try? container.encode(phone, forKey: .phone)
             
             
             
@@ -323,12 +305,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
-            
-            
-            
-            
-            try? container.encodeIfPresent(version, forKey: .version)
+            try? container.encode(version, forKey: .version)
             
             
             
@@ -353,12 +330,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(area, forKey: .area)
+            try? container.encode(area, forKey: .area)
             
             
             
             
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encode(email, forKey: .email)
             
             
             
@@ -419,8 +396,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var address1: String
         
-        public var displayAddress: String?
-        
         public var version: String?
         
         public var addressCategory: String
@@ -462,8 +437,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case address1 = "address1"
             
-            case displayAddress = "display_address"
-            
             case version = "version"
             
             case addressCategory = "address_category"
@@ -492,7 +465,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(address1: String, address2: String? = nil, addressCategory: String, addressType: String, area: String? = nil, city: String, contactPerson: String, country: String, countryCode: String, createdAt: String, displayAddress: String? = nil, email: String? = nil, landmark: String? = nil, latitude: Double, longitude: Double, phone: String, pincode: Int, state: String, updatedAt: String, version: String? = nil) {
+        public init(address1: String, address2: String? = nil, addressCategory: String, addressType: String, area: String? = nil, city: String, contactPerson: String, country: String, countryCode: String, createdAt: String, email: String? = nil, landmark: String? = nil, latitude: Double, longitude: Double, phone: String, pincode: Int, state: String, updatedAt: String, version: String? = nil) {
             
             self.phone = phone
             
@@ -505,8 +478,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.addressType = addressType
             
             self.address1 = address1
-            
-            self.displayAddress = displayAddress
             
             self.version = version
             
@@ -568,18 +539,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 address1 = try container.decode(String.self, forKey: .address1)
                 
             
-            
-            
-                do {
-                    displayAddress = try container.decode(String.self, forKey: .displayAddress)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -688,7 +647,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(phone, forKey: .phone)
+            try? container.encode(phone, forKey: .phone)
             
             
             
@@ -718,12 +677,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
-            
-            
-            
-            
-            try? container.encodeIfPresent(version, forKey: .version)
+            try? container.encode(version, forKey: .version)
             
             
             
@@ -748,12 +702,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(area, forKey: .area)
+            try? container.encode(area, forKey: .area)
             
             
             
             
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encode(email, forKey: .email)
             
             
             

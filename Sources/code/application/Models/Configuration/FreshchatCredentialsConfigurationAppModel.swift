@@ -96,13 +96,16 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(appId?.asBase64, forKey: .appId)
             
             
             
             
             
+            
             try? container.encodeIfPresent(appKey?.asBase64, forKey: .appKey)
+            
             
             
             

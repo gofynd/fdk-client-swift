@@ -237,7 +237,9 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(status, forKey: .status)
+            
             
             
             
@@ -245,7 +247,9 @@ public extension ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(bankCode, forKey: .bankCode)
+            
+            try? container.encode(bankCode, forKey: .bankCode)
+            
             
             
             
@@ -253,7 +257,9 @@ public extension ApplicationClient.Payment {
             
             
             
+            
             try? container.encodeIfPresent(cardExpYear, forKey: .cardExpYear)
+            
             
             
             
@@ -261,11 +267,14 @@ public extension ApplicationClient.Payment {
             
             
             
+            
             try? container.encodeIfPresent(type, forKey: .type)
             
             
             
-            try? container.encodeIfPresent(cardSubType, forKey: .cardSubType)
+            
+            try? container.encode(cardSubType, forKey: .cardSubType)
+            
             
             
             
@@ -273,7 +282,9 @@ public extension ApplicationClient.Payment {
             
             
             
+            
             try? container.encodeIfPresent(nameOnCard, forKey: .nameOnCard)
+            
             
             
             
@@ -281,7 +292,9 @@ public extension ApplicationClient.Payment {
             
             
             
+            
             try? container.encodeIfPresent(extendedCardType, forKey: .extendedCardType)
+            
             
             
             
@@ -289,11 +302,14 @@ public extension ApplicationClient.Payment {
             
             
             
+            
             try? container.encodeIfPresent(cardToken, forKey: .cardToken)
             
             
             
+            
             try? container.encodeIfPresent(user, forKey: .user)
+            
             
             
             

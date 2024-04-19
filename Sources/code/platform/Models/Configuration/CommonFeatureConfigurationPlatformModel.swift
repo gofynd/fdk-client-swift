@@ -18,8 +18,6 @@ public extension PlatformClient.Configuration {
         
         public var listingPrice: ListingPriceFeature?
         
-        public var listingPage: ListingPageFeature?
-        
         public var currency: CurrencyFeature?
         
         public var revenueEngine: RevenueEngineFeature?
@@ -30,8 +28,6 @@ public extension PlatformClient.Configuration {
         
         public var rewardPoints: RewardPointsConfig?
         
-        public var internationalShipping: InternationalShipping?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -40,8 +36,6 @@ public extension PlatformClient.Configuration {
             case deploymentStoreSelection = "deployment_store_selection"
             
             case listingPrice = "listing_price"
-            
-            case listingPage = "listing_page"
             
             case currency = "currency"
             
@@ -53,19 +47,15 @@ public extension PlatformClient.Configuration {
             
             case rewardPoints = "reward_points"
             
-            case internationalShipping = "international_shipping"
-            
         }
 
-        public init(communicationOptinDialog: CommunicationOptinDialogFeature? = nil, compareProducts: CompareProductsFeature? = nil, currency: CurrencyFeature? = nil, deploymentStoreSelection: DeploymentStoreSelectionFeature? = nil, feedback: FeedbackFeature? = nil, internationalShipping: InternationalShipping? = nil, listingPage: ListingPageFeature? = nil, listingPrice: ListingPriceFeature? = nil, revenueEngine: RevenueEngineFeature? = nil, rewardPoints: RewardPointsConfig? = nil) {
+        public init(communicationOptinDialog: CommunicationOptinDialogFeature? = nil, compareProducts: CompareProductsFeature? = nil, currency: CurrencyFeature? = nil, deploymentStoreSelection: DeploymentStoreSelectionFeature? = nil, feedback: FeedbackFeature? = nil, listingPrice: ListingPriceFeature? = nil, revenueEngine: RevenueEngineFeature? = nil, rewardPoints: RewardPointsConfig? = nil) {
             
             self.communicationOptinDialog = communicationOptinDialog
             
             self.deploymentStoreSelection = deploymentStoreSelection
             
             self.listingPrice = listingPrice
-            
-            self.listingPage = listingPage
             
             self.currency = currency
             
@@ -76,8 +66,6 @@ public extension PlatformClient.Configuration {
             self.compareProducts = compareProducts
             
             self.rewardPoints = rewardPoints
-            
-            self.internationalShipping = internationalShipping
             
         }
 
@@ -111,18 +99,6 @@ public extension PlatformClient.Configuration {
             
                 do {
                     listingPrice = try container.decode(ListingPriceFeature.self, forKey: .listingPrice)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    listingPage = try container.decode(ListingPageFeature.self, forKey: .listingPage)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -192,18 +168,6 @@ public extension PlatformClient.Configuration {
                 }
                 
             
-            
-                do {
-                    internationalShipping = try container.decode(InternationalShipping.self, forKey: .internationalShipping)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -222,11 +186,6 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(listingPrice, forKey: .listingPrice)
-            
-            
-            
-            
-            try? container.encodeIfPresent(listingPage, forKey: .listingPage)
             
             
             
@@ -252,11 +211,6 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(rewardPoints, forKey: .rewardPoints)
-            
-            
-            
-            
-            try? container.encodeIfPresent(internationalShipping, forKey: .internationalShipping)
             
             
         }
@@ -281,8 +235,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var listingPrice: ListingPriceFeature?
         
-        public var listingPage: ListingPageFeature?
-        
         public var currency: CurrencyFeature?
         
         public var revenueEngine: RevenueEngineFeature?
@@ -293,8 +245,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var rewardPoints: RewardPointsConfig?
         
-        public var internationalShipping: InternationalShipping?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -303,8 +253,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             case deploymentStoreSelection = "deployment_store_selection"
             
             case listingPrice = "listing_price"
-            
-            case listingPage = "listing_page"
             
             case currency = "currency"
             
@@ -316,19 +264,15 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case rewardPoints = "reward_points"
             
-            case internationalShipping = "international_shipping"
-            
         }
 
-        public init(communicationOptinDialog: CommunicationOptinDialogFeature? = nil, compareProducts: CompareProductsFeature? = nil, currency: CurrencyFeature? = nil, deploymentStoreSelection: DeploymentStoreSelectionFeature? = nil, feedback: FeedbackFeature? = nil, internationalShipping: InternationalShipping? = nil, listingPage: ListingPageFeature? = nil, listingPrice: ListingPriceFeature? = nil, revenueEngine: RevenueEngineFeature? = nil, rewardPoints: RewardPointsConfig? = nil) {
+        public init(communicationOptinDialog: CommunicationOptinDialogFeature? = nil, compareProducts: CompareProductsFeature? = nil, currency: CurrencyFeature? = nil, deploymentStoreSelection: DeploymentStoreSelectionFeature? = nil, feedback: FeedbackFeature? = nil, listingPrice: ListingPriceFeature? = nil, revenueEngine: RevenueEngineFeature? = nil, rewardPoints: RewardPointsConfig? = nil) {
             
             self.communicationOptinDialog = communicationOptinDialog
             
             self.deploymentStoreSelection = deploymentStoreSelection
             
             self.listingPrice = listingPrice
-            
-            self.listingPage = listingPage
             
             self.currency = currency
             
@@ -339,8 +283,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.compareProducts = compareProducts
             
             self.rewardPoints = rewardPoints
-            
-            self.internationalShipping = internationalShipping
             
         }
 
@@ -374,18 +316,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
                 do {
                     listingPrice = try container.decode(ListingPriceFeature.self, forKey: .listingPrice)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    listingPage = try container.decode(ListingPageFeature.self, forKey: .listingPage)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -455,18 +385,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
-            
-                do {
-                    internationalShipping = try container.decode(InternationalShipping.self, forKey: .internationalShipping)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -485,11 +403,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(listingPrice, forKey: .listingPrice)
-            
-            
-            
-            
-            try? container.encodeIfPresent(listingPage, forKey: .listingPage)
             
             
             
@@ -515,11 +428,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(rewardPoints, forKey: .rewardPoints)
-            
-            
-            
-            
-            try? container.encodeIfPresent(internationalShipping, forKey: .internationalShipping)
             
             
         }

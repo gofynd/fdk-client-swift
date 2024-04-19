@@ -67,12 +67,12 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(packageName, forKey: .packageName)
+            try? container.encode(packageName, forKey: .packageName)
             
             
             
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encode(code, forKey: .code)
             
             
         }
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(packageName, forKey: .packageName)
+            try? container.encode(packageName, forKey: .packageName)
             
             
             
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encode(code, forKey: .code)
             
             
         }

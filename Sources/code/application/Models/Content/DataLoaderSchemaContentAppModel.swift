@@ -16,16 +16,6 @@ public extension ApplicationClient.Content {
         
         public var type: String?
         
-        public var isSelected: Bool?
-        
-        public var createdAt: String?
-        
-        public var modifiedAt: String?
-        
-        public var company: String?
-        
-        public var application: String?
-        
         public var url: String?
         
         public var content: String?
@@ -33,8 +23,6 @@ public extension ApplicationClient.Content {
         public var source: DataLoaderSourceSchema?
         
         public var id: String?
-        
-        public var v: Double?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -47,16 +35,6 @@ public extension ApplicationClient.Content {
             
             case type = "type"
             
-            case isSelected = "is_selected"
-            
-            case createdAt = "created_at"
-            
-            case modifiedAt = "modified_at"
-            
-            case company = "company"
-            
-            case application = "application"
-            
             case url = "url"
             
             case content = "content"
@@ -65,11 +43,9 @@ public extension ApplicationClient.Content {
             
             case id = "_id"
             
-            case v = "__v"
-            
         }
 
-        public init(application: String? = nil, company: String? = nil, content: String? = nil, createdAt: String? = nil, isSelected: Bool? = nil, modifiedAt: String? = nil, name: String? = nil, operationId: String? = nil, service: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: DataLoaderSourceSchema? = nil, v: Double? = nil) {
+        public init(content: String? = nil, name: String? = nil, operationId: String? = nil, service: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: DataLoaderSourceSchema? = nil) {
             
             self.name = name
             
@@ -79,16 +55,6 @@ public extension ApplicationClient.Content {
             
             self.type = type
             
-            self.isSelected = isSelected
-            
-            self.createdAt = createdAt
-            
-            self.modifiedAt = modifiedAt
-            
-            self.company = company
-            
-            self.application = application
-            
             self.url = url
             
             self.content = content
@@ -96,8 +62,6 @@ public extension ApplicationClient.Content {
             self.source = source
             
             self.id = id
-            
-            self.v = v
             
         }
 
@@ -143,66 +107,6 @@ public extension ApplicationClient.Content {
             
             do {
                 type = try container.decode(String.self, forKey: .type)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                isSelected = try container.decode(Bool.self, forKey: .isSelected)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                createdAt = try container.decode(String.self, forKey: .createdAt)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                company = try container.decode(String.self, forKey: .company)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                application = try container.decode(String.self, forKey: .application)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -260,25 +164,15 @@ public extension ApplicationClient.Content {
             }
             
             
-            
-            do {
-                v = try container.decode(Double.self, forKey: .v)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(name, forKey: .name)
+            
             
             
             
@@ -286,7 +180,9 @@ public extension ApplicationClient.Content {
             
             
             
+            
             try? container.encodeIfPresent(operationId, forKey: .operationId)
+            
             
             
             
@@ -294,27 +190,9 @@ public extension ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
-            
-            
-            
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
-            
-            
-            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
-            
-            
-            
-            try? container.encodeIfPresent(company, forKey: .company)
-            
-            
-            
-            try? container.encodeIfPresent(application, forKey: .application)
-            
-            
             
             try? container.encodeIfPresent(url, forKey: .url)
+            
             
             
             
@@ -322,15 +200,13 @@ public extension ApplicationClient.Content {
             
             
             
+            
             try? container.encodeIfPresent(source, forKey: .source)
             
             
             
+            
             try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

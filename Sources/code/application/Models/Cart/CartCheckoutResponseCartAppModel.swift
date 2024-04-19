@@ -170,7 +170,9 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(paymentConfirmUrl, forKey: .paymentConfirmUrl)
+            
             
             
             
@@ -178,7 +180,9 @@ public extension ApplicationClient.Cart {
             
             
             
+            
             try? container.encodeIfPresent(success, forKey: .success)
+            
             
             
             
@@ -186,7 +190,9 @@ public extension ApplicationClient.Cart {
             
             
             
+            
             try? container.encodeIfPresent(message, forKey: .message)
+            
             
             
             
@@ -194,7 +200,9 @@ public extension ApplicationClient.Cart {
             
             
             
+            
             try? container.encodeIfPresent(orderId, forKey: .orderId)
+            
             
             
             

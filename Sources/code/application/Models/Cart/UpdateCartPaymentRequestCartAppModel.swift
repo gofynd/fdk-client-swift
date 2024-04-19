@@ -134,11 +134,14 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(id, forKey: .id)
             
             
             
-            try? container.encodeIfPresent(paymentIdentifier, forKey: .paymentIdentifier)
+            
+            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
+            
             
             
             
@@ -146,11 +149,14 @@ public extension ApplicationClient.Cart {
             
             
             
+            
             try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
             
             
             
+            
             try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
+            
             
             
             

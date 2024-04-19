@@ -315,32 +315,32 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(itemDimensionsUnitOfMeasure, forKey: .itemDimensionsUnitOfMeasure)
+            try? container.encode(itemDimensionsUnitOfMeasure, forKey: .itemDimensionsUnitOfMeasure)
             
             
             
             
-            try? container.encodeIfPresent(itemHeight, forKey: .itemHeight)
+            try? container.encode(itemHeight, forKey: .itemHeight)
             
             
             
             
-            try? container.encodeIfPresent(itemLength, forKey: .itemLength)
+            try? container.encode(itemLength, forKey: .itemLength)
             
             
             
             
-            try? container.encodeIfPresent(itemWeight, forKey: .itemWeight)
+            try? container.encode(itemWeight, forKey: .itemWeight)
             
             
             
             
-            try? container.encodeIfPresent(itemWeightUnitOfMeasure, forKey: .itemWeightUnitOfMeasure)
+            try? container.encode(itemWeightUnitOfMeasure, forKey: .itemWeightUnitOfMeasure)
             
             
             
             
-            try? container.encodeIfPresent(itemWidth, forKey: .itemWidth)
+            try? container.encode(itemWidth, forKey: .itemWidth)
             
             
             
@@ -355,7 +355,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(priceTransfer, forKey: .priceTransfer)
+            try? container.encode(priceTransfer, forKey: .priceTransfer)
             
             
             
@@ -697,32 +697,32 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(itemDimensionsUnitOfMeasure, forKey: .itemDimensionsUnitOfMeasure)
+            try? container.encode(itemDimensionsUnitOfMeasure, forKey: .itemDimensionsUnitOfMeasure)
             
             
             
             
-            try? container.encodeIfPresent(itemHeight, forKey: .itemHeight)
+            try? container.encode(itemHeight, forKey: .itemHeight)
             
             
             
             
-            try? container.encodeIfPresent(itemLength, forKey: .itemLength)
+            try? container.encode(itemLength, forKey: .itemLength)
             
             
             
             
-            try? container.encodeIfPresent(itemWeight, forKey: .itemWeight)
+            try? container.encode(itemWeight, forKey: .itemWeight)
             
             
             
             
-            try? container.encodeIfPresent(itemWeightUnitOfMeasure, forKey: .itemWeightUnitOfMeasure)
+            try? container.encode(itemWeightUnitOfMeasure, forKey: .itemWeightUnitOfMeasure)
             
             
             
             
-            try? container.encodeIfPresent(itemWidth, forKey: .itemWidth)
+            try? container.encode(itemWidth, forKey: .itemWidth)
             
             
             
@@ -737,7 +737,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(priceTransfer, forKey: .priceTransfer)
+            try? container.encode(priceTransfer, forKey: .priceTransfer)
             
             
             

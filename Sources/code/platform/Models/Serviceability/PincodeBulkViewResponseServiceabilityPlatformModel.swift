@@ -16,10 +16,6 @@ public extension PlatformClient.Serviceability {
         
         public var s3Url: String
         
-        public var statusCode: Int?
-        
-        public var success: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -27,21 +23,13 @@ public extension PlatformClient.Serviceability {
             
             case s3Url = "s3_url"
             
-            case statusCode = "status_code"
-            
-            case success = "success"
-            
         }
 
-        public init(batchId: String, s3Url: String, statusCode: Int? = nil, success: Bool? = nil) {
+        public init(batchId: String, s3Url: String) {
             
             self.batchId = batchId
             
             self.s3Url = s3Url
-            
-            self.statusCode = statusCode
-            
-            self.success = success
             
         }
 
@@ -58,30 +46,6 @@ public extension PlatformClient.Serviceability {
                 
             
             
-            
-                do {
-                    statusCode = try container.decode(Int.self, forKey: .statusCode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    success = try container.decode(Bool.self, forKey: .success)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -95,16 +59,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(s3Url, forKey: .s3Url)
-            
-            
-            
-            
-            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
-            
-            
-            
-            
-            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }
@@ -127,10 +81,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var s3Url: String
         
-        public var statusCode: Int?
-        
-        public var success: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -138,21 +88,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case s3Url = "s3_url"
             
-            case statusCode = "status_code"
-            
-            case success = "success"
-            
         }
 
-        public init(batchId: String, s3Url: String, statusCode: Int? = nil, success: Bool? = nil) {
+        public init(batchId: String, s3Url: String) {
             
             self.batchId = batchId
             
             self.s3Url = s3Url
-            
-            self.statusCode = statusCode
-            
-            self.success = success
             
         }
 
@@ -169,30 +111,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
-            
-                do {
-                    statusCode = try container.decode(Int.self, forKey: .statusCode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    success = try container.decode(Bool.self, forKey: .success)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -206,16 +124,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(s3Url, forKey: .s3Url)
-            
-            
-            
-            
-            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
-            
-            
-            
-            
-            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }

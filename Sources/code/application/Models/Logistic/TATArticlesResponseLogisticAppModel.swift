@@ -152,7 +152,9 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(manufacturingTimeUnit, forKey: .manufacturingTimeUnit)
+            
             
             
             
@@ -160,7 +162,9 @@ public extension ApplicationClient.Logistic {
             
             
             
+            
             try? container.encodeIfPresent(isCodAvailable, forKey: .isCodAvailable)
+            
             
             
             
@@ -168,11 +172,14 @@ public extension ApplicationClient.Logistic {
             
             
             
+            
             try? container.encodeIfPresent(manufacturingTime, forKey: .manufacturingTime)
             
             
             
+            
             try? container.encodeIfPresent(category, forKey: .category)
+            
             
             
             

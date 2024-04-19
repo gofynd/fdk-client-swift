@@ -50,6 +50,7 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(writeKey?.asBase64, forKey: .writeKey)
             
             

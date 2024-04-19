@@ -16,7 +16,7 @@ public extension ApplicationClient.Configuration {
         
         public var address2: String?
         
-        public var pincode: String?
+        public var pincode: Int?
         
         public var country: String?
         
@@ -41,7 +41,7 @@ public extension ApplicationClient.Configuration {
             
         }
 
-        public init(address1: String? = nil, address2: String? = nil, city: String? = nil, country: String? = nil, latLong: StoreLatLong? = nil, pincode: String? = nil, state: String? = nil) {
+        public init(address1: String? = nil, address2: String? = nil, city: String? = nil, country: String? = nil, latLong: StoreLatLong? = nil, pincode: Int? = nil, state: String? = nil) {
             
             self.state = state
             
@@ -112,7 +112,7 @@ public extension ApplicationClient.Configuration {
             
             
             do {
-                pincode = try container.decode(String.self, forKey: .pincode)
+                pincode = try container.decode(Int.self, forKey: .pincode)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -152,7 +152,9 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(state, forKey: .state)
+            
             
             
             
@@ -160,7 +162,9 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(latLong, forKey: .latLong)
+            
             
             
             
@@ -168,11 +172,14 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(pincode, forKey: .pincode)
             
             
             
+            
             try? container.encodeIfPresent(country, forKey: .country)
+            
             
             
             

@@ -14,22 +14,22 @@ public extension PlatformClient.Finance {
         
         public var success: Bool?
         
-        public var items: [ChannelDisplayNameItems]?
+        public var data: ChannelDisplayName?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case success = "success"
             
-            case items = "items"
+            case data = "data"
             
         }
 
-        public init(items: [ChannelDisplayNameItems]? = nil, success: Bool? = nil) {
+        public init(data: ChannelDisplayName? = nil, success: Bool? = nil) {
             
             self.success = success
             
-            self.items = items
+            self.data = data
             
         }
 
@@ -50,7 +50,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    items = try container.decode([ChannelDisplayNameItems].self, forKey: .items)
+                    data = try container.decode(ChannelDisplayName.self, forKey: .data)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -72,7 +72,7 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(data, forKey: .data)
             
             
         }

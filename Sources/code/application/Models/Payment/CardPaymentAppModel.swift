@@ -325,51 +325,64 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(cardNumber, forKey: .cardNumber)
+            
+            try? container.encode(cardNumber, forKey: .cardNumber)
             
             
             
-            try? container.encodeIfPresent(cardName, forKey: .cardName)
+            
+            try? container.encode(cardName, forKey: .cardName)
             
             
             
-            try? container.encodeIfPresent(cardType, forKey: .cardType)
+            
+            try? container.encode(cardType, forKey: .cardType)
             
             
             
-            try? container.encodeIfPresent(cardBrandImage, forKey: .cardBrandImage)
+            
+            try? container.encode(cardBrandImage, forKey: .cardBrandImage)
             
             
             
-            try? container.encodeIfPresent(cardReference, forKey: .cardReference)
+            
+            try? container.encode(cardReference, forKey: .cardReference)
             
             
             
-            try? container.encodeIfPresent(cardIssuer, forKey: .cardIssuer)
+            
+            try? container.encode(cardIssuer, forKey: .cardIssuer)
             
             
             
-            try? container.encodeIfPresent(cardBrand, forKey: .cardBrand)
+            
+            try? container.encode(cardBrand, forKey: .cardBrand)
             
             
             
-            try? container.encodeIfPresent(expired, forKey: .expired)
+            
+            try? container.encode(expired, forKey: .expired)
             
             
             
-            try? container.encodeIfPresent(compliantWithTokenisationGuidelines, forKey: .compliantWithTokenisationGuidelines)
+            
+            try? container.encode(compliantWithTokenisationGuidelines, forKey: .compliantWithTokenisationGuidelines)
             
             
             
-            try? container.encodeIfPresent(cardIsin, forKey: .cardIsin)
+            
+            try? container.encode(cardIsin, forKey: .cardIsin)
             
             
             
-            try? container.encodeIfPresent(expYear, forKey: .expYear)
+            
+            try? container.encode(expYear, forKey: .expYear)
             
             
             
-            try? container.encodeIfPresent(nickname, forKey: .nickname)
+            
+            try? container.encode(nickname, forKey: .nickname)
+            
             
             
             
@@ -377,19 +390,23 @@ public extension ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(cardFingerprint, forKey: .cardFingerprint)
+            
+            try? container.encode(cardFingerprint, forKey: .cardFingerprint)
             
             
             
-            try? container.encodeIfPresent(cardToken, forKey: .cardToken)
+            
+            try? container.encode(cardToken, forKey: .cardToken)
             
             
             
-            try? container.encodeIfPresent(expMonth, forKey: .expMonth)
+            
+            try? container.encode(expMonth, forKey: .expMonth)
             
             
             
-            try? container.encodeIfPresent(cardId, forKey: .cardId)
+            
+            try? container.encode(cardId, forKey: .cardId)
             
             
         }

@@ -26,8 +26,6 @@ public extension ApplicationClient.Content {
         
         public var customJson: [String: Any]?
         
-        public var v: Double?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -49,11 +47,9 @@ public extension ApplicationClient.Content {
             
             case customJson = "_custom_json"
             
-            case v = "__v"
-            
         }
 
-        public init(action: Action? = nil, application: String? = nil, archived: Bool? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, platform: [String]? = nil, slug: String? = nil, customJson: [String: Any]? = nil, id: String? = nil, v: Double? = nil) {
+        public init(action: Action? = nil, application: String? = nil, archived: Bool? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, platform: [String]? = nil, slug: String? = nil, customJson: [String: Any]? = nil, id: String? = nil) {
             
             self.slug = slug
             
@@ -72,8 +68,6 @@ public extension ApplicationClient.Content {
             self.archived = archived
             
             self.customJson = customJson
-            
-            self.v = v
             
         }
 
@@ -188,25 +182,15 @@ public extension ApplicationClient.Content {
             }
             
             
-            
-            do {
-                v = try container.decode(Double.self, forKey: .v)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(slug, forKey: .slug)
+            
             
             
             
@@ -214,7 +198,9 @@ public extension ApplicationClient.Content {
             
             
             
+            
             try? container.encodeIfPresent(platform, forKey: .platform)
+            
             
             
             
@@ -222,7 +208,9 @@ public extension ApplicationClient.Content {
             
             
             
+            
             try? container.encodeIfPresent(dateMeta, forKey: .dateMeta)
+            
             
             
             
@@ -230,7 +218,9 @@ public extension ApplicationClient.Content {
             
             
             
+            
             try? container.encodeIfPresent(application, forKey: .application)
+            
             
             
             
@@ -238,11 +228,8 @@ public extension ApplicationClient.Content {
             
             
             
+            
             try? container.encodeIfPresent(customJson, forKey: .customJson)
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

@@ -16,13 +16,11 @@ public extension PlatformClient.Catalog {
         
         public var title: String?
         
-        public var sitemap: SitemapDetail?
+        public var sitemap: [String: Any]?
         
         public var breadcrumbs: [ApplicationItemSeoBreadcrumbs]?
         
         public var metaTags: [Metatags]?
-        
-        public var canonicalUrl: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -37,11 +35,9 @@ public extension PlatformClient.Catalog {
             
             case metaTags = "meta_tags"
             
-            case canonicalUrl = "canonical_url"
-            
         }
 
-        public init(breadcrumbs: [ApplicationItemSeoBreadcrumbs]? = nil, canonicalUrl: String? = nil, description: String? = nil, metaTags: [Metatags]? = nil, sitemap: SitemapDetail? = nil, title: String? = nil) {
+        public init(breadcrumbs: [ApplicationItemSeoBreadcrumbs]? = nil, description: String? = nil, metaTags: [Metatags]? = nil, sitemap: [String: Any]? = nil, title: String? = nil) {
             
             self.description = description
             
@@ -52,8 +48,6 @@ public extension PlatformClient.Catalog {
             self.breadcrumbs = breadcrumbs
             
             self.metaTags = metaTags
-            
-            self.canonicalUrl = canonicalUrl
             
         }
 
@@ -86,7 +80,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    sitemap = try container.decode(SitemapDetail.self, forKey: .sitemap)
+                    sitemap = try container.decode([String: Any].self, forKey: .sitemap)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,18 +105,6 @@ public extension PlatformClient.Catalog {
             
                 do {
                     metaTags = try container.decode([Metatags].self, forKey: .metaTags)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    canonicalUrl = try container.decode(String.self, forKey: .canonicalUrl)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -160,11 +142,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(metaTags, forKey: .metaTags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(canonicalUrl, forKey: .canonicalUrl)
             
             
         }
@@ -187,13 +164,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var title: String?
         
-        public var sitemap: SitemapDetail?
+        public var sitemap: [String: Any]?
         
         public var breadcrumbs: [ApplicationItemSeoBreadcrumbs]?
         
         public var metaTags: [Metatags]?
-        
-        public var canonicalUrl: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -208,11 +183,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case metaTags = "meta_tags"
             
-            case canonicalUrl = "canonical_url"
-            
         }
 
-        public init(breadcrumbs: [ApplicationItemSeoBreadcrumbs]? = nil, canonicalUrl: String? = nil, description: String? = nil, metaTags: [Metatags]? = nil, sitemap: SitemapDetail? = nil, title: String? = nil) {
+        public init(breadcrumbs: [ApplicationItemSeoBreadcrumbs]? = nil, description: String? = nil, metaTags: [Metatags]? = nil, sitemap: [String: Any]? = nil, title: String? = nil) {
             
             self.description = description
             
@@ -223,8 +196,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.breadcrumbs = breadcrumbs
             
             self.metaTags = metaTags
-            
-            self.canonicalUrl = canonicalUrl
             
         }
 
@@ -257,7 +228,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    sitemap = try container.decode(SitemapDetail.self, forKey: .sitemap)
+                    sitemap = try container.decode([String: Any].self, forKey: .sitemap)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -282,18 +253,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     metaTags = try container.decode([Metatags].self, forKey: .metaTags)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    canonicalUrl = try container.decode(String.self, forKey: .canonicalUrl)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -331,11 +290,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(metaTags, forKey: .metaTags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(canonicalUrl, forKey: .canonicalUrl)
             
             
         }

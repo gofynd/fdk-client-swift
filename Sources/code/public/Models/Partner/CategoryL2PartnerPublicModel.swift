@@ -136,7 +136,9 @@ public extension PublicClient.Partner {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(parent, forKey: .parent)
+            
             
             
             
@@ -144,7 +146,9 @@ public extension PublicClient.Partner {
             
             
             
+            
             try? container.encodeIfPresent(level, forKey: .level)
+            
             
             
             
@@ -152,7 +156,9 @@ public extension PublicClient.Partner {
             
             
             
+            
             try? container.encodeIfPresent(value, forKey: .value)
+            
             
             
             

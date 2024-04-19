@@ -12,12 +12,6 @@ public extension PlatformClient.Communication {
     class CampaignReq: Codable {
         
         
-        public var recipientHeaders: RecipientHeaders?
-        
-        public var email: CampaignEmail?
-        
-        public var datasource: String?
-        
         public var description: String?
         
         public var tags: [String]?
@@ -39,12 +33,6 @@ public extension PlatformClient.Communication {
 
         public enum CodingKeys: String, CodingKey {
             
-            case recipientHeaders = "recipient_headers"
-            
-            case email = "email"
-            
-            case datasource = "datasource"
-            
             case description = "description"
             
             case tags = "tags"
@@ -65,13 +53,7 @@ public extension PlatformClient.Communication {
             
         }
 
-        public init(application: String? = nil, datasource: String? = nil, description: String? = nil, email: CampaignEmail? = nil, fileUrl: String? = nil, headers: [String]? = nil, isActive: Bool? = nil, name: String? = nil, recipientHeaders: RecipientHeaders? = nil, recordsCount: Int? = nil, tags: [String]? = nil, type: String? = nil) {
-            
-            self.recipientHeaders = recipientHeaders
-            
-            self.email = email
-            
-            self.datasource = datasource
+        public init(application: String? = nil, description: String? = nil, fileUrl: String? = nil, headers: [String]? = nil, isActive: Bool? = nil, name: String? = nil, recordsCount: Int? = nil, tags: [String]? = nil, type: String? = nil) {
             
             self.description = description
             
@@ -95,42 +77,6 @@ public extension PlatformClient.Communication {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    recipientHeaders = try container.decode(RecipientHeaders.self, forKey: .recipientHeaders)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    email = try container.decode(CampaignEmail.self, forKey: .email)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    datasource = try container.decode(String.self, forKey: .datasource)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -244,21 +190,6 @@ public extension PlatformClient.Communication {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(recipientHeaders, forKey: .recipientHeaders)
-            
-            
-            
-            
-            try? container.encodeIfPresent(email, forKey: .email)
-            
-            
-            
-            
-            try? container.encodeIfPresent(datasource, forKey: .datasource)
-            
             
             
             
@@ -321,12 +252,6 @@ public extension PlatformClient.ApplicationClient.Communication {
     class CampaignReq: Codable {
         
         
-        public var recipientHeaders: RecipientHeaders?
-        
-        public var email: CampaignEmail?
-        
-        public var datasource: String?
-        
         public var description: String?
         
         public var tags: [String]?
@@ -348,12 +273,6 @@ public extension PlatformClient.ApplicationClient.Communication {
 
         public enum CodingKeys: String, CodingKey {
             
-            case recipientHeaders = "recipient_headers"
-            
-            case email = "email"
-            
-            case datasource = "datasource"
-            
             case description = "description"
             
             case tags = "tags"
@@ -374,13 +293,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
         }
 
-        public init(application: String? = nil, datasource: String? = nil, description: String? = nil, email: CampaignEmail? = nil, fileUrl: String? = nil, headers: [String]? = nil, isActive: Bool? = nil, name: String? = nil, recipientHeaders: RecipientHeaders? = nil, recordsCount: Int? = nil, tags: [String]? = nil, type: String? = nil) {
-            
-            self.recipientHeaders = recipientHeaders
-            
-            self.email = email
-            
-            self.datasource = datasource
+        public init(application: String? = nil, description: String? = nil, fileUrl: String? = nil, headers: [String]? = nil, isActive: Bool? = nil, name: String? = nil, recordsCount: Int? = nil, tags: [String]? = nil, type: String? = nil) {
             
             self.description = description
             
@@ -404,42 +317,6 @@ public extension PlatformClient.ApplicationClient.Communication {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    recipientHeaders = try container.decode(RecipientHeaders.self, forKey: .recipientHeaders)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    email = try container.decode(CampaignEmail.self, forKey: .email)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    datasource = try container.decode(String.self, forKey: .datasource)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -553,21 +430,6 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(recipientHeaders, forKey: .recipientHeaders)
-            
-            
-            
-            
-            try? container.encodeIfPresent(email, forKey: .email)
-            
-            
-            
-            
-            try? container.encodeIfPresent(datasource, forKey: .datasource)
-            
             
             
             

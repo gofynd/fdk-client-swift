@@ -12,29 +12,9 @@ public extension PlatformClient.FileStorage {
     class DummyTemplateDataPayload: Codable {
         
         
-        public var isExport: Bool?
-        
-        public var isExportShipment: Bool?
+        public var isInternational: Bool?
         
         public var appDomainName: String?
-        
-        public var txnId: String?
-        
-        public var utr: String?
-        
-        public var poNumber: String?
-        
-        public var creditNoteId: String?
-        
-        public var currentDate: String?
-        
-        public var totalValueOfGoods: Double?
-        
-        public var b2BBuyerDetails: [String: Any]?
-        
-        public var isQwik: [String: Any]?
-        
-        public var orderType: String?
         
         public var conversionRate: ConversionRate?
         
@@ -105,29 +85,9 @@ public extension PlatformClient.FileStorage {
 
         public enum CodingKeys: String, CodingKey {
             
-            case isExport = "is_export"
-            
-            case isExportShipment = "is_export_shipment"
+            case isInternational = "is_international"
             
             case appDomainName = "app_domain_name"
-            
-            case txnId = "txn_id"
-            
-            case utr = "utr"
-            
-            case poNumber = "po_number"
-            
-            case creditNoteId = "credit_note_id"
-            
-            case currentDate = "current_date"
-            
-            case totalValueOfGoods = "total_value_of_goods"
-            
-            case b2BBuyerDetails = "b2b_buyer_details"
-            
-            case isQwik = "is_qwik"
-            
-            case orderType = "order_type"
             
             case conversionRate = "conversion_rate"
             
@@ -197,31 +157,11 @@ public extension PlatformClient.FileStorage {
             
         }
 
-        public init(amountPaid: Double? = nil, amountToBeCollected: Double? = nil, appDomainName: String? = nil, awbNumberBarcode: String? = nil, b2BBuyerDetails: [String: Any]? = nil, brandLogo: String? = nil, companyDetail: CompanyDetail? = nil, conversionRate: ConversionRate? = nil, creditNoteId: String? = nil, currencyCode: String? = nil, currentDate: String? = nil, customerBillingDetail: CustomerBillingDetail? = nil, customerShippingDetail: CustomerShippingDetail? = nil, declarationTexts: [String]? = nil, deliveryPartnerDetail: DeliveryPartnerDetail? = nil, digitalsignature: String? = nil, disclaimer: String? = nil, image: Image? = nil, invoiceDetail: InvoiceDetail? = nil, isExport: Bool? = nil, isExportShipment: Bool? = nil, isQwik: [String: Any]? = nil, isSelfPickup: Bool? = nil, isSelfShip: Bool? = nil, meta: Meta? = nil, mode: String? = nil, orderType: String? = nil, payments: [PaymentData]? = nil, platformName: String? = nil, poNumber: String? = nil, productTable: ProductTable? = nil, registeredCompanyDetail: RegisteredCompanyDetail? = nil, returnDetail: ReturnDetail? = nil, shipmentId: String? = nil, shipmentIdBarcode: String? = nil, signedQrcode: String? = nil, storeDetail: StoreDetail? = nil, taxTable: TaxTable? = nil, totalItems: Double? = nil, totalValueOfGoods: Double? = nil, txnId: String? = nil, uid: String? = nil, upiQrcode: String? = nil, utr: String? = nil, waybills: [[String: Any]]? = nil) {
+        public init(amountPaid: Double? = nil, amountToBeCollected: Double? = nil, appDomainName: String? = nil, awbNumberBarcode: String? = nil, brandLogo: String? = nil, companyDetail: CompanyDetail? = nil, conversionRate: ConversionRate? = nil, currencyCode: String? = nil, customerBillingDetail: CustomerBillingDetail? = nil, customerShippingDetail: CustomerShippingDetail? = nil, declarationTexts: [String]? = nil, deliveryPartnerDetail: DeliveryPartnerDetail? = nil, digitalsignature: String? = nil, disclaimer: String? = nil, image: Image? = nil, invoiceDetail: InvoiceDetail? = nil, isInternational: Bool? = nil, isSelfPickup: Bool? = nil, isSelfShip: Bool? = nil, meta: Meta? = nil, mode: String? = nil, payments: [PaymentData]? = nil, platformName: String? = nil, productTable: ProductTable? = nil, registeredCompanyDetail: RegisteredCompanyDetail? = nil, returnDetail: ReturnDetail? = nil, shipmentId: String? = nil, shipmentIdBarcode: String? = nil, signedQrcode: String? = nil, storeDetail: StoreDetail? = nil, taxTable: TaxTable? = nil, totalItems: Double? = nil, uid: String? = nil, upiQrcode: String? = nil, waybills: [[String: Any]]? = nil) {
             
-            self.isExport = isExport
-            
-            self.isExportShipment = isExportShipment
+            self.isInternational = isInternational
             
             self.appDomainName = appDomainName
-            
-            self.txnId = txnId
-            
-            self.utr = utr
-            
-            self.poNumber = poNumber
-            
-            self.creditNoteId = creditNoteId
-            
-            self.currentDate = currentDate
-            
-            self.totalValueOfGoods = totalValueOfGoods
-            
-            self.b2BBuyerDetails = b2BBuyerDetails
-            
-            self.isQwik = isQwik
-            
-            self.orderType = orderType
             
             self.conversionRate = conversionRate
             
@@ -296,19 +236,7 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    isExport = try container.decode(Bool.self, forKey: .isExport)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isExportShipment = try container.decode(Bool.self, forKey: .isExportShipment)
+                    isInternational = try container.decode(Bool.self, forKey: .isInternational)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -321,114 +249,6 @@ public extension PlatformClient.FileStorage {
             
                 do {
                     appDomainName = try container.decode(String.self, forKey: .appDomainName)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    txnId = try container.decode(String.self, forKey: .txnId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    utr = try container.decode(String.self, forKey: .utr)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    poNumber = try container.decode(String.self, forKey: .poNumber)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    creditNoteId = try container.decode(String.self, forKey: .creditNoteId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    currentDate = try container.decode(String.self, forKey: .currentDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    totalValueOfGoods = try container.decode(Double.self, forKey: .totalValueOfGoods)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    b2BBuyerDetails = try container.decode([String: Any].self, forKey: .b2BBuyerDetails)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isQwik = try container.decode([String: Any].self, forKey: .isQwik)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    orderType = try container.decode(String.self, forKey: .orderType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -841,62 +661,12 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(isExport, forKey: .isExport)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isExportShipment, forKey: .isExportShipment)
+            try? container.encodeIfPresent(isInternational, forKey: .isInternational)
             
             
             
             
             try? container.encodeIfPresent(appDomainName, forKey: .appDomainName)
-            
-            
-            
-            
-            try? container.encodeIfPresent(txnId, forKey: .txnId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(utr, forKey: .utr)
-            
-            
-            
-            
-            try? container.encodeIfPresent(poNumber, forKey: .poNumber)
-            
-            
-            
-            
-            try? container.encodeIfPresent(creditNoteId, forKey: .creditNoteId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(currentDate, forKey: .currentDate)
-            
-            
-            
-            
-            try? container.encodeIfPresent(totalValueOfGoods, forKey: .totalValueOfGoods)
-            
-            
-            
-            
-            try? container.encodeIfPresent(b2BBuyerDetails, forKey: .b2BBuyerDetails)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isQwik, forKey: .isQwik)
-            
-            
-            
-            
-            try? container.encodeIfPresent(orderType, forKey: .orderType)
             
             
             
@@ -1080,29 +850,9 @@ public extension PlatformClient.ApplicationClient.FileStorage {
     class DummyTemplateDataPayload: Codable {
         
         
-        public var isExport: Bool?
-        
-        public var isExportShipment: Bool?
+        public var isInternational: Bool?
         
         public var appDomainName: String?
-        
-        public var txnId: String?
-        
-        public var utr: String?
-        
-        public var poNumber: String?
-        
-        public var creditNoteId: String?
-        
-        public var currentDate: String?
-        
-        public var totalValueOfGoods: Double?
-        
-        public var b2BBuyerDetails: [String: Any]?
-        
-        public var isQwik: [String: Any]?
-        
-        public var orderType: String?
         
         public var conversionRate: ConversionRate?
         
@@ -1173,29 +923,9 @@ public extension PlatformClient.ApplicationClient.FileStorage {
 
         public enum CodingKeys: String, CodingKey {
             
-            case isExport = "is_export"
-            
-            case isExportShipment = "is_export_shipment"
+            case isInternational = "is_international"
             
             case appDomainName = "app_domain_name"
-            
-            case txnId = "txn_id"
-            
-            case utr = "utr"
-            
-            case poNumber = "po_number"
-            
-            case creditNoteId = "credit_note_id"
-            
-            case currentDate = "current_date"
-            
-            case totalValueOfGoods = "total_value_of_goods"
-            
-            case b2BBuyerDetails = "b2b_buyer_details"
-            
-            case isQwik = "is_qwik"
-            
-            case orderType = "order_type"
             
             case conversionRate = "conversion_rate"
             
@@ -1265,31 +995,11 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
         }
 
-        public init(amountPaid: Double? = nil, amountToBeCollected: Double? = nil, appDomainName: String? = nil, awbNumberBarcode: String? = nil, b2BBuyerDetails: [String: Any]? = nil, brandLogo: String? = nil, companyDetail: CompanyDetail? = nil, conversionRate: ConversionRate? = nil, creditNoteId: String? = nil, currencyCode: String? = nil, currentDate: String? = nil, customerBillingDetail: CustomerBillingDetail? = nil, customerShippingDetail: CustomerShippingDetail? = nil, declarationTexts: [String]? = nil, deliveryPartnerDetail: DeliveryPartnerDetail? = nil, digitalsignature: String? = nil, disclaimer: String? = nil, image: Image? = nil, invoiceDetail: InvoiceDetail? = nil, isExport: Bool? = nil, isExportShipment: Bool? = nil, isQwik: [String: Any]? = nil, isSelfPickup: Bool? = nil, isSelfShip: Bool? = nil, meta: Meta? = nil, mode: String? = nil, orderType: String? = nil, payments: [PaymentData]? = nil, platformName: String? = nil, poNumber: String? = nil, productTable: ProductTable? = nil, registeredCompanyDetail: RegisteredCompanyDetail? = nil, returnDetail: ReturnDetail? = nil, shipmentId: String? = nil, shipmentIdBarcode: String? = nil, signedQrcode: String? = nil, storeDetail: StoreDetail? = nil, taxTable: TaxTable? = nil, totalItems: Double? = nil, totalValueOfGoods: Double? = nil, txnId: String? = nil, uid: String? = nil, upiQrcode: String? = nil, utr: String? = nil, waybills: [[String: Any]]? = nil) {
+        public init(amountPaid: Double? = nil, amountToBeCollected: Double? = nil, appDomainName: String? = nil, awbNumberBarcode: String? = nil, brandLogo: String? = nil, companyDetail: CompanyDetail? = nil, conversionRate: ConversionRate? = nil, currencyCode: String? = nil, customerBillingDetail: CustomerBillingDetail? = nil, customerShippingDetail: CustomerShippingDetail? = nil, declarationTexts: [String]? = nil, deliveryPartnerDetail: DeliveryPartnerDetail? = nil, digitalsignature: String? = nil, disclaimer: String? = nil, image: Image? = nil, invoiceDetail: InvoiceDetail? = nil, isInternational: Bool? = nil, isSelfPickup: Bool? = nil, isSelfShip: Bool? = nil, meta: Meta? = nil, mode: String? = nil, payments: [PaymentData]? = nil, platformName: String? = nil, productTable: ProductTable? = nil, registeredCompanyDetail: RegisteredCompanyDetail? = nil, returnDetail: ReturnDetail? = nil, shipmentId: String? = nil, shipmentIdBarcode: String? = nil, signedQrcode: String? = nil, storeDetail: StoreDetail? = nil, taxTable: TaxTable? = nil, totalItems: Double? = nil, uid: String? = nil, upiQrcode: String? = nil, waybills: [[String: Any]]? = nil) {
             
-            self.isExport = isExport
-            
-            self.isExportShipment = isExportShipment
+            self.isInternational = isInternational
             
             self.appDomainName = appDomainName
-            
-            self.txnId = txnId
-            
-            self.utr = utr
-            
-            self.poNumber = poNumber
-            
-            self.creditNoteId = creditNoteId
-            
-            self.currentDate = currentDate
-            
-            self.totalValueOfGoods = totalValueOfGoods
-            
-            self.b2BBuyerDetails = b2BBuyerDetails
-            
-            self.isQwik = isQwik
-            
-            self.orderType = orderType
             
             self.conversionRate = conversionRate
             
@@ -1364,19 +1074,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    isExport = try container.decode(Bool.self, forKey: .isExport)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isExportShipment = try container.decode(Bool.self, forKey: .isExportShipment)
+                    isInternational = try container.decode(Bool.self, forKey: .isInternational)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1389,114 +1087,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
                 do {
                     appDomainName = try container.decode(String.self, forKey: .appDomainName)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    txnId = try container.decode(String.self, forKey: .txnId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    utr = try container.decode(String.self, forKey: .utr)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    poNumber = try container.decode(String.self, forKey: .poNumber)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    creditNoteId = try container.decode(String.self, forKey: .creditNoteId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    currentDate = try container.decode(String.self, forKey: .currentDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    totalValueOfGoods = try container.decode(Double.self, forKey: .totalValueOfGoods)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    b2BBuyerDetails = try container.decode([String: Any].self, forKey: .b2BBuyerDetails)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isQwik = try container.decode([String: Any].self, forKey: .isQwik)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    orderType = try container.decode(String.self, forKey: .orderType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1909,62 +1499,12 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(isExport, forKey: .isExport)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isExportShipment, forKey: .isExportShipment)
+            try? container.encodeIfPresent(isInternational, forKey: .isInternational)
             
             
             
             
             try? container.encodeIfPresent(appDomainName, forKey: .appDomainName)
-            
-            
-            
-            
-            try? container.encodeIfPresent(txnId, forKey: .txnId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(utr, forKey: .utr)
-            
-            
-            
-            
-            try? container.encodeIfPresent(poNumber, forKey: .poNumber)
-            
-            
-            
-            
-            try? container.encodeIfPresent(creditNoteId, forKey: .creditNoteId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(currentDate, forKey: .currentDate)
-            
-            
-            
-            
-            try? container.encodeIfPresent(totalValueOfGoods, forKey: .totalValueOfGoods)
-            
-            
-            
-            
-            try? container.encodeIfPresent(b2BBuyerDetails, forKey: .b2BBuyerDetails)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isQwik, forKey: .isQwik)
-            
-            
-            
-            
-            try? container.encodeIfPresent(orderType, forKey: .orderType)
             
             
             

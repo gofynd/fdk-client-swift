@@ -28,10 +28,6 @@ public extension PlatformClient.Configuration {
         
         public var companyId: Int?
         
-        public var address: [String: Any]?
-        
-        public var integrationType: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -51,13 +47,9 @@ public extension PlatformClient.Configuration {
             
             case companyId = "company_id"
             
-            case address = "address"
-            
-            case integrationType = "integration_type"
-            
         }
 
-        public init(address: [String: Any]? = nil, companyId: Int? = nil, displayName: String? = nil, integrationType: [String: Any]? = nil, modifiedOn: String? = nil, name: String? = nil, storeCode: String? = nil, storeType: String? = nil, uid: Int? = nil, id: String? = nil) {
+        public init(companyId: Int? = nil, displayName: String? = nil, modifiedOn: String? = nil, name: String? = nil, storeCode: String? = nil, storeType: String? = nil, uid: Int? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -74,10 +66,6 @@ public extension PlatformClient.Configuration {
             self.storeCode = storeCode
             
             self.companyId = companyId
-            
-            self.address = address
-            
-            self.integrationType = integrationType
             
         }
 
@@ -180,30 +168,6 @@ public extension PlatformClient.Configuration {
                 }
                 
             
-            
-                do {
-                    address = try container.decode([String: Any].self, forKey: .address)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    integrationType = try container.decode([String: Any].self, forKey: .integrationType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -247,16 +211,6 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(address, forKey: .address)
-            
-            
-            
-            
-            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
             
             
         }
@@ -291,10 +245,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var companyId: Int?
         
-        public var address: [String: Any]?
-        
-        public var integrationType: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -314,13 +264,9 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case companyId = "company_id"
             
-            case address = "address"
-            
-            case integrationType = "integration_type"
-            
         }
 
-        public init(address: [String: Any]? = nil, companyId: Int? = nil, displayName: String? = nil, integrationType: [String: Any]? = nil, modifiedOn: String? = nil, name: String? = nil, storeCode: String? = nil, storeType: String? = nil, uid: Int? = nil, id: String? = nil) {
+        public init(companyId: Int? = nil, displayName: String? = nil, modifiedOn: String? = nil, name: String? = nil, storeCode: String? = nil, storeType: String? = nil, uid: Int? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -337,10 +283,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.storeCode = storeCode
             
             self.companyId = companyId
-            
-            self.address = address
-            
-            self.integrationType = integrationType
             
         }
 
@@ -443,30 +385,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
-            
-                do {
-                    address = try container.decode([String: Any].self, forKey: .address)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    integrationType = try container.decode([String: Any].self, forKey: .integrationType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -510,16 +428,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(address, forKey: .address)
-            
-            
-            
-            
-            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
             
             
         }

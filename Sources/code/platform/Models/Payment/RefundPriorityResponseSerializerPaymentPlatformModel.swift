@@ -18,8 +18,6 @@ public extension PlatformClient.Payment {
         
         public var apportion: Bool
         
-        public var businessUnit: String
-        
         public var refundSourcesPriority: [RefundSourcesPriority]
         
         public var message: String?
@@ -33,23 +31,19 @@ public extension PlatformClient.Payment {
             
             case apportion = "apportion"
             
-            case businessUnit = "business_unit"
-            
             case refundSourcesPriority = "refund_sources_priority"
             
             case message = "message"
             
         }
 
-        public init(apportion: Bool, businessUnit: String, configuration: String, message: String? = nil, refundSourcesPriority: [RefundSourcesPriority], success: Bool) {
+        public init(apportion: Bool, configuration: String, message: String? = nil, refundSourcesPriority: [RefundSourcesPriority], success: Bool) {
             
             self.configuration = configuration
             
             self.success = success
             
             self.apportion = apportion
-            
-            self.businessUnit = businessUnit
             
             self.refundSourcesPriority = refundSourcesPriority
             
@@ -72,11 +66,6 @@ public extension PlatformClient.Payment {
             
             
                 apportion = try container.decode(Bool.self, forKey: .apportion)
-                
-            
-            
-            
-                businessUnit = try container.decode(String.self, forKey: .businessUnit)
                 
             
             
@@ -115,11 +104,6 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(apportion, forKey: .apportion)
-            
-            
-            
-            
-            try? container.encodeIfPresent(businessUnit, forKey: .businessUnit)
             
             
             
@@ -154,8 +138,6 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var apportion: Bool
         
-        public var businessUnit: String
-        
         public var refundSourcesPriority: [RefundSourcesPriority]
         
         public var message: String?
@@ -169,23 +151,19 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case apportion = "apportion"
             
-            case businessUnit = "business_unit"
-            
             case refundSourcesPriority = "refund_sources_priority"
             
             case message = "message"
             
         }
 
-        public init(apportion: Bool, businessUnit: String, configuration: String, message: String? = nil, refundSourcesPriority: [RefundSourcesPriority], success: Bool) {
+        public init(apportion: Bool, configuration: String, message: String? = nil, refundSourcesPriority: [RefundSourcesPriority], success: Bool) {
             
             self.configuration = configuration
             
             self.success = success
             
             self.apportion = apportion
-            
-            self.businessUnit = businessUnit
             
             self.refundSourcesPriority = refundSourcesPriority
             
@@ -208,11 +186,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 apportion = try container.decode(Bool.self, forKey: .apportion)
-                
-            
-            
-            
-                businessUnit = try container.decode(String.self, forKey: .businessUnit)
                 
             
             
@@ -251,11 +224,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(apportion, forKey: .apportion)
-            
-            
-            
-            
-            try? container.encodeIfPresent(businessUnit, forKey: .businessUnit)
             
             
             

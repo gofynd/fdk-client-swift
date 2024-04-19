@@ -8,15 +8,15 @@ public extension ApplicationClient.User {
     */
     class DeleteApplicationUserRequestSchema: Codable {
         
-        public var userId: String
+        public var userId: String?
         
-        public var reason: String
+        public var reason: String?
         
-        public var reasonId: String
+        public var reasonId: String?
         
         public var requestId: String?
         
-        public var otp: String
+        public var otp: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,7 +33,7 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(otp: String, reason: String, reasonId: String, requestId: String? = nil, userId: String) {
+        public init(otp: String? = nil, reason: String? = nil, reasonId: String? = nil, requestId: String? = nil, userId: String? = nil) {
             
             self.userId = userId
             
@@ -51,18 +51,39 @@ public extension ApplicationClient.User {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            userId = try container.decode(String.self, forKey: .userId)
+            do {
+                userId = try container.decode(String.self, forKey: .userId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
+            do {
+                reason = try container.decode(String.self, forKey: .reason)
             
-            reason = try container.decode(String.self, forKey: .reason)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
+            do {
+                reasonId = try container.decode(String.self, forKey: .reasonId)
             
-            reasonId = try container.decode(String.self, forKey: .reasonId)
-            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -78,8 +99,15 @@ public extension ApplicationClient.User {
             
             
             
-            otp = try container.decode(String.self, forKey: .otp)
+            do {
+                otp = try container.decode(String.self, forKey: .otp)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
         }
@@ -88,7 +116,9 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(userId, forKey: .userId)
+            
             
             
             
@@ -96,11 +126,14 @@ public extension ApplicationClient.User {
             
             
             
+            
             try? container.encodeIfPresent(reasonId, forKey: .reasonId)
             
             
             
+            
             try? container.encodeIfPresent(requestId, forKey: .requestId)
+            
             
             
             

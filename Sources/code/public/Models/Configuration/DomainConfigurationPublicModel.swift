@@ -136,7 +136,9 @@ public extension PublicClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(verified, forKey: .verified)
+            
             
             
             
@@ -144,7 +146,9 @@ public extension PublicClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(isShortlink, forKey: .isShortlink)
+            
             
             
             
@@ -152,7 +156,9 @@ public extension PublicClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(name, forKey: .name)
+            
             
             
             

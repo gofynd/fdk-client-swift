@@ -80,11 +80,14 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(selected, forKey: .selected)
             
             
             
+            
             try? container.encodeIfPresent(exactUrl, forKey: .exactUrl)
+            
             
             
             

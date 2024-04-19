@@ -59,11 +59,14 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(requestId, forKey: .requestId)
             
             
             
+            
             try? container.encodeIfPresent(hashKey, forKey: .hashKey)
+            
             
             
             

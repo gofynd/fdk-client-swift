@@ -98,7 +98,9 @@ public extension ApplicationClient.Rewards {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(code, forKey: .code)
+            
             
             
             
@@ -106,7 +108,9 @@ public extension ApplicationClient.Rewards {
             
             
             
+            
             try? container.encodeIfPresent(info, forKey: .info)
+            
             
             
             

@@ -8,7 +8,7 @@ public extension ApplicationClient.Lead {
     */
     class Priority: Codable {
         
-        public var key: String
+        public var key: PriorityEnum
         
         public var display: String
         
@@ -25,7 +25,7 @@ public extension ApplicationClient.Lead {
             
         }
 
-        public init(color: String, display: String, key: String) {
+        public init(color: String, display: String, key: PriorityEnum) {
             
             self.key = key
             
@@ -39,7 +39,7 @@ public extension ApplicationClient.Lead {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            key = try container.decode(String.self, forKey: .key)
+            key = try container.decode(PriorityEnum.self, forKey: .key)
             
             
             
@@ -59,11 +59,14 @@ public extension ApplicationClient.Lead {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(key, forKey: .key)
             
             
             
+            
             try? container.encodeIfPresent(display, forKey: .display)
+            
             
             
             

@@ -22,21 +22,17 @@ public extension PlatformClient.Configuration {
         
         public var discount: InventoryDiscount?
         
-        public var pricingStrategy: PricingStrategy?
-        
         public var outOfStock: Bool?
         
         public var onlyVerifiedProducts: Bool?
         
         public var franchiseEnabled: Bool?
         
-        public var excludeCategory: [Int]?
+        public var excludeCategory: [[String: Any]]?
         
         public var image: [String]?
         
-        public var companyStore: [Int]?
-        
-        public var companyId: Int?
+        public var companyStore: [[String: Any]]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -51,8 +47,6 @@ public extension PlatformClient.Configuration {
             
             case discount = "discount"
             
-            case pricingStrategy = "pricing_strategy"
-            
             case outOfStock = "out_of_stock"
             
             case onlyVerifiedProducts = "only_verified_products"
@@ -65,11 +59,9 @@ public extension PlatformClient.Configuration {
             
             case companyStore = "company_store"
             
-            case companyId = "company_id"
-            
         }
 
-        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [Int]? = nil, discount: InventoryDiscount? = nil, excludeCategory: [Int]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, pricingStrategy: PricingStrategy? = nil, store: InventoryStore? = nil) {
+        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
             
             self.brand = brand
             
@@ -80,8 +72,6 @@ public extension PlatformClient.Configuration {
             self.price = price
             
             self.discount = discount
-            
-            self.pricingStrategy = pricingStrategy
             
             self.outOfStock = outOfStock
             
@@ -94,8 +84,6 @@ public extension PlatformClient.Configuration {
             self.image = image
             
             self.companyStore = companyStore
-            
-            self.companyId = companyId
             
         }
 
@@ -164,18 +152,6 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    pricingStrategy = try container.decode(PricingStrategy.self, forKey: .pricingStrategy)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     outOfStock = try container.decode(Bool.self, forKey: .outOfStock)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -212,7 +188,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    excludeCategory = try container.decode([Int].self, forKey: .excludeCategory)
+                    excludeCategory = try container.decode([[String: Any]].self, forKey: .excludeCategory)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -236,19 +212,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    companyStore = try container.decode([Int].self, forKey: .companyStore)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    companyId = try container.decode(Int.self, forKey: .companyId)
+                    companyStore = try container.decode([[String: Any]].self, forKey: .companyStore)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -290,11 +254,6 @@ public extension PlatformClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(pricingStrategy, forKey: .pricingStrategy)
-            
-            
-            
-            
             try? container.encodeIfPresent(outOfStock, forKey: .outOfStock)
             
             
@@ -321,11 +280,6 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(companyStore, forKey: .companyStore)
-            
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
         }
@@ -354,21 +308,17 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var discount: InventoryDiscount?
         
-        public var pricingStrategy: PricingStrategy?
-        
         public var outOfStock: Bool?
         
         public var onlyVerifiedProducts: Bool?
         
         public var franchiseEnabled: Bool?
         
-        public var excludeCategory: [Int]?
+        public var excludeCategory: [[String: Any]]?
         
         public var image: [String]?
         
-        public var companyStore: [Int]?
-        
-        public var companyId: Int?
+        public var companyStore: [[String: Any]]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -383,8 +333,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case discount = "discount"
             
-            case pricingStrategy = "pricing_strategy"
-            
             case outOfStock = "out_of_stock"
             
             case onlyVerifiedProducts = "only_verified_products"
@@ -397,11 +345,9 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case companyStore = "company_store"
             
-            case companyId = "company_id"
-            
         }
 
-        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [Int]? = nil, discount: InventoryDiscount? = nil, excludeCategory: [Int]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, pricingStrategy: PricingStrategy? = nil, store: InventoryStore? = nil) {
+        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
             
             self.brand = brand
             
@@ -412,8 +358,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.price = price
             
             self.discount = discount
-            
-            self.pricingStrategy = pricingStrategy
             
             self.outOfStock = outOfStock
             
@@ -426,8 +370,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.image = image
             
             self.companyStore = companyStore
-            
-            self.companyId = companyId
             
         }
 
@@ -496,18 +438,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    pricingStrategy = try container.decode(PricingStrategy.self, forKey: .pricingStrategy)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     outOfStock = try container.decode(Bool.self, forKey: .outOfStock)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -544,7 +474,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    excludeCategory = try container.decode([Int].self, forKey: .excludeCategory)
+                    excludeCategory = try container.decode([[String: Any]].self, forKey: .excludeCategory)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -568,19 +498,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    companyStore = try container.decode([Int].self, forKey: .companyStore)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    companyId = try container.decode(Int.self, forKey: .companyId)
+                    companyStore = try container.decode([[String: Any]].self, forKey: .companyStore)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -622,11 +540,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(pricingStrategy, forKey: .pricingStrategy)
-            
-            
-            
-            
             try? container.encodeIfPresent(outOfStock, forKey: .outOfStock)
             
             
@@ -653,11 +566,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(companyStore, forKey: .companyStore)
-            
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
         }

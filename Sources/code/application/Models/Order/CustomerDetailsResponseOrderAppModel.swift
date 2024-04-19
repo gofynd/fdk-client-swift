@@ -116,7 +116,9 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(phone, forKey: .phone)
+            
             
             
             
@@ -124,11 +126,14 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(name, forKey: .name)
             
             
             
+            
             try? container.encodeIfPresent(orderId, forKey: .orderId)
+            
             
             
             

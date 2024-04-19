@@ -152,7 +152,9 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(unit, forKey: .unit)
+            
             
             
             
@@ -160,7 +162,9 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(sizeTip, forKey: .sizeTip)
+            
             
             
             
@@ -168,11 +172,14 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(description, forKey: .description)
             
             
             
+            
             try? container.encodeIfPresent(title, forKey: .title)
+            
             
             
             

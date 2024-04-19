@@ -20,13 +20,11 @@ public extension PlatformClient.Theme {
         
         public var companyId: Int?
         
-        public var meta: CompanyThemeMeta?
+        public var meta: ThemeMeta?
         
         public var createdAt: String?
         
         public var updatedAt: String?
-        
-        public var appliedThemes: [AppliedThemes]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -45,11 +43,9 @@ public extension PlatformClient.Theme {
             
             case updatedAt = "updated_at"
             
-            case appliedThemes = "applied_themes"
-            
         }
 
-        public init(appliedThemes: [AppliedThemes]? = nil, companyId: Int? = nil, createdAt: String? = nil, marketplaceThemeId: MarketplaceThemeId? = nil, meta: CompanyThemeMeta? = nil, name: String? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(companyId: Int? = nil, createdAt: String? = nil, marketplaceThemeId: MarketplaceThemeId? = nil, meta: ThemeMeta? = nil, name: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -64,8 +60,6 @@ public extension PlatformClient.Theme {
             self.createdAt = createdAt
             
             self.updatedAt = updatedAt
-            
-            self.appliedThemes = appliedThemes
             
         }
 
@@ -122,7 +116,7 @@ public extension PlatformClient.Theme {
             
             
                 do {
-                    meta = try container.decode(CompanyThemeMeta.self, forKey: .meta)
+                    meta = try container.decode(ThemeMeta.self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -147,18 +141,6 @@ public extension PlatformClient.Theme {
             
                 do {
                     updatedAt = try container.decode(String.self, forKey: .updatedAt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    appliedThemes = try container.decode([AppliedThemes].self, forKey: .appliedThemes)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -206,11 +188,6 @@ public extension PlatformClient.Theme {
             
             
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(appliedThemes, forKey: .appliedThemes)
             
             
         }
@@ -237,13 +214,11 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public var companyId: Int?
         
-        public var meta: CompanyThemeMeta?
+        public var meta: ThemeMeta?
         
         public var createdAt: String?
         
         public var updatedAt: String?
-        
-        public var appliedThemes: [AppliedThemes]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -262,11 +237,9 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             case updatedAt = "updated_at"
             
-            case appliedThemes = "applied_themes"
-            
         }
 
-        public init(appliedThemes: [AppliedThemes]? = nil, companyId: Int? = nil, createdAt: String? = nil, marketplaceThemeId: MarketplaceThemeId? = nil, meta: CompanyThemeMeta? = nil, name: String? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(companyId: Int? = nil, createdAt: String? = nil, marketplaceThemeId: MarketplaceThemeId? = nil, meta: ThemeMeta? = nil, name: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -281,8 +254,6 @@ public extension PlatformClient.ApplicationClient.Theme {
             self.createdAt = createdAt
             
             self.updatedAt = updatedAt
-            
-            self.appliedThemes = appliedThemes
             
         }
 
@@ -339,7 +310,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
-                    meta = try container.decode(CompanyThemeMeta.self, forKey: .meta)
+                    meta = try container.decode(ThemeMeta.self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -364,18 +335,6 @@ public extension PlatformClient.ApplicationClient.Theme {
             
                 do {
                     updatedAt = try container.decode(String.self, forKey: .updatedAt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    appliedThemes = try container.decode([AppliedThemes].self, forKey: .appliedThemes)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -423,11 +382,6 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(appliedThemes, forKey: .appliedThemes)
             
             
         }

@@ -88,7 +88,9 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(employeeCode, forKey: .employeeCode)
+            
             
             
             
@@ -96,11 +98,14 @@ public extension ApplicationClient.Cart {
             
             
             
+            
             try? container.encodeIfPresent(lastName, forKey: .lastName)
             
             
             
+            
             try? container.encodeIfPresent(firstName, forKey: .firstName)
+            
             
             
             

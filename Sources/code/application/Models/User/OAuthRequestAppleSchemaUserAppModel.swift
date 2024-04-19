@@ -80,11 +80,14 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(userIdentifier, forKey: .userIdentifier)
             
             
             
+            
             try? container.encodeIfPresent(oauth, forKey: .oauth)
+            
             
             
             

@@ -8,7 +8,7 @@ public extension ApplicationClient.Payment {
     */
     class ErrorResponse: Codable {
         
-        public var statusCode: Int?
+        public var statusCode: Int
         
         public var error: ErrorDescription?
         
@@ -29,7 +29,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(error: ErrorDescription? = nil, message: String, statusCode: Int? = nil, success: Bool) {
+        public init(error: ErrorDescription? = nil, message: String, statusCode: Int, success: Bool) {
             
             self.statusCode = statusCode
             
@@ -45,15 +45,8 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            do {
-                statusCode = try container.decode(Int.self, forKey: .statusCode)
+            statusCode = try container.decode(Int.self, forKey: .statusCode)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
             
@@ -84,15 +77,19 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
             
             
             
-            try? container.encodeIfPresent(error, forKey: .error)
+            
+            try? container.encode(error, forKey: .error)
+            
             
             
             
             try? container.encodeIfPresent(message, forKey: .message)
+            
             
             
             

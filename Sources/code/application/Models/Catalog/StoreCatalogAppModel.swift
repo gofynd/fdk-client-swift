@@ -16,7 +16,7 @@ public extension ApplicationClient.Catalog {
         
         public var country: String?
         
-        public var pincode: String?
+        public var pincode: Int?
         
         public var city: String?
         
@@ -27,6 +27,8 @@ public extension ApplicationClient.Catalog {
         public var latLong: LatLong?
         
         public var name: String?
+        
+        public var tags: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -51,9 +53,11 @@ public extension ApplicationClient.Catalog {
             
             case name = "name"
             
+            case tags = "tags"
+            
         }
 
-        public init(address: String? = nil, city: String? = nil, country: String? = nil, latLong: LatLong? = nil, name: String? = nil, pincode: String? = nil, state: String? = nil, storeCode: String? = nil, storeEmail: String? = nil, uid: Int? = nil) {
+        public init(address: String? = nil, city: String? = nil, country: String? = nil, latLong: LatLong? = nil, name: String? = nil, pincode: Int? = nil, state: String? = nil, storeCode: String? = nil, storeEmail: String? = nil, tags: [String]? = nil, uid: Int? = nil) {
             
             self.uid = uid
             
@@ -74,6 +78,8 @@ public extension ApplicationClient.Catalog {
             self.latLong = latLong
             
             self.name = name
+            
+            self.tags = tags
             
         }
 
@@ -130,7 +136,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                pincode = try container.decode(String.self, forKey: .pincode)
+                pincode = try container.decode(Int.self, forKey: .pincode)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -200,13 +206,27 @@ public extension ApplicationClient.Catalog {
             }
             
             
+            
+            do {
+                tags = try container.decode([String].self, forKey: .tags)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(uid, forKey: .uid)
+            
             
             
             
@@ -214,7 +234,9 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(state, forKey: .state)
+            
             
             
             
@@ -222,7 +244,9 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(pincode, forKey: .pincode)
+            
             
             
             
@@ -230,7 +254,9 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(address, forKey: .address)
+            
             
             
             
@@ -238,11 +264,18 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(latLong, forKey: .latLong)
             
             
             
+            
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
         }

@@ -55,11 +55,13 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(success, forKey: .success)
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            
+            try? container.encode(message, forKey: .message)
             
             
         }

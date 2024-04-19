@@ -44,8 +44,6 @@ public extension ApplicationClient.PosCart {
         
         public var isGiftVisible: Bool?
         
-        public var tags: [String]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -85,11 +83,9 @@ public extension ApplicationClient.PosCart {
             
             case isGiftVisible = "is_gift_visible"
             
-            case tags = "tags"
-            
         }
 
-        public init(cartItemMeta: [String: Any]? = nil, extraMeta: [String: Any]? = nil, giftCard: [String: Any]? = nil, identifier: [String: Any]? = nil, isGiftVisible: Bool? = nil, meta: [String: Any]? = nil, mtoQuantity: Int? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ArticlePriceInfo? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, seller: BaseInfo? = nil, sellerIdentifier: String? = nil, size: String? = nil, store: StoreInfo? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, customJson: [String: Any]? = nil) {
+        public init(cartItemMeta: [String: Any]? = nil, extraMeta: [String: Any]? = nil, giftCard: [String: Any]? = nil, identifier: [String: Any]? = nil, isGiftVisible: Bool? = nil, meta: [String: Any]? = nil, mtoQuantity: Int? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ArticlePriceInfo? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, seller: BaseInfo? = nil, sellerIdentifier: String? = nil, size: String? = nil, store: StoreInfo? = nil, type: String? = nil, uid: String? = nil, customJson: [String: Any]? = nil) {
             
             self.meta = meta
             
@@ -126,8 +122,6 @@ public extension ApplicationClient.PosCart {
             self.productGroupTags = productGroupTags
             
             self.isGiftVisible = isGiftVisible
-            
-            self.tags = tags
             
         }
 
@@ -350,25 +344,15 @@ public extension ApplicationClient.PosCart {
             }
             
             
-            
-            do {
-                tags = try container.decode([String].self, forKey: .tags)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(meta, forKey: .meta)
+            
             
             
             
@@ -376,7 +360,9 @@ public extension ApplicationClient.PosCart {
             
             
             
+            
             try? container.encodeIfPresent(customJson, forKey: .customJson)
+            
             
             
             
@@ -384,7 +370,9 @@ public extension ApplicationClient.PosCart {
             
             
             
+            
             try? container.encodeIfPresent(identifier, forKey: .identifier)
+            
             
             
             
@@ -392,7 +380,9 @@ public extension ApplicationClient.PosCart {
             
             
             
+            
             try? container.encodeIfPresent(seller, forKey: .seller)
+            
             
             
             
@@ -400,7 +390,9 @@ public extension ApplicationClient.PosCart {
             
             
             
+            
             try? container.encodeIfPresent(uid, forKey: .uid)
+            
             
             
             
@@ -408,7 +400,9 @@ public extension ApplicationClient.PosCart {
             
             
             
+            
             try? container.encodeIfPresent(type, forKey: .type)
+            
             
             
             
@@ -416,7 +410,9 @@ public extension ApplicationClient.PosCart {
             
             
             
+            
             try? container.encodeIfPresent(parentItemIdentifiers, forKey: .parentItemIdentifiers)
+            
             
             
             
@@ -424,7 +420,9 @@ public extension ApplicationClient.PosCart {
             
             
             
+            
             try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
+            
             
             
             
@@ -432,15 +430,13 @@ public extension ApplicationClient.PosCart {
             
             
             
+            
             try? container.encodeIfPresent(productGroupTags, forKey: .productGroupTags)
             
             
             
+            
             try? container.encodeIfPresent(isGiftVisible, forKey: .isGiftVisible)
-            
-            
-            
-            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
         }

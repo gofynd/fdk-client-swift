@@ -16,10 +16,6 @@ public extension PlatformClient.Payment {
         
         public var gid: String
         
-        public var appliedPaymentOffers: AppliedOfferSerializer?
-        
-        public var checksum: String?
-        
         public var orderDetails: OrderDetail
         
         public var status: String
@@ -37,10 +33,6 @@ public extension PlatformClient.Payment {
             
             case gid = "gid"
             
-            case appliedPaymentOffers = "applied_payment_offers"
-            
-            case checksum = "checksum"
-            
             case orderDetails = "order_details"
             
             case status = "status"
@@ -53,15 +45,11 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(appliedPaymentOffers: AppliedOfferSerializer? = nil, checksum: String? = nil, currency: String, gid: String, meta: [String: Any]? = nil, orderDetails: OrderDetail, paymentDetails: [PaymentSessionDetail], status: String, totalAmount: Int) {
+        public init(currency: String, gid: String, meta: [String: Any]? = nil, orderDetails: OrderDetail, paymentDetails: [PaymentSessionDetail], status: String, totalAmount: Int) {
             
             self.meta = meta
             
             self.gid = gid
-            
-            self.appliedPaymentOffers = appliedPaymentOffers
-            
-            self.checksum = checksum
             
             self.orderDetails = orderDetails
             
@@ -94,30 +82,6 @@ public extension PlatformClient.Payment {
                 gid = try container.decode(String.self, forKey: .gid)
                 
             
-            
-            
-                do {
-                    appliedPaymentOffers = try container.decode(AppliedOfferSerializer.self, forKey: .appliedPaymentOffers)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    checksum = try container.decode(String.self, forKey: .checksum)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 orderDetails = try container.decode(OrderDetail.self, forKey: .orderDetails)
@@ -157,16 +121,6 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(gid, forKey: .gid)
-            
-            
-            
-            
-            try? container.encodeIfPresent(appliedPaymentOffers, forKey: .appliedPaymentOffers)
-            
-            
-            
-            
-            try? container.encodeIfPresent(checksum, forKey: .checksum)
             
             
             
@@ -214,10 +168,6 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var gid: String
         
-        public var appliedPaymentOffers: AppliedOfferSerializer?
-        
-        public var checksum: String?
-        
         public var orderDetails: OrderDetail
         
         public var status: String
@@ -235,10 +185,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case gid = "gid"
             
-            case appliedPaymentOffers = "applied_payment_offers"
-            
-            case checksum = "checksum"
-            
             case orderDetails = "order_details"
             
             case status = "status"
@@ -251,15 +197,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(appliedPaymentOffers: AppliedOfferSerializer? = nil, checksum: String? = nil, currency: String, gid: String, meta: [String: Any]? = nil, orderDetails: OrderDetail, paymentDetails: [PaymentSessionDetail], status: String, totalAmount: Int) {
+        public init(currency: String, gid: String, meta: [String: Any]? = nil, orderDetails: OrderDetail, paymentDetails: [PaymentSessionDetail], status: String, totalAmount: Int) {
             
             self.meta = meta
             
             self.gid = gid
-            
-            self.appliedPaymentOffers = appliedPaymentOffers
-            
-            self.checksum = checksum
             
             self.orderDetails = orderDetails
             
@@ -292,30 +234,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 gid = try container.decode(String.self, forKey: .gid)
                 
             
-            
-            
-                do {
-                    appliedPaymentOffers = try container.decode(AppliedOfferSerializer.self, forKey: .appliedPaymentOffers)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    checksum = try container.decode(String.self, forKey: .checksum)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 orderDetails = try container.decode(OrderDetail.self, forKey: .orderDetails)
@@ -355,16 +273,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(gid, forKey: .gid)
-            
-            
-            
-            
-            try? container.encodeIfPresent(appliedPaymentOffers, forKey: .appliedPaymentOffers)
-            
-            
-            
-            
-            try? container.encodeIfPresent(checksum, forKey: .checksum)
             
             
             

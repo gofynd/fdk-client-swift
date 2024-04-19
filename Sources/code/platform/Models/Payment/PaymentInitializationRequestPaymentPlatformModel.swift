@@ -202,12 +202,12 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(razorpayPaymentId, forKey: .razorpayPaymentId)
+            try? container.encode(razorpayPaymentId, forKey: .razorpayPaymentId)
             
             
             
             
-            try? container.encodeIfPresent(deviceId, forKey: .deviceId)
+            try? container.encode(deviceId, forKey: .deviceId)
             
             
             
@@ -222,7 +222,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(vpa, forKey: .vpa)
+            try? container.encode(vpa, forKey: .vpa)
             
             
             
@@ -242,7 +242,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            try? container.encode(amount, forKey: .amount)
             
             
             
@@ -252,7 +252,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(timeout, forKey: .timeout)
+            try? container.encode(timeout, forKey: .timeout)
             
             
             
@@ -471,12 +471,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(razorpayPaymentId, forKey: .razorpayPaymentId)
+            try? container.encode(razorpayPaymentId, forKey: .razorpayPaymentId)
             
             
             
             
-            try? container.encodeIfPresent(deviceId, forKey: .deviceId)
+            try? container.encode(deviceId, forKey: .deviceId)
             
             
             
@@ -491,7 +491,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(vpa, forKey: .vpa)
+            try? container.encode(vpa, forKey: .vpa)
             
             
             
@@ -511,7 +511,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            try? container.encode(amount, forKey: .amount)
             
             
             
@@ -521,7 +521,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(timeout, forKey: .timeout)
+            try? container.encode(timeout, forKey: .timeout)
             
             
             

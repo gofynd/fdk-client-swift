@@ -38,8 +38,6 @@ public extension PlatformClient.Order {
         
         public var paymentMethods: [BagPaymentMethods]?
         
-        public var paymentInfo: [BagPaymentMethods]?
-        
         public var quantity: Int?
         
         public var identifier: String?
@@ -95,8 +93,6 @@ public extension PlatformClient.Order {
             
             case paymentMethods = "payment_methods"
             
-            case paymentInfo = "payment_info"
-            
             case quantity = "quantity"
             
             case identifier = "identifier"
@@ -125,7 +121,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: GSTDetailsData? = nil, identifier: String? = nil, isParent: Bool? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, parentPromoBags: [String: Any]? = nil, paymentInfo: [BagPaymentMethods]? = nil, paymentMethods: [BagPaymentMethods]? = nil, prices: Prices? = nil, quantity: Int? = nil, sellerIdentifier: String? = nil) {
+        public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: GSTDetailsData? = nil, identifier: String? = nil, isParent: Bool? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, parentPromoBags: [String: Any]? = nil, paymentMethods: [BagPaymentMethods]? = nil, prices: Prices? = nil, quantity: Int? = nil, sellerIdentifier: String? = nil) {
             
             self.gstDetails = gstDetails
             
@@ -152,8 +148,6 @@ public extension PlatformClient.Order {
             self.item = item
             
             self.paymentMethods = paymentMethods
-            
-            self.paymentInfo = paymentInfo
             
             self.quantity = quantity
             
@@ -344,18 +338,6 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    paymentInfo = try container.decode([BagPaymentMethods].self, forKey: .paymentInfo)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     quantity = try container.decode(Int.self, forKey: .quantity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -520,7 +502,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(parentPromoBags, forKey: .parentPromoBags)
+            try? container.encode(parentPromoBags, forKey: .parentPromoBags)
             
             
             
@@ -535,7 +517,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+            try? container.encode(sellerIdentifier, forKey: .sellerIdentifier)
             
             
             
@@ -555,7 +537,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(groupId, forKey: .groupId)
+            try? container.encode(groupId, forKey: .groupId)
             
             
             
@@ -575,37 +557,32 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
+            try? container.encode(quantity, forKey: .quantity)
             
             
             
             
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encode(identifier, forKey: .identifier)
             
             
             
             
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            try? container.encode(canReturn, forKey: .canReturn)
             
             
             
             
-            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
+            try? container.encode(canCancel, forKey: .canCancel)
             
             
             
             
-            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
+            try? container.encode(displayName, forKey: .displayName)
             
             
             
             
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
-            
-            
-            
-            
-            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
+            try? container.encode(lineNumber, forKey: .lineNumber)
             
             
             
@@ -635,12 +612,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(entityType, forKey: .entityType)
+            try? container.encode(entityType, forKey: .entityType)
             
             
             
             
-            try? container.encodeIfPresent(isParent, forKey: .isParent)
+            try? container.encode(isParent, forKey: .isParent)
             
             
         }
@@ -685,8 +662,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var paymentMethods: [BagPaymentMethods]?
         
-        public var paymentInfo: [BagPaymentMethods]?
-        
         public var quantity: Int?
         
         public var identifier: String?
@@ -742,8 +717,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case paymentMethods = "payment_methods"
             
-            case paymentInfo = "payment_info"
-            
             case quantity = "quantity"
             
             case identifier = "identifier"
@@ -772,7 +745,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: GSTDetailsData? = nil, identifier: String? = nil, isParent: Bool? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, parentPromoBags: [String: Any]? = nil, paymentInfo: [BagPaymentMethods]? = nil, paymentMethods: [BagPaymentMethods]? = nil, prices: Prices? = nil, quantity: Int? = nil, sellerIdentifier: String? = nil) {
+        public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: GSTDetailsData? = nil, identifier: String? = nil, isParent: Bool? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, parentPromoBags: [String: Any]? = nil, paymentMethods: [BagPaymentMethods]? = nil, prices: Prices? = nil, quantity: Int? = nil, sellerIdentifier: String? = nil) {
             
             self.gstDetails = gstDetails
             
@@ -799,8 +772,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.item = item
             
             self.paymentMethods = paymentMethods
-            
-            self.paymentInfo = paymentInfo
             
             self.quantity = quantity
             
@@ -991,18 +962,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    paymentInfo = try container.decode([BagPaymentMethods].self, forKey: .paymentInfo)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     quantity = try container.decode(Int.self, forKey: .quantity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -1167,7 +1126,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(parentPromoBags, forKey: .parentPromoBags)
+            try? container.encode(parentPromoBags, forKey: .parentPromoBags)
             
             
             
@@ -1182,7 +1141,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+            try? container.encode(sellerIdentifier, forKey: .sellerIdentifier)
             
             
             
@@ -1202,7 +1161,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(groupId, forKey: .groupId)
+            try? container.encode(groupId, forKey: .groupId)
             
             
             
@@ -1222,37 +1181,32 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
+            try? container.encode(quantity, forKey: .quantity)
             
             
             
             
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encode(identifier, forKey: .identifier)
             
             
             
             
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            try? container.encode(canReturn, forKey: .canReturn)
             
             
             
             
-            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
+            try? container.encode(canCancel, forKey: .canCancel)
             
             
             
             
-            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
+            try? container.encode(displayName, forKey: .displayName)
             
             
             
             
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
-            
-            
-            
-            
-            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
+            try? container.encode(lineNumber, forKey: .lineNumber)
             
             
             
@@ -1282,12 +1236,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(entityType, forKey: .entityType)
+            try? container.encode(entityType, forKey: .entityType)
             
             
             
             
-            try? container.encodeIfPresent(isParent, forKey: .isParent)
+            try? container.encode(isParent, forKey: .isParent)
             
             
         }

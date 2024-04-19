@@ -134,7 +134,9 @@ public extension ApplicationClient.PosCart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(itemSlug, forKey: .itemSlug)
+            
             
             
             
@@ -142,7 +144,9 @@ public extension ApplicationClient.PosCart {
             
             
             
+            
             try? container.encodeIfPresent(itemImagesUrl, forKey: .itemImagesUrl)
+            
             
             
             
@@ -150,7 +154,9 @@ public extension ApplicationClient.PosCart {
             
             
             
+            
             try? container.encodeIfPresent(itemId, forKey: .itemId)
+            
             
             
             

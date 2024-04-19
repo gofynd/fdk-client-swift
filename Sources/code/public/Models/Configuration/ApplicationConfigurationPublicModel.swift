@@ -42,7 +42,7 @@ public extension PublicClient.Configuration {
         
         public var createdAt: String?
         
-        public var modifiedAt: String?
+        public var updatedAt: String?
         
         public var v: Int?
         
@@ -61,12 +61,6 @@ public extension PublicClient.Configuration {
         public var domain: Domain?
         
         public var slug: String?
-        
-        public var mode: String?
-        
-        public var status: String?
-        
-        public var tokens: [TokenSchema]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -103,7 +97,7 @@ public extension PublicClient.Configuration {
             
             case createdAt = "created_at"
             
-            case modifiedAt = "modified_at"
+            case updatedAt = "updated_at"
             
             case v = "__v"
             
@@ -123,15 +117,9 @@ public extension PublicClient.Configuration {
             
             case slug = "slug"
             
-            case mode = "mode"
-            
-            case status = "status"
-            
-            case tokens = "tokens"
-            
         }
 
-        public init(appType: String? = nil, auth: ApplicationAuth? = nil, banner: SecureUrl? = nil, cacheTtl: Int? = nil, channelType: String? = nil, companyId: Int? = nil, cors: ApplicationCors? = nil, createdAt: String? = nil, description: String? = nil, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl? = nil, isActive: Bool? = nil, isInternal: Bool? = nil, logo: SecureUrl? = nil, meta: [ApplicationMeta]? = nil, mobileLogo: SecureUrl? = nil, mode: String? = nil, modifiedAt: String? = nil, name: String? = nil, owner: String? = nil, redirections: [ApplicationRedirections]? = nil, slug: String? = nil, status: String? = nil, token: String? = nil, tokens: [TokenSchema]? = nil, website: ApplicationWebsite? = nil, id: String? = nil, v: Int? = nil) {
+        public init(appType: String? = nil, auth: ApplicationAuth? = nil, banner: SecureUrl? = nil, cacheTtl: Int? = nil, channelType: String? = nil, companyId: Int? = nil, cors: ApplicationCors? = nil, createdAt: String? = nil, description: String? = nil, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl? = nil, isActive: Bool? = nil, isInternal: Bool? = nil, logo: SecureUrl? = nil, meta: [ApplicationMeta]? = nil, mobileLogo: SecureUrl? = nil, name: String? = nil, owner: String? = nil, redirections: [ApplicationRedirections]? = nil, slug: String? = nil, token: String? = nil, updatedAt: String? = nil, website: ApplicationWebsite? = nil, id: String? = nil, v: Int? = nil) {
             
             self.website = website
             
@@ -165,7 +153,7 @@ public extension PublicClient.Configuration {
             
             self.createdAt = createdAt
             
-            self.modifiedAt = modifiedAt
+            self.updatedAt = updatedAt
             
             self.v = v
             
@@ -184,12 +172,6 @@ public extension PublicClient.Configuration {
             self.domain = domain
             
             self.slug = slug
-            
-            self.mode = mode
-            
-            self.status = status
-            
-            self.tokens = tokens
             
         }
 
@@ -390,7 +372,7 @@ public extension PublicClient.Configuration {
             
             
                 do {
-                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
+                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -508,49 +490,15 @@ public extension PublicClient.Configuration {
                 }
                 
             
-            
-                do {
-                    mode = try container.decode(String.self, forKey: .mode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    status = try container.decode(String.self, forKey: .status)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    tokens = try container.decode([TokenSchema].self, forKey: .tokens)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(website, forKey: .website)
+            
             
             
             
@@ -558,7 +506,9 @@ public extension PublicClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(auth, forKey: .auth)
+            
             
             
             
@@ -566,7 +516,9 @@ public extension PublicClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(channelType, forKey: .channelType)
+            
             
             
             
@@ -574,7 +526,9 @@ public extension PublicClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(isInternal, forKey: .isInternal)
+            
             
             
             
@@ -582,7 +536,9 @@ public extension PublicClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(id, forKey: .id)
+            
             
             
             
@@ -590,7 +546,9 @@ public extension PublicClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(owner, forKey: .owner)
+            
             
             
             
@@ -598,7 +556,9 @@ public extension PublicClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(token, forKey: .token)
+            
             
             
             
@@ -606,7 +566,9 @@ public extension PublicClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(meta, forKey: .meta)
+            
             
             
             
@@ -614,7 +576,9 @@ public extension PublicClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
+            
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
             
             
             
@@ -622,7 +586,9 @@ public extension PublicClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(banner, forKey: .banner)
+            
             
             
             
@@ -630,7 +596,9 @@ public extension PublicClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(favicon, forKey: .favicon)
+            
             
             
             
@@ -638,7 +606,9 @@ public extension PublicClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(appType, forKey: .appType)
+            
             
             
             
@@ -646,23 +616,13 @@ public extension PublicClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(domain, forKey: .domain)
             
             
             
+            
             try? container.encodeIfPresent(slug, forKey: .slug)
-            
-            
-            
-            try? container.encodeIfPresent(mode, forKey: .mode)
-            
-            
-            
-            try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            try? container.encodeIfPresent(tokens, forKey: .tokens)
             
             
         }

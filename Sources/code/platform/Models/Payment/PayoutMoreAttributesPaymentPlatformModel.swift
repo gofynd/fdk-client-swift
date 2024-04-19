@@ -193,47 +193,47 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(branchName, forKey: .branchName)
+            try? container.encode(branchName, forKey: .branchName)
             
             
             
             
-            try? container.encodeIfPresent(city, forKey: .city)
+            try? container.encode(city, forKey: .city)
             
             
             
             
-            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
+            try? container.encode(accountNo, forKey: .accountNo)
             
             
             
             
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encode(country, forKey: .country)
             
             
             
             
-            try? container.encodeIfPresent(state, forKey: .state)
+            try? container.encode(state, forKey: .state)
             
             
             
             
-            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
+            try? container.encode(accountHolder, forKey: .accountHolder)
             
             
             
             
-            try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
+            try? container.encode(ifscCode, forKey: .ifscCode)
             
             
             
             
-            try? container.encodeIfPresent(accountType, forKey: .accountType)
+            try? container.encode(accountType, forKey: .accountType)
             
             
             
             
-            try? container.encodeIfPresent(bankName, forKey: .bankName)
+            try? container.encode(bankName, forKey: .bankName)
             
             
         }
@@ -433,47 +433,47 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(branchName, forKey: .branchName)
+            try? container.encode(branchName, forKey: .branchName)
             
             
             
             
-            try? container.encodeIfPresent(city, forKey: .city)
+            try? container.encode(city, forKey: .city)
             
             
             
             
-            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
+            try? container.encode(accountNo, forKey: .accountNo)
             
             
             
             
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encode(country, forKey: .country)
             
             
             
             
-            try? container.encodeIfPresent(state, forKey: .state)
+            try? container.encode(state, forKey: .state)
             
             
             
             
-            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
+            try? container.encode(accountHolder, forKey: .accountHolder)
             
             
             
             
-            try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
+            try? container.encode(ifscCode, forKey: .ifscCode)
             
             
             
             
-            try? container.encodeIfPresent(accountType, forKey: .accountType)
+            try? container.encode(accountType, forKey: .accountType)
             
             
             
             
-            try? container.encodeIfPresent(bankName, forKey: .bankName)
+            try? container.encode(bankName, forKey: .bankName)
             
             
         }

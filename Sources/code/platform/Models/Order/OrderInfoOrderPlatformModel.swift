@@ -30,8 +30,6 @@ public extension PlatformClient.Order {
         
         public var deliveryCharges: Double
         
-        public var tcsCharge: Double?
-        
         public var shippingAddress: OrderUser
         
         public var orderValue: Double
@@ -65,8 +63,6 @@ public extension PlatformClient.Order {
             
             case deliveryCharges = "delivery_charges"
             
-            case tcsCharge = "tcs_charge"
-            
             case shippingAddress = "shipping_address"
             
             case orderValue = "order_value"
@@ -81,7 +77,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(affiliateOrderId: String? = nil, bags: [AffiliateBag], billingAddress: OrderUser, codCharges: Double, coupon: String? = nil, deliveryCharges: Double, discount: Double, items: [String: Any], orderPriority: OrderPriority? = nil, orderValue: Double, payment: [String: Any]? = nil, paymentMode: String, shipment: ShipmentData? = nil, shippingAddress: OrderUser, tcsCharge: Double? = nil, user: UserData) {
+        public init(affiliateOrderId: String? = nil, bags: [AffiliateBag], billingAddress: OrderUser, codCharges: Double, coupon: String? = nil, deliveryCharges: Double, discount: Double, items: [String: Any], orderPriority: OrderPriority? = nil, orderValue: Double, payment: [String: Any]? = nil, paymentMode: String, shipment: ShipmentData? = nil, shippingAddress: OrderUser, user: UserData) {
             
             self.affiliateOrderId = affiliateOrderId
             
@@ -100,8 +96,6 @@ public extension PlatformClient.Order {
             self.shipment = shipment
             
             self.deliveryCharges = deliveryCharges
-            
-            self.tcsCharge = tcsCharge
             
             self.shippingAddress = shippingAddress
             
@@ -194,18 +188,6 @@ public extension PlatformClient.Order {
             
             
             
-                do {
-                    tcsCharge = try container.decode(Double.self, forKey: .tcsCharge)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 shippingAddress = try container.decode(OrderUser.self, forKey: .shippingAddress)
                 
             
@@ -294,11 +276,6 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(tcsCharge, forKey: .tcsCharge)
-            
-            
-            
-            
             try? container.encodeIfPresent(shippingAddress, forKey: .shippingAddress)
             
             
@@ -324,7 +301,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(coupon, forKey: .coupon)
+            try? container.encode(coupon, forKey: .coupon)
             
             
         }
@@ -361,8 +338,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var deliveryCharges: Double
         
-        public var tcsCharge: Double?
-        
         public var shippingAddress: OrderUser
         
         public var orderValue: Double
@@ -396,8 +371,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case deliveryCharges = "delivery_charges"
             
-            case tcsCharge = "tcs_charge"
-            
             case shippingAddress = "shipping_address"
             
             case orderValue = "order_value"
@@ -412,7 +385,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(affiliateOrderId: String? = nil, bags: [AffiliateBag], billingAddress: OrderUser, codCharges: Double, coupon: String? = nil, deliveryCharges: Double, discount: Double, items: [String: Any], orderPriority: OrderPriority? = nil, orderValue: Double, payment: [String: Any]? = nil, paymentMode: String, shipment: ShipmentData? = nil, shippingAddress: OrderUser, tcsCharge: Double? = nil, user: UserData) {
+        public init(affiliateOrderId: String? = nil, bags: [AffiliateBag], billingAddress: OrderUser, codCharges: Double, coupon: String? = nil, deliveryCharges: Double, discount: Double, items: [String: Any], orderPriority: OrderPriority? = nil, orderValue: Double, payment: [String: Any]? = nil, paymentMode: String, shipment: ShipmentData? = nil, shippingAddress: OrderUser, user: UserData) {
             
             self.affiliateOrderId = affiliateOrderId
             
@@ -431,8 +404,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.shipment = shipment
             
             self.deliveryCharges = deliveryCharges
-            
-            self.tcsCharge = tcsCharge
             
             self.shippingAddress = shippingAddress
             
@@ -525,18 +496,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                do {
-                    tcsCharge = try container.decode(Double.self, forKey: .tcsCharge)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 shippingAddress = try container.decode(OrderUser.self, forKey: .shippingAddress)
                 
             
@@ -625,11 +584,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(tcsCharge, forKey: .tcsCharge)
-            
-            
-            
-            
             try? container.encodeIfPresent(shippingAddress, forKey: .shippingAddress)
             
             
@@ -655,7 +609,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(coupon, forKey: .coupon)
+            try? container.encode(coupon, forKey: .coupon)
             
             
         }

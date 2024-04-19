@@ -49,7 +49,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(selfShip, forKey: .selfShip)
+            try? container.encode(selfShip, forKey: .selfShip)
             
             
         }
@@ -105,7 +105,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(selfShip, forKey: .selfShip)
+            try? container.encode(selfShip, forKey: .selfShip)
             
             
         }

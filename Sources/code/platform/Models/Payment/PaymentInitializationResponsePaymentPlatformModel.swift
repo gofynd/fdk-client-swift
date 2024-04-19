@@ -302,22 +302,22 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(razorpayPaymentId, forKey: .razorpayPaymentId)
+            try? container.encode(razorpayPaymentId, forKey: .razorpayPaymentId)
             
             
             
             
-            try? container.encodeIfPresent(deviceId, forKey: .deviceId)
+            try? container.encode(deviceId, forKey: .deviceId)
             
             
             
             
-            try? container.encodeIfPresent(upiPollUrl, forKey: .upiPollUrl)
+            try? container.encode(upiPollUrl, forKey: .upiPollUrl)
             
             
             
             
-            try? container.encodeIfPresent(customerId, forKey: .customerId)
+            try? container.encode(customerId, forKey: .customerId)
             
             
             
@@ -327,7 +327,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(vpa, forKey: .vpa)
+            try? container.encode(vpa, forKey: .vpa)
             
             
             
@@ -337,7 +337,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encode(currency, forKey: .currency)
             
             
             
@@ -347,22 +347,22 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            try? container.encode(amount, forKey: .amount)
             
             
             
             
-            try? container.encodeIfPresent(timeout, forKey: .timeout)
+            try? container.encode(timeout, forKey: .timeout)
             
             
             
             
-            try? container.encodeIfPresent(virtualId, forKey: .virtualId)
+            try? container.encode(virtualId, forKey: .virtualId)
             
             
             
             
-            try? container.encodeIfPresent(bqrImage, forKey: .bqrImage)
+            try? container.encode(bqrImage, forKey: .bqrImage)
             
             
             
@@ -691,22 +691,22 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(razorpayPaymentId, forKey: .razorpayPaymentId)
+            try? container.encode(razorpayPaymentId, forKey: .razorpayPaymentId)
             
             
             
             
-            try? container.encodeIfPresent(deviceId, forKey: .deviceId)
+            try? container.encode(deviceId, forKey: .deviceId)
             
             
             
             
-            try? container.encodeIfPresent(upiPollUrl, forKey: .upiPollUrl)
+            try? container.encode(upiPollUrl, forKey: .upiPollUrl)
             
             
             
             
-            try? container.encodeIfPresent(customerId, forKey: .customerId)
+            try? container.encode(customerId, forKey: .customerId)
             
             
             
@@ -716,7 +716,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(vpa, forKey: .vpa)
+            try? container.encode(vpa, forKey: .vpa)
             
             
             
@@ -726,7 +726,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encode(currency, forKey: .currency)
             
             
             
@@ -736,22 +736,22 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            try? container.encode(amount, forKey: .amount)
             
             
             
             
-            try? container.encodeIfPresent(timeout, forKey: .timeout)
+            try? container.encode(timeout, forKey: .timeout)
             
             
             
             
-            try? container.encodeIfPresent(virtualId, forKey: .virtualId)
+            try? container.encode(virtualId, forKey: .virtualId)
             
             
             
             
-            try? container.encodeIfPresent(bqrImage, forKey: .bqrImage)
+            try? container.encode(bqrImage, forKey: .bqrImage)
             
             
             

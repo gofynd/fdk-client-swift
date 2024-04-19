@@ -116,7 +116,9 @@ public extension ApplicationClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(cron, forKey: .cron)
+            
             
             
             
@@ -124,11 +126,14 @@ public extension ApplicationClient.Content {
             
             
             
+            
             try? container.encodeIfPresent(end, forKey: .end)
             
             
             
+            
             try? container.encodeIfPresent(duration, forKey: .duration)
+            
             
             
             

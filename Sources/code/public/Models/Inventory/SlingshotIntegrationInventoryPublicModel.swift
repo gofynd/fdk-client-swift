@@ -118,7 +118,9 @@ public extension PublicClient.Inventory {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(id, forKey: .id)
+            
             
             
             
@@ -126,11 +128,14 @@ public extension PublicClient.Inventory {
             
             
             
+            
             try? container.encodeIfPresent(name, forKey: .name)
             
             
             
+            
             try? container.encodeIfPresent(slug, forKey: .slug)
+            
             
             
             

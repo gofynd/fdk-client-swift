@@ -12,24 +12,18 @@ public extension PlatformClient.Webhook {
     class HistoryResponse: Codable {
         
         
-        public var items: [HistoryItems]?
-        
-        public var page: Page?
+        public var items: [HistoryResponseObject]?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case items = "items"
             
-            case page = "page"
-            
         }
 
-        public init(items: [HistoryItems]? = nil, page: Page? = nil) {
+        public init(items: [HistoryResponseObject]? = nil) {
             
             self.items = items
-            
-            self.page = page
             
         }
 
@@ -38,19 +32,7 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    items = try container.decode([HistoryItems].self, forKey: .items)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    page = try container.decode(Page.self, forKey: .page)
+                    items = try container.decode([HistoryResponseObject].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,11 +50,6 @@ public extension PlatformClient.Webhook {
             
             
             try? container.encodeIfPresent(items, forKey: .items)
-            
-            
-            
-            
-            try? container.encodeIfPresent(page, forKey: .page)
             
             
         }

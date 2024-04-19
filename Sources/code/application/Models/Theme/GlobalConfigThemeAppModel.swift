@@ -8,16 +8,22 @@ public extension ApplicationClient.Theme {
     */
     class GlobalConfig: Codable {
         
+        public var statics: StaticConfig?
+        
         public var custom: CustomConfig?
         
 
         public enum CodingKeys: String, CodingKey {
             
+            case statics = "statics"
+            
             case custom = "custom"
             
         }
 
-        public init(custom: CustomConfig? = nil) {
+        public init(custom: CustomConfig? = nil, statics: StaticConfig? = nil) {
+            
+            self.statics = statics
             
             self.custom = custom
             
@@ -25,6 +31,18 @@ public extension ApplicationClient.Theme {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+            do {
+                statics = try container.decode(StaticConfig.self, forKey: .statics)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
             
             
             do {
@@ -42,6 +60,12 @@ public extension ApplicationClient.Theme {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(statics, forKey: .statics)
+            
+            
             
             
             try? container.encodeIfPresent(custom, forKey: .custom)

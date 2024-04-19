@@ -8,9 +8,9 @@ public extension ApplicationClient.User {
     */
     class UpdatePasswordRequestSchema: Codable {
         
-        public var oldPassword: String
+        public var oldPassword: String?
         
-        public var newPassword: String
+        public var newPassword: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(newPassword: String, oldPassword: String) {
+        public init(newPassword: String? = nil, oldPassword: String? = nil) {
             
             self.oldPassword = oldPassword
             
@@ -33,13 +33,27 @@ public extension ApplicationClient.User {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            oldPassword = try container.decode(String.self, forKey: .oldPassword)
+            do {
+                oldPassword = try container.decode(String.self, forKey: .oldPassword)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
+            do {
+                newPassword = try container.decode(String.self, forKey: .newPassword)
             
-            newPassword = try container.decode(String.self, forKey: .newPassword)
-            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
         }
@@ -48,7 +62,9 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(oldPassword, forKey: .oldPassword)
+            
             
             
             

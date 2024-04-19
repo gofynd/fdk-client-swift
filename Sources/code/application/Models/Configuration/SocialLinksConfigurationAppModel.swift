@@ -188,7 +188,9 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(facebook, forKey: .facebook)
+            
             
             
             
@@ -196,7 +198,9 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(twitter, forKey: .twitter)
+            
             
             
             
@@ -204,7 +208,9 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(googlePlus, forKey: .googlePlus)
+            
             
             
             
@@ -212,11 +218,14 @@ public extension ApplicationClient.Configuration {
             
             
             
+            
             try? container.encodeIfPresent(linkedIn, forKey: .linkedIn)
             
             
             
+            
             try? container.encodeIfPresent(vimeo, forKey: .vimeo)
+            
             
             
             

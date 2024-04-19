@@ -8,7 +8,7 @@ public extension ApplicationClient.User {
     */
     class OAuthRequestSchemaOauth2: Codable {
         
-        public var accessToken: String
+        public var accessToken: String?
         
         public var expiry: Int?
         
@@ -25,7 +25,7 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(accessToken: String, expiry: Int? = nil, refreshToken: String? = nil) {
+        public init(accessToken: String? = nil, expiry: Int? = nil, refreshToken: String? = nil) {
             
             self.accessToken = accessToken
             
@@ -39,8 +39,15 @@ public extension ApplicationClient.User {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            accessToken = try container.decode(String.self, forKey: .accessToken)
+            do {
+                accessToken = try container.decode(String.self, forKey: .accessToken)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -73,11 +80,14 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(accessToken, forKey: .accessToken)
             
             
             
+            
             try? container.encodeIfPresent(expiry, forKey: .expiry)
+            
             
             
             

@@ -208,27 +208,27 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(additionalContactDetails, forKey: .additionalContactDetails)
+            try? container.encode(additionalContactDetails, forKey: .additionalContactDetails)
             
             
             
             
-            try? container.encodeIfPresent(timing, forKey: .timing)
+            try? container.encode(timing, forKey: .timing)
             
             
             
             
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
+            try? container.encode(notificationEmails, forKey: .notificationEmails)
             
             
             
             
-            try? container.encodeIfPresent(gstNumber, forKey: .gstNumber)
+            try? container.encode(gstNumber, forKey: .gstNumber)
             
             
             
             
-            try? container.encodeIfPresent(ewaybillPortalDetails, forKey: .ewaybillPortalDetails)
+            try? container.encode(ewaybillPortalDetails, forKey: .ewaybillPortalDetails)
             
             
             
@@ -248,7 +248,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(productReturnConfig, forKey: .productReturnConfig)
+            try? container.encode(productReturnConfig, forKey: .productReturnConfig)
             
             
             
@@ -473,27 +473,27 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(additionalContactDetails, forKey: .additionalContactDetails)
+            try? container.encode(additionalContactDetails, forKey: .additionalContactDetails)
             
             
             
             
-            try? container.encodeIfPresent(timing, forKey: .timing)
+            try? container.encode(timing, forKey: .timing)
             
             
             
             
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
+            try? container.encode(notificationEmails, forKey: .notificationEmails)
             
             
             
             
-            try? container.encodeIfPresent(gstNumber, forKey: .gstNumber)
+            try? container.encode(gstNumber, forKey: .gstNumber)
             
             
             
             
-            try? container.encodeIfPresent(ewaybillPortalDetails, forKey: .ewaybillPortalDetails)
+            try? container.encode(ewaybillPortalDetails, forKey: .ewaybillPortalDetails)
             
             
             
@@ -513,7 +513,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(productReturnConfig, forKey: .productReturnConfig)
+            try? container.encode(productReturnConfig, forKey: .productReturnConfig)
             
             
             

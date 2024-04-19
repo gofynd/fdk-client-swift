@@ -14,8 +14,6 @@ public extension PlatformClient.Configuration {
         
         public var deliveryCharges: DeliveryCharges?
         
-        public var internationalDeliveryCharges: InternationalDeliveryCharges?
-        
         public var enabled: Bool?
         
         public var maxCartItems: Int?
@@ -33,8 +31,6 @@ public extension PlatformClient.Configuration {
             
             case deliveryCharges = "delivery_charges"
             
-            case internationalDeliveryCharges = "international_delivery_charges"
-            
             case enabled = "enabled"
             
             case maxCartItems = "max_cart_items"
@@ -49,11 +45,9 @@ public extension PlatformClient.Configuration {
             
         }
 
-        public init(bulkCoupons: Bool? = nil, deliveryCharges: DeliveryCharges? = nil, enabled: Bool? = nil, internationalDeliveryCharges: InternationalDeliveryCharges? = nil, maxCartItems: Int? = nil, minCartValue: Double? = nil, panCard: PanCardConfig? = nil, revenueEngineCoupon: Bool? = nil) {
+        public init(bulkCoupons: Bool? = nil, deliveryCharges: DeliveryCharges? = nil, enabled: Bool? = nil, maxCartItems: Int? = nil, minCartValue: Double? = nil, panCard: PanCardConfig? = nil, revenueEngineCoupon: Bool? = nil) {
             
             self.deliveryCharges = deliveryCharges
-            
-            self.internationalDeliveryCharges = internationalDeliveryCharges
             
             self.enabled = enabled
             
@@ -75,18 +69,6 @@ public extension PlatformClient.Configuration {
             
                 do {
                     deliveryCharges = try container.decode(DeliveryCharges.self, forKey: .deliveryCharges)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    internationalDeliveryCharges = try container.decode(InternationalDeliveryCharges.self, forKey: .internationalDeliveryCharges)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -176,11 +158,6 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(deliveryCharges, forKey: .deliveryCharges)
-            
-            
-            
-            
-            try? container.encodeIfPresent(internationalDeliveryCharges, forKey: .internationalDeliveryCharges)
             
             
             
@@ -231,8 +208,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var deliveryCharges: DeliveryCharges?
         
-        public var internationalDeliveryCharges: InternationalDeliveryCharges?
-        
         public var enabled: Bool?
         
         public var maxCartItems: Int?
@@ -250,8 +225,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case deliveryCharges = "delivery_charges"
             
-            case internationalDeliveryCharges = "international_delivery_charges"
-            
             case enabled = "enabled"
             
             case maxCartItems = "max_cart_items"
@@ -266,11 +239,9 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
         }
 
-        public init(bulkCoupons: Bool? = nil, deliveryCharges: DeliveryCharges? = nil, enabled: Bool? = nil, internationalDeliveryCharges: InternationalDeliveryCharges? = nil, maxCartItems: Int? = nil, minCartValue: Double? = nil, panCard: PanCardConfig? = nil, revenueEngineCoupon: Bool? = nil) {
+        public init(bulkCoupons: Bool? = nil, deliveryCharges: DeliveryCharges? = nil, enabled: Bool? = nil, maxCartItems: Int? = nil, minCartValue: Double? = nil, panCard: PanCardConfig? = nil, revenueEngineCoupon: Bool? = nil) {
             
             self.deliveryCharges = deliveryCharges
-            
-            self.internationalDeliveryCharges = internationalDeliveryCharges
             
             self.enabled = enabled
             
@@ -292,18 +263,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
                 do {
                     deliveryCharges = try container.decode(DeliveryCharges.self, forKey: .deliveryCharges)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    internationalDeliveryCharges = try container.decode(InternationalDeliveryCharges.self, forKey: .internationalDeliveryCharges)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -393,11 +352,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(deliveryCharges, forKey: .deliveryCharges)
-            
-            
-            
-            
-            try? container.encodeIfPresent(internationalDeliveryCharges, forKey: .internationalDeliveryCharges)
             
             
             

@@ -10,7 +10,7 @@ public extension ApplicationClient.Payment {
         
         public var success: Bool?
         
-        public var message: String?
+        public var message: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(message: String? = nil, success: Bool? = nil) {
+        public init(message: String, success: Bool? = nil) {
             
             self.success = success
             
@@ -45,15 +45,8 @@ public extension ApplicationClient.Payment {
             
             
             
-            do {
-                message = try container.decode(String.self, forKey: .message)
+            message = try container.decode(String.self, forKey: .message)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
         }
@@ -62,7 +55,9 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(success, forKey: .success)
+            
             
             
             

@@ -24,8 +24,6 @@ public extension ApplicationClient.Payment {
         
         public var invalidId: Bool?
         
-        public var description: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -45,11 +43,9 @@ public extension ApplicationClient.Payment {
             
             case invalidId = "invalid_id"
             
-            case description = "description"
-            
         }
 
-        public init(amount: Double? = nil, cancelled: Bool? = nil, description: String? = nil, expired: Bool? = nil, invalidId: Bool? = nil, merchantName: String? = nil, merchantOrderId: String? = nil, msg: String? = nil, paymentTransactionId: String? = nil) {
+        public init(amount: Double? = nil, cancelled: Bool? = nil, expired: Bool? = nil, invalidId: Bool? = nil, merchantName: String? = nil, merchantOrderId: String? = nil, msg: String? = nil, paymentTransactionId: String? = nil) {
             
             self.paymentTransactionId = paymentTransactionId
             
@@ -66,8 +62,6 @@ public extension ApplicationClient.Payment {
             self.amount = amount
             
             self.invalidId = invalidId
-            
-            self.description = description
             
         }
 
@@ -170,57 +164,49 @@ public extension ApplicationClient.Payment {
             }
             
             
-            
-            do {
-                description = try container.decode(String.self, forKey: .description)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(paymentTransactionId, forKey: .paymentTransactionId)
+            
+            try? container.encode(paymentTransactionId, forKey: .paymentTransactionId)
             
             
             
-            try? container.encodeIfPresent(expired, forKey: .expired)
+            
+            try? container.encode(expired, forKey: .expired)
             
             
             
-            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+            
+            try? container.encode(merchantOrderId, forKey: .merchantOrderId)
             
             
             
-            try? container.encodeIfPresent(merchantName, forKey: .merchantName)
+            
+            try? container.encode(merchantName, forKey: .merchantName)
             
             
             
-            try? container.encodeIfPresent(msg, forKey: .msg)
+            
+            try? container.encode(msg, forKey: .msg)
             
             
             
-            try? container.encodeIfPresent(cancelled, forKey: .cancelled)
+            
+            try? container.encode(cancelled, forKey: .cancelled)
             
             
             
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            
+            try? container.encode(amount, forKey: .amount)
             
             
             
-            try? container.encodeIfPresent(invalidId, forKey: .invalidId)
             
-            
-            
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encode(invalidId, forKey: .invalidId)
             
             
         }

@@ -8,9 +8,9 @@ public extension ApplicationClient.Configuration {
     */
     class InformationSupport: Codable {
         
-        public var phone: [InformationSupportPhone]?
+        public var phone: [String]?
         
-        public var email: [InformationSupportEmail]?
+        public var email: [String]?
         
         public var timing: String?
         
@@ -25,7 +25,7 @@ public extension ApplicationClient.Configuration {
             
         }
 
-        public init(email: [InformationSupportEmail]? = nil, phone: [InformationSupportPhone]? = nil, timing: String? = nil) {
+        public init(email: [String]? = nil, phone: [String]? = nil, timing: String? = nil) {
             
             self.phone = phone
             
@@ -40,7 +40,7 @@ public extension ApplicationClient.Configuration {
             
             
             do {
-                phone = try container.decode([InformationSupportPhone].self, forKey: .phone)
+                phone = try container.decode([String].self, forKey: .phone)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -52,7 +52,7 @@ public extension ApplicationClient.Configuration {
             
             
             do {
-                email = try container.decode([InformationSupportEmail].self, forKey: .email)
+                email = try container.decode([String].self, forKey: .email)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,11 +80,14 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(phone, forKey: .phone)
             
             
             
+            
             try? container.encodeIfPresent(email, forKey: .email)
+            
             
             
             

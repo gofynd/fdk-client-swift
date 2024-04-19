@@ -8,7 +8,7 @@ public extension ApplicationClient.Payment {
     */
     class AttachCardsResponse: Codable {
         
-        public var data: [String: Any]?
+        public var data: [String: Any]
         
         public var success: Bool
         
@@ -25,7 +25,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(data: [String: Any]? = nil, message: String? = nil, success: Bool) {
+        public init(data: [String: Any], message: String? = nil, success: Bool) {
             
             self.data = data
             
@@ -39,15 +39,8 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            do {
-                data = try container.decode([String: Any].self, forKey: .data)
+            data = try container.decode([String: Any].self, forKey: .data)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
             
@@ -73,11 +66,14 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(data, forKey: .data)
             
             
             
+            
             try? container.encodeIfPresent(success, forKey: .success)
+            
             
             
             

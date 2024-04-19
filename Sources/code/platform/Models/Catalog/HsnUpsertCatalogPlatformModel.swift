@@ -192,7 +192,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(hs2Code, forKey: .hs2Code)
+            try? container.encode(hs2Code, forKey: .hs2Code)
             
             
             
@@ -436,7 +436,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(hs2Code, forKey: .hs2Code)
+            try? container.encode(hs2Code, forKey: .hs2Code)
             
             
             

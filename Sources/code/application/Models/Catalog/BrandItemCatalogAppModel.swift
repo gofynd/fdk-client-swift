@@ -8,8 +8,6 @@ public extension ApplicationClient.Catalog {
     */
     class BrandItem: Codable {
         
-        public var id: Int?
-        
         public var uid: Int?
         
         public var logo: Media?
@@ -31,8 +29,6 @@ public extension ApplicationClient.Catalog {
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "id"
-            
             case uid = "uid"
             
             case logo = "logo"
@@ -53,9 +49,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, departments: [String]? = nil, description: String? = nil, discount: String? = nil, id: Int? = nil, logo: Media? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
-            
-            self.id = id
+        public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, departments: [String]? = nil, description: String? = nil, discount: String? = nil, logo: Media? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
             
             self.uid = uid
             
@@ -79,18 +73,6 @@ public extension ApplicationClient.Catalog {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-            do {
-                id = try container.decode(Int.self, forKey: .id)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
             
             
             do {
@@ -206,11 +188,9 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
-            
-            
             
             try? container.encodeIfPresent(uid, forKey: .uid)
+            
             
             
             
@@ -218,7 +198,9 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(description, forKey: .description)
+            
             
             
             
@@ -226,7 +208,9 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(departments, forKey: .departments)
+            
             
             
             
@@ -234,11 +218,14 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(name, forKey: .name)
             
             
             
+            
             try? container.encodeIfPresent(slug, forKey: .slug)
+            
             
             
             

@@ -14,7 +14,7 @@ public extension PlatformClient.Lead {
         
         public var value: [String: Any]
         
-        public var type: String
+        public var type: HistoryTypeEnum
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Lead {
             
         }
 
-        public init(type: String, value: [String: Any]) {
+        public init(type: HistoryTypeEnum, value: [String: Any]) {
             
             self.value = value
             
@@ -42,7 +42,7 @@ public extension PlatformClient.Lead {
             
             
             
-                type = try container.decode(String.self, forKey: .type)
+                type = try container.decode(HistoryTypeEnum.self, forKey: .type)
                 
             
             
@@ -79,7 +79,7 @@ public extension PlatformClient.ApplicationClient.Lead {
         
         public var value: [String: Any]
         
-        public var type: String
+        public var type: HistoryTypeEnum
         
 
         public enum CodingKeys: String, CodingKey {
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Lead {
             
         }
 
-        public init(type: String, value: [String: Any]) {
+        public init(type: HistoryTypeEnum, value: [String: Any]) {
             
             self.value = value
             
@@ -107,7 +107,7 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
             
-                type = try container.decode(String.self, forKey: .type)
+                type = try container.decode(HistoryTypeEnum.self, forKey: .type)
                 
             
             

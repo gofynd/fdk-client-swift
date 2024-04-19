@@ -22,25 +22,23 @@ extension PlatformClient {
         
         
         
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Get company-level themes.
-        * Description: Retrieve themes specific to a company.
+        * Summary: Get themes for a company
+        * Description: Retrieve a list of themes available for a specific company.
         **/
         public func getCompanyLevelThemes(
-            searchText: String?,
             
             onResponse: @escaping (_ response: [CompanyThemeSchema]?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = searchText {
-    
-    xQuery["search_text"] = value
-    
-}
-
+ 
 
  
 
@@ -49,7 +47,7 @@ if let value = searchText {
                 config: config,
                 method: "GET",
                 url: "/service/platform/theme/v2.0/company/\(companyId)/themes",
-                query: xQuery,
+                query: nil,
                 body: nil,
                 headers: [],
                 responseType: "application/json",
@@ -80,68 +78,12 @@ if let value = searchText {
         
         /**
         *
-        * Summary: Get private themes for a company
-        * Description: Retrieve a list of private themes available for a specific company.
-        **/
-        public func getCompanyLevelPrivateThemes(
-            searchText: String?,
-            
-            onResponse: @escaping (_ response: [CompanyThemeResponse]?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-if let value = searchText {
-    
-    xQuery["search_text"] = value
-    
-}
-
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/theme/v2.0/company/\(companyId)/private_themes",
-                query: xQuery,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode([CompanyThemeResponse].self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Add marketplace theme to company.
-        * Description: Incorporate a marketplace theme into a company's profile.
+        * Summary: Add a theme to a company
+        * Description: Add a marketplace theme to a company by providing the theme ID and company ID.
         **/
         public func addMarketplaceThemeToCompany(
-            body: CompanyThemeReqSchema,
-            onResponse: @escaping (_ response: CompanyThemeResponse?, _ error: FDKError?) -> Void
+            body: ThemeReq,
+            onResponse: @escaping (_ response: CompanyThemeSchema?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -166,7 +108,7 @@ if let value = searchText {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CompanyThemeResponse.self, from: data)
+                        let response = Utility.decode(CompanyThemeSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -184,13 +126,13 @@ if let value = searchText {
         
         /**
         *
-        * Summary: Delete company theme.
-        * Description: Remove a theme associated with a company.
+        * Summary: Delete a theme
+        * Description: Delete a specific theme for a company by providing the company ID and theme ID.
         **/
         public func deleteCompanyTheme(
             themeId: String,
             
-            onResponse: @escaping (_ response: CompanyThemeResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CompanyThemeSchema?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -215,7 +157,7 @@ if let value = searchText {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CompanyThemeResponse.self, from: data)
+                        let response = Utility.decode(CompanyThemeSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -240,55 +182,6 @@ if let value = searchText {
         
         
         
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get default marketplace theme.
-        * Description: Retrieve the most recent version of a theme using its slug.
-        **/
-        public func getDefaultMarketplaceTheme(
-            
-            onResponse: @escaping (_ response: MarketplaceTheme?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/theme/v2.0/company/\(companyId)/default",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(MarketplaceTheme.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
         
         
     }

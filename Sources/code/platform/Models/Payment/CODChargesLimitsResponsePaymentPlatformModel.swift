@@ -85,17 +85,17 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(maxCartValue, forKey: .maxCartValue)
+            try? container.encode(maxCartValue, forKey: .maxCartValue)
             
             
             
             
-            try? container.encodeIfPresent(minCartValue, forKey: .minCartValue)
+            try? container.encode(minCartValue, forKey: .minCartValue)
             
             
             
             
-            try? container.encodeIfPresent(codCharge, forKey: .codCharge)
+            try? container.encode(codCharge, forKey: .codCharge)
             
             
         }
@@ -187,17 +187,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(maxCartValue, forKey: .maxCartValue)
+            try? container.encode(maxCartValue, forKey: .maxCartValue)
             
             
             
             
-            try? container.encodeIfPresent(minCartValue, forKey: .minCartValue)
+            try? container.encode(minCartValue, forKey: .minCartValue)
             
             
             
             
-            try? container.encodeIfPresent(codCharge, forKey: .codCharge)
+            try? container.encode(codCharge, forKey: .codCharge)
             
             
         }

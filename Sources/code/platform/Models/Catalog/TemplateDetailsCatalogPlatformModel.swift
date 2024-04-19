@@ -244,17 +244,17 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(attributes, forKey: .attributes)
+            try? container.encode(attributes, forKey: .attributes)
             
             
             
             
-            try? container.encodeIfPresent(categories, forKey: .categories)
+            try? container.encode(categories, forKey: .categories)
             
             
             
             
-            try? container.encodeIfPresent(departments, forKey: .departments)
+            try? container.encode(departments, forKey: .departments)
             
             
             
@@ -555,17 +555,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(attributes, forKey: .attributes)
+            try? container.encode(attributes, forKey: .attributes)
             
             
             
             
-            try? container.encodeIfPresent(categories, forKey: .categories)
+            try? container.encode(categories, forKey: .categories)
             
             
             
             
-            try? container.encodeIfPresent(departments, forKey: .departments)
+            try? container.encode(departments, forKey: .departments)
             
             
             

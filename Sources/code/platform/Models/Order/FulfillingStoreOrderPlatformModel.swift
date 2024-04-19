@@ -20,10 +20,6 @@ public extension PlatformClient.Order {
         
         public var address: String
         
-        public var address1: String?
-        
-        public var displayAddress: String?
-        
         public var id: Int
         
         public var code: String
@@ -51,10 +47,6 @@ public extension PlatformClient.Order {
             
             case address = "address"
             
-            case address1 = "address1"
-            
-            case displayAddress = "display_address"
-            
             case id = "id"
             
             case code = "code"
@@ -73,7 +65,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(address: String, address1: String? = nil, city: String, code: String, contactPerson: String, country: String, displayAddress: String? = nil, fulfillmentChannel: String, id: Int, meta: [String: Any], phone: String, pincode: String, state: String, storeName: String) {
+        public init(address: String, city: String, code: String, contactPerson: String, country: String, fulfillmentChannel: String, id: Int, meta: [String: Any], phone: String, pincode: String, state: String, storeName: String) {
             
             self.phone = phone
             
@@ -82,10 +74,6 @@ public extension PlatformClient.Order {
             self.meta = meta
             
             self.address = address
-            
-            self.address1 = address1
-            
-            self.displayAddress = displayAddress
             
             self.id = id
             
@@ -127,30 +115,6 @@ public extension PlatformClient.Order {
                 address = try container.decode(String.self, forKey: .address)
                 
             
-            
-            
-                do {
-                    address1 = try container.decode(String.self, forKey: .address1)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    displayAddress = try container.decode(String.self, forKey: .displayAddress)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 id = try container.decode(Int.self, forKey: .id)
@@ -215,16 +179,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(address, forKey: .address)
-            
-            
-            
-            
-            try? container.encodeIfPresent(address1, forKey: .address1)
-            
-            
-            
-            
-            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
             
             
             
@@ -291,10 +245,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var address: String
         
-        public var address1: String?
-        
-        public var displayAddress: String?
-        
         public var id: Int
         
         public var code: String
@@ -322,10 +272,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case address = "address"
             
-            case address1 = "address1"
-            
-            case displayAddress = "display_address"
-            
             case id = "id"
             
             case code = "code"
@@ -344,7 +290,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(address: String, address1: String? = nil, city: String, code: String, contactPerson: String, country: String, displayAddress: String? = nil, fulfillmentChannel: String, id: Int, meta: [String: Any], phone: String, pincode: String, state: String, storeName: String) {
+        public init(address: String, city: String, code: String, contactPerson: String, country: String, fulfillmentChannel: String, id: Int, meta: [String: Any], phone: String, pincode: String, state: String, storeName: String) {
             
             self.phone = phone
             
@@ -353,10 +299,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.meta = meta
             
             self.address = address
-            
-            self.address1 = address1
-            
-            self.displayAddress = displayAddress
             
             self.id = id
             
@@ -398,30 +340,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 address = try container.decode(String.self, forKey: .address)
                 
             
-            
-            
-                do {
-                    address1 = try container.decode(String.self, forKey: .address1)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    displayAddress = try container.decode(String.self, forKey: .displayAddress)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 id = try container.decode(Int.self, forKey: .id)
@@ -486,16 +404,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(address, forKey: .address)
-            
-            
-            
-            
-            try? container.encodeIfPresent(address1, forKey: .address1)
-            
-            
-            
-            
-            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
             
             
             

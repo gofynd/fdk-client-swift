@@ -170,7 +170,9 @@ public extension ApplicationClient.PosCart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(cart, forKey: .cart)
+            
             
             
             
@@ -178,7 +180,9 @@ public extension ApplicationClient.PosCart {
             
             
             
+            
             try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
+            
             
             
             
@@ -186,7 +190,9 @@ public extension ApplicationClient.PosCart {
             
             
             
+            
             try? container.encodeIfPresent(data, forKey: .data)
+            
             
             
             
@@ -194,7 +200,9 @@ public extension ApplicationClient.PosCart {
             
             
             
+            
             try? container.encodeIfPresent(success, forKey: .success)
+            
             
             
             

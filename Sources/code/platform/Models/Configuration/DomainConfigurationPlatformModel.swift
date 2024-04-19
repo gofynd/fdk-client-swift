@@ -24,8 +24,6 @@ public extension PlatformClient.Configuration {
         
         public var isPredefined: Bool?
         
-        public var message: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -41,11 +39,9 @@ public extension PlatformClient.Configuration {
             
             case isPredefined = "is_predefined"
             
-            case message = "message"
-            
         }
 
-        public init(isPredefined: Bool? = nil, isPrimary: Bool? = nil, isShortlink: Bool? = nil, message: String? = nil, name: String? = nil, verified: Bool? = nil, id: String? = nil) {
+        public init(isPredefined: Bool? = nil, isPrimary: Bool? = nil, isShortlink: Bool? = nil, name: String? = nil, verified: Bool? = nil, id: String? = nil) {
             
             self.name = name
             
@@ -58,8 +54,6 @@ public extension PlatformClient.Configuration {
             self.isShortlink = isShortlink
             
             self.isPredefined = isPredefined
-            
-            self.message = message
             
         }
 
@@ -138,18 +132,6 @@ public extension PlatformClient.Configuration {
                 }
                 
             
-            
-                do {
-                    message = try container.decode(String.self, forKey: .message)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -183,11 +165,6 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(isPredefined, forKey: .isPredefined)
-            
-            
-            
-            
-            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }
@@ -218,8 +195,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var isPredefined: Bool?
         
-        public var message: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -235,11 +210,9 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case isPredefined = "is_predefined"
             
-            case message = "message"
-            
         }
 
-        public init(isPredefined: Bool? = nil, isPrimary: Bool? = nil, isShortlink: Bool? = nil, message: String? = nil, name: String? = nil, verified: Bool? = nil, id: String? = nil) {
+        public init(isPredefined: Bool? = nil, isPrimary: Bool? = nil, isShortlink: Bool? = nil, name: String? = nil, verified: Bool? = nil, id: String? = nil) {
             
             self.name = name
             
@@ -252,8 +225,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.isShortlink = isShortlink
             
             self.isPredefined = isPredefined
-            
-            self.message = message
             
         }
 
@@ -332,18 +303,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
-            
-                do {
-                    message = try container.decode(String.self, forKey: .message)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -377,11 +336,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(isPredefined, forKey: .isPredefined)
-            
-            
-            
-            
-            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }

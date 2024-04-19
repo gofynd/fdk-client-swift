@@ -116,7 +116,9 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(effective, forKey: .effective)
+            
             
             
             
@@ -124,11 +126,14 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
             
             
             
+            
             try? container.encodeIfPresent(marked, forKey: .marked)
+            
             
             
             

@@ -16,11 +16,7 @@ public extension ApplicationClient.Catalog {
         
         public var name: String?
         
-        public var type: String?
-        
         public var action: ProductListingAction?
-        
-        public var customJson: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,15 +29,11 @@ public extension ApplicationClient.Catalog {
             
             case name = "name"
             
-            case type = "type"
-            
             case action = "action"
-            
-            case customJson = "_custom_json"
             
         }
 
-        public init(action: ProductListingAction? = nil, description: String? = nil, logo: Media? = nil, name: String? = nil, type: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
+        public init(action: ProductListingAction? = nil, description: String? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
             
             self.uid = uid
             
@@ -51,11 +43,7 @@ public extension ApplicationClient.Catalog {
             
             self.name = name
             
-            self.type = type
-            
             self.action = action
-            
-            self.customJson = customJson
             
         }
 
@@ -112,31 +100,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                type = try container.decode(String.self, forKey: .type)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 action = try container.decode(ProductListingAction.self, forKey: .action)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -152,7 +116,9 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(uid, forKey: .uid)
+            
             
             
             
@@ -160,7 +126,9 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(description, forKey: .description)
+            
             
             
             
@@ -168,15 +136,8 @@ public extension ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
-            
-            
             
             try? container.encodeIfPresent(action, forKey: .action)
-            
-            
-            
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
         }

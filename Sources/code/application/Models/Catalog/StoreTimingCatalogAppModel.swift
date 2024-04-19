@@ -98,7 +98,9 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(open, forKey: .open)
+            
             
             
             
@@ -106,7 +108,9 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(weekday, forKey: .weekday)
+            
             
             
             

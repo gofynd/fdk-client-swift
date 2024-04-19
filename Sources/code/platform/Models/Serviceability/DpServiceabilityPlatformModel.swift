@@ -231,7 +231,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(areaCode, forKey: .areaCode)
+            try? container.encode(areaCode, forKey: .areaCode)
             
             
             
@@ -246,7 +246,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(externalAccountId, forKey: .externalAccountId)
+            try? container.encode(externalAccountId, forKey: .externalAccountId)
             
             
             
@@ -494,7 +494,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(areaCode, forKey: .areaCode)
+            try? container.encode(areaCode, forKey: .areaCode)
             
             
             
@@ -509,7 +509,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(externalAccountId, forKey: .externalAccountId)
+            try? container.encode(externalAccountId, forKey: .externalAccountId)
             
             
             

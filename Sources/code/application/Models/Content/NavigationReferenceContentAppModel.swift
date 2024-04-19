@@ -206,7 +206,9 @@ public extension ApplicationClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(acl, forKey: .acl)
+            
             
             
             
@@ -214,7 +216,9 @@ public extension ApplicationClient.Content {
             
             
             
+            
             try? container.encodeIfPresent(localeLanguage, forKey: .localeLanguage)
+            
             
             
             
@@ -222,7 +226,9 @@ public extension ApplicationClient.Content {
             
             
             
+            
             try? container.encodeIfPresent(type, forKey: .type)
+            
             
             
             
@@ -230,7 +236,9 @@ public extension ApplicationClient.Content {
             
             
             
+            
             try? container.encodeIfPresent(active, forKey: .active)
+            
             
             
             
@@ -238,7 +246,9 @@ public extension ApplicationClient.Content {
             
             
             
+            
             try? container.encodeIfPresent(sortOrder, forKey: .sortOrder)
+            
             
             
             

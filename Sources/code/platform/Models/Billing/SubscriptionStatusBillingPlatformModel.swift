@@ -22,7 +22,7 @@ public extension PlatformClient.Billing {
         
         public var currentSubscriptions: [Subscription]?
         
-        public var mandateAmount: Double?
+        public var mandateAmount: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -41,7 +41,7 @@ public extension PlatformClient.Billing {
             
         }
 
-        public init(currentSubscriptions: [Subscription]? = nil, isEnabled: Bool? = nil, latestInvoice: InvoicesData? = nil, mandateAmount: Double? = nil, nextPlan: Plan? = nil, subscription: Subscription? = nil) {
+        public init(currentSubscriptions: [Subscription]? = nil, isEnabled: Bool? = nil, latestInvoice: InvoicesData? = nil, mandateAmount: String? = nil, nextPlan: Plan? = nil, subscription: Subscription? = nil) {
             
             self.isEnabled = isEnabled
             
@@ -122,7 +122,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    mandateAmount = try container.decode(Double.self, forKey: .mandateAmount)
+                    mandateAmount = try container.decode(String.self, forKey: .mandateAmount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

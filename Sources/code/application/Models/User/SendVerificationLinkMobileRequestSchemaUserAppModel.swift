@@ -12,9 +12,9 @@ public extension ApplicationClient.User {
         
         public var active: Bool?
         
-        public var countryCode: String
+        public var countryCode: String?
         
-        public var phone: String
+        public var phone: String?
         
         public var primary: Bool?
         
@@ -33,7 +33,7 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(active: Bool? = nil, countryCode: String, phone: String, primary: Bool? = nil, verified: Bool? = nil) {
+        public init(active: Bool? = nil, countryCode: String? = nil, phone: String? = nil, primary: Bool? = nil, verified: Bool? = nil) {
             
             self.verified = verified
             
@@ -75,13 +75,27 @@ public extension ApplicationClient.User {
             
             
             
-            countryCode = try container.decode(String.self, forKey: .countryCode)
+            do {
+                countryCode = try container.decode(String.self, forKey: .countryCode)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
+            do {
+                phone = try container.decode(String.self, forKey: .phone)
             
-            phone = try container.decode(String.self, forKey: .phone)
-            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -102,7 +116,9 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(verified, forKey: .verified)
+            
             
             
             
@@ -110,11 +126,14 @@ public extension ApplicationClient.User {
             
             
             
+            
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
             
             
             
+            
             try? container.encodeIfPresent(phone, forKey: .phone)
+            
             
             
             

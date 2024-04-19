@@ -134,7 +134,9 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(outOfStock, forKey: .outOfStock)
+            
             
             
             
@@ -142,7 +144,9 @@ public extension ApplicationClient.Cart {
             
             
             
+            
             try? container.encodeIfPresent(availableSizes, forKey: .availableSizes)
+            
             
             
             
@@ -150,7 +154,9 @@ public extension ApplicationClient.Cart {
             
             
             
+            
             try? container.encodeIfPresent(otherStoreQuantity, forKey: .otherStoreQuantity)
+            
             
             
             

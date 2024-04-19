@@ -175,42 +175,42 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encode(pincode, forKey: .pincode)
             
             
             
             
-            try? container.encodeIfPresent(trackUrl, forKey: .trackUrl)
+            try? container.encode(trackUrl, forKey: .trackUrl)
             
             
             
             
-            try? container.encodeIfPresent(ewayBillId, forKey: .ewayBillId)
+            try? container.encode(ewayBillId, forKey: .ewayBillId)
             
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encode(id, forKey: .id)
             
             
             
             
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encode(country, forKey: .country)
             
             
             
             
-            try? container.encodeIfPresent(awbNo, forKey: .awbNo)
+            try? container.encode(awbNo, forKey: .awbNo)
             
             
             
             
-            try? container.encodeIfPresent(gstTag, forKey: .gstTag)
+            try? container.encode(gstTag, forKey: .gstTag)
             
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encode(name, forKey: .name)
             
             
         }
@@ -392,42 +392,42 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encode(pincode, forKey: .pincode)
             
             
             
             
-            try? container.encodeIfPresent(trackUrl, forKey: .trackUrl)
+            try? container.encode(trackUrl, forKey: .trackUrl)
             
             
             
             
-            try? container.encodeIfPresent(ewayBillId, forKey: .ewayBillId)
+            try? container.encode(ewayBillId, forKey: .ewayBillId)
             
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encode(id, forKey: .id)
             
             
             
             
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encode(country, forKey: .country)
             
             
             
             
-            try? container.encodeIfPresent(awbNo, forKey: .awbNo)
+            try? container.encode(awbNo, forKey: .awbNo)
             
             
             
             
-            try? container.encodeIfPresent(gstTag, forKey: .gstTag)
+            try? container.encode(gstTag, forKey: .gstTag)
             
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encode(name, forKey: .name)
             
             
         }

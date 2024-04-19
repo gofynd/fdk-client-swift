@@ -80,11 +80,14 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(manufacturingTime, forKey: .manufacturingTime)
             
             
             
+            
             try? container.encodeIfPresent(manufacturingTimeUnit, forKey: .manufacturingTimeUnit)
+            
             
             
             

@@ -12,11 +12,11 @@ public extension PlatformClient.Payment {
     class ErrorResponse: Codable {
         
         
-        public var statusCode: Int?
+        public var statusCode: Int
         
         public var error: ErrorDescription?
         
-        public var message: String?
+        public var message: String
         
         public var success: Bool
         
@@ -33,7 +33,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(error: ErrorDescription? = nil, message: String? = nil, statusCode: Int? = nil, success: Bool) {
+        public init(error: ErrorDescription? = nil, message: String, statusCode: Int, success: Bool) {
             
             self.statusCode = statusCode
             
@@ -49,16 +49,9 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    statusCode = try container.decode(Int.self, forKey: .statusCode)
+                statusCode = try container.decode(Int.self, forKey: .statusCode)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -73,16 +66,9 @@ public extension PlatformClient.Payment {
                 
             
             
-                do {
-                    message = try container.decode(String.self, forKey: .message)
+                message = try container.decode(String.self, forKey: .message)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 success = try container.decode(Bool.self, forKey: .success)
@@ -101,7 +87,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encode(error, forKey: .error)
             
             
             
@@ -130,11 +116,11 @@ public extension PlatformClient.ApplicationClient.Payment {
     class ErrorResponse: Codable {
         
         
-        public var statusCode: Int?
+        public var statusCode: Int
         
         public var error: ErrorDescription?
         
-        public var message: String?
+        public var message: String
         
         public var success: Bool
         
@@ -151,7 +137,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(error: ErrorDescription? = nil, message: String? = nil, statusCode: Int? = nil, success: Bool) {
+        public init(error: ErrorDescription? = nil, message: String, statusCode: Int, success: Bool) {
             
             self.statusCode = statusCode
             
@@ -167,16 +153,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    statusCode = try container.decode(Int.self, forKey: .statusCode)
+                statusCode = try container.decode(Int.self, forKey: .statusCode)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -191,16 +170,9 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
-                do {
-                    message = try container.decode(String.self, forKey: .message)
+                message = try container.decode(String.self, forKey: .message)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 success = try container.decode(Bool.self, forKey: .success)
@@ -219,7 +191,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encode(error, forKey: .error)
             
             
             

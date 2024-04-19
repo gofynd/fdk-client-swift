@@ -8,47 +8,29 @@ public extension ApplicationClient.Payment {
     */
     class OrderBeneficiaryResponse: Codable {
         
-        public var beneficiaries: [OrderBeneficiaryDetails]?
-        
         public var showBeneficiaryDetails: Bool?
         
-        public var bank: [OrderBeneficiaryDetails]?
+        public var beneficiaries: [OrderBeneficiaryDetails]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case beneficiaries = "beneficiaries"
-            
             case showBeneficiaryDetails = "show_beneficiary_details"
             
-            case bank = "bank"
+            case beneficiaries = "beneficiaries"
             
         }
 
-        public init(bank: [OrderBeneficiaryDetails]? = nil, beneficiaries: [OrderBeneficiaryDetails]? = nil, showBeneficiaryDetails: Bool? = nil) {
-            
-            self.beneficiaries = beneficiaries
+        public init(beneficiaries: [OrderBeneficiaryDetails]? = nil, showBeneficiaryDetails: Bool? = nil) {
             
             self.showBeneficiaryDetails = showBeneficiaryDetails
             
-            self.bank = bank
+            self.beneficiaries = beneficiaries
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-            do {
-                beneficiaries = try container.decode([OrderBeneficiaryDetails].self, forKey: .beneficiaries)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
             
             
             do {
@@ -64,7 +46,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                bank = try container.decode([OrderBeneficiaryDetails].self, forKey: .bank)
+                beneficiaries = try container.decode([OrderBeneficiaryDetails].self, forKey: .beneficiaries)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,15 +62,13 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(beneficiaries, forKey: .beneficiaries)
-            
-            
             
             try? container.encodeIfPresent(showBeneficiaryDetails, forKey: .showBeneficiaryDetails)
             
             
             
-            try? container.encodeIfPresent(bank, forKey: .bank)
+            
+            try? container.encode(beneficiaries, forKey: .beneficiaries)
             
             
         }

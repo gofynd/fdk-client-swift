@@ -10,7 +10,7 @@ public extension ApplicationClient.Catalog {
         
         public var distance: Int?
         
-        public var pincode: String?
+        public var pincode: Int?
         
         public var tat: Int?
         
@@ -29,7 +29,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(distance: Int? = nil, pincode: String? = nil, quantity: Int? = nil, tat: Int? = nil) {
+        public init(distance: Int? = nil, pincode: Int? = nil, quantity: Int? = nil, tat: Int? = nil) {
             
             self.distance = distance
             
@@ -58,7 +58,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                pincode = try container.decode(String.self, forKey: .pincode)
+                pincode = try container.decode(Int.self, forKey: .pincode)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,7 +98,9 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(distance, forKey: .distance)
+            
             
             
             
@@ -106,7 +108,9 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(tat, forKey: .tat)
+            
             
             
             

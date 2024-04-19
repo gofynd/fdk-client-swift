@@ -14,22 +14,18 @@ public extension PlatformClient.ApplicationClient.User {
     class PhoneNumber: Codable {
         
         
-        public var phone: String?
-        
-        public var countryCode: Int?
-        
         public var active: Bool?
         
         public var primary: Bool?
         
         public var verified: Bool?
         
+        public var phone: String?
+        
+        public var countryCode: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case phone = "phone"
-            
-            case countryCode = "country_code"
             
             case active = "active"
             
@@ -37,13 +33,13 @@ public extension PlatformClient.ApplicationClient.User {
             
             case verified = "verified"
             
+            case phone = "phone"
+            
+            case countryCode = "country_code"
+            
         }
 
         public init(active: Bool? = nil, countryCode: Int? = nil, phone: String? = nil, primary: Bool? = nil, verified: Bool? = nil) {
-            
-            self.phone = phone
-            
-            self.countryCode = countryCode
             
             self.active = active
             
@@ -51,34 +47,14 @@ public extension PlatformClient.ApplicationClient.User {
             
             self.verified = verified
             
+            self.phone = phone
+            
+            self.countryCode = countryCode
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    phone = try container.decode(String.self, forKey: .phone)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    countryCode = try container.decode(Int.self, forKey: .countryCode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -116,20 +92,34 @@ public extension PlatformClient.ApplicationClient.User {
                 }
                 
             
+            
+                do {
+                    phone = try container.decode(String.self, forKey: .phone)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    countryCode = try container.decode(Int.self, forKey: .countryCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(phone, forKey: .phone)
-            
-            
-            
-            
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-            
             
             
             
@@ -144,6 +134,16 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(verified, forKey: .verified)
+            
+            
+            
+            
+            try? container.encodeIfPresent(phone, forKey: .phone)
+            
+            
+            
+            
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
             
             
         }

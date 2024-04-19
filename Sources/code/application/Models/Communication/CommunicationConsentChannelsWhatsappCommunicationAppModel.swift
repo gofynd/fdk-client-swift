@@ -98,7 +98,9 @@ public extension ApplicationClient.Communication {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(response, forKey: .response)
+            
             
             
             
@@ -106,7 +108,9 @@ public extension ApplicationClient.Communication {
             
             
             
+            
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            
             
             
             

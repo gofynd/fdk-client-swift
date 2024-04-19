@@ -67,12 +67,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(panNo, forKey: .panNo)
+            try? container.encode(panNo, forKey: .panNo)
             
             
             
             
-            try? container.encodeIfPresent(gstin, forKey: .gstin)
+            try? container.encode(gstin, forKey: .gstin)
             
             
         }
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(panNo, forKey: .panNo)
+            try? container.encode(panNo, forKey: .panNo)
             
             
             
             
-            try? container.encodeIfPresent(gstin, forKey: .gstin)
+            try? container.encode(gstin, forKey: .gstin)
             
             
         }

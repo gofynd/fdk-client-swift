@@ -15,7 +15,7 @@ extension ApplicationClient {
             
             ulrs["getBlog"] = config.domain.appendAsPath("/service/application/content/v1.0/blogs/{slug}") 
             
-            ulrs["getBlogs"] = config.domain.appendAsPath("/service/application/content/v1.0/blogs") 
+            ulrs["getBlogs"] = config.domain.appendAsPath("/service/application/content/v1.0/blogs/") 
             
             ulrs["getDataLoaders"] = config.domain.appendAsPath("/service/application/content/v1.0/data-loader") 
             
@@ -33,31 +33,21 @@ extension ApplicationClient {
             
             ulrs["getLegalInformation"] = config.domain.appendAsPath("/service/application/content/v1.0/legal") 
             
-            ulrs["getNavigations"] = config.domain.appendAsPath("/service/application/content/v1.0/navigations") 
+            ulrs["getNavigations"] = config.domain.appendAsPath("/service/application/content/v1.0/navigations/") 
             
             ulrs["getSEOConfiguration"] = config.domain.appendAsPath("/service/application/content/v1.0/seo") 
             
-            ulrs["getSEOMarkupSchemas"] = config.domain.appendAsPath("/service/application/content/v1.0/seo/schema") 
+            ulrs["getSlideshows"] = config.domain.appendAsPath("/service/application/content/v1.0/slideshow/") 
+            
+            ulrs["getSlideshow"] = config.domain.appendAsPath("/service/application/content/v1.0/slideshow/{slug}") 
             
             ulrs["getSupportInformation"] = config.domain.appendAsPath("/service/application/content/v1.0/support") 
             
             ulrs["getTags"] = config.domain.appendAsPath("/service/application/content/v1.0/tags") 
             
-            ulrs["getPageV1"] = config.domain.appendAsPath("/service/application/content/v1.0/pages/{slug}") 
-            
-            ulrs["getPagesV1"] = config.domain.appendAsPath("/service/application/content/v1.0/pages") 
-            
             ulrs["getPage"] = config.domain.appendAsPath("/service/application/content/v2.0/pages/{slug}") 
             
-            ulrs["getPages"] = config.domain.appendAsPath("/service/application/content/v2.0/pages") 
-            
-            ulrs["getCustomObject"] = config.domain.appendAsPath("/service/application/content/v1.0/metaobjects/{id}") 
-            
-            ulrs["getCustomFieldDefinitions"] = config.domain.appendAsPath("/service/application/content/v1.0/metafields/definitions") 
-            
-            ulrs["getCustomFieldDefinition"] = config.domain.appendAsPath("/service/application/content/v1.0/metafields/definitions/{id}") 
-            
-            ulrs["getCustomFields"] = config.domain.appendAsPath("/service/application/content/v1.0/metafields/{resource}") 
+            ulrs["getPages"] = config.domain.appendAsPath("/service/application/content/v2.0/pages/") 
             
             self.relativeUrls = ulrs
         }
@@ -71,8 +61,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches announcements of an Application
-        * Description: Retrieves all current announcements in the application.
+        * Summary: Get live announcements
+        * Description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve live announcements. Get announcements on individual pages or for all pages.
         **/
         public func getAnnouncements(
             
@@ -121,8 +111,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves a single blog post.
-        * Description: Retrieves all information relate to a specific blog such as it's contents, author, publish date, SEO related information.
+        * Summary: Get a blog
+        * Description: Use this API to get the details of a blog using its slug. Details include the title, reading time, publish status, feature image, tags, author, etc.
         **/
         public func getBlog(
             slug: String,
@@ -182,8 +172,8 @@ if let value = rootId {
         
         /**
         *
-        * Summary: Lists all blog posts
-        * Description: Retrieve all the blogs which are present in the application.
+        * Summary: Get a list of blogs
+        * Description: Use this API to get all the blogs.
         **/
         public func getBlogs(
             pageNo: Int?,
@@ -291,8 +281,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves data loaders enabled for an application
-        * Description: Retrieves all the data loaders that are added and enabled for an application.
+        * Summary: Get the data loaders associated with an application
+        * Description: Use this API to get all selected data loaders of the application in the form of tags.
         **/
         public func getDataLoaders(
             
@@ -341,8 +331,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Fetches FAQs of an applicaiton
-        * Description: Retrieves a list of frequently asked questions.
+        * Summary: Get a list of FAQs
+        * Description: Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website.
         **/
         public func getFaqs(
             
@@ -391,8 +381,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Lists FAQ categories.
-        * Description: Retrieve categories for organizing FAQs.
+        * Summary: Get a list of FAQ categories
+        * Description: FAQs can be divided into categories. Use this API to get a list of FAQ categories.
         **/
         public func getFaqCategories(
             
@@ -441,8 +431,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves FAQ by slug.
-        * Description: Retrieves a specific FAQ using its slug identifier.
+        * Summary: Get an FAQ
+        * Description: Use this API to get a particular FAQ by its slug.
         **/
         public func getFaqBySlug(
             slug: String,
@@ -494,8 +484,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves FAQ category by slug.
-        * Description: Retrieve a specific FAQ category using its slug.
+        * Summary: Get the FAQ category
+        * Description: FAQs can be divided into categories. Use this API to get the category to which an FAQ belongs.
         **/
         public func getFaqCategoryBySlug(
             slug: String,
@@ -547,8 +537,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves FAQs by category.
-        * Description: Retrieves FAQs belonging to a specific category slug.
+        * Summary: Get FAQs using the slug of FAQ category
+        * Description: FAQs can be divided into categories. Use this API to get all the FAQs belonging to a category by using the category slug.
         **/
         public func getFaqsByCategorySlug(
             slug: String,
@@ -600,8 +590,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Fetches landing page.
-        * Description: Gets the content of the application's landing page.
+        * Summary: Get the landing page
+        * Description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch the details of a landing page.
         **/
         public func getLandingPage(
             
@@ -650,8 +640,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves legal information.
-        * Description: Retrieve legal policies for an application which includes Terms and conditions, return policy, shipping policy and privacy policy.
+        * Summary: Get legal information
+        * Description: Use this API to get the legal information of an application, which includes Privacy Policy, Terms and Conditions, Shipping Policy and FAQs regarding the usage of the application.
         **/
         public func getLegalInformation(
             
@@ -700,8 +690,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves navigation items
-        * Description: Retrieves the navigation link items which can be powered to genreate menus on application's website or equivalent mobile apps
+        * Summary: Get the navigation
+        * Description: Use this API to fetch the navigations details which includes the items of the navigation panel. It also shows the links and sub-navigations.
         **/
         public func getNavigations(
             pageNo: Int?,
@@ -809,8 +799,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves SEO settings of an applicaiton
-        * Description: Retrieve search engine optimization configurations of an application. Details include the title, description and an image
+        * Summary: Get the SEO of an application
+        * Description: Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap.
         **/
         public func getSEOConfiguration(
             
@@ -859,28 +849,28 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get SEO Markup schemas of an application
-        * Description: Use this API to get all SEO Markup schema Templates setup for an application
+        * Summary: Get the slideshows
+        * Description: Use this API to get a list of slideshows along with their details.
         **/
-        public func getSEOMarkupSchemas(
-            pageType: String?,
-            active: Bool?,
+        public func getSlideshows(
+            pageNo: Int?,
+            pageSize: Int?,
             
-            onResponse: @escaping (_ response: SeoSchemaComponent?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SlideshowGetResponse?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
 
-if let value = pageType {
+if let value = pageNo {
     
-    xQuery["page_type"] = value
+    xQuery["page_no"] = value
     
 }
 
 
-if let value = active {
+if let value = pageSize {
     
-    xQuery["active"] = value
+    xQuery["page_size"] = value
     
 }
 
@@ -889,7 +879,7 @@ if let value = active {
 
 
             
-            let fullUrl = relativeUrls["getSEOMarkupSchemas"] ?? ""
+            let fullUrl = relativeUrls["getSlideshows"] ?? ""
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -908,7 +898,103 @@ if let value = active {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SeoSchemaComponent.self, from: data)
+                        let response = Utility.decode(SlideshowGetResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getSlideshows
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getSlideshowsPaginator(
+            pageSize: Int?
+            
+            ) -> Paginator<SlideshowGetResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<SlideshowGetResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getSlideshows(
+                        
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get a slideshow
+        * Description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a slideshow using its `slug`.
+        **/
+        public func getSlideshow(
+            slug: String,
+            
+            onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            
+            var fullUrl = relativeUrls["getSlideshow"] ?? ""
+            
+                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: nil,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SlideshowSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -925,8 +1011,8 @@ if let value = active {
         
         /**
         *
-        * Summary: Retrieves support related info of an applicaiton
-        * Description: Retrieves customer support contact details. Contact Details can be either phone number or email-id or both.
+        * Summary: Get the support information
+        * Description: Use this API to get contact details for customer support including emails and phone numbers.
         **/
         public func getSupportInformation(
             
@@ -975,8 +1061,8 @@ if let value = active {
         
         /**
         *
-        * Summary: Retrieves HTML tags
-        * Description: Retrieve any HTML tags to power additional functionalities within an application.
+        * Summary: Get the tags associated with an application
+        * Description: Use this API to get all the CSS and JS injected in the application in the form of tags.
         **/
         public func getTags(
             
@@ -1025,178 +1111,8 @@ if let value = active {
         
         /**
         *
-        * Summary: Single page details.
-        * Description: Retrieve detailed information for a specific page within the theme.
-        **/
-        public func getPageV1(
-            slug: String,
-            rootId: String?,
-            
-            onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-if let value = rootId {
-    
-    xQuery["root_id"] = value
-    
-}
-
-
- 
-
-
-            
-            var fullUrl = relativeUrls["getPageV1"] ?? ""
-            
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Lists all pages.
-        * Description: Retrieve all available content pages in the app.
-        **/
-        public func getPagesV1(
-            pageNo: Int?,
-            pageSize: Int?,
-            
-            onResponse: @escaping (_ response: PageGetResponse?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
-            
-            let fullUrl = relativeUrls["getPagesV1"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(PageGetResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: get paginator for getPagesV1
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getPagesV1Paginator(
-            pageSize: Int?
-            
-            ) -> Paginator<PageGetResponse> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<PageGetResponse>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getPagesV1(
-                        
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Single page details.
-        * Description: Retrieve detailed information for a specific page within the theme.
+        * Summary: Get a page
+        * Description: Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
         **/
         public func getPage(
             slug: String,
@@ -1256,8 +1172,8 @@ if let value = rootId {
         
         /**
         *
-        * Summary: Lists all pages.
-        * Description: Retrieve all available content pages in the app.
+        * Summary: Get all pages
+        * Description: Use this API to get a list of pages.
         **/
         public func getPages(
             pageNo: Int?,
@@ -1358,221 +1274,6 @@ if let value = pageSize {
                 }
             }
             return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get custom object details
-        * Description: Use this API to retrieve the custom object details, their fields details with definitions and references.
-        **/
-        public func getCustomObject(
-            id: String,
-            
-            onResponse: @escaping (_ response: CustomObjectByIdSchema?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            var fullUrl = relativeUrls["getCustomObject"] ?? ""
-            
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CustomObjectByIdSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get custom fields definitions
-        * Description: Use this API to retrieve the definitions of custom fields.
-        **/
-        public func getCustomFieldDefinitions(
-            
-            onResponse: @escaping (_ response: CustomFieldDefinitionsSchema?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            let fullUrl = relativeUrls["getCustomFieldDefinitions"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CustomFieldDefinitionsSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get custom fields definition by id
-        * Description: Use this API to retrieve the definitions of custom fields using definition_id.
-        **/
-        public func getCustomFieldDefinition(
-            id: String,
-            
-            onResponse: @escaping (_ response: CustomFieldDefinitionDetailResSchema?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            var fullUrl = relativeUrls["getCustomFieldDefinition"] ?? ""
-            
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CustomFieldDefinitionDetailResSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get list of custom fields of given resource and resource_ids in the query params.
-        * Description: Use this API to retrieve the custom fields for given resource and resource_ids in param.
-        **/
-        public func getCustomFields(
-            resource: String,
-            resourceIds: String,
-            
-            onResponse: @escaping (_ response: CustomFieldsResponseByResourceIdSchema?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["resource_ids"] = resourceIds
-
-
-
- 
-
-
-            
-            var fullUrl = relativeUrls["getCustomFields"] ?? ""
-            
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "resource" + "}", with: "\(resource)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CustomFieldsResponseByResourceIdSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
         }
         
         

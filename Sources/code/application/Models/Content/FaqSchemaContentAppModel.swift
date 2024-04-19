@@ -20,8 +20,6 @@ public extension ApplicationClient.Content {
         
         public var tags: [String]?
         
-        public var v: Double?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -37,11 +35,9 @@ public extension ApplicationClient.Content {
             
             case tags = "tags"
             
-            case v = "__v"
-            
         }
 
-        public init(answer: String? = nil, application: String? = nil, question: String? = nil, slug: String? = nil, tags: [String]? = nil, id: String? = nil, v: Double? = nil) {
+        public init(answer: String? = nil, application: String? = nil, question: String? = nil, slug: String? = nil, tags: [String]? = nil, id: String? = nil) {
             
             self.slug = slug
             
@@ -54,8 +50,6 @@ public extension ApplicationClient.Content {
             self.answer = answer
             
             self.tags = tags
-            
-            self.v = v
             
         }
 
@@ -134,25 +128,15 @@ public extension ApplicationClient.Content {
             }
             
             
-            
-            do {
-                v = try container.decode(Double.self, forKey: .v)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(slug, forKey: .slug)
+            
             
             
             
@@ -160,7 +144,9 @@ public extension ApplicationClient.Content {
             
             
             
+            
             try? container.encodeIfPresent(id, forKey: .id)
+            
             
             
             
@@ -168,15 +154,13 @@ public extension ApplicationClient.Content {
             
             
             
+            
             try? container.encodeIfPresent(answer, forKey: .answer)
             
             
             
+            
             try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

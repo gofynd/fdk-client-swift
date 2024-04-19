@@ -98,7 +98,9 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(isPassed, forKey: .isPassed)
+            
             
             
             
@@ -106,7 +108,9 @@ public extension ApplicationClient.Order {
             
             
             
+            
             try? container.encodeIfPresent(isCurrent, forKey: .isCurrent)
+            
             
             
             

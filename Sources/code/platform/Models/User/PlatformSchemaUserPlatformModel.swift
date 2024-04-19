@@ -26,10 +26,6 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var login: Login?
         
-        public var accountLockout: AccountLockout?
-        
-        public var passwordSettings: PasswordSettings?
-        
         public var skipCaptcha: Bool?
         
         public var name: String?
@@ -64,11 +60,9 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var deleteAccountReasons: [DeleteAccountReasons]?
         
-        public var deleteAccountConsent: DeleteAccountConsent?
+        public var deleteAccountConsent: [String: Any]?
         
-        public var sessionConfig: SessionExpiry?
-        
-        public var v: Int?
+        public var sessionConfig: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -84,10 +78,6 @@ public extension PlatformClient.ApplicationClient.User {
             case forgotPassword = "forgot_password"
             
             case login = "login"
-            
-            case accountLockout = "account_lockout"
-            
-            case passwordSettings = "password_settings"
             
             case skipCaptcha = "skip_captcha"
             
@@ -127,11 +117,9 @@ public extension PlatformClient.ApplicationClient.User {
             
             case sessionConfig = "session_config"
             
-            case v = "__v"
-            
         }
 
-        public init(accountLockout: AccountLockout? = nil, active: Bool? = nil, createdAt: String? = nil, deleteAccountConsent: DeleteAccountConsent? = nil, deleteAccountDay: Int? = nil, deleteAccountReasons: [DeleteAccountReasons]? = nil, desktopImage: String? = nil, display: String? = nil, flashCard: FlashCard? = nil, forgotPassword: Bool? = nil, login: Login? = nil, lookAndFeel: LookAndFeel? = nil, meta: MetaSchema? = nil, mobileImage: String? = nil, name: String? = nil, passwordSettings: PasswordSettings? = nil, register: Bool? = nil, registerRequiredFields: RegisterRequiredFields? = nil, requiredFields: RequiredFields? = nil, sessionConfig: SessionExpiry? = nil, skipCaptcha: Bool? = nil, skipLogin: Bool? = nil, social: Social? = nil, socialTokens: SocialTokens? = nil, subtext: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(active: Bool? = nil, createdAt: String? = nil, deleteAccountConsent: [String: Any]? = nil, deleteAccountDay: Int? = nil, deleteAccountReasons: [DeleteAccountReasons]? = nil, desktopImage: String? = nil, display: String? = nil, flashCard: FlashCard? = nil, forgotPassword: Bool? = nil, login: Login? = nil, lookAndFeel: LookAndFeel? = nil, meta: MetaSchema? = nil, mobileImage: String? = nil, name: String? = nil, register: Bool? = nil, registerRequiredFields: RegisterRequiredFields? = nil, requiredFields: RequiredFields? = nil, sessionConfig: [String: Any]? = nil, skipCaptcha: Bool? = nil, skipLogin: Bool? = nil, social: Social? = nil, socialTokens: SocialTokens? = nil, subtext: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             
             self.display = display
             
@@ -144,10 +132,6 @@ public extension PlatformClient.ApplicationClient.User {
             self.forgotPassword = forgotPassword
             
             self.login = login
-            
-            self.accountLockout = accountLockout
-            
-            self.passwordSettings = passwordSettings
             
             self.skipCaptcha = skipCaptcha
             
@@ -186,8 +170,6 @@ public extension PlatformClient.ApplicationClient.User {
             self.deleteAccountConsent = deleteAccountConsent
             
             self.sessionConfig = sessionConfig
-            
-            self.v = v
             
         }
 
@@ -257,30 +239,6 @@ public extension PlatformClient.ApplicationClient.User {
             
                 do {
                     login = try container.decode(Login.self, forKey: .login)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    accountLockout = try container.decode(AccountLockout.self, forKey: .accountLockout)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    passwordSettings = try container.decode(PasswordSettings.self, forKey: .passwordSettings)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -496,7 +454,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    deleteAccountConsent = try container.decode(DeleteAccountConsent.self, forKey: .deleteAccountConsent)
+                    deleteAccountConsent = try container.decode([String: Any].self, forKey: .deleteAccountConsent)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -508,19 +466,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    sessionConfig = try container.decode(SessionExpiry.self, forKey: .sessionConfig)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    v = try container.decode(Int.self, forKey: .v)
+                    sessionConfig = try container.decode([String: Any].self, forKey: .sessionConfig)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -563,16 +509,6 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(login, forKey: .login)
-            
-            
-            
-            
-            try? container.encodeIfPresent(accountLockout, forKey: .accountLockout)
-            
-            
-            
-            
-            try? container.encodeIfPresent(passwordSettings, forKey: .passwordSettings)
             
             
             
@@ -668,11 +604,6 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(sessionConfig, forKey: .sessionConfig)
-            
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

@@ -18,6 +18,8 @@ public extension PlatformClient.Serviceability {
         
         public var name: String
         
+        public var displayName: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -27,15 +29,19 @@ public extension PlatformClient.Serviceability {
             
             case name = "name"
             
+            case displayName = "display_name"
+            
         }
 
-        public init(name: String, subType: String, uid: String) {
+        public init(displayName: String? = nil, name: String, subType: String, uid: String) {
             
             self.subType = subType
             
             self.uid = uid
             
             self.name = name
+            
+            self.displayName = displayName
             
         }
 
@@ -57,6 +63,18 @@ public extension PlatformClient.Serviceability {
                 
             
             
+            
+                do {
+                    displayName = try container.decode(String.self, forKey: .displayName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -75,6 +93,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
         }
@@ -99,6 +122,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var name: String
         
+        public var displayName: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -108,15 +133,19 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case name = "name"
             
+            case displayName = "display_name"
+            
         }
 
-        public init(name: String, subType: String, uid: String) {
+        public init(displayName: String? = nil, name: String, subType: String, uid: String) {
             
             self.subType = subType
             
             self.uid = uid
             
             self.name = name
+            
+            self.displayName = displayName
             
         }
 
@@ -138,6 +167,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
+            
+                do {
+                    displayName = try container.decode(String.self, forKey: .displayName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -156,6 +197,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
         }

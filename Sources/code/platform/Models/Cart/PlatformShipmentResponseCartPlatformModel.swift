@@ -36,10 +36,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var articles: [ShipmentArticle]?
         
-        public var meta: ShipmentMeta?
-        
-        public var logisticsMeta: ShipmentLogisticsMeta?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -65,13 +61,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case articles = "articles"
             
-            case meta = "meta"
-            
-            case logisticsMeta = "logistics_meta"
-            
         }
 
-        public init(articles: [ShipmentArticle]? = nil, boxType: String? = nil, dpId: String? = nil, dpOptions: [String: Any]? = nil, fulfillmentId: Int? = nil, fulfillmentType: String? = nil, items: [CartProductInfo]? = nil, logisticsMeta: ShipmentLogisticsMeta? = nil, meta: ShipmentMeta? = nil, orderType: String? = nil, promise: ShipmentPromise? = nil, shipments: Int? = nil, shipmentType: String? = nil) {
+        public init(articles: [ShipmentArticle]? = nil, boxType: String? = nil, dpId: String? = nil, dpOptions: [String: Any]? = nil, fulfillmentId: Int? = nil, fulfillmentType: String? = nil, items: [CartProductInfo]? = nil, orderType: String? = nil, promise: ShipmentPromise? = nil, shipments: Int? = nil, shipmentType: String? = nil) {
             
             self.shipments = shipments
             
@@ -94,10 +86,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.fulfillmentType = fulfillmentType
             
             self.articles = articles
-            
-            self.meta = meta
-            
-            self.logisticsMeta = logisticsMeta
             
         }
 
@@ -236,30 +224,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
-            
-                do {
-                    meta = try container.decode(ShipmentMeta.self, forKey: .meta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    logisticsMeta = try container.decode(ShipmentLogisticsMeta.self, forKey: .logisticsMeta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -282,7 +246,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(dpOptions, forKey: .dpOptions)
+            try? container.encode(dpOptions, forKey: .dpOptions)
             
             
             
@@ -297,7 +261,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(boxType, forKey: .boxType)
+            try? container.encode(boxType, forKey: .boxType)
             
             
             
@@ -307,7 +271,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(dpId, forKey: .dpId)
+            try? container.encode(dpId, forKey: .dpId)
             
             
             
@@ -318,16 +282,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(articles, forKey: .articles)
-            
-            
-            
-            
-            try? container.encodeIfPresent(meta, forKey: .meta)
-            
-            
-            
-            
-            try? container.encodeIfPresent(logisticsMeta, forKey: .logisticsMeta)
             
             
         }

@@ -28,12 +28,6 @@ public extension ApplicationClient.Catalog {
         
         public var contactNumbers: [SellerPhoneNumber]?
         
-        public var companyId: Int?
-        
-        public var displayName: String?
-        
-        public var storeType: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -57,15 +51,9 @@ public extension ApplicationClient.Catalog {
             
             case contactNumbers = "contact_numbers"
             
-            case companyId = "company_id"
-            
-            case displayName = "display_name"
-            
-            case storeType = "store_type"
-            
         }
 
-        public init(address: StoreAddressSerializer? = nil, company: CompanyStore? = nil, companyId: Int? = nil, contactNumbers: [SellerPhoneNumber]? = nil, departments: [StoreDepartments]? = nil, displayName: String? = nil, manager: StoreManagerSerializer? = nil, name: String? = nil, storeCode: String? = nil, storeType: String? = nil, timing: [StoreTiming]? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
+        public init(address: StoreAddressSerializer? = nil, company: CompanyStore? = nil, contactNumbers: [SellerPhoneNumber]? = nil, departments: [StoreDepartments]? = nil, manager: StoreManagerSerializer? = nil, name: String? = nil, storeCode: String? = nil, timing: [StoreTiming]? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             
             self.uid = uid
             
@@ -86,12 +74,6 @@ public extension ApplicationClient.Catalog {
             self.name = name
             
             self.contactNumbers = contactNumbers
-            
-            self.companyId = companyId
-            
-            self.displayName = displayName
-            
-            self.storeType = storeType
             
         }
 
@@ -218,49 +200,15 @@ public extension ApplicationClient.Catalog {
             }
             
             
-            
-            do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                displayName = try container.decode(String.self, forKey: .displayName)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                storeType = try container.decode(String.self, forKey: .storeType)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(uid, forKey: .uid)
+            
             
             
             
@@ -268,7 +216,9 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(company, forKey: .company)
+            
             
             
             
@@ -276,7 +226,9 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+            
             
             
             
@@ -284,7 +236,9 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(address, forKey: .address)
+            
             
             
             
@@ -292,23 +246,13 @@ public extension ApplicationClient.Catalog {
             
             
             
+            
             try? container.encodeIfPresent(name, forKey: .name)
             
             
             
+            
             try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
-            
-            
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
-            
-            
-            
-            try? container.encodeIfPresent(storeType, forKey: .storeType)
             
             
         }

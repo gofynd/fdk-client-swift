@@ -16,7 +16,7 @@ public extension PlatformClient.Catalog {
         
         public var address: GetAddressSerializer
         
-        public var storeCode: String
+        public var code: String
         
         public var company: GetCompanySerializer?
         
@@ -44,7 +44,7 @@ public extension PlatformClient.Catalog {
         
         public var notificationEmails: [String]?
         
-        public var phoneNumber: String?
+        public var phoneNumber: String
         
         public var productReturnConfig: ProductReturnConfigSerializer?
         
@@ -69,7 +69,7 @@ public extension PlatformClient.Catalog {
             
             case address = "address"
             
-            case storeCode = "store_code"
+            case code = "code"
             
             case company = "company"
             
@@ -117,13 +117,13 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(address: GetAddressSerializer, company: GetCompanySerializer? = nil, contactNumbers: [SellerPhoneNumber]? = nil, createdBy: UserSerializer3? = nil, createdOn: String? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSerializer? = nil, integrationType: LocationIntegrationType? = nil, manager: LocationManagerSerializer? = nil, modifiedBy: UserSerializer3? = nil, modifiedOn: String? = nil, name: String, notificationEmails: [String]? = nil, phoneNumber: String? = nil, productReturnConfig: ProductReturnConfigSerializer? = nil, stage: String? = nil, storeCode: String, storeType: String? = nil, timing: [LocationDayWiseSerializer]? = nil, uid: Int? = nil, verifiedBy: UserSerializer3? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(address: GetAddressSerializer, code: String, company: GetCompanySerializer? = nil, contactNumbers: [SellerPhoneNumber]? = nil, createdBy: UserSerializer3? = nil, createdOn: String? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSerializer? = nil, integrationType: LocationIntegrationType? = nil, manager: LocationManagerSerializer? = nil, modifiedBy: UserSerializer3? = nil, modifiedOn: String? = nil, name: String, notificationEmails: [String]? = nil, phoneNumber: String, productReturnConfig: ProductReturnConfigSerializer? = nil, stage: String? = nil, storeType: String? = nil, timing: [LocationDayWiseSerializer]? = nil, uid: Int? = nil, verifiedBy: UserSerializer3? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.customJson = customJson
             
             self.address = address
             
-            self.storeCode = storeCode
+            self.code = code
             
             self.company = company
             
@@ -192,7 +192,7 @@ public extension PlatformClient.Catalog {
             
             
             
-                storeCode = try container.decode(String.self, forKey: .storeCode)
+                code = try container.decode(String.self, forKey: .code)
                 
             
             
@@ -339,16 +339,9 @@ public extension PlatformClient.Catalog {
                 
             
             
-                do {
-                    phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
+                phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -463,7 +456,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
@@ -596,7 +589,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var address: GetAddressSerializer
         
-        public var storeCode: String
+        public var code: String
         
         public var company: GetCompanySerializer?
         
@@ -624,7 +617,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var notificationEmails: [String]?
         
-        public var phoneNumber: String?
+        public var phoneNumber: String
         
         public var productReturnConfig: ProductReturnConfigSerializer?
         
@@ -649,7 +642,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case address = "address"
             
-            case storeCode = "store_code"
+            case code = "code"
             
             case company = "company"
             
@@ -697,13 +690,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(address: GetAddressSerializer, company: GetCompanySerializer? = nil, contactNumbers: [SellerPhoneNumber]? = nil, createdBy: UserSerializer3? = nil, createdOn: String? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSerializer? = nil, integrationType: LocationIntegrationType? = nil, manager: LocationManagerSerializer? = nil, modifiedBy: UserSerializer3? = nil, modifiedOn: String? = nil, name: String, notificationEmails: [String]? = nil, phoneNumber: String? = nil, productReturnConfig: ProductReturnConfigSerializer? = nil, stage: String? = nil, storeCode: String, storeType: String? = nil, timing: [LocationDayWiseSerializer]? = nil, uid: Int? = nil, verifiedBy: UserSerializer3? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(address: GetAddressSerializer, code: String, company: GetCompanySerializer? = nil, contactNumbers: [SellerPhoneNumber]? = nil, createdBy: UserSerializer3? = nil, createdOn: String? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSerializer? = nil, integrationType: LocationIntegrationType? = nil, manager: LocationManagerSerializer? = nil, modifiedBy: UserSerializer3? = nil, modifiedOn: String? = nil, name: String, notificationEmails: [String]? = nil, phoneNumber: String, productReturnConfig: ProductReturnConfigSerializer? = nil, stage: String? = nil, storeType: String? = nil, timing: [LocationDayWiseSerializer]? = nil, uid: Int? = nil, verifiedBy: UserSerializer3? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.customJson = customJson
             
             self.address = address
             
-            self.storeCode = storeCode
+            self.code = code
             
             self.company = company
             
@@ -772,7 +765,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-                storeCode = try container.decode(String.self, forKey: .storeCode)
+                code = try container.decode(String.self, forKey: .code)
                 
             
             
@@ -919,16 +912,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                do {
-                    phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
+                phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -1043,7 +1029,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             

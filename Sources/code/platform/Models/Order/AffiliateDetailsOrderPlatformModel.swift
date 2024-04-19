@@ -202,7 +202,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(companyAffiliateTag, forKey: .companyAffiliateTag)
+            try? container.encode(companyAffiliateTag, forKey: .companyAffiliateTag)
             
             
             
@@ -222,7 +222,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+            try? container.encode(affiliateId, forKey: .affiliateId)
             
             
             
@@ -237,7 +237,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(adId, forKey: .adId)
+            try? container.encode(adId, forKey: .adId)
             
             
         }
@@ -446,7 +446,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(companyAffiliateTag, forKey: .companyAffiliateTag)
+            try? container.encode(companyAffiliateTag, forKey: .companyAffiliateTag)
             
             
             
@@ -466,7 +466,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+            try? container.encode(affiliateId, forKey: .affiliateId)
             
             
             
@@ -481,7 +481,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(adId, forKey: .adId)
+            try? container.encode(adId, forKey: .adId)
             
             
         }

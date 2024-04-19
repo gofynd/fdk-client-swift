@@ -16,11 +16,11 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Generate financial report.
-        * Description: Create a financial report with relevant data.
+        * Summary: Generate finance reports.
+        * Description: Generate finance reports.
         **/
         public func generateReport(
-            body: GenerateReportReq,
+            body: GenerateReportRequest,
             onResponse: @escaping (_ response: GenerateReportJson?, _ error: FDKError?) -> Void
         ) {
             
@@ -64,8 +64,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Download financial report.
-        * Description: Retrieve and save a financial report.
+        * Summary: Gives list of all downloaded reports.
+        * Description: Gives list of all downloaded reports.
         **/
         public func downloadReport(
             body: DownloadReport,
@@ -112,11 +112,11 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get financial data.
-        * Description: Retrieve financial data for analysis.
+        * Summary: Gives list of columns for table provided.
+        * Description: Gives list of columns for table provided.
         **/
         public func getData(
-            body: GetEngineReq,
+            body: GetEngineRequest,
             onResponse: @escaping (_ response: GetEngineResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -160,11 +160,11 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get transaction reason.
-        * Description: Retrieve the reason behind a transaction.
+        * Summary: Gives list of the reasons.
+        * Description: Gives list of the reasons.
         **/
         public func getReason(
-            body: GetReasonReq,
+            body: GetReasonRequest,
             onResponse: @escaping (_ response: GetReasonResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -208,11 +208,11 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get report list.
-        * Description: Retrieve a list of available financial reports.
+        * Summary: Get the list of available reports for a company.
+        * Description: Gives list of reports.
         **/
         public func getReportList(
-            body: GetReportListReq,
+            body: GetReportListRequest,
             onResponse: @escaping (_ response: GetReportListResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -256,8 +256,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get affiliate details.
-        * Description: Retrieve information about an affiliate.
+        * Summary: Gives list of affiliates for company.
+        * Description: Gives list of affiliates for company.
         **/
         public func getAffiliate(
             body: GetAffiliate,
@@ -304,11 +304,11 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Download credit/debit note.
-        * Description: Retrieve and save credit/debit notes.
+        * Summary: Download credit debit note pdf.
+        * Description: Download credit debit note pdf.
         **/
         public func downloadCreditDebitNote(
-            body: DownloadCreditDebitNoteReq,
+            body: DownloadCreditDebitNoteRequest,
             onResponse: @escaping (_ response: DownloadCreditDebitNoteResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -352,11 +352,11 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Process payments.
-        * Description: Initiate and manage payment processes.
+        * Summary: Payment Processing API.
+        * Description: Payment Processing API.
         **/
         public func paymentProcess(
-            body: PaymentProcessReq,
+            body: PaymentProcessRequest,
             onResponse: @escaping (_ response: PaymentProcessResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -400,11 +400,11 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Access credit line data platform.
-        * Description: Connect to the credit line data platform.
+        * Summary: Used to fetch creditline data.
+        * Description: Used to fetch creditline data.
         **/
         public func creditlineDataplatform(
-            body: CreditlineDataPlatformReq,
+            body: CreditlineDataPlatformRequest,
             onResponse: @escaping (_ response: CreditlineDataPlatformResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -448,11 +448,11 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Check credit line platform status.
-        * Description: Determine if the credit line platform is operational.
+        * Summary: Checks if seller has opted for creditline or not.
+        * Description: Checks if seller has opted for creditline or not.
         **/
         public func isCreditlinePlatform(
-            body: IsCreditlinePlatformReq,
+            body: IsCreditlinePlatformRequest,
             onResponse: @escaping (_ response: IsCreditlinePlatformResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -496,11 +496,11 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get invoice types.
-        * Description: Retrieve a list of available invoice types.
+        * Summary: Gives list of active invoice type.
+        * Description: Gives list of active invoice type.
         **/
         public func invoiceType(
-            body: InvoiceTypeReq,
+            body: InvoiceTypeRequest,
             onResponse: @escaping (_ response: InvoiceTypeResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -548,7 +548,7 @@ extension PlatformClient {
         * Description: Gives list of invoices.
         **/
         public func invoiceListing(
-            body: InvoiceListingReq,
+            body: InvoiceListingRequest,
             onResponse: @escaping (_ response: InvoiceListingResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -592,11 +592,11 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get invoice PDF.
-        * Description: Retrieve the PDF version of an invoice.
+        * Summary: Gives pdf view of invoice.
+        * Description: Gives pdf view of invoice.
         **/
         public func invoicePDF(
-            body: InvoicePdfReq,
+            body: InvoicePdfRequest,
             onResponse: @escaping (_ response: InvoicePdfResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -640,11 +640,11 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Check CN refund method.
-        * Description: Verify the refund method for credit notes.
+        * Summary: Checks if seller has obtained cn as refund method or not.
+        * Description: Checks if seller has obtained cn as refund method or not.
         **/
         public func isCnRefundMethod(
-            body: IsCnRefundMethodReq,
+            body: IsCnRefundMethodRequest,
             onResponse: @escaping (_ response: IsCnRefundMethodResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -688,11 +688,11 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Create seller credit note config.
-        * Description: Set up configuration for seller credit notes.
+        * Summary: Creates credit note config.
+        * Description: Creates credit note config.
         **/
         public func createSellerCreditNoteConfig(
-            body: CreateSellerCreditNoteConfigReq,
+            body: CreateSellerCreditNoteConfigRequest,
             onResponse: @escaping (_ response: CreateSellerCreditNoteConfigResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -740,7 +740,7 @@ extension PlatformClient {
         * Description: Deletes credit note config.
         **/
         public func deleteConfig(
-            body: DeleteConfigReq,
+            body: DeleteConfigRequest,
             onResponse: @escaping (_ response: DeleteConfigResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -784,8 +784,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get channel display name.
-        * Description: Retrieve the display name for a channel.
+        * Summary: Provide channel display name dict.
+        * Description: Provide channel display name dict.
         **/
         public func channelDisplayName(
             filterKey: String,
@@ -838,11 +838,11 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get PDF URL view.
-        * Description: Retrieve a URL to view a PDF document.
+        * Summary: Gives cn pdf url.
+        * Description: Gives cn pdf url.
         **/
         public func getPdfUrlView(
-            body: GetPdfUrlViewReq,
+            body: GetPdfUrlViewRequest,
             onResponse: @escaping (_ response: GetPdfUrlViewResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -886,11 +886,11 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get credit note details.
-        * Description: Retrieve detailed information about a credit note.
+        * Summary: Gives credit note details.
+        * Description: Gives credit note details.
         **/
         public func creditNoteDetails(
-            body: CreditNoteDetailsReq,
+            body: CreditNoteDetailsRequest,
             onResponse: @escaping (_ response: CreditNoteDetailsResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -934,11 +934,11 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get customer credit balance.
-        * Description: Retrieve the credit balance of a customer.
+        * Summary: Gives customer credit balance.
+        * Description: Gives customer credit balance.
         **/
         public func getCustomerCreditBalance(
-            body: GetCustomerCreditBalanceReq,
+            body: GetCustomerCreditBalanceRequest,
             onResponse: @escaping (_ response: GetCustomerCreditBalanceResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -982,11 +982,11 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get credit note configuration.
-        * Description: Retrieve configuration settings for credit notes.
+        * Summary: Gives credit note config.
+        * Description: Gives credit note config.
         **/
         public func getCnConfig(
-            body: GetCnConfigReq,
+            body: GetCnConfigRequest,
             onResponse: @escaping (_ response: GetCnConfigResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -1030,11 +1030,11 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Generate customer credit note report.
-        * Description: Create a report specifically for customer credit notes.
+        * Summary: Generate Credit Note report and gives Note details.
+        * Description: Generate Credit Note report and gives Note details.
         **/
         public func generateReportCustomerCn(
-            body: GenerateReportCustomerCnReq,
+            body: GenerateReportCustomerCnRequest,
             onResponse: @escaping (_ response: GenerateReportCustomerCnResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -1078,11 +1078,11 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Download customer credit note report.
-        * Description: Retrieve and save a report for customer credit notes.
+        * Summary: Gives list of downloaded reports.
+        * Description: Gives list of downloaded reports.
         **/
         public func downloadReportCustomerCn(
-            body: DownloadReportCustomerCnReq,
+            body: DownloadReportCustomerCnRequest,
             onResponse: @escaping (_ response: DownloadReportCustomerCnResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -1126,8 +1126,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get reporting filters.
-        * Description: Retrieve available filters for financial reporting.
+        * Summary: Gets all customer Cn filters and search.
+        * Description: Gets all customer Cn filters and search.
         **/
         public func getReportingFilters(
             filterKey: String,
@@ -1171,248 +1171,6 @@ if let value = affiliateId {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GetReportingFiltersResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Display all payment options for an invoice.
-        * Description: Display all payment options for an invoice.
-        **/
-        public func invoicePaymentOptions(
-            body: InvoicePaymentOptionsReq,
-            onResponse: @escaping (_ response: InvoicePaymentOptionsResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/finance/v1.0/company/\(companyId)/invoice-payment-options",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(InvoicePaymentOptionsResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Display payment details of an invoice.
-        * Description: Display payment details of invoice.
-        **/
-        public func invoicePaymentDetails(
-            invoiceNumber: String,
-            
-            onResponse: @escaping (_ response: InvoicePaymentDetailsResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/finance/v1.0/company/\(companyId)/invoice/\(invoiceNumber)/payment",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(InvoicePaymentDetailsResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Display activity log details of an invoice.
-        * Description: Display activity log details of invoice.
-        **/
-        public func invoiceActivityLogs(
-            invoiceNumber: String,
-            
-            onResponse: @escaping (_ response: InvoiceActivityLogsResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/finance/v1.0/company/\(companyId)/invoice/\(invoiceNumber)/activity",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(InvoiceActivityLogsResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Unlocks credit notes.
-        * Description: Used to unlock all request credit notes.
-        **/
-        public func unlockCreditNote(
-            body: UnlockCreditNoteReq,
-            onResponse: @escaping (_ response: UnlockCreditNoteResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/finance/v1.0/company/\(companyId)/credit-notes/unlock",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(UnlockCreditNoteResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get status of oms freeze.
-        * Description: Used to get status of oms freeze.
-        **/
-        public func orderFreeze(
-            
-            onResponse: @escaping (_ response: OrederFreezeResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/finance/v1.0/company/\(companyId)/order/freeze",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(OrederFreezeResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

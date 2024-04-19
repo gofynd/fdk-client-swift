@@ -42,8 +42,6 @@ public extension ApplicationClient.Payment {
         
         public var bqrImage: String?
         
-        public var uniqueLinkId: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -81,11 +79,9 @@ public extension ApplicationClient.Payment {
             
             case bqrImage = "bqr_image"
             
-            case uniqueLinkId = "unique_link_id"
-            
         }
 
-        public init(aggregator: String, aggregatorOrderId: String? = nil, amount: Int? = nil, bqrImage: String? = nil, currency: String? = nil, customerId: String? = nil, deviceId: String? = nil, merchantOrderId: String, method: String, pollingUrl: String, razorpayPaymentId: String? = nil, status: String? = nil, success: Bool, timeout: Int? = nil, uniqueLinkId: String? = nil, upiPollUrl: String? = nil, virtualId: String? = nil, vpa: String? = nil) {
+        public init(aggregator: String, aggregatorOrderId: String? = nil, amount: Int? = nil, bqrImage: String? = nil, currency: String? = nil, customerId: String? = nil, deviceId: String? = nil, merchantOrderId: String, method: String, pollingUrl: String, razorpayPaymentId: String? = nil, status: String? = nil, success: Bool, timeout: Int? = nil, upiPollUrl: String? = nil, virtualId: String? = nil, vpa: String? = nil) {
             
             self.status = status
             
@@ -120,8 +116,6 @@ public extension ApplicationClient.Payment {
             self.amount = amount
             
             self.bqrImage = bqrImage
-            
-            self.uniqueLinkId = uniqueLinkId
             
         }
 
@@ -297,29 +291,20 @@ public extension ApplicationClient.Payment {
             }
             
             
-            
-            do {
-                uniqueLinkId = try container.decode(String.self, forKey: .uniqueLinkId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(status, forKey: .status)
             
             
             
-            try? container.encodeIfPresent(razorpayPaymentId, forKey: .razorpayPaymentId)
+            
+            try? container.encode(razorpayPaymentId, forKey: .razorpayPaymentId)
+            
             
             
             
@@ -327,7 +312,9 @@ public extension ApplicationClient.Payment {
             
             
             
+            
             try? container.encodeIfPresent(method, forKey: .method)
+            
             
             
             
@@ -335,15 +322,19 @@ public extension ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(upiPollUrl, forKey: .upiPollUrl)
+            
+            try? container.encode(upiPollUrl, forKey: .upiPollUrl)
             
             
             
-            try? container.encodeIfPresent(virtualId, forKey: .virtualId)
+            
+            try? container.encode(virtualId, forKey: .virtualId)
             
             
             
-            try? container.encodeIfPresent(deviceId, forKey: .deviceId)
+            
+            try? container.encode(deviceId, forKey: .deviceId)
+            
             
             
             
@@ -351,7 +342,9 @@ public extension ApplicationClient.Payment {
             
             
             
+            
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            
             
             
             
@@ -359,31 +352,33 @@ public extension ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(customerId, forKey: .customerId)
+            
+            try? container.encode(customerId, forKey: .customerId)
             
             
             
-            try? container.encodeIfPresent(vpa, forKey: .vpa)
+            
+            try? container.encode(vpa, forKey: .vpa)
             
             
             
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            try? container.encode(currency, forKey: .currency)
             
             
             
-            try? container.encodeIfPresent(timeout, forKey: .timeout)
+            
+            try? container.encode(timeout, forKey: .timeout)
             
             
             
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            
+            try? container.encode(amount, forKey: .amount)
             
             
             
-            try? container.encodeIfPresent(bqrImage, forKey: .bqrImage)
             
-            
-            
-            try? container.encodeIfPresent(uniqueLinkId, forKey: .uniqueLinkId)
+            try? container.encode(bqrImage, forKey: .bqrImage)
             
             
         }

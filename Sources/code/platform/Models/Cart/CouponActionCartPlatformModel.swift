@@ -69,7 +69,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(actionDate, forKey: .actionDate)
+            try? container.encode(actionDate, forKey: .actionDate)
             
             
             

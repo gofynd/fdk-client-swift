@@ -40,8 +40,6 @@ public extension ApplicationClient.Cart {
         
         public var minimumCartValue: Double?
         
-        public var medias: [CartCouponMedias]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -77,11 +75,9 @@ public extension ApplicationClient.Cart {
             
             case minimumCartValue = "minimum_cart_value"
             
-            case medias = "medias"
-            
         }
 
-        public init(cashbackAmount: Double? = nil, cashbackMessagePrimary: String? = nil, cashbackMessageSecondary: String? = nil, couponCode: String? = nil, couponDescription: String? = nil, couponId: String? = nil, couponSubtitle: String? = nil, couponTitle: String? = nil, couponType: String? = nil, couponValue: Double? = nil, discount: Double? = nil, isApplied: Bool? = nil, isValid: Bool? = nil, maximumDiscountValue: Double? = nil, medias: [CartCouponMedias]? = nil, message: String? = nil, minimumCartValue: Double? = nil) {
+        public init(cashbackAmount: Double? = nil, cashbackMessagePrimary: String? = nil, cashbackMessageSecondary: String? = nil, couponCode: String? = nil, couponDescription: String? = nil, couponId: String? = nil, couponSubtitle: String? = nil, couponTitle: String? = nil, couponType: String? = nil, couponValue: Double? = nil, discount: Double? = nil, isApplied: Bool? = nil, isValid: Bool? = nil, maximumDiscountValue: Double? = nil, message: String? = nil, minimumCartValue: Double? = nil) {
             
             self.cashbackAmount = cashbackAmount
             
@@ -114,8 +110,6 @@ public extension ApplicationClient.Cart {
             self.message = message
             
             self.minimumCartValue = minimumCartValue
-            
-            self.medias = medias
             
         }
 
@@ -314,25 +308,15 @@ public extension ApplicationClient.Cart {
             }
             
             
-            
-            do {
-                medias = try container.decode([CartCouponMedias].self, forKey: .medias)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(cashbackAmount, forKey: .cashbackAmount)
+            
             
             
             
@@ -340,7 +324,9 @@ public extension ApplicationClient.Cart {
             
             
             
+            
             try? container.encodeIfPresent(cashbackMessageSecondary, forKey: .cashbackMessageSecondary)
+            
             
             
             
@@ -348,7 +334,9 @@ public extension ApplicationClient.Cart {
             
             
             
+            
             try? container.encodeIfPresent(couponDescription, forKey: .couponDescription)
+            
             
             
             
@@ -356,7 +344,9 @@ public extension ApplicationClient.Cart {
             
             
             
+            
             try? container.encodeIfPresent(couponSubtitle, forKey: .couponSubtitle)
+            
             
             
             
@@ -364,7 +354,9 @@ public extension ApplicationClient.Cart {
             
             
             
+            
             try? container.encodeIfPresent(couponType, forKey: .couponType)
+            
             
             
             
@@ -372,7 +364,9 @@ public extension ApplicationClient.Cart {
             
             
             
+            
             try? container.encodeIfPresent(discount, forKey: .discount)
+            
             
             
             
@@ -380,7 +374,9 @@ public extension ApplicationClient.Cart {
             
             
             
+            
             try? container.encodeIfPresent(isValid, forKey: .isValid)
+            
             
             
             
@@ -388,15 +384,13 @@ public extension ApplicationClient.Cart {
             
             
             
+            
             try? container.encodeIfPresent(message, forKey: .message)
             
             
             
+            
             try? container.encodeIfPresent(minimumCartValue, forKey: .minimumCartValue)
-            
-            
-            
-            try? container.encodeIfPresent(medias, forKey: .medias)
             
             
         }

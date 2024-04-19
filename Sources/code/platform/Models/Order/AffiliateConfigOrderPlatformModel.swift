@@ -95,7 +95,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(appCompanyId, forKey: .appCompanyId)
+            try? container.encode(appCompanyId, forKey: .appCompanyId)
             
             
         }
@@ -197,7 +197,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(appCompanyId, forKey: .appCompanyId)
+            try? container.encode(appCompanyId, forKey: .appCompanyId)
             
             
         }

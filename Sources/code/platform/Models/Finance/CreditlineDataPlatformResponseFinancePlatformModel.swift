@@ -18,7 +18,7 @@ public extension PlatformClient.Finance {
         
         public var showMr: Bool?
         
-        public var page: Page?
+        public var page: [String: Any]?
         
         public var message: String?
         
@@ -45,7 +45,7 @@ public extension PlatformClient.Finance {
             
         }
 
-        public init(code: Int? = nil, headers: [String]? = nil, items: [[String: Any]]? = nil, itemCount: Int? = nil, message: String? = nil, page: Page? = nil, showMr: Bool? = nil) {
+        public init(code: Int? = nil, headers: [String]? = nil, items: [[String: Any]]? = nil, itemCount: Int? = nil, message: String? = nil, page: [String: Any]? = nil, showMr: Bool? = nil) {
             
             self.items = items
             
@@ -104,7 +104,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    page = try container.decode(Page.self, forKey: .page)
+                    page = try container.decode([String: Any].self, forKey: .page)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

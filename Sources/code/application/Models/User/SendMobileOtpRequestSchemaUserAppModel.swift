@@ -8,13 +8,11 @@ public extension ApplicationClient.User {
     */
     class SendMobileOtpRequestSchema: Codable {
         
-        public var ci: Bool?
+        public var mobile: String?
         
-        public var mobile: String
+        public var countryCode: String?
         
-        public var countryCode: String
-        
-        public var action: String
+        public var action: String?
         
         public var token: String?
         
@@ -22,10 +20,10 @@ public extension ApplicationClient.User {
         
         public var force: String?
         
+        public var captchaCode: String?
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case ci = "ci"
             
             case mobile = "mobile"
             
@@ -39,11 +37,11 @@ public extension ApplicationClient.User {
             
             case force = "force"
             
+            case captchaCode = "captcha_code"
+            
         }
 
-        public init(action: String, androidHash: String? = nil, ci: Bool? = nil, countryCode: String, force: String? = nil, mobile: String, token: String? = nil) {
-            
-            self.ci = ci
+        public init(action: String? = nil, androidHash: String? = nil, captchaCode: String? = nil, countryCode: String? = nil, force: String? = nil, mobile: String? = nil, token: String? = nil) {
             
             self.mobile = mobile
             
@@ -57,6 +55,8 @@ public extension ApplicationClient.User {
             
             self.force = force
             
+            self.captchaCode = captchaCode
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -64,7 +64,7 @@ public extension ApplicationClient.User {
             
             
             do {
-                ci = try container.decode(Bool.self, forKey: .ci)
+                mobile = try container.decode(String.self, forKey: .mobile)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,18 +75,27 @@ public extension ApplicationClient.User {
             
             
             
-            mobile = try container.decode(String.self, forKey: .mobile)
+            do {
+                countryCode = try container.decode(String.self, forKey: .countryCode)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
+            do {
+                action = try container.decode(String.self, forKey: .action)
             
-            countryCode = try container.decode(String.self, forKey: .countryCode)
-            
-            
-            
-            
-            action = try container.decode(String.self, forKey: .action)
-            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -125,13 +134,22 @@ public extension ApplicationClient.User {
             }
             
             
+            
+            do {
+                captchaCode = try container.decode(String.self, forKey: .captchaCode)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            try? container.encodeIfPresent(ci, forKey: .ci)
             
             
             
@@ -139,7 +157,9 @@ public extension ApplicationClient.User {
             
             
             
+            
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            
             
             
             
@@ -147,7 +167,9 @@ public extension ApplicationClient.User {
             
             
             
+            
             try? container.encodeIfPresent(token, forKey: .token)
+            
             
             
             
@@ -155,7 +177,13 @@ public extension ApplicationClient.User {
             
             
             
+            
             try? container.encodeIfPresent(force, forKey: .force)
+            
+            
+            
+            
+            try? container.encodeIfPresent(captchaCode, forKey: .captchaCode)
             
             
         }

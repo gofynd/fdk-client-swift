@@ -100,7 +100,9 @@ public extension PublicClient.Webhook {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            
             try? container.encodeIfPresent(eventName, forKey: .eventName)
+            
             
             
             
@@ -108,7 +110,9 @@ public extension PublicClient.Webhook {
             
             
             
+            
             try? container.encodeIfPresent(eventCategory, forKey: .eventCategory)
+            
             
             
             

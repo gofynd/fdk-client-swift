@@ -24,8 +24,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var userId: String?
         
-        public var currencyCode: String?
-        
         public var itemCounts: Int?
         
 
@@ -41,13 +39,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case userId = "user_id"
             
-            case currencyCode = "currency_code"
-            
             case itemCounts = "item_counts"
             
         }
 
-        public init(cartId: String? = nil, cartValue: Double? = nil, createdOn: String? = nil, currencyCode: String? = nil, itemCounts: Int? = nil, pickUpCustomerDetails: [String: Any]? = nil, userId: String? = nil) {
+        public init(cartId: String? = nil, cartValue: Double? = nil, createdOn: String? = nil, itemCounts: Int? = nil, pickUpCustomerDetails: [String: Any]? = nil, userId: String? = nil) {
             
             self.cartId = cartId
             
@@ -58,8 +54,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.createdOn = createdOn
             
             self.userId = userId
-            
-            self.currencyCode = currencyCode
             
             self.itemCounts = itemCounts
             
@@ -130,18 +124,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    currencyCode = try container.decode(String.self, forKey: .currencyCode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     itemCounts = try container.decode(Int.self, forKey: .itemCounts)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -180,11 +162,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(userId, forKey: .userId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
             
             
             

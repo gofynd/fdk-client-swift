@@ -18,8 +18,6 @@ public extension PlatformClient.FileStorage {
         
         public var payload: DummyTemplateDataPayload
         
-        public var countryCode: String?
-        
         public var v: Int?
         
 
@@ -31,21 +29,17 @@ public extension PlatformClient.FileStorage {
             
             case payload = "payload"
             
-            case countryCode = "country_code"
-            
             case v = "__v"
             
         }
 
-        public init(countryCode: String? = nil, payload: DummyTemplateDataPayload, pdfTypeId: Double? = nil, id: String? = nil, v: Int? = nil) {
+        public init(payload: DummyTemplateDataPayload, pdfTypeId: Double? = nil, id: String? = nil, v: Int? = nil) {
             
             self.id = id
             
             self.pdfTypeId = pdfTypeId
             
             self.payload = payload
-            
-            self.countryCode = countryCode
             
             self.v = v
             
@@ -85,18 +79,6 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    countryCode = try container.decode(String.self, forKey: .countryCode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     v = try container.decode(Int.self, forKey: .v)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -125,11 +107,6 @@ public extension PlatformClient.FileStorage {
             
             
             try? container.encodeIfPresent(payload, forKey: .payload)
-            
-            
-            
-            
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
             
             
             
@@ -159,8 +136,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var payload: DummyTemplateDataPayload
         
-        public var countryCode: String?
-        
         public var v: Int?
         
 
@@ -172,21 +147,17 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             case payload = "payload"
             
-            case countryCode = "country_code"
-            
             case v = "__v"
             
         }
 
-        public init(countryCode: String? = nil, payload: DummyTemplateDataPayload, pdfTypeId: Double? = nil, id: String? = nil, v: Int? = nil) {
+        public init(payload: DummyTemplateDataPayload, pdfTypeId: Double? = nil, id: String? = nil, v: Int? = nil) {
             
             self.id = id
             
             self.pdfTypeId = pdfTypeId
             
             self.payload = payload
-            
-            self.countryCode = countryCode
             
             self.v = v
             
@@ -226,18 +197,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    countryCode = try container.decode(String.self, forKey: .countryCode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     v = try container.decode(Int.self, forKey: .v)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -266,11 +225,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(payload, forKey: .payload)
-            
-            
-            
-            
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
             
             
             

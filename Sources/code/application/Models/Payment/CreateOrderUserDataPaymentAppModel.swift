@@ -28,8 +28,6 @@ public extension ApplicationClient.Payment {
         
         public var email: String?
         
-        public var base64Html: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -53,11 +51,9 @@ public extension ApplicationClient.Payment {
             
             case email = "email"
             
-            case base64Html = "base64_html"
-            
         }
 
-        public init(aggregator: String? = nil, amount: Double? = nil, base64Html: String? = nil, callbackUrl: String? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, email: String? = nil, merchantOrderId: String? = nil, method: String? = nil, orderId: String? = nil) {
+        public init(aggregator: String? = nil, amount: Double? = nil, callbackUrl: String? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, email: String? = nil, merchantOrderId: String? = nil, method: String? = nil, orderId: String? = nil) {
             
             self.method = method
             
@@ -78,8 +74,6 @@ public extension ApplicationClient.Payment {
             self.amount = amount
             
             self.email = email
-            
-            self.base64Html = base64Html
             
         }
 
@@ -206,65 +200,59 @@ public extension ApplicationClient.Payment {
             }
             
             
-            
-            do {
-                base64Html = try container.decode(String.self, forKey: .base64Html)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(method, forKey: .method)
+            
+            try? container.encode(method, forKey: .method)
             
             
             
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            
+            try? container.encode(aggregator, forKey: .aggregator)
             
             
             
-            try? container.encodeIfPresent(customerId, forKey: .customerId)
+            
+            try? container.encode(customerId, forKey: .customerId)
             
             
             
-            try? container.encodeIfPresent(contact, forKey: .contact)
+            
+            try? container.encode(contact, forKey: .contact)
             
             
             
-            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+            
+            try? container.encode(merchantOrderId, forKey: .merchantOrderId)
             
             
             
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            
+            try? container.encode(orderId, forKey: .orderId)
             
             
             
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            try? container.encode(currency, forKey: .currency)
             
             
             
-            try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
+            
+            try? container.encode(callbackUrl, forKey: .callbackUrl)
             
             
             
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            
+            try? container.encode(amount, forKey: .amount)
             
             
             
-            try? container.encodeIfPresent(email, forKey: .email)
             
-            
-            
-            try? container.encodeIfPresent(base64Html, forKey: .base64Html)
+            try? container.encode(email, forKey: .email)
             
             
         }

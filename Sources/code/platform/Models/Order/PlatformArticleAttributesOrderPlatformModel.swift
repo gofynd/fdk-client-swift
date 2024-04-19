@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encode(currency, forKey: .currency)
             
             
         }
@@ -105,7 +105,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encode(currency, forKey: .currency)
             
             
         }
