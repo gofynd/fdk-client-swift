@@ -16,8 +16,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Shows zones defined at the company level
-        * Description: Return the list of zones that are defined at the company level.
+        * Summary: Get zones
+        * Description: Retrieves a list of delivery zones.
         **/
         public func getZones(
             pageNo: Int?,
@@ -145,7 +145,7 @@ if let value = sector {
         /**
         *
         * Summary: Create zone
-        * Description: Generate and add a new zone.
+        * Description: Creates a delivery zone.
         **/
         public func createZone(
             body: CreateZoneData,
@@ -192,8 +192,8 @@ if let value = sector {
         
         /**
         *
-        * Summary: Update details of a Zone
-        * Description: Updates the region, application, store mapping and other details in the Zone.
+        * Summary: Update a zone
+        * Description: Update an existing delivery zone .
         **/
         public func updateZoneById(
             zoneId: String,
@@ -241,8 +241,8 @@ if let value = sector {
         
         /**
         *
-        * Summary: Get details of the Zone
-        * Description: Returns the region, application, store mapping and other details in the Zone.
+        * Summary: Get zone details
+        * Description: Retrieves a single delivery zone.
         **/
         public func getZoneById(
             zoneId: String,
@@ -291,7 +291,7 @@ if let value = sector {
         /**
         *
         * Summary: Get all stores
-        * Description: Retrieve a list of all available stores data.
+        * Description: Retrieves a list of locations.
         **/
         public func getAllStores(
             
@@ -342,8 +342,8 @@ if let value = sector {
         
         /**
         *
-        * Summary: Creation of Courier Account
-        * Description: This API Creates a new Courier Account
+        * Summary: Create courier account
+        * Description: Creates a courier partner account.
         **/
         public func createCourierPartnerAccount(
             body: CourierAccount,
@@ -390,8 +390,8 @@ if let value = sector {
         
         /**
         *
-        * Summary: Getting Courier Account list of a company
-        * Description: This API returns Courier Account of a company.
+        * Summary: Get courier accounts
+        * Description: Retrieves a list of courier partner accounts.
         **/
         public func getCourierPartnerAccounts(
             pageNo: Int?,
@@ -478,8 +478,8 @@ if let value = transportType {
         
         /**
         *
-        * Summary: Update Courier Account in database
-        * Description: Updates Courier Account
+        * Summary: Update courier account
+        * Description: Updates an existing courier partner account.
         **/
         public func updateCourierPartnerAccount(
             accountId: String,
@@ -527,8 +527,8 @@ if let value = transportType {
         
         /**
         *
-        * Summary: Getting Courier Account of a company from database
-        * Description: This API returns response DpAccount of a company from mongo database.
+        * Summary: Get courier account
+        * Description: Retrieves a single courier partner account.
         **/
         public func getCourierPartnerAccount(
             accountId: String,
@@ -580,8 +580,8 @@ if let value = transportType {
         
         /**
         *
-        * Summary: Apply Courier Rule to company
-        * Description: Apply Courier Rule to company with rules priority
+        * Summary: Update delivery configuration
+        * Description: Updates an existing delivery setup for a company, including the ability to adjust self-shipping preferences.
         **/
         public func updateCompanyConfiguration(
             body: CompanyConfig,
@@ -628,8 +628,8 @@ if let value = transportType {
         
         /**
         *
-        * Summary: Get All Courier Rules applied to company
-        * Description: This API returns all Courier Rules applied for company.
+        * Summary: Get delivery configuration
+        * Description: Retrieves information about the delivery setup for a company
         **/
         public func getCompanyConfiguration(
             
@@ -678,8 +678,9 @@ if let value = transportType {
         
         /**
         *
-        * Summary: Region TAT Import or Export
-        * Description: Region TAT Import or Export
+        * Summary: Locality TAT import or export
+        * Description: Updates locality wise TAT(Turn Around Time) for particular courier scheme using CSV file.
+Export locality wise CSV files.
         **/
         public func bulkTat(
             extensionId: String,
@@ -728,8 +729,8 @@ if let value = transportType {
         
         /**
         *
-        * Summary: Get region tat bulk history
-        * Description: Get region tat bulk history
+        * Summary: Locality TAT change history
+        * Description: Retrieves the history of changes made to TAT(Turn Around Time) for scheme.
         **/
         public func getBulkTat(
             extensionId: String,
@@ -859,8 +860,8 @@ if let value = endDate {
         
         /**
         *
-        * Summary: Serviceability Import or Export
-        * Description: Serviceability Import or Export
+        * Summary: Bulk update serviceability of localities
+        * Description: Bulk operations involve either new serviceability settings or updating existing ones in large quantities.
         **/
         public func bulkServiceability(
             extensionId: String,
@@ -909,8 +910,8 @@ if let value = endDate {
         
         /**
         *
-        * Summary: Get Region Serviceability Bulk History
-        * Description: Get Region Serviceability Bulk History
+        * Summary: Bulk update history
+        * Description: Retrieves the history of changes made to serviceability settings for a scheme.
         **/
         public func getBulkServiceability(
             extensionId: String,
@@ -1031,8 +1032,8 @@ if let value = endDate {
         
         /**
         *
-        * Summary: Get Serviceability of a region
-        * Description: Get Serviceability of a region
+        * Summary: Get serviceability of a locality
+        * Description: Rerieves serviceability settings of a single courier scheme for a given locality
         **/
         public func getServiceability(
             extensionId: String,
@@ -1082,8 +1083,8 @@ if let value = endDate {
         
         /**
         *
-        * Summary: Serviceability Update for a region
-        * Description: Serviceability Update for a region
+        * Summary: Update Serviceability of a locality
+        * Description: Updates serviceability settings of a single courier scheme for a given locality
         **/
         public func updateServiceability(
             extensionId: String,
@@ -1133,8 +1134,8 @@ if let value = endDate {
         
         /**
         *
-        * Summary: Upsert of PackageMaterial in database
-        * Description: This API returns response of upsert of PackageMaterial in mongo database.
+        * Summary: Create packaging material
+        * Description: Creates a packaging material
         **/
         public func createPackageMaterial(
             body: PackageMaterial,
@@ -1181,8 +1182,8 @@ if let value = endDate {
         
         /**
         *
-        * Summary: Fetching of PackageMaterials from database
-        * Description: This API returns response of PackageMaterials from mongo database.
+        * Summary: Get packaging materials
+        * Description: Retrieves a list of packaging materials
         **/
         public func getPackageMaterialList(
             pageNo: Int?,
@@ -1269,8 +1270,8 @@ if let value = packageType {
         
         /**
         *
-        * Summary: Upsert of Package Material Rule in database
-        * Description: This API returns response of upsert of Package Material Rule in mongo database.
+        * Summary: Create packaging rule
+        * Description: Creates a packaging rule
         **/
         public func createPackageMaterialRule(
             body: PackageRule,
@@ -1317,8 +1318,8 @@ if let value = packageType {
         
         /**
         *
-        * Summary: Fetching of Package Material Rules from database
-        * Description: This API returns response of Package Materials Rules from mongo database.
+        * Summary: Get packaging rules
+        * Description: Retrieve packaging rules
         **/
         public func getPackageMaterialRules(
             pageNo: Int?,
@@ -1389,8 +1390,8 @@ if let value = isActive {
         
         /**
         *
-        * Summary: Fetching of Package Material Rules into database
-        * Description: This API updates Package Material Rules into mongo database.
+        * Summary: Update packaging rule
+        * Description: Update an existing packaging rule
         **/
         public func updatePackageMaterialRule(
             ruleId: String,
@@ -1438,8 +1439,8 @@ if let value = isActive {
         
         /**
         *
-        * Summary: Fetching of Package Material from database
-        * Description: This API returns response of Package Material from mongo database.
+        * Summary: Get packaging material rule
+        * Description: Retrieve packaging rule details.
         **/
         public func getPackageMaterialRule(
             ruleId: String,
@@ -1487,8 +1488,8 @@ if let value = isActive {
         
         /**
         *
-        * Summary: Update Package Material to database
-        * Description: This API updates Package Materials from into mongo database.
+        * Summary: Update packaging material
+        * Description: Update an existing packaging material
         **/
         public func updatePackageMaterials(
             packageMaterialId: String,
@@ -1536,8 +1537,8 @@ if let value = isActive {
         
         /**
         *
-        * Summary: Fetching of Package Material from database
-        * Description: This API returns response of Package Material from mongo database.
+        * Summary: Get packaging material
+        * Description: Retrieve a single packaging material
         **/
         public func getPackageMaterials(
             packageMaterialId: String,
@@ -1586,8 +1587,8 @@ if let value = isActive {
         
         /**
         *
-        * Summary: Retrieve optimal locations
-        * Description: Retrieve optimal locations based on the specific criteria
+        * Summary: Get selling locations
+        * Description: Retrieves a list selling locations which are best suited to fullfil an order for a customer.
         **/
         public func getOptimalLocations(
             body: OptimlLocationsRequestSchema,

@@ -17,7 +17,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Start file upload
-        * Description: Inititates the process of uploading a file to storage location, and returns a storage link in response.
+        * Description: Inititates the process of uploading a file to storage location, and returns a storage link in response at platform level. Please refer group description for more details.
         **/
         public func startUpload(
             namespace: String,
@@ -66,7 +66,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Complete file upload
-        * Description: Starts the process of uploading a file to storage location, and returns a storage link in response.
+        * Description: Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database at platform level
         **/
         public func completeUpload(
             namespace: String,
@@ -117,7 +117,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Get signed URLs
-        * Description: Retrieve signed URLs for file access.
+        * Description: Generates secure, signed URLs that is valid for certain expiry time for accessing stored resources inside private bucket.
         **/
         public func getSignUrls(
             body: SignUrlRequest,
@@ -165,7 +165,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Copy files
-        * Description: Duplicate files to another location.
+        * Description: Handle multiple file uploads, updating progress and providing detailed status reports.
         **/
         public func copyFiles(
             sync: Bool?,
@@ -288,8 +288,8 @@ if let value = limit {
         
         /**
         *
-        * Summary: Proxy file access
-        * Description: Access files through a proxy.
+        * Summary: Access files through a proxy.
+        * Description: It enables the communication between two entities by directing client requests to the correct server and sending responses back to the client. Please refer group description for more details.
         **/
         public func proxy(
             url: String,

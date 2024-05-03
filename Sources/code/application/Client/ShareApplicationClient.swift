@@ -299,7 +299,7 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Fetch short link
+        * Summary: Get short link
         * Description: Retrieves a previously created short link using its hash identifier.
         **/
         public func getShortLinkByHash(

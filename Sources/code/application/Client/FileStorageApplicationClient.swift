@@ -29,8 +29,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Initiates file upload
-        * Description: Starts the process of uploading a file to storage location, and returns a storage link in response.
+        * Summary: Initiate file upload
+        * Description: Get a signed url for uploading a file
         **/
         public func startUpload(
             namespace: String,
@@ -82,8 +82,9 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Finalizes upload process
-        * Description: Complete the process of uploading the file, and will return the URL of the uploaded file
+        * Summary: Complete file upload
+        * Description: 
+Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database
         **/
         public func completeUpload(
             namespace: String,
@@ -135,7 +136,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Signs file URLs
+        * Summary: Get signed URLs
         * Description: Generates secure, signed URLs that is valid for certain expiry time for accessing stored files.
         **/
         public func signUrls(

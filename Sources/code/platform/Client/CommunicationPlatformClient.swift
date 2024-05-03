@@ -80,7 +80,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Get system notifications
-        * Description: Retrieve system notifications related to communication.
+        * Description: Retrieves a list of system notifications.
         **/
         public func getSystemNotifications(
             pageNo: Int?,

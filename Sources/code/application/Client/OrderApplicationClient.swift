@@ -15,8 +15,6 @@ extension ApplicationClient {
             
             ulrs["getOrderById"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/{order_id}") 
             
-            ulrs["getPosOrderById"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/pos-order/{order_id}") 
-            
             ulrs["getShipmentById"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}") 
             
             ulrs["getInvoiceByShipmentId"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}/invoice") 
@@ -47,8 +45,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Lists customer orders
-        * Description: Retrieves all orders associated with a customer account.
+        * Summary: List customer orders
+        * Description: Retrieves all orders associated with a customer account
         **/
         public func getOrders(
             status: Int?,
@@ -169,8 +167,8 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: Fetches order by ID
-        * Description: Retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
+        * Summary: Get a order
+        * Description: Retrieve order details such as tracking details, shipment, store information using Fynd Order ID
         **/
         public func getOrderById(
             orderId: String,
@@ -230,60 +228,7 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: Retrieves POS order details
-        * Description: Retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
-        **/
-        public func getPosOrderById(
-            orderId: String,
-            
-            onResponse: @escaping (_ response: OrderById?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            var fullUrl = relativeUrls["getPosOrderById"] ?? ""
-            
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "order_id" + "}", with: "\(orderId)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(OrderById.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Fetches shipment by ID
+        * Summary: Get a Shipment
         * Description: Retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
         **/
         public func getShipmentById(
@@ -397,7 +342,7 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: Tracks shipment status
+        * Summary: Track shipment status
         * Description: Track Shipment by shipment id, for application based on application Id.
         **/
         public func trackShipment(
@@ -450,7 +395,7 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: Retrieves shipment customer
+        * Summary: Get shipment's customer
         * Description: Retrieve customer details such as mobile number using Shipment ID.
         **/
         public func getCustomerDetailsByShipmentId(
@@ -506,8 +451,8 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: Sends OTP to customer
-        * Description: Sends a one-time password (OTP) to the customer for shipment verification.
+        * Summary: Send OTP to customer
+        * Description: Sends a one-time password (OTP) to the customer for shipment verification
         **/
         public func sendOtpToShipmentCustomer(
             orderId: String,
@@ -618,8 +563,8 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: Lists bag reasons
-        * Description: Retrieves reasons that led to the cancellation for the status of shipment bags.
+        * Summary: List bag cancellation reasons
+        * Description: Get reasons to perform full or partial cancellation of a bag
         **/
         public func getShipmentBagReasons(
             shipmentId: String,
@@ -674,8 +619,8 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: Lists shipment reasons
-        * Description: Retrieve reasons explaining various shipment statuses.
+        * Summary: List shipment cancellation reasons
+        * Description: Get reasons to perform full or partial cancellation of a shipment
         **/
         public func getShipmentReasons(
             shipmentId: String,
@@ -728,7 +673,7 @@ if let value = allowInactive {
         /**
         *
         * Summary: Updates shipment status
-        * Description: Modifies the current status of a specific shipment using its shipment ID.
+        * Description: Modifies the current status of a specific shipment using its shipment ID. Supports both partial and full transition as per the configured settings.
         **/
         public func updateShipmentStatus(
             shipmentId: String,

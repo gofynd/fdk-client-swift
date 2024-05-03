@@ -29,8 +29,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves communication consent status
-        * Description: Retrieve the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp. 
+        * Summary: Retrieve consent status
+        * Description: Retrieve the consent provided by the user for receiving communication
         **/
         public func getCommunicationConsent(
             
@@ -79,8 +79,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Updates or inserts consent settings
-        * Description: Update and insert the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp. 
+        * Summary: Update or adds consent settings
+        * Description: Update or inserts the consent provided by the user for receiving communication messages
         **/
         public func upsertCommunicationConsent(
             body: CommunicationConsentReq,
@@ -129,8 +129,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Updates or adds app push token
-        * Description: Update the push token of the user. 
+        * Summary: Update or adds app push token
+        * Description: Update or inserts the push token of the user.
         **/
         public func upsertAppPushtoken(
             body: PushtokenReq,

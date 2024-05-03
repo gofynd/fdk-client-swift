@@ -16,8 +16,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Search for applications
-        * Description: Provide application name or domain url
+        * Summary: List sales channel categories
+        * Description: This API retrieves details for a specific sales channel based on the provided search criteria. The search can be performed using the name of the sales channel
         **/
         public func searchApplication(
             authorization: String?,

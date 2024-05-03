@@ -27,8 +27,6 @@ public class PlatformClient {
 
     public let finance: Finance
 
-    public let inventory: Inventory
-
     public let lead: Lead
 
     public let serviceability: Serviceability
@@ -65,8 +63,6 @@ public class PlatformClient {
         fileStorage = FileStorage(config: config)
         
         finance = Finance(config: config)
-        
-        inventory = Inventory(config: config)
         
         lead = Lead(config: config)
         
@@ -181,8 +177,8 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Retrieve available coupons
-            * Description: Retrieve a list of available coupons for use in the shopping cart.
+            * Summary: List coupons
+            * Description: Retrieve a list of all created coupons for specific sales channel. It also supports searching based on text search, pagination and other flags to filter coupons.
             **/
             public func getCoupons(
                 pageNo: Int?,
@@ -293,8 +289,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Create a new coupon
-            * Description: Generate and add a new coupon to the cart.
+            * Summary: Create a coupon
+            * Description: Creates a new coupon based on the selected coupon type. Sellers can choose from multiple supported coupon types, including percentage value, fixed amount value, bundled discount, buy X get Y items, and more, along with customizable coupon criteria to meet specific business requirements.
             **/
             public func createCoupon(
                 body: CouponAdd,
@@ -341,8 +337,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Get coupon details by ID
-            * Description: Retrieve detailed information about a specific coupon using its unique ID.
+            * Summary: Get a coupon
+            * Description: Retrieve details of a specific coupon by providing its unique identifier to obtain information such as coupon type, rules, validity period and other related information.
             **/
             public func getCouponById(
                 id: String,
@@ -391,7 +387,7 @@ if let value = code {
             /**
             *
             * Summary: Update a coupon
-            * Description: Modify the details and settings of an existing coupon in the cart system.
+            * Description: Update the details of an existing coupon by specifying its unique identifier. This includes modifying coupon attributes such as discount percentage, validity period, and associated conditions. Leveraging this functionality allows businesses to quickly adapt their promotional strategies to changing market dynamics.
             **/
             public func updateCoupon(
                 id: String,
@@ -439,8 +435,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Partially update a coupon
-            * Description: Make partial modifications to the settings of an existing coupon in the cart system.
+            * Summary: Update a coupon partially 
+            * Description: Seller can make partial adjustments of an existing coupon by specifying its unique identifier. It enables businesses to modify specific attributes of the coupon while preserving other details intact.
             **/
             public func updateCouponPartially(
                 id: String,
@@ -488,8 +484,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Retrieve available promotions
-            * Description: Retrieve a list of available promotions to apply to the cart.
+            * Summary: List promotions
+            * Description: Retrieve a list of all created promotions for specific sales channel. It also supports efficient text search and pagination functionalities, ensuring optimized promotion listing for streamlined navigation and management.
             **/
             public func getPromotions(
                 pageNo: Int?,
@@ -600,8 +596,8 @@ if let value = promotionId {
             
             /**
             *
-            * Summary: Create a new promotion
-            * Description: Generate and add a new promotion to the cart system 
+            * Summary: Create a promotion
+            * Description: Creates a new promotion based on the selected promotion type. Sellers can choose from multiple supported promotion types, including percentage value, fixed amount value, bundled discount, buy X get Y items, and more, along with customizable promotion criteria to meet specific business requirements.
             **/
             public func createPromotion(
                 body: PromotionAdd,
@@ -648,8 +644,8 @@ if let value = promotionId {
             
             /**
             *
-            * Summary: Get promotion details by ID
-            * Description: Retrieve detailed information about a specific promotion using its unique ID.
+            * Summary: Get a promotion
+            * Description: Retrieve details of a specific promotion by providing its unique identifier to obtain information such as promotion type, rules, validity period and other related information.
             **/
             public func getPromotionById(
                 id: String,
@@ -698,7 +694,7 @@ if let value = promotionId {
             /**
             *
             * Summary: Update a promotion
-            * Description: Modify the details and settings of an existing promotion in the cart system.
+            * Description: Update the details of an existing promotion by specifying its unique identifier. This includes modifying promotion attributes such as discount percentage, validity period, and associated conditions. Leveraging this functionality allows businesses to quickly adapt their promotional strategies to changing market dynamics.
             **/
             public func updatePromotion(
                 id: String,
@@ -746,8 +742,8 @@ if let value = promotionId {
             
             /**
             *
-            * Summary: Partially update a promotion
-            * Description: Make partial modifications to the settings of an existing promotion in the cart system.
+            * Summary: Update a promotion partially 
+            * Description: Seller can make partial adjustments of an existing promotion by specifying its unique identifier. It enables businesses to modify specific attributes of the promotion while preserving other details intact.
             **/
             public func updatePromotionPartially(
                 id: String,
@@ -795,8 +791,8 @@ if let value = promotionId {
             
             /**
             *
-            * Summary: Get promotion and coupon configuration
-            * Description: Retrieve configuration settings for promotions and coupons.
+            * Summary: Get promotion and coupon type
+            * Description: Retrieve the configuration settings related to promotions and coupons for a specific seller. It provides details of the supported types of coupons and promotions along with their descriptions, examples, and related attributes.
             **/
             public func getPromosCouponConfig(
                 entityType: String?,
@@ -859,8 +855,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Update cart metadata configuration
-            * Description: Modify the configuration settings for cart metadata.
+            * Summary: Update cart meta
+            * Description: Modify the configuration settings for cart metadata associated with a specific sales channel. Cart meta includes configuration settings such as allowed maximum cart value, allowed minimum cart value, maximum allowed cart items, delivery charges, etc.
             **/
             public func updateCartMetaConfig(
                 cartMetaId: String,
@@ -908,8 +904,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Fetch cart meta configuration
-            * Description: Fetch cart meta configuration
+            * Summary: Get cart meta
+            * Description: Retrieve meta configuration settings tailored for customizing the cart experience within a specific sales channel. Cart meta includes configuration settings such as allowed maximum cart value, allowed minimum cart value, maximum allowed cart items, delivery charges, etc.
             **/
             public func fetchCartMetaConfig(
                 
@@ -956,8 +952,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Create new cart meta configuration
-            * Description: Create new cart meta configuration
+            * Summary: Create a new cart meta
+            * Description: Create custom meta configurations for carts associated with a specific sales channel. By specifying the company ID and application ID, seller can define unique cart settings, including preferences, rules, and constraints, tailored to their business needs.
             **/
             public func createCartMetaConfig(
                 body: CartMetaConfigAdd,
@@ -1005,7 +1001,7 @@ if let value = isHidden {
             /**
             *
             * Summary: Update price adjustments
-            * Description: Modify price adjustments for items in the cart.
+            * Description: Modify price adjustments for specific items in the cart. By providing the seller ID, sales channel ID, and price adjustment ID, seller can apply discounts or other adjustments to the prices of cart items, facilitating dynamic pricing strategies.
             **/
             public func updatePriceAdjustment(
                 id: String,
@@ -1054,7 +1050,7 @@ if let value = isHidden {
             /**
             *
             * Summary: Remove price adjustments
-            * Description: Remove price adjustments applied to items in the cart.
+            * Description: Remove the applied price adjustments for specific items within the cart based on unique price adjustment ID.
             **/
             public func removePriceAdjustment(
                 id: String,
@@ -1102,8 +1098,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Add price adjustments
-            * Description: Apply price adjustments to items in the cart.
+            * Summary: Create price adjustments
+            * Description: Create custom price adjustments for items in the cart, facilitating the application of discounts or promotions. Price adjustments can be tailored based on specific sales channel contexts, enhancing flexibility in pricing strategies.
             **/
             public func addPriceAdjustment(
                 body: PriceAdjustmentAdd,
@@ -1150,8 +1146,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Fetch and validate cart items
-            * Description: Retrieve and validate items currently in the cart.
+            * Summary: Get and validate cart items
+            * Description: Retrieve cart details for a provided list of cart items and validate its contents. This ensures accuracy and completeness in cart information, including item quantities, prices, discounts, and applicable taxes.
             **/
             public func fetchAndvalidateCartItems(
                 body: OpenapiCartDetailsRequest,
@@ -1199,7 +1195,7 @@ if let value = isHidden {
             /**
             *
             * Summary: Check cart serviceability
-            * Description: Verify if the items in the cart are serviceable.
+            * Description: Verify the serviceability of items in the cart at a specific pin code and ensure accurate delivery promises. System checks each item's availability and delivery feasibility, providing real-time information on serviceability and estimated delivery times.
             **/
             public func checkCartServiceability(
                 body: OpenApiCartServiceabilityRequest,
@@ -1246,8 +1242,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Proceed to cart checkout
-            * Description: Initiate the checkout process for the items in the cart.
+            * Summary: Checkout cart
+            * Description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement.
             **/
             public func checkoutCart(
                 body: OpenApiPlatformCheckoutReq,
@@ -1294,8 +1290,8 @@ if let value = isHidden {
             
             /**
             *
-            * Summary: Retrieve abandoned carts
-            * Description: Retrieve abandoned carts for analysis and potential recovery.
+            * Summary: Get abandoned carts
+            * Description: Retrieve the list of abandoned carts that have been active for the specified period of time and have not yet been archived for the specific sales channel.
             **/
             public func getAbandonedCart(
                 pageNo: Int?,
@@ -1399,7 +1395,7 @@ if let value = sortOn {
             /**
             *
             * Summary: Get abandoned cart details
-            * Description: Retrieve detailed information about a specific abandoned cart.
+            * Description: Retrieves abandoned cart details linked to a specific customer using a unique cart ID. It offers an overview of the items, quantities, prices, and other relevant information associated with the cart.
             **/
             public func getAbandonedCartDetails(
                 id: String?,
@@ -1478,8 +1474,8 @@ if let value = c {
             
             /**
             *
-            * Summary: Add items to the cart
-            * Description: Add items to the shopping cart 
+            * Summary: Add items to cart
+            * Description: Add product items to the customer's existing shopping cart. If there is no existing cart associated with the customer, it creates a new one and adds the items to it.
             **/
             public func addItems(
                 cartId: String,
@@ -1536,7 +1532,7 @@ if let value = b {
             /**
             *
             * Summary: Update cart items
-            * Description: Modify items and their quantities in the shopping cart.
+            * Description: Customers can modify added product attributes such as quantity and size, as well as remove items from the cart.
             **/
             public func updateCart(
                 cartId: String,
@@ -1593,7 +1589,7 @@ if let value = b {
             /**
             *
             * Summary: Get coupon option values
-            * Description: Retrieve available values for coupon options.
+            * Description: Retrieves the available values for coupon options used to create and update coupons.
             **/
             public func getCouponOptionValues(
                 
@@ -1640,8 +1636,8 @@ if let value = b {
             
             /**
             *
-            * Summary: Check if a coupon code exists
-            * Description: Verify the existence of a specific coupon code.
+            * Summary: Check coupon code exists
+            * Description: Validates the presence of a coupon code for the specified sales channel to verify whether the provided code already exists or not.
             **/
             public func getCouponCodeExists(
                 code: String?,
@@ -1696,8 +1692,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Check if a promotion code exists
-            * Description: Verify the existence of a specific promotion code.
+            * Summary: Check promotion code exists
+            * Description: Validates the presence of a promotion code for the specified sales channel to verify whether the provided code already exists or not.
             **/
             public func getPromotionCodeExists(
                 code: String?,
@@ -1752,8 +1748,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Override the cart
-            * Description: Override the current cart with a new configuration.
+            * Summary: Update cart checkout
+            * Description: Overrides the cart's checkout process with a new provided cart items. It provides flexibility in customizing checkout flows to meet specific business requirements, enhancing the user experience and optimizing order processing workflows.
             **/
             public func overrideCart(
                 body: OverrideCheckoutReq,
@@ -1800,8 +1796,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Generate token for sharing the cart
-            * Description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart.
+            * Summary: Share cart link
+            * Description: Generate a unique shareable link for the customer's cart for a specific sales channel. This link enables easy sharing of the cart contents with other users, facilitating collaborative shopping experiences.
             **/
             public func getCartShareLink(
                 body: GetShareCartLinkRequest,
@@ -1848,8 +1844,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Get items shared via a cart link
-            * Description: Retrieve the items shared with you via a cart link.
+            * Summary: List shared cart items
+            * Description: Retrieve the cart items from the shared cart link based on unique token.
             **/
             public func getCartSharedItems(
                 token: String,
@@ -1897,8 +1893,8 @@ if let value = code {
             
             /**
             *
-            * Summary: Update cart with shared items
-            * Description: Modify your cart by adding shared items from a cart link.
+            * Summary: Update shared cart items
+            * Description: Customer can either merge or replace shared cart items with existing cart.
             **/
             public func updateCartWithSharedItems(
                 token: String,
@@ -1955,8 +1951,8 @@ if let value = cartId {
             
             /**
             *
-            * Summary: Retrieve a list of carts
-            * Description: Retrieve a list of saved shopping carts.
+            * Summary: List carts
+            * Description: Retrieve the list of active carts associated with a specific customer. 
             **/
             public func getCartList(
                 fromDate: String?,
@@ -2027,8 +2023,8 @@ if let value = filterOn {
             
             /**
             *
-            * Summary: Update cart user details
-            * Description: Modify user-related details for a shopping cart.
+            * Summary: Update user of a cart
+            * Description: Modify the cart user to a new valid customer for the provided customer ID.
             **/
             public func updateCartUser(
                 id: String?,
@@ -2083,8 +2079,8 @@ if let value = id {
             
             /**
             *
-            * Summary: Get cart details
-            * Description: Retrieve detailed information about a shopping cart.
+            * Summary: Get a cart
+            * Description: Retrieve details of a cart linked to a specific customer using either the customer's ID or a unique cart ID. It offers an overview of the items, quantities, prices, and other relevant information associated with the cart.
             **/
             public func getCart(
                 id: String?,
@@ -2179,8 +2175,8 @@ if let value = buyNow {
             
             /**
             *
-            * Summary: Add items via platform integration
-            * Description: Add items to the cart through platform integration.
+            * Summary: Add items to cart
+            * Description: Add product items to the customer's existing shopping cart. If there is no existing cart associated with the customer, it creates a new one and adds the items to it.
             **/
             public func platformAddItems(
                 i: Bool?,
@@ -2259,8 +2255,8 @@ if let value = id {
             
             /**
             *
-            * Summary: Update items in the customer 's cart using cart id
-            * Description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs operation Operation for current api call. update_item for update items. remove_item for removing items.item_id "/platform/content/v1/products/" item_size "/platform/content/v1/products/:slug/sizes/" quantity  item quantity (must be greater than or equal to 1) article_id "/content​/v1​/products​/:identifier​/sizes​/price​/" item_index item position in the cart (must be greater than or equal to 0)
+            * Summary: Update cart items
+            * Description: Customers can modify added product attributes such as quantity and size, as well as remove items from the cart.
             **/
             public func platformUpdateCart(
                 id: String?,
@@ -2340,7 +2336,7 @@ if let value = buyNow {
             /**
             *
             * Summary: Delete a cart
-            * Description: Delete a specific shopping cart from the system.
+            * Description: Delete all items from the user's cart and resets it to its initial state, providing a clean slate for new selections.
             **/
             public func deleteCart(
                 id: String?,
@@ -2395,8 +2391,8 @@ if let value = id {
             
             /**
             *
-            * Summary: Get the item count in a cart
-            * Description: Retrieve the total number of items in a shopping cart.
+            * Summary: Get a cart items count
+            * Description: Retrieve the total count of items currently present in the customer's cart.
             **/
             public func getItemCount(
                 id: String?,
@@ -2459,8 +2455,8 @@ if let value = buyNow {
             
             /**
             *
-            * Summary: Get app-specific coupons
-            * Description: Retrieve coupons specific to the mobile app.
+            * Summary: List coupons
+            * Description: Retrieve a list of all available coupons that customer can apply to their carts. It provides details about each coupon, including its code, discount amount, and applicable conditions.
             **/
             public func getAppCoupons(
                 id: String?,
@@ -2539,8 +2535,9 @@ if let value = storeId {
             
             /**
             *
-            * Summary: Apply a coupon to the cart
-            * Description: Apply a selected coupon to the items in the shopping cart.
+            * Summary: Apply coupon
+            * Description: 
+Apply a coupon code to the customer's cart to trigger discounts on eligible items
             **/
             public func applyCoupon(
                 i: Bool?,
@@ -2627,8 +2624,8 @@ if let value = buyNow {
             
             /**
             *
-            * Summary: Remove a coupon from the cart
-            * Description: Remove a coupon from the items in the shopping cart.
+            * Summary: Remove coupon
+            * Description: Remove an applied coupon from the customer's cart, thereby removing the associated discount from the cart total.
             **/
             public func removeCoupon(
                 uid: String?,
@@ -2691,8 +2688,8 @@ if let value = buyNow {
             
             /**
             *
-            * Summary: Fetch address
-            * Description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional uid address_id  mobile_no checkout_mode tags default
+            * Summary: List customer addresses
+            * Description: Retrieves a list of all addresses saved by the customer, simplifying the checkout process by offering pre-saved address options for delivery.
             **/
             public func getAddresses(
                 cartId: String?,
@@ -2795,8 +2792,8 @@ if let value = userId {
             
             /**
             *
-            * Summary: Add a new user address
-            * Description: Create and add a new user address for cart checkout.
+            * Summary: Create a new address
+            * Description: Customers can add a new address to their cart to save details such as name, email, contact information, and address.
             **/
             public func addAddress(
                 body: PlatformAddress,
@@ -2843,8 +2840,8 @@ if let value = userId {
             
             /**
             *
-            * Summary: Fetch a single address by its ID
-            * Description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `PlatformAddress`. Attibutes listed below are optional mobile_no checkout_mode tags default
+            * Summary: Get a address
+            * Description: Retrieve a specific customer address stored in the system by providing its unique identifier. This API provides detailed information about the address, including the recipient's name, address, city, postal code, and other relevant details.
             **/
             public func getAddressById(
                 id: String,
@@ -2949,7 +2946,7 @@ if let value = userId {
             /**
             *
             * Summary: Update address
-            * Description: Modify the shipping address for an order.
+            * Description: Update the user address
             **/
             public func updateAddress(
                 id: String,
@@ -2997,8 +2994,8 @@ if let value = userId {
             
             /**
             *
-            * Summary: Remove a user address
-            * Description: Delete an existing user address from the system.
+            * Summary: Delete a address
+            * Description: Remove an existing customer address from the system.
             **/
             public func removeAddress(
                 id: String,
@@ -3054,8 +3051,8 @@ if let value = userId {
             
             /**
             *
-            * Summary: Select an address from available addresses
-            * Description: Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `PlatformSelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. address_id billing_address_id uid
+            * Summary: select a delivery address
+            * Description: Select an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address.
             **/
             public func selectAddress(
                 cartId: String?,
@@ -3134,7 +3131,7 @@ if let value = b {
             
             /**
             *
-            * Summary: Get delivery date and options before checkout
+            * Summary: Get shipments details
             * Description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
             **/
             public func getShipments(
@@ -3246,8 +3243,8 @@ if let value = orderType {
             
             /**
             *
-            * Summary: Update shipment details
-            * Description: Modify the details and settings of cart shipments.
+            * Summary: Update shipments
+            * Description: Update the quantity or delivery type of the shipments. Customers can switch the order type from Home Delivery to Pick At Store and vice versa.
             **/
             public func updateShipments(
                 i: Bool?,
@@ -3343,7 +3340,7 @@ if let value = orderType {
             /**
             *
             * Summary: Update cart metadata
-            * Description: Modify the metadata associated with the shopping cart.
+            * Description: Add or modify metadata associated with a cart, which includes customer preferences, delivery instructions, or any special requirements related to the cart items.
             **/
             public func updateCartMeta(
                 id: String?,
@@ -3406,8 +3403,8 @@ if let value = buyNow {
             
             /**
             *
-            * Summary: Platform-specific cart checkout
-            * Description: Initiate cart checkout through platform-specific integration.
+            * Summary: Checkout cart
+            * Description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement.
             **/
             public func platformCheckoutCart(
                 id: String?,
@@ -3462,8 +3459,8 @@ if let value = id {
             
             /**
             *
-            * Summary: Get available delivery modes
-            * Description: Retrieve a list of available delivery modes for cart checkout.
+            * Summary: Get delivery modes
+            * Description: Retrieve a list of delivery modes (home delivery/store pickup) along with a list of available pickup stores for a given cart at a specified PIN Code.
             **/
             public func getAvailableDeliveryModes(
                 areaCode: String,
@@ -3524,8 +3521,8 @@ if let value = id {
             
             /**
             *
-            * Summary: Get store address by UID
-            * Description: Retrieve the store address using a unique identifier (UID).
+            * Summary: Get Store Address
+            * Description: Retrieve store details by entering the unique identifier of the pickup stores. Store details include the seller's name, contact information such as email address or phone number and business address.
             **/
             public func getStoreAddressByUid(
                 storeUid: Int,
@@ -3578,8 +3575,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Select a payment mode
-            * Description: Choose a payment mode for cart checkout.
+            * Summary: Select payment mode
+            * Description: Customers can select a preferred payment mode from available options during the cart checkout process to securely and efficiently complete their transaction.
             **/
             public func selectPaymentMode(
                 id: String?,
@@ -3650,8 +3647,8 @@ if let value = orderType {
             
             /**
             *
-            * Summary: Validate a coupon for payment
-            * Description:  Verify the validity of a coupon code for the payment process.
+            * Summary: Validate applied coupon
+            * Description: Validates the applicability of a coupon code for the selected payment mode for the existing cart. This ensures the coupon's validity before proceeding with the payment process, enhancing user experience and preventing potential errors during transactions.
             **/
             public func validateCouponForPayment(
                 id: String?,
@@ -3754,8 +3751,8 @@ if let value = merchantCode {
             
             /**
             *
-            * Summary: Platform-specific cart checkout v2
-            * Description: Initiate cart checkout through an updated platform-specific integration.
+            * Summary: Cart checkout (latest)
+            * Description: Checkout process that supports multiple MOP(mode of payment).
             **/
             public func platformCheckoutCartV2(
                 id: String?,
@@ -3810,8 +3807,8 @@ if let value = id {
             
             /**
             *
-            * Summary: Select a payment mode v2
-            * Description: Choose a payment mode for cart checkout in the updated platform integration.
+            * Summary: Select payment mode (latest)
+            * Description: Selection of payment mode that supports multiple MOP(mode of payment).
             **/
             public func selectPaymentModeV2(
                 id: String?,
@@ -3897,8 +3894,8 @@ if let value = orderType {
             
             /**
             *
-            * Summary: Get catalog insights
-            * Description: Retrieve the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the application.
+            * Summary: Get catalog counts
+            * Description: Retrieve the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the sales channel.
             **/
             public func getCatalogInsights(
                 brand: String?,
@@ -3953,8 +3950,8 @@ if let value = brand {
             
             /**
             *
-            * Summary: Get application brand listing
-            * Description: Retrieve brand listings related to the application. A brand is the name under which a product is being sold
+            * Summary: Get sales channel brands.
+            * Description: Retrieve brand listings related to the sales channel. A brand is the name under which a product is being sold
             **/
             public func getApplicationBrandListing(
                 pageNo: Int?,
@@ -4086,8 +4083,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Update application brand
-            * Description: Modify data associated to a item custom meta.
+            * Summary: Update sales channel brand
+            * Description: Modify data associated to the brand for that particular sales channel.
             **/
             public func updateAppBrand(
                 brandUid: String,
@@ -4135,8 +4132,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get application brands
-            * Description: List all the brands. A brand is the name under which a product is being sold. 
+            * Summary: List brands
+            * Description: List all the brands, and have search capabilities on brand uid, name etc
             **/
             public func getApplicationBrands(
                 department: String?,
@@ -4300,8 +4297,8 @@ if let value = brandId {
             
             /**
             *
-            * Summary: Get categories
-            * Description: Retrieve a list of categories. Optionally pass filter the brands by the department.
+            * Summary: List categories
+            * Description: Retrieve a list of categories associated to company and sales channel. user can filter on departments.
             **/
             public func getCategories(
                 department: String?,
@@ -4356,8 +4353,8 @@ if let value = department {
             
             /**
             *
-            * Summary: Get application category listing
-            * Description: Retrieve category listings related to the application. A brand is the name under which a product is being sold.
+            * Summary: List sales channel categories
+            * Description: Retrieve category listings related to the sales channel , with the ability to filter results based on department ,category names etc.
             **/
             public func getApplicationCategoryListing(
                 departmentId: Int?,
@@ -4505,8 +4502,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Update application category
-            * Description: Modify category data related to the application. Helps to update data associated to a item custom meta.
+            * Summary: Update sales channel category
+            * Description: Modify category data related to the sales channel .
             **/
             public func updateAppCategory(
                 categoryUid: String,
@@ -4554,8 +4551,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Retrieve all collections
-            * Description: A Collection allows you to organize your products into hierarchical groups.
+            * Summary: List collections
+            * Description: Retrieve all collections based on criteria such as collection name, schedule status, and active status.
             **/
             public func getAllCollections(
                 q: String?,
@@ -4751,8 +4748,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Add a Collection
-            * Description: Create a collection to the catalog.
+            * Summary: Create a collection
+            * Description: Create a collection for a sales channel linked to a company.
             **/
             public func createCollection(
                 body: CreateCollection,
@@ -4799,8 +4796,9 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get values of the selected value for the filter options
-            * Description: Get query filters keys to configure a collection
+            * Summary: List product filters
+            * Description: This API is designed to retrieve the filter values for all available options within the selected filter, such as "red" for color.
+
             **/
             public func getApplicationFilterValues(
                 filterKey: String,
@@ -4888,8 +4886,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get filters keys of the filter options
-            * Description: Get query filters keys to configure a collection
+            * Summary: List filter keys
+            * Description: Retrieve the details of all applicable product filters, such as Color, Brand, and Category, indicating the criteria keys where filters can be applied.
             **/
             public func getApplicationFilterKeys(
                 c: String?,
@@ -4944,8 +4942,8 @@ if let value = c {
             
             /**
             *
-            * Summary: Retrieve query filters
-            * Description: Retrieve query filters to configure a collection
+            * Summary: Get collection query filters
+            * Description: Retrieve query filters to configure a collection for a company and a sales channel.
             **/
             public func getQueryFilters(
                 
@@ -5090,8 +5088,8 @@ if let value = c {
             
             /**
             *
-            * Summary: Get the items for a collection
-            * Description: Get items from a collection specified by its `id`.
+            * Summary: List items of collection
+            * Description: Get items from a collection specified by its id.
             **/
             public func getCollectionItems(
                 id: String,
@@ -5163,8 +5161,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Add items to a collection
-            * Description: Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
+            * Summary: Create items in a collection
+            * Description: Adds items to a collection specified by its id
             **/
             public func addCollectionItems(
                 id: String,
@@ -5212,7 +5210,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get collection details
+            * Summary: Get a collection
             * Description: Get the details of a collection by its slug.
             **/
             public func getCollectionDetail(
@@ -5261,8 +5259,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get application department listing
-            * Description: Retrieve department listings related to the application. Departments are a way to categorise similar products. A product can lie in multiple departments.
+            * Summary: List sales channel departments.
+            * Description: Retrieve department listings related to the sales channel. Departments are used to categorize similar products, and you can filter the results based on department names
             **/
             public func getApplicationDepartmentListing(
                 pageNo: Int?,
@@ -5394,8 +5392,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Update application department
-            * Description: Modify department data related to the application.
+            * Summary: Update sales channel department
+            * Description: Modify department data associated to the sales channel.
             **/
             public func updateAppDepartment(
                 departmentUid: String,
@@ -5443,8 +5441,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get departments
-            * Description: Retrieve a list of departments. Departments are a way to categorise similar products. A product can lie in multiple departments.
+            * Summary: List departments
+            * Description: Retrieve a list of departments associated with a comapny and sales channel.
             **/
             public func getDepartments(
                 
@@ -5491,8 +5489,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get application inventory
-            * Description: Retrieve inventory data related to the application. Retrieve the available Inventory of the products. Use this API to get the Inventory status of products with the filters of timestamp, store_ids, brand_ids, item_id, Items, Pagination
+            * Summary: List sales channel inventory
+            * Description: Retrieve inventory data related to the sales channel. this can be used  to get the Inventory status of products with the filters of timestamp, store_ids, brand_ids, item_id, Items, Pagination.
             **/
             public func getAppInventory(
                 itemIds: [Int]?,
@@ -5595,8 +5593,8 @@ if let value = pageId {
             
             /**
             *
-            * Summary: Get application locations
-            * Description: Retrieve locations specific to the application. View all the locations asscoiated to a application.
+            * Summary: List sales channels
+            * Description: Retrieve all stores associated with an sales channel, with support for searching by store name and filtering by store type and status (verified/unverified)
             **/
             public func getAppLocations(
                 storeType: String?,
@@ -5808,8 +5806,8 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Retrieve configurations
-            * Description: Retrieve a configured details for catalog.
+            * Summary: Get product configurations
+            * Description: Retrieve a detailed configurations for product catalog specific to a company and an sales channel.
             **/
             public func getConfigurations(
                 
@@ -5856,8 +5854,8 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Create configuration for product listing
-            * Description: Add configuration for products & listing.
+            * Summary: Create product listing configuration
+            * Description: Add configuration for products & listing specific to a company and an sales channel.
             **/
             public func createConfigurationProductListing(
                 body: AppConfiguration,
@@ -5904,8 +5902,8 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Retrieve catalog configuration
-            * Description: Retrieve configuration meta details for the catalog.
+            * Summary: Get catalog configuration meta data
+            * Description: Retrieve configuration meta data for the catalog specific to a company and an sales channel.
             **/
             public func getCatalogConfiguration(
                 
@@ -5952,8 +5950,8 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Retrieve configuration by type
-            * Description: Retrieve configuration details based on a specific type in the catalog.
+            * Summary: Get configuration
+            * Description: Retrieve configuration details based on a specific type in the catalog for a company and an sales channel.
             **/
             public func getConfigurationByType(
                 type: String,
@@ -6001,8 +5999,8 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Create configuration by type
-            * Description: Add configuration for categories & brands.
+            * Summary: Create configuration
+            * Description: Add configuration details based on a specific type in the catalog for a company and an sales channel.
             **/
             public func createConfigurationByType(
                 type: String,
@@ -6050,8 +6048,8 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Retrieve application product data
-            * Description: Products are the core resource of an application. If successful, returns a Company Application Product resource in the response body depending upon filter sent.
+            * Summary: Get sales channel product.
+            * Description: Retrieve sales channel product details by its item_id and depending upon filters sent in request.
             **/
             public func getAppProduct(
                 itemId: String,
@@ -6099,8 +6097,8 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Update application product data
-            * Description: Allows to update data associated to a item custom meta.
+            * Summary: Update sales channel product.
+            * Description: Allows to update data associated to a item by its item_id for an sales channel.
             **/
             public func updateAppProduct(
                 itemId: String,
@@ -6148,8 +6146,8 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Get application products
-            * Description: Retrieve products associated with the application. List all the products associated with a brand, collection or category in a requested sort order.
+            * Summary: List sales channel products
+            * Description: Retrieve products associated with the sales channel. List all the products associated with a brand, collection or category in a requested sort order.
             **/
             public func getAppicationProducts(
                 q: String?,
@@ -6410,7 +6408,7 @@ if let value = itemIds {
             
             /**
             *
-            * Summary: Get discounted inventory by size identifier
+            * Summary: Get discounted inventory.
             * Description: Allows to retrieve Inventory data for particular company grouped by size and store.
             **/
             public func getDiscountedInventoryBySizeIdentifier(
@@ -6577,8 +6575,8 @@ if let value = locationIds {
             
             /**
             *
-            * Summary: Get product details by slug
-            * Description: Retrieve detailed product information using a product slug. Products are the core resource of an application. Products can be associated by categories, collections, brands and more.
+            * Summary: Get product details.
+            * Description: Retrieve detailed product information using a product slug. 
             **/
             public func getProductDetailBySlug(
                 slug: String,
@@ -6626,8 +6624,8 @@ if let value = locationIds {
             
             /**
             *
-            * Summary: Get application products
-            * Description: Retrieve products specific to the application. Products are the core resource of an application. Products can be associated by categories, collections, brands and more.
+            * Summary: List sales channel products.
+            * Description: Retrieve products specific to the sales channel, with filtering options available for brand, category, department, tags, item IDs, product name, and pagination support
             **/
             public func getAppProducts(
                 brandIds: [Int]?,
@@ -6839,8 +6837,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get Return configuration level set for an application
-            * Description: Get Product Return configuration set at an application level
+            * Summary: get product-return configuration.
+            * Description: Get Product Return configuration set at an sales channel level
             **/
             public func getAppReturnConfiguration(
                 
@@ -6887,8 +6885,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Create Return configuration level set for an application
-            * Description: Create Return configuration level set for an application.
+            * Summary: Create product return configuration
+            * Description: This allows you to configure all return-related settings, such as is_returnable and return window etc. for sales channel level
             **/
             public func createAppReturnConfiguration(
                 body: CreateUpdateAppReturnConfig,
@@ -6935,8 +6933,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Update Return configuration level set for an application
-            * Description: Update Return configuration level set for an application.
+            * Summary: Update product return configuration
+            * Description: Update Return configuration level set for an sales channel.
             **/
             public func updateAppReturnConfiguration(
                 body: CreateUpdateAppReturnConfig,
@@ -6983,8 +6981,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Delete Category level Application Return Configuration setttings
-            * Description: Delete Category level Application Return Configuration setttings
+            * Summary: Delete product return configuration
+            * Description: Delete Category level sales channel Return Configuration setttings
             **/
             public func deleteAppCategoryReturnConfiguration(
                 body: DeleteAppCategoryReturnConfig,
@@ -7031,8 +7029,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get all category level configuration level set for an application
-            * Description: Get all category level configuration level set for an application.
+            * Summary: Get category return configuration
+            * Description: Get all category level configuration level set for an sales channel.
             **/
             public func getAppCategoryReturnConfig(
                 
@@ -7079,8 +7077,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Create Category level Application Return Configuration setttings
-            * Description: Create Category level Application Return Configuration setttings
+            * Summary: Create return configuration
+            * Description: Create Category level sales channel Return Configuration setttings
             **/
             public func createAppCategoryReturnConfiguration(
                 body: BaseAppCategoryReturnConfig,
@@ -7127,8 +7125,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Update Category level Application Return Configuration setttings
-            * Description: Update Category level Application Return Configuration setttings
+            * Summary: Update return Configuration
+            * Description: Update Category level sales channel Return Configuration setttings
             **/
             public func updateAppCategoryReturnConfiguration(
                 body: BaseAppCategoryReturnConfig,
@@ -7176,7 +7174,7 @@ if let value = q {
             /**
             *
             * Summary: Get autocomplete configuration
-            * Description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
+            * Description: Get custom autocomplete keyword configuration for a specific sales channel which allows you to map any endpoint with these keywords to give you the ultimate suggestion results.
             **/
             public func getAutocompleteConfig(
                 
@@ -7223,8 +7221,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Create custom autocomplete rules
-            * Description: Generate and add custom autocomplete rules to the catalog.
+            * Summary: Create autocomplete configurations
+            * Description: Create custom autocomplete keyword configurations for a specific sales channel to map any endpoint with these keywords.
             **/
             public func createCustomAutocompleteRule(
                 body: CreateAutocompleteKeyword,
@@ -7271,8 +7269,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Delete autocomplete keywords
-            * Description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+            * Summary: Delete autocomplete keyword.
+            * Description: Delete custom autocomplete keyword configurations for a specific sales channel by its id.
             **/
             public func deleteAutocompleteKeyword(
                 id: String,
@@ -7320,8 +7318,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get autocomplete keyword details
-            * Description: Retrieve detailed information about a specific autocomplete keyword.
+            * Summary: Get autocomplete keyword.
+            * Description: Retrieve detailed information about a specific autocomplete keyword for a specific sales channel by its id.
             **/
             public func getAutocompleteKeywordDetail(
                 id: String,
@@ -7369,8 +7367,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Update autocomplete keywords
-            * Description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+            * Summary: Update autocomplete keyword.
+            * Description: Update a specific autocomplete keyword configuration by its id for a specific sales channel.
             **/
             public func updateAutocompleteKeyword(
                 id: String,
@@ -7418,8 +7416,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Delete Search Configuration
-            * Description: Delete search configuration in the catalog.
+            * Summary: Delete search configuration
+            * Description: Delete Search Configuration for a specific sales channel.
             **/
             public func deleteSearchConfiguration(
                 
@@ -7466,8 +7464,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get Search Configuration
-            * Description: Get search configuration in the catalog.
+            * Summary: Get Search configuration
+            * Description: Get search configuration for a specific company and sales channel.
             **/
             public func getSearchConfiguration(
                 
@@ -7515,7 +7513,7 @@ if let value = q {
             /**
             *
             * Summary: Create search configuration
-            * Description: Create search configuration for the catalog.
+            * Description: Create search configuration for the catalog for a specific company and sales channel.
             **/
             public func createSearchConfiguration(
                 body: CreateSearchConfigurationRequest,
@@ -7562,8 +7560,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Update search configuration for an application
-            * Description: This view allows you to modify searchable attributes for an application
+            * Summary: Update search configuration
+            * Description: Allows you to modify searchable attributes for an sales channel. searchable attributes are the fields on which the products are searched.
             **/
             public func updateSearchConfiguration(
                 body: UpdateSearchConfigurationRequest,
@@ -7610,8 +7608,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get all search keywords
-            * Description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
+            * Summary: List search keywords
+            * Description: Get all custom search keywords for a specific company and sales channel allows you to map certain conditions with the keywords to give you ultimate results.
             **/
             public func getAllSearchKeyword(
                 
@@ -7658,8 +7656,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Create custom search keywords
-            * Description: Create a Custom Search Keywords. 
+            * Summary: Create search keywords
+            * Description: Create a Custom Search Keywords for a specific company and sales channel allows you to map certail conditions with the keywords to give you ultimate results.
             **/
             public func createCustomKeyword(
                 body: CreateSearchKeyword,
@@ -7707,7 +7705,7 @@ if let value = q {
             /**
             *
             * Summary: Delete search keywords
-            * Description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+            * Description: Delete a search keywords by its id for a specific company and sales channel.
             **/
             public func deleteSearchKeywords(
                 id: String,
@@ -7755,8 +7753,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Retrieve search keywords
-            * Description: Retrieve a list of search keywords from the catalog.
+            * Summary: Get search keywords
+            * Description: Retrieve a list of a specific list of keywords by its id for a specific company and sales channel.
             **/
             public func getSearchKeywords(
                 id: String,
@@ -7805,7 +7803,7 @@ if let value = q {
             /**
             *
             * Summary: Update search keywords
-            * Description: Update Search Keyword by its id. On successful request, returns the updated collection
+            * Description: Update a specific search keyword by its id for a specific company and sales channel.
             **/
             public func updateSearchKeywords(
                 id: String,
@@ -7853,8 +7851,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Update application location
-            * Description: Modify location data related to the application. Helps to update data associated to a item custom meta
+            * Summary: Update sales channel location
+            * Description: Modify location data related to the sales channel.
             **/
             public func updateAppLocation(
                 storeUid: String,
@@ -7963,7 +7961,7 @@ if let value = q {
             /**
             *
             * Summary: Update 'Allow Single' setting
-            * Description: Modify allow single flag for filters of the application.
+            * Description: Modify allow single flag for filters of the sales channel for a company and an sales channel.
             **/
             public func updateAllowSingle(
                 body: AllowSingleRequest,
@@ -8010,8 +8008,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Update default sorting
-            * Description: Modify the default sort key configuration for the application.
+            * Summary: Update default sorting.
+            * Description: Modify the default sort key configuration for a company and an sales channel.
             **/
             public func updateDefaultSort(
                 body: DefaultKeyRequest,
@@ -8058,8 +8056,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Retrieve listing configurations
-            * Description: Retrieve the details of the application configured configurations of listing config types.
+            * Summary: Get listing configurations.
+            * Description: Retrieve product listing configurations based on specific config_type for a company and an sales channel.
             **/
             public func getListingConfigurations(
                 configType: String,
@@ -8132,7 +8130,7 @@ if let value = search {
             /**
             *
             * Summary: Create listing configuration
-            * Description: Add configuration for catalog listing.
+            * Description: Add configuration for product catalog listing specific to a company and an sales channel.
             **/
             public func createListingConfiguration(
                 configType: String,
@@ -8180,8 +8178,8 @@ if let value = search {
             
             /**
             *
-            * Summary: Retrieve group configurations
-            * Description: Retrieve the details of the application configured configurations of group config types.
+            * Summary: Get group configurations
+            * Description: Retrieve the details of product group configurations based on config types for a company and an sales channel.
             **/
             public func getGroupConfigurations(
                 configType: String,
@@ -8262,7 +8260,7 @@ if let value = templateSlug {
             /**
             *
             * Summary: Create group configuration
-            * Description: Create configuration for group configuration types.
+            * Description: Create group configuration for a specific config_type for a company and an sales channel.
             **/
             public func createGroupConfiguration(
                 configType: String,
@@ -8310,8 +8308,8 @@ if let value = templateSlug {
             
             /**
             *
-            * Summary: Delete group configuration
-            * Description: Delete configuration of the product config type of the application.
+            * Summary: Delete group configuration.
+            * Description: Delete group configurations by its slug for a specific config_type for a company and an sales channel.
             **/
             public func deleteGroupConfiguration(
                 configType: String,
@@ -8361,7 +8359,7 @@ if let value = templateSlug {
             /**
             *
             * Summary: Update group configuration
-            * Description: Modify the group configurations for the application.
+            * Description: Modify group configurations by its slug for specific config_type for a company and an sales channel.
             **/
             public func updateGroupConfiguration(
                 configType: String,
@@ -8410,8 +8408,8 @@ if let value = templateSlug {
             
             /**
             *
-            * Summary: Delete listing configuration
-            * Description: Remove a specific listing configuration from the catalog.
+            * Summary: Delete listing configuration.
+            * Description: Remove a specific product listing configuration by its config_id for a specific config_type for a company and an sales channel.
             **/
             public func deleteListingConfiguration(
                 configType: String,
@@ -8461,7 +8459,7 @@ if let value = templateSlug {
             /**
             *
             * Summary: Update listing configuration
-            * Description: Modify the details and settings of an existing listing configuration.
+            * Description: Modify a specific product listing configuration by its config_id for a specific config_type for a company and an sales channel.
             **/
             public func updateListingConfiguration(
                 configType: String,
@@ -8510,8 +8508,8 @@ if let value = templateSlug {
             
             /**
             *
-            * Summary: Retrieve configuration metadata
-            * Description: Retrieve the configuraion metadata details for catalog.
+            * Summary: Get configuration metadata.
+            * Description: Retrieve the configuraion metadata details for specific config_type for a company and an sales channel.
             **/
             public func getConfigurationMetadata(
                 configType: String,
@@ -8625,7 +8623,7 @@ if let value = q {
             /**
             *
             * Summary: Get application providers
-            * Description: Retrieve a list of providers associated with the platform.
+            * Description: Retrieve a list of providers associated with the sales channel.
             **/
             public func getAppProviders(
                 
@@ -8673,7 +8671,7 @@ if let value = q {
             /**
             *
             * Summary: Update application providers
-            * Description: Modify provider information for the platform.
+            * Description: Modify provider configuration using provider object id .
             **/
             public func updateAppProviders(
                 body: AppProviderReq,
@@ -8721,7 +8719,7 @@ if let value = q {
             /**
             *
             * Summary: Get global providers
-            * Description: Retrieve a list of global communication providers.
+            * Description: Retrieve a list of global communication providers associated with the sales channel..
             **/
             public func getGlobalProviders(
                 
@@ -8768,8 +8766,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get email providers
-            * Description: Retrieve a list of email communication providers.
+            * Summary: Get all email providers
+            * Description: Retrieves a list of all email communication providers associated with the sales channel..
             **/
             public func getEmailProviders(
                 pageNo: Int?,
@@ -8848,8 +8846,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Create email provider
-            * Description: Generate and add a new email communication provider.
+            * Summary: Create an email provider
+            * Description: Creates a new email communication provider.
             **/
             public func createEmailProvider(
                 body: EmailProviderReq,
@@ -8896,8 +8894,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get email provider by ID
-            * Description: Retrieve detailed information about a specific email communication provider.
+            * Summary: Get a email provider
+            * Description: Retrieves detailed information about a specific email communication provider.
             **/
             public func getEmailProviderById(
                 id: String,
@@ -8945,8 +8943,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Update email provider by ID
-            * Description: Modify the settings of a specific email communication provider.
+            * Summary: Update email provider
+            * Description: Modifys the configurations of a specific email communication provider.
             **/
             public func updateEmailProviderById(
                 id: String,
@@ -8994,8 +8992,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Delete email provider by ID
-            * Description: Remove a specific email communication provider from the platform.
+            * Summary: Delete an email provider
+            * Description: Removes a specific email communication provider from the platform permenantly.
             **/
             public func deleteEmailProviderById(
                 id: String,
@@ -9043,8 +9041,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get SMS providers
-            * Description: Retrieve a list of SMS communication providers.
+            * Summary: Get all SMS providers
+            * Description: Retrieves a list of SMS communication providers.
             **/
             public func getSmsProviders(
                 pageNo: Int?,
@@ -9124,7 +9122,7 @@ if let value = query {
             /**
             *
             * Summary: Create SMS provider
-            * Description: Add a new SMS communication provider.
+            * Description: Creates a new SMS communication provider.
             **/
             public func createSmsProvider(
                 body: SmsProviderReq,
@@ -9171,8 +9169,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get default SMS providers
-            * Description: Retrieve the default SMS communication providers.
+            * Summary: Get all default SMS providers
+            * Description: Retrieve all the default SMS communication providers.
             **/
             public func getDefaultSmsProviders(
                 
@@ -9219,7 +9217,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Get SMS provider by ID
+            * Summary: Get a SMS provider
             * Description: Retrieve detailed information about a specific SMS communication provider.
             **/
             public func getSmsProviderById(
@@ -9268,8 +9266,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Update SMS provider by ID
-            * Description: Modify specific SMS communication provider.
+            * Summary: Update SMS provider
+            * Description: Modifys the configurations of a specific SMS communication provider.
             **/
             public func updateSmsProviderById(
                 id: String,
@@ -9317,8 +9315,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Delete SMS provider by ID
-            * Description: Remove a specific SMS communication provider.
+            * Summary: Delete an SMS provider
+            * Description: Removes a specific SMS communication provider from the platform permenantly.
             **/
             public func deleteSmsProviderById(
                 id: String,
@@ -9366,8 +9364,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get campaigns
-            * Description: Retrieve a list of communication campaigns.
+            * Summary: Get all campaigns
+            * Description: Retrieves a list of communication campaigns.
             **/
             public func getCampaigns(
                 query: [String: Any]?,
@@ -9446,8 +9444,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Create campaign
-            * Description: Add a new communication campaign.
+            * Summary: Create a campaign
+            * Description: Creates a new communication campaign.
             **/
             public func createCampaign(
                 body: CampaignReq,
@@ -9494,8 +9492,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Get campaign by ID
-            * Description: Retrieve detailed information about a specific communication campaign.
+            * Summary: Get a campaign
+            * Description: Retrieves detailed information about a specific communication campaign.
             **/
             public func getCampaignById(
                 id: String,
@@ -9543,8 +9541,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Update campaign by ID
-            * Description: Modify the settings of a specific communication campaign.
+            * Summary: Update a campaign
+            * Description: Modify the configuration of a specific communication campaign.
             **/
             public func updateCampaignById(
                 id: String,
@@ -9592,8 +9590,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Get campaign statistics by ID
-            * Description: Retrieve statistical data for a specific communication campaign.
+            * Summary: Get campaign statistics
+            * Description: Retrieves statistical data for a specific a communication campaign.
             **/
             public func getStatsOfCampaignById(
                 id: String,
@@ -9641,8 +9639,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Get BigQuery row count by ID
-            * Description: Retrieve big query row count by id
+            * Summary: Get BigQuery row count
+            * Description: Retrieves big query row count by id
             **/
             public func getBigQueryRowCountById(
                 id: String,
@@ -9690,8 +9688,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Create BigQuery row count
-            * Description: Create big query row count
+            * Summary: Create a BigQuery row count
+            * Description: Creates big query row count
             **/
             public func createBigQueryRowCount(
                 
@@ -9738,8 +9736,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Get BigQuery headers by ID
-            * Description: Retrieve header information from BigQuery for a specific campaign.
+            * Summary: Get BigQuery headers
+            * Description: Retrieves header information from BigQuery.
             **/
             public func getBigQueryHeadersById(
                 id: String,
@@ -9788,7 +9786,7 @@ if let value = sort {
             /**
             *
             * Summary: Create BigQuery N-count
-            * Description: Create big query n count
+            * Description: Creates big query n count
             **/
             public func createBigQueryNCount(
                 
@@ -9836,7 +9834,7 @@ if let value = sort {
             /**
             *
             * Summary: Create BigQuery headers
-            * Description: Create big query headers
+            * Description: Create BigQuery headers
             **/
             public func createBigQueryHeaders(
                 
@@ -9884,7 +9882,7 @@ if let value = sort {
             /**
             *
             * Summary: Get system audiences
-            * Description: Retrieve system-defined audiences for communication.
+            * Description: Retrieves a list of  system-defined audiences for communication.
             **/
             public func getSystemAudiences(
                 
@@ -9931,8 +9929,8 @@ if let value = sort {
             
             /**
             *
-            * Summary: Get audiences
-            * Description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign.
+            * Summary: Get all the audiences
+            * Description: Retrieves a list of all the audiences.
             **/
             public func getAudiences(
                 pageNo: Int?,
@@ -10011,8 +10009,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Create audience
-            * Description: Add audience which is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. 
+            * Summary: Create an audience
+            * Description: Creates a new email audience.
             **/
             public func createAudience(
                 body: AudienceReq,
@@ -10059,8 +10057,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get audience by ID
-            * Description: Retrieve detailed information about a specific custom communication audience.
+            * Summary: Get an audience
+            * Description: Retrieves detailed information about an specific audience.
             **/
             public func getAudienceById(
                 id: String,
@@ -10108,8 +10106,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Update audience by ID
-            * Description: Modify the settings of a specific custom communication audience.
+            * Summary: Update an audience
+            * Description: Modify the configuration of a specific audience.
             **/
             public func updateAudienceById(
                 id: String,
@@ -10157,8 +10155,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Delete audience by ID
-            * Description: Remove a specific custom communication audience.
+            * Summary: Delete an audience
+            * Description: Remove a specific audience permenantly.
             **/
             public func deleteAudienceById(
                 id: String,
@@ -10207,7 +10205,7 @@ if let value = query {
             /**
             *
             * Summary: Get dummy data sources
-            * Description: Retrieve a list of dummy data sources for testing.
+            * Description: Retrieve a list of dummy data sources.
             **/
             public func getDummyDatasources(
                 
@@ -10303,8 +10301,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get N sample records in CSV 
-            * Description: Retrieve a specified number of sample records from a CSV data source using a GET request.
+            * Summary: Get N sample records of a CSV
+            * Description: Retrieve a specified number of sample records from a CSV data source.
             **/
             public func getNSampleRecordsFromCsvByGet(
                 
@@ -10351,7 +10349,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Get N sample records from CSV
+            * Summary: Get N sample records of a CSV
             * Description: Retrieve a specified number of sample records from a CSV data source.
             **/
             public func getNSampleRecordsFromCsv(
@@ -10399,8 +10397,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get email templates
-            * Description: Retrieve a list of available email communication templates.
+            * Summary: Get all email templates
+            * Description: Retrieves a list of available email communication templates.
             **/
             public func getEmailTemplates(
                 pageNo: Int?,
@@ -10479,8 +10477,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Create email template
-            * Description: Generate and add a new email communication template.
+            * Summary: Creat an email template
+            * Description: Creates a new email communication template.
             **/
             public func createEmailTemplate(
                 body: EmailTemplateReq,
@@ -10527,8 +10525,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get system email templates
-            * Description: Retrieve system-defined email communication templates.
+            * Summary: Get all system email templates
+            * Description: Retrieves system-defined email communication templates.
             **/
             public func getSystemEmailTemplates(
                 
@@ -10575,8 +10573,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get email template by ID
-            * Description: Retrieve detailed information about a specific email communication template.
+            * Summary: Get an email template
+            * Description: Retrieves detailed information about a specific email communication template.
             **/
             public func getEmailTemplateById(
                 id: String,
@@ -10624,8 +10622,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Update email template by ID
-            * Description: Modify the content and settings of a specific email communication template.
+            * Summary: Update an email template
+            * Description: Modifys the content and settings of a specific email communication template.
             **/
             public func updateEmailTemplateById(
                 id: String,
@@ -10673,8 +10671,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Delete email template by ID
-            * Description: Email templates are predefined formats linked to various events for delivering messages to users. Remove a specific email communication template by its ID.
+            * Summary: Delete an email template
+            * Description: Removes a specific email communication template from the platform permenantly.
             **/
             public func deleteEmailTemplateById(
                 id: String,
@@ -10722,8 +10720,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get subscribed email templates
-            * Description: Retrieve email communication templates that are subscribed to.
+            * Summary: Get all subscribed email templates
+            * Description: Retrieves a list of email communication templates that are subscribed to an event.
             **/
             public func getSubscribedEmailTemplates(
                 pageNo: Int?,
@@ -10794,8 +10792,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get SMS templates
-            * Description: Retrieve a list of available SMS communication templates.
+            * Summary: Get all SMS templates
+            * Description: Retrieve a list of all SMS communication templates.
             **/
             public func getSmsTemplates(
                 pageNo: Int?,
@@ -10874,8 +10872,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Create SMS template
-            * Description: Add a new SMS communication template.
+            * Summary: Create a SMS template
+            * Description: Creates a new SMS communication template.
             **/
             public func createSmsTemplate(
                 body: SmsTemplateReq,
@@ -10922,8 +10920,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get system SMS templates
-            * Description: Retrieve system-defined SMS communication templates.
+            * Summary: Gets all system SMS templates
+            * Description: Retrieves system-defined SMS communication templates.
             **/
             public func getSystemSmsTemplates(
                 
@@ -10970,8 +10968,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get SMS template by ID
-            * Description: Retrieve detailed information about a specific SMS communication template.
+            * Summary: Get a SMS template
+            * Description: Retrieves detailed information about a specific SMS communication template.
             **/
             public func getSmsTemplateById(
                 id: String,
@@ -11019,8 +11017,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Update SMS template by ID
-            * Description: Modify the content and settings of a specific SMS communication template.
+            * Summary: Update a SMS template
+            * Description: Modifys the content and settings of a specific SMS communication template.
             **/
             public func updateSmsTemplateById(
                 id: String,
@@ -11068,8 +11066,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Delete SMS template by ID
-            * Description: Remove a specific SMS communication template.
+            * Summary: Delete an SMS template
+            * Description: Removes a specific SMS communication template from the platform permenantly.
             **/
             public func deleteSmsTemplateById(
                 id: String,
@@ -11117,8 +11115,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get subscribed SMS templates
-            * Description: Retrieve SMS communication templates that are subscribed to.
+            * Summary: Get all subscribed SMS templates
+            * Description: Retrieve a list of SMS communication templates that are subscribed to an event.
             **/
             public func getSubscribedSmsTemplates(
                 pageNo: Int?,
@@ -11190,7 +11188,7 @@ if let value = query {
             /**
             *
             * Summary: Send communication synchronously
-            * Description: Initiate and send communication in real-time.
+            * Description: Sends real-time communications to sellers with immediate delivery.
             **/
             public func sendCommunicationSynchronously(
                 body: EngineRequest,
@@ -11238,7 +11236,7 @@ if let value = query {
             /**
             *
             * Summary: Send communication asynchronously
-            * Description: Initiate and send communication with the option for asynchronous processing.
+            * Description: Sends communications to sellers with deffered delivery.
             **/
             public func sendCommunicationAsynchronously(
                 body: EngineRequest,
@@ -11285,8 +11283,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get event subscriptions
-            * Description: Retrieve a list of event subscriptions related to communication.
+            * Summary: Get all event subscriptions
+            * Description: Retrieves a list of all event subscriptions.
             **/
             public func getEventSubscriptions(
                 pageNo: Int?,
@@ -11357,8 +11355,8 @@ if let value = populate {
             
             /**
             *
-            * Summary: Create event subscriptions
-            * Description: Create event subscriptions
+            * Summary: Create an event subscription
+            * Description: Creates a new event subscription.
             **/
             public func createEventSubscriptions(
                 body: SubscriptionsObject,
@@ -11405,8 +11403,8 @@ if let value = populate {
             
             /**
             *
-            * Summary: Get event subscriptions by id
-            * Description: Get event subscriptions by id
+            * Summary: Get an event subscription
+            * Description: Retrieves detailed information about a specific event subscription.
             **/
             public func getEventSubscriptionsById(
                 id: String,
@@ -11462,8 +11460,8 @@ if let value = populate {
             
             /**
             *
-            * Summary: Create event subscriptions
-            * Description: Create event subscriptions
+            * Summary: Update an event subscriptions
+            * Description: Modifys the configuration and settings of a specific event subscription.
             **/
             public func editEventSubscriptions(
                 id: String,
@@ -11511,8 +11509,8 @@ if let value = populate {
             
             /**
             *
-            * Summary: Create event subscriptions
-            * Description: Create event subscriptions
+            * Summary: Delete an event subscriptions
+            * Description: Removes a specific event subscription from the platform permenantly.
             **/
             public func deleteEventSubscriptionsById(
                 id: String,
@@ -11560,8 +11558,8 @@ if let value = populate {
             
             /**
             *
-            * Summary: Create event subscriptions by bulk
-            * Description: Create event subscriptions by bulk
+            * Summary: Create event subscriptions in bulk
+            * Description: Creates a new event subscription in bulk.
             **/
             public func createEventSubscriptionsByBulk(
                 body: EventSubscriptionsBulkUpdateRequest,
@@ -11608,8 +11606,8 @@ if let value = populate {
             
             /**
             *
-            * Summary: Get global variables
-            * Description: Retrieve global variables used in communication.
+            * Summary: Get all global variables
+            * Description: Retrieves a list of communication global variables.
             **/
             public func getGlobalVariables(
                 
@@ -11656,8 +11654,8 @@ if let value = populate {
             
             /**
             *
-            * Summary: Post global variables
-            * Description: Update and post global variables for communication.
+            * Summary: Create global variables
+            * Description: Updates and creates communication global variables.
             **/
             public func postGlobalVariables(
                 body: GlobalVariablesReq,
@@ -11704,8 +11702,8 @@ if let value = populate {
             
             /**
             *
-            * Summary: Get jobs
-            * Description: Retrieve a list of communication jobs.
+            * Summary: Get all campaign jobs
+            * Description: Retrieves a list of campaign jobs.
             **/
             public func getJobs(
                 pageNo: Int?,
@@ -11784,8 +11782,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Create jobs
-            * Description: Create jobs
+            * Summary: Create a campaign  jobs
+            * Description: Creates a new campaign  job.
             **/
             public func createJobs(
                 body: CreateJobsReq,
@@ -11832,8 +11830,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Trigger campaign job
-            * Description: Initiate a job to execute a communication campaign.
+            * Summary: Trigger a campaign job
+            * Description: Initiates a job to execute a communication campaign.
             **/
             public func triggerCampaignJob(
                 body: TriggerJobRequest,
@@ -11880,8 +11878,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get job logs
-            * Description: Retrieve logs and details related to communication jobs.
+            * Summary: Get logs of all campaign job
+            * Description: Retrieve logs and details related to campaign jobs.
             **/
             public func getJobLogs(
                 pageNo: Int?,
@@ -11960,8 +11958,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get communication logs
-            * Description: Retrieve logs and records of communication activities.
+            * Summary: Get communication reports
+            * Description: Retrieve a lsit of logs and records of communication activities.
             **/
             public func getCommunicationLogs(
                 pageId: String?,
@@ -12042,7 +12040,7 @@ if let value = query {
             /**
             *
             * Summary: Send OTP
-            * Description: Send a one-time password (OTP) for authentication or verification.
+            * Description: Sends a one-time password (OTP) for authentication or verification.
             **/
             public func sendOtp(
                 body: SendOtpCommsReq,
@@ -12090,7 +12088,7 @@ if let value = query {
             /**
             *
             * Summary: Verify OTP
-            * Description: Verify the one-time password (OTP) for authentication or verification.
+            * Description: Verifies the one-time password (OTP) for authentication or verification.
             **/
             public func verfiyOtp(
                 body: VerifyOtpCommsReq,
@@ -12137,8 +12135,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get otp-configuration, if not present in db then return default settings
-            * Description: Get otp-configuration
+            * Summary: Get configuration of otp
+            * Description: Retrieves all configurations related to OTP.
             **/
             public func getOtpConfiguration(
                 
@@ -12185,8 +12183,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Update/insert otp configurations
-            * Description: Update otp-configuration
+            * Summary: Update configuration of otp
+            * Description: Updates all configurations related to OTP.
             **/
             public func updateOtpConfiguration(
                 
@@ -12248,7 +12246,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Get build configuration
+            * Summary: Get Build Configuration
             * Description: Retrieve latest build configuration, such as app name, landing page image, splash image used in a mobile build.
             **/
             public func getBuildConfig(
@@ -12395,7 +12393,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Get application features
+            * Summary: Get sales channel
             * Description: Shows feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
             **/
             public func getAppFeatures(
@@ -12443,7 +12441,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Update application features
+            * Summary: Update sales channel
             * Description: Modify the feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
             **/
             public func updateAppFeatures(
@@ -12491,8 +12489,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Modify application features
-            * Description: Update features of application
+            * Summary: update  sales channel features
+            * Description: Modify the feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
             **/
             public func modifyAppFeatures(
                 body: AppFeatureRequest,
@@ -12539,7 +12537,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Get application basic details
+            * Summary: Get sales channel
             * Description: Shows basic sales channel details like name, description, logo, domain, company ID, and other related information.
             **/
             public func getAppBasicDetails(
@@ -12587,7 +12585,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Update application basic details
+            * Summary: Update sales channel basic details
             * Description: Modify sales channel details like name, description, logo, domain, company ID, and other related information.
             **/
             public func updateAppBasicDetails(
@@ -12635,8 +12633,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get application contact information
-            * Description: Fetch data such as social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application.
+            * Summary: Get sales channel contact
+            * Description: Fetch data such as social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the sales channel.
             **/
             public func getAppContactInfo(
                 
@@ -12683,8 +12681,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Update application contact information
-            * Description: Modify the social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application.
+            * Summary: Update sales channel contact
+            * Description: Modify the social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the sales channel.
             **/
             public func updateAppContactInfo(
                 body: ApplicationInformation,
@@ -12731,7 +12729,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Get application API tokens
+            * Summary: Get sales channel API tokens
             * Description: Retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth. 
             **/
             public func getAppApiTokens(
@@ -12779,8 +12777,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Update application API tokens
-            * Description: Add or edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth.
+            * Summary: Update sales channel API tokens
+            * Description: Add and edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth.
             **/
             public func updateAppApiTokens(
                 body: TokenResponse,
@@ -12827,8 +12825,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Get application companies
-            * Description: Retrieve info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application
+            * Summary: List sales channel companies
+            * Description: Retrieve info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel sales channel
             **/
             public func getAppCompanies(
                 uid: Int?,
@@ -12899,8 +12897,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get application stores
-            * Description: Retrieve information of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application
+            * Summary: list sales channel stores
+            * Description: Retrieve information of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel sales channel
             **/
             public func getAppStores(
                 pageNo: Int?,
@@ -13060,7 +13058,7 @@ if let value = pageSize {
             /**
             *
             * Summary: Partially update inventory configuration
-            * Description: Partially update the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
+            * Description: Modify the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
             **/
             public func partiallyUpdateInventoryConfig(
                 body: AppInventoryPartialUpdate,
@@ -13107,8 +13105,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get application currency configuration
-            * Description: Retrieve a list of currencies supported in the current sales channel. Moreover, get the cuurency that is set as the default one in the application.
+            * Summary: Get sales channel currency configuration
+            * Description: Retrieve a list of currencies supported in the current sales channel. Moreover, get the cuurency that is set as the default one in the sales channel.
             **/
             public func getAppCurrencyConfig(
                 
@@ -13155,8 +13153,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Update application currency configuration
-            * Description: Modify currency configuration settings for the application. Add and edit the currencies supported in the application. Initially, INR will be enabled by default.
+            * Summary: Update sales channel currency configuration
+            * Description: Modify currency configuration settings for the sales channel. Add and edit the currencies supported in the sales channel. Initially, INR will be enabled by default.
             **/
             public func updateAppCurrencyConfig(
                 body: AppSupportedCurrency,
@@ -13203,8 +13201,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get supported currencies
-            * Description: Retrieve a list of supported currencies for the application. A list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+            * Summary: List supported currencies
+            * Description: Retrieve a list of supported currencies for the sales channel. A list of currencies allowed in the current sales channel. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
             **/
             public func getAppSupportedCurrency(
                 
@@ -13251,8 +13249,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get ordering stores by filter
-            * Description: Retrieve ordering stores based on specified filters. Use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
+            * Summary: List ordering stores 
+            * Description: Retrieve ordering stores based on specified filters. Use filters and retrieve the details of the deployment stores (the selling locations where the sales channel will be utilised for placing orders).
             **/
             public func getOrderingStoresByFilter(
                 pageNo: Int?,
@@ -13316,7 +13314,7 @@ if let value = pageSize {
             /**
             *
             * Summary: Update ordering store configuration
-            * Description: Modify configuration settings for ordering stores. Edit the details of the deployment stores (the selling locations where the application will be utilised for placing orders)
+            * Description: Modify configuration settings for ordering stores. Edit the details of the deployment stores (the selling locations where the sales channel will be utilised for placing orders)
             **/
             public func updateOrderingStoreConfig(
                 body: OrderingStoreConfig,
@@ -13364,7 +13362,7 @@ if let value = pageSize {
             /**
             *
             * Summary: Get ordering store configuration
-            * Description: Retrieve configuration settings for ordering stores. Retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
+            * Description: Retrieve configuration settings for ordering stores. Retrieve the details of the deployment stores (the selling locations where the sales channel will be utilised for placing orders).
             **/
             public func getOrderingStoreConfig(
                 
@@ -13412,7 +13410,7 @@ if let value = pageSize {
             /**
             *
             * Summary: Get staff ordering stores
-            * Description: Retrieve ordering stores accessible to staff members. Retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders).
+            * Description: Retrieve ordering stores accessible to staff members. Retrieve the details of all stores access given to the staff member (the selling locations where the sales channel will be utilized for placing orders).
             **/
             public func getStaffOrderingStores(
                 pageNo: Int?,
@@ -13483,7 +13481,7 @@ if let value = q {
             
             /**
             *
-            * Summary: Get an Ordering Store signed cookie on selection of ordering store
+            * Summary: Get Ordering Store signed cookie.
             * Description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart.
             **/
             public func getOrderingStoreCookie(
@@ -13531,7 +13529,7 @@ if let value = q {
             
             /**
             *
-            * Summary: Unset the Ordering Store signed cookie
+            * Summary: Delete Ordering Store signed cookie
             * Description: Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app.
             **/
             public func removeOrderingStoreCookie(
@@ -13579,8 +13577,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get domains
-            * Description: Get list of domains. 
+            * Summary: List  domains
+            * Description: Retrieve a list of existing domains by its sales channel id.
             **/
             public func getDomains(
                 
@@ -13627,8 +13625,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Add domain
-            * Description: Add a new domain. Add a new domain to current sales channel, including pre-defined domain (free domain) or custom domain (owned by the brand)
+            * Summary: Create domain
+            * Description: Creates a domain for an sales channel. Note - Only 15 domains can be added to the sales channel
             **/
             public func addDomain(
                 body: DomainAddRequest,
@@ -13675,8 +13673,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Remove domain by ID
-            * Description: Delete a specific domain from the application. Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain.
+            * Summary: Remove domain
+            * Description: Delete a specific domain from the sales channel. Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain.
             **/
             public func removeDomainById(
                 id: String,
@@ -13724,7 +13722,7 @@ if let value = q {
             
             /**
             *
-            * Summary: Change domain type
+            * Summary: Update domain
             * Description: Modify the type of a specific domain. Primary domain is used as the URL of your website. Short link domain is comparatively smaller and used while generating short links.
             **/
             public func changeDomainType(
@@ -13822,8 +13820,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get application by ID
-            * Description: Retrieve detailed information about a specific application. Use application ID to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, token, etc.
+            * Summary: Get sales channel by id
+            * Description: Retrieve detailed information about a specific sales channel. Use sales channel ID to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, token, etc.
             **/
             public func getApplicationById(
                 
@@ -13901,8 +13899,8 @@ if let value = q {
             
             /**
             *
-            * Summary: Get announcements list
-            * Description: Retrieve a list of announcements.
+            * Summary: List announcements
+            * Description: Lists all announcements
             **/
             public func getAnnouncementsList(
                 pageNo: Int?,
@@ -14013,8 +14011,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get announcement by ID
-            * Description: Retrieve detailed information about a specific announcement.
+            * Summary: Get announcement
+            * Description: Get detailed information about a specific announcement
             **/
             public func getAnnouncementById(
                 announcementId: String,
@@ -14160,7 +14158,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Delete announcement
+            * Summary: Delete an announcement
             * Description: Remove a specific announcement.
             **/
             public func deleteAnnouncement(
@@ -14257,8 +14255,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get blogs
-            * Description: Retrieve a list of available blogs.
+            * Summary: List blogs
+            * Description: List all blogs
             **/
             public func getBlogs(
                 pageNo: Int?,
@@ -14321,7 +14319,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Update blog
+            * Summary: Update a blog
             * Description: Modify the content and settings of a specific blog.
             **/
             public func updateBlog(
@@ -14370,7 +14368,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Delete blog
+            * Summary: Delete a blog
             * Description: Remove a specific blog.
             **/
             public func deleteBlog(
@@ -14419,7 +14417,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get component by ID
+            * Summary: Get component
             * Description: Retrieve detailed information about a specific component.
             **/
             public func getComponentById(
@@ -14468,7 +14466,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Add data loader
+            * Summary: Create data loader
             * Description: Create and add a new data loader.
             **/
             public func addDataLoader(
@@ -14516,8 +14514,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get data loaders
-            * Description: Retrieve a list of data loaders.
+            * Summary: List data loaders
+            * Description: List all Dataloaders
             **/
             public func getDataLoaders(
                 
@@ -14564,7 +14562,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Delete data loader
+            * Summary: Delete a data loader
             * Description: Remove a specific data loader.
             **/
             public func deleteDataLoader(
@@ -14613,7 +14611,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Edit data loader
+            * Summary: Update a data loader
             * Description: Modify the settings of a specific data loader.
             **/
             public func editDataLoader(
@@ -14662,7 +14660,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get all the data loaders in an application by service name
+            * Summary: List all data loaders
             * Description: Use this to get all data loaders of an application by service name
             **/
             public func getDataLoadersByService(
@@ -14711,7 +14709,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Select data loader
+            * Summary: Select a data loader
             * Description: Choose and set a data loader for use.
             **/
             public func selectDataLoader(
@@ -14760,7 +14758,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Reset data loader
+            * Summary: Reset a data loader
             * Description: Clear and reset data loader settings.
             **/
             public func resetDataLoader(
@@ -14810,8 +14808,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get FAQ categories
-            * Description: Retrieve a list of FAQ categories.
+            * Summary: List FAQ Categories
+            * Description: List all FAQ Categories
             **/
             public func getFaqCategories(
                 
@@ -14858,8 +14856,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get FAQ category by slug or ID
-            * Description: Retrieve detailed information about a specific FAQ category.
+            * Summary: Get FAQ category
+            * Description: Get detailed information about a specific FAQ category
             **/
             public func getFaqCategoryBySlugOrId(
                 idOrSlug: String,
@@ -14907,7 +14905,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Create FAQ category
+            * Summary: Create FAQ Category
             * Description: Generate and add a new FAQ category.
             **/
             public func createFaqCategory(
@@ -15053,7 +15051,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get FAQs by category ID or slug
+            * Summary: List FAQs
             * Description: Retrieve a list of FAQs within a specific category.
             **/
             public func getFaqsByCategoryIdOrSlug(
@@ -15102,7 +15100,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Add FAQ
+            * Summary: Create FAQ
             * Description: Create and add a new FAQ.
             **/
             public func addFaq(
@@ -15251,8 +15249,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get FAQ by ID or slug
-            * Description: Retrieve detailed information about a specific FAQ.
+            * Summary: Get FAQ or slug
+            * Description: Get detailed information about a specific FAQ
             **/
             public func getFaqByIdOrSlug(
                 idOrSlug: String,
@@ -15350,7 +15348,7 @@ if let value = pageSize {
             /**
             *
             * Summary: Get landing pages
-            * Description: Retrieve a list of landing pages.
+            * Description: Lists a list landing pages as per device types
             **/
             public func getLandingPages(
                 pageNo: Int?,
@@ -15559,8 +15557,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get legal related information for applicaiton
-            * Description: Retrieve legal information and terms.
+            * Summary: Get Legal Pages
+            * Description: Get legal information and terms
             **/
             public func getLegalInformation(
                 
@@ -15607,7 +15605,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Update legal related information for application
+            * Summary: Update Legal Pages
             * Description: Modify legal information and terms.
             **/
             public func updateLegalInformation(
@@ -15975,7 +15973,7 @@ var xQuery: [String: Any] = [:]
             /**
             *
             * Summary: Get page meta
-            * Description: Retrieve metadata for a specific page.
+            * Description: Use this API to Get metadata for a specific page.
             **/
             public func getPageMeta(
                 
@@ -16023,7 +16021,7 @@ var xQuery: [String: Any] = [:]
             /**
             *
             * Summary: Get page specification
-            * Description: Retrieve specifications and details for a specific page.
+            * Description: Use this API to Get specifications and details for a specific page
             **/
             public func getPageSpec(
                 
@@ -16216,7 +16214,7 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Add path redirection rules
+            * Summary: Create path redirection rules
             * Description: Create and add rules for path redirection.
             **/
             public func addPathRedirectionRules(
@@ -16264,8 +16262,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get path redirection rules
-            * Description: Retrieve a list of path redirection rules.
+            * Summary: List Path Redirection Rules
+            * Description: Use this API to List Path Redirection Rules
             **/
             public func getPathRedirectionRules(
                 pageSize: Int?,
@@ -16328,8 +16326,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get path redirection rule
-            * Description: Retrieve detailed information about a specific path redirection rule.
+            * Summary: Get Path Redirection Rule
+            * Description: Use this API to Get detailed information about a specific path redirection rule
             **/
             public func getPathRedirectionRule(
                 pathId: String,
@@ -16377,7 +16375,7 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Update path redirection rules
+            * Summary: Update path redirection rule
             * Description: Modify settings for path redirection rules.
             **/
             public func updatePathRedirectionRules(
@@ -16426,7 +16424,7 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Delete path redirection rules
+            * Summary: Delete path redirection rule
             * Description: Remove specific path redirection rules.
             **/
             public func deletePathRedirectionRules(
@@ -16475,7 +16473,7 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get SEO configuration for an application
+            * Summary: Get sales channel SEO
             * Description: Retrieve configuration settings for SEO.
             **/
             public func getSEOConfiguration(
@@ -16523,7 +16521,7 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Update SEO configuration for an application
+            * Summary: Update sales channel SEO information
             * Description: Modify configuration settings for SEO.
             **/
             public func updateSEOConfiguration(
@@ -16571,8 +16569,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get Default SEO Markup schemas of an application
-            * Description: Use this API to get the Default SEO Markup schema Templates setup for an application
+            * Summary: List default SEO Markup Schemas
+            * Description: Use this API to List default SEO Markup Schemas
             **/
             public func getDefaultSEOMarkupSchema(
                 pageType: String?,
@@ -16627,8 +16625,8 @@ if let value = pageType {
             
             /**
             *
-            * Summary: Get SEO Markup schemas of an application
-            * Description: Use this API to get all SEO Markup schema Templates setup for an application
+            * Summary: List default SEO Markup Schemas
+            * Description: Use this API to List default SEO Markup Schemas
             **/
             public func getSEOMarkupSchemas(
                 title: String?,
@@ -16707,8 +16705,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Create a SEO Markup schema Template of a page type for an application
-            * Description: Use this API to create a SEO Markup schema Template inside an application
+            * Summary: Create SEO Markup Schema
+            * Description: Use this API to Create SEO Markup Schema
             **/
             public func createSEOMarkupSchema(
                 body: SEOSchemaMarkupTemplateRequestBody,
@@ -16755,8 +16753,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get a particular SEO Markup schema of an application using its id
-            * Description: Use this API to get a existing SEO Markup schema an application
+            * Summary: Get SEO Markup Schema
+            * Description: Use this API to Get SEO Markup Schema
             **/
             public func getSEOMarkupSchema(
                 id: String,
@@ -16804,8 +16802,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get a particular SEO Markup schema of an application using its id
-            * Description: Use this API to edit an existing SEO Markup schema an application
+            * Summary: Get SEO Markup Schema
+            * Description: Use this API to Get SEO Markup Schema
             **/
             public func editSEOMarkupSchema(
                 id: String,
@@ -16853,8 +16851,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: delete a particular SEO Markup schema of an application using its id
-            * Description: Use this API to delete an existing SEO Markup schema an application
+            * Summary: Delete SEO Markup Schema
+            * Description: Use this API to Delete SEO Markup Schema
             **/
             public func deleteSEOMarkupSchema(
                 id: String,
@@ -16902,8 +16900,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get slideshows
-            * Description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a list of slideshows.
+            * Summary: List Slideshows
+            * Description: Use this API to list all Slideshows
             **/
             public func getSlideshows(
                 devicePlatform: String,
@@ -17034,7 +17032,7 @@ if let value = pageSize {
             /**
             *
             * Summary: Create a slideshow
-            * Description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to create a slideshow.
+            * Description: Use this API to create a slideshow.
             **/
             public func createSlideshow(
                 body: SlideshowRequest,
@@ -17081,8 +17079,8 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: Get slideshow by slug
-            * Description: Use this API to retrieve the details of a slideshow by its slug.
+            * Summary: Get Slideshow
+            * Description: Use this API to get the details of a slideshow by its slug.
             **/
             public func getSlideshowBySlug(
                 slug: String,
@@ -17137,7 +17135,7 @@ var xQuery: [String: Any] = [:]
             /**
             *
             * Summary: Update a slideshow
-            * Description: Use this API to edit the details of an existing slideshow.
+            * Description: Use this API to Update Slideshow
             **/
             public func updateSlideshow(
                 id: String,
@@ -17282,7 +17280,7 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update support related info for an application
+            * Summary: Update Customer Support Information
             * Description: Modify information related to customer support.
             **/
             public func updateSupportInformation(
@@ -17790,7 +17788,7 @@ if let value = pageSize {
             /**
             *
             * Summary: Get page by slug
-            * Description: Retrieve detailed information about a specific page using its slug.
+            * Description: Get detailed information about a specific page using its slug.
             **/
             public func getPageBySlug(
                 slug: String,
@@ -17863,7 +17861,7 @@ if let value = pageSize {
             /**
             *
             * Summary: Get custom field types
-            * Description: Use this API to retrieve the custom field types 
+            * Description: Each custom field and custom field definition has a type, which defines the type of information that it can store. The custom field types have built-in validation. This api will give list of supported custom fields types
             **/
             public func getAppCustomFieldTypes(
                 
@@ -17911,7 +17909,7 @@ if let value = pageSize {
             /**
             *
             * Summary: Get resources
-            * Description: Use this API to retrieve the resources, such as products, collections, customers, selling locations, etc.
+            * Description: Each custom fields is assosiated with a resource such as product, promotion, coupon, selling location etc, This will gives list of supported resource list.
             **/
             public func getAppResources(
                 
@@ -17959,7 +17957,7 @@ if let value = pageSize {
             /**
             *
             * Summary: Get custom fields definitions
-            * Description: Use this API to retrieve the definitions of custom fields.
+            * Description: Custom field definitions enable you to include data validation for custom fields, and enable sellers to add custom fields values for resources. With the help of this seller can retrive list of custom field definitions list.
             **/
             public func getAppCustomFieldDefinitions(
                 pageNo: String,
@@ -18043,7 +18041,7 @@ if let value = search {
             /**
             *
             * Summary: Create custom field definition
-            * Description: Use this API to create a custom field definition for your application.
+            * Description: You can create custom fields definition to any resource so you can extend property of resource.
             **/
             public func createAppCustomFieldDefinition(
                 body: CustomFieldDefinitionRequestSchema,
@@ -18090,8 +18088,8 @@ if let value = search {
             
             /**
             *
-            * Summary: Get custom fields definition by id
-            * Description: Use this API to retrieve the definitions of custom fields using definition_id.
+            * Summary: Get custom fields definition
+            * Description: Custom field definitions can be fetch using definition id.
             **/
             public func getAppCustomFieldDefinition(
                 definitionId: String,
@@ -18140,7 +18138,7 @@ if let value = search {
             /**
             *
             * Summary: Update custom field definition
-            * Description: Use this API to update a custom field definition for your application.
+            * Description: Custom fields definition can be update using this api, You can update custom field definition name and description.
             **/
             public func updateAppCustomFieldDefinition(
                 definitionId: String,
@@ -18189,7 +18187,7 @@ if let value = search {
             /**
             *
             * Summary: Delete custom fields definition
-            * Description: Use this API to delete the definitions of custom fields using definition_id. This will also delete related custom fields entries related to this definition.
+            * Description: Custom field definition and its assosiated custom fields value can be deleted using this api on the basis of definition id.
             **/
             public func deleteAppCustomFieldDefinition(
                 definitionId: String,
@@ -18238,7 +18236,7 @@ if let value = search {
             /**
             *
             * Summary: Get list of custom fields of gives resource
-            * Description: Use this API to retrieve the custom fields for given resource in param.
+            * Description: Retrieves a list of custom fields attached to a particular resource by using the resource.
             **/
             public func getAppCustomFields(
                 resource: String,
@@ -18287,7 +18285,7 @@ if let value = search {
             /**
             *
             * Summary: Get list of custom fields of given resource and resource id
-            * Description: Use this API to retrieve the custom fields for given resource in param.
+            * Description: Retrieves a list of custom fields attached to a particular resource by using the resource and resource id.
             **/
             public func getAppCustomFieldsByResourceId(
                 resource: String,
@@ -18337,7 +18335,7 @@ if let value = search {
             /**
             *
             * Summary: Create custom field entries for gives resource and resource_id
-            * Description: Use this API to create the custom field entry for given resource and resource_id in param.
+            * Description: You can add a custom field using this endpoint to any resource by providing the resource ID.
             **/
             public func createAppCustomFieldByResourceId(
                 resource: String,
@@ -18387,7 +18385,7 @@ if let value = search {
             /**
             *
             * Summary: Create custom object definition
-            * Description: Use this API to create custom object defintion
+            * Description: Create a custom object that will have a collection of custom fields and can be used anywhere in the custom field for any resource.
             **/
             public func createAppCustomObjectDefinition(
                 body: CustomObjectDefinitionRequestSchema,
@@ -18435,7 +18433,7 @@ if let value = search {
             /**
             *
             * Summary: Get custom object definitions
-            * Description: Use this API to retrieve the custom object definitions
+            * Description: Custom object definition lists can be obtained using this endpoint.
             **/
             public func getAppCustomObjectDefinitions(
                 pageNo: String,
@@ -18502,8 +18500,8 @@ if let value = search {
             
             /**
             *
-            * Summary: get custom object definition by id
-            * Description: Use this API to update a custom object definition for your application.
+            * Summary: Get custom object definition
+            * Description: Custom object definitions can be fetched using their definition ID.
             **/
             public func getAppCustomObjectDefinition(
                 definitionId: String,
@@ -18552,7 +18550,7 @@ if let value = search {
             /**
             *
             * Summary: Update custom object definition
-            * Description: Use this API to update a custom object definition for your application.
+            * Description: Custom object definitions can be updated using this endpoint. You can update the name and description of the custom object and add more custom field definitions to the existing custom object.
             **/
             public func updateAppCustomObjectDefinition(
                 definitionId: String,
@@ -18600,8 +18598,8 @@ if let value = search {
             
             /**
             *
-            * Summary: delete custom object definition by id
-            * Description: Use this API to delete a custom object definition and related data for your application.
+            * Summary: Delete custom object definition
+            * Description: Custom object definitions can be deleted using this endpoint by providing the definition ID.
             **/
             public func deleteAppCustomObjectDefinition(
                 definitionId: String,
@@ -18650,7 +18648,7 @@ if let value = search {
             /**
             *
             * Summary: Get list of custom objects
-            * Description: Use this API to retrieve the custom objects.
+            * Description: Custom object entries can fetch using this endpoint.
             **/
             public func getAppCustomObjects(
                 definitionId: String?,
@@ -18718,7 +18716,7 @@ if let value = definitionId {
             /**
             *
             * Summary: Create custom object entries
-            * Description: Use this API to create the custom object entry.
+            * Description: Custom object entries against the custom object definition can be added using this API.
             **/
             public func createAppCustomObject(
                 body: CustomObjectRequestSchema,
@@ -18766,7 +18764,7 @@ if let value = definitionId {
             /**
             *
             * Summary: Get custom object details
-            * Description: Use this API to retrieve the custom object details and their fields details and definitions and references.
+            * Description: Details of custom objects, their field details, definitions, and references can be obtained using this endpoint.
             **/
             public func getAppCustomObject(
                 metaobjectId: String,
@@ -18815,7 +18813,7 @@ if let value = definitionId {
             /**
             *
             * Summary: Delete custom object
-            * Description: Use this API to delete the custom object entry by id. This will also delete related custom fields entries related to this custom object.
+            * Description: Custom object entries can be deleted by providing the delete ID using this endpoint.
             **/
             public func deleteAppCustomObject(
                 metaobjectId: String,
@@ -18864,7 +18862,7 @@ if let value = definitionId {
             /**
             *
             * Summary: Update custom object details
-            * Description: Use this API to update a custom object detail for your application.
+            * Description: Custom object entries can be updated using this endpoint.
             **/
             public func updateAppCustomObject(
                 metaobjectId: String,
@@ -18912,8 +18910,8 @@ if let value = definitionId {
             
             /**
             *
-            * Summary: Fetch bulk import and export job list
-            * Description: Use this api to get list of jobs of bulk import and exports
+            * Summary: Get bulk import and export job list
+            * Description: Custom object bulk import and export jobs status and details can be obtained using this endpoint.
             **/
             public func getAppJobs(
                 page: String,
@@ -18979,7 +18977,7 @@ var xQuery: [String: Any] = [:]
             /**
             *
             * Summary: Bulk custom object entries upload
-            * Description: Use this API to upload custom object entries
+            * Description: Custom object bulk import of bulk entries can be performed using this endpoint.
             **/
             public func importAppCustomObjectEntries(
                 definitionId: String,
@@ -19028,7 +19026,7 @@ var xQuery: [String: Any] = [:]
             /**
             *
             * Summary: Initiate download for bulk custom object entries
-            * Description: Use this api to initiate download of bulk entries
+            * Description: Custom object bulk export of bulk entries can be perform using this endpoint.
             **/
             public func exportAppCustomObjectEntries(
                 definitionId: String,
@@ -19076,8 +19074,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: download sample for custom object bulk entry
-            * Description: Use this api to get sample csv file 
+            * Summary: Download sample for custom object bulk entry
+            * Description: Sample files for custom object bulk import can be obtained from this endpoint.
             **/
             public func sampleAppCustomObjectBulkEntry(
                 definitionId: String,
@@ -19142,8 +19140,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Application start upload
-            * Description: Start uploading a file from an application and returns a storage link in response.
+            * Summary: Initiates file upload for Application
+            * Description: Inititates the process of uploading a file to storage location, and returns a storage link in response on platofrm at application level. Please refer group description for more details.
             **/
             public func appStartUpload(
                 namespace: String,
@@ -19191,8 +19189,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Application complete upload
-            * Description: Finish uploading a file from an application.
+            * Summary: Complete file upload for Application
+            * Description: Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database on platform at application level
             **/
             public func appCompleteUpload(
                 namespace: String,
@@ -19242,8 +19240,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Application copy files
-            * Description: Copy files from an application to another location.
+            * Summary: Copy files for Application
+            * Description: Handle multiple file uploads, updating progress and providing detailed status reports.
             **/
             public func appCopyFiles(
                 sync: Bool?,
@@ -19299,8 +19297,8 @@ if let value = sync {
             
             /**
             *
-            * Summary: Application browse files
-            * Description: Browse files within an application.
+            * Summary: Browse files for Application
+            * Description: View and navigate through available files.
             **/
             public func appbrowse(
                 namespace: String,
@@ -19372,8 +19370,9 @@ if let value = search {
             
             /**
             *
-            * Summary: Browse Files
-            * Description: Browse Files
+            * Summary: 
+Browse files for Application
+            * Description: View and navigate through available files.
             **/
             public func browsefiles(
                 namespace: String,
@@ -19447,7 +19446,7 @@ if let value = search {
             /**
             *
             * Summary: Get PDF types
-            * Description: Retrieve a list of available PDF types.
+            * Description: Retrieve a list of available invoice types.
             **/
             public func getPdfTypes(
                 countryCode: String?,
@@ -19503,7 +19502,7 @@ if let value = countryCode {
             /**
             *
             * Summary: Get default PDF data
-            * Description: Retrieve default data for PDF generation.
+            * Description: Retrieve default pdf payload data for invoice generation.
             **/
             public func getDefaultPdfData(
                 pdfTypeId: Int,
@@ -19613,8 +19612,10 @@ if let value = countryCode {
             
             /**
             *
-            * Summary: Get html template for sales channel
-            * Description: Get default html template for invoice or label
+            * Summary: Get html template for Application
+            * Description: 
+Get the saved html template for provided sales channel
+
             **/
             public func getDefaultHtmlTemplate(
                 pdfTypeId: Int,
@@ -19681,8 +19682,8 @@ if let value = countryCode {
             
             /**
             *
-            * Summary: Save HTML template
-            * Description: Store an HTML template.
+            * Summary: Save PDF template
+            * Description: Save html template for provided sales channel
             **/
             public func saveHtmlTemplate(
                 body: PdfConfig,
@@ -19730,7 +19731,7 @@ if let value = countryCode {
             /**
             *
             * Summary: Get default PDF template
-            * Description: Retrieve the default PDF template.
+            * Description: Retrieve to get the default Invoice template.
             **/
             public func getDefaultPdfTemplate(
                 pdfTypeId: Int,
@@ -19862,7 +19863,7 @@ if let value = countryCode {
             
             /**
             *
-            * Summary: Gets the list of Application level Tickets and/or ticket filters depending on query params
+            * Summary: List sales channel tickets 
             * Description: Gets the list of Application level Tickets and/or ticket filters
             **/
             public func getNewTickets(
@@ -19960,8 +19961,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Retreives ticket details of a application level ticket
-            * Description: Retreives ticket details of a application level ticket with ticket ID
+            * Summary: Get Ticket Details
+            * Description: Get ticket details of a application level ticket with ticket ID
             **/
             public func getNewTicket(
                 id: String,
@@ -20009,7 +20010,7 @@ if let value = category {
             
             /**
             *
-            * Summary: Edits ticket details of a application level ticket
+            * Summary: Update Ticket Details
             * Description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
             **/
             public func editNewTicket(
@@ -20062,7 +20063,7 @@ if let value = category {
             
             /**
             *
-            * Summary: Create history for specific application level ticket
+            * Summary: Create ticket history interaction
             * Description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
             **/
             public func createNewHistory(
@@ -20111,7 +20112,7 @@ if let value = category {
             
             /**
             *
-            * Summary: Gets history list for specific application level ticket
+            * Summary: Get ticket history interaction
             * Description: Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
             **/
             public func getNewTicketHistory(
@@ -20161,7 +20162,7 @@ if let value = category {
             /**
             *
             * Summary: Get custom form
-            * Description: Retrieve information about a custom form which includes corresponding field details and any validation regex required against that field or not
+            * Description: Get information about a custom form which includes corresponding field details and any validation regex required against that field or not
             **/
             public func getCustomForm(
                 slug: String,
@@ -20308,7 +20309,7 @@ if let value = category {
             /**
             *
             * Summary: Get custom forms
-            * Description: Retrieve a list of available custom forms.
+            * Description: List all available custom forms
             **/
             public func getCustomForms(
                 
@@ -20404,7 +20405,7 @@ if let value = category {
             
             /**
             *
-            * Summary: Get Token to join a specific Video Room using it's unqiue name
+            * Summary: Get video Room Token 
             * Description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
             **/
             public func getNewTokenForVideoRoom(
@@ -20454,7 +20455,7 @@ if let value = category {
             
             /**
             *
-            * Summary: Get participants of a specific Video Room using it's unique name
+            * Summary: List video Room Participants 
             * Description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
             **/
             public func getNewVideoParticipants(
@@ -20621,8 +20622,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Update pincode MOP (Mode of Payment) view
-            * Description: Modify and update views related to pincode MOP.
+            * Summary: Update pincode COD support
+            * Description: Modify and update views related to pincode MOP (Mode of Payment).
             **/
             public func updatePincodeMopView(
                 body: PincodeMopData,
@@ -20669,8 +20670,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Update pincode bulk view
-            * Description: Modify and update views related to bulk operations on pincode.
+            * Summary: Bulk update pincode COD support 
+            * Description: Updates the cash on delivery settings for multiple specified pin codes simultaneously.
             **/
             public func updatePincodeBulkView(
                 body: PincodeMopBulkData,
@@ -20717,8 +20718,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Update pincode CoD (Cash on Delivery) listing
-            * Description: Modify and update listings for CoD based on pincode.
+            * Summary: Get COD enabled pincodes
+            * Description: Retrieves a list of pincodes along with the count based on whether cash on delivery settings.
             **/
             public func updatePincodeCoDListing(
                 body: PincodeCodStatusListingRequest,
@@ -20765,8 +20766,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Update pincode audit history
-            * Description: Modify and update audit history records for pincode-related activities.
+            * Summary: Get audit trail
+            * Description: Retrieves the history of changes made to cash on delivery settings for pincodes.
             **/
             public func updatePincodeAuditHistory(
                 body: PincodeMopUpdateAuditHistoryRequest,
@@ -20817,8 +20818,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Updating of Courier Rule
-            * Description: This API updates and returns Courier Rule.
+            * Summary: Update courier rule
+            * Description: Updates an existing rule within the delivery configuration.
             **/
             public func updateCourierRule(
                 ruleId: String,
@@ -20866,8 +20867,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Fetch of Courier Rule
-            * Description: This API returns Courier Rule.
+            * Summary: Get courier rule
+            * Description: Retrieves a single rule within the delivery configuration.
             **/
             public func getCourierPartnerRule(
                 ruleId: String,
@@ -20915,8 +20916,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Create Courier Rules
-            * Description: Creates Courier Rules with rule configuration and dp priority
+            * Summary: Create rourier rule
+            * Description: Creates a rule within the delivery configuration.
             **/
             public func createCourierPartnerRule(
                 body: CourierPartnerRule,
@@ -20963,8 +20964,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Fetch Courier Rules List
-            * Description: This API returns Courier Rules List
+            * Summary: Get courier rules
+            * Description: Retrieve a list of rules within the delivery configuration.
             **/
             public func getCourierPartnerRules(
                 pageNo: Int?,
@@ -21037,8 +21038,8 @@ if let value = status {
             
             /**
             *
-            * Summary: Apply configuration to an application
-            * Description: Apply configuration to application to set DP rules and Zone configuration
+            * Summary: Update delivery configuration
+            * Description: Updates an existing delivery setup for an application, which involves updating sorting settings or rule priorities.
             **/
             public func updateApplicationConfiguration(
                 body: ApplicationConfig,
@@ -21085,8 +21086,8 @@ if let value = status {
             
             /**
             *
-            * Summary: Get All Courier Rules applied to application
-            * Description: This API returns all the Courier Rules applied to an application
+            * Summary: Get delivery configuration
+            * Description: Retrieves information about the delivery setup for an application
             **/
             public func getApplicationConfiguration(
                 
@@ -21135,8 +21136,8 @@ if let value = status {
             
             /**
             *
-            * Summary: Self-ship configuration of application
-            * Description: This API updates Self-ship configuration of the application.
+            * Summary: Update self ship configuration
+            * Description: Updates self ship setup for an existing application
             **/
             public func patchApplicationServiceabilitySelfShipment(
                 body: SelfShipResponse,
@@ -21183,8 +21184,8 @@ if let value = status {
             
             /**
             *
-            * Summary: Self-ship configuration of application
-            * Description: This API returns Self-ship configuration of the application.
+            * Summary: Get self ship configuration
+            * Description: Retrieves the self ship setup for a single application
             **/
             public func getApplicationServiceabilitySelfShipment(
                 
@@ -21231,8 +21232,8 @@ if let value = status {
             
             /**
             *
-            * Summary: Get Application Configuration
-            * Description: Get Application Configuration
+            * Summary: Get store rule configuration
+            * Description: Retrieves information about the order routing setup for a single application
             **/
             public func getApplicationConfig(
                 
@@ -21279,8 +21280,8 @@ if let value = status {
             
             /**
             *
-            * Summary: Insert Application Configuration
-            * Description: Insert Application Configuration
+            * Summary: Create store rule configuration
+            * Description: Creates a order routing setup for an application, which involves updating sorting settings or rule priorities.
             **/
             public func insertApplicationConfig(
                 body: StoreRuleConfigData,
@@ -21327,8 +21328,8 @@ if let value = status {
             
             /**
             *
-            * Summary: Update Store Rule Configuration
-            * Description: Update Store Rule Configuration
+            * Summary: Update store rules configuration
+            * Description: Updates an existing order routing setup for a single application, which involves updating sorting settings or rule priorities.
             **/
             public func updateStoreRulesConfig(
                 body: StoreRuleConfigData,
@@ -21375,8 +21376,8 @@ if let value = status {
             
             /**
             *
-            * Summary: Get Multiple Store Rules
-            * Description: Get Multiple Store Rules
+            * Summary: Get store rules
+            * Description: Retrieves an existing order routing setup for a single application
             **/
             public func getStoreRules(
                 pageNo: Int?,
@@ -21447,8 +21448,8 @@ if let value = status {
             
             /**
             *
-            * Summary: Create Store Rule
-            * Description: Create Store Rule
+            * Summary: Create store rule
+            * Description: Create a rule within the order routing rules
             **/
             public func createStoreRules(
                 body: CreateStoreRuleRequestSchema,
@@ -21495,8 +21496,8 @@ if let value = status {
             
             /**
             *
-            * Summary: Get Single Store Rule
-            * Description: Get Single Store Rule
+            * Summary: Get store rule
+            * Description: Retrieves a single rule within the order routing rules
             **/
             public func getStoreRule(
                 ruleUid: String,
@@ -21544,8 +21545,8 @@ if let value = status {
             
             /**
             *
-            * Summary: Update Store Rule
-            * Description: Update Store Rule
+            * Summary: Update store rule
+            * Description: Updates an existing rule within the order routing rules.
             **/
             public func updateStoreRules(
                 ruleUid: String,
@@ -21605,8 +21606,8 @@ if let value = status {
             
             /**
             *
-            * Summary: Updates Courier Partner Rules Priority for a sales channel
-            * Description: Updates Courier Partner Rules Priority for a sales channel
+            * Summary: Update courier partner rule priority
+            * Description: Updates a courier partner rule priority for a single application
             **/
             public func updateCourierPartnerRulePriority(
                 body: RulePriorityRequest,
@@ -21708,11 +21709,10 @@ if let value = status {
             
             
             
-            
             /**
             *
-            * Summary: Get reasons behind full or partial cancellation of a shipment
-            * Description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+            * Summary: List bag cancellation reasons
+            * Description: Get reasons to perform full or partial cancellation of a shipment
             **/
             public func getShipmentBagReasons(
                 shipmentId: String,
@@ -21766,8 +21766,8 @@ if let value = status {
             
             /**
             *
-            * Summary: 
-            * Description: Get cross selling platform shipments
+            * Summary: List Application's shipments
+            * Description: Get shipments of a particular sales channel based on the filters provided
             **/
             public func getApplicationShipments(
                 lane: String?,
@@ -21934,8 +21934,8 @@ if let value = excludeLockedShipments {
             
             /**
             *
-            * Summary: Track shipment on the platform
-            * Description: Track shipment by Shipment ID for application based on application Id
+            * Summary: Track shipment
+            * Description: Track shipment by shipment Id for an application
             **/
             public func trackShipmentPlatform(
                 shipmentId: String,
@@ -21988,8 +21988,8 @@ if let value = excludeLockedShipments {
             
             /**
             *
-            * Summary: Get platform shipment reasons
-            * Description: Retrieve reasons behind full or partial cancellation of a shipment
+            * Summary: List shipment cancellation reasons
+            * Description: Get reasons to perform full or partial cancellation of a shipment
             **/
             public func getPlatformShipmentReasons(
                 action: String,
@@ -22057,8 +22057,8 @@ if let value = excludeLockedShipments {
             
             /**
             *
-            * Summary: Add proxy path
-            * Description: Create and add a new proxy path.
+            * Summary: Create extension proxy
+            * Description: Extension proxy can be used to call extension API from storefront and make extension API integration seamless.
             **/
             public func addProxyPath(
                 extensionId: String,
@@ -22106,8 +22106,8 @@ if let value = excludeLockedShipments {
             
             /**
             *
-            * Summary: Remove proxy path
-            * Description: Delete a proxy path from the platform.
+            * Summary: Remove extension proxy
+            * Description: Remove the proxy which are created earlier for the extension.
             **/
             public func removeProxyPath(
                 extensionId: String,
@@ -22171,8 +22171,8 @@ if let value = excludeLockedShipments {
             
             /**
             *
-            * Summary: Get brand payment gateway config
-            * Description: Retrieve configuration settings for brand payment gateways.
+            * Summary: Get secrets for brand payment gateway
+            * Description: Retrieve configuration settings like key, secret, webhook url, merchant salt for brand payment gateways.
             **/
             public func getBrandPaymentGatewayConfig(
                 aggregator: String?,
@@ -22236,7 +22236,7 @@ if let value = configType {
             /**
             *
             * Summary: Save brand payment gateway config
-            * Description: Store and update configuration settings for brand payment gateways.
+            * Description: Store and update configuration settings for brand payment gateways i.e required for payment for a payment gateway like key, secret, merchant salt.
             **/
             public func saveBrandPaymentGatewayConfig(
                 body: PaymentGatewayConfigRequest,
@@ -22283,8 +22283,8 @@ if let value = configType {
             
             /**
             *
-            * Summary: Get payment mode routes
-            * Description: Retrieve routes and options for payment modes.
+            * Summary: Get payment modes
+            * Description: Available payment methods on the payment page, specifying the aggregator for each option, such as 'Netbanking powered by Juspay' and 'Card powered by Razorpay'.
             **/
             public func getPaymentModeRoutes(
                 refresh: Bool,
@@ -22369,7 +22369,7 @@ if let value = shipmentId {
             /**
             *
             * Summary: Get bank account details
-            * Description: Retrieve bank account information using an open API.
+            * Description: Retrieve bank account information 
             **/
             public func getBankAccountDetailsOpenAPI(
                 orderId: String,
@@ -22430,8 +22430,8 @@ if let value = requestHash {
             
             /**
             *
-            * Summary: Add refund bank account using OTP
-            * Description: Register a refund bank account with OTP verification.
+            * Summary: Create refund account
+            * Description: The addition of a bank account specifically for refunds, employing OTP verification for security
             **/
             public func addRefundBankAccountUsingOTP(
                 body: AddBeneficiaryDetailsOTPRequest,
@@ -22480,7 +22480,7 @@ if let value = requestHash {
             /**
             *
             * Summary: Get user order beneficiaries
-            * Description: Retrieve beneficiaries associated with a user orders.
+            * Description: Retrieve beneficiary details like bank name , ifsc code , branch name associated with a specific order for refund processing 
             **/
             public func getUserOrderBeneficiaries(
                 orderId: String,
@@ -22534,7 +22534,7 @@ var xQuery: [String: Any] = [:]
             /**
             *
             * Summary: Get user beneficiaries
-            * Description: Retrieve beneficiaries associated with a user.
+            * Description: Retrieves information about beneficiaries associated with the user for processing refunds, based on the provided order ID
             **/
             public func getUserBeneficiaries(
                 orderId: String,
@@ -22587,8 +22587,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Confirm payment
-            * Description: Authenticate and confirm a payment.
+            * Summary: Payment confirmation
+            * Description: Authentication and confirmation of a payment.It requires details such as the order ID and payment methods in the request body to authenticate and confirm the payment.
             **/
             public func confirmPayment(
                 body: PaymentConfirmationRequest,
@@ -22635,8 +22635,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get user COD limit routes
-            * Description: Retrieve routes and limits for user cash-on-delivery (COD) transactions.
+            * Summary: Get user COD 
+            * Description: Retrieve user cod limt data of user i.e cod is active or not for user and remaining limit 
             **/
             public func getUserCODlimitRoutes(
                 merchantUserId: String,
@@ -22695,8 +22695,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Set user COD limit routes
-            * Description: Configure routes and limits for user COD transactions.
+            * Summary: Set user COD
+            * Description: This allows access to seller to enable disable cod of specific user
             **/
             public func setUserCODlimitRoutes(
                 body: SetCODForUserRequest,
@@ -22792,7 +22792,7 @@ var xQuery: [String: Any] = [:]
             /**
             *
             * Summary: EDC device stats
-            * Description: Get statistics and data related to EDC devices.
+            * Description: Information about EDC (Electronic Data Capture) devices linked to a specific application within a company. It provides statistics such as the count of active and inactive devices.
             **/
             public func edcDeviceStats(
                 
@@ -22840,7 +22840,7 @@ var xQuery: [String: Any] = [:]
             /**
             *
             * Summary: Update EDC device
-            * Description: Modify the settings and details of an EDC device.
+            * Description: Enables the modification of settings and details associated with an Electronic Data Capture (EDC) device linked to a specific application within a company. Upon success, it returns the updated information of the EDC device.
             **/
             public func updateEdcDevice(
                 body: EdcAddRequest,
@@ -22887,8 +22887,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get EDC device
-            * Description: Retrieve detailed information about an EDC device.
+            * Summary: Get an EDC device
+            * Description: Retrieve comprehensive details regarding an Electronic Data Capture (EDC) device associated with a particular terminal unique identifier within a company's application.Upon success, it returns the detailed information of the EDC device, including terminal serial number, EDC device serial number, merchant store POS code, store ID, aggregator ID and name, device tag, activation status, and EDC model.
             **/
             public func getEdcDevice(
                 terminalUniqueIdentifier: String,
@@ -22936,8 +22936,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Add EDC device
-            * Description: Register and add a new EDC device.
+            * Summary: Create an EDC device
+            * Description: Registration and addition of a new EDC device to the system
             **/
             public func addEdcDevice(
                 terminalUniqueIdentifier: String,
@@ -22985,8 +22985,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: EDC device list
-            * Description: Retrieve a list of available EDC devices.
+            * Summary: List EDC devices
+            * Description: Retrieves a list of available Electronic Data Capture (EDC) devices.
             **/
             public func edcDeviceList(
                 pageNo: Int?,
@@ -23073,8 +23073,8 @@ if let value = deviceTag {
             
             /**
             *
-            * Summary: Get POS payment mode routes
-            * Description: Retrieve payment options and aggregator for point-of-sale (POS).
+            * Summary: List POS payment modes
+            * Description: Available payment methods on the payment page for POS, specifying the aggregator for each option, such as 'CARD powered by Juspay' and 'QR powered by Razorpay'.
             **/
             public func getPosPaymentModeRoutes(
                 amount: Int,
@@ -23211,8 +23211,8 @@ if let value = shipmentId {
             
             /**
             *
-            * Summary: Initialize payment
-            * Description: Start the payment initiation process for UPI and QR code.
+            * Summary: Start payment process
+            * Description: Initiates the payment procedure for an order.Upon successful initiation, it returns a  details including the success status, aggregator information, payment method, status, merchant order ID aggregator order , polling URL, timeout, virtual ID, Razorpay payment ID, customer ID, and device ID.
             **/
             public func initialisePayment(
                 body: PaymentInitializationRequest,
@@ -23259,8 +23259,8 @@ if let value = shipmentId {
             
             /**
             *
-            * Summary: Check and update payment status
-            * Description: Verify and modify the status of a payment.
+            * Summary: Poll and update payment status
+            * Description: Polling process to confirm the payment status. It periodically checks and updates the current status of a payment, ensuring timely and accurate confirmation of payment transactions.
             **/
             public func checkAndUpdatePaymentStatus(
                 body: PaymentStatusUpdateRequest,
@@ -23308,7 +23308,7 @@ if let value = shipmentId {
             /**
             *
             * Summary: Resend or cancel payment
-            * Description: Resend or cancel a payment link.
+            * Description: Enable you to perform actions related to the resending and cancellation of payment links through SMS or EMAIL. resend or cancel payment link that have been initiated but may require modification or cancellation for various reasons, ensuring flexibility and control in payment processing.
             **/
             public func resendOrCancelPayment(
                 body: ResendOrCancelPaymentRequest,
@@ -23355,8 +23355,8 @@ if let value = shipmentId {
             
             /**
             *
-            * Summary: Payment status bulk
-            * Description: Retrieve the status of multiple payments in bulk.
+            * Summary: Retrieve status of multiple payments in bulk
+            * Description: Retrieve status of multiple payments in bulk and returns the status of each payment along with associated details such as payment ID, amount, currency, status, payment mode, and payment gateway in the response
             **/
             public func paymentStatusBulk(
                 body: PaymentStatusBulkHandlerRequest,
@@ -23404,7 +23404,7 @@ if let value = shipmentId {
             /**
             *
             * Summary: Get OAuth URL
-            * Description: Retrieve an OAuth URL for PG API authentication.
+            * Description: This has been used when merchant is setup their razorpay payment gateway, they will redirect to razorpay site after submitting all their secrets for authetication.
             **/
             public func oauthGetUrl(
                 aggregator: String,
@@ -23469,7 +23469,7 @@ if let value = failureRedirectUrl {
             /**
             *
             * Summary: Revoke OAuth token
-            * Description: Invalidate an OAuth token.
+            * Description: Revoke the creds  for payment aggregator razropay.
             **/
             public func revokeOauthToken(
                 aggregator: String,
@@ -23518,7 +23518,7 @@ if let value = failureRedirectUrl {
             /**
             *
             * Summary: Repayment details for BNPL
-            * Description: Retrieve information about repayment transactions.
+            * Description: Retrieve repayment details for Buy Now Pay Later (BNPL) payment
             **/
             public func repaymentDetails(
                 body: RepaymentDetailsSerialiserPayAll,
@@ -23566,7 +23566,7 @@ if let value = failureRedirectUrl {
             /**
             *
             * Summary: Merchant onboarding for BNPL
-            * Description: Initiate the onboarding process for a merchant.
+            * Description: Initiate the merchant onboarding process for Buy Now Pay Later (BNPL).
             **/
             public func merchantOnBoarding(
                 body: MerchantOnBoardingRequest,
@@ -23613,8 +23613,8 @@ if let value = failureRedirectUrl {
             
             /**
             *
-            * Summary: Verify customer for payment
-            * Description: Retrieve a link for making payments.
+            * Summary: Validate customer for paylater
+            * Description: Verify whether the user is eligible for pay-later payment from the payment aggregator's side using the customer's phone number
             **/
             public func verifyCustomerForPayment(
                 body: ValidateCustomerRequest,
@@ -23662,7 +23662,7 @@ if let value = failureRedirectUrl {
             /**
             *
             * Summary: Get payment link
-            * Description: Retrieve a link for making payments.
+            * Description: Retrieve a payment link for making payments.
             **/
             public func getPaymentLink(
                 paymentLinkId: String?,
@@ -23718,7 +23718,7 @@ if let value = paymentLinkId {
             /**
             *
             * Summary: Create payment link
-            * Description: Generate a new link for accepting payments.
+            * Description: Generate a payment link for accepting payments.
             **/
             public func createPaymentLink(
                 body: CreatePaymentLinkRequest,
@@ -23765,8 +23765,8 @@ if let value = paymentLinkId {
             
             /**
             *
-            * Summary: Polling payment link
-            * Description: Continuously check the status of a payment link.
+            * Summary: Poll status of payment link
+            * Description: Periodically checks the status of a payment link to monitor for any updates or changes.retrieve real-time information about the payment link's current status, such as whether it has been processed, cancelled, or expired. 
             **/
             public func pollingPaymentLink(
                 paymentLinkId: String?,
@@ -23822,7 +23822,7 @@ if let value = paymentLinkId {
             /**
             *
             * Summary: Resend payment link
-            * Description: Reissue a payment link to a recipient.
+            * Description: Resends an existing payment link to the user to complete the payment.
             **/
             public func resendPaymentLink(
                 body: CancelOrResendPaymentLinkRequest,
@@ -23917,8 +23917,8 @@ if let value = paymentLinkId {
             
             /**
             *
-            * Summary: Get details for the given offline / advance payment mode for merchant
-            * Description: Use this API to get details for the given offline / advance payment mode for merchant
+            * Summary: Get offline/advance payment mode
+            * Description: Get details of offline / advance payment mode like for cod  offline payment mode get user level cod limit, order level cod limit, cod charge.
             **/
             public func getPaymentModeControlRoutes(
                 mode: String,
@@ -23966,8 +23966,8 @@ if let value = paymentLinkId {
             
             /**
             *
-            * Summary: Update offline payment mode details for the merchant
-            * Description: Use this API to update given offline / advance payment mode details for the merchant
+            * Summary: Update offline payment mode
+            * Description: Update offline payment mode details for the merchant like update for cod  offline payment mode get user level cod limit, order level cod limit, cod charge, enable/disable device for cod.
             **/
             public func setMerchantModeControlRoutes(
                 mode: String,
@@ -24015,8 +24015,8 @@ if let value = paymentLinkId {
             
             /**
             *
-            * Summary: Get details of advance payment custom configurations of merchant
-            * Description: Use this API to Get details of advance payment custom configurations of merchant
+            * Summary: Get advance payment custom configurations 
+            * Description: Merchants to fetch detailed information regarding advance payment custom configurations tailored to their specific business needs. merchants can access settings such as customer restrictions, available payment modes for both pre-order and post-order transactions
             **/
             public func getPaymentModeCustomConfig(
                 mode: String,
@@ -24064,8 +24064,8 @@ if let value = paymentLinkId {
             
             /**
             *
-            * Summary: Update details of advance payment custom configurations of merchant
-            * Description: Use this API to update given details of advance payment custom configurations of merchant
+            * Summary: Update advance payment custom configurations
+            * Description: Allows merchants to modify specific details of advance payment custom configurations tailored to their business requirements. By providing the company ID, application ID, and payment mode, merchants can update settings such as minimum order value, customer restrictions, and available payment modes for both pre-order and post-order transactions
             **/
             public func setPaymentModeCustomConfig(
                 mode: String,
@@ -24113,8 +24113,8 @@ if let value = paymentLinkId {
             
             /**
             *
-            * Summary: Get payment mode code
-            * Description: Retrieve options for payment codes.
+            * Summary: Get payment mode codes
+            * Description: Enables users to retrieve options for payment codes.users can access information such as payment method names, networks, and associated codes, facilitating seamless integration and management of payment modes
             **/
             public func getPaymentCodeOption(
                 
@@ -24161,8 +24161,8 @@ if let value = paymentLinkId {
             
             /**
             *
-            * Summary: API to get payment session details
-            * Description: Use this API to fetch the payment session details for given order ID or Transaction ID.
+            * Summary: Get payment session
+            * Description: Allows users to fetch the payment session details associated with a given order ID or transaction ID
             **/
             public func getPaymentSession(
                 gid: String,
@@ -24218,8 +24218,8 @@ if let value = lineItem {
             
             /**
             *
-            * Summary: Update payment session
-            * Description: Modify the details of a payment session.
+            * Summary: Update payment session 
+            * Description: Update the details of a payment session associated with a given order ID or transaction ID.
             **/
             public func updatePaymentSession(
                 gid: String,
@@ -24268,7 +24268,7 @@ if let value = lineItem {
             /**
             *
             * Summary: Update refund session
-            * Description: Modify the details of a refund session.
+            * Description: Allows users to update the details of a refund session associated with a specific global identifier (GID) and request ID.
             **/
             public func updateRefundSession(
                 gid: String,
@@ -24318,7 +24318,7 @@ if let value = lineItem {
             /**
             *
             * Summary: Get merchant payment option
-            * Description: Retrieve all the available Paymet Gateways for merchant and its offline payment mode details.
+            * Description: Retrieve available payment gateways and offline payment mode details for a merchant by providing company ID and application ID, returning a list of active payment gateways and their configurations, including online and offline options.
             **/
             public func getMerchantPaymentOption(
                 
@@ -24365,8 +24365,8 @@ if let value = lineItem {
             
             /**
             *
-            * Summary: Patch merchant payment option
-            * Description: To updated online payment as active/inactive or offline payment configuration like cod charges, anonymous cod allowed flags.
+            * Summary: Update payment gateways and payment mode
+            * Description: Updated online/offline payment as active/inactive like disable offline payment mode will disable offline payment modes on checkout page on merchant's website
             **/
             public func patchMerchantPaymentOption(
                 body: MerchnatPaymentModeRequest,
@@ -24413,8 +24413,8 @@ if let value = lineItem {
             
             /**
             *
-            * Summary: Get merchant aggregator payment mode details
-            * Description: swagger not found. so operationId not found
+            * Summary: Get merchant aggregator and their payment mode
+            * Description: Get available payment gateways and payment mode and it's sub payment mode details like for razorpay their active/inactive payment modes netbanking , wallet, upi are shown. 
             **/
             public func getMerchantAggregatorPaymentModeDetails(
                 aggregatorId: Int,
@@ -24474,8 +24474,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Patch merchant aggregator payment mode details
-            * Description: swagger not found. so operationId not found
+            * Summary: Update merchant aggregator payment mode
+            * Description: update payment gateway and it's payment mode and it's sub payment mode details like for razorpay update active/inactive payment modes.
             **/
             public func patchMerchantAggregatorPaymentModeDetails(
                 aggregatorId: Int,
@@ -24523,8 +24523,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get PG (Payment Gateway) config aggregators
-            * Description: swagger not found. so operationId not found
+            * Summary: Get merchant aggregator payment mode
+            * Description: Get payment gateway and it's payment mode and it's sub payment mode details like for razorpay update active/inactive payment modes.
             **/
             public func getPGConfigAggregators(
                 
@@ -24572,7 +24572,7 @@ var xQuery: [String: Any] = [:]
             /**
             *
             * Summary: Get merchant refund priority
-            * Description: Get merchant refund priority.
+            * Description: Retrieve merchant refund priority configurations, returning the status of the update and the refund sources priority with their descriptions and priorities.
             **/
             public func getMerchantRefundPriority(
                 configType: String,
@@ -24620,8 +24620,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Crete merchant refund priority
-            * Description: Crete merchant refund priority.
+            * Summary: Create merchant refund priority
+            * Description: Create merchant refund priority configurations, with the provided refund sources priority details, and return the status of the operation.
             **/
             public func createMerchantRefundPriority(
                 configType: String,
@@ -24669,8 +24669,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: API to update merchant refund priority
-            * Description: API to update merchant refund priority
+            * Summary: Update merchant refund priority
+            * Description: Update merchant refund priority configurations, with the provided refund sources priority details, and return the status of the operation.
             **/
             public func updateMerchantRefundPriority(
                 configType: String,
@@ -24719,7 +24719,7 @@ var xQuery: [String: Any] = [:]
             /**
             *
             * Summary: Create Order
-            * Description: Use this API to create a order and payment on aggregator side
+            * Description: Create an order and payment on the aggregator side
             **/
             public func createPaymentOrder(
                 body: PaymentOrderRequest,
@@ -24766,8 +24766,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get app version required for Payment Mode
-            * Description: This api provide read operations on the app version required for Payment Mode or sub payment mode for an Aggregator.
+            * Summary: Get app version for  Aggregator
+            * Description: Get app version required for Payment Mode or sub payment mode for an Aggregator.if merchant required any PG payment mode after certain version for mobile app.
             **/
             public func getMerchantAggregatorAppVersion(
                 aggregatorId: Int,
@@ -24843,8 +24843,8 @@ if let value = subPaymentMode {
             
             /**
             *
-            * Summary: Update app version required for Payment Mode
-            * Description: This api provide wrote operations on the app version required for Payment Mode or sub payment mode for an Aggregator.
+            * Summary: Update app version for Aggrgator
+            * Description: Update app version required for Payment Mode or sub payment mode for an Aggregator.if merchant required any PG payment mode after certain version for mobile app.
             **/
             public func patchMerchantPaymentOptionVersion(
                 aggregatorId: Int,
@@ -24907,7 +24907,7 @@ if let value = subPaymentMode {
             
             /**
             *
-            * Summary: Display giveaways
+            * Summary: List giveaways
             * Description: Retrieve and display available giveaways.
             **/
             public func showGiveaways(
@@ -24967,7 +24967,7 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Save giveaway
+            * Summary: Create a giveaway
             * Description: Store and manage details of a giveaway.
             **/
             public func saveGiveAway(
@@ -25015,7 +25015,7 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get giveaway by ID
+            * Summary: Get a giveaway
             * Description: Retrieve specific giveaway details by its unique identifier.
             **/
             public func getGiveawayById(
@@ -25064,7 +25064,7 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update giveaway
+            * Summary: Update a giveaway
             * Description: Modify and update information about a giveaway.
             **/
             public func updateGiveAway(
@@ -25113,7 +25113,7 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Show offers
+            * Summary: List offers
             * Description: Display available offers for users.
             **/
             public func showOffers(
@@ -25308,7 +25308,7 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get user details
+            * Summary: Get a user
             * Description: Retrieve comprehensive details about a user in the rewards program.
             **/
             public func getUserDetails(
@@ -25357,7 +25357,7 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get user points history
+            * Summary: Get reward user points history
             * Description: Retrieve the history of points earned and redeemed by a user.
             **/
             public func getUserPointsHistory(
@@ -25734,7 +25734,7 @@ if let value = title {
             
             /**
             *
-            * Summary: Update short link by ID
+            * Summary: Update short link
             * Description: Update details of a specific short link by its ID.
             **/
             public func updateShortLinkById(
@@ -25852,7 +25852,7 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get all pages
+            * Summary: List pages of a theme 
             * Description: Retrieve a list of all available pages.
             **/
             public func getAllPages(
@@ -25901,8 +25901,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Create page
-            * Description: Generate and add a new page to the platform.
+            * Summary: Create theme page
+            * Description: Generate and add a new page to the selected theme of the Platform.
             **/
             public func createPage(
                 themeId: String,
@@ -25950,8 +25950,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update multiple pages
-            * Description: Modify multiple pages simultaneously.
+            * Summary: Update theme pages
+            * Description: Modify multiple pages simultaneously of a theme.
             **/
             public func updateMultiplePages(
                 themeId: String,
@@ -25999,8 +25999,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get page
-            * Description: Retrieve detailed information about a specific page.
+            * Summary: Get a page
+            * Description: Retrieve detailed information about a specific page of a theme.
             **/
             public func getPage(
                 themeId: String,
@@ -26049,7 +26049,7 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update page
+            * Summary: Update a page
             * Description: Modify and update the content of a page.
             **/
             public func updatePage(
@@ -26099,8 +26099,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Delete page
-            * Description: Remove a page from the platform.
+            * Summary: Delete a page
+            * Description: Remove a page from a theme of the platform.
             **/
             public func deletePage(
                 themeId: String,
@@ -26149,184 +26149,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get theme library
-            * Description: Retrieve themes available in the platform's library.
-            **/
-            public func getThemeLibrary(
-                pageSize: Int?,
-                pageNo: Int?,
-                
-                onResponse: @escaping (_ response: DummyResponse?, _ error: FDKError?) -> Void
-            ) {
-                
-var xQuery: [String: Any] = [:] 
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "GET",
-                    url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/library",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(DummyResponse.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Add to theme library
-            * Description: Store and add a theme to the platform's library.
-            **/
-            public func addToThemeLibrary(
-                body: AddThemeRequestSchema,
-                onResponse: @escaping (_ response: DummyResponse?, _ error: FDKError?) -> Void
-            ) {
-                
- 
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "POST",
-                    url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/library",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(DummyResponse.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Get public themes
-            * Description: Retrieve themes that are publicly accessible.
-            **/
-            public func getPublicThemes(
-                pageSize: Int?,
-                pageNo: Int?,
-                
-                onResponse: @escaping (_ response: DummyResponse?, _ error: FDKError?) -> Void
-            ) {
-                
-var xQuery: [String: Any] = [:] 
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "GET",
-                    url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/list/public",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(DummyResponse.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Get fonts
-            * Description: Retrieve a list of available fonts.
+            * Summary: List theme fonts 
+            * Description: Retrieve a list of available fonts that can be used by themes in the platform.
             **/
             public func getFonts(
                 
@@ -26371,210 +26195,14 @@ if let value = pageNo {
             
             
             
-            /**
-            *
-            * Summary: Publish theme
-            * Description: Make a theme accessible for use.
-            **/
-            public func publishTheme(
-                themeId: String,
-                
-                onResponse: @escaping (_ response: DummyResponse?, _ error: FDKError?) -> Void
-            ) {
-                
- 
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "PUT",
-                    url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/publish",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(DummyResponse.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
             
             
             
             
             /**
             *
-            * Summary: Unpublish theme
-            * Description: Remove a published theme from public access.
-            **/
-            public func unpublishTheme(
-                themeId: String,
-                
-                onResponse: @escaping (_ response: DummyResponse?, _ error: FDKError?) -> Void
-            ) {
-                
- 
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "PUT",
-                    url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/unpublish",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(DummyResponse.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Archive theme
-            * Description: Store a theme in an archive.
-            **/
-            public func archiveTheme(
-                themeId: String,
-                
-                onResponse: @escaping (_ response: DummyResponse?, _ error: FDKError?) -> Void
-            ) {
-                
- 
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "PUT",
-                    url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/archive",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(DummyResponse.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Unarchive theme
-            * Description: Retrieve a theme from the archive.
-            **/
-            public func unarchiveTheme(
-                themeId: String,
-                
-                onResponse: @escaping (_ response: DummyResponse?, _ error: FDKError?) -> Void
-            ) {
-                
- 
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "PUT",
-                    url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/unarchive",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(DummyResponse.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Get application themes
-            * Description: Retrieve themes available for an application.
+            * Summary: List sales channel themes
+            * Description: Retrieve all draft themes added to sales channel from theme collection.
             **/
             public func getApplicationThemes(
                 
@@ -26621,8 +26249,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get application themes count
-            * Description: Count the number of themes available for an application.
+            * Summary: Get sales channel themes count
+            * Description: Retrieve count of all draft themes added to sales channel from theme collection.
             **/
             public func getApplicationThemesCount(
                 
@@ -26669,8 +26297,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get theme by ID
-            * Description: Retrieve a theme by its unique identifier.
+            * Summary: Get theme
+            * Description: Retrieve a theme by its unique identifier. Response contains theme template data and data stored in theme editor.
             **/
             public func getThemeById(
                 themeId: String,
@@ -26719,7 +26347,7 @@ if let value = pageNo {
             /**
             *
             * Summary: Update theme
-            * Description: Modify and update the content and settings of a theme
+            * Description: Modify and update the content and settings of a theme.
             **/
             public func updateTheme(
                 themeId: String,
@@ -26768,7 +26396,7 @@ if let value = pageNo {
             /**
             *
             * Summary: Delete theme
-            * Description: Remove a theme from the platform.
+            * Description: Remove a theme from theme drafts of a sales channel.
             **/
             public func deleteTheme(
                 themeId: String,
@@ -26816,8 +26444,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Add theme to application
-            * Description: Include a theme in an application's design.
+            * Summary: Create theme in sales channel
+            * Description: Include a theme in an application drafts from theme collection.
             **/
             public func addThemeToApplication(
                 body: ThemeReq,
@@ -26865,7 +26493,7 @@ if let value = pageNo {
             /**
             *
             * Summary: Update theme name
-            * Description: Modify the name of a theme.
+            * Description: Modify the name of the draft theme by theme Id.
             **/
             public func updateThemeName(
                 themeId: String,
@@ -26913,8 +26541,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Apply theme
-            * Description: Set and apply a theme to an application or page.
+            * Summary: Apply a theme
+            * Description: Change current applied theme with new draft theme.
             **/
             public func applyTheme(
                 themeId: String,
@@ -26962,8 +26590,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Duplicate theme
-            * Description: Create a copy of an existing theme.
+            * Summary: Duplicate a theme
+            * Description: Create a new copy of an existing theme by theme Id
             **/
             public func duplicateTheme(
                 themeId: String,
@@ -27012,7 +26640,7 @@ if let value = pageNo {
             /**
             *
             * Summary: Get applied theme
-            * Description: Retrieve the currently applied theme.
+            * Description: Retrieve the currently applied theme of a sales channel using application Id.
             **/
             public func getAppliedTheme(
                 
@@ -27060,7 +26688,7 @@ if let value = pageNo {
             /**
             *
             * Summary: Get theme for preview
-            * Description: Retrieve a theme for previewing before application.
+            * Description: Retrieve a theme by its unique identifier. Response contains theme template data and data stored in theme editor.
             **/
             public func getThemeForPreview(
                 themeId: String,
@@ -27108,8 +26736,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get theme last modified
-            * Description: Retrieve the last modification of a theme.
+            * Summary: Get theme last modified date
+            * Description: Retrieve the last modification of a theme used for polling and identifing cross user changes in a theme.
             **/
             public func getThemeLastModified(
                 themeId: String,
@@ -27157,8 +26785,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Is upgradable
-            * Description: Determine if a theme is eligible for an upgrade.
+            * Summary: Check theme is upgradable 
+            * Description: Determine if a public theme is eligible for an upgrade to a new version after any new version released in marketplace. 
             **/
             public func isUpgradable(
                 themeId: String,
@@ -27207,7 +26835,7 @@ if let value = pageNo {
             /**
             *
             * Summary: Upgrade theme
-            * Description: Enhance and update a theme to a new version.
+            * Description: Update a draft theme to a new version of the marketplace.
             **/
             public func upgradeTheme(
                 themeId: String,
@@ -27270,8 +26898,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get customers
-            * Description: Retrieve a list of customer profiles.
+            * Summary: Get a List of Users
+            * Description: Retrieve details of users registered in the sales channel
             **/
             public func getCustomers(
                 q: String?,
@@ -27342,8 +26970,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Search users
-            * Description: Search and filter user profiles.
+            * Summary: Search an Existing Users
+            * Description: Search and filter users details registered in the sales channel
             **/
             public func searchUsers(
                 q: String?,
@@ -27406,8 +27034,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Create user
-            * Description: Register and add a new user to the platform.
+            * Summary: Create User
+            * Description: Register and add a new user to the sales channel.
             **/
             public func createUser(
                 body: CreateUserRequestSchema,
@@ -27454,8 +27082,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Block/unblock users
-            * Description: Control user access by blocking or unblocking their accounts.
+            * Summary: Block/Unblock Users
+            * Description: Manage user access by blocking or unblocking their accounts, restricting login for blocked accounts and allowing login for unblocked accounts.
             **/
             public func blockOrUnblockUsers(
                 body: BlockUserRequestSchema,
@@ -27502,7 +27130,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Undelete user
+            * Summary: Restore Deleted User
             * Description: Restore a previously deleted user account.
             **/
             public func unDeleteUser(
@@ -27550,7 +27178,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Update user
+            * Summary: Update User Details
             * Description: Modify and update user profile information.
             **/
             public func updateUser(
@@ -27599,8 +27227,8 @@ if let value = query {
             
             /**
             *
-            * Summary: Create user session
-            * Description: Establish a session for user interactions.
+            * Summary: Create User Session
+            * Description: Create session for user interactions
             **/
             public func createUserSession(
                 body: CreateUserSessionRequestSchema,
@@ -27647,7 +27275,7 @@ if let value = query {
             
             /**
             *
-            * Summary: Delete session
+            * Summary: Delete User Session
             * Description: Terminate an active user session.
             **/
             public func deleteSession(
@@ -27713,7 +27341,7 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get active sessions
+            * Summary: Get User Active Sessions
             * Description: Retrieve a list of currently active user sessions.
             **/
             public func getActiveSessions(
@@ -27767,8 +27395,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Delete active sessions
-            * Description: End multiple active user sessions.
+            * Summary: Delete User Active Sessions
+            * Description: Terminate all active user sessions.
             **/
             public func deleteActiveSessions(
                 id: String,
@@ -27827,8 +27455,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: archive user
-            * Description: archive user
+            * Summary: Archive User
+            * Description: Delete user from sales channel, allowing re-registration with the same mobile/email for a new user account.
             **/
             public func archiveUser(
                 body: ArchiveUserRequestSchema,
@@ -27875,8 +27503,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get platform config
-            * Description: Retrieve configuration settings for the platform.
+            * Summary: Get Platform Config
+            * Description: Retrieve platform sales channel authentication configuration.
             **/
             public func getPlatformConfig(
                 
@@ -27923,8 +27551,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update platform config
-            * Description: Modify and update platform configuration settings.
+            * Summary: Update Platform Config
+            * Description: Modify and update platform sales channel authentication configuration.
             **/
             public func updatePlatformConfig(
                 body: PlatformSchema,
@@ -27971,7 +27599,7 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Create user group
+            * Summary: Create User Group
             * Description: Form and add a new user group.
             **/
             public func createUserGroup(
@@ -28019,7 +27647,7 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Get user groups
+            * Summary: Get User Groups
             * Description: Retrieve a list of user groups.
             **/
             public func getUserGroups(
@@ -28115,7 +27743,7 @@ if let value = groupUid {
             
             /**
             *
-            * Summary: Update user group
+            * Summary: Update User Group
             * Description: Modify and update user group details.
             **/
             public func updateUserGroup(
@@ -28164,7 +27792,7 @@ if let value = groupUid {
             
             /**
             *
-            * Summary: Get user group by ID
+            * Summary: Get User Group
             * Description: Retrieve a user group by its unique identifier.
             **/
             public func getUserGroupById(
@@ -28213,7 +27841,7 @@ if let value = groupUid {
             
             /**
             *
-            * Summary: Add or Remove an user from particular user group and update user group details
+            * Summary: Modify User Group
             * Description: Update user group partially on the platform.
             **/
             public func updateUserGroupPartially(
@@ -28263,7 +27891,7 @@ if let value = groupUid {
             /**
             *
             * Summary: Create a User Attribute Definition
-            * Description: Use this API to areate a new User Attribute Definition
+            * Description: Create a new User Attribute Definition
             **/
             public func createUserAttributeDefinition(
                 body: CreateUserAttributeDefinition,
@@ -28643,8 +28271,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: get User Attribute
-            * Description: get User Attribute
+            * Summary: Get User Attribute
+            * Description: Get User Attribute
             **/
             public func getUserAttribute(
                 attributeDefId: String,
@@ -28693,8 +28321,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: delete User Attribute
-            * Description: delete User Attribute
+            * Summary: Delete User Attribute
+            * Description: Delete User Attribute
             **/
             public func deleteUserAttribute(
                 attributeDefId: String,
@@ -28743,8 +28371,8 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: Get User Attributes for user
-            * Description: Get all user attributes for user
+            * Summary: Get All Customer Attributes
+            * Description: Retrieve all user attributes for a specific user
             **/
             public func getUserAttributesForUser(
                 userId: String,
@@ -28809,7 +28437,7 @@ if let value = pageNo {
             /**
             *
             * Summary: Get User Attribute
-            * Description: Get User Attribute details by id
+            * Description: Retrieve User Attribute details by ID.
             **/
             public func getUserAttributeById(
                 attributeId: String,

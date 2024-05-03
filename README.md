@@ -64,10 +64,3 @@ platformClient.catalog.getCompanyDetail { (response, error) in
 }
 ```
 
-
-### Documentation
-
-- [Application Front](documentation/application/README.md)
-- [Platform Front](documentation/platform/README.md)
-- [Public Front](documentation/public/README.md)
-

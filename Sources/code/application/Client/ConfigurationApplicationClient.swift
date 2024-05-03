@@ -55,8 +55,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches application details
-        * Description: Retrieve the current sales channel details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
+        * Summary: Get sales channel
+        * Description: Retrieve details of the current sales channel.
         **/
         public func getApplication(
             
@@ -105,8 +105,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves application owner details
-        * Description: Retrieve the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, etc. Also retrieves the seller and owner information such as address, email address, and phone number.
+        * Summary: Get sales channel owner
+        * Description: Retrieve details of the sales channel owner.
         **/
         public func getOwnerInfo(
             
@@ -155,8 +155,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves basic app info
-        * Description: Retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc.
+        * Summary: Get Sales channel
+        * Description: Retrieve basic details of the sales channel.
         **/
         public func getBasicDetails(
             
@@ -205,8 +205,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches API tokens
-        * Description: Retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook.
+        * Summary: Get API tokens
+        * Description: Retrieve tools integration token of the sales channel. For ex- Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook.
         **/
         public func getIntegrationTokens(
             
@@ -255,8 +255,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Lists order-enabled stores
-        * Description: Retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
+        * Summary: List order-enabled selling locations
+        * Description: Retrieve details of all the deployment store locations where the sales channel will be used for order placement.
         **/
         public func getOrderingStores(
             pageNo: Int?,
@@ -329,8 +329,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Retrieves store details by ID
-        * Description: Retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders). 
+        * Summary: Get a selling location
+        * Description: Retrieve detail of a selling location (store) by it's Id.
         **/
         public func getStoreDetailById(
             storeId: Int,
@@ -382,8 +382,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Fetches app features
-        * Description: Retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more.
+        * Summary: Get sales channel features
+        * Description: Retrieve configuration of the features of the sales channel.
         **/
         public func getFeatures(
             
@@ -432,8 +432,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Retrieves contact details
-        * Description: Retrieve information about the social links, address and contact information of the company/seller/brand operating the application.
+        * Summary: Get sales channel contact
+        * Description: Retrieve contact details of the sales channel.
         **/
         public func getContactInfo(
             
@@ -482,8 +482,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Lists supported currencies
-        * Description: Retrieve a list of currencies available. Also get the name, code, symbol, and the decimal digits of the currencies. 
+        * Summary: List currencies
+        * Description: Retrieve a list of available currencies.
         **/
         public func getCurrencies(
             
@@ -532,8 +532,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Fetches currency by ID
-        * Description: Retrieve details of a specific currency using its ID. 
+        * Summary: Get a currency
+        * Description: Retrieve details of the currency.
         **/
         public func getCurrencyById(
             id: String,
@@ -585,8 +585,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Retrieves app-specific currencies
-        * Description: Retrieve a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+        * Summary: Get currency configuration
+        * Description: Retrieve currency configuration of the sales channel.
         **/
         public func getAppCurrencies(
             
@@ -635,8 +635,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Lists available languages
-        * Description: Retrieves all languages supported by the app.
+        * Summary: List languages
+        * Description: Retrieve a list of available languages.
         **/
         public func getLanguages(
             
@@ -685,8 +685,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Retrieves store selection cookie
-        * Description: Retrieve an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart. 
+        * Summary: Create cookies
+        * Description: Reset cookie of ordering store.
         **/
         public func getOrderingStoreCookie(
             body: OrderingStoreSelectRequest,
@@ -735,8 +735,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Deletes store cookie
-        * Description: Unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app.
+        * Summary: Delete store cookie
+        * Description: Remove store cookie
         **/
         public func removeOrderingStoreCookie(
             
@@ -785,8 +785,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Lists app staff members
-        * Description: Retrieve a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
+        * Summary: List staff members
+        * Description: Retrieve a list of all staff members of the sales channel.
         **/
         public func getAppStaffList(
             pageNo: Int?,
@@ -883,8 +883,8 @@ if let value = userName {
         
         /**
         *
-        * Summary: Fetches detailed staff info
-        * Description: Retrieve a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
+        * Summary: Get staff member
+        * Description: Retrieve a staff user including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the sales channel.
         **/
         public func getAppStaffs(
             orderIncent: Bool?,

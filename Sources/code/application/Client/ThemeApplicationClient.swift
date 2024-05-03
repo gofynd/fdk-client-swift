@@ -31,8 +31,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetch all pages
-        * Description: Retrieves a list of all the pages available within the applied theme.
+        * Summary: List pages
+        * Description: Get all page level configs, sections and SEO data of a theme
         **/
         public func getAllPages(
             themeId: String,
@@ -84,8 +84,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Single page details
-        * Description: Retrieve detailed information for a specific page within the theme.
+        * Summary: Get theme page
+        * Description: Get page level configurations, applied sections and SEO data of a page by `page_value` received from list pages API
         **/
         public func getPage(
             themeId: String,
@@ -156,8 +156,8 @@ if let value = company {
         
         /**
         *
-        * Summary: Current theme
-        * Description: Gets the theme currently applied to the application.
+        * Summary: Get applied theme 
+        * Description: Gets the theme configuration and template details of a theme applied to the application.
         **/
         public func getAppliedTheme(
             
@@ -206,8 +206,8 @@ if let value = company {
         
         /**
         *
-        * Summary: Preview theme
-        * Description: Retrieves a theme for previewing before applying it to the application.
+        * Summary: Get theme for preview 
+        * Description: Gets the theme configuration and template details of a theme by theme Id.
         **/
         public func getThemeForPreview(
             themeId: String,

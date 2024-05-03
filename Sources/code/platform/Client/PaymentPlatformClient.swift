@@ -19,7 +19,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get all payouts
+        * Summary: List payouts
         * Description: Retrieve a list of all payout transactions.
         **/
         public func getAllPayouts(
@@ -485,7 +485,7 @@ var xQuery: [String: Any] = [:]
         /**
         *
         * Summary: Verify IFSC code
-        * Description: Check the authenticity of an IFSC code.
+        * Description: Checks the validity of the provided IFSC code and returns bank details if valid.
         **/
         public func verifyIfscCode(
             ifscCode: String?,

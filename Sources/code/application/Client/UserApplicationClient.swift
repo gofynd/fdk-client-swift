@@ -109,8 +109,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Facebook login
-        * Description: Enables login through Facebook accounts.
+        * Summary: Login with Facebook
+        * Description: Enables users to log in to the system using their Facebook accounts.
         **/
         public func loginWithFacebook(
             platform: String?,
@@ -167,8 +167,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Google login
-        * Description: Enables login through Google accounts.
+        * Summary: Login with Google
+        * Description: Enables website users to log in to the system using their Google accounts.
         **/
         public func loginWithGoogle(
             platform: String?,
@@ -225,8 +225,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Android Google login
-        * Description: Facilitates Google login specifically for Android users.
+        * Summary: Android Login with Google
+        * Description: Enables Android users to log in to the system using their Facebook accounts.
         **/
         public func loginWithGoogleAndroid(
             platform: String?,
@@ -283,8 +283,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: iOS Google login
-        * Description: Facilitates Google login specifically for iOS users.
+        * Summary: iOS Login with Google
+        * Description: Enables iOS users to log in to the system using their Facebook accounts.
         **/
         public func loginWithGoogleIOS(
             platform: String?,
@@ -341,8 +341,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Apple iOS login
-        * Description: Enables login through Apple ID specifically for iOS users.
+        * Summary: iOS Login with Apple
+        * Description: Enables iOS users to log in to the system using their Apple ID.
         **/
         public func loginWithAppleIOS(
             platform: String?,
@@ -399,8 +399,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: OTP login
-        * Description: Allows users to log in using a one-time password.
+        * Summary: Login with Mobile OTP
+        * Description: Allows users to log in using a one-time password sent to their mobile
         **/
         public func loginWithOTP(
             platform: String?,
@@ -457,8 +457,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Email/password login
-        * Description: Enables login using an email and password combination.
+        * Summary: Email and Password Login
+        * Description: Allows login using an email and password combination.
         **/
         public func loginWithEmailAndPassword(
             body: PasswordLoginRequestSchema,
@@ -507,7 +507,7 @@ if let value = platform {
         
         /**
         *
-        * Summary: Reset password (Email)
+        * Summary: Reset Password via Email
         * Description: Sends a password reset link to the user's email.
         **/
         public func sendResetPasswordEmail(
@@ -565,8 +565,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Reset password (Mobile)
-        * Description: Sends a password reset OTP to the user's mobile number.
+        * Summary: Reset Password via Mobile
+        * Description: Sends a password reset link to the user's Mobile.
         **/
         public func sendResetPasswordMobile(
             platform: String?,
@@ -623,8 +623,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Reset Password using token
-        * Description: Use this API to send code to reset password.
+        * Summary: Validate Password Reset Code
+        * Description: Validate Password Reset link Code
         **/
         public func sendResetToken(
             body: CodeRequestBodySchema,
@@ -673,8 +673,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Forgot password
-        * Description: Initiates the password recovery process for the user.
+        * Summary: Reset Password via Code and login
+        * Description: Reset a password using the code sent on email or SMS the Login.
         **/
         public func forgotPassword(
             body: ForgotPasswordRequestSchema,
@@ -723,8 +723,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Forgot password
-        * Description: Initiates the password recovery process for the user.
+        * Summary: Reset Password via Code
+        * Description: Reset a password using the code sent on email or SMS.
         **/
         public func resetForgotPassword(
             body: ForgotPasswordRequestSchema,
@@ -773,8 +773,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Login or Register with token
-        * Description: Use this API to login or register using a token for authentication.
+        * Summary: Login with Token
+        * Description: Login User using a token for authentication.
         **/
         public func loginWithToken(
             body: TokenRequestBodySchema,
@@ -823,7 +823,7 @@ if let value = platform {
         
         /**
         *
-        * Summary: User registration
+        * Summary: Register User with Form
         * Description: Enables new users to register using a form.
         **/
         public func registerWithForm(
@@ -881,8 +881,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Verify email
-        * Description: Verifies the user's email address.
+        * Summary: Verify Email with Code
+        * Description: Verifies user email with a code sent within a link sent to their email.
         **/
         public func verifyEmail(
             body: CodeRequestBodySchema,
@@ -931,8 +931,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Verify mobile
-        * Description: Verifies the user's mobile number.
+        * Summary: Verify Mobile with Code
+        * Description: Verifies user mobile with a code sent within a link sent to their mobile.
         **/
         public func verifyMobile(
             body: CodeRequestBodySchema,
@@ -981,8 +981,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Check password
-        * Description: Checks if the user has set a password for the account.
+        * Summary: Check Password Existence
+        * Description: Check if user has set an account password
         **/
         public func hasPassword(
             
@@ -1031,8 +1031,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Update password
-        * Description: Allows users to update their existing password.
+        * Summary: Update Password
+        * Description: Allow user to change their password.
         **/
         public func updatePassword(
             body: UpdatePasswordRequestSchema,
@@ -1081,7 +1081,7 @@ if let value = platform {
         
         /**
         *
-        * Summary: Send mobile OTP
+        * Summary: Send OTP on Mobile
         * Description: Sends a one-time password to the user's mobile for verification.
         **/
         public func sendOTPOnMobile(
@@ -1139,8 +1139,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Send forgot OTP on mobile
-        * Description: Sends a one-time password to the user's forgot mobile for verification request.
+        * Summary: Send Mobile OTP for Forgot Password.
+        * Description: Sends a one-time password to the user's mobile for verification when resetting a forgotten password.
         **/
         public func sendForgotOTPOnMobile(
             platform: String?,
@@ -1197,8 +1197,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Verify mobile OTP
-        * Description: Validates the OTP sent to the user's mobile.
+        * Summary: Verify Mobile OTP
+        * Description: Verify one-time password sent to user's mobile.
         **/
         public func verifyMobileOTP(
             platform: String?,
@@ -1255,8 +1255,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Verify Forgot OTP on mobile
-        * Description: Use this API to verify the Forgot OTP received on a mobile number.
+        * Summary: Verify Mobile OTP for Forgot Password.
+        * Description: Verify one-time password sent to user's mobile for resetting a forgotten password
         **/
         public func verifyMobileForgotOTP(
             platform: String?,
@@ -1313,7 +1313,7 @@ if let value = platform {
         
         /**
         *
-        * Summary: Send email OTP
+        * Summary: Send OTP on Email
         * Description: Sends a one-time password to the user's email for verification.
         **/
         public func sendOTPOnEmail(
@@ -1371,8 +1371,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Send Forgot OTP Email
-        * Description: Sends a one-time password to the user's forgot email for verification request.
+        * Summary: Send Email OTP for Forgot Password.
+        * Description: Sends a one-time password to the user's email for verification when resetting a forgotten password.
         **/
         public func sendForgotOTPOnEmail(
             platform: String?,
@@ -1430,7 +1430,7 @@ if let value = platform {
         /**
         *
         * Summary: Verify Email OTP
-        * Description: Validates the OTP sent to the user's email address request.
+        * Description: Verify one-time password sent to user's email.
         **/
         public func verifyEmailOTP(
             platform: String?,
@@ -1487,8 +1487,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Verify Email Forgot OTP
-        * Description: Validates the OTP sent to the user's forgot email address request.
+        * Summary: Verify Email OTP for Forgot Password.
+        * Description: Verify one-time password sent to user's email for resetting a forgotten password
         **/
         public func verifyEmailForgotOTP(
             platform: String?,
@@ -1545,7 +1545,7 @@ if let value = platform {
         
         /**
         *
-        * Summary: Current user
+        * Summary: Get Logged in User
         * Description: Retrieve information about the currently logged-in user.
         **/
         public func getLoggedInUser(
@@ -1595,8 +1595,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Get list of sessions
-        * Description: Use this API to retrieve all active sessions of a user.
+        * Summary: Get List OF Active Sessions
+        * Description: Retrieve all active sessions of a user.
         **/
         public func getListOfActiveSessions(
             
@@ -1645,8 +1645,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Platform config
-        * Description: Retrieve configuration settings related to the user platform.
+        * Summary: Get Platform Configuration
+        * Description: Retrieve platform sales channel authentication configuration.
         **/
         public func getPlatformConfig(
             name: String?,
@@ -1703,8 +1703,8 @@ if let value = name {
         
         /**
         *
-        * Summary: Edit Profile Details
-        * Description: Use this API to update details in the user profile. Details can be first name, last name, gender, email, phone number, or profile picture.
+        * Summary: Edit User Profile Details
+        * Description: Allows users to modify and update their profile details
         **/
         public func updateProfile(
             platform: String?,
@@ -1761,7 +1761,7 @@ if let value = platform {
         
         /**
         *
-        * Summary: Add mobile
+        * Summary: Add Mobile Number to Profile
         * Description: Adds a new mobile number to the user's profile.
         **/
         public func addMobileNumber(
@@ -1819,8 +1819,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Delete mobile number from profile
-        * Description: Use this API to delete a mobile number from a profile.
+        * Summary: Delete Mobile Number From Profile
+        * Description: Delete Mobile Number From Profile.
         **/
         public func deleteMobileNumber(
             platform: String?,
@@ -1907,7 +1907,7 @@ if let value = platform {
         
         /**
         *
-        * Summary: Set primary mobile
+        * Summary: Set Mobile as Primary
         * Description: Sets a mobile number as the primary contact for the user.
         **/
         public func setMobileNumberAsPrimary(
@@ -1957,7 +1957,7 @@ if let value = platform {
         
         /**
         *
-        * Summary: Verify new mobile
+        * Summary: Send Verification Link to Mobile
         * Description: Sends a verification link to a newly added mobile number.
         **/
         public func sendVerificationLinkToMobile(
@@ -2015,7 +2015,7 @@ if let value = platform {
         
         /**
         *
-        * Summary: Add email
+        * Summary: Add Email to Profile
         * Description: Adds a new email address to the user's profile.
         **/
         public func addEmail(
@@ -2073,8 +2073,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Delete email
-        * Description: Removes an email address from the user's profile.
+        * Summary: Delete Email From Profile
+        * Description: Delete Email From Profile
         **/
         public func deleteEmail(
             platform: String?,
@@ -2155,7 +2155,7 @@ if let value = platform {
         
         /**
         *
-        * Summary: Set primary email
+        * Summary: Set Email as Primary
         * Description: Sets an email address as the primary contact for the user.
         **/
         public func setEmailAsPrimary(
@@ -2205,7 +2205,7 @@ if let value = platform {
         
         /**
         *
-        * Summary: Verify new email
+        * Summary: Send Verification Link to Email
         * Description: Sends a verification link to a newly added email address.
         **/
         public func sendVerificationLinkToEmail(
@@ -2263,8 +2263,8 @@ if let value = platform {
         
         /**
         *
-        * Summary: Check user is already registered or not
-        * Description: Use this API to check whether user is already registered or not to the sales channel.
+        * Summary: Chcek User Existence
+        * Description: Check whether user is already registered or not to the sales channel.
         **/
         public func userExists(
             q: String,
@@ -2319,8 +2319,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: verify otp and delete user
-        * Description: verify otp and delete user
+        * Summary: Verify OTP and Delete User
+        * Description: Verify OTP sent to mobile/email and Delete the user's account.
         **/
         public func deleteUser(
             body: DeleteApplicationUserRequestSchema,
@@ -2369,8 +2369,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Logs out currently logged in user
-        * Description: Use this API to check to logout a user from the app.
+        * Summary: Logout Current User
+        * Description: Logout currently logged-in user
         **/
         public func logout(
             
@@ -2419,8 +2419,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get user attributes
-        * Description: Use this API to get the list of user attributes
+        * Summary: Get User Attributes
+        * Description: Get the list of user attributes
         **/
         public func getUserAttributes(
             slug: String?,
@@ -2477,8 +2477,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Update user attributes
-        * Description: Use this API to update user attributes
+        * Summary: Update User Attributes
+        * Description: Update user attributes
         **/
         public func updateUserAttributes(
             body: UpdateUserAttributesRequest,

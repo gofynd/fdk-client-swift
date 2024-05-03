@@ -16,8 +16,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get platform tickets
-        * Description: Retrieve a list of tickets created within the platform at company level
+        * Summary: List tickets
+        * Description: List all tickets created within the platform at company level
         **/
         public func getPlatformTickets(
             items: Bool?,
@@ -177,8 +177,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get platform ticket
-        * Description: Retrieve detailed information about a specific ticket which is raised at company level
+        * Summary: Get a ticket
+        * Description: Get detailed information about a specific ticket which is raised at company level
         **/
         public func getPlatformTicket(
             id: String,
@@ -226,7 +226,7 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Edit platform ticket
+        * Summary: Update a ticket
         * Description: Modify the content and settings of a specific company level ticket.
         **/
         public func editPlatformTicket(
@@ -277,7 +277,7 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Create platform ticket history
+        * Summary: Create ticket history
         * Description: Create futher interactions on a company level ticket such as changing it's status, priority or replying to a ticket via a thread.
         **/
         public func createPlatformTicketHistory(
@@ -326,8 +326,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get platform ticket history
-        * Description: Retrieve a list of history records for a company level ticket.
+        * Summary: Get ticket history
+        * Description: List history records for a company level ticket.
         **/
         public func getPlatformTicketHistory(
             id: String,
@@ -376,7 +376,7 @@ if let value = pageSize {
         /**
         *
         * Summary: Get feedbacks
-        * Description: Retrieve feedback information related to a ticket.
+        * Description: Get feedback information related to a ticket.
         **/
         public func getFeedbacks(
             id: String,
@@ -480,8 +480,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get token for platform video room
-        * Description: Retrieve an access token for a platform video room.
+        * Summary: Get video Room Token 
+        * Description: Get an access token for a platform video room.
         **/
         public func getTokenForPlatformVideoRoom(
             uniqueName: String,
@@ -530,8 +530,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get platform video participants
-        * Description: Retrieve a list of participants in a platform video room.
+        * Summary: List video Room Participants 
+        * Description: Get a list of participants in a platform video room
         **/
         public func getPlatformVideoParticipants(
             uniqueName: String,
@@ -583,7 +583,7 @@ if let value = pageSize {
         /**
         *
         * Summary: Get general configuration
-        * Description: Retrieve general configuration settings related to support system for company tickets
+        * Description: Get general configuration settings related to support system for company tickets
         **/
         public func getGeneralConfig(
             

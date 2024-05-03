@@ -37,7 +37,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetch specific offer
+        * Summary: Get specific offer
         * Description: Retrieves detailed information about an offer by its name.
         **/
         public func getOfferByName(

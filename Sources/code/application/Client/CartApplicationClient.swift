@@ -79,8 +79,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieve cart details
-        * Description: Retrieve the current state and items in the shopping cart.
+        * Summary: Get a cart
+        * Description: Retrieve details of a cart linked to a specific customer using either the customer's ID or a unique cart ID. It offers an overview of the items, quantities, prices, and other relevant information associated with the cart.
         **/
         public func getCart(
             id: String?,
@@ -185,8 +185,8 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Cart modification time
-        * Description: Gets the last modified timestamp for the cart.
+        * Summary: Get last modified timestamp of a cart
+        * Description: Retrieve the last modified timestamp of the cart using unique cart ID. It indicates the most recent update made to the cart's content or properties.
         **/
         public func getCartLastModified(
             id: String?,
@@ -243,8 +243,8 @@ if let value = id {
         
         /**
         *
-        * Summary: Add to cart
-        * Description: Adds selected items to the shopping cart.
+        * Summary: Add items to a cart
+        * Description: Add product items to the customer's existing shopping cart. If there is no existing cart associated with the customer, it creates a new one and adds the items to it.
         **/
         public func addItems(
             i: Bool?,
@@ -333,8 +333,8 @@ if let value = id {
         
         /**
         *
-        * Summary: Update cart
-        * Description: Modifies items and quantities in the existing cart.
+        * Summary: Update cart items
+        * Description: Customers can modify added product attributes such as quantity and size, as well as remove items from the cart.
         **/
         public func updateCart(
             id: String?,
@@ -431,8 +431,8 @@ if let value = cartType {
         
         /**
         *
-        * Summary: Clears the cart
-        * Description: Removes all items and resets the user's cart.
+        * Summary: Delete a cart
+        * Description: Delete all items from the user's cart and resets it to its initial state, providing a clean slate for new selections.
         **/
         public func deleteCart(
             id: String?,
@@ -489,8 +489,8 @@ if let value = id {
         
         /**
         *
-        * Summary: Count cart items
-        * Description: Gets the total number of items in the cart.
+        * Summary: Get a cart items count
+        * Description: Retrieve the total count of items currently present in the customer's cart.
         **/
         public func getItemCount(
             id: String?,
@@ -556,7 +556,7 @@ if let value = buyNow {
         /**
         *
         * Summary: List available coupons
-        * Description: Retrieve coupons that can be applied to the cart.
+        * Description: Retrieve a list of all available coupons that customer can apply to their carts. It provides details about each coupon, including its code, discount amount, and applicable conditions.
         **/
         public func getCoupons(
             id: String?,
@@ -638,7 +638,8 @@ if let value = storeId {
         /**
         *
         * Summary: Apply coupon
-        * Description: Applies a coupon code to get discounts on cart items.
+        * Description: 
+Apply a coupon code to the customer's cart to trigger discounts on eligible items
         **/
         public func applyCoupon(
             i: Bool?,
@@ -736,7 +737,7 @@ if let value = cartType {
         /**
         *
         * Summary: Remove coupon
-        * Description: Removes an applied coupon from the cart.
+        * Description: Remove an applied coupon from the customer's cart, thereby removing the associated discount from the cart total.
         **/
         public func removeCoupon(
             id: String?,
@@ -801,8 +802,8 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Bulk discounts
-        * Description: Lists available bulk discount offers for cart items.
+        * Summary: List bulk discounts
+        * Description: Retrieve a list of offer discounts with information about quantity and seller. One offer is marked with a "best" flag, indicating it as the best offer among the list.
         **/
         public func getBulkDiscountOffers(
             itemId: Int?,
@@ -884,7 +885,7 @@ if let value = slug {
         /**
         *
         * Summary: Use reward points
-        * Description: Applies user’s reward points to the cart.
+        * Description: Users can redeem their accumulated reward points and apply them to the items in their cart, thereby availing discounts on their current purchases.
         **/
         public func applyRewardPoints(
             id: String?,
@@ -965,8 +966,8 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Get saved addresses
-        * Description: Retrieve all saved addresses for the user.
+        * Summary: List customer addresses
+        * Description: Retrieve a list of all addresses saved by the customer, simplifying the checkout process by offering pre-saved address options for delivery.
         **/
         public func getAddresses(
             cartId: String?,
@@ -1063,8 +1064,8 @@ if let value = isDefault {
         
         /**
         *
-        * Summary: Add new address
-        * Description: Saves a new address for the user.
+        * Summary: Create a new address
+        * Description: Customers can add a new address to their cart to save details such as name, email, contact information, and address.
         **/
         public func addAddress(
             body: Address,
@@ -1113,8 +1114,8 @@ if let value = isDefault {
         
         /**
         *
-        * Summary: Fetch address
-        * Description: Retrieves a saved address using its ID.
+        * Summary: Get a address
+        * Description: Retrieve a specific customer address stored in the system by providing its unique identifier. This API provides detailed information about the address, including the recipient's name, address, city, postal code, and other relevant details.
         **/
         public func getAddressById(
             id: String,
@@ -1214,8 +1215,8 @@ if let value = isDefault {
         
         /**
         *
-        * Summary: Update address
-        * Description: Modifies a saved address.
+        * Summary: Update a address
+        * Description: Customer can modify the details of a previously saved addresses. 
         **/
         public func updateAddress(
             id: String,
@@ -1267,8 +1268,8 @@ if let value = isDefault {
         
         /**
         *
-        * Summary: Delete address
-        * Description: Removes a saved address from the user's profile.
+        * Summary: Delete a address
+        * Description: Removes an existing customer address from the system.
         **/
         public func removeAddress(
             id: String,
@@ -1320,8 +1321,8 @@ if let value = isDefault {
         
         /**
         *
-        * Summary: Choose delivery address
-        * Description: Selects an address for the cart's delivery.
+        * Summary: Select a delivery address
+        * Description: Selects an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address.
         **/
         public func selectAddress(
             cartId: String?,
@@ -1402,8 +1403,8 @@ if let value = b {
         
         /**
         *
-        * Summary: Pick payment method
-        * Description: Chooses a payment mode for the checkout process.
+        * Summary: Select payment mode
+        * Description: Customers can select a preferred payment mode from available options during the cart checkout process to securely and efficiently complete their transaction.
         **/
         public func selectPaymentMode(
             id: String?,
@@ -1468,8 +1469,8 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Validate coupon
-        * Description: Checks if a coupon is valid for the selected payment mode.
+        * Summary: Validate applied coupon
+        * Description: Validate the applicability of a coupon code for the selected payment mode for the existing cart. This ensures the coupon's validity before proceeding with the payment process, enhancing user experience and preventing potential errors during transactions.
         **/
         public func validateCouponForPayment(
             id: String?,
@@ -1615,7 +1616,7 @@ if let value = cartType {
         /**
         *
         * Summary: List shipments
-        * Description: Retrieve shipment details for items in the cart.
+        * Description: Retrieve shipment details for the items in a cart, specific to the selected address. Shipment details include delivery promises, seller information, item details, and other relevant information.
         **/
         public func getShipments(
             p: Bool?,
@@ -1713,7 +1714,7 @@ if let value = orderType {
         /**
         *
         * Summary: Checkout cart
-        * Description: Initiates the checkout process for the cart.
+        * Description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement.
         **/
         public func checkoutCart(
             buyNow: Bool?,
@@ -1779,7 +1780,7 @@ if let value = cartType {
         /**
         *
         * Summary: Update cart metadata
-        * Description: Adds or modifies metadata for the cart.
+        * Description: Add or modify metadata associated with a cart, which includes customer preferences, delivery instructions, or any special requirements related to the cart items.
         **/
         public func updateCartMeta(
             id: String?,
@@ -1844,8 +1845,8 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Share cart link
-        * Description: Generates a shareable link for the current cart.
+        * Summary: Create share cart link
+        * Description: Generate a unique shareable link for the customer's cart for a specific sales channel. This link enables easy sharing of the cart contents with other users, facilitating collaborative shopping experiences.
         **/
         public func getCartShareLink(
             body: GetShareCartLinkRequest,
@@ -1894,8 +1895,8 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Shared cart items
-        * Description: Retrieves items from a shared cart link.
+        * Summary: List shared cart items
+        * Description: Retrieve the cart items from the shared cart link based on unique token.
         **/
         public func getCartSharedItems(
             token: String,
@@ -1948,7 +1949,7 @@ if let value = buyNow {
         /**
         *
         * Summary: Update with shared items
-        * Description: Updates the cart with items from a shared link.
+        * Description: Customer can either merge or replace shared cart items with existing cart.
         **/
         public func updateCartWithSharedItems(
             token: String,
@@ -2003,8 +2004,8 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Retrieves promotional offers
-        * Description: Lists all available promotional offers for the cart.
+        * Summary: List available promotion offers
+        * Description: Retrieve a list of all promotional offers available for the items in the cart, including details such as offer text, unique promotion ID, and validity period.
         **/
         public func getPromotionOffers(
             slug: String?,
@@ -2093,8 +2094,8 @@ if let value = cartType {
         
         /**
         *
-        * Summary: Fetches ladder offers
-        * Description: Gets tiered discounts based on cart value.
+        * Summary: List ladder offers
+        * Description: Retrieve ladder offers associated for the items in the cart. Ladder offers provide discounts or special pricing based on item quantity, allowing users to benefit from bulk purchases or promotional deals.
         **/
         public func getLadderOffers(
             slug: String,
@@ -2173,8 +2174,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Enhanced cart checkout process
-        * Description: Initiates a more secure and detailed checkout process.
+        * Summary: Start cart checkout (latest)
+        * Description: Enhanced version of checkout process that supports multiple mode of payment(MOP).
         **/
         public func checkoutCartV2(
             buyNow: Bool?,

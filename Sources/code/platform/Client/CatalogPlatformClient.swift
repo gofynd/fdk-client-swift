@@ -72,7 +72,7 @@ extension PlatformClient {
         /**
         *
         * Summary: List categories
-        * Description: Retrieve a list of meta associated available product categories in the catalog.
+        * Description: Retrieve a list of categories data associated to a specific company and queries passed in the request.
         **/
         public func listCategories(
             level: String?,
@@ -267,7 +267,7 @@ if let value = slug {
         /**
         *
         * Summary: Create categories
-        * Description: Lets user create product categories on for the seller on the platform.
+        * Description: Allows to create product categories for specific company.
         **/
         public func createCategories(
             body: CategoryRequestBody,
@@ -314,8 +314,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Get category data
-        * Description: Retrieve detailed information about a specific category with the associated meta.
+        * Summary: Get category by uid
+        * Description: Retrieve detailed information about a specific category by its uid for a specific company.
         **/
         public func getCategoryData(
             uid: String,
@@ -363,8 +363,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Update category data
-        * Description: Modify data for an existing category in the catalog.
+        * Summary: Update category.
+        * Description: Modify data for an existing category by its uid for a specific company.
         **/
         public func updateCategory(
             uid: String,
@@ -412,8 +412,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Get seller insights
-        * Description: Retrieve insights and analytics related to sellers within the catalog.
+        * Summary: Get seller catalog counts
+        * Description: Retrieve the count of catalog related data for sellers.
         **/
         public func getSellerInsights(
             sellerAppId: String,
@@ -461,8 +461,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: List department data
-        * Description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type.
+        * Summary: List company department 
+        * Description: Allows you to list all departments data for a specific company.
         **/
         public func listDepartmentsData(
             pageNo: Int?,
@@ -657,7 +657,7 @@ if let value = slug {
         /**
         *
         * Summary: Create departments
-        * Description: Create departments with this resource.
+        * Description: Create departments for a specific company.
         **/
         public func createDepartments(
             body: DepartmentCreateUpdate,
@@ -704,8 +704,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Get department data
-        * Description: Retrieve detailed information about a specific department by UID.
+        * Summary: Get department by uid.
+        * Description: Retrieve detailed information about a specific department for a specific company by uid.
         **/
         public func getDepartmentData(
             uid: String,
@@ -753,8 +753,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Update department data
-        * Description: Modify the department by their uid using this API.
+        * Summary: Update department.
+        * Description: Modify the department data by their uid for a specifc company.
         **/
         public func updateDepartment(
             uid: String,
@@ -802,8 +802,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: List template brand type values
-        * Description: Retrieve values related to template brand types. The filter type query parameter defines what type of data to return. The type of query returns the valid values for the same
+        * Summary: List template brand.
+        * Description: Retrieve values related to template brand types for a specific company. The filter type query parameter defines what type of data to return. 
         **/
         public func listTemplateBrandTypeValues(
             filter: String,
@@ -872,8 +872,8 @@ if let value = itemType {
         
         /**
         *
-        * Summary: Bulk update HSN codes
-        * Description: Perform bulk updates of HSN codes for products.
+        * Summary: Create Bulk update HSN.
+        * Description: Execute bulk updates for HSN codes across multiple products.
         **/
         public func bulkHsnCode(
             body: BulkHsnUpsert,
@@ -920,7 +920,7 @@ if let value = itemType {
         
         /**
         *
-        * Summary: Get HSN code
+        * Summary: List HSN code
         * Description: Retrieve the HSN code for a product.
         **/
         public func getHsnCode(
@@ -1018,8 +1018,8 @@ if let value = itemType {
         
         /**
         *
-        * Summary: Retrieve inventories
-        * Description: Allows to get Inventories data for particular company.
+        * Summary: List Inventory.
+        * Description: Allows to get Inventories data for particular company. 
         **/
         public func getInventories(
             itemId: String?,
@@ -1229,8 +1229,8 @@ if let value = sizeIdentifier {
         
         /**
         *
-        * Summary: Retrieve inventory bulk upload history
-        * Description: Helps to get bulk Inventory upload jobs data.
+        * Summary: List bulk inventory upload history.
+        * Description: Helps to get bulk Inventory upload jobs status.
         **/
         public func getInventoryBulkUploadHistory(
             pageNo: Int?,
@@ -1490,8 +1490,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieve inventory export data
-        * Description: Helps to retrieve Inventory export history.
+        * Summary: list product inventory.
+        * Description: Retrieves inventory for all products for that particular company
         **/
         public func getInventoryExport(
             
@@ -1586,7 +1586,7 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Export inventory configuration
+        * Summary: Get export inventory configuration
         * Description: Retrieve List of different filters like brand, store, and type for inventory export.
         **/
         public func exportInventoryConfig(
@@ -1642,8 +1642,8 @@ if let value = filterType {
         
         /**
         *
-        * Summary: Download inventory template view
-        * Description: Allows you to download product template data.
+        * Summary: Download inventory template data
+        * Description: Allows you to download inventory product template data for a specific company in formats like csv and excel.
         **/
         public func downloadInventoryTemplateView(
             itemType: String,
@@ -1697,7 +1697,7 @@ var xQuery: [String: Any] = [:]
         /**
         *
         * Summary: Validate product template schema
-        * Description: Allows you to list all product templates validation values for all the fields present in the database.
+        * Description: Allows you to list all product templates validation values for all the fields present in the database for a specific company.
         **/
         public func validateProductTemplateSchema(
             itemType: String,
@@ -1751,7 +1751,7 @@ var xQuery: [String: Any] = [:]
         /**
         *
         * Summary: Get optimal locations
-        * Description: Retrieve the most suitable locations based on certain criteria.
+        * Description: This API returns the optimal locations where inventory is available for the given articles.
         **/
         public func getOptimalLocations(
             body: AssignStore,
@@ -1798,8 +1798,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get opt-in infomation
-        * Description: Use this API to fetch opt-in information for all the platforms. If successful, returns a logs in the response body as specified in `GetOptInPlatformSchema`
+        * Summary: Get opt-in
+        * Description: Allows to fetch opt-in information for a company.
         **/
         public func getMarketplaceOptinDetail(
             
@@ -1846,8 +1846,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Get the Company Brand details of Optin
-        * Description: Get the details of the Brands associated with the given company_id passed.
+        * Summary: list Company Brand of Optin.
+        * Description: Get the details of the Brands associated with the given company_id passed which has opt-in.
         **/
         public func getCompanyBrandDetail(
             isActive: Bool?,
@@ -1934,8 +1934,8 @@ if let value = marketplace {
         
         /**
         *
-        * Summary: Get the Company details
-        * Description: Get the details of the company associated with the given company_id passed.
+        * Summary: Get Company.
+        * Description: Get the details of the company associated with the given company_id passed which has opt-in.
         **/
         public func getCompanyDetail(
             
@@ -1983,7 +1983,7 @@ if let value = marketplace {
         /**
         *
         * Summary: Get company metrics
-        * Description: Allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
+        * Description: Allows viewing company metrics, including brand and store status, as well as the number of verified and unverified products, company documents, and store documents.
         **/
         public func getCompanyMetrics(
             
@@ -2030,8 +2030,8 @@ if let value = marketplace {
         
         /**
         *
-        * Summary: Get store details
-        * Description: Retrieve the details of the store associated with the company ID passed.
+        * Summary: Get selling location
+        * Description: Retrieve the details of the selling location (store) associated with a specific company passed.
         **/
         public func getStoreDetail(
             q: String?,
@@ -2161,8 +2161,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Create/Update opt-in infomation
-        * Description: Use this API to create/update opt-in information for given platform. If successful, returns data in the response body as specified in `OptInPostResponseSchema`
+        * Summary: Create or Update opt-in infomation
+        * Description: Allows to create and update opt-in information for a specific company.
         **/
         public func createMarketplaceOptin(
             marketplace: String,
@@ -2210,8 +2210,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get product attributes
-        * Description: List all the attributes by their L3 categories.
+        * Summary: List product attributes
+        * Description: Retrieve attributes attached to products based on their L3 category.
         **/
         public func getProductAttributes(
             category: String,
@@ -2272,8 +2272,8 @@ if let value = filter {
         
         /**
         *
-        * Summary: Get gender attribute
-        * Description: Retrieve the gender attribute for catalog listings.
+        * Summary: Get gender attribute by slug
+        * Description: Retrieve the gender attribute for catalog listings by attribute slug passed for a specific company.
         **/
         public func getGenderAttribute(
             attributeSlug: String,
@@ -2321,8 +2321,8 @@ if let value = filter {
         
         /**
         *
-        * Summary: Retrieve product bundles
-        * Description: Retrieve a list of product bundles available in the catalog.
+        * Summary: List product bundles.
+        * Description: Retrieve a list of product bundles available in the catalog associated to a specific company.
         **/
         public func getProductBundle(
             q: String?,
@@ -2385,8 +2385,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Create a product bundle
-        * Description: Create product bundle in the catalog.
+        * Summary: Create product bundle
+        * Description: Create product bundle in the catalog associated to a specific company
         **/
         public func createProductBundle(
             body: ProductBundleRequest,
@@ -2433,8 +2433,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Get product bundle details
-        * Description: Retrieve detailed information about a specific product bundle.
+        * Summary: Get product bundle.
+        * Description: Retrieve detailed information about a specific product bundle associated to a specific company.
         **/
         public func getProductBundleDetail(
             id: String,
@@ -2482,8 +2482,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Update a product bundle
-        * Description: Modify the details of an existing product bundle.
+        * Summary: Update product bundle
+        * Description: Modify the details of an existing product bundle in the catalog associated to a specific company.
         **/
         public func updateProductBundle(
             id: String,
@@ -2531,7 +2531,7 @@ if let value = slug {
         
         /**
         *
-        * Summary: Retrieve product assets in bulk
+        * Summary: Get product assets
         * Description: Helps to retrieve bulk asset jobs data associated to a particular company.
         **/
         public func getProductAssetsInBulk(
@@ -2694,7 +2694,7 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieve product bulk upload history
+        * Summary: List product bulk upload history
         * Description: Helps to get bulk product upload jobs data.
         **/
         public func getProductBulkUploadHistory(
@@ -2825,7 +2825,7 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Create a Bulk product to upload job
+        * Summary: Create products bulk upload
         * Description: This API helps to create a bulk products upload job.
         **/
         public func createBulkProductUploadJob(
@@ -2873,7 +2873,7 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Delete product bulk upload job
+        * Summary: Delete product bulk-upload job
         * Description: Allows to delete bulk product job associated with company.
         **/
         public func deleteProductBulkJob(
@@ -2971,8 +2971,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: List product template export details
-        * Description: Retrieve export details related to product templates. Can view details including trigger data, task id , etc.
+        * Summary: List export product templates
+        * Description: Retrieve export details related to product templates for a specific company. Can view details including trigger data, task id , etc.
         **/
         public func listProductTemplateExportDetails(
             
@@ -3020,7 +3020,7 @@ if let value = pageSize {
         /**
         *
         * Summary: List HSN codes
-        * Description: Retrieve a list of Harmonized System Nomenclature (HSN) codes.
+        * Description: Retrieve a list of Harmonized System Nomenclature (HSN) codes for a company.
         **/
         public func listHSNCodes(
             
@@ -3067,7 +3067,7 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get product tags
+        * Summary: List product tags
         * Description: Retrieve tags data associated to a particular company.
         **/
         public func getProductTags(
@@ -3116,7 +3116,7 @@ if let value = pageSize {
         /**
         *
         * Summary: List product templates
-        * Description: Allows you to list all product templates, also can filter by department.
+        * Description: Allows you to list all product templates for a specific company. also can filter by department.
         **/
         public func listProductTemplate(
             department: String,
@@ -3170,7 +3170,7 @@ var xQuery: [String: Any] = [:]
         /**
         *
         * Summary: List product template categories
-        * Description: Allows you to list all product categories values for the departments specified.
+        * Description: Allows you to list all product template categories values for the departments specified for a specific company.
         **/
         public func listProductTemplateCategories(
             departments: String,
@@ -3229,8 +3229,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Download product template views
-        * Description: Allows you to download product template data.
+        * Summary: Download product template view 
+        * Description: Allows you to download product template data by its slug for a specific company.
         **/
         public func downloadProductTemplateViews(
             slug: String,
@@ -3295,7 +3295,7 @@ if let value = type {
         /**
         *
         * Summary: Validate product template
-        * Description: Allows you to list all product templates validation values for all the fields present in the database.
+        * Description: Allows you to list all product templates validation values by its slug for all the fields present in the database for a specific company.
         **/
         public func validateProductTemplate(
             slug: String,
@@ -3359,8 +3359,8 @@ if let value = bulk {
         
         /**
         *
-        * Summary: Get product validation
-        * Description: Retrieve validation data for a specific product.
+        * Summary: Get valid products.
+        * Description: Retrieve validation data for products at company level.
         **/
         public func getProductValidation(
             
@@ -3407,8 +3407,8 @@ if let value = bulk {
         
         /**
         *
-        * Summary: Get inventory by size identifier
-        * Description: Allows to retrieve Inventory data for particular company grouped by size and store.
+        * Summary: List inventory by size 
+        * Description: Retrieve inventory data for a specific company, item ID, and seller identifier. The API supports search capabilities using store codes and location IDs.
         **/
         public func getInventoryBySizeIdentifier(
             itemId: Int,
@@ -3572,7 +3572,7 @@ if let value = locationIds {
         
         /**
         *
-        * Summary: Get product size details
+        * Summary: List product size
         * Description: Retrieve data associated to a particular product size.
         **/
         public func getProductSize(
@@ -3695,8 +3695,8 @@ if let value = uid {
         
         /**
         *
-        * Summary: Get inventory by size
-        * Description: Allows to retrieve Inventory data for particular company grouped by size and store.
+        * Summary: List inventory by size
+        * Description: Retrieve inventory data for a specific company, item ID, and size. The API supports search capabilities based on selling location (store) code and product availability (in stock or not)."
         **/
         public func getInventoryBySize(
             itemId: Int,
@@ -3860,8 +3860,8 @@ if let value = sellable {
         
         /**
         *
-        * Summary: Add Inventory for particular size and store
-        * Description: Allows add Inventory for particular size and store.
+        * Summary: Create Inventory
+        * Description: Allows add Inventory for particular size and selling location.
         **/
         public func addInventory(
             itemId: Int,
@@ -3910,7 +3910,7 @@ if let value = sellable {
         
         /**
         *
-        * Summary: Get variants of products
+        * Summary: Get variants
         * Description: Retrieve variants of a specific product.
         **/
         public func getVariantsOfProducts(
@@ -4043,8 +4043,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieve size guides
-        * Description: Allows to view all the size guides associated to the seller.
+        * Summary: List size guides
+        * Description: Allows to view all the size guides associated to the seller. Each size guide contains meta deta like header values like for shoulder, head, etc. and measurement unit like cm and values contains sizes for the same.
         **/
         public func getSizeGuides(
             active: Bool?,
@@ -4139,8 +4139,8 @@ if let value = brandId {
         
         /**
         *
-        * Summary: Create a size guide
-        * Description: Allows to create a size guide associated to a brand.
+        * Summary: Create size guide
+        * Description: Allows to create a size guide associated to a seller
         **/
         public func createSizeGuide(
             body: ValidateSizeGuide,
@@ -4187,8 +4187,8 @@ if let value = brandId {
         
         /**
         *
-        * Summary: Get size guide details
-        * Description: Retrieve data associated about a specific size guide.
+        * Summary: Get  size guide.
+        * Description: Retrieve data associated about a specific size guide. It contains meta deta like header values like for shoulder, head, etc. and measurement unit like cm and values contains sizes for the same.
         **/
         public func getSizeGuide(
             id: String,
@@ -4236,8 +4236,8 @@ if let value = brandId {
         
         /**
         *
-        * Summary: Update a size guide
-        * Description: Allows to edit a size guide.
+        * Summary: Update size guide
+        * Description: Allows to edit a specific size guide.
         **/
         public func updateSizeGuide(
             id: String,
@@ -4296,8 +4296,8 @@ if let value = brandId {
         
         /**
         *
-        * Summary: Get all product HSN codes
-        * Description: Retrieve all HSN codes associated with products.
+        * Summary: List product HSN codes
+        * Description: Retrieve all HSN codes associated with company products and provide search capabilities based on HSN code, reporting HSN, etc
         **/
         public func getAllProductHsnCodes(
             pageNo: Int?,
@@ -4376,8 +4376,8 @@ if let value = type {
         
         /**
         *
-        * Summary: Get single product HSN code
-        * Description: Retrieve the HSN code for a single product.
+        * Summary: Get product HSN code
+        * Description: Retrieve HSN details associated with company ID and reporting HSN
         **/
         public func getSingleProductHSNCode(
             reportingHsn: String,
@@ -4426,7 +4426,7 @@ if let value = type {
         /**
         *
         * Summary: Update inventories
-        * Description: Allows to add Inventory for particular size and store.
+        * Description: Allows to add Inventory for particular size and selling location. for associated companies
         **/
         public func updateInventories(
             body: InventoryRequestSchemaV2,
@@ -4473,8 +4473,8 @@ if let value = type {
         
         /**
         *
-        * Summary: List inventory exports
-        * Description: Helps you the retrieve the history of inventory jobs depending on the filtered criteria.
+        * Summary: List inventory export jobs
+        * Description: Retrieve the history of inventory export jobs associated with the company
         **/
         public func listInventoryExport(
             status: String?,
@@ -4554,7 +4554,7 @@ if let value = q {
         /**
         *
         * Summary: Create inventory export
-        * Description: Helps to create a Inventory export job.
+        * Description: creates export job for inventory data associated with a company
         **/
         public func createInventoryExport(
             body: InventoryCreateRequest,
@@ -4601,8 +4601,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Retrieve products
-        * Description: Retrieve a list of products available
+        * Summary: List products
+        * Description: Retrieve a list of available products
         **/
         public func getProducts(
             brandIds: [Int]?,
@@ -4828,8 +4828,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Create a product
-        * Description: Allows to create product.
+        * Summary: Create product
+        * Description: Users can create a product using this API, associating it with the provided company ID
         **/
         public func createProduct(
             body: ProductCreateUpdateSchemaV2,
@@ -4877,7 +4877,7 @@ if let value = pageSize {
         /**
         *
         * Summary: Upload bulk products
-        * Description: Helps to create a bulk products upload job.
+        * Description: Users can create multiple products by providing the required information needed for product creation in a CSV or Excel file format.
         **/
         public func uploadBulkProducts(
             department: String,
@@ -4936,8 +4936,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Retrieve product export jobs
-        * Description: View details including trigger data, task id , etc.
+        * Summary: Get product export jobs
+        * Description: Get product export jobs specific to a company based on queries like query param, date range and status. View details including trigger data, task id , etc.
         **/
         public func getProductExportJobs(
             status: String?,
@@ -5017,7 +5017,7 @@ if let value = q {
         /**
         *
         * Summary: Create product export job
-        * Description: Helps to create a Inventory export job.
+        * Description: Allows to create a product export job for a company.
         **/
         public func createProductExportJob(
             body: ProductTemplateDownloadsExport,
@@ -5064,8 +5064,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Delete a product
-        * Description: Remove a specific product in the catalog
+        * Summary: Delete product
+        * Description: Users can delete a product using this by providing the itemid.
         **/
         public func deleteProduct(
             itemId: Int,
@@ -5113,7 +5113,7 @@ if let value = q {
         
         /**
         *
-        * Summary: Get product details
+        * Summary: Get a product
         * Description: Retrieve data associated to a particular product.
         **/
         public func getProduct(
@@ -5178,7 +5178,7 @@ if let value = itemCode {
         
         /**
         *
-        * Summary: Edit a product
+        * Summary: Update a product
         * Description: Modify the details and settings of an existing product in the catalog.
         **/
         public func editProduct(
@@ -5227,7 +5227,7 @@ if let value = itemCode {
         
         /**
         *
-        * Summary: Get all product sizes
+        * Summary: Get product sizes
         * Description: Retrieve all available sizes for a product.
         **/
         public func allSizes(
@@ -5276,8 +5276,8 @@ if let value = itemCode {
         
         /**
         *
-        * Summary: Delete realtime inventory
-        * Description: Remove specific realtime inventory data.
+        * Summary: Delete an inventory 
+        * Description: You can use this API to delete inventory linked to a particular product size. When you make the API call, the inventory associated with that size will be removed as part of api process.
         **/
         public func deleteRealtimeInventory(
             itemId: Int,
@@ -5326,8 +5326,8 @@ if let value = itemCode {
         
         /**
         *
-        * Summary: Update realtime inventory
-        * Description: Allows to add Inventory for particular size and store.
+        * Summary: Update an inventory
+        * Description: enables you to add inventory for a specific size and selling location (store). The inventory updates will be reflected instantly after the API call.
         **/
         public func updateRealtimeInventory(
             itemId: Int,
@@ -5376,8 +5376,8 @@ if let value = itemCode {
         
         /**
         *
-        * Summary: List all marketplaces
-        * Description: This API allows to get marketplace information.
+        * Summary: List marketplaces
+        * Description: Allows to get all marketplaces information for a company.
         **/
         public func getMarketplaces(
             
@@ -5425,7 +5425,7 @@ if let value = itemCode {
         /**
         *
         * Summary: Update marketplace optin
-        * Description: This API allows to update marketplace optin for a company.
+        * Description: Allows to update marketplace optin for a company by marketplace_slug.
         **/
         public func updateMarketplaceOptin(
             marketplaceSlug: String,

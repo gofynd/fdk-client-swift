@@ -83,8 +83,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches detailed product information by slug
-        * Description: Retrieve a product by its slug value.
+        * Summary: Get a product
+        * Description: Fetches properties related to Product such as price, attributes, HSN code, SKU code, etc.
         **/
         public func getProductDetailBySlug(
             slug: String,
@@ -136,8 +136,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves available sizes for a product by slug
-        * Description: Retrieve the size options available for a specific product based on its slug.
+        * Summary: List sizes
+        * Description: Provides detailed information about a product, including its availability (sellable), available sizes with quantities, dimensions, weight, availability status, price details (marked, effective, selling), minimum order quantity (MOQ).
         **/
         public func getProductSizesBySlug(
             slug: String,
@@ -197,8 +197,8 @@ if let value = storeId {
         
         /**
         *
-        * Summary: Compares multiple products by slugs
-        * Description: Retrieves side-by-side comparisons of multiple products identified by their slugs.
+        * Summary: List products for comparison
+        * Description: Retrives all the products that have same category.
         **/
         public func getProductComparisonBySlugs(
             slug: [String],
@@ -253,8 +253,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Fetches similar products for comparison
-        * Description: Gets products similar to the one identified by the given slug for comparison.
+        * Summary: List similar products
+        * Description: Retrives all products within the same category as the one specified by the provided slug.
         **/
         public func getSimilarComparisonProductBySlug(
             slug: String,
@@ -306,7 +306,7 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Retrieves products frequently compared with a given product
+        * Summary: List frequent products
         * Description: Retrieve products that are often compared to the product specified by its slug.
         **/
         public func getComparedFrequentlyProductBySlug(
@@ -359,7 +359,7 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Retrieves product variants by slug
+        * Summary: List product variant
         * Description: Retrieves all available variants of a specific product identified by its slug.
         **/
         public func getProductVariantsBySlug(
@@ -412,8 +412,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Checks product stock by IDs
-        * Description: Retrieves the current stock status for products identified by their IDs.
+        * Summary: Get product stocks
+        * Description: Retrieves the current stock status for products identified by their IDs. such as SKU,ALU,EAN etc
         **/
         public func getProductStockByIds(
             itemId: String?,
@@ -502,8 +502,8 @@ if let value = upc {
         
         /**
         *
-        * Summary: Fetches future stock data for products
-        * Description: Retrieves projected stock levels for specified products at a future time.
+        * Summary: List future stock
+        * Description: Retrives the available stock levels for all products associated with a particular sales channel at a specified future time.
         **/
         public func getProductStockForTimeByIds(
             timestamp: String,
@@ -624,8 +624,8 @@ if let value = pageId {
         
         /**
         *
-        * Summary: Lists all products
-        * Description: Retrieves a list of all products in the catalog. Choose a sort order or make arbitrary search queries by entering the product name, brand, category or collection.
+        * Summary: List products
+        * Description: Retrieves a list of all products available in the catalog. It supports filtering based on product name, brand, department, category, collection, and more, while also offering sorting options based on factors like price, ratings, discounts, and other relevant criteria.
         **/
         public func getProducts(
             q: String?,
@@ -818,8 +818,8 @@ if let value = pageType {
         
         /**
         *
-        * Summary: Fetches all available brands
-        * Description: Retrieves a comprehensive list of all brands in the catalog under which a product is sold.
+        * Summary: List brands
+        * Description: Retrieves a list of all the availabe brands. Filtering can be applied on department.
         **/
         public func getBrands(
             department: String?,
@@ -941,7 +941,7 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves detailed brand info by slug
+        * Summary: Get a brand
         * Description: Retrieve metadata of a brand such as name, information, logo, banner, etc.
         **/
         public func getBrandDetailBySlug(
@@ -994,8 +994,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Lists all product categories
-        * Description: Retrieves a list of all available product categories. Also filter the categories by department.
+        * Summary: List product categories
+        * Description: Retrieves a list of all available product categories. Also user can filter the categories by department.
         **/
         public func getCategories(
             department: String?,
@@ -1052,7 +1052,7 @@ if let value = department {
         
         /**
         *
-        * Summary: Retrieves category details by slug
+        * Summary: Get category by slug
         * Description: Retrieve detailed information about a specific product category using its slug and Retrieve metadata of a category such as name, information, logo, banner, etc.
         **/
         public func getCategoryDetailBySlug(
@@ -1105,7 +1105,7 @@ if let value = department {
         
         /**
         *
-        * Summary: Fetches homepage-featured products
+        * Summary: List homepage-featured products
         * Description: List all the products associated with a brand, collection or category in a random order.
         **/
         public func getHomeProducts(
@@ -1229,8 +1229,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Lists all departments
-        * Description: Retrieves a list of all available product departments. Departments are a way to categorise similar products.
+        * Summary: List departments
+        * Description: Retrieve a list of all departments associated with available products.
         **/
         public func getDepartments(
             
@@ -1279,8 +1279,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves search result listings
-        * Description: Retrieves products that match the user's search criteria.
+        * Summary: List product, brand, category
+        * Description: Retrieve products, brands, or categories based on a search query, which can be a partial or full name match.
         **/
         public func getSearchResults(
             q: String,
@@ -1335,8 +1335,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Fetches all available collections
-        * Description: Retrieves a list of curated product collections.
+        * Summary: List Collection
+        * Description: Retrieve a list of curated product collections with filtering options based on tags and collection names.
         **/
         public func getCollections(
             pageNo: Int?,
@@ -1472,8 +1472,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Lists items in a collection by slug
-        * Description: Retrieve items in a specific collection identified by its slug.
+        * Summary: Lists items of collection
+        * Description: Fetch items within a particular collection identified by its slug.
         **/
         public func getCollectionItemsBySlug(
             slug: String,
@@ -1675,7 +1675,7 @@ if let value = pageType {
         
         /**
         *
-        * Summary: Retrieves collection details by slug
+        * Summary: Get a collection
         * Description: Retrieve detailed information about a specific collection using its slug.
         **/
         public func getCollectionDetailBySlug(
@@ -1728,7 +1728,7 @@ if let value = pageType {
         
         /**
         *
-        * Summary: Retrieves user's followed listings
+        * Summary: List followed products/brands
         * Description: Retrieve a list of products or brands the user is following.
         **/
         public func getFollowedListing(
@@ -1847,8 +1847,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Unfollows an item by ID
-        * Description: Removes a followed item, brand, or product based on its ID.
+        * Summary: Delete item, brand, product
+        * Description: Removes a followed item, brand, or product using its collection ID.
         **/
         public func unfollowById(
             collectionType: String,
@@ -1903,8 +1903,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Follows an item by ID
-        * Description: Adds a product, brand, or item to the user's followed list by its ID.
+        * Summary: Create item, brand, product
+        * Description: Adds a product, brand, or item to the user's followed list by collection Id
         **/
         public func followById(
             collectionType: String,
@@ -1959,8 +1959,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves follower count for an item
-        * Description: Retrieves the total number of followers for a specific item by its ID.
+        * Summary: Get follower count
+        * Description: Retrieves the total number of followers for a specific item by its Id.
         **/
         public func getFollowerCountById(
             collectionType: String,
@@ -2015,8 +2015,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Fetches IDs of followed items
-        * Description: Retrieves the IDs of all items the user is currently following like Products, Brands and Collections.
+        * Summary: List Ids of followed item, brand, product
+        * Description: Retrieves the IDs of all items the user is currently following like Products, Brands and Collections
         **/
         public func getFollowIds(
             collectionType: String?,
@@ -2073,8 +2073,8 @@ if let value = collectionType {
         
         /**
         *
-        * Summary: Lists available stores
-        * Description: Retrieves a list of all physical or online stores.
+        * Summary: List available stores
+        * Description: Retrieves a list of all stores associated with sales channel
         **/
         public func getStores(
             pageNo: Int?,
@@ -2266,8 +2266,8 @@ if let value = tags {
         
         /**
         *
-        * Summary: Finds in-stock locations for products
-        * Description: Lists locations where specified products are currently in stock.
+        * Summary: List stores with inventory
+        * Description: Lists stores where specified products are currently in stock.
         **/
         public func getInStockLocations(
             pageNo: Int?,
@@ -2445,8 +2445,8 @@ if let value = longitude {
         
         /**
         *
-        * Summary: Retrieves location details by ID
-        * Description: Retrieves detailed information about a specific location using its ID.
+        * Summary: Get selling location
+        * Description: This API retrieves comprehensive details about a store based on its location Id
         **/
         public func getLocationDetailsById(
             locationId: Int,
@@ -2498,7 +2498,7 @@ if let value = longitude {
         
         /**
         *
-        * Summary: Fetches product bundles by slug
+        * Summary: List product bundles
         * Description: Retrieve products bundles to the one specified by its slug.
         **/
         public func getProductBundlesBySlug(
@@ -2564,7 +2564,7 @@ if let value = id {
         
         /**
         *
-        * Summary: Retrieves product price by slug
+        * Summary: Get product price
         * Description: Retrieve the price of a product size at all the selling locations near to a PIN Code.
         **/
         public func getProductPriceBySlug(
@@ -2636,8 +2636,8 @@ if let value = moq {
         
         /**
         *
-        * Summary: Lists sellers for a product by slug
-        * Description: Retrieve a list of all sellers offering a specific product identified by its slug. 
+        * Summary: List sellers
+        * Description: Retrieve a list of all sellers offering a specific product identified by its slug and size
         **/
         public func getProductSellersBySlug(
             slug: String,

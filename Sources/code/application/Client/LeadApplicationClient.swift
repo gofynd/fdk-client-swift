@@ -37,8 +37,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves a support ticket
-        * Description: Retrieve details of a specific customer support ticket.
+        * Summary: Get a support ticket
+        * Description: Get details of a specific customer support ticket.
         **/
         public func getTicket(
             id: String,
@@ -90,7 +90,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Logs ticket history
+        * Summary: Log ticket history
         * Description: Adds a history entry for a specific support ticket.
         **/
         public func createHistory(
@@ -143,7 +143,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Creates a new ticket
+        * Summary: Creates a ticket
         * Description: Generates a new customer support ticket for a user query.
         **/
         public func createTicket(
@@ -193,8 +193,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches custom form
-        * Description: Retrieves a customizable form template for data collection.
+        * Summary: Get custom form
+        * Description: Get a customizable form template for data collection.
         **/
         public func getCustomForm(
             slug: String,
@@ -299,7 +299,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Lists video room participants
+        * Summary: List video room participants
         * Description: Gets the current participants inside a specific video room.
         **/
         public func getParticipantsInsideVideoRoom(
@@ -352,8 +352,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves video room token
-        * Description: Retrieves a secure token for accessing a video chat room.
+        * Summary: Get video room token
+        * Description: Get a secure token for accessing a video chat room.
         **/
         public func getTokenForVideoRoom(
             uniqueName: String,

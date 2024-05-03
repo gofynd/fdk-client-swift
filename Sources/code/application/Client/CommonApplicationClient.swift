@@ -27,8 +27,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Searches through applications
-        * Description: Provide application name or domain url. 
+        * Summary: Get sales channel
+        * Description: Retrieves an active sales channel based on a provided query. The query can be a valid sales channel ID or a verified domain name. If the sales channel is found, a success response is returned. If not, a 404 error response is returned
         **/
         public func searchApplication(
             authorization: String?,
@@ -92,8 +92,8 @@ if let value = authorization {
         
         /**
         *
-        * Summary: Fetches available locations
-        * Description: Retrieves a list of all locations of countries, states, cities. 
+        * Summary: Get a location
+        * Description: Retrieves countries , state , cities data associated with the sales channel
         **/
         public func getLocations(
             locationType: String?,

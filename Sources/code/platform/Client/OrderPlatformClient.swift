@@ -17,7 +17,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Invalidate shipment cache
-        * Description: Invalidate shipment Cache.
+        * Description: Clear the existing shipment cache data stored in Redis  and serialize the updated data for subsequent use.
         **/
         public func invalidateShipmentCache(
             body: InvalidateShipmentCachePayload,
@@ -65,7 +65,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Reassign location
-        * Description: Change the assigned location for an order or shipment.
+        * Description: Reassign the shipment to a another location and update its status to 'Store Reassigned.'
         **/
         public func reassignLocation(
             body: StoreReassign,
@@ -112,7 +112,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Update shipment lock
+        * Summary: Update a shipment lock
         * Description: Modify shipment/bag lock and check status.
         **/
         public func updateShipmentLock(
@@ -160,8 +160,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get announcements
-        * Description: Retrieve announcements related to orders or shipments.
+        * Summary: List announcements
+        * Description: Retrieve announcements related to orders fulfilment configured by platform or company admin
         **/
         public func getAnnouncements(
             date: String?,
@@ -216,8 +216,8 @@ if let value = date {
         
         /**
         *
-        * Summary: Update address
-        * Description: Modify the shipping address for an order.
+        * Summary: Update shipment address
+        * Description: Modify the address details of an existing shipment
         **/
         public func updateAddress(
             shipmentId: String,
@@ -356,90 +356,8 @@ if let value = country {
         
         /**
         *
-        * Summary: Click to call
-        * Description: Click to call. 
-        **/
-        public func click2Call(
-            caller: String,
-            receiver: String,
-            bagId: String,
-            callerId: String?,
-            method: String?,
-            
-            onResponse: @escaping (_ response: Click2CallResponse?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["caller"] = caller
-
-
-
-
-    xQuery["receiver"] = receiver
-
-
-
-
-    xQuery["bag_id"] = bagId
-
-
-
-if let value = callerId {
-    
-    xQuery["caller_id"] = value
-    
-}
-
-
-if let value = method {
-    
-    xQuery["method"] = value
-    
-}
-
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/ninja/click2call",
-                query: xQuery,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(Click2CallResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Update shipment status
-        * Description: Shipment state transition or Shipment data update or both.
+        * Summary: Update a shipment's status
+        * Description: Used for updating a shipment and its status. Can also be used for updating bags present in that shipment.
         **/
         public func updateShipmentStatus(
             body: UpdateShipmentStatusRequest,
@@ -487,7 +405,7 @@ if let value = method {
         /**
         *
         * Summary: Get role-based actions
-        * Description: Retrieve role based actions.
+        * Description: Retrieve permissible actions based on user roles such as company_admin,  company_operation, customer_care, and read_only.
         **/
         public func getRoleBasedActions(
             
@@ -534,8 +452,8 @@ if let value = method {
         
         /**
         *
-        * Summary: Get shipment history
-        * Description: Retrieve the shipment history.
+        * Summary: Get a shipment's history
+        * Description: Get the history of the shipment
         **/
         public func getShipmentHistory(
             shipmentId: String?,
@@ -598,8 +516,8 @@ if let value = bagId {
         
         /**
         *
-        * Summary: Post shipment history
-        * Description: Add history records for a shipment.
+        * Summary: Create shipment history
+        * Description: Used to add logs in history for a bag for the provided Shipment ID
         **/
         public func postShipmentHistory(
             body: PostShipmentHistory,
@@ -646,8 +564,8 @@ if let value = bagId {
         
         /**
         *
-        * Summary: Send SMS via Ninja
-        * Description: Send SMS Ninja Panel.
+        * Summary: Send SMS
+        * Description: Send SMS to customer based on the template that is selected
         **/
         public func sendSmsNinja(
             body: SendSmsPayload,
@@ -695,7 +613,7 @@ if let value = bagId {
         /**
         *
         * Summary: Update packaging dimensions
-        * Description: Modify the dimensions of packaging.
+        * Description: Used to modify the packaging dimension of a shipment
         **/
         public func updatePackagingDimensions(
             body: UpdatePackagingDimensionsPayload,
@@ -743,7 +661,7 @@ if let value = bagId {
         /**
         *
         * Summary: Create order
-        * Description: Create order.
+        * Description: Creates an order
         **/
         public func createOrder(
             body: CreateOrderAPI,
@@ -791,7 +709,7 @@ if let value = bagId {
         /**
         *
         * Summary: Get channel configuration
-        * Description: Retrieve configuration settings for a channel.
+        * Description: Retrieve configuration settings specific to orders for a channel
         **/
         public func getChannelConfig(
             
@@ -839,7 +757,7 @@ if let value = bagId {
         /**
         *
         * Summary: Create channel configuration
-        * Description: Set up configuration for a channel.
+        * Description: Set up configuration for a channel specific to orders which has implications over how the order fulfilment happens in a channel
         **/
         public func createChannelConfig(
             body: CreateChannelConfigData,
@@ -886,8 +804,8 @@ if let value = bagId {
         
         /**
         *
-        * Summary: Order update
-        * Description: Modify the details and status of an order. 
+        * Summary: Update an order
+        * Description: Used to update an order's meta information. These meta information can be accessed via order or shipment details API.
         **/
         public func orderUpdate(
             body: PlatformOrderUpdate,
@@ -934,8 +852,8 @@ if let value = bagId {
         
         /**
         *
-        * Summary: Check order status
-        * Description: Verify the current status of an order.
+        * Summary: Debug order
+        * Description: Used to verify the status of order. It queries error logs, resyncs the shipments if there was an issue with sync etc.
         **/
         public func checkOrderStatus(
             body: OrderStatus,
@@ -983,7 +901,7 @@ if let value = bagId {
         /**
         *
         * Summary: Get state transition map
-        * Description: Retrieve a map of state transitions for orders.
+        * Description: Retrieve a map of state transitions for orders
         **/
         public func getStateTransitionMap(
             
@@ -1031,7 +949,7 @@ if let value = bagId {
         /**
         *
         * Summary: Get allowed state transition
-        * Description: Retrieve next possible states based on logged in user.
+        * Description: Retrieve next possible states based on logged in user's role
         **/
         public func getAllowedStateTransition(
             orderingChannel: String,
@@ -1090,8 +1008,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Fetch credit balance detail
-        * Description: Retrieve details about credit balance.
+        * Summary: Get credit balance detail
+        * Description: Retrieve details about credit balance on the basis of customer mobile number
         **/
         public func fetchCreditBalanceDetail(
             body: FetchCreditBalanceRequestPayload,
@@ -1138,8 +1056,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Fetch refund mode config
-        * Description: Retrieve configuration for refund modes.
+        * Summary: List refund modes
+        * Description: Get list of refund modes to trigger refunds
         **/
         public func fetchRefundModeConfig(
             body: RefundModeConfigRequestPayload,
@@ -1186,8 +1104,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Attach order user
-        * Description: Attach order User
+        * Summary: Attach order to a user
+        * Description: Attach an anonymous order to a customer based on OTP verification
         **/
         public func attachOrderUser(
             body: AttachOrderUser,
@@ -1235,7 +1153,7 @@ var xQuery: [String: Any] = [:]
         /**
         *
         * Summary: Send user mobile OTP
-        * Description: Send a one-time OTP to a users mobile device.
+        * Description: Send a one-time OTP to a customer mobile number
         **/
         public func sendUserMobileOTP(
             body: SendUserMobileOTP,
@@ -1283,7 +1201,7 @@ var xQuery: [String: Any] = [:]
         /**
         *
         * Summary: Verify mobile OTP
-        * Description: Verify Mobile OTP
+        * Description: Perform OTP verification to link a user to an anonymous order
         **/
         public func verifyMobileOTP(
             body: VerifyMobileOTP,
@@ -1330,8 +1248,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Download lanes report
-        * Description: Downloads lanes shipment/orders.
+        * Summary: Download Lane report
+        * Description: Downloads shipments/orders present in the provided lane
         **/
         public func downloadLanesReport(
             body: BulkReportsDownloadRequest,
@@ -1378,8 +1296,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: 
-        * Description: Performs State Transisiton in Bulk for the given shipments in the excel/csv file url.
+        * Summary: Upload bulk state transitions file
+        * Description: Performs state transisiton in bulk using the CSV or excel file for the given shipments. The bulk transition CSV or excel template can be downloaded using the seller template download method. Current supported format is excel and CSV.
         **/
         public func bulkStateTransistion(
             body: BulkStateTransistionRequest,
@@ -1426,9 +1344,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: 
-        * Description: Fetches of previous or running  bulk jobs.
-
+        * Summary: Lists bulk operations
+        * Description: Get list of bulk operation that is initiated and completed as per the filters provided
         **/
         public func bulkListing(
             pageSize: Int,
@@ -1523,8 +1440,8 @@ if let value = searchKey {
         
         /**
         *
-        * Summary: 
-        * Description: Fetches details for the job of the provided batch_id
+        * Summary: Get bulk operation details 
+        * Description: Fetches details of the job for the provided batch Id
         **/
         public func jobDetails(
             batchId: String,
@@ -1572,8 +1489,8 @@ if let value = searchKey {
         
         /**
         *
-        * Summary: 
-        * Description: Get the file URL consisting Records of the provided status.
+        * Summary: Download file used for Bulk operation
+        * Description: Get the file download URL used for performing bulk operation
         **/
         public func getFileByStatus(
             batchId: String,
@@ -1641,8 +1558,8 @@ if let value = reportType {
         
         /**
         *
-        * Summary: 
-        * Description: get Manifest Shipments.
+        * Summary: List manifest's shipments
+        * Description: Get list of shipments tagged to that manifest, the user can also search the shipments on the basis of shipment Id, order Id and AWB number
         **/
         public func getManifestShipments(
             dpIds: Int,
@@ -1761,8 +1678,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: 
-        * Description: Fetch Manifests
+        * Summary: List manifests
+        * Description: Get a list of manifest as per the filter provided
         **/
         public func getManifests(
             status: String?,
@@ -1881,8 +1798,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: 
-        * Description: Process Manifest.
+        * Summary: Generate manifest
+        * Description: Generate manifest Id and PDF and tags the shipments with that manifest Id
         **/
         public func processManifests(
             body: ProcessManifest,
@@ -1929,8 +1846,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: 
-        * Description: get Manifest Details.
+        * Summary: Get a manifest
+        * Description: Get details regarding a manifest which can be used to perform further actions on it
         **/
         public func getManifestDetails(
             manifestId: String,
@@ -1978,8 +1895,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: 
-        * Description: Dispatch Manifest
+        * Summary: Dispatch manifest
+        * Description: Updates the status of the manifest to processed and change the status of the shipments in the manifest to dispatch status
         **/
         public func dispatchManifests(
             manifestId: String,
@@ -2027,8 +1944,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: 
-        * Description: Upload Consent
+        * Summary: Upload consent
+        * Description: Uploads the consent signed by courier partner and seller to keep records
         **/
         public func uploadConsents(
             manifestId: String,
@@ -2076,8 +1993,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: 
-        * Description: get Manifest Filters.
+        * Summary: List filters
+        * Description: Get supported filter for listing manifests
         **/
         public func getManifestfilters(
             view: String,
@@ -2130,8 +2047,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: E-invoice retry
-        * Description: Retry e-invoice after failure
+        * Summary: Retry E-invoice
+        * Description: Reattempt the generation of an E-invoice
         **/
         public func eInvoiceRetry(
             body: EInvoiceRetry,
@@ -2179,7 +2096,7 @@ var xQuery: [String: Any] = [:]
         /**
         *
         * Summary: Track shipment
-        * Description: Retrieve courier partner tracking details for a given shipment id or awb no.
+        * Description: Retrieve courier partner tracking details for a given shipment Id or AWB number
         **/
         public func trackShipment(
             shipmentId: String?,
@@ -2259,7 +2176,7 @@ if let value = pageSize {
         /**
         *
         * Summary: Update shipment tracking
-        * Description: Modify courier partner tracking details for a given shipment id or awb no.
+        * Description: Modify courier partner tracking details for a given shipment Id or AWB number
         **/
         public func updateShipmentTracking(
             body: CourierPartnerTrackingDetails,
@@ -2306,8 +2223,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get failed order logs according to the filter provided
-        * Description: This endpoint allows users to get failed order logs listing for filters based on order id, user contact number, user email id and sales channel id.
+        * Summary: List failed order logs
+        * Description: Get failed order logs listing for filters based on order Id, user contact number, user email Id and sales channel Id.
         **/
         public func failedOrderLogs(
             applicationId: String?,
@@ -2394,8 +2311,8 @@ if let value = searchValue {
         
         /**
         *
-        * Summary: 
-        * Description: This API is used to manually generate Invoice ID against shipments.
+        * Summary: Generate and attach invoice Id
+        * Description: Generate and attach Invoice Ids against shipments.
         **/
         public func generateInvoiceID(
             invoiceType: String,
@@ -2443,8 +2360,8 @@ if let value = searchValue {
         
         /**
         *
-        * Summary: Get failed order logs according to the filter provided
-        * Description: This endpoint allows users to get the exact error trace from the log id provided
+        * Summary: Get failed order log
+        * Description: Get the exact error trace from the log Id provided in the failed order list API response 
         **/
         public func failedOrderLogDetails(
             logId: String,
@@ -2493,8 +2410,8 @@ if let value = searchValue {
         
         /**
         *
-        * Summary: Get shipments
-        * Description: Retrieve a list of available shipments.
+        * Summary: List shipments
+        * Description: Get a list of shipments based on the filters provided
         **/
         public func getShipments(
             lane: String?,
@@ -2789,8 +2706,8 @@ if let value = orderType {
         
         /**
         *
-        * Summary: Get shipment by ID
-        * Description: Retrieve detailed information about a specific shipment.
+        * Summary: Get shipment
+        * Description: Get detailed information about a specific shipment
         **/
         public func getShipmentById(
             channelShipmentId: String?,
@@ -2869,8 +2786,8 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: Get order by ID
-        * Description: Retrieve detailed information about a specific order.
+        * Summary: Get order
+        * Description: Get detailed information about a specific order
         **/
         public func getOrderById(
             orderId: String,
@@ -2940,7 +2857,7 @@ if let value = allowInactive {
         /**
         *
         * Summary: Get lane configuration
-        * Description: Retrieve configuration settings for lanes.
+        * Description: Get configuration settings for lanes
         **/
         public func getLaneConfig(
             superLane: String?,
@@ -3139,8 +3056,8 @@ if let value = orderType {
         
         /**
         *
-        * Summary: Get orders
-        * Description: Retrieve a list of available orders.
+        * Summary: List orders
+        * Description: Get a list of orders based on the filters provided
         **/
         public func getOrders(
             lane: String?,
@@ -3373,8 +3290,8 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: Get filters
-        * Description: Retrieve listing filters.
+        * Summary: List filters
+        * Description: Get supported filters for various listing operations
         **/
         public func getfilters(
             view: String,
@@ -3435,8 +3352,8 @@ if let value = groupEntity {
         
         /**
         *
-        * Summary: Get bulk shipment Excel file
-        * Description: Retrieve a bulk shipment Excel report.
+        * Summary: Generate the report
+        * Description: Generates the report which can be filled and uploaded to perform the bulk operation based on the filters provided
         **/
         public func getBulkShipmentExcelFile(
             salesChannels: String?,
@@ -3579,8 +3496,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get bulk action template
-        * Description: Retrieve bulk action seller templates.
+        * Summary: List supported templates
+        * Description: Get list of templates so that users can download the required template
         **/
         public func getBulkActionTemplate(
             
@@ -3627,8 +3544,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Download bulk action template
-        * Description: Download bulk actions seller templates.
+        * Summary: Download bulk template
+        * Description: Download bulk seller templates which can be used to perform operations in bulk
         **/
         public func downloadBulkActionTemplate(
             templateSlug: String?,
@@ -3683,8 +3600,8 @@ if let value = templateSlug {
         
         /**
         *
-        * Summary: Get shipment reasons
-        * Description: Retrieve the issues that led to the cancellation of bags within a shipment.
+        * Summary: List bag cancellation reasons
+        * Description: Get reasons to perform full or partial cancellation of a bag
         **/
         public func getShipmentReasons(
             shipmentId: String,
@@ -3735,8 +3652,8 @@ if let value = templateSlug {
         
         /**
         *
-        * Summary: Get bag by ID
-        * Description: Retrieve detailed information about a specific bag.
+        * Summary: Get bag
+        * Description: Retrieve detailed information about a specific bag
         **/
         public func getBagById(
             bagId: String?,
@@ -3807,8 +3724,8 @@ if let value = channelId {
         
         /**
         *
-        * Summary: Get bags
-        * Description: Retrieve Bags for the order.
+        * Summary: List bags
+        * Description: Get paginated list of bags based on provided filters
         **/
         public func getBags(
             bagIds: String?,
@@ -3927,8 +3844,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Generate POS receipt by order ID
-        * Description: Create a point-of-sale (POS) receipt for a specific order by order ID.
+        * Summary: Generate POS receipt by order Id
+        * Description: Create a point-of-sale (POS) receipt for a specific order by order Id.
         **/
         public func generatePOSReceiptByOrderId(
             orderId: String,
@@ -3992,8 +3909,8 @@ if let value = documentType {
         
         /**
         *
-        * Summary: 
-        * Description: Gets All the allowed Templates to perform Bulk Operations.
+        * Summary: List bulk operation templates
+        * Description: Gets all the allowed templates to perform bulk operations.
         **/
         public func getAllowedTemplatesForBulk(
             
@@ -4040,8 +3957,8 @@ if let value = documentType {
         
         /**
         *
-        * Summary: 
-        * Description: Get the Excel file URL for the Template.
+        * Summary: Download bulk operation templates
+        * Description: Get the excel or CSV file URL for the template.
         **/
         public func getTemplate(
             templateName: String,

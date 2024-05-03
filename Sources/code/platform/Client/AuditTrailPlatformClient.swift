@@ -16,7 +16,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Retrieve audit logs
+        * Summary: Get audit logs
         * Description: Retrieve audit logs for system events and actions.
         **/
         public func getAuditLogs(
@@ -134,8 +134,8 @@ if let value = sort {
         
         /**
         *
-        * Summary: Get an audit log entry
-        * Description: Retrieve a specific audit log entry
+        * Summary: Get an audit log
+        * Description: Retrieve a specific audit log entry.
         **/
         public func getAuditLog(
             id: String,
@@ -183,8 +183,8 @@ if let value = sort {
         
         /**
         *
-        * Summary: Obtain entity types for auditing
-        * Description: List of entity types that can be audited within the platform's
+        * Summary: List entity types
+        * Description: List of entity types that can be audited within the platform.
         **/
         public func getEntityTypes(
             

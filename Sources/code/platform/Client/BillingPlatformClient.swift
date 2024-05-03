@@ -76,7 +76,7 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Initiate subscription billing
+        * Summary: Register extension for the seller
         * Description: Register a subscription charge for a seller using your extension.
         **/
         public func createSubscriptionCharge(
@@ -125,7 +125,7 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Retrieve subscription charge details
+        * Summary: Get subscription charge details
         * Description: Retrieve detailed information about subscription charges using this API.
         **/
         public func getSubscriptionCharge(
@@ -176,7 +176,7 @@ var xQuery: [String: Any] = [:]
         /**
         *
         * Summary: Cancel a subscription charge
-        * Description: Cancel an ongoing subscription charge for a customer.
+        * Description: When uninstalling, the extension statue will be marked as canceled.
         **/
         public func cancelSubscriptionCharge(
             extensionId: String,
@@ -275,7 +275,7 @@ var xQuery: [String: Any] = [:]
         /**
         *
         * Summary: Obtain charge details
-        * Description: Retrieve comprehensive details about a specific billing charge.
+        * Description: It will fetch the information regarding the subscription for the extension.
         **/
         public func getChargeDetails(
             extensionId: String,
@@ -324,7 +324,7 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Retrieve invoices
+        * Summary: Get invoices
         * Description: Retrieve invoices for billing and payment tracking.
         **/
         public func getInvoices(
@@ -421,8 +421,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Fetch customer details
-        * Description: Obtain customer-related billing information.
+        * Summary: Get seller details
+        * Description: Retrieve seller information.
         **/
         public func getCustomerDetail(
             
@@ -469,8 +469,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Update or insert customer details
-        * Description: Allows you to modify or insert customer information in the billing system.
+        * Summary: Update or insert seller details
+        * Description: Allows you to modify or insert seller information in the billing system.
         **/
         public func upsertCustomerDetail(
             body: SubscriptionCustomerCreate,
@@ -517,8 +517,8 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Retrieve subscription details
-        * Description: Retrieve details of a customer's subscription information.
+        * Summary: Get subscription details
+        * Description: t will show the most recent subscriptions of the seller for each ordering channel, regardless of their status—whether they're active, cancelled, or otherwise.
         **/
         public func getSubscription(
             
@@ -678,7 +678,7 @@ if let value = type {
         /**
         *
         * Summary: Cancel a subscription plan
-        * Description: Cancel an active subscription plan for a customer
+        * Description: The seller will initiate a request to cancel their current subscription on the platform.
         **/
         public func cancelSubscriptionPlan(
             body: CancelSubscriptionReq,
@@ -725,7 +725,7 @@ if let value = type {
         
         /**
         *
-        * Summary: Retrieve enterprise-level plans
+        * Summary: Get enterprise-level plans
         * Description: Retrieve available enterprise-level subscription plans.
         **/
         public func getEnterprisePlans(

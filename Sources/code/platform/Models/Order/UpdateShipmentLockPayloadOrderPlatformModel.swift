@@ -22,6 +22,10 @@ public extension PlatformClient.Order {
         
         public var resumeTasksAfterUnlock: Bool?
         
+        public var lockAfterTransition: Bool?
+        
+        public var unlockBeforeTransition: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,9 +39,13 @@ public extension PlatformClient.Order {
             
             case resumeTasksAfterUnlock = "resume_tasks_after_unlock"
             
+            case lockAfterTransition = "lock_after_transition"
+            
+            case unlockBeforeTransition = "unlock_before_transition"
+            
         }
 
-        public init(action: String, actionType: String, entities: [Entities], entityType: String, resumeTasksAfterUnlock: Bool? = nil) {
+        public init(action: String, actionType: String, entities: [Entities], entityType: String, lockAfterTransition: Bool? = nil, resumeTasksAfterUnlock: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
             
             self.entityType = entityType
             
@@ -48,6 +56,10 @@ public extension PlatformClient.Order {
             self.entities = entities
             
             self.resumeTasksAfterUnlock = resumeTasksAfterUnlock
+            
+            self.lockAfterTransition = lockAfterTransition
+            
+            self.unlockBeforeTransition = unlockBeforeTransition
             
         }
 
@@ -86,6 +98,30 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    lockAfterTransition = try container.decode(Bool.self, forKey: .lockAfterTransition)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    unlockBeforeTransition = try container.decode(Bool.self, forKey: .unlockBeforeTransition)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -114,6 +150,16 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(resumeTasksAfterUnlock, forKey: .resumeTasksAfterUnlock)
+            
+            
+            
+            
+            try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
+            
+            
+            
+            
+            try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
             
             
         }
@@ -142,6 +188,10 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var resumeTasksAfterUnlock: Bool?
         
+        public var lockAfterTransition: Bool?
+        
+        public var unlockBeforeTransition: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -155,9 +205,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case resumeTasksAfterUnlock = "resume_tasks_after_unlock"
             
+            case lockAfterTransition = "lock_after_transition"
+            
+            case unlockBeforeTransition = "unlock_before_transition"
+            
         }
 
-        public init(action: String, actionType: String, entities: [Entities], entityType: String, resumeTasksAfterUnlock: Bool? = nil) {
+        public init(action: String, actionType: String, entities: [Entities], entityType: String, lockAfterTransition: Bool? = nil, resumeTasksAfterUnlock: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
             
             self.entityType = entityType
             
@@ -168,6 +222,10 @@ public extension PlatformClient.ApplicationClient.Order {
             self.entities = entities
             
             self.resumeTasksAfterUnlock = resumeTasksAfterUnlock
+            
+            self.lockAfterTransition = lockAfterTransition
+            
+            self.unlockBeforeTransition = unlockBeforeTransition
             
         }
 
@@ -206,6 +264,30 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    lockAfterTransition = try container.decode(Bool.self, forKey: .lockAfterTransition)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    unlockBeforeTransition = try container.decode(Bool.self, forKey: .unlockBeforeTransition)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -234,6 +316,16 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(resumeTasksAfterUnlock, forKey: .resumeTasksAfterUnlock)
+            
+            
+            
+            
+            try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
+            
+            
+            
+            
+            try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
             
             
         }

@@ -16,7 +16,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get company onboard data
+        * Summary: Get company profile
         * Description: View the company profile of the seller account.
         **/
         public func cbsOnboardGet(
@@ -64,7 +64,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Update company information
+        * Summary: Update company profile
         * Description: Allows to edit the company profile of the seller account.
         **/
         public func updateCompany(
@@ -113,7 +113,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Get company metrics
-        * Description: Allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
+        * Description: Allows viewing company metrics, including brand and store status, as well as the number of verified and unverified products, company documents, and store documents.
         **/
         public func getCompanyMetrics(
             
@@ -160,8 +160,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get brand details
-        * Description: Retrieve detailed information about a specific brand. Get data associated to a particular company brand.
+        * Summary: Get brand.
+        * Description: Retrieve detailed information about a specific brand associated to a particular company.
         **/
         public func getBrand(
             brandId: String,
@@ -209,8 +209,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Edit brand details
-        * Description: Modify details and settings of a specific brand. Allows to edit meta of a brand.
+        * Summary: update brand 
+        * Description: Modify brand details and meta of a specific brand.
         **/
         public func editBrand(
             brandId: String,
@@ -306,8 +306,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get brands
-        * Description: Retrieve a list of available brands.
+        * Summary: list company brands
+        * Description: Retrieve a list of available brands associated to a company.
         **/
         public func getBrands(
             pageNo: Int?,
@@ -485,7 +485,7 @@ if let value = q {
         
         /**
         *
-        * Summary: Get company locations
+        * Summary: Get company specific stores
         * Description: Retrieve a list of locations associated with the company.
         **/
         public func getLocations(
@@ -696,8 +696,8 @@ if let value = tags {
         
         /**
         *
-        * Summary: Create location
-        * Description: Create a new location. Allows to edit a location associated to a company.
+        * Summary: Create company stores
+        * Description: Create a new location associated to a company.
         **/
         public func createLocation(
             body: LocationSerializer,
@@ -744,8 +744,8 @@ if let value = tags {
         
         /**
         *
-        * Summary: Get location detail
-        * Description: Retrieve detailed information about a specific location. Get data associated to a specific location.
+        * Summary: Get company stores
+        * Description: Retrive detailed information about a specific location associated to a specific company.
         **/
         public func getLocationDetail(
             locationId: String,
@@ -793,7 +793,7 @@ if let value = tags {
         
         /**
         *
-        * Summary: Update location
+        * Summary: Update company stores
         * Description: Allows to edit a location associated to a company.
         **/
         public func updateLocation(
@@ -842,8 +842,8 @@ if let value = tags {
         
         /**
         *
-        * Summary: Create locations in bulk
-        * Description: Allows to create a location associated to a company.
+        * Summary: Bulk create company stores
+        * Description: Allows to create locations in bulk at once associated to a company
         **/
         public func createLocationBulk(
             body: BulkLocationSerializer,
@@ -890,8 +890,8 @@ if let value = tags {
         
         /**
         *
-        * Summary: Get location tags
-        * Description: Retrieve all the tags associated to a company.
+        * Summary: Get company store tags
+        * Description: Retrieve all the distinct tags associated to a company location.
         **/
         public func getLocationTags(
             

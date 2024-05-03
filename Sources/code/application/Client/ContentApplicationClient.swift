@@ -67,8 +67,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches announcements of an Application
-        * Description: Retrieves all current announcements in the application.
+        * Summary: List announcements
+        * Description: List all current announcements in the application.
         **/
         public func getAnnouncements(
             
@@ -117,8 +117,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves a single blog post
-        * Description: Retrieves all information relate to a specific blog such as it's contents, author, publish date, SEO related information.
+        * Summary: Get a blog
+        * Description: Get all information related to a specific blog such as it's contents, author, publish date, SEO related information.
         **/
         public func getBlog(
             slug: String,
@@ -178,8 +178,8 @@ if let value = rootId {
         
         /**
         *
-        * Summary: Lists all blog posts
-        * Description: Retrieve all the blogs which are present in the application.
+        * Summary: List blogs
+        * Description: List all the blogs against an application
         **/
         public func getBlogs(
             pageNo: Int?,
@@ -244,8 +244,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves data loaders enabled for an application
-        * Description: Retrieves all the data loaders that are added and enabled for an application.
+        * Summary: List Dataloaders
+        * Description: List all the data loaders that are enabled for an application
         **/
         public func getDataLoaders(
             
@@ -294,8 +294,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Fetches FAQs of an applicaiton
-        * Description: Retrieves a list of frequently asked questions.
+        * Summary: List FAQs
+        * Description: List a list of frequently asked questions and ansers
         **/
         public func getFaqs(
             
@@ -344,8 +344,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Lists FAQ categories
-        * Description: Retrieve categories for organizing FAQs.
+        * Summary: List FAQ Categories
+        * Description: Lists categories for organizing FAQs.
         **/
         public func getFaqCategories(
             
@@ -394,8 +394,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves FAQ by slug
-        * Description: Retrieves a specific FAQ using its slug identifier.
+        * Summary: Get FAQ
+        * Description: Get a specific FAQ using its slug identifier.
         **/
         public func getFaqBySlug(
             slug: String,
@@ -447,8 +447,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves FAQ category by slug
-        * Description: Retrieve a specific FAQ category using its slug.
+        * Summary: Get a FAQ category
+        * Description: Get a specific FAQ category using its slug.
         **/
         public func getFaqCategoryBySlug(
             slug: String,
@@ -500,8 +500,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves FAQs by category
-        * Description: Retrieves FAQs belonging to a specific category slug.
+        * Summary: List FAQs by category
+        * Description: Get FAQs belonging to a specific category slug
         **/
         public func getFaqsByCategorySlug(
             slug: String,
@@ -553,7 +553,7 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Fetches landing page
+        * Summary: Get a landing page
         * Description: Gets the content of the application's landing page.
         **/
         public func getLandingPage(
@@ -603,8 +603,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves legal information
-        * Description: Retrieve legal policies for an application which includes Terms and conditions, return policy, shipping policy and privacy policy.
+        * Summary: Get legal information
+        * Description: Get legal policies for an application which includes Terms and conditions, return policy, shipping policy and privacy policy.
         **/
         public func getLegalInformation(
             
@@ -653,8 +653,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves navigation items
-        * Description: Retrieves the navigation link items which can be powered to genreate menus on application's website or equivalent mobile apps
+        * Summary: List navigation items
+        * Description: Get the navigation link items which can be powered to genreate menus on application's website or equivalent mobile apps
         **/
         public func getNavigations(
             pageNo: Int?,
@@ -719,8 +719,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves SEO settings of an applicaiton
-        * Description: Retrieve search engine optimization configurations of an application. Details include the title, description and an image
+        * Summary: Get SEO settings
+        * Description: Get search engine optimization configurations of an application. Details include the title, description and an image
         **/
         public func getSEOConfiguration(
             
@@ -769,8 +769,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get SEO Markup schemas of an application
-        * Description: Use this API to get all SEO Markup schema Templates setup for an application
+        * Summary: List SEO Markup schemas
+        * Description: Get all SEO Markup schema Templates setup for an application
         **/
         public func getSEOMarkupSchemas(
             pageType: String?,
@@ -835,8 +835,8 @@ if let value = active {
         
         /**
         *
-        * Summary: Get the slideshows
-        * Description: Use this API to get a list of slideshows along with their details.
+        * Summary: List Slideshows
+        * Description: Get a list of slideshows along with their details.
         **/
         public func getSlideshows(
             pageNo: Int?,
@@ -944,8 +944,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get a slideshow
-        * Description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a slideshow using its `slug`.
+        * Summary: Get a Slideshow
+        * Description: Get a slideshow using its `slug`.
         **/
         public func getSlideshow(
             slug: String,
@@ -997,8 +997,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves support related info of an applicaiton
-        * Description: Retrieves customer support contact details. Contact Details can be either phone number or email-id or both.
+        * Summary: Get customer support information
+        * Description: Get customer support contact details. Contact Details can be either a phone number or an email-id or both
         **/
         public func getSupportInformation(
             
@@ -1047,8 +1047,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retrieves HTML tags
-        * Description: Retrieve any HTML tags to power additional functionalities within an application.
+        * Summary: Get HTML tags
+        * Description: Lists HTML tags to power additional functionalities within an application.
         **/
         public func getTags(
             
@@ -1097,8 +1097,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Single page details
-        * Description: Retrieve detailed information for a specific page within the theme.
+        * Summary: Get a page
+        * Description: Get detailed information for a specific page within the theme.
         **/
         public func getPage(
             slug: String,
@@ -1158,8 +1158,8 @@ if let value = rootId {
         
         /**
         *
-        * Summary: Lists all pages
-        * Description: Retrieve all available content pages in the app.
+        * Summary: Lists pages
+        * Description: Lists all Custom Pages
         **/
         public func getPages(
             pageNo: Int?,
@@ -1224,8 +1224,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get custom object details
-        * Description: Use this API to retrieve the custom object details, their fields details with definitions and references.
+        * Summary: Get custom object
+        * Description: Details of custom objects, their field details, definitions, and references can be obtained using this endpoint.
         **/
         public func getCustomObject(
             metaobjectId: String,
@@ -1277,8 +1277,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get list of custom fields of given resource and resource_id
-        * Description: Use this API to retrieve the custom fields for given resource and resource_id in param.
+        * Summary: Get list of custom fields 
+        * Description: Retrieves a list of custom fields attached to a particular resource by using the resource.
         **/
         public func getCustomFields(
             resource: String,

@@ -401,7 +401,8 @@ extension PlatformClient {
         /**
         *
         * Summary: Cancel job by name
-        * Description: Cancel a specific job by its name.
+        * Description: It will cancel export job triggerd by user in order to fetch
+historical delivery summery
         **/
         public func cancelJobByName(
             filename: String,
@@ -497,7 +498,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Fetch all event configurations
+        * Summary: List event configurations
         * Description: Retrieve all configurations for event handling.
         **/
         public func fetchAllEventConfigurations(
@@ -593,7 +594,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get subscribers by company
+        * Summary: List subscribers by company
         * Description: Retrieve subscribers associated with a company.
         **/
         public func getSubscribersByCompany(
@@ -665,7 +666,7 @@ if let value = extensionId {
         
         /**
         *
-        * Summary: Update subscriber config
+        * Summary: Update a subscriber config
         * Description: Modify and update subscriber configuration settings.
         **/
         public func updateSubscriberConfig(
@@ -713,7 +714,7 @@ if let value = extensionId {
         
         /**
         *
-        * Summary: Get subscriber by ID
+        * Summary: Get a subscriber
         * Description: Retrieve a subscriber's details by their unique identifier.
         **/
         public func getSubscriberById(
@@ -762,7 +763,7 @@ if let value = extensionId {
         
         /**
         *
-        * Summary: Get subscribers by extension ID
+        * Summary: List subscribers by extension ID
         * Description: Retrieve subscribers associated with a specific extension.
         **/
         public func getSubscribersByExtensionId(

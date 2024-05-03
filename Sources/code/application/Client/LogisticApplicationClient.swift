@@ -45,8 +45,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches city by pincode
-        * Description: Retrieve the name of the city associated with a given pincode.
+        * Summary: Get pincode details
+        * Description: Retrieve details of a specific pincode, such as obtaining its city and state information.
         **/
         public func getPincodeCity(
             pincode: String,
@@ -98,8 +98,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves product turnaround time
-        * Description: Retrieve the estimated delivery time for a specific product.
+        * Summary: Get product's turnaround time
+        * Description: Retrieve the estimated delivery timeframe for a specific product from a designated store.
         **/
         public func getTatProduct(
             body: TATViewRequest,
@@ -148,8 +148,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Lists all countries
-        * Description: Retrieve a list of all countries supported by the system.
+        * Summary: Get deliverable countries
+        * Description: Retrieves a list of countries within the specified delivery zones for that application.
         **/
         public func getAllCountries(
             
@@ -198,8 +198,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches zones by pincode
-        * Description: Retreive the logistical zones corresponding to a given pincode.
+        * Summary: Get zones
+        * Description: Retrieve the delivery zone associated with a given pincode
         **/
         public func getPincodeZones(
             body: GetZoneFromPincodeViewRequest,
@@ -248,8 +248,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Finds optimal locations
-        * Description: Retrieve the most efficient locations for logistics purposes.
+        * Summary: Get selling locations
+        * Description: Determines and returns the best fulfillment center for customers by analyzing their location, product availability, and inventory levels.
         **/
         public func getOptimalLocations(
             body: ReAssignStoreRequest,
@@ -298,8 +298,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches available locations
-        * Description: Retrieves a list of all locations of countries, states, cities. 
+        * Summary: Get available selling locations
+        * Description: Retrieves stores available for the application based on Delivery Zones and Order Orchestration rules.
         **/
         public func getLocations(
             xApplicationId: String,
@@ -416,8 +416,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get all countries and associated data
-        * Description: Retrieve of all countries.
+        * Summary: Get countries
+        * Description: Fetch the list of supported countries.
         **/
         public func getCountries(
             onboarding: Bool?,
@@ -498,8 +498,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Get single country and associated data
-        * Description: Retrieve data for a single country and address format.
+        * Summary: Get country details
+        * Description: Fetch details about a particular country and its address format customized for different business scenarios.
         **/
         public func getCountry(
             countryIsoCode: String,
@@ -551,8 +551,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Get Localities
-        * Description: Get Localities data.
+        * Summary: Get localities
+        * Description: Retrieve geographical data for a specific type of locality based on the provided filters. For instance, obtain a list of cities for a given country and state.
         **/
         public func getLocalities(
             localityType: String,
@@ -652,8 +652,8 @@ if let value = q {
         
         /**
         *
-        * Summary: Get Locality API
-        * Description: Get Locality data
+        * Summary: Get locality detail
+        * Description: Retrieve detailed geographical data for a specific locality, such as a pincode. For example, for a pincode value of 400603, the service returns its parent locations, including city, state, and country details.
         **/
         public func getLocality(
             localityType: String,
@@ -732,8 +732,8 @@ if let value = city {
         
         /**
         *
-        * Summary: Validate given address wrt template
-        * Description: Validate given address wrt template
+        * Summary: Validate address
+        * Description: Validate addresses using specific templates customized for each country and tailored to various business scenarios. This validation ensures that the data conforms to the information currently stored in the system.
         **/
         public func validateAddress(
             countryIsoCode: String,
