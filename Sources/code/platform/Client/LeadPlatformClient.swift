@@ -375,7 +375,7 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get feedbacks
+        * Summary: List feedbacks
         * Description: Get feedback information related to a ticket.
         **/
         public func getFeedbacks(

@@ -387,7 +387,7 @@ if let value = discount {
         
         /**
         *
-        * Summary: Get discount file.
+        * Summary: Get discount file
         * Description: Retrieve a discount file by its type, it could be product or inventory.
         **/
         public func downloadDiscountFile(
@@ -436,7 +436,7 @@ if let value = discount {
         
         /**
         *
-        * Summary: List validation job discount.
+        * Summary: List validation job discount
         * Description: Retrieve a validation job of a discount by its id.
         **/
         public func getValidationJob(

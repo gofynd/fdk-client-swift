@@ -1558,7 +1558,7 @@ if let value = reportType {
         
         /**
         *
-        * Summary: List manifest's shipments
+        * Summary: List manifest shipments
         * Description: Get list of shipments tagged to that manifest, the user can also search the shipments on the basis of shipment Id, order Id and AWB number
         **/
         public func getManifestShipments(

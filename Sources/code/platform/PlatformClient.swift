@@ -3950,7 +3950,7 @@ if let value = brand {
             
             /**
             *
-            * Summary: Get sales channel brands.
+            * Summary: List sales channel brands
             * Description: Retrieve brand listings related to the sales channel. A brand is the name under which a product is being sold
             **/
             public func getApplicationBrandListing(
@@ -5259,7 +5259,7 @@ if let value = pageSize {
             
             /**
             *
-            * Summary: List sales channel departments.
+            * Summary: List sales channel departments
             * Description: Retrieve department listings related to the sales channel. Departments are used to categorize similar products, and you can filter the results based on department names
             **/
             public func getApplicationDepartmentListing(
@@ -6048,7 +6048,7 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Get sales channel product.
+            * Summary: Get sales channel product
             * Description: Retrieve sales channel product details by its item_id and depending upon filters sent in request.
             **/
             public func getAppProduct(
@@ -6097,7 +6097,7 @@ if let value = storeTypes {
             
             /**
             *
-            * Summary: Update sales channel product.
+            * Summary: Update sales channel product
             * Description: Allows to update data associated to a item by its item_id for an sales channel.
             **/
             public func updateAppProduct(
@@ -6408,7 +6408,7 @@ if let value = itemIds {
             
             /**
             *
-            * Summary: Get discounted inventory.
+            * Summary: Get discounted inventory
             * Description: Allows to retrieve Inventory data for particular company grouped by size and store.
             **/
             public func getDiscountedInventoryBySizeIdentifier(
@@ -6575,7 +6575,7 @@ if let value = locationIds {
             
             /**
             *
-            * Summary: Get product details.
+            * Summary: Get product details
             * Description: Retrieve detailed product information using a product slug. 
             **/
             public func getProductDetailBySlug(
@@ -6624,7 +6624,7 @@ if let value = locationIds {
             
             /**
             *
-            * Summary: List sales channel products.
+            * Summary: List sales channel products
             * Description: Retrieve products specific to the sales channel, with filtering options available for brand, category, department, tags, item IDs, product name, and pagination support
             **/
             public func getAppProducts(
@@ -6837,7 +6837,7 @@ if let value = q {
             
             /**
             *
-            * Summary: get product-return configuration.
+            * Summary: get product-return configuration
             * Description: Get Product Return configuration set at an sales channel level
             **/
             public func getAppReturnConfiguration(
@@ -7269,7 +7269,7 @@ if let value = q {
             
             /**
             *
-            * Summary: Delete autocomplete keyword.
+            * Summary: Delete autocomplete keyword
             * Description: Delete custom autocomplete keyword configurations for a specific sales channel by its id.
             **/
             public func deleteAutocompleteKeyword(
@@ -7318,7 +7318,7 @@ if let value = q {
             
             /**
             *
-            * Summary: Get autocomplete keyword.
+            * Summary: Get autocomplete keyword
             * Description: Retrieve detailed information about a specific autocomplete keyword for a specific sales channel by its id.
             **/
             public func getAutocompleteKeywordDetail(
@@ -7367,7 +7367,7 @@ if let value = q {
             
             /**
             *
-            * Summary: Update autocomplete keyword.
+            * Summary: Update autocomplete keyword
             * Description: Update a specific autocomplete keyword configuration by its id for a specific sales channel.
             **/
             public func updateAutocompleteKeyword(
@@ -8008,7 +8008,7 @@ if let value = q {
             
             /**
             *
-            * Summary: Update default sorting.
+            * Summary: Update default sorting
             * Description: Modify the default sort key configuration for a company and an sales channel.
             **/
             public func updateDefaultSort(
@@ -8056,7 +8056,7 @@ if let value = q {
             
             /**
             *
-            * Summary: Get listing configurations.
+            * Summary: Get listing configurations
             * Description: Retrieve product listing configurations based on specific config_type for a company and an sales channel.
             **/
             public func getListingConfigurations(
@@ -8308,7 +8308,7 @@ if let value = templateSlug {
             
             /**
             *
-            * Summary: Delete group configuration.
+            * Summary: Delete group configuration
             * Description: Delete group configurations by its slug for a specific config_type for a company and an sales channel.
             **/
             public func deleteGroupConfiguration(
@@ -8408,7 +8408,7 @@ if let value = templateSlug {
             
             /**
             *
-            * Summary: Delete listing configuration.
+            * Summary: Delete listing configuration
             * Description: Remove a specific product listing configuration by its config_id for a specific config_type for a company and an sales channel.
             **/
             public func deleteListingConfiguration(
@@ -8508,7 +8508,7 @@ if let value = templateSlug {
             
             /**
             *
-            * Summary: Get configuration metadata.
+            * Summary: Get configuration metadata
             * Description: Retrieve the configuraion metadata details for specific config_type for a company and an sales channel.
             **/
             public func getConfigurationMetadata(
@@ -13481,7 +13481,7 @@ if let value = q {
             
             /**
             *
-            * Summary: Get Ordering Store signed cookie.
+            * Summary: Get ordering store signed cookie
             * Description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart.
             **/
             public func getOrderingStoreCookie(
@@ -19370,8 +19370,7 @@ if let value = search {
             
             /**
             *
-            * Summary: 
-Browse files for Application
+            * Summary: Browse files for Application
             * Description: View and navigate through available files.
             **/
             public func browsefiles(
@@ -20210,8 +20209,8 @@ if let value = category {
             
             /**
             *
-            * Summary: Edit custom form
-            * Description: Modify the content and assosciated settings of a custom form.
+            * Summary: Update custom form
+            * Description: Modify the content and associated settings of a custom form.
             **/
             public func editCustomForm(
                 slug: String,
@@ -21766,7 +21765,7 @@ if let value = status {
             
             /**
             *
-            * Summary: List Application's shipments
+            * Summary: List sales channel shipments
             * Description: Get shipments of a particular sales channel based on the filters provided
             **/
             public func getApplicationShipments(

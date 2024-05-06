@@ -1082,7 +1082,7 @@ if let value = userDetails {
         
         /**
         *
-        * Summary: Resends or cancels a pending payment transaction.
+        * Summary: Resend or cancel a pending payment transaction
         * Description: Enable you to perform actions related to the resending and cancellation of payment links through SMS or E-mail. Resend or cancel payment link that have been initiated but may require modification or cancellation for various reasons, ensuring flexibility and control in payment processing.
         **/
         public func resendOrCancelPayment(
@@ -1663,7 +1663,7 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: Add refund account using OTP verification.
+        * Summary: Add refund account using OTP verification
         * Description: The addition of a bank account specifically for refunds, employing OTP verification for security
         **/
         public func addRefundBankAccountUsingOTP(
@@ -2409,7 +2409,7 @@ if let value = aggregator {
         
         /**
         *
-        * Summary: Verify credit availability and status.
+        * Summary: Verify credit availability and status
         * Description: Checks the availability and status of customer credit, providing the status of payment along with registration information and signup URL if the customer is not registered.
         **/
         public func checkCredit(

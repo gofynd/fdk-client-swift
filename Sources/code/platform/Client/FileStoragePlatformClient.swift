@@ -288,7 +288,7 @@ if let value = limit {
         
         /**
         *
-        * Summary: Access files through a proxy.
+        * Summary: Access files through a proxy
         * Description: It enables the communication between two entities by directing client requests to the correct server and sending responses back to the client. Please refer group description for more details.
         **/
         public func proxy(

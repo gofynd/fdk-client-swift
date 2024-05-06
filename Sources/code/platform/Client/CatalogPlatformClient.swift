@@ -363,7 +363,7 @@ if let value = slug {
         
         /**
         *
-        * Summary: Update category.
+        * Summary: Update category
         * Description: Modify data for an existing category by its uid for a specific company.
         **/
         public func updateCategory(
@@ -704,7 +704,7 @@ if let value = slug {
         
         /**
         *
-        * Summary: Get department by uid.
+        * Summary: Get department by uid
         * Description: Retrieve detailed information about a specific department for a specific company by uid.
         **/
         public func getDepartmentData(
@@ -753,7 +753,7 @@ if let value = slug {
         
         /**
         *
-        * Summary: Update department.
+        * Summary: Update department
         * Description: Modify the department data by their uid for a specifc company.
         **/
         public func updateDepartment(
@@ -802,7 +802,7 @@ if let value = slug {
         
         /**
         *
-        * Summary: List template brand.
+        * Summary: List template brand
         * Description: Retrieve values related to template brand types for a specific company. The filter type query parameter defines what type of data to return. 
         **/
         public func listTemplateBrandTypeValues(
@@ -872,7 +872,7 @@ if let value = itemType {
         
         /**
         *
-        * Summary: Create Bulk update HSN.
+        * Summary: Create Bulk update HSN
         * Description: Execute bulk updates for HSN codes across multiple products.
         **/
         public func bulkHsnCode(
@@ -1018,7 +1018,7 @@ if let value = itemType {
         
         /**
         *
-        * Summary: List Inventory.
+        * Summary: List Inventory
         * Description: Allows to get Inventories data for particular company. 
         **/
         public func getInventories(
@@ -1229,7 +1229,7 @@ if let value = sizeIdentifier {
         
         /**
         *
-        * Summary: List bulk inventory upload history.
+        * Summary: List bulk inventory upload history
         * Description: Helps to get bulk Inventory upload jobs status.
         **/
         public func getInventoryBulkUploadHistory(
@@ -1490,7 +1490,7 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: list product inventory.
+        * Summary: list product inventory
         * Description: Retrieves inventory for all products for that particular company
         **/
         public func getInventoryExport(
@@ -1846,7 +1846,7 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: list Company Brand of Optin.
+        * Summary: list Company Brand of Optin
         * Description: Get the details of the Brands associated with the given company_id passed which has opt-in.
         **/
         public func getCompanyBrandDetail(
@@ -1934,7 +1934,7 @@ if let value = marketplace {
         
         /**
         *
-        * Summary: Get Company.
+        * Summary: Get Company
         * Description: Get the details of the company associated with the given company_id passed which has opt-in.
         **/
         public func getCompanyDetail(
@@ -2321,7 +2321,7 @@ if let value = filter {
         
         /**
         *
-        * Summary: List product bundles.
+        * Summary: List product bundles
         * Description: Retrieve a list of product bundles available in the catalog associated to a specific company.
         **/
         public func getProductBundle(
@@ -2433,7 +2433,7 @@ if let value = slug {
         
         /**
         *
-        * Summary: Get product bundle.
+        * Summary: Get product bundle
         * Description: Retrieve detailed information about a specific product bundle associated to a specific company.
         **/
         public func getProductBundleDetail(
@@ -3359,7 +3359,7 @@ if let value = bulk {
         
         /**
         *
-        * Summary: Get valid products.
+        * Summary: Get valid products
         * Description: Retrieve validation data for products at company level.
         **/
         public func getProductValidation(
@@ -4187,7 +4187,7 @@ if let value = brandId {
         
         /**
         *
-        * Summary: Get  size guide.
+        * Summary: Get  size guide
         * Description: Retrieve data associated about a specific size guide. It contains meta deta like header values like for shoulder, head, etc. and measurement unit like cm and values contains sizes for the same.
         **/
         public func getSizeGuide(

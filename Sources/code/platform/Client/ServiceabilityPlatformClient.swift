@@ -390,7 +390,7 @@ if let value = sector {
         
         /**
         *
-        * Summary: Get courier accounts
+        * Summary: List courier accounts
         * Description: Retrieves a list of courier partner accounts.
         **/
         public func getCourierPartnerAccounts(

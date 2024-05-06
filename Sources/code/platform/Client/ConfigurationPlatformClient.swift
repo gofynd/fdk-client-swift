@@ -95,7 +95,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: List sales channel stores.
+        * Summary: List sales channel stores
         * Description: Retrieve a list of available sales channels. sales channels are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of sales channels created within a company.
         **/
         public func getApplications(
@@ -661,7 +661,7 @@ if let value = checkPermission {
         
         /**
         *
-        * Summary: Get active integrations.
+        * Summary: Get active integrations
         * Description: Check if a store is already opted-in for any integration
         **/
         public func getLevelActiveIntegrations(

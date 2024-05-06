@@ -1139,7 +1139,7 @@ if let value = platform {
         
         /**
         *
-        * Summary: Send Mobile OTP for Forgot Password.
+        * Summary: Send mobile OTP for forgot-password
         * Description: Sends a one-time password to the user's mobile for verification when resetting a forgotten password.
         **/
         public func sendForgotOTPOnMobile(
@@ -1255,7 +1255,7 @@ if let value = platform {
         
         /**
         *
-        * Summary: Verify Mobile OTP for Forgot Password.
+        * Summary: Verify Mobile OTP for Forgot Password
         * Description: Verify one-time password sent to user's mobile for resetting a forgotten password
         **/
         public func verifyMobileForgotOTP(
@@ -1371,7 +1371,7 @@ if let value = platform {
         
         /**
         *
-        * Summary: Send Email OTP for Forgot Password.
+        * Summary: Send Email OTP for Forgot Password
         * Description: Sends a one-time password to the user's email for verification when resetting a forgotten password.
         **/
         public func sendForgotOTPOnEmail(
@@ -1487,7 +1487,7 @@ if let value = platform {
         
         /**
         *
-        * Summary: Verify Email OTP for Forgot Password.
+        * Summary: Verify Email OTP for Forgot Password
         * Description: Verify one-time password sent to user's email for resetting a forgotten password
         **/
         public func verifyEmailForgotOTP(

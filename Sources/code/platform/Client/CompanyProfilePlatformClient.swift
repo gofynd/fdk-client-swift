@@ -160,7 +160,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get brand.
+        * Summary: Get a brand
         * Description: Retrieve detailed information about a specific brand associated to a particular company.
         **/
         public func getBrand(

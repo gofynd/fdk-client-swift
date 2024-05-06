@@ -544,8 +544,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Gives list of invoices
-        * Description: Gives list of invoices.
+        * Summary: List invoices
+        * Description: Provides list of invoices generated for a company.
         **/
         public func invoiceListing(
             body: InvoiceListingRequest,
@@ -640,7 +640,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Check CN refund method
+        * Summary: Check refund method
         * Description: Verify the refund method for credit notes.
         **/
         public func isCnRefundMethod(
@@ -1286,7 +1286,7 @@ if let value = affiliateId {
         
         /**
         *
-        * Summary: Unlocks credit notes
+        * Summary: Unlock credit notes
         * Description: Used to unlock all request credit notes.
         **/
         public func unlockCreditNote(
