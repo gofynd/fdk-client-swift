@@ -12,6 +12,8 @@ public extension ApplicationClient.Share {
         
         public var hash: String?
         
+        public var shortUrl: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -19,13 +21,17 @@ public extension ApplicationClient.Share {
             
             case hash = "hash"
             
+            case shortUrl = "short_url"
+            
         }
 
-        public init(hash: String? = nil, original: String? = nil) {
+        public init(hash: String? = nil, original: String? = nil, shortUrl: String? = nil) {
             
             self.original = original
             
             self.hash = hash
+            
+            self.shortUrl = shortUrl
             
         }
 
@@ -56,6 +62,18 @@ public extension ApplicationClient.Share {
             }
             
             
+            
+            do {
+                shortUrl = try container.decode(String.self, forKey: .shortUrl)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -67,6 +85,10 @@ public extension ApplicationClient.Share {
             
             
             try? container.encodeIfPresent(hash, forKey: .hash)
+            
+            
+            
+            try? container.encodeIfPresent(shortUrl, forKey: .shortUrl)
             
             
         }

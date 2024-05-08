@@ -214,7 +214,7 @@ extension PlatformClient {
         **/
         public func editBrand(
             brandId: String,
-            body: CreateUpdateBrandRequestSerializer,
+            body: UpdateBrandRequestSerializer,
             onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -262,7 +262,7 @@ extension PlatformClient {
         * Description: Allows to create a brand associated to a company.
         **/
         public func createBrand(
-            body: CreateUpdateBrandRequestSerializer,
+            body: CreateBrandRequestSerializer,
             onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
         ) {
             
