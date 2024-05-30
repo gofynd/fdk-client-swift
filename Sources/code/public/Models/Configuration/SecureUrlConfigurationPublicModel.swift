@@ -46,7 +46,6 @@ public extension PublicClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(secureUrl, forKey: .secureUrl)
             
             

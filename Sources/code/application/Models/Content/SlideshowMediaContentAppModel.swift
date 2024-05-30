@@ -134,9 +134,7 @@ public extension ApplicationClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(type, forKey: .type)
-            
             
             
             
@@ -144,9 +142,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(bgColor, forKey: .bgColor)
-            
             
             
             
@@ -154,9 +150,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(autoDecideDuration, forKey: .autoDecideDuration)
-            
             
             
             

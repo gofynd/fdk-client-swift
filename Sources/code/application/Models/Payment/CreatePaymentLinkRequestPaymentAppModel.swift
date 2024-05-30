@@ -99,9 +99,7 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
-            try? container.encode(description, forKey: .description)
-            
+            try? container.encodeIfPresent(description, forKey: .description)
             
             
             
@@ -109,9 +107,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(mobileNumber, forKey: .mobileNumber)
-            
             
             
             
@@ -119,9 +115,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(meta, forKey: .meta)
-            
             
             
             

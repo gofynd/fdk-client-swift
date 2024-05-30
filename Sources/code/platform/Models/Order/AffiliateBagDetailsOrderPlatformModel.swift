@@ -110,7 +110,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(employeeDiscount, forKey: .employeeDiscount)
+            try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
             
             
             
@@ -120,7 +120,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(loyaltyDiscount, forKey: .loyaltyDiscount)
+            try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
             
             
         }
@@ -237,7 +237,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(employeeDiscount, forKey: .employeeDiscount)
+            try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
             
             
             
@@ -247,7 +247,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(loyaltyDiscount, forKey: .loyaltyDiscount)
+            try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
             
             
         }

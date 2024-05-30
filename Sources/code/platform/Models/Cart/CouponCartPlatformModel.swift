@@ -269,7 +269,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(couponType, forKey: .couponType)
+            try? container.encodeIfPresent(couponType, forKey: .couponType)
             
             
             
@@ -304,7 +304,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(description, forKey: .description)
+            try? container.encodeIfPresent(description, forKey: .description)
             
             
         }

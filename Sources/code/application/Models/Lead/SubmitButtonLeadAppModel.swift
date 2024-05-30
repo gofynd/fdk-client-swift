@@ -59,14 +59,11 @@ public extension ApplicationClient.Lead {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(title, forKey: .title)
             
             
             
-            
             try? container.encodeIfPresent(titleColor, forKey: .titleColor)
-            
             
             
             

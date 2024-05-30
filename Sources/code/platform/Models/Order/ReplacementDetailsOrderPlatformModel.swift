@@ -67,12 +67,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(replacementType, forKey: .replacementType)
+            try? container.encodeIfPresent(replacementType, forKey: .replacementType)
             
             
             
             
-            try? container.encode(originalAffiliateOrderId, forKey: .originalAffiliateOrderId)
+            try? container.encodeIfPresent(originalAffiliateOrderId, forKey: .originalAffiliateOrderId)
             
             
         }
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(replacementType, forKey: .replacementType)
+            try? container.encodeIfPresent(replacementType, forKey: .replacementType)
             
             
             
             
-            try? container.encode(originalAffiliateOrderId, forKey: .originalAffiliateOrderId)
+            try? container.encodeIfPresent(originalAffiliateOrderId, forKey: .originalAffiliateOrderId)
             
             
         }

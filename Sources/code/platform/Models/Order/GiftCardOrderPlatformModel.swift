@@ -103,22 +103,22 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(giftMessage, forKey: .giftMessage)
+            try? container.encodeIfPresent(giftMessage, forKey: .giftMessage)
             
             
             
             
-            try? container.encode(giftPrice, forKey: .giftPrice)
+            try? container.encodeIfPresent(giftPrice, forKey: .giftPrice)
             
             
             
             
-            try? container.encode(displayText, forKey: .displayText)
+            try? container.encodeIfPresent(displayText, forKey: .displayText)
             
             
             
             
-            try? container.encode(isGiftApplied, forKey: .isGiftApplied)
+            try? container.encodeIfPresent(isGiftApplied, forKey: .isGiftApplied)
             
             
         }
@@ -228,22 +228,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(giftMessage, forKey: .giftMessage)
+            try? container.encodeIfPresent(giftMessage, forKey: .giftMessage)
             
             
             
             
-            try? container.encode(giftPrice, forKey: .giftPrice)
+            try? container.encodeIfPresent(giftPrice, forKey: .giftPrice)
             
             
             
             
-            try? container.encode(displayText, forKey: .displayText)
+            try? container.encodeIfPresent(displayText, forKey: .displayText)
             
             
             
             
-            try? container.encode(isGiftApplied, forKey: .isGiftApplied)
+            try? container.encodeIfPresent(isGiftApplied, forKey: .isGiftApplied)
             
             
         }

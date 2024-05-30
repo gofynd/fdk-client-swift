@@ -585,7 +585,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encode(createdBy, forKey: .createdBy)
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
             
             
             
@@ -645,12 +645,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
             
-            try? container.encode(modifiedBy, forKey: .modifiedBy)
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
             
             
             
@@ -700,7 +700,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encode(tags, forKey: .tags)
+            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
             
@@ -725,7 +725,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encode(trader, forKey: .trader)
+            try? container.encodeIfPresent(trader, forKey: .trader)
             
             
             
@@ -1327,7 +1327,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encode(createdBy, forKey: .createdBy)
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
             
             
             
@@ -1387,12 +1387,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
             
-            try? container.encode(modifiedBy, forKey: .modifiedBy)
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
             
             
             
@@ -1442,7 +1442,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encode(tags, forKey: .tags)
+            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
             
@@ -1467,7 +1467,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encode(trader, forKey: .trader)
+            try? container.encodeIfPresent(trader, forKey: .trader)
             
             
             

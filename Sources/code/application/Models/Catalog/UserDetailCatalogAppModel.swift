@@ -84,9 +84,7 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(superUser, forKey: .superUser)
-            
             
             
             
@@ -94,9 +92,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            
             try? container.encodeIfPresent(username, forKey: .username)
-            
             
             
             

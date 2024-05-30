@@ -242,9 +242,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(couponValue, forKey: .couponValue)
-            
             
             
             
@@ -252,9 +250,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(minimumCartValue, forKey: .minimumCartValue)
-            
             
             
             
@@ -262,9 +258,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(expiresOn, forKey: .expiresOn)
-            
             
             
             
@@ -272,9 +266,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
-            try? container.encode(couponType, forKey: .couponType)
-            
+            try? container.encodeIfPresent(couponType, forKey: .couponType)
             
             
             
@@ -282,9 +274,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(couponCode, forKey: .couponCode)
-            
             
             
             
@@ -292,9 +282,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
-            try? container.encode(description, forKey: .description)
-            
+            try? container.encodeIfPresent(description, forKey: .description)
             
             
             

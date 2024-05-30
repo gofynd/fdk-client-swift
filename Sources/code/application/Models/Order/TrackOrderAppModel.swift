@@ -170,9 +170,7 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(accountName, forKey: .accountName)
-            
             
             
             
@@ -180,9 +178,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(status, forKey: .status)
-            
             
             
             
@@ -190,9 +186,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(updatedTime, forKey: .updatedTime)
-            
             
             
             
@@ -200,9 +194,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(reason, forKey: .reason)
-            
             
             
             

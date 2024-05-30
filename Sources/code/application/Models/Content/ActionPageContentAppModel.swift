@@ -91,9 +91,7 @@ public extension ApplicationClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(params, forKey: .params)
-            
             
             
             
@@ -101,9 +99,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(url, forKey: .url)
-            
             
             
             

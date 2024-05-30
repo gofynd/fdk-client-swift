@@ -120,9 +120,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(paymentMeta, forKey: .paymentMeta)
-            
             
             
             
@@ -130,19 +128,15 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(payment, forKey: .payment)
             
             
             
-            
-            try? container.encode(amount, forKey: .amount)
-            
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
             
             try? container.encodeIfPresent(name, forKey: .name)
-            
             
             
             

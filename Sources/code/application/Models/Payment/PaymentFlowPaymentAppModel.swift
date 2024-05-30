@@ -278,73 +278,59 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
-            try? container.encode(bqrRazorpay, forKey: .bqrRazorpay)
-            
+            try? container.encodeIfPresent(bqrRazorpay, forKey: .bqrRazorpay)
             
             
             
-            try? container.encode(fynd, forKey: .fynd)
+            try? container.encodeIfPresent(fynd, forKey: .fynd)
             
             
             
-            
-            try? container.encode(epaylater, forKey: .epaylater)
-            
+            try? container.encodeIfPresent(epaylater, forKey: .epaylater)
             
             
             
-            try? container.encode(razorpay, forKey: .razorpay)
+            try? container.encodeIfPresent(razorpay, forKey: .razorpay)
             
             
             
-            
-            try? container.encode(juspay, forKey: .juspay)
-            
+            try? container.encodeIfPresent(juspay, forKey: .juspay)
             
             
             
-            try? container.encode(ajiodhan, forKey: .ajiodhan)
+            try? container.encodeIfPresent(ajiodhan, forKey: .ajiodhan)
             
             
             
-            
-            try? container.encode(simpl, forKey: .simpl)
-            
+            try? container.encodeIfPresent(simpl, forKey: .simpl)
             
             
             
-            try? container.encode(rupifi, forKey: .rupifi)
+            try? container.encodeIfPresent(rupifi, forKey: .rupifi)
             
             
             
-            
-            try? container.encode(mswipe, forKey: .mswipe)
-            
+            try? container.encodeIfPresent(mswipe, forKey: .mswipe)
             
             
             
-            try? container.encode(stripe, forKey: .stripe)
+            try? container.encodeIfPresent(stripe, forKey: .stripe)
             
             
             
-            
-            try? container.encode(ccavenue, forKey: .ccavenue)
-            
+            try? container.encodeIfPresent(ccavenue, forKey: .ccavenue)
             
             
             
-            try? container.encode(payubiz, forKey: .payubiz)
+            try? container.encodeIfPresent(payubiz, forKey: .payubiz)
             
             
             
-            
-            try? container.encode(jiopay, forKey: .jiopay)
-            
+            try? container.encodeIfPresent(jiopay, forKey: .jiopay)
             
             
             
-            try? container.encode(upiRazorpay, forKey: .upiRazorpay)
+            try? container.encodeIfPresent(upiRazorpay, forKey: .upiRazorpay)
             
             
         }

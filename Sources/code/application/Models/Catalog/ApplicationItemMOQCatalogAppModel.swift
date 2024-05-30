@@ -80,14 +80,11 @@ public extension ApplicationClient.Catalog {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(minimum, forKey: .minimum)
             
             
             
-            
             try? container.encodeIfPresent(maximum, forKey: .maximum)
-            
             
             
             

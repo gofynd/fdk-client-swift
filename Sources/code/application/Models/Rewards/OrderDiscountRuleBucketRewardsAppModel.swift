@@ -116,9 +116,7 @@ public extension ApplicationClient.Rewards {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(high, forKey: .high)
-            
             
             
             
@@ -126,14 +124,11 @@ public extension ApplicationClient.Rewards {
             
             
             
-            
             try? container.encodeIfPresent(max, forKey: .max)
             
             
             
-            
             try? container.encodeIfPresent(value, forKey: .value)
-            
             
             
             

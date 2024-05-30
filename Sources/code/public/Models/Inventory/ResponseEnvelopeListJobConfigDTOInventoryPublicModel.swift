@@ -226,9 +226,7 @@ public extension PublicClient.Inventory {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(timestamp, forKey: .timestamp)
-            
             
             
             
@@ -236,9 +234,7 @@ public extension PublicClient.Inventory {
             
             
             
-            
             try? container.encodeIfPresent(error, forKey: .error)
-            
             
             
             
@@ -246,9 +242,7 @@ public extension PublicClient.Inventory {
             
             
             
-            
             try? container.encodeIfPresent(message, forKey: .message)
-            
             
             
             
@@ -256,9 +250,7 @@ public extension PublicClient.Inventory {
             
             
             
-            
             try? container.encodeIfPresent(httpStatus, forKey: .httpStatus)
-            
             
             
             
@@ -266,14 +258,11 @@ public extension PublicClient.Inventory {
             
             
             
-            
             try? container.encodeIfPresent(payload, forKey: .payload)
             
             
             
-            
             try? container.encodeIfPresent(traceId, forKey: .traceId)
-            
             
             
             

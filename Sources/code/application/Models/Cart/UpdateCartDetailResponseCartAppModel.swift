@@ -80,14 +80,11 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(message, forKey: .message)
             
             
             
-            
             try? container.encodeIfPresent(cart, forKey: .cart)
-            
             
             
             

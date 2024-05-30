@@ -246,7 +246,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(dpOptions, forKey: .dpOptions)
+            try? container.encodeIfPresent(dpOptions, forKey: .dpOptions)
             
             
             
@@ -261,7 +261,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(boxType, forKey: .boxType)
+            try? container.encodeIfPresent(boxType, forKey: .boxType)
             
             
             
@@ -271,7 +271,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(dpId, forKey: .dpId)
+            try? container.encodeIfPresent(dpId, forKey: .dpId)
             
             
             

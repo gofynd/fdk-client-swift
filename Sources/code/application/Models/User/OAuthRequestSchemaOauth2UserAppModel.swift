@@ -80,14 +80,11 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(accessToken, forKey: .accessToken)
             
             
             
-            
             try? container.encodeIfPresent(expiry, forKey: .expiry)
-            
             
             
             

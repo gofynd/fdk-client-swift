@@ -319,82 +319,82 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(cgstTaxPercentage, forKey: .cgstTaxPercentage)
+            try? container.encodeIfPresent(cgstTaxPercentage, forKey: .cgstTaxPercentage)
             
             
             
             
-            try? container.encode(cgstGstFee, forKey: .cgstGstFee)
+            try? container.encodeIfPresent(cgstGstFee, forKey: .cgstGstFee)
             
             
             
             
-            try? container.encode(gstinCode, forKey: .gstinCode)
+            try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
             
             
             
             
-            try? container.encode(valueOfGood, forKey: .valueOfGood)
+            try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
             
             
             
             
-            try? container.encode(gstFee, forKey: .gstFee)
+            try? container.encodeIfPresent(gstFee, forKey: .gstFee)
             
             
             
             
-            try? container.encode(igstTaxPercentage, forKey: .igstTaxPercentage)
+            try? container.encodeIfPresent(igstTaxPercentage, forKey: .igstTaxPercentage)
             
             
             
             
-            try? container.encode(gstTaxPercentage, forKey: .gstTaxPercentage)
+            try? container.encodeIfPresent(gstTaxPercentage, forKey: .gstTaxPercentage)
             
             
             
             
-            try? container.encode(hsnCodeId, forKey: .hsnCodeId)
+            try? container.encodeIfPresent(hsnCodeId, forKey: .hsnCodeId)
             
             
             
             
-            try? container.encode(igstGstFee, forKey: .igstGstFee)
+            try? container.encodeIfPresent(igstGstFee, forKey: .igstGstFee)
             
             
             
             
-            try? container.encode(sgstGstFee, forKey: .sgstGstFee)
+            try? container.encodeIfPresent(sgstGstFee, forKey: .sgstGstFee)
             
             
             
             
-            try? container.encode(taxCollectedAtSource, forKey: .taxCollectedAtSource)
+            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
             
             
             
             
-            try? container.encode(brandCalculatedAmount, forKey: .brandCalculatedAmount)
+            try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
             
             
             
             
-            try? container.encode(isDefaultHsnCode, forKey: .isDefaultHsnCode)
+            try? container.encodeIfPresent(isDefaultHsnCode, forKey: .isDefaultHsnCode)
             
             
             
             
-            try? container.encode(gstTag, forKey: .gstTag)
+            try? container.encodeIfPresent(gstTag, forKey: .gstTag)
             
             
             
             
-            try? container.encode(sgstTaxPercentage, forKey: .sgstTaxPercentage)
+            try? container.encodeIfPresent(sgstTaxPercentage, forKey: .sgstTaxPercentage)
             
             
             
             
-            try? container.encode(hsnCode, forKey: .hsnCode)
+            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
             
             
         }
@@ -720,82 +720,82 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(cgstTaxPercentage, forKey: .cgstTaxPercentage)
+            try? container.encodeIfPresent(cgstTaxPercentage, forKey: .cgstTaxPercentage)
             
             
             
             
-            try? container.encode(cgstGstFee, forKey: .cgstGstFee)
+            try? container.encodeIfPresent(cgstGstFee, forKey: .cgstGstFee)
             
             
             
             
-            try? container.encode(gstinCode, forKey: .gstinCode)
+            try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
             
             
             
             
-            try? container.encode(valueOfGood, forKey: .valueOfGood)
+            try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
             
             
             
             
-            try? container.encode(gstFee, forKey: .gstFee)
+            try? container.encodeIfPresent(gstFee, forKey: .gstFee)
             
             
             
             
-            try? container.encode(igstTaxPercentage, forKey: .igstTaxPercentage)
+            try? container.encodeIfPresent(igstTaxPercentage, forKey: .igstTaxPercentage)
             
             
             
             
-            try? container.encode(gstTaxPercentage, forKey: .gstTaxPercentage)
+            try? container.encodeIfPresent(gstTaxPercentage, forKey: .gstTaxPercentage)
             
             
             
             
-            try? container.encode(hsnCodeId, forKey: .hsnCodeId)
+            try? container.encodeIfPresent(hsnCodeId, forKey: .hsnCodeId)
             
             
             
             
-            try? container.encode(igstGstFee, forKey: .igstGstFee)
+            try? container.encodeIfPresent(igstGstFee, forKey: .igstGstFee)
             
             
             
             
-            try? container.encode(sgstGstFee, forKey: .sgstGstFee)
+            try? container.encodeIfPresent(sgstGstFee, forKey: .sgstGstFee)
             
             
             
             
-            try? container.encode(taxCollectedAtSource, forKey: .taxCollectedAtSource)
+            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
             
             
             
             
-            try? container.encode(brandCalculatedAmount, forKey: .brandCalculatedAmount)
+            try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
             
             
             
             
-            try? container.encode(isDefaultHsnCode, forKey: .isDefaultHsnCode)
+            try? container.encodeIfPresent(isDefaultHsnCode, forKey: .isDefaultHsnCode)
             
             
             
             
-            try? container.encode(gstTag, forKey: .gstTag)
+            try? container.encodeIfPresent(gstTag, forKey: .gstTag)
             
             
             
             
-            try? container.encode(sgstTaxPercentage, forKey: .sgstTaxPercentage)
+            try? container.encodeIfPresent(sgstTaxPercentage, forKey: .sgstTaxPercentage)
             
             
             
             
-            try? container.encode(hsnCode, forKey: .hsnCode)
+            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
             
             
         }

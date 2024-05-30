@@ -206,9 +206,7 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(value, forKey: .value)
-            
             
             
             
@@ -216,9 +214,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(path, forKey: .path)
-            
             
             
             
@@ -226,9 +222,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(sections, forKey: .sections)
-            
             
             
             
@@ -236,9 +230,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(theme, forKey: .theme)
-            
             
             
             
@@ -246,9 +238,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(props, forKey: .props)
-            
             
             
             

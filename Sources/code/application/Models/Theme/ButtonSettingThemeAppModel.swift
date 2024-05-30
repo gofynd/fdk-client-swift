@@ -80,14 +80,11 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(buttonPrimary, forKey: .buttonPrimary)
             
             
             
-            
             try? container.encodeIfPresent(buttonSecondary, forKey: .buttonSecondary)
-            
             
             
             

@@ -192,9 +192,7 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(success, forKey: .success)
-            
             
             
             
@@ -202,9 +200,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(juspay, forKey: .juspay)
-            
             
             
             
@@ -212,9 +208,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(payumoney, forKey: .payumoney)
-            
             
             
             
@@ -222,9 +216,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(mswipe, forKey: .mswipe)
-            
             
             
             
@@ -232,9 +224,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(ccavenue, forKey: .ccavenue)
-            
             
             
             

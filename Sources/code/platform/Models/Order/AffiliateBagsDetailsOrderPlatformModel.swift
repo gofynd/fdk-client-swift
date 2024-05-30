@@ -85,12 +85,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(affiliateBagId, forKey: .affiliateBagId)
+            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
             
             
             
             
-            try? container.encode(couponCode, forKey: .couponCode)
+            try? container.encodeIfPresent(couponCode, forKey: .couponCode)
             
             
             
@@ -187,12 +187,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(affiliateBagId, forKey: .affiliateBagId)
+            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
             
             
             
             
-            try? container.encode(couponCode, forKey: .couponCode)
+            try? container.encodeIfPresent(couponCode, forKey: .couponCode)
             
             
             

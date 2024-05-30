@@ -175,42 +175,42 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
             
-            try? container.encode(bagList, forKey: .bagList)
+            try? container.encodeIfPresent(bagList, forKey: .bagList)
             
             
             
             
-            try? container.encode(id, forKey: .id)
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
             
-            try? container.encode(createdAt, forKey: .createdAt)
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
             
             
             
             
-            try? container.encode(shipmentId, forKey: .shipmentId)
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
             
             
             
             
-            try? container.encode(status, forKey: .status)
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             
             
-            try? container.encode(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
             
-            try? container.encode(currentShipmentStatus, forKey: .currentShipmentStatus)
+            try? container.encodeIfPresent(currentShipmentStatus, forKey: .currentShipmentStatus)
             
             
         }
@@ -392,42 +392,42 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
             
-            try? container.encode(bagList, forKey: .bagList)
+            try? container.encodeIfPresent(bagList, forKey: .bagList)
             
             
             
             
-            try? container.encode(id, forKey: .id)
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
             
-            try? container.encode(createdAt, forKey: .createdAt)
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
             
             
             
             
-            try? container.encode(shipmentId, forKey: .shipmentId)
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
             
             
             
             
-            try? container.encode(status, forKey: .status)
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             
             
-            try? container.encode(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
             
-            try? container.encode(currentShipmentStatus, forKey: .currentShipmentStatus)
+            try? container.encodeIfPresent(currentShipmentStatus, forKey: .currentShipmentStatus)
             
             
         }

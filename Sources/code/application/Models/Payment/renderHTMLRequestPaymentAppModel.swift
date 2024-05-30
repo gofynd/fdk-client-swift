@@ -55,9 +55,7 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
-            try? container.encode(returntype, forKey: .returntype)
-            
+            try? container.encodeIfPresent(returntype, forKey: .returntype)
             
             
             

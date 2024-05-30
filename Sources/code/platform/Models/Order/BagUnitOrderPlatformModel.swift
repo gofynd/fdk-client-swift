@@ -421,7 +421,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(bagType, forKey: .bagType)
+            try? container.encodeIfPresent(bagType, forKey: .bagType)
             
             
             
@@ -436,7 +436,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(bagExpiryDate, forKey: .bagExpiryDate)
+            try? container.encodeIfPresent(bagExpiryDate, forKey: .bagExpiryDate)
             
             
             
@@ -471,7 +471,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(reasons, forKey: .reasons)
+            try? container.encodeIfPresent(reasons, forKey: .reasons)
             
             
             
@@ -481,32 +481,32 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(canReturn, forKey: .canReturn)
+            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
             
             
             
             
-            try? container.encode(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
             
-            try? container.encode(canCancel, forKey: .canCancel)
+            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
             
             
             
             
-            try? container.encode(size, forKey: .size)
+            try? container.encodeIfPresent(size, forKey: .size)
             
             
             
             
-            try? container.encode(lineNumber, forKey: .lineNumber)
+            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
             
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
@@ -531,7 +531,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(entityType, forKey: .entityType)
+            try? container.encodeIfPresent(entityType, forKey: .entityType)
             
             
             
@@ -964,7 +964,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(bagType, forKey: .bagType)
+            try? container.encodeIfPresent(bagType, forKey: .bagType)
             
             
             
@@ -979,7 +979,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(bagExpiryDate, forKey: .bagExpiryDate)
+            try? container.encodeIfPresent(bagExpiryDate, forKey: .bagExpiryDate)
             
             
             
@@ -1014,7 +1014,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(reasons, forKey: .reasons)
+            try? container.encodeIfPresent(reasons, forKey: .reasons)
             
             
             
@@ -1024,32 +1024,32 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(canReturn, forKey: .canReturn)
+            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
             
             
             
             
-            try? container.encode(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
             
-            try? container.encode(canCancel, forKey: .canCancel)
+            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
             
             
             
             
-            try? container.encode(size, forKey: .size)
+            try? container.encodeIfPresent(size, forKey: .size)
             
             
             
             
-            try? container.encode(lineNumber, forKey: .lineNumber)
+            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
             
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
@@ -1074,7 +1074,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(entityType, forKey: .entityType)
+            try? container.encodeIfPresent(entityType, forKey: .entityType)
             
             
             

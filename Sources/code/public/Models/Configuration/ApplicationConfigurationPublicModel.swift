@@ -496,9 +496,7 @@ public extension PublicClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(website, forKey: .website)
-            
             
             
             
@@ -506,9 +504,7 @@ public extension PublicClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(auth, forKey: .auth)
-            
             
             
             
@@ -516,9 +512,7 @@ public extension PublicClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(channelType, forKey: .channelType)
-            
             
             
             
@@ -526,9 +520,7 @@ public extension PublicClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(isInternal, forKey: .isInternal)
-            
             
             
             
@@ -536,9 +528,7 @@ public extension PublicClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -546,9 +536,7 @@ public extension PublicClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(owner, forKey: .owner)
-            
             
             
             
@@ -556,9 +544,7 @@ public extension PublicClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(token, forKey: .token)
-            
             
             
             
@@ -566,9 +552,7 @@ public extension PublicClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(meta, forKey: .meta)
-            
             
             
             
@@ -576,9 +560,7 @@ public extension PublicClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-            
             
             
             
@@ -586,9 +568,7 @@ public extension PublicClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(banner, forKey: .banner)
-            
             
             
             
@@ -596,9 +576,7 @@ public extension PublicClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(favicon, forKey: .favicon)
-            
             
             
             
@@ -606,9 +584,7 @@ public extension PublicClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(appType, forKey: .appType)
-            
             
             
             
@@ -616,9 +592,7 @@ public extension PublicClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(domain, forKey: .domain)
-            
             
             
             

@@ -80,14 +80,11 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(text, forKey: .text)
             
             
             
-            
             try? container.encodeIfPresent(textColor, forKey: .textColor)
-            
             
             
             

@@ -70,9 +70,7 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(presignedType, forKey: .presignedType)
-            
             
             
             
@@ -80,9 +78,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-            
             
             
             

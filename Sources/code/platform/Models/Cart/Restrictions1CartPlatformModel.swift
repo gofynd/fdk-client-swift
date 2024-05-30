@@ -211,7 +211,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(userRegistered, forKey: .userRegistered)
+            try? container.encodeIfPresent(userRegistered, forKey: .userRegistered)
             
             
             

@@ -16,6 +16,10 @@ public extension ApplicationClient.Cart {
         
         public var promotionGroup: String?
         
+        public var promotionName: String?
+        
+        public var promotionType: String?
+        
         public var validTill: String?
         
         public var discountRules: [[String: Any]]?
@@ -35,6 +39,10 @@ public extension ApplicationClient.Cart {
             
             case promotionGroup = "promotion_group"
             
+            case promotionName = "promotion_name"
+            
+            case promotionType = "promotion_type"
+            
             case validTill = "valid_till"
             
             case discountRules = "discount_rules"
@@ -45,7 +53,7 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(buyRules: [String: Any]? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, validTill: String? = nil) {
+        public init(buyRules: [String: Any]? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, validTill: String? = nil) {
             
             self.id = id
             
@@ -54,6 +62,10 @@ public extension ApplicationClient.Cart {
             self.offerText = offerText
             
             self.promotionGroup = promotionGroup
+            
+            self.promotionName = promotionName
+            
+            self.promotionType = promotionType
             
             self.validTill = validTill
             
@@ -118,6 +130,30 @@ public extension ApplicationClient.Cart {
             
             
             do {
+                promotionName = try container.decode(String.self, forKey: .promotionName)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                promotionType = try container.decode(String.self, forKey: .promotionType)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 validTill = try container.decode(String.self, forKey: .validTill)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -170,9 +206,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -180,9 +214,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(offerText, forKey: .offerText)
-            
             
             
             
@@ -190,9 +222,15 @@ public extension ApplicationClient.Cart {
             
             
             
+            try? container.encodeIfPresent(promotionName, forKey: .promotionName)
+            
+            
+            
+            try? container.encodeIfPresent(promotionType, forKey: .promotionType)
+            
+            
             
             try? container.encodeIfPresent(validTill, forKey: .validTill)
-            
             
             
             
@@ -200,9 +238,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(freeGiftItems, forKey: .freeGiftItems)
-            
             
             
             

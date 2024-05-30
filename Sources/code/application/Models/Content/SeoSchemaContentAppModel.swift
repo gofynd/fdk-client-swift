@@ -188,9 +188,7 @@ public extension ApplicationClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(app, forKey: .app)
-            
             
             
             
@@ -198,9 +196,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(robotsTxt, forKey: .robotsTxt)
-            
             
             
             
@@ -208,9 +204,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(cannonicalEnabled, forKey: .cannonicalEnabled)
-            
             
             
             
@@ -218,14 +212,11 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(details, forKey: .details)
             
             
             
-            
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
             
             
             

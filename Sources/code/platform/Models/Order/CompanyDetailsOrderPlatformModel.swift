@@ -139,27 +139,27 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(companyName, forKey: .companyName)
+            try? container.encodeIfPresent(companyName, forKey: .companyName)
             
             
             
             
-            try? container.encode(address, forKey: .address)
+            try? container.encodeIfPresent(address, forKey: .address)
             
             
             
             
-            try? container.encode(companyCin, forKey: .companyCin)
+            try? container.encodeIfPresent(companyCin, forKey: .companyCin)
             
             
             
             
-            try? container.encode(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
             
             
-            try? container.encode(companyGst, forKey: .companyGst)
+            try? container.encodeIfPresent(companyGst, forKey: .companyGst)
             
             
             
@@ -310,27 +310,27 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(companyName, forKey: .companyName)
+            try? container.encodeIfPresent(companyName, forKey: .companyName)
             
             
             
             
-            try? container.encode(address, forKey: .address)
+            try? container.encodeIfPresent(address, forKey: .address)
             
             
             
             
-            try? container.encode(companyCin, forKey: .companyCin)
+            try? container.encodeIfPresent(companyCin, forKey: .companyCin)
             
             
             
             
-            try? container.encode(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
             
             
-            try? container.encode(companyGst, forKey: .companyGst)
+            try? container.encodeIfPresent(companyGst, forKey: .companyGst)
             
             
             

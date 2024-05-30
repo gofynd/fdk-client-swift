@@ -231,7 +231,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(gstinCode, forKey: .gstinCode)
+            try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
             
             
             
@@ -281,7 +281,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(isDefaultHsnCode, forKey: .isDefaultHsnCode)
+            try? container.encodeIfPresent(isDefaultHsnCode, forKey: .isDefaultHsnCode)
             
             
             
@@ -534,7 +534,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(gstinCode, forKey: .gstinCode)
+            try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
             
             
             
@@ -584,7 +584,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(isDefaultHsnCode, forKey: .isDefaultHsnCode)
+            try? container.encodeIfPresent(isDefaultHsnCode, forKey: .isDefaultHsnCode)
             
             
             

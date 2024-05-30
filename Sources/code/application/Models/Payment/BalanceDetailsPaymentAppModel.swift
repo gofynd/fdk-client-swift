@@ -80,18 +80,15 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
-            try? container.encode(formattedValue, forKey: .formattedValue)
-            
+            try? container.encodeIfPresent(formattedValue, forKey: .formattedValue)
             
             
             
-            try? container.encode(currency, forKey: .currency)
+            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
             
-            
-            try? container.encode(value, forKey: .value)
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
         }

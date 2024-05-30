@@ -332,9 +332,7 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(font, forKey: .font)
-            
             
             
             
@@ -342,9 +340,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(applied, forKey: .applied)
-            
             
             
             
@@ -352,9 +348,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(tags, forKey: .tags)
-            
             
             
             
@@ -362,9 +356,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(applicationId, forKey: .applicationId)
-            
             
             
             
@@ -372,9 +364,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(meta, forKey: .meta)
-            
             
             
             
@@ -382,9 +372,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(templateThemeId, forKey: .templateThemeId)
-            
             
             
             
@@ -392,9 +380,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(styles, forKey: .styles)
-            
             
             
             
@@ -402,14 +388,11 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
             
-            
             try? container.encodeIfPresent(assets, forKey: .assets)
-            
             
             
             

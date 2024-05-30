@@ -48,9 +48,7 @@ public extension ApplicationClient.FileStorage {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(expiry, forKey: .expiry)
-            
             
             
             

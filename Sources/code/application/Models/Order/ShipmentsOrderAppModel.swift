@@ -674,14 +674,11 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(payment, forKey: .payment)
             
             
             
-            
-            try? container.encode(orderType, forKey: .orderType)
-            
+            try? container.encodeIfPresent(orderType, forKey: .orderType)
             
             
             
@@ -689,9 +686,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(canCancel, forKey: .canCancel)
-            
             
             
             
@@ -699,9 +694,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-            
             
             
             
@@ -709,9 +702,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(customMeta, forKey: .customMeta)
-            
             
             
             
@@ -719,9 +710,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(comment, forKey: .comment)
-            
             
             
             
@@ -729,9 +718,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(showTrackLink, forKey: .showTrackLink)
-            
             
             
             
@@ -739,9 +726,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
-            
             
             
             
@@ -749,9 +734,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(trakingNo, forKey: .trakingNo)
-            
             
             
             
@@ -759,9 +742,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(promise, forKey: .promise)
-            
             
             
             
@@ -769,9 +750,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(totalDetails, forKey: .totalDetails)
-            
             
             
             
@@ -779,9 +758,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
-            try? container.encode(returnableDate, forKey: .returnableDate)
-            
+            try? container.encodeIfPresent(returnableDate, forKey: .returnableDate)
             
             
             
@@ -789,9 +766,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(sizeInfo, forKey: .sizeInfo)
-            
             
             
             
@@ -799,9 +774,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(dpName, forKey: .dpName)
-            
             
             
             
@@ -809,9 +782,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(beneficiaryDetails, forKey: .beneficiaryDetails)
-            
             
             
             
@@ -819,9 +790,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(canReturn, forKey: .canReturn)
-            
             
             
             
@@ -829,9 +798,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(trackUrl, forKey: .trackUrl)
-            
             
             
             
@@ -839,9 +806,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(needHelpUrl, forKey: .needHelpUrl)
-            
             
             
             
@@ -849,8 +814,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
-            try? container.encode(deliveryDate, forKey: .deliveryDate)
+            try? container.encodeIfPresent(deliveryDate, forKey: .deliveryDate)
             
             
         }

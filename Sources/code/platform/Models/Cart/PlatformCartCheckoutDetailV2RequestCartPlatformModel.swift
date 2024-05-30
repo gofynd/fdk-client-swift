@@ -496,12 +496,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
+            try? container.encodeIfPresent(paymentIdentifier, forKey: .paymentIdentifier)
             
             
             
             
-            try? container.encode(paymentParams, forKey: .paymentParams)
+            try? container.encodeIfPresent(paymentParams, forKey: .paymentParams)
             
             
             
@@ -541,12 +541,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(pickAtStoreUid, forKey: .pickAtStoreUid)
+            try? container.encodeIfPresent(pickAtStoreUid, forKey: .pickAtStoreUid)
             
             
             
             
-            try? container.encode(deviceId, forKey: .deviceId)
+            try? container.encodeIfPresent(deviceId, forKey: .deviceId)
             
             
             
@@ -566,7 +566,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(customerDetails, forKey: .customerDetails)
+            try? container.encodeIfPresent(customerDetails, forKey: .customerDetails)
             
             
             
@@ -586,7 +586,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(employeeCode, forKey: .employeeCode)
+            try? container.encodeIfPresent(employeeCode, forKey: .employeeCode)
             
             
             
@@ -596,12 +596,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(callbackUrl, forKey: .callbackUrl)
+            try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
             
             
             
             
-            try? container.encode(userId, forKey: .userId)
+            try? container.encodeIfPresent(userId, forKey: .userId)
             
             
             
@@ -621,7 +621,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(orderingStore, forKey: .orderingStore)
+            try? container.encodeIfPresent(orderingStore, forKey: .orderingStore)
             
             
         }

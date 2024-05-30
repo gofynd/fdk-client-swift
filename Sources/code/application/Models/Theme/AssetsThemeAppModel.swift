@@ -80,14 +80,11 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(umdJs, forKey: .umdJs)
             
             
             
-            
             try? container.encodeIfPresent(commonJs, forKey: .commonJs)
-            
             
             
             

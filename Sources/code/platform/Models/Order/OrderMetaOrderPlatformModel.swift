@@ -396,27 +396,27 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(companyLogo, forKey: .companyLogo)
+            try? container.encodeIfPresent(companyLogo, forKey: .companyLogo)
             
             
             
             
-            try? container.encode(currencySymbol, forKey: .currencySymbol)
+            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
             
             
             
             
-            try? container.encode(comment, forKey: .comment)
+            try? container.encodeIfPresent(comment, forKey: .comment)
             
             
             
             
-            try? container.encode(extraMeta, forKey: .extraMeta)
+            try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
             
             
             
             
-            try? container.encode(files, forKey: .files)
+            try? container.encodeIfPresent(files, forKey: .files)
             
             
             
@@ -431,62 +431,62 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(orderingStore, forKey: .orderingStore)
+            try? container.encodeIfPresent(orderingStore, forKey: .orderingStore)
             
             
             
             
-            try? container.encode(paymentType, forKey: .paymentType)
+            try? container.encodeIfPresent(paymentType, forKey: .paymentType)
             
             
             
             
-            try? container.encode(mongoCartId, forKey: .mongoCartId)
+            try? container.encodeIfPresent(mongoCartId, forKey: .mongoCartId)
             
             
             
             
-            try? container.encode(orderChildEntities, forKey: .orderChildEntities)
+            try? container.encodeIfPresent(orderChildEntities, forKey: .orderChildEntities)
             
             
             
             
-            try? container.encode(orderType, forKey: .orderType)
+            try? container.encodeIfPresent(orderType, forKey: .orderType)
             
             
             
             
-            try? container.encode(orderPlatform, forKey: .orderPlatform)
+            try? container.encodeIfPresent(orderPlatform, forKey: .orderPlatform)
             
             
             
             
-            try? container.encode(employeeId, forKey: .employeeId)
+            try? container.encodeIfPresent(employeeId, forKey: .employeeId)
             
             
             
             
-            try? container.encode(orderTags, forKey: .orderTags)
+            try? container.encodeIfPresent(orderTags, forKey: .orderTags)
             
             
             
             
-            try? container.encode(customerNote, forKey: .customerNote)
+            try? container.encodeIfPresent(customerNote, forKey: .customerNote)
             
             
             
             
-            try? container.encode(staff, forKey: .staff)
+            try? container.encodeIfPresent(staff, forKey: .staff)
             
             
             
             
-            try? container.encode(cartId, forKey: .cartId)
+            try? container.encodeIfPresent(cartId, forKey: .cartId)
             
             
             
             
-            try? container.encode(cartObjectId, forKey: .cartObjectId)
+            try? container.encodeIfPresent(cartObjectId, forKey: .cartObjectId)
             
             
         }
@@ -889,27 +889,27 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(companyLogo, forKey: .companyLogo)
+            try? container.encodeIfPresent(companyLogo, forKey: .companyLogo)
             
             
             
             
-            try? container.encode(currencySymbol, forKey: .currencySymbol)
+            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
             
             
             
             
-            try? container.encode(comment, forKey: .comment)
+            try? container.encodeIfPresent(comment, forKey: .comment)
             
             
             
             
-            try? container.encode(extraMeta, forKey: .extraMeta)
+            try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
             
             
             
             
-            try? container.encode(files, forKey: .files)
+            try? container.encodeIfPresent(files, forKey: .files)
             
             
             
@@ -924,62 +924,62 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(orderingStore, forKey: .orderingStore)
+            try? container.encodeIfPresent(orderingStore, forKey: .orderingStore)
             
             
             
             
-            try? container.encode(paymentType, forKey: .paymentType)
+            try? container.encodeIfPresent(paymentType, forKey: .paymentType)
             
             
             
             
-            try? container.encode(mongoCartId, forKey: .mongoCartId)
+            try? container.encodeIfPresent(mongoCartId, forKey: .mongoCartId)
             
             
             
             
-            try? container.encode(orderChildEntities, forKey: .orderChildEntities)
+            try? container.encodeIfPresent(orderChildEntities, forKey: .orderChildEntities)
             
             
             
             
-            try? container.encode(orderType, forKey: .orderType)
+            try? container.encodeIfPresent(orderType, forKey: .orderType)
             
             
             
             
-            try? container.encode(orderPlatform, forKey: .orderPlatform)
+            try? container.encodeIfPresent(orderPlatform, forKey: .orderPlatform)
             
             
             
             
-            try? container.encode(employeeId, forKey: .employeeId)
+            try? container.encodeIfPresent(employeeId, forKey: .employeeId)
             
             
             
             
-            try? container.encode(orderTags, forKey: .orderTags)
+            try? container.encodeIfPresent(orderTags, forKey: .orderTags)
             
             
             
             
-            try? container.encode(customerNote, forKey: .customerNote)
+            try? container.encodeIfPresent(customerNote, forKey: .customerNote)
             
             
             
             
-            try? container.encode(staff, forKey: .staff)
+            try? container.encodeIfPresent(staff, forKey: .staff)
             
             
             
             
-            try? container.encode(cartId, forKey: .cartId)
+            try? container.encodeIfPresent(cartId, forKey: .cartId)
             
             
             
             
-            try? container.encode(cartObjectId, forKey: .cartObjectId)
+            try? container.encodeIfPresent(cartObjectId, forKey: .cartObjectId)
             
             
         }

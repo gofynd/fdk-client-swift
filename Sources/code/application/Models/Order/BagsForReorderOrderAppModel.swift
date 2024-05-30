@@ -134,9 +134,7 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(itemSize, forKey: .itemSize)
-            
             
             
             
@@ -144,9 +142,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(storeId, forKey: .storeId)
-            
             
             
             
@@ -154,9 +150,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
-            
             
             
             

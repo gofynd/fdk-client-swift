@@ -103,22 +103,22 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(platformUserEmployeeCode, forKey: .platformUserEmployeeCode)
+            try? container.encodeIfPresent(platformUserEmployeeCode, forKey: .platformUserEmployeeCode)
             
             
             
             
-            try? container.encode(platformUserFirstName, forKey: .platformUserFirstName)
+            try? container.encodeIfPresent(platformUserFirstName, forKey: .platformUserFirstName)
             
             
             
             
-            try? container.encode(platformUserId, forKey: .platformUserId)
+            try? container.encodeIfPresent(platformUserId, forKey: .platformUserId)
             
             
             
             
-            try? container.encode(platformUserLastName, forKey: .platformUserLastName)
+            try? container.encodeIfPresent(platformUserLastName, forKey: .platformUserLastName)
             
             
         }
@@ -228,22 +228,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(platformUserEmployeeCode, forKey: .platformUserEmployeeCode)
+            try? container.encodeIfPresent(platformUserEmployeeCode, forKey: .platformUserEmployeeCode)
             
             
             
             
-            try? container.encode(platformUserFirstName, forKey: .platformUserFirstName)
+            try? container.encodeIfPresent(platformUserFirstName, forKey: .platformUserFirstName)
             
             
             
             
-            try? container.encode(platformUserId, forKey: .platformUserId)
+            try? container.encodeIfPresent(platformUserId, forKey: .platformUserId)
             
             
             
             
-            try? container.encode(platformUserLastName, forKey: .platformUserLastName)
+            try? container.encodeIfPresent(platformUserLastName, forKey: .platformUserLastName)
             
             
         }

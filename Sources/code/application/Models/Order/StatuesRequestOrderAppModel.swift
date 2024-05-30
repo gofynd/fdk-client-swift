@@ -80,14 +80,11 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(shipments, forKey: .shipments)
             
             
             
-            
             try? container.encodeIfPresent(excludeBagsNextState, forKey: .excludeBagsNextState)
-            
             
             
             

@@ -37,7 +37,6 @@ public extension ApplicationClient.FileStorage {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(urls, forKey: .urls)
             
             

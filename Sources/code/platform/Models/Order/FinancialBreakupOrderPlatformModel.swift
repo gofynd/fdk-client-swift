@@ -347,7 +347,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(amountPaidRoundoff, forKey: .amountPaidRoundoff)
+            try? container.encodeIfPresent(amountPaidRoundoff, forKey: .amountPaidRoundoff)
             
             
             
@@ -377,7 +377,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(taxCollectedAtSource, forKey: .taxCollectedAtSource)
+            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
             
             
             
@@ -826,7 +826,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(amountPaidRoundoff, forKey: .amountPaidRoundoff)
+            try? container.encodeIfPresent(amountPaidRoundoff, forKey: .amountPaidRoundoff)
             
             
             
@@ -856,7 +856,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(taxCollectedAtSource, forKey: .taxCollectedAtSource)
+            try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
             
             
             

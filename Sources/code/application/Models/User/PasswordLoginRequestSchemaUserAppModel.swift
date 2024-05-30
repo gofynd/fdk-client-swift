@@ -80,14 +80,11 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(captchaCode, forKey: .captchaCode)
             
             
             
-            
             try? container.encodeIfPresent(password, forKey: .password)
-            
             
             
             

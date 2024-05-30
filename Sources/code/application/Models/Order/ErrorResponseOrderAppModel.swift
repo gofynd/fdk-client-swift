@@ -116,14 +116,11 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
-            try? container.encode(code, forKey: .code)
-            
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
-            try? container.encode(message, forKey: .message)
-            
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
@@ -131,13 +128,11 @@ public extension ApplicationClient.Order {
             
             
             
-            
-            try? container.encode(exception, forKey: .exception)
-            
+            try? container.encodeIfPresent(exception, forKey: .exception)
             
             
             
-            try? container.encode(stackTrace, forKey: .stackTrace)
+            try? container.encodeIfPresent(stackTrace, forKey: .stackTrace)
             
             
         }

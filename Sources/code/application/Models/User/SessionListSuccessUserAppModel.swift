@@ -44,7 +44,6 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(sessions, forKey: .sessions)
             
             

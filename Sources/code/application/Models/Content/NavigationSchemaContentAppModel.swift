@@ -224,9 +224,7 @@ public extension ApplicationClient.Content {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -234,9 +232,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(archived, forKey: .archived)
-            
             
             
             
@@ -244,9 +240,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(slug, forKey: .slug)
-            
             
             
             
@@ -254,9 +248,7 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-            
             
             
             
@@ -264,14 +256,11 @@ public extension ApplicationClient.Content {
             
             
             
-            
             try? container.encodeIfPresent(orientation, forKey: .orientation)
             
             
             
-            
             try? container.encodeIfPresent(version, forKey: .version)
-            
             
             
             

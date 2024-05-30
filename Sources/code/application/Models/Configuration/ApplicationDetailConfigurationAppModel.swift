@@ -181,9 +181,7 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(name, forKey: .name)
-            
             
             
             
@@ -191,9 +189,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(logo, forKey: .logo)
-            
             
             
             
@@ -201,9 +197,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(favicon, forKey: .favicon)
-            
             
             
             
@@ -211,14 +205,11 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(domain, forKey: .domain)
             
             
             
-            
             try? container.encodeIfPresent(domains, forKey: .domains)
-            
             
             
             

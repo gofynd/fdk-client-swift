@@ -383,7 +383,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(applyExclusive, forKey: .applyExclusive)
+            try? container.encodeIfPresent(applyExclusive, forKey: .applyExclusive)
             
             
             

@@ -260,9 +260,7 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
-            
             
             
             
@@ -270,9 +268,7 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
-            
             
             
             
@@ -280,9 +276,7 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(error, forKey: .error)
-            
             
             
             
@@ -290,9 +284,7 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(source, forKey: .source)
-            
             
             
             
@@ -300,9 +292,7 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(stormbreakerUuid, forKey: .stormbreakerUuid)
-            
             
             
             
@@ -310,14 +300,11 @@ public extension ApplicationClient.Logistic {
             
             
             
-            
             try? container.encodeIfPresent(identifier, forKey: .identifier)
             
             
             
-            
             try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
-            
             
             
             

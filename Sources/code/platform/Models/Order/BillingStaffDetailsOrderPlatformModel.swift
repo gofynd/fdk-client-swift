@@ -121,27 +121,27 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(firstName, forKey: .firstName)
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
             
             
             
             
-            try? container.encode(lastName, forKey: .lastName)
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
             
             
             
             
-            try? container.encode(staffId, forKey: .staffId)
+            try? container.encodeIfPresent(staffId, forKey: .staffId)
             
             
             
             
-            try? container.encode(employeeCode, forKey: .employeeCode)
+            try? container.encodeIfPresent(employeeCode, forKey: .employeeCode)
             
             
             
             
-            try? container.encode(user, forKey: .user)
+            try? container.encodeIfPresent(user, forKey: .user)
             
             
         }
@@ -269,27 +269,27 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(firstName, forKey: .firstName)
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
             
             
             
             
-            try? container.encode(lastName, forKey: .lastName)
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
             
             
             
             
-            try? container.encode(staffId, forKey: .staffId)
+            try? container.encodeIfPresent(staffId, forKey: .staffId)
             
             
             
             
-            try? container.encode(employeeCode, forKey: .employeeCode)
+            try? container.encodeIfPresent(employeeCode, forKey: .employeeCode)
             
             
             
             
-            try? container.encode(user, forKey: .user)
+            try? container.encodeIfPresent(user, forKey: .user)
             
             
         }

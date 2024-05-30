@@ -172,9 +172,7 @@ public extension PublicClient.Webhook {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -182,9 +180,7 @@ public extension PublicClient.Webhook {
             
             
             
-            
             try? container.encodeIfPresent(eventType, forKey: .eventType)
-            
             
             
             
@@ -192,9 +188,7 @@ public extension PublicClient.Webhook {
             
             
             
-            
             try? container.encodeIfPresent(version, forKey: .version)
-            
             
             
             
@@ -202,9 +196,7 @@ public extension PublicClient.Webhook {
             
             
             
-            
             try? container.encodeIfPresent(description, forKey: .description)
-            
             
             
             

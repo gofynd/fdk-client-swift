@@ -116,9 +116,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(price, forKey: .price)
-            
             
             
             
@@ -126,14 +124,11 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
             
             
             
-            
             try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
-            
             
             
             

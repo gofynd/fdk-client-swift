@@ -244,27 +244,27 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(creditNoteExpiryDays, forKey: .creditNoteExpiryDays)
+            try? container.encodeIfPresent(creditNoteExpiryDays, forKey: .creditNoteExpiryDays)
             
             
             
             
-            try? container.encode(logo, forKey: .logo)
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             
             
-            try? container.encode(invoicePrefix, forKey: .invoicePrefix)
+            try? container.encodeIfPresent(invoicePrefix, forKey: .invoicePrefix)
             
             
             
             
-            try? container.encode(creditNoteAllowed, forKey: .creditNoteAllowed)
+            try? container.encodeIfPresent(creditNoteAllowed, forKey: .creditNoteAllowed)
             
             
             
             
-            try? container.encode(startDate, forKey: .startDate)
+            try? container.encodeIfPresent(startDate, forKey: .startDate)
             
             
             
@@ -274,22 +274,22 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(isVirtualInvoice, forKey: .isVirtualInvoice)
+            try? container.encodeIfPresent(isVirtualInvoice, forKey: .isVirtualInvoice)
             
             
             
             
-            try? container.encode(scriptLastRan, forKey: .scriptLastRan)
+            try? container.encodeIfPresent(scriptLastRan, forKey: .scriptLastRan)
             
             
             
             
-            try? container.encode(pickupLocation, forKey: .pickupLocation)
+            try? container.encodeIfPresent(pickupLocation, forKey: .pickupLocation)
             
             
             
             
-            try? container.encode(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
             
             
             
@@ -304,7 +304,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
         }
@@ -555,27 +555,27 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(creditNoteExpiryDays, forKey: .creditNoteExpiryDays)
+            try? container.encodeIfPresent(creditNoteExpiryDays, forKey: .creditNoteExpiryDays)
             
             
             
             
-            try? container.encode(logo, forKey: .logo)
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             
             
-            try? container.encode(invoicePrefix, forKey: .invoicePrefix)
+            try? container.encodeIfPresent(invoicePrefix, forKey: .invoicePrefix)
             
             
             
             
-            try? container.encode(creditNoteAllowed, forKey: .creditNoteAllowed)
+            try? container.encodeIfPresent(creditNoteAllowed, forKey: .creditNoteAllowed)
             
             
             
             
-            try? container.encode(startDate, forKey: .startDate)
+            try? container.encodeIfPresent(startDate, forKey: .startDate)
             
             
             
@@ -585,22 +585,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(isVirtualInvoice, forKey: .isVirtualInvoice)
+            try? container.encodeIfPresent(isVirtualInvoice, forKey: .isVirtualInvoice)
             
             
             
             
-            try? container.encode(scriptLastRan, forKey: .scriptLastRan)
+            try? container.encodeIfPresent(scriptLastRan, forKey: .scriptLastRan)
             
             
             
             
-            try? container.encode(pickupLocation, forKey: .pickupLocation)
+            try? container.encodeIfPresent(pickupLocation, forKey: .pickupLocation)
             
             
             
             
-            try? container.encode(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
             
             
             
@@ -615,7 +615,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
         }

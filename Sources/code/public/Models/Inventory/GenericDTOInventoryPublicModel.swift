@@ -64,9 +64,7 @@ public extension PublicClient.Inventory {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(text, forKey: .text)
-            
             
             
             

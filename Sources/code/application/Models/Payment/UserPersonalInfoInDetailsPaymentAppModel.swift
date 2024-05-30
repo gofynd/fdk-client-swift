@@ -272,59 +272,47 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(firstName, forKey: .firstName)
             
             
             
-            
-            try? container.encode(voterId, forKey: .voterId)
-            
+            try? container.encodeIfPresent(voterId, forKey: .voterId)
             
             
             
-            try? container.encode(gender, forKey: .gender)
+            try? container.encodeIfPresent(gender, forKey: .gender)
             
             
             
-            
-            try? container.encode(dob, forKey: .dob)
-            
+            try? container.encodeIfPresent(dob, forKey: .dob)
             
             
             
-            try? container.encode(passport, forKey: .passport)
+            try? container.encodeIfPresent(passport, forKey: .passport)
             
             
             
-            
-            try? container.encode(fathersName, forKey: .fathersName)
-            
+            try? container.encodeIfPresent(fathersName, forKey: .fathersName)
             
             
             
-            try? container.encode(mothersName, forKey: .mothersName)
+            try? container.encodeIfPresent(mothersName, forKey: .mothersName)
             
             
             
-            
-            try? container.encode(middleName, forKey: .middleName)
-            
+            try? container.encodeIfPresent(middleName, forKey: .middleName)
             
             
             
-            try? container.encode(lastName, forKey: .lastName)
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
             
             
             
-            
-            try? container.encode(pan, forKey: .pan)
-            
+            try? container.encodeIfPresent(pan, forKey: .pan)
             
             
             
-            try? container.encode(drivingLicense, forKey: .drivingLicense)
-            
+            try? container.encodeIfPresent(drivingLicense, forKey: .drivingLicense)
             
             
             
@@ -332,9 +320,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(addressAsPerId, forKey: .addressAsPerId)
-            
             
             
             
@@ -342,13 +328,11 @@ public extension ApplicationClient.Payment {
             
             
             
-            
             try? container.encodeIfPresent(phone, forKey: .phone)
             
             
             
-            
-            try? container.encode(email, forKey: .email)
+            try? container.encodeIfPresent(email, forKey: .email)
             
             
         }

@@ -216,22 +216,22 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(totalOrderValue, forKey: .totalOrderValue)
+            try? container.encodeIfPresent(totalOrderValue, forKey: .totalOrderValue)
             
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
             
-            try? container.encode(orderCreatedTime, forKey: .orderCreatedTime)
+            try? container.encodeIfPresent(orderCreatedTime, forKey: .orderCreatedTime)
             
             
             
             
-            try? container.encode(paymentMode, forKey: .paymentMode)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
             
             
             
@@ -241,7 +241,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
             
             
             
@@ -256,7 +256,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(orderValue, forKey: .orderValue)
+            try? container.encodeIfPresent(orderValue, forKey: .orderValue)
             
             
         }
@@ -479,22 +479,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(totalOrderValue, forKey: .totalOrderValue)
+            try? container.encodeIfPresent(totalOrderValue, forKey: .totalOrderValue)
             
             
             
             
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
             
-            try? container.encode(orderCreatedTime, forKey: .orderCreatedTime)
+            try? container.encodeIfPresent(orderCreatedTime, forKey: .orderCreatedTime)
             
             
             
             
-            try? container.encode(paymentMode, forKey: .paymentMode)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
             
             
             
@@ -504,7 +504,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
             
             
             
@@ -519,7 +519,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(orderValue, forKey: .orderValue)
+            try? container.encodeIfPresent(orderValue, forKey: .orderValue)
             
             
         }

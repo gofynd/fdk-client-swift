@@ -66,14 +66,11 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
-            try? container.encode(dateOfJoining, forKey: .dateOfJoining)
-            
+            try? container.encodeIfPresent(dateOfJoining, forKey: .dateOfJoining)
             
             
             
             try? container.encodeIfPresent(name, forKey: .name)
-            
             
             
             

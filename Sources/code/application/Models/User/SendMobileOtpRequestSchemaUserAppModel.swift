@@ -152,9 +152,7 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(mobile, forKey: .mobile)
-            
             
             
             
@@ -162,9 +160,7 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(action, forKey: .action)
-            
             
             
             
@@ -172,14 +168,11 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(androidHash, forKey: .androidHash)
             
             
             
-            
             try? container.encodeIfPresent(force, forKey: .force)
-            
             
             
             

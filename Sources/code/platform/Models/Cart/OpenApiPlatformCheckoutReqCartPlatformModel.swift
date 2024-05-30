@@ -355,7 +355,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(comment, forKey: .comment)
+            try? container.encodeIfPresent(comment, forKey: .comment)
             
             
             
@@ -380,7 +380,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(gstin, forKey: .gstin)
+            try? container.encodeIfPresent(gstin, forKey: .gstin)
             
             
             

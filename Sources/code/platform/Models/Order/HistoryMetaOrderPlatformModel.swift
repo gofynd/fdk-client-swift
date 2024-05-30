@@ -445,27 +445,27 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(storeId, forKey: .storeId)
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
             
             
             
             
-            try? container.encode(status, forKey: .status)
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             
             
-            try? container.encode(status1, forKey: .status1)
+            try? container.encodeIfPresent(status1, forKey: .status1)
             
             
             
             
-            try? container.encode(callId, forKey: .callId)
+            try? container.encodeIfPresent(callId, forKey: .callId)
             
             
             
             
-            try? container.encode(starttime, forKey: .starttime)
+            try? container.encodeIfPresent(starttime, forKey: .starttime)
             
             
             
@@ -475,87 +475,87 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(shortLink, forKey: .shortLink)
+            try? container.encodeIfPresent(shortLink, forKey: .shortLink)
             
             
             
             
-            try? container.encode(endtime, forKey: .endtime)
+            try? container.encodeIfPresent(endtime, forKey: .endtime)
             
             
             
             
-            try? container.encode(storeName, forKey: .storeName)
+            try? container.encodeIfPresent(storeName, forKey: .storeName)
             
             
             
             
-            try? container.encode(caller, forKey: .caller)
+            try? container.encodeIfPresent(caller, forKey: .caller)
             
             
             
             
-            try? container.encode(storeCode, forKey: .storeCode)
+            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
             
             
             
             
-            try? container.encode(billsec, forKey: .billsec)
+            try? container.encodeIfPresent(billsec, forKey: .billsec)
             
             
             
             
-            try? container.encode(recordpath, forKey: .recordpath)
+            try? container.encodeIfPresent(recordpath, forKey: .recordpath)
             
             
             
             
-            try? container.encode(status2, forKey: .status2)
+            try? container.encodeIfPresent(status2, forKey: .status2)
             
             
             
             
-            try? container.encode(callerid, forKey: .callerid)
+            try? container.encodeIfPresent(callerid, forKey: .callerid)
             
             
             
             
-            try? container.encode(duration, forKey: .duration)
+            try? container.encodeIfPresent(duration, forKey: .duration)
             
             
             
             
-            try? container.encode(channelType, forKey: .channelType)
+            try? container.encodeIfPresent(channelType, forKey: .channelType)
             
             
             
             
-            try? container.encode(activityComment, forKey: .activityComment)
+            try? container.encodeIfPresent(activityComment, forKey: .activityComment)
             
             
             
             
-            try? container.encode(activityType, forKey: .activityType)
+            try? container.encodeIfPresent(activityType, forKey: .activityType)
             
             
             
             
-            try? container.encode(receiver, forKey: .receiver)
+            try? container.encodeIfPresent(receiver, forKey: .receiver)
             
             
             
             
-            try? container.encode(recipient, forKey: .recipient)
+            try? container.encodeIfPresent(recipient, forKey: .recipient)
             
             
             
             
-            try? container.encode(slug, forKey: .slug)
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
             
-            try? container.encode(message, forKey: .message)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }
@@ -1007,27 +1007,27 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(storeId, forKey: .storeId)
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
             
             
             
             
-            try? container.encode(status, forKey: .status)
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             
             
-            try? container.encode(status1, forKey: .status1)
+            try? container.encodeIfPresent(status1, forKey: .status1)
             
             
             
             
-            try? container.encode(callId, forKey: .callId)
+            try? container.encodeIfPresent(callId, forKey: .callId)
             
             
             
             
-            try? container.encode(starttime, forKey: .starttime)
+            try? container.encodeIfPresent(starttime, forKey: .starttime)
             
             
             
@@ -1037,87 +1037,87 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(shortLink, forKey: .shortLink)
+            try? container.encodeIfPresent(shortLink, forKey: .shortLink)
             
             
             
             
-            try? container.encode(endtime, forKey: .endtime)
+            try? container.encodeIfPresent(endtime, forKey: .endtime)
             
             
             
             
-            try? container.encode(storeName, forKey: .storeName)
+            try? container.encodeIfPresent(storeName, forKey: .storeName)
             
             
             
             
-            try? container.encode(caller, forKey: .caller)
+            try? container.encodeIfPresent(caller, forKey: .caller)
             
             
             
             
-            try? container.encode(storeCode, forKey: .storeCode)
+            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
             
             
             
             
-            try? container.encode(billsec, forKey: .billsec)
+            try? container.encodeIfPresent(billsec, forKey: .billsec)
             
             
             
             
-            try? container.encode(recordpath, forKey: .recordpath)
+            try? container.encodeIfPresent(recordpath, forKey: .recordpath)
             
             
             
             
-            try? container.encode(status2, forKey: .status2)
+            try? container.encodeIfPresent(status2, forKey: .status2)
             
             
             
             
-            try? container.encode(callerid, forKey: .callerid)
+            try? container.encodeIfPresent(callerid, forKey: .callerid)
             
             
             
             
-            try? container.encode(duration, forKey: .duration)
+            try? container.encodeIfPresent(duration, forKey: .duration)
             
             
             
             
-            try? container.encode(channelType, forKey: .channelType)
+            try? container.encodeIfPresent(channelType, forKey: .channelType)
             
             
             
             
-            try? container.encode(activityComment, forKey: .activityComment)
+            try? container.encodeIfPresent(activityComment, forKey: .activityComment)
             
             
             
             
-            try? container.encode(activityType, forKey: .activityType)
+            try? container.encodeIfPresent(activityType, forKey: .activityType)
             
             
             
             
-            try? container.encode(receiver, forKey: .receiver)
+            try? container.encodeIfPresent(receiver, forKey: .receiver)
             
             
             
             
-            try? container.encode(recipient, forKey: .recipient)
+            try? container.encodeIfPresent(recipient, forKey: .recipient)
             
             
             
             
-            try? container.encode(slug, forKey: .slug)
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
             
-            try? container.encode(message, forKey: .message)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }

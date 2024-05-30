@@ -134,9 +134,7 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
-            try? container.encode(value, forKey: .value)
-            
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
             
@@ -144,9 +142,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(isPassed, forKey: .isPassed)
-            
             
             
             
@@ -154,9 +150,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(time, forKey: .time)
-            
             
             
             

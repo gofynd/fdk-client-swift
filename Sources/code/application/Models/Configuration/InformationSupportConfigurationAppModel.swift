@@ -80,14 +80,11 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(phone, forKey: .phone)
             
             
             
-            
             try? container.encodeIfPresent(email, forKey: .email)
-            
             
             
             

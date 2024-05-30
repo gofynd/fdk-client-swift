@@ -85,7 +85,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(email, forKey: .email)
+            try? container.encodeIfPresent(email, forKey: .email)
             
             
             

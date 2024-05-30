@@ -152,9 +152,7 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(firstName, forKey: .firstName)
-            
             
             
             
@@ -162,9 +160,7 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(gender, forKey: .gender)
-            
             
             
             
@@ -172,14 +168,11 @@ public extension ApplicationClient.User {
             
             
             
-            
             try? container.encodeIfPresent(password, forKey: .password)
             
             
             
-            
             try? container.encodeIfPresent(phone, forKey: .phone)
-            
             
             
             

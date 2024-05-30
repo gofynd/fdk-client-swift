@@ -317,7 +317,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(itemCode, forKey: .itemCode)
+            try? container.encodeIfPresent(itemCode, forKey: .itemCode)
             
             
             

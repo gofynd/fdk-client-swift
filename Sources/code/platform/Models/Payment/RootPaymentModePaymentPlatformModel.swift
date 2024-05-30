@@ -182,17 +182,17 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(addCardEnabled, forKey: .addCardEnabled)
+            try? container.encodeIfPresent(addCardEnabled, forKey: .addCardEnabled)
             
             
             
             
-            try? container.encode(saveCard, forKey: .saveCard)
+            try? container.encodeIfPresent(saveCard, forKey: .saveCard)
             
             
             
             
-            try? container.encode(isPayByCardPl, forKey: .isPayByCardPl)
+            try? container.encodeIfPresent(isPayByCardPl, forKey: .isPayByCardPl)
             
             
             
@@ -202,7 +202,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(anonymousEnable, forKey: .anonymousEnable)
+            try? container.encodeIfPresent(anonymousEnable, forKey: .anonymousEnable)
             
             
             
@@ -212,7 +212,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(aggregatorName, forKey: .aggregatorName)
+            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
             
             
         }
@@ -401,17 +401,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(addCardEnabled, forKey: .addCardEnabled)
+            try? container.encodeIfPresent(addCardEnabled, forKey: .addCardEnabled)
             
             
             
             
-            try? container.encode(saveCard, forKey: .saveCard)
+            try? container.encodeIfPresent(saveCard, forKey: .saveCard)
             
             
             
             
-            try? container.encode(isPayByCardPl, forKey: .isPayByCardPl)
+            try? container.encodeIfPresent(isPayByCardPl, forKey: .isPayByCardPl)
             
             
             
@@ -421,7 +421,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(anonymousEnable, forKey: .anonymousEnable)
+            try? container.encodeIfPresent(anonymousEnable, forKey: .anonymousEnable)
             
             
             
@@ -431,7 +431,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(aggregatorName, forKey: .aggregatorName)
+            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
             
             
         }

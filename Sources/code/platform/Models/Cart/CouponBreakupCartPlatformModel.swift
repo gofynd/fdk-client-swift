@@ -267,7 +267,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(title, forKey: .title)
+            try? container.encodeIfPresent(title, forKey: .title)
             
             
             
@@ -292,12 +292,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(couponType, forKey: .couponType)
+            try? container.encodeIfPresent(couponType, forKey: .couponType)
             
             
             
             
-            try? container.encode(subTitle, forKey: .subTitle)
+            try? container.encodeIfPresent(subTitle, forKey: .subTitle)
             
             
             
@@ -327,7 +327,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(description, forKey: .description)
+            try? container.encodeIfPresent(description, forKey: .description)
             
             
         }

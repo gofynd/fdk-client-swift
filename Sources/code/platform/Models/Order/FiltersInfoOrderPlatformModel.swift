@@ -133,17 +133,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(options, forKey: .options)
+            try? container.encodeIfPresent(options, forKey: .options)
             
             
             
             
-            try? container.encode(placeholderText, forKey: .placeholderText)
+            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
             
             
             
             
-            try? container.encode(required, forKey: .required)
+            try? container.encodeIfPresent(required, forKey: .required)
             
             
         }
@@ -283,17 +283,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(options, forKey: .options)
+            try? container.encodeIfPresent(options, forKey: .options)
             
             
             
             
-            try? container.encode(placeholderText, forKey: .placeholderText)
+            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
             
             
             
             
-            try? container.encode(required, forKey: .required)
+            try? container.encodeIfPresent(required, forKey: .required)
             
             
         }

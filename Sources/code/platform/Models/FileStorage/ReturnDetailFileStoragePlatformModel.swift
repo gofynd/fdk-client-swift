@@ -195,7 +195,7 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encode(countryCode, forKey: .countryCode)
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
             
             
             
@@ -412,7 +412,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encode(countryCode, forKey: .countryCode)
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
             
             
             

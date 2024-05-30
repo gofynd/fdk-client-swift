@@ -123,27 +123,27 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(paymentId, forKey: .paymentId)
+            try? container.encodeIfPresent(paymentId, forKey: .paymentId)
             
             
             
             
-            try? container.encode(paymentGateway, forKey: .paymentGateway)
+            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
             
             
             
             
-            try? container.encode(extraMeta, forKey: .extraMeta)
+            try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
             
             
             
             
-            try? container.encode(currentStatus, forKey: .currentStatus)
+            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
             
             
             
             
-            try? container.encode(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
             
             
         }

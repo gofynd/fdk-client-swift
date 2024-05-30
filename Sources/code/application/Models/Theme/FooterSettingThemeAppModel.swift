@@ -116,9 +116,7 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(footerBackground, forKey: .footerBackground)
-            
             
             
             
@@ -126,14 +124,11 @@ public extension ApplicationClient.Theme {
             
             
             
-            
             try? container.encodeIfPresent(footerHeadingText, forKey: .footerHeadingText)
             
             
             
-            
             try? container.encodeIfPresent(footerBodyText, forKey: .footerBodyText)
-            
             
             
             

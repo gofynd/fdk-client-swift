@@ -44,7 +44,6 @@ public extension ApplicationClient.Share {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(campaignCookieExpiry, forKey: .campaignCookieExpiry)
             
             

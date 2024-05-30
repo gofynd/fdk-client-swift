@@ -170,9 +170,7 @@ public extension ApplicationClient.Configuration {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(communicationOptinDialog, forKey: .communicationOptinDialog)
-            
             
             
             
@@ -180,9 +178,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(listingPrice, forKey: .listingPrice)
-            
             
             
             
@@ -190,9 +186,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(revenueEngine, forKey: .revenueEngine)
-            
             
             
             
@@ -200,9 +194,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            
             try? container.encodeIfPresent(compareProducts, forKey: .compareProducts)
-            
             
             
             

@@ -67,12 +67,12 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(offline, forKey: .offline)
+            try? container.encodeIfPresent(offline, forKey: .offline)
             
             
             
             
-            try? container.encode(online, forKey: .online)
+            try? container.encodeIfPresent(online, forKey: .online)
             
             
         }
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(offline, forKey: .offline)
+            try? container.encodeIfPresent(offline, forKey: .offline)
             
             
             
             
-            try? container.encode(online, forKey: .online)
+            try? container.encodeIfPresent(online, forKey: .online)
             
             
         }

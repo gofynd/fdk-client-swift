@@ -175,42 +175,42 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(currency, forKey: .currency)
+            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
             
             
-            try? container.encode(amountPaid, forKey: .amountPaid)
+            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
             
             
             
             
-            try? container.encode(paymentId, forKey: .paymentId)
+            try? container.encodeIfPresent(paymentId, forKey: .paymentId)
             
             
             
             
-            try? container.encode(uniqueReferenceNumber, forKey: .uniqueReferenceNumber)
+            try? container.encodeIfPresent(uniqueReferenceNumber, forKey: .uniqueReferenceNumber)
             
             
             
             
-            try? container.encode(terminalId, forKey: .terminalId)
+            try? container.encodeIfPresent(terminalId, forKey: .terminalId)
             
             
             
             
-            try? container.encode(entity, forKey: .entity)
+            try? container.encodeIfPresent(entity, forKey: .entity)
             
             
             
             
-            try? container.encode(transactionId, forKey: .transactionId)
+            try? container.encodeIfPresent(transactionId, forKey: .transactionId)
             
             
             
             
-            try? container.encode(status, forKey: .status)
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
         }
@@ -392,42 +392,42 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(currency, forKey: .currency)
+            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
             
             
-            try? container.encode(amountPaid, forKey: .amountPaid)
+            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
             
             
             
             
-            try? container.encode(paymentId, forKey: .paymentId)
+            try? container.encodeIfPresent(paymentId, forKey: .paymentId)
             
             
             
             
-            try? container.encode(uniqueReferenceNumber, forKey: .uniqueReferenceNumber)
+            try? container.encodeIfPresent(uniqueReferenceNumber, forKey: .uniqueReferenceNumber)
             
             
             
             
-            try? container.encode(terminalId, forKey: .terminalId)
+            try? container.encodeIfPresent(terminalId, forKey: .terminalId)
             
             
             
             
-            try? container.encode(entity, forKey: .entity)
+            try? container.encodeIfPresent(entity, forKey: .entity)
             
             
             
             
-            try? container.encode(transactionId, forKey: .transactionId)
+            try? container.encodeIfPresent(transactionId, forKey: .transactionId)
             
             
             
             
-            try? container.encode(status, forKey: .status)
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
         }

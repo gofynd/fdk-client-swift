@@ -301,7 +301,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encode(tags, forKey: .tags)
+            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
             
@@ -311,7 +311,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encode(traceId, forKey: .traceId)
+            try? container.encodeIfPresent(traceId, forKey: .traceId)
             
             
         }
@@ -619,7 +619,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encode(tags, forKey: .tags)
+            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
             
@@ -629,7 +629,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encode(traceId, forKey: .traceId)
+            try? container.encodeIfPresent(traceId, forKey: .traceId)
             
             
         }

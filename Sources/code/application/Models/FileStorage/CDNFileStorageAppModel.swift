@@ -59,14 +59,11 @@ public extension ApplicationClient.FileStorage {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(url, forKey: .url)
             
             
             
-            
             try? container.encodeIfPresent(absoluteUrl, forKey: .absoluteUrl)
-            
             
             
             

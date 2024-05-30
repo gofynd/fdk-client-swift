@@ -67,7 +67,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encode(end, forKey: .end)
+            try? container.encodeIfPresent(end, forKey: .end)
             
             
             
@@ -146,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encode(end, forKey: .end)
+            try? container.encodeIfPresent(end, forKey: .end)
             
             
             

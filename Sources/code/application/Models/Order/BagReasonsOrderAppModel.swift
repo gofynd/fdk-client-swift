@@ -134,9 +134,7 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(qcType, forKey: .qcType)
-            
             
             
             
@@ -144,9 +142,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(displayName, forKey: .displayName)
-            
             
             
             
@@ -154,9 +150,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(questionSet, forKey: .questionSet)
-            
             
             
             

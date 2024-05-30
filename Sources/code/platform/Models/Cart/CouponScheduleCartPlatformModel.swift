@@ -123,7 +123,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(end, forKey: .end)
+            try? container.encodeIfPresent(end, forKey: .end)
             
             
             
@@ -138,12 +138,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(cron, forKey: .cron)
+            try? container.encodeIfPresent(cron, forKey: .cron)
             
             
             
             
-            try? container.encode(duration, forKey: .duration)
+            try? container.encodeIfPresent(duration, forKey: .duration)
             
             
         }

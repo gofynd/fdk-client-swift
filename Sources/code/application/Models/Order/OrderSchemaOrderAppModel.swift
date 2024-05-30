@@ -152,9 +152,7 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(totalShipmentsInOrder, forKey: .totalShipmentsInOrder)
-            
             
             
             
@@ -162,9 +160,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
-            
             
             
             
@@ -172,14 +168,11 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(orderId, forKey: .orderId)
             
             
             
-            
             try? container.encodeIfPresent(shipments, forKey: .shipments)
-            
             
             
             

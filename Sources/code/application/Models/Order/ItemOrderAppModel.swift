@@ -242,9 +242,7 @@ public extension ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(image, forKey: .image)
-            
             
             
             
@@ -252,9 +250,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(brand, forKey: .brand)
-            
             
             
             
@@ -262,9 +258,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(code, forKey: .code)
-            
             
             
             
@@ -272,9 +266,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(name, forKey: .name)
-            
             
             
             
@@ -282,9 +274,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(slugKey, forKey: .slugKey)
-            
             
             
             
@@ -292,9 +282,7 @@ public extension ApplicationClient.Order {
             
             
             
-            
             try? container.encodeIfPresent(size, forKey: .size)
-            
             
             
             

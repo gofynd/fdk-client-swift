@@ -174,7 +174,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(giftDetails, forKey: .giftDetails)
+            try? container.encodeIfPresent(giftDetails, forKey: .giftDetails)
             
             
             
@@ -189,7 +189,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encode(staffUserId, forKey: .staffUserId)
+            try? container.encodeIfPresent(staffUserId, forKey: .staffUserId)
             
             
         }

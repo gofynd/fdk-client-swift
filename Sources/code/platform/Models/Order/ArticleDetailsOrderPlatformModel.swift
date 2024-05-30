@@ -161,7 +161,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(status, forKey: .status)
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
         }
@@ -329,7 +329,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(status, forKey: .status)
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
         }

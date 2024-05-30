@@ -332,9 +332,7 @@ public extension ApplicationClient.Common {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(capital, forKey: .capital)
-            
             
             
             
@@ -342,9 +340,7 @@ public extension ApplicationClient.Common {
             
             
             
-            
             try? container.encodeIfPresent(iso2, forKey: .iso2)
-            
             
             
             
@@ -352,9 +348,7 @@ public extension ApplicationClient.Common {
             
             
             
-            
             try? container.encodeIfPresent(name, forKey: .name)
-            
             
             
             
@@ -362,9 +356,7 @@ public extension ApplicationClient.Common {
             
             
             
-            
             try? container.encodeIfPresent(phoneCode, forKey: .phoneCode)
-            
             
             
             
@@ -372,9 +364,7 @@ public extension ApplicationClient.Common {
             
             
             
-            
             try? container.encodeIfPresent(uid, forKey: .uid)
-            
             
             
             
@@ -382,9 +372,7 @@ public extension ApplicationClient.Common {
             
             
             
-            
             try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -392,9 +380,7 @@ public extension ApplicationClient.Common {
             
             
             
-            
             try? container.encodeIfPresent(defaultLanguage, forKey: .defaultLanguage)
-            
             
             
             
@@ -402,14 +388,11 @@ public extension ApplicationClient.Common {
             
             
             
-            
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
             
             
             
-            
             try? container.encodeIfPresent(latitude, forKey: .latitude)
-            
             
             
             

@@ -397,9 +397,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(article, forKey: .article)
-            
             
             
             
@@ -407,9 +405,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(identifiers, forKey: .identifiers)
-            
             
             
             
@@ -417,9 +413,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(price, forKey: .price)
-            
             
             
             
@@ -427,9 +421,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(discount, forKey: .discount)
-            
             
             
             
@@ -437,9 +429,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(deliveryPromise, forKey: .deliveryPromise)
-            
             
             
             
@@ -447,9 +437,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(productEanId, forKey: .productEanId)
-            
             
             
             
@@ -457,9 +445,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(parentItemIdentifiers, forKey: .parentItemIdentifiers)
-            
             
             
             
@@ -467,9 +453,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(customOrder, forKey: .customOrder)
-            
             
             
             
@@ -477,9 +461,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(key, forKey: .key)
-            
             
             
             
@@ -487,14 +469,11 @@ public extension ApplicationClient.Cart {
             
             
             
-            
             try? container.encodeIfPresent(isSet, forKey: .isSet)
             
             
             
-            
             try? container.encodeIfPresent(pricePerUnit, forKey: .pricePerUnit)
-            
             
             
             

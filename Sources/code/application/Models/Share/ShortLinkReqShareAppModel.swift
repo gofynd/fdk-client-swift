@@ -228,9 +228,7 @@ public extension ApplicationClient.Share {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            
             try? container.encodeIfPresent(title, forKey: .title)
-            
             
             
             
@@ -238,9 +236,7 @@ public extension ApplicationClient.Share {
             
             
             
-            
             try? container.encodeIfPresent(hash, forKey: .hash)
-            
             
             
             
@@ -248,9 +244,7 @@ public extension ApplicationClient.Share {
             
             
             
-            
             try? container.encodeIfPresent(expireAt, forKey: .expireAt)
-            
             
             
             
@@ -258,9 +252,7 @@ public extension ApplicationClient.Share {
             
             
             
-            
             try? container.encodeIfPresent(personalized, forKey: .personalized)
-            
             
             
             
@@ -268,9 +260,7 @@ public extension ApplicationClient.Share {
             
             
             
-            
             try? container.encodeIfPresent(redirects, forKey: .redirects)
-            
             
             
             
@@ -278,9 +268,7 @@ public extension ApplicationClient.Share {
             
             
             
-            
             try? container.encodeIfPresent(socialMediaTags, forKey: .socialMediaTags)
-            
             
             
             

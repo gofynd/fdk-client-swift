@@ -139,32 +139,32 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(dockerNumber, forKey: .dockerNumber)
+            try? container.encodeIfPresent(dockerNumber, forKey: .dockerNumber)
             
             
             
             
-            try? container.encode(poLineAmount, forKey: .poLineAmount)
+            try? container.encodeIfPresent(poLineAmount, forKey: .poLineAmount)
             
             
             
             
-            try? container.encode(totalGstPercentage, forKey: .totalGstPercentage)
+            try? container.encodeIfPresent(totalGstPercentage, forKey: .totalGstPercentage)
             
             
             
             
-            try? container.encode(partialCanRet, forKey: .partialCanRet)
+            try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
             
             
             
             
-            try? container.encode(poTaxAmount, forKey: .poTaxAmount)
+            try? container.encodeIfPresent(poTaxAmount, forKey: .poTaxAmount)
             
             
             
             
-            try? container.encode(itemBasePrice, forKey: .itemBasePrice)
+            try? container.encodeIfPresent(itemBasePrice, forKey: .itemBasePrice)
             
             
         }
@@ -310,32 +310,32 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(dockerNumber, forKey: .dockerNumber)
+            try? container.encodeIfPresent(dockerNumber, forKey: .dockerNumber)
             
             
             
             
-            try? container.encode(poLineAmount, forKey: .poLineAmount)
+            try? container.encodeIfPresent(poLineAmount, forKey: .poLineAmount)
             
             
             
             
-            try? container.encode(totalGstPercentage, forKey: .totalGstPercentage)
+            try? container.encodeIfPresent(totalGstPercentage, forKey: .totalGstPercentage)
             
             
             
             
-            try? container.encode(partialCanRet, forKey: .partialCanRet)
+            try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
             
             
             
             
-            try? container.encode(poTaxAmount, forKey: .poTaxAmount)
+            try? container.encodeIfPresent(poTaxAmount, forKey: .poTaxAmount)
             
             
             
             
-            try? container.encode(itemBasePrice, forKey: .itemBasePrice)
+            try? container.encodeIfPresent(itemBasePrice, forKey: .itemBasePrice)
             
             
         }
