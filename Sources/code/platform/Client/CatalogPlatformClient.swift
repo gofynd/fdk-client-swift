@@ -1026,9 +1026,18 @@ if let value = itemType {
             size: String?,
             pageNo: Int?,
             pageSize: Int?,
+            pageId: String?,
+            pageType: String?,
             q: String?,
             sellable: Bool?,
             storeIds: [Int]?,
+            brandIds: [Int]?,
+            sellerIdentifiers: [String]?,
+            qtyGt: Int?,
+            qtyLt: Int?,
+            qtyType: String?,
+            fromDate: String?,
+            toDate: String?,
             sizeIdentifier: String?,
             
             onResponse: @escaping (_ response: GetInventoriesResponse?, _ error: FDKError?) -> Void
@@ -1064,6 +1073,20 @@ if let value = pageSize {
 }
 
 
+if let value = pageId {
+    
+    xQuery["page_id"] = value
+    
+}
+
+
+if let value = pageType {
+    
+    xQuery["page_type"] = value
+    
+}
+
+
 if let value = q {
     
     xQuery["q"] = value
@@ -1081,6 +1104,55 @@ if let value = sellable {
 if let value = storeIds {
     
     xQuery["store_ids"] = value
+    
+}
+
+
+if let value = brandIds {
+    
+    xQuery["brand_ids"] = value
+    
+}
+
+
+if let value = sellerIdentifiers {
+    
+    xQuery["seller_identifiers"] = value
+    
+}
+
+
+if let value = qtyGt {
+    
+    xQuery["qty_gt"] = value
+    
+}
+
+
+if let value = qtyLt {
+    
+    xQuery["qty_lt"] = value
+    
+}
+
+
+if let value = qtyType {
+    
+    xQuery["qty_type"] = value
+    
+}
+
+
+if let value = fromDate {
+    
+    xQuery["from_date"] = value
+    
+}
+
+
+if let value = toDate {
+    
+    xQuery["to_date"] = value
     
 }
 
@@ -1183,6 +1255,60 @@ if let value = sizeIdentifier {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
         * Summary: get paginator for getInventories
@@ -1195,11 +1321,18 @@ if let value = sizeIdentifier {
             q: String?,
             sellable: Bool?,
             storeIds: [Int]?,
+            brandIds: [Int]?,
+            sellerIdentifiers: [String]?,
+            qtyGt: Int?,
+            qtyLt: Int?,
+            qtyType: String?,
+            fromDate: String?,
+            toDate: String?,
             sizeIdentifier: String?
             
             ) -> Paginator<GetInventoriesResponse> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<GetInventoriesResponse>(pageSize: pageSize, type: "number")
+            let paginator = Paginator<GetInventoriesResponse>(pageSize: pageSize, type: "cursor")
             paginator.onPage = {
                 self.getInventories(
                         
@@ -1209,14 +1342,26 @@ if let value = sizeIdentifier {
                         ,
                         pageSize: paginator.pageSize
                         ,
+                        pageId: paginator.pageId
+                        ,
+                        pageType: paginator.type
+                        ,
                         q: q,
                         sellable: sellable,
                         storeIds: storeIds,
+                        brandIds: brandIds,
+                        sellerIdentifiers: sellerIdentifiers,
+                        qtyGt: qtyGt,
+                        qtyLt: qtyLt,
+                        qtyType: qtyType,
+                        fromDate: fromDate,
+                        toDate: toDate,
                         sizeIdentifier: sizeIdentifier
                     ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                        paginator.pageId = response.page?.nextId
+                        
                     }
                     paginator.onNext?(response, error)
                 }

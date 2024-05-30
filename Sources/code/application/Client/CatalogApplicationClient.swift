@@ -359,7 +359,7 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: List product variant
+        * Summary: List product variants
         * Description: Retrieves all available variants of a specific product identified by its slug.
         **/
         public func getProductVariantsBySlug(
@@ -1335,7 +1335,7 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
-        * Summary: List Collection
+        * Summary: List collections
         * Description: Retrieve a list of curated product collections with filtering options based on tags and collection names.
         **/
         public func getCollections(
@@ -1728,7 +1728,7 @@ if let value = pageType {
         
         /**
         *
-        * Summary: List followed products/brands
+        * Summary: List followed products, brands
         * Description: Retrieve a list of products or brands the user is following.
         **/
         public func getFollowedListing(

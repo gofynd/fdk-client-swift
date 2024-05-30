@@ -167,7 +167,7 @@ if let value = allowInactive {
         
         /**
         *
-        * Summary: Get a order
+        * Summary: Get an order
         * Description: Retrieve order details such as tracking details, shipment, store information using Fynd Order ID
         **/
         public func getOrderById(
