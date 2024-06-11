@@ -8,9 +8,9 @@ public extension ApplicationClient.Payment {
     */
     class PaymentStatusUpdateRequest: Codable {
         
-        public var status: String
+        public var status: String?
         
-        public var merchantTransactionId: String
+        public var merchantTransactionId: String?
         
         public var method: String
         
@@ -18,21 +18,21 @@ public extension ApplicationClient.Payment {
         
         public var aggregator: String
         
-        public var customerId: String
+        public var customerId: String?
         
-        public var contact: String
+        public var contact: String?
         
         public var merchantOrderId: String
         
         public var vpa: String?
         
-        public var orderId: String
+        public var orderId: String?
         
-        public var currency: String
+        public var currency: String?
         
-        public var amount: Int
+        public var amount: Int?
         
-        public var email: String
+        public var email: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -65,7 +65,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, deviceId: String? = nil, email: String, merchantOrderId: String, merchantTransactionId: String, method: String, orderId: String, status: String, vpa: String? = nil) {
+        public init(aggregator: String, amount: Int? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, deviceId: String? = nil, email: String? = nil, merchantOrderId: String, merchantTransactionId: String? = nil, method: String, orderId: String? = nil, status: String? = nil, vpa: String? = nil) {
             
             self.status = status
             
@@ -99,13 +99,27 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            status = try container.decode(String.self, forKey: .status)
+            do {
+                status = try container.decode(String.self, forKey: .status)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
+            do {
+                merchantTransactionId = try container.decode(String.self, forKey: .merchantTransactionId)
             
-            merchantTransactionId = try container.decode(String.self, forKey: .merchantTransactionId)
-            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -131,13 +145,27 @@ public extension ApplicationClient.Payment {
             
             
             
-            customerId = try container.decode(String.self, forKey: .customerId)
+            do {
+                customerId = try container.decode(String.self, forKey: .customerId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
+            do {
+                contact = try container.decode(String.self, forKey: .contact)
             
-            contact = try container.decode(String.self, forKey: .contact)
-            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -158,23 +186,51 @@ public extension ApplicationClient.Payment {
             
             
             
-            orderId = try container.decode(String.self, forKey: .orderId)
+            do {
+                orderId = try container.decode(String.self, forKey: .orderId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
+            do {
+                currency = try container.decode(String.self, forKey: .currency)
             
-            currency = try container.decode(String.self, forKey: .currency)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
+            do {
+                amount = try container.decode(Int.self, forKey: .amount)
             
-            amount = try container.decode(Int.self, forKey: .amount)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
+            do {
+                email = try container.decode(String.self, forKey: .email)
             
-            email = try container.decode(String.self, forKey: .email)
-            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
         }

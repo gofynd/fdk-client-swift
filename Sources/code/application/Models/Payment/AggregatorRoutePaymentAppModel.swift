@@ -10,7 +10,7 @@ public extension ApplicationClient.Payment {
         
         public var data: [String: Any]?
         
-        public var paymentFlowData: String?
+        public var paymentFlowData: [String: Any]?
         
         public var paymentFlow: String?
         
@@ -29,7 +29,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(apiLink: String? = nil, data: [String: Any]? = nil, paymentFlow: String? = nil, paymentFlowData: String? = nil) {
+        public init(apiLink: String? = nil, data: [String: Any]? = nil, paymentFlow: String? = nil, paymentFlowData: [String: Any]? = nil) {
             
             self.data = data
             
@@ -58,7 +58,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                paymentFlowData = try container.decode(String.self, forKey: .paymentFlowData)
+                paymentFlowData = try container.decode([String: Any].self, forKey: .paymentFlowData)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

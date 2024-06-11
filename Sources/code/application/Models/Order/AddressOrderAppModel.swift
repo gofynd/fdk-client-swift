@@ -3,10 +3,10 @@
 import Foundation
 public extension ApplicationClient.Order {
     /*
-        Model: DeliveryAddress
+        Model: Address
         Used By: Order
     */
-    class DeliveryAddress: Codable {
+    class Address: Codable {
         
         public var pincode: String?
         

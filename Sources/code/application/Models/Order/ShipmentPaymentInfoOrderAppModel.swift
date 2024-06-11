@@ -1,49 +1,61 @@
 
 
 import Foundation
-public extension ApplicationClient.Catalog {
+public extension ApplicationClient.Order {
     /*
-        Model: ProductVariantResponse
-        Used By: Catalog
+        Model: ShipmentPaymentInfo
+        Used By: Order
     */
-    class ProductVariantResponse: Codable {
+    class ShipmentPaymentInfo: Codable {
         
-        public var displayType: String?
+        public var mop: String?
         
-        public var header: String?
+        public var paymentMode: String?
         
-        public var items: [ProductVariantItemResponse]?
+        public var status: String?
         
-        public var key: String?
+        public var mode: String?
         
         public var logo: String?
+        
+        public var displayName: String?
+        
+        public var amount: Double?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case displayType = "display_type"
+            case mop = "mop"
             
-            case header = "header"
+            case paymentMode = "payment_mode"
             
-            case items = "items"
+            case status = "status"
             
-            case key = "key"
+            case mode = "mode"
             
             case logo = "logo"
             
+            case displayName = "display_name"
+            
+            case amount = "amount"
+            
         }
 
-        public init(displayType: String? = nil, header: String? = nil, items: [ProductVariantItemResponse]? = nil, key: String? = nil, logo: String? = nil) {
+        public init(amount: Double? = nil, displayName: String? = nil, logo: String? = nil, mode: String? = nil, mop: String? = nil, paymentMode: String? = nil, status: String? = nil) {
             
-            self.displayType = displayType
+            self.mop = mop
             
-            self.header = header
+            self.paymentMode = paymentMode
             
-            self.items = items
+            self.status = status
             
-            self.key = key
+            self.mode = mode
             
             self.logo = logo
+            
+            self.displayName = displayName
+            
+            self.amount = amount
             
         }
 
@@ -52,7 +64,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                displayType = try container.decode(String.self, forKey: .displayType)
+                mop = try container.decode(String.self, forKey: .mop)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +76,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                header = try container.decode(String.self, forKey: .header)
+                paymentMode = try container.decode(String.self, forKey: .paymentMode)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,7 +88,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                items = try container.decode([ProductVariantItemResponse].self, forKey: .items)
+                status = try container.decode(String.self, forKey: .status)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,7 +100,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                key = try container.decode(String.self, forKey: .key)
+                mode = try container.decode(String.self, forKey: .mode)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,29 +122,61 @@ public extension ApplicationClient.Catalog {
             }
             
             
+            
+            do {
+                displayName = try container.decode(String.self, forKey: .displayName)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                amount = try container.decode(Double.self, forKey: .amount)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(displayType, forKey: .displayType)
+            try? container.encodeIfPresent(mop, forKey: .mop)
             
             
             
-            try? container.encodeIfPresent(header, forKey: .header)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(mode, forKey: .mode)
             
             
             
             try? container.encodeIfPresent(logo, forKey: .logo)
+            
+            
+            
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            
+            
+            
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
         }

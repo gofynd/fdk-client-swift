@@ -1380,6 +1380,7 @@ if let value = sizeIdentifier {
         public func getInventoryBulkUploadHistory(
             pageNo: Int?,
             pageSize: Int?,
+            search: String?,
             
             onResponse: @escaping (_ response: BulkInventoryGet?, _ error: FDKError?) -> Void
         ) {
@@ -1396,6 +1397,13 @@ if let value = pageNo {
 if let value = pageSize {
     
     xQuery["page_size"] = value
+    
+}
+
+
+if let value = search {
+    
+    xQuery["search"] = value
     
 }
 
@@ -1455,13 +1463,20 @@ if let value = pageSize {
         
         
         
+        
+        
+        
+        
+        
+        
         /**
         *
         * Summary: get paginator for getInventoryBulkUploadHistory
         * Description: fetch the next page by calling .next(...) function
         **/
         public func getInventoryBulkUploadHistoryPaginator(
-            pageSize: Int?
+            pageSize: Int?,
+            search: String?
             
             ) -> Paginator<BulkInventoryGet> {
             let pageSize = pageSize ?? 20
@@ -1472,7 +1487,8 @@ if let value = pageSize {
                         pageNo: paginator.pageNo
                         ,
                         pageSize: paginator.pageSize
-                        
+                        ,
+                        search: search
                     ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page?.hasNext ?? false
@@ -2300,55 +2316,6 @@ if let value = pageSize {
             }
             return paginator
         }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Create or Update opt-in infomation
-        * Description: Allows to create and update opt-in information for a specific company.
-        **/
-        public func createMarketplaceOptin(
-            marketplace: String,
-            body: OptInPostRequest,
-            onResponse: @escaping (_ response: UpdatedResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/\(marketplace)/optin/",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(UpdatedResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
         
         
         
@@ -5027,7 +4994,7 @@ if let value = pageSize {
         public func uploadBulkProducts(
             department: String,
             productType: String,
-            body: BulkJob,
+            body: BulkProductJob,
             onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
         ) {
             
@@ -5601,6 +5568,55 @@ if let value = itemCode {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(UpdateMarketplaceOptinResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Create or Update opt-in infomation
+        * Description: Allows to create opt-in information for a specific company.
+        **/
+        public func createMarketplaceOptin(
+            marketplaceSlug: String,
+            body: OptInPostRequest,
+            onResponse: @escaping (_ response: CreateMarketplaceOptinResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/channel/\(marketplaceSlug)/opt-in",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CreateMarketplaceOptinResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

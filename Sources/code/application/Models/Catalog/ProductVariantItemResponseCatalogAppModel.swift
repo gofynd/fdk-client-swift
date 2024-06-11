@@ -26,6 +26,8 @@ public extension ApplicationClient.Catalog {
         
         public var slug: String?
         
+        public var customJson: [String: Any]?
+        
         public var action: ProductListingAction?
         
 
@@ -49,11 +51,13 @@ public extension ApplicationClient.Catalog {
             
             case slug = "slug"
             
+            case customJson = "_custom_json"
+            
             case action = "action"
             
         }
 
-        public init(action: ProductListingAction? = nil, color: String? = nil, colorName: String? = nil, isAvailable: Bool? = nil, medias: [Media]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, value: String? = nil, customMeta: [CustomMetaFields]? = nil) {
+        public init(action: ProductListingAction? = nil, color: String? = nil, colorName: String? = nil, isAvailable: Bool? = nil, medias: [Media]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, value: String? = nil, customJson: [String: Any]? = nil, customMeta: [CustomMetaFields]? = nil) {
             
             self.uid = uid
             
@@ -72,6 +76,8 @@ public extension ApplicationClient.Catalog {
             self.value = value
             
             self.slug = slug
+            
+            self.customJson = customJson
             
             self.action = action
             
@@ -190,6 +196,18 @@ public extension ApplicationClient.Catalog {
             
             
             do {
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 action = try container.decode(ProductListingAction.self, forKey: .action)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -239,6 +257,10 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
             

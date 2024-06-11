@@ -3,33 +3,33 @@
 import Foundation
 
 
-public extension PlatformClient.Catalog {
+public extension PlatformClient.Order {
     /*
-        Model: UpdatedResponse
-        Used By: Catalog
+        Model: ManifestErrorResponse
+        Used By: Order
     */
 
-    class UpdatedResponse: Codable {
+    class ManifestErrorResponse: Codable {
         
         
-        public var itemsNotUpdated: [Int]?
+        public var success: Bool?
         
-        public var message: String?
+        public var error: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case itemsNotUpdated = "items_not_updated"
+            case success = "success"
             
-            case message = "message"
+            case error = "error"
             
         }
 
-        public init(itemsNotUpdated: [Int]? = nil, message: String? = nil) {
+        public init(error: String? = nil, success: Bool? = nil) {
             
-            self.itemsNotUpdated = itemsNotUpdated
+            self.success = success
             
-            self.message = message
+            self.error = error
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    itemsNotUpdated = try container.decode([Int].self, forKey: .itemsNotUpdated)
+                    success = try container.decode(Bool.self, forKey: .success)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    message = try container.decode(String.self, forKey: .message)
+                    error = try container.decode(String.self, forKey: .error)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(itemsNotUpdated, forKey: .itemsNotUpdated)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }
@@ -82,33 +82,33 @@ public extension PlatformClient.Catalog {
 
 
 
-public extension PlatformClient.ApplicationClient.Catalog {
+public extension PlatformClient.ApplicationClient.Order {
     /*
-        Model: UpdatedResponse
-        Used By: Catalog
+        Model: ManifestErrorResponse
+        Used By: Order
     */
 
-    class UpdatedResponse: Codable {
+    class ManifestErrorResponse: Codable {
         
         
-        public var itemsNotUpdated: [Int]?
+        public var success: Bool?
         
-        public var message: String?
+        public var error: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case itemsNotUpdated = "items_not_updated"
+            case success = "success"
             
-            case message = "message"
+            case error = "error"
             
         }
 
-        public init(itemsNotUpdated: [Int]? = nil, message: String? = nil) {
+        public init(error: String? = nil, success: Bool? = nil) {
             
-            self.itemsNotUpdated = itemsNotUpdated
+            self.success = success
             
-            self.message = message
+            self.error = error
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    itemsNotUpdated = try container.decode([Int].self, forKey: .itemsNotUpdated)
+                    success = try container.decode(Bool.self, forKey: .success)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    message = try container.decode(String.self, forKey: .message)
+                    error = try container.decode(String.self, forKey: .error)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(itemsNotUpdated, forKey: .itemsNotUpdated)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }

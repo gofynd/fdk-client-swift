@@ -12,6 +12,8 @@ public extension ApplicationClient.Catalog {
         
         public var price: ProductSizesPrice?
         
+        public var pricePerPiece: ProductSizesPrice?
+        
         public var sizeChart: SizeChart?
         
         public var sellable: Bool?
@@ -31,6 +33,8 @@ public extension ApplicationClient.Catalog {
             
             case price = "price"
             
+            case pricePerPiece = "price_per_piece"
+            
             case sizeChart = "size_chart"
             
             case sellable = "sellable"
@@ -45,11 +49,13 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(discount: String? = nil, discountMeta: DiscountMeta? = nil, multiSize: Bool? = nil, price: ProductSizesPrice? = nil, sellable: Bool? = nil, sizes: [ProductSize]? = nil, sizeChart: SizeChart? = nil, stores: ProductSizeStores? = nil) {
+        public init(discount: String? = nil, discountMeta: DiscountMeta? = nil, multiSize: Bool? = nil, price: ProductSizesPrice? = nil, pricePerPiece: ProductSizesPrice? = nil, sellable: Bool? = nil, sizes: [ProductSize]? = nil, sizeChart: SizeChart? = nil, stores: ProductSizeStores? = nil) {
             
             self.sizes = sizes
             
             self.price = price
+            
+            self.pricePerPiece = pricePerPiece
             
             self.sizeChart = sizeChart
             
@@ -83,6 +89,18 @@ public extension ApplicationClient.Catalog {
             
             do {
                 price = try container.decode(ProductSizesPrice.self, forKey: .price)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                pricePerPiece = try container.decode(ProductSizesPrice.self, forKey: .pricePerPiece)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -175,6 +193,10 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(price, forKey: .price)
+            
+            
+            
+            try? container.encodeIfPresent(pricePerPiece, forKey: .pricePerPiece)
             
             
             

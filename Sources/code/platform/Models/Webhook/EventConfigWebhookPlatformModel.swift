@@ -24,6 +24,8 @@ public extension PlatformClient.Webhook {
         
         public var eventSchema: [String: Any]?
         
+        public var group: String?
+        
         public var version: String?
         
         public var displayName: String?
@@ -49,6 +51,8 @@ public extension PlatformClient.Webhook {
             
             case eventSchema = "event_schema"
             
+            case group = "group"
+            
             case version = "version"
             
             case displayName = "display_name"
@@ -61,7 +65,7 @@ public extension PlatformClient.Webhook {
             
         }
 
-        public init(createdOn: String? = nil, description: String? = nil, displayName: String? = nil, eventCategory: String? = nil, eventName: String? = nil, eventSchema: [String: Any]? = nil, eventType: String? = nil, id: Int? = nil, subscriberEventMapping: SubscriberEventMapping? = nil, updatedOn: String? = nil, version: String? = nil) {
+        public init(createdOn: String? = nil, description: String? = nil, displayName: String? = nil, eventCategory: String? = nil, eventName: String? = nil, eventSchema: [String: Any]? = nil, eventType: String? = nil, group: String? = nil, id: Int? = nil, subscriberEventMapping: SubscriberEventMapping? = nil, updatedOn: String? = nil, version: String? = nil) {
             
             self.id = id
             
@@ -74,6 +78,8 @@ public extension PlatformClient.Webhook {
             self.subscriberEventMapping = subscriberEventMapping
             
             self.eventSchema = eventSchema
+            
+            self.group = group
             
             self.version = version
             
@@ -153,6 +159,18 @@ public extension PlatformClient.Webhook {
             
                 do {
                     eventSchema = try container.decode([String: Any].self, forKey: .eventSchema)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    group = try container.decode(String.self, forKey: .group)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -255,6 +273,11 @@ public extension PlatformClient.Webhook {
             
             
             try? container.encodeIfPresent(eventSchema, forKey: .eventSchema)
+            
+            
+            
+            
+            try? container.encodeIfPresent(group, forKey: .group)
             
             
             

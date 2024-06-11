@@ -10,7 +10,7 @@ public extension ApplicationClient.Order {
         
         public var payment: ShipmentPayment?
         
-        public var paymentInfo: [ShipmentPayment]?
+        public var paymentInfo: [ShipmentPaymentInfo]?
         
         public var orderType: String?
         
@@ -72,7 +72,9 @@ public extension ApplicationClient.Order {
         
         public var canReturn: Bool?
         
-        public var deliveryAddress: DeliveryAddress?
+        public var deliveryAddress: Address?
+        
+        public var billingAddress: Address?
         
         public var trackUrl: String?
         
@@ -155,6 +157,8 @@ public extension ApplicationClient.Order {
             
             case deliveryAddress = "delivery_address"
             
+            case billingAddress = "billing_address"
+            
             case trackUrl = "track_url"
             
             case orderId = "order_id"
@@ -169,7 +173,7 @@ public extension ApplicationClient.Order {
             
         }
 
-        public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, comment: String? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: DeliveryAddress? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, invoice: Invoice? = nil, needHelpUrl: String? = nil, order: OrderRequest? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, paymentInfo: [ShipmentPayment]? = nil, prices: Prices? = nil, promise: Promise? = nil, refundDetails: [String: Any]? = nil, returnableDate: String? = nil, returnMeta: [String: Any]? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
+        public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, billingAddress: Address? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, comment: String? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: Address? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, invoice: Invoice? = nil, needHelpUrl: String? = nil, order: OrderRequest? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, paymentInfo: [ShipmentPaymentInfo]? = nil, prices: Prices? = nil, promise: Promise? = nil, refundDetails: [String: Any]? = nil, returnableDate: String? = nil, returnMeta: [String: Any]? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
             
             self.payment = payment
             
@@ -237,6 +241,8 @@ public extension ApplicationClient.Order {
             
             self.deliveryAddress = deliveryAddress
             
+            self.billingAddress = billingAddress
+            
             self.trackUrl = trackUrl
             
             self.orderId = orderId
@@ -268,7 +274,7 @@ public extension ApplicationClient.Order {
             
             
             do {
-                paymentInfo = try container.decode([ShipmentPayment].self, forKey: .paymentInfo)
+                paymentInfo = try container.decode([ShipmentPaymentInfo].self, forKey: .paymentInfo)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -640,7 +646,19 @@ public extension ApplicationClient.Order {
             
             
             do {
-                deliveryAddress = try container.decode(DeliveryAddress.self, forKey: .deliveryAddress)
+                deliveryAddress = try container.decode(Address.self, forKey: .deliveryAddress)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                billingAddress = try container.decode(Address.self, forKey: .billingAddress)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -857,6 +875,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(deliveryAddress, forKey: .deliveryAddress)
+            
+            
+            
+            try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
             
             
             

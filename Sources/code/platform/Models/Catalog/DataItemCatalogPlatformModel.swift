@@ -5,43 +5,43 @@ import Foundation
 
 public extension PlatformClient.Catalog {
     /*
-        Model: GetConfigMetadataResponse
+        Model: DataItem
         Used By: Catalog
     */
 
-    class GetConfigMetadataResponse: Codable {
+    class DataItem: Codable {
         
         
-        public var condition: [ConditionItem]?
+        public var key: String?
         
-        public var data: [DataItem]
+        public var display: String?
         
-        public var page: Page?
+        public var filterTypes: [String]?
         
-        public var values: GetConfigMetadataValues?
+        public var compatibleUnits: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case condition = "condition"
+            case key = "key"
             
-            case data = "data"
+            case display = "display"
             
-            case page = "page"
+            case filterTypes = "filter_types"
             
-            case values = "values"
+            case compatibleUnits = "compatible_units"
             
         }
 
-        public init(condition: [ConditionItem]? = nil, data: [DataItem], page: Page? = nil, values: GetConfigMetadataValues? = nil) {
+        public init(compatibleUnits: [String]? = nil, display: String? = nil, filterTypes: [String]? = nil, key: String? = nil) {
             
-            self.condition = condition
+            self.key = key
             
-            self.data = data
+            self.display = display
             
-            self.page = page
+            self.filterTypes = filterTypes
             
-            self.values = values
+            self.compatibleUnits = compatibleUnits
             
         }
 
@@ -50,24 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    condition = try container.decode([ConditionItem].self, forKey: .condition)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                data = try container.decode([DataItem].self, forKey: .data)
-                
-            
-            
-            
-                do {
-                    page = try container.decode(Page.self, forKey: .page)
+                    key = try container.decode(String.self, forKey: .key)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +62,31 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    values = try container.decode(GetConfigMetadataValues.self, forKey: .values)
+                    display = try container.decode(String.self, forKey: .display)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    filterTypes = try container.decode([String].self, forKey: .filterTypes)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    compatibleUnits = try container.decode([String].self, forKey: .compatibleUnits)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,22 +103,22 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(condition, forKey: .condition)
+            try? container.encodeIfPresent(key, forKey: .key)
             
             
             
             
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(display, forKey: .display)
             
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(filterTypes, forKey: .filterTypes)
             
             
             
             
-            try? container.encodeIfPresent(values, forKey: .values)
+            try? container.encodeIfPresent(compatibleUnits, forKey: .compatibleUnits)
             
             
         }
@@ -123,43 +130,43 @@ public extension PlatformClient.Catalog {
 
 public extension PlatformClient.ApplicationClient.Catalog {
     /*
-        Model: GetConfigMetadataResponse
+        Model: DataItem
         Used By: Catalog
     */
 
-    class GetConfigMetadataResponse: Codable {
+    class DataItem: Codable {
         
         
-        public var condition: [ConditionItem]?
+        public var key: String?
         
-        public var data: [DataItem]
+        public var display: String?
         
-        public var page: Page?
+        public var filterTypes: [String]?
         
-        public var values: GetConfigMetadataValues?
+        public var compatibleUnits: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case condition = "condition"
+            case key = "key"
             
-            case data = "data"
+            case display = "display"
             
-            case page = "page"
+            case filterTypes = "filter_types"
             
-            case values = "values"
+            case compatibleUnits = "compatible_units"
             
         }
 
-        public init(condition: [ConditionItem]? = nil, data: [DataItem], page: Page? = nil, values: GetConfigMetadataValues? = nil) {
+        public init(compatibleUnits: [String]? = nil, display: String? = nil, filterTypes: [String]? = nil, key: String? = nil) {
             
-            self.condition = condition
+            self.key = key
             
-            self.data = data
+            self.display = display
             
-            self.page = page
+            self.filterTypes = filterTypes
             
-            self.values = values
+            self.compatibleUnits = compatibleUnits
             
         }
 
@@ -168,24 +175,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    condition = try container.decode([ConditionItem].self, forKey: .condition)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                data = try container.decode([DataItem].self, forKey: .data)
-                
-            
-            
-            
-                do {
-                    page = try container.decode(Page.self, forKey: .page)
+                    key = try container.decode(String.self, forKey: .key)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -197,7 +187,31 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    values = try container.decode(GetConfigMetadataValues.self, forKey: .values)
+                    display = try container.decode(String.self, forKey: .display)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    filterTypes = try container.decode([String].self, forKey: .filterTypes)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    compatibleUnits = try container.decode([String].self, forKey: .compatibleUnits)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -214,22 +228,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(condition, forKey: .condition)
+            try? container.encodeIfPresent(key, forKey: .key)
             
             
             
             
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(display, forKey: .display)
             
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(filterTypes, forKey: .filterTypes)
             
             
             
             
-            try? container.encodeIfPresent(values, forKey: .values)
+            try? container.encodeIfPresent(compatibleUnits, forKey: .compatibleUnits)
             
             
         }

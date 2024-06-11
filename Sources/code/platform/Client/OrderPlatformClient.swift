@@ -1562,16 +1562,16 @@ if let value = reportType {
         * Description: Get list of shipments tagged to that manifest, the user can also search the shipments on the basis of shipment Id, order Id and AWB number
         **/
         public func getManifestShipments(
-            dpIds: Int,
-            stores: String,
+            dpIds: String,
+            stores: Int,
             toDate: String,
             fromDate: String,
             dpName: String?,
             salesChannels: String?,
             searchType: String?,
             searchValue: String?,
-            pageNo: String?,
-            pageSize: String?,
+            pageNo: Int?,
+            pageSize: Int?,
             
             onResponse: @escaping (_ response: ManifestShipmentListing?, _ error: FDKError?) -> Void
         ) {
@@ -1646,7 +1646,7 @@ if let value = pageSize {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifests/shipments",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifest/shipments-listing",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -1899,7 +1899,6 @@ if let value = pageSize {
         * Description: Updates the status of the manifest to processed and change the status of the shipments in the manifest to dispatch status
         **/
         public func dispatchManifests(
-            manifestId: String,
             body: DispatchManifest,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1912,7 +1911,7 @@ if let value = pageSize {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifest/\(manifestId)/dispatch",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifest/dispatch",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -2392,6 +2391,54 @@ if let value = searchValue {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(FailedOrderLogDetails.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Process Order Manifest
+        * Description: Endpoint to save and process order manifests.
+        **/
+        public func generateProcessManifest(
+            body: ProcessManifestRequest,
+            onResponse: @escaping (_ response: ManifestResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/process-manifest",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ManifestResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

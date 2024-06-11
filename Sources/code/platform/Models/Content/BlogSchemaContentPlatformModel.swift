@@ -32,6 +32,8 @@ public extension PlatformClient.Content {
         
         public var slug: String?
         
+        public var publishDate: String?
+        
         public var tags: [String]?
         
         public var seo: SEO?
@@ -65,6 +67,8 @@ public extension PlatformClient.Content {
             
             case slug = "slug"
             
+            case publishDate = "publish_date"
+            
             case tags = "tags"
             
             case seo = "seo"
@@ -77,7 +81,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(application: String? = nil, archived: Bool? = nil, author: Author? = nil, content: [ResourceContent]? = nil, dateMeta: DateMeta? = nil, featureImage: Asset? = nil, published: Bool? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: CronSchedule? = nil) {
+        public init(application: String? = nil, archived: Bool? = nil, author: Author? = nil, content: [ResourceContent]? = nil, dateMeta: DateMeta? = nil, featureImage: Asset? = nil, published: Bool? = nil, publishDate: String? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: CronSchedule? = nil) {
             
             self.id = id
             
@@ -98,6 +102,8 @@ public extension PlatformClient.Content {
             self.readingTime = readingTime
             
             self.slug = slug
+            
+            self.publishDate = publishDate
             
             self.tags = tags
             
@@ -236,6 +242,18 @@ public extension PlatformClient.Content {
             
             
                 do {
+                    publishDate = try container.decode(String.self, forKey: .publishDate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     tags = try container.decode([String].self, forKey: .tags)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -347,6 +365,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            
+            try? container.encodeIfPresent(publishDate, forKey: .publishDate)
             
             
             
@@ -410,6 +433,8 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var slug: String?
         
+        public var publishDate: String?
+        
         public var tags: [String]?
         
         public var seo: SEO?
@@ -443,6 +468,8 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case slug = "slug"
             
+            case publishDate = "publish_date"
+            
             case tags = "tags"
             
             case seo = "seo"
@@ -455,7 +482,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(application: String? = nil, archived: Bool? = nil, author: Author? = nil, content: [ResourceContent]? = nil, dateMeta: DateMeta? = nil, featureImage: Asset? = nil, published: Bool? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: CronSchedule? = nil) {
+        public init(application: String? = nil, archived: Bool? = nil, author: Author? = nil, content: [ResourceContent]? = nil, dateMeta: DateMeta? = nil, featureImage: Asset? = nil, published: Bool? = nil, publishDate: String? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: CronSchedule? = nil) {
             
             self.id = id
             
@@ -476,6 +503,8 @@ public extension PlatformClient.ApplicationClient.Content {
             self.readingTime = readingTime
             
             self.slug = slug
+            
+            self.publishDate = publishDate
             
             self.tags = tags
             
@@ -614,6 +643,18 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
+                    publishDate = try container.decode(String.self, forKey: .publishDate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     tags = try container.decode([String].self, forKey: .tags)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -725,6 +766,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            
+            try? container.encodeIfPresent(publishDate, forKey: .publishDate)
             
             
             

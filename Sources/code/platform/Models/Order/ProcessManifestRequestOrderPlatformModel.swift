@@ -3,45 +3,45 @@
 import Foundation
 
 
-public extension PlatformClient.Catalog {
+public extension PlatformClient.Order {
     /*
-        Model: GetConfigMetadataResponse
-        Used By: Catalog
+        Model: ProcessManifestRequest
+        Used By: Order
     */
 
-    class GetConfigMetadataResponse: Codable {
+    class ProcessManifestRequest: Codable {
         
         
-        public var condition: [ConditionItem]?
+        public var action: String?
         
-        public var data: [DataItem]
+        public var manifestId: String?
         
-        public var page: Page?
+        public var filters: Filters?
         
-        public var values: GetConfigMetadataValues?
+        public var uniqueId: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case condition = "condition"
+            case action = "action"
             
-            case data = "data"
+            case manifestId = "manifest_id"
             
-            case page = "page"
+            case filters = "filters"
             
-            case values = "values"
+            case uniqueId = "unique_id"
             
         }
 
-        public init(condition: [ConditionItem]? = nil, data: [DataItem], page: Page? = nil, values: GetConfigMetadataValues? = nil) {
+        public init(action: String? = nil, filters: Filters? = nil, manifestId: String? = nil, uniqueId: String? = nil) {
             
-            self.condition = condition
+            self.action = action
             
-            self.data = data
+            self.manifestId = manifestId
             
-            self.page = page
+            self.filters = filters
             
-            self.values = values
+            self.uniqueId = uniqueId
             
         }
 
@@ -50,24 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    condition = try container.decode([ConditionItem].self, forKey: .condition)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                data = try container.decode([DataItem].self, forKey: .data)
-                
-            
-            
-            
-                do {
-                    page = try container.decode(Page.self, forKey: .page)
+                    action = try container.decode(String.self, forKey: .action)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +62,31 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    values = try container.decode(GetConfigMetadataValues.self, forKey: .values)
+                    manifestId = try container.decode(String.self, forKey: .manifestId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    filters = try container.decode(Filters.self, forKey: .filters)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    uniqueId = try container.decode(String.self, forKey: .uniqueId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,22 +103,22 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(condition, forKey: .condition)
+            try? container.encodeIfPresent(action, forKey: .action)
             
             
             
             
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(manifestId, forKey: .manifestId)
             
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(filters, forKey: .filters)
             
             
             
             
-            try? container.encodeIfPresent(values, forKey: .values)
+            try? container.encodeIfPresent(uniqueId, forKey: .uniqueId)
             
             
         }
@@ -121,45 +128,45 @@ public extension PlatformClient.Catalog {
 
 
 
-public extension PlatformClient.ApplicationClient.Catalog {
+public extension PlatformClient.ApplicationClient.Order {
     /*
-        Model: GetConfigMetadataResponse
-        Used By: Catalog
+        Model: ProcessManifestRequest
+        Used By: Order
     */
 
-    class GetConfigMetadataResponse: Codable {
+    class ProcessManifestRequest: Codable {
         
         
-        public var condition: [ConditionItem]?
+        public var action: String?
         
-        public var data: [DataItem]
+        public var manifestId: String?
         
-        public var page: Page?
+        public var filters: Filters?
         
-        public var values: GetConfigMetadataValues?
+        public var uniqueId: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case condition = "condition"
+            case action = "action"
             
-            case data = "data"
+            case manifestId = "manifest_id"
             
-            case page = "page"
+            case filters = "filters"
             
-            case values = "values"
+            case uniqueId = "unique_id"
             
         }
 
-        public init(condition: [ConditionItem]? = nil, data: [DataItem], page: Page? = nil, values: GetConfigMetadataValues? = nil) {
+        public init(action: String? = nil, filters: Filters? = nil, manifestId: String? = nil, uniqueId: String? = nil) {
             
-            self.condition = condition
+            self.action = action
             
-            self.data = data
+            self.manifestId = manifestId
             
-            self.page = page
+            self.filters = filters
             
-            self.values = values
+            self.uniqueId = uniqueId
             
         }
 
@@ -168,24 +175,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    condition = try container.decode([ConditionItem].self, forKey: .condition)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                data = try container.decode([DataItem].self, forKey: .data)
-                
-            
-            
-            
-                do {
-                    page = try container.decode(Page.self, forKey: .page)
+                    action = try container.decode(String.self, forKey: .action)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -197,7 +187,31 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    values = try container.decode(GetConfigMetadataValues.self, forKey: .values)
+                    manifestId = try container.decode(String.self, forKey: .manifestId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    filters = try container.decode(Filters.self, forKey: .filters)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    uniqueId = try container.decode(String.self, forKey: .uniqueId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -214,22 +228,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(condition, forKey: .condition)
+            try? container.encodeIfPresent(action, forKey: .action)
             
             
             
             
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(manifestId, forKey: .manifestId)
             
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(filters, forKey: .filters)
             
             
             
             
-            try? container.encodeIfPresent(values, forKey: .values)
+            try? container.encodeIfPresent(uniqueId, forKey: .uniqueId)
             
             
         }

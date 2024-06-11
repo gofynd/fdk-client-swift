@@ -3,45 +3,51 @@
 import Foundation
 
 
-public extension PlatformClient.Payment {
+public extension PlatformClient.Catalog {
     /*
-        Model: AggregatorRoute
-        Used By: Payment
+        Model: BulkProductJob
+        Used By: Catalog
     */
 
-    class AggregatorRoute: Codable {
+    class BulkProductJob: Codable {
         
         
-        public var data: [String: Any]?
+        public var companyId: Int?
         
-        public var paymentFlowData: [String: Any]?
+        public var templateTag: String?
         
-        public var paymentFlow: String?
+        public var productType: String?
         
-        public var apiLink: String?
+        public var department: String?
+        
+        public var filePath: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case data = "data"
+            case companyId = "company_id"
             
-            case paymentFlowData = "payment_flow_data"
+            case templateTag = "template_tag"
             
-            case paymentFlow = "payment_flow"
+            case productType = "product_type"
             
-            case apiLink = "api_link"
+            case department = "department"
+            
+            case filePath = "file_path"
             
         }
 
-        public init(apiLink: String? = nil, data: [String: Any]? = nil, paymentFlow: String? = nil, paymentFlowData: [String: Any]? = nil) {
+        public init(companyId: Int? = nil, department: String? = nil, filePath: String? = nil, productType: String? = nil, templateTag: String? = nil) {
             
-            self.data = data
+            self.companyId = companyId
             
-            self.paymentFlowData = paymentFlowData
+            self.templateTag = templateTag
             
-            self.paymentFlow = paymentFlow
+            self.productType = productType
             
-            self.apiLink = apiLink
+            self.department = department
+            
+            self.filePath = filePath
             
         }
 
@@ -50,7 +56,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    data = try container.decode([String: Any].self, forKey: .data)
+                    companyId = try container.decode(Int.self, forKey: .companyId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +68,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    paymentFlowData = try container.decode([String: Any].self, forKey: .paymentFlowData)
+                    templateTag = try container.decode(String.self, forKey: .templateTag)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,7 +80,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    paymentFlow = try container.decode(String.self, forKey: .paymentFlow)
+                    productType = try container.decode(String.self, forKey: .productType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +92,19 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    apiLink = try container.decode(String.self, forKey: .apiLink)
+                    department = try container.decode(String.self, forKey: .department)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    filePath = try container.decode(String.self, forKey: .filePath)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,22 +121,27 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
             
             
-            try? container.encodeIfPresent(paymentFlowData, forKey: .paymentFlowData)
+            try? container.encodeIfPresent(templateTag, forKey: .templateTag)
             
             
             
             
-            try? container.encodeIfPresent(paymentFlow, forKey: .paymentFlow)
+            try? container.encodeIfPresent(productType, forKey: .productType)
             
             
             
             
-            try? container.encodeIfPresent(apiLink, forKey: .apiLink)
+            try? container.encodeIfPresent(department, forKey: .department)
+            
+            
+            
+            
+            try? container.encodeIfPresent(filePath, forKey: .filePath)
             
             
         }
@@ -128,45 +151,51 @@ public extension PlatformClient.Payment {
 
 
 
-public extension PlatformClient.ApplicationClient.Payment {
+public extension PlatformClient.ApplicationClient.Catalog {
     /*
-        Model: AggregatorRoute
-        Used By: Payment
+        Model: BulkProductJob
+        Used By: Catalog
     */
 
-    class AggregatorRoute: Codable {
+    class BulkProductJob: Codable {
         
         
-        public var data: [String: Any]?
+        public var companyId: Int?
         
-        public var paymentFlowData: [String: Any]?
+        public var templateTag: String?
         
-        public var paymentFlow: String?
+        public var productType: String?
         
-        public var apiLink: String?
+        public var department: String?
+        
+        public var filePath: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case data = "data"
+            case companyId = "company_id"
             
-            case paymentFlowData = "payment_flow_data"
+            case templateTag = "template_tag"
             
-            case paymentFlow = "payment_flow"
+            case productType = "product_type"
             
-            case apiLink = "api_link"
+            case department = "department"
+            
+            case filePath = "file_path"
             
         }
 
-        public init(apiLink: String? = nil, data: [String: Any]? = nil, paymentFlow: String? = nil, paymentFlowData: [String: Any]? = nil) {
+        public init(companyId: Int? = nil, department: String? = nil, filePath: String? = nil, productType: String? = nil, templateTag: String? = nil) {
             
-            self.data = data
+            self.companyId = companyId
             
-            self.paymentFlowData = paymentFlowData
+            self.templateTag = templateTag
             
-            self.paymentFlow = paymentFlow
+            self.productType = productType
             
-            self.apiLink = apiLink
+            self.department = department
+            
+            self.filePath = filePath
             
         }
 
@@ -175,7 +204,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    data = try container.decode([String: Any].self, forKey: .data)
+                    companyId = try container.decode(Int.self, forKey: .companyId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,7 +216,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    paymentFlowData = try container.decode([String: Any].self, forKey: .paymentFlowData)
+                    templateTag = try container.decode(String.self, forKey: .templateTag)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -199,7 +228,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    paymentFlow = try container.decode(String.self, forKey: .paymentFlow)
+                    productType = try container.decode(String.self, forKey: .productType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -211,7 +240,19 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    apiLink = try container.decode(String.self, forKey: .apiLink)
+                    department = try container.decode(String.self, forKey: .department)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    filePath = try container.decode(String.self, forKey: .filePath)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -228,22 +269,27 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
             
             
-            try? container.encodeIfPresent(paymentFlowData, forKey: .paymentFlowData)
+            try? container.encodeIfPresent(templateTag, forKey: .templateTag)
             
             
             
             
-            try? container.encodeIfPresent(paymentFlow, forKey: .paymentFlow)
+            try? container.encodeIfPresent(productType, forKey: .productType)
             
             
             
             
-            try? container.encodeIfPresent(apiLink, forKey: .apiLink)
+            try? container.encodeIfPresent(department, forKey: .department)
+            
+            
+            
+            
+            try? container.encodeIfPresent(filePath, forKey: .filePath)
             
             
         }

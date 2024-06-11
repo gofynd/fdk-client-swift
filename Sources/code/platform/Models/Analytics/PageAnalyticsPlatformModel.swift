@@ -3,63 +3,65 @@
 import Foundation
 
 
-public extension PlatformClient.Webhook {
+
+
+public extension PlatformClient.ApplicationClient.Analytics {
     /*
-        Model: HistoryFilters
-        Used By: Webhook
+        Model: Page
+        Used By: Analytics
     */
 
-    class HistoryFilters: Codable {
+    class Page: Codable {
         
         
-        public var events: [String]?
+        public var itemTotal: Int?
         
-        public var searchText: String?
+        public var nextId: String?
         
-        public var status: String?
+        public var hasPrevious: Bool?
         
-        public var endDate: String?
+        public var hasNext: Bool?
         
-        public var startDate: String?
+        public var current: Int?
         
-        public var subscribers: [Int]?
+        public var type: String
         
-        public var webhookType: [String]?
+        public var size: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case events = "events"
+            case itemTotal = "item_total"
             
-            case searchText = "search_text"
+            case nextId = "next_id"
             
-            case status = "status"
+            case hasPrevious = "has_previous"
             
-            case endDate = "end_date"
+            case hasNext = "has_next"
             
-            case startDate = "start_date"
+            case current = "current"
             
-            case subscribers = "subscribers"
+            case type = "type"
             
-            case webhookType = "webhook_type"
+            case size = "size"
             
         }
 
-        public init(endDate: String? = nil, events: [String]? = nil, searchText: String? = nil, startDate: String? = nil, status: String? = nil, subscribers: [Int]? = nil, webhookType: [String]? = nil) {
+        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, size: Int? = nil, type: String) {
             
-            self.events = events
+            self.itemTotal = itemTotal
             
-            self.searchText = searchText
+            self.nextId = nextId
             
-            self.status = status
+            self.hasPrevious = hasPrevious
             
-            self.endDate = endDate
+            self.hasNext = hasNext
             
-            self.startDate = startDate
+            self.current = current
             
-            self.subscribers = subscribers
+            self.type = type
             
-            self.webhookType = webhookType
+            self.size = size
             
         }
 
@@ -68,7 +70,7 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    events = try container.decode([String].self, forKey: .events)
+                    itemTotal = try container.decode(Int.self, forKey: .itemTotal)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,7 +82,7 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    searchText = try container.decode(String.self, forKey: .searchText)
+                    nextId = try container.decode(String.self, forKey: .nextId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,7 +94,7 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    status = try container.decode(String.self, forKey: .status)
+                    hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +106,7 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    endDate = try container.decode(String.self, forKey: .endDate)
+                    hasNext = try container.decode(Bool.self, forKey: .hasNext)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,7 +118,7 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    startDate = try container.decode(String.self, forKey: .startDate)
+                    current = try container.decode(Int.self, forKey: .current)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -127,20 +129,13 @@ public extension PlatformClient.Webhook {
                 
             
             
-                do {
-                    subscribers = try container.decode([Int].self, forKey: .subscribers)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                type = try container.decode(String.self, forKey: .type)
                 
             
             
+            
                 do {
-                    webhookType = try container.decode([String].self, forKey: .webhookType)
+                    size = try container.decode(Int.self, forKey: .size)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -157,44 +152,42 @@ public extension PlatformClient.Webhook {
             
             
             
-            try? container.encodeIfPresent(events, forKey: .events)
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
             
             
             
             
-            try? container.encodeIfPresent(searchText, forKey: .searchText)
+            try? container.encodeIfPresent(nextId, forKey: .nextId)
             
             
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
             
             
             
             
-            try? container.encodeIfPresent(endDate, forKey: .endDate)
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
             
             
             
             
-            try? container.encodeIfPresent(startDate, forKey: .startDate)
+            try? container.encodeIfPresent(current, forKey: .current)
             
             
             
             
-            try? container.encodeIfPresent(subscribers, forKey: .subscribers)
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
             
             
-            try? container.encodeIfPresent(webhookType, forKey: .webhookType)
+            try? container.encodeIfPresent(size, forKey: .size)
             
             
         }
         
     }
 }
-
-
 
 

@@ -10,6 +10,8 @@ import Foundation
 
 
 
+
+
 public extension PlatformClient.Catalog {
     
     
@@ -310,8 +312,6 @@ public extension PlatformClient.Webhook {
         case active = "active"
         
         case inactive = "inactive"
-        
-        case blocked = "blocked"
         
     }
 
