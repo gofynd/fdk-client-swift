@@ -12,8 +12,6 @@ public extension ApplicationClient.Payment {
         
         public var checkoutMode: String
         
-        public var pincode: String
-        
         public var assignCardId: String?
         
         public var amount: String
@@ -25,21 +23,17 @@ public extension ApplicationClient.Payment {
             
             case checkoutMode = "checkout_mode"
             
-            case pincode = "pincode"
-            
             case assignCardId = "assign_card_id"
             
             case amount = "amount"
             
         }
 
-        public init(amount: String, assignCardId: String? = nil, cartId: String, checkoutMode: String, pincode: String) {
+        public init(amount: String, assignCardId: String? = nil, cartId: String, checkoutMode: String) {
             
             self.cartId = cartId
             
             self.checkoutMode = checkoutMode
-            
-            self.pincode = pincode
             
             self.assignCardId = assignCardId
             
@@ -57,11 +51,6 @@ public extension ApplicationClient.Payment {
             
             
             checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
-            
-            
-            
-            
-            pincode = try container.decode(String.self, forKey: .pincode)
             
             
             
@@ -93,10 +82,6 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
-            
-            
-            
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
             
             
             

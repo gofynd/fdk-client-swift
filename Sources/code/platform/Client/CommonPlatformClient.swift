@@ -16,8 +16,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Search Application
-        * Description: Provide application name or domain url
+        * Summary: List sales channel categories
+        * Description: This API retrieves details for a specific sales channel based on the provided search criteria. The search can be performed using the name of the sales channel
         **/
         public func searchApplication(
             authorization: String?,
@@ -79,8 +79,8 @@ if let value = authorization {
         
         /**
         *
-        * Summary: Get countries, states, cities
-        * Description: Retrieve a list of countries, states, or cities based on the provided location_type and id parameters.
+        * Summary: Get company locations
+        * Description: Retrieve a list of locations associated with the company.
         **/
         public func getLocations(
             locationType: String?,

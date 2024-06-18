@@ -65,6 +65,8 @@ extension ApplicationClient {
             
             ulrs["getLadderOffers"] = config.domain.appendAsPath("/service/application/cart/v1.0/available-ladder-prices") 
             
+            ulrs["getPromotionPaymentOffers"] = config.domain.appendAsPath("/service/application/cart/v1.0/available-payment-offers") 
+            
             ulrs["checkoutCartV2"] = config.domain.appendAsPath("/service/application/cart/v2.0/checkout") 
             
             self.relativeUrls = ulrs
@@ -79,8 +81,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetch all items added to the cart
-        * Description: Use this API to get details of all the items added to a cart.
+        * Summary: Get a cart
+        * Description: Retrieve details of a cart linked to a specific customer using either the customer's ID or a unique cart ID. It offers an overview of the items, quantities, prices, and other relevant information associated with the cart.
         **/
         public func getCart(
             id: String?,
@@ -90,6 +92,7 @@ extension ApplicationClient {
             assignCardId: Int?,
             areaCode: String?,
             buyNow: Bool?,
+            orderType: String?,
             
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -145,6 +148,13 @@ if let value = buyNow {
 }
 
 
+if let value = orderType {
+    
+    xQuery["order_type"] = value
+    
+}
+
+
  
 
 
@@ -185,8 +195,8 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Fetch last-modified timestamp
-        * Description: Use this API to fetch Last-Modified timestamp in header metadata.
+        * Summary: Get last modified timestamp of a cart
+        * Description: Retrieve the last modified timestamp of the cart using unique cart ID. It indicates the most recent update made to the cart's content or properties.
         **/
         public func getCartLastModified(
             id: String?,
@@ -243,8 +253,8 @@ if let value = id {
         
         /**
         *
-        * Summary: Add items to cart
-        * Description: Use this API to add items to the cart.
+        * Summary: Add items to a cart
+        * Description: Add product items to the customer's existing shopping cart. If there is no existing cart associated with the customer, it creates a new one and adds the items to it.
         **/
         public func addItems(
             i: Bool?,
@@ -252,6 +262,7 @@ if let value = id {
             areaCode: String?,
             buyNow: Bool?,
             id: String?,
+            orderType: String?,
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -289,6 +300,13 @@ if let value = buyNow {
 if let value = id {
     
     xQuery["id"] = value
+    
+}
+
+
+if let value = orderType {
+    
+    xQuery["order_type"] = value
     
 }
 
@@ -333,8 +351,8 @@ if let value = id {
         
         /**
         *
-        * Summary: Update items in the cart
-        * Description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs operation:  Operation for current api call. update_item for update items. remove_item for removing items. item_id "/platform/content/v1/products/" item_size "/platform/content/v1/products/:slug/sizes/" quantity item quantity (must be greater than or equal to 1) article_id "/content​/v1​/products​/:identifier​/sizes​/price​/" item_index item position in the cart (must be greater than or equal to 0)
+        * Summary: Update cart items
+        * Description: Customers can modify added product attributes such as quantity and size, as well as remove items from the cart.
         **/
         public func updateCart(
             id: String?,
@@ -342,6 +360,8 @@ if let value = id {
             b: Bool?,
             areaCode: String?,
             buyNow: Bool?,
+            cartType: String?,
+            orderType: String?,
             body: UpdateCartRequest,
             onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -379,6 +399,20 @@ if let value = areaCode {
 if let value = buyNow {
     
     xQuery["buy_now"] = value
+    
+}
+
+
+if let value = cartType {
+    
+    xQuery["cart_type"] = value
+    
+}
+
+
+if let value = orderType {
+    
+    xQuery["order_type"] = value
     
 }
 
@@ -423,8 +457,8 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Delete cart once user made successful checkout
-        * Description: Use this API to delete the cart.
+        * Summary: Delete a cart
+        * Description: Delete all items from the user's cart and resets it to its initial state, providing a clean slate for new selections.
         **/
         public func deleteCart(
             id: String?,
@@ -481,8 +515,8 @@ if let value = id {
         
         /**
         *
-        * Summary: Count items in the cart
-        * Description: Use this API to get the total number of items present in cart.
+        * Summary: Get a cart items count
+        * Description: Retrieve the total count of items currently present in the customer's cart.
         **/
         public func getItemCount(
             id: String?,
@@ -547,12 +581,14 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Fetch Coupon
-        * Description: Use this API to get a list of available coupons along with their details.
+        * Summary: List available coupons
+        * Description: Retrieve a list of all available coupons that customer can apply to their carts. It provides details about each coupon, including its code, discount amount, and applicable conditions.
         **/
         public func getCoupons(
             id: String?,
             buyNow: Bool?,
+            slug: String?,
+            storeId: String?,
             
             onResponse: @escaping (_ response: GetCouponResponse?, _ error: FDKError?) -> Void
         ) {
@@ -569,6 +605,20 @@ if let value = id {
 if let value = buyNow {
     
     xQuery["buy_now"] = value
+    
+}
+
+
+if let value = slug {
+    
+    xQuery["slug"] = value
+    
+}
+
+
+if let value = storeId {
+    
+    xQuery["store_id"] = value
     
 }
 
@@ -613,8 +663,9 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Apply Coupon
-        * Description: Use this API to apply coupons on items in the cart.
+        * Summary: Apply coupon
+        * Description: 
+Apply a coupon code to the customer's cart to trigger discounts on eligible items
         **/
         public func applyCoupon(
             i: Bool?,
@@ -622,6 +673,7 @@ if let value = buyNow {
             p: Bool?,
             id: String?,
             buyNow: Bool?,
+            cartType: String?,
             body: ApplyCouponRequest,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -659,6 +711,13 @@ if let value = id {
 if let value = buyNow {
     
     xQuery["buy_now"] = value
+    
+}
+
+
+if let value = cartType {
+    
+    xQuery["cart_type"] = value
     
 }
 
@@ -703,8 +762,8 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Remove Coupon Applied
-        * Description: Remove Coupon applied on the cart by passing uid in request body.
+        * Summary: Remove coupon
+        * Description: Remove an applied coupon from the customer's cart, thereby removing the associated discount from the cart total.
         **/
         public func removeCoupon(
             id: String?,
@@ -769,8 +828,8 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Get discount offers based on quantity
-        * Description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present.
+        * Summary: List bulk discounts
+        * Description: Retrieve a list of offer discounts with information about quantity and seller. One offer is marked with a "best" flag, indicating it as the best offer among the list.
         **/
         public func getBulkDiscountOffers(
             itemId: Int?,
@@ -851,8 +910,8 @@ if let value = slug {
         
         /**
         *
-        * Summary: Apply reward points at cart
-        * Description: Use this API to redeem a fixed no. of reward points by applying it to the cart.
+        * Summary: Use reward points
+        * Description: Users can redeem their accumulated reward points and apply them to the items in their cart, thereby availing discounts on their current purchases.
         **/
         public func applyRewardPoints(
             id: String?,
@@ -933,8 +992,8 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Fetch address
-        * Description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional uid address_id mobile_no checkout_mode tags default
+        * Summary: List customer addresses
+        * Description: Retrieve a list of all addresses saved by the customer, simplifying the checkout process by offering pre-saved address options for delivery.
         **/
         public func getAddresses(
             cartId: String?,
@@ -1031,8 +1090,8 @@ if let value = isDefault {
         
         /**
         *
-        * Summary: Add address to an account
-        * Description: Use this API to add an address to an account.
+        * Summary: Create a new address
+        * Description: Customers can add a new address to their cart to save details such as name, email, contact information, and address.
         **/
         public func addAddress(
             body: Address,
@@ -1081,8 +1140,8 @@ if let value = isDefault {
         
         /**
         *
-        * Summary: Fetch a single address by its ID
-        * Description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional mobile_no checkout_mode tags default
+        * Summary: Get a address
+        * Description: Retrieve a specific customer address stored in the system by providing its unique identifier. This API provides detailed information about the address, including the recipient's name, address, city, postal code, and other relevant details.
         **/
         public func getAddressById(
             id: String,
@@ -1182,8 +1241,8 @@ if let value = isDefault {
         
         /**
         *
-        * Summary: Update address added to an account
-        * Description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in Address can be updated. These attributes are: is_default_address landmark area pincode email address_type name address_id address
+        * Summary: Update a address
+        * Description: Customer can modify the details of a previously saved addresses. 
         **/
         public func updateAddress(
             id: String,
@@ -1235,8 +1294,8 @@ if let value = isDefault {
         
         /**
         *
-        * Summary: Remove address associated with an account
-        * Description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
+        * Summary: Delete a address
+        * Description: Removes an existing customer address from the system.
         **/
         public func removeAddress(
             id: String,
@@ -1288,8 +1347,8 @@ if let value = isDefault {
         
         /**
         *
-        * Summary: Select an address from available addresses
-        * Description: Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. address_id billing_address_id uid
+        * Summary: Select a delivery address
+        * Description: Selects an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address.
         **/
         public func selectAddress(
             cartId: String?,
@@ -1370,8 +1429,8 @@ if let value = b {
         
         /**
         *
-        * Summary: Update cart payment
-        * Description: Use this API to update cart payment.
+        * Summary: Select payment mode
+        * Description: Customers can select a preferred payment mode from available options during the cart checkout process to securely and efficiently complete their transaction.
         **/
         public func selectPaymentMode(
             id: String?,
@@ -1436,8 +1495,8 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Verify the coupon eligibility against the payment mode
-        * Description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
+        * Summary: Validate applied coupon
+        * Description: Validate the applicability of a coupon code for the selected payment mode for the existing cart. This ensures the coupon's validity before proceeding with the payment process, enhancing user experience and preventing potential errors during transactions.
         **/
         public func validateCouponForPayment(
             id: String?,
@@ -1451,6 +1510,7 @@ if let value = buyNow {
             network: String?,
             type: String?,
             cardId: String?,
+            cartType: String?,
             
             onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
         ) {
@@ -1534,6 +1594,13 @@ if let value = cardId {
 }
 
 
+if let value = cartType {
+    
+    xQuery["cart_type"] = value
+    
+}
+
+
  
 
 
@@ -1574,8 +1641,8 @@ if let value = cardId {
         
         /**
         *
-        * Summary: Get delivery date and options before checkout
-        * Description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
+        * Summary: List shipments
+        * Description: Retrieve shipment details for the items in a cart, specific to the selected address. Shipment details include delivery promises, seller information, item details, and other relevant information.
         **/
         public func getShipments(
             p: Bool?,
@@ -1672,11 +1739,12 @@ if let value = orderType {
         
         /**
         *
-        * Summary: Checkout all items in the cart
-        * Description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
+        * Summary: Checkout cart
+        * Description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement.
         **/
         public func checkoutCart(
             buyNow: Bool?,
+            cartType: String?,
             body: CartCheckoutDetailRequest,
             onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1686,6 +1754,13 @@ var xQuery: [String: Any] = [:]
 if let value = buyNow {
     
     xQuery["buy_now"] = value
+    
+}
+
+
+if let value = cartType {
+    
+    xQuery["cart_type"] = value
     
 }
 
@@ -1730,8 +1805,8 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Update the cart meta
-        * Description: Use this API to update cart meta like checkout_mode and gstin.
+        * Summary: Update cart metadata
+        * Description: Add or modify metadata associated with a cart, which includes customer preferences, delivery instructions, or any special requirements related to the cart items.
         **/
         public func updateCartMeta(
             id: String?,
@@ -1796,8 +1871,8 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Generate token for sharing the cart
-        * Description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart.
+        * Summary: Create share cart link
+        * Description: Generate a unique shareable link for the customer's cart for a specific sales channel. This link enables easy sharing of the cart contents with other users, facilitating collaborative shopping experiences.
         **/
         public func getCartShareLink(
             body: GetShareCartLinkRequest,
@@ -1846,8 +1921,8 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Get details of a shared cart
-        * Description: Use this API to get the shared cart details as per the token generated using the share-cart API.
+        * Summary: List shared cart items
+        * Description: Retrieve the cart items from the shared cart link based on unique token.
         **/
         public func getCartSharedItems(
             token: String,
@@ -1899,8 +1974,8 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Merge or replace existing cart
-        * Description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace.
+        * Summary: Update with shared items
+        * Description: Customer can either merge or replace shared cart items with existing cart.
         **/
         public func updateCartWithSharedItems(
             token: String,
@@ -1955,14 +2030,15 @@ if let value = buyNow {
         
         /**
         *
-        * Summary: Fetch available promotions
-        * Description: Use this API to get top 5 offers available for current product
+        * Summary: List available promotion offers
+        * Description: Retrieve a list of all promotional offers available for the items in the cart, including details such as offer text, unique promotion ID, and validity period.
         **/
         public func getPromotionOffers(
             slug: String?,
             pageSize: Int?,
             promotionGroup: String?,
             storeId: Int?,
+            cartType: String?,
             
             onResponse: @escaping (_ response: PromotionOffersResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1993,6 +2069,13 @@ if let value = promotionGroup {
 if let value = storeId {
     
     xQuery["store_id"] = value
+    
+}
+
+
+if let value = cartType {
+    
+    xQuery["cart_type"] = value
     
 }
 
@@ -2037,8 +2120,8 @@ if let value = storeId {
         
         /**
         *
-        * Summary: Fetch ladder price promotion
-        * Description: Use this API to get applicable ladder price promotion for current product
+        * Summary: List ladder offers
+        * Description: Retrieve ladder offers associated for the items in the cart. Ladder offers provide discounts or special pricing based on item quantity, allowing users to benefit from bulk purchases or promotional deals.
         **/
         public func getLadderOffers(
             slug: String,
@@ -2117,11 +2200,78 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Checkout all items in the cart
-        * Description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
+        * Summary: Fetch available promotions payment offers
+        * Description: Use this API to get top 5 payment offers available for current product
+        **/
+        public func getPromotionPaymentOffers(
+            id: String?,
+            uid: Int?,
+            
+            onResponse: @escaping (_ response: PromotionPaymentOffersResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = id {
+    
+    xQuery["id"] = value
+    
+}
+
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["getPromotionPaymentOffers"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(PromotionPaymentOffersResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Start cart checkout (latest)
+        * Description: Enhanced version of checkout process that supports multiple mode of payment(MOP).
         **/
         public func checkoutCartV2(
             buyNow: Bool?,
+            cartType: String?,
             body: CartCheckoutDetailV2Request,
             onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2131,6 +2281,13 @@ var xQuery: [String: Any] = [:]
 if let value = buyNow {
     
     xQuery["buy_now"] = value
+    
+}
+
+
+if let value = cartType {
+    
+    xQuery["cart_type"] = value
     
 }
 

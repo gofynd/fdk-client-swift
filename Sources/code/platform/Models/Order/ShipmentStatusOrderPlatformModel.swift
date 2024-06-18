@@ -24,9 +24,13 @@ public extension PlatformClient.Order {
         
         public var createdAt: String?
         
+        public var createdTs: String?
+        
         public var shipmentId: String?
         
         public var statusCreatedAt: String?
+        
+        public var statusCreatedTs: String?
         
         public var status: String
         
@@ -45,15 +49,19 @@ public extension PlatformClient.Order {
             
             case createdAt = "created_at"
             
+            case createdTs = "created_ts"
+            
             case shipmentId = "shipment_id"
             
             case statusCreatedAt = "status_created_at"
+            
+            case statusCreatedTs = "status_created_ts"
             
             case status = "status"
             
         }
 
-        public init(bagList: [String]? = nil, createdAt: String? = nil, currentShipmentStatus: String? = nil, meta: [String: Any]? = nil, shipmentId: String? = nil, shipmentStatusId: Int? = nil, status: String, statusCreatedAt: String? = nil, title: String) {
+        public init(bagList: [String]? = nil, createdAt: String? = nil, createdTs: String? = nil, currentShipmentStatus: String? = nil, meta: [String: Any]? = nil, shipmentId: String? = nil, shipmentStatusId: Int? = nil, status: String, statusCreatedAt: String? = nil, statusCreatedTs: String? = nil, title: String) {
             
             self.currentShipmentStatus = currentShipmentStatus
             
@@ -67,9 +75,13 @@ public extension PlatformClient.Order {
             
             self.createdAt = createdAt
             
+            self.createdTs = createdTs
+            
             self.shipmentId = shipmentId
             
             self.statusCreatedAt = statusCreatedAt
+            
+            self.statusCreatedTs = statusCreatedTs
             
             self.status = status
             
@@ -145,6 +157,18 @@ public extension PlatformClient.Order {
             
             
                 do {
+                    createdTs = try container.decode(String.self, forKey: .createdTs)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     shipmentId = try container.decode(String.self, forKey: .shipmentId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -158,6 +182,18 @@ public extension PlatformClient.Order {
             
                 do {
                     statusCreatedAt = try container.decode(String.self, forKey: .statusCreatedAt)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    statusCreatedTs = try container.decode(String.self, forKey: .statusCreatedTs)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -209,12 +245,22 @@ public extension PlatformClient.Order {
             
             
             
+            try? container.encodeIfPresent(createdTs, forKey: .createdTs)
+            
+            
+            
+            
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
             
             
             
             
             try? container.encodeIfPresent(statusCreatedAt, forKey: .statusCreatedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(statusCreatedTs, forKey: .statusCreatedTs)
             
             
             
@@ -250,9 +296,13 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var createdAt: String?
         
+        public var createdTs: String?
+        
         public var shipmentId: String?
         
         public var statusCreatedAt: String?
+        
+        public var statusCreatedTs: String?
         
         public var status: String
         
@@ -271,15 +321,19 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case createdAt = "created_at"
             
+            case createdTs = "created_ts"
+            
             case shipmentId = "shipment_id"
             
             case statusCreatedAt = "status_created_at"
+            
+            case statusCreatedTs = "status_created_ts"
             
             case status = "status"
             
         }
 
-        public init(bagList: [String]? = nil, createdAt: String? = nil, currentShipmentStatus: String? = nil, meta: [String: Any]? = nil, shipmentId: String? = nil, shipmentStatusId: Int? = nil, status: String, statusCreatedAt: String? = nil, title: String) {
+        public init(bagList: [String]? = nil, createdAt: String? = nil, createdTs: String? = nil, currentShipmentStatus: String? = nil, meta: [String: Any]? = nil, shipmentId: String? = nil, shipmentStatusId: Int? = nil, status: String, statusCreatedAt: String? = nil, statusCreatedTs: String? = nil, title: String) {
             
             self.currentShipmentStatus = currentShipmentStatus
             
@@ -293,9 +347,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.createdAt = createdAt
             
+            self.createdTs = createdTs
+            
             self.shipmentId = shipmentId
             
             self.statusCreatedAt = statusCreatedAt
+            
+            self.statusCreatedTs = statusCreatedTs
             
             self.status = status
             
@@ -371,6 +429,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
+                    createdTs = try container.decode(String.self, forKey: .createdTs)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     shipmentId = try container.decode(String.self, forKey: .shipmentId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -384,6 +454,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     statusCreatedAt = try container.decode(String.self, forKey: .statusCreatedAt)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    statusCreatedTs = try container.decode(String.self, forKey: .statusCreatedTs)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -435,12 +517,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
+            try? container.encodeIfPresent(createdTs, forKey: .createdTs)
+            
+            
+            
+            
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
             
             
             
             
             try? container.encodeIfPresent(statusCreatedAt, forKey: .statusCreatedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(statusCreatedTs, forKey: .statusCreatedTs)
             
             
             

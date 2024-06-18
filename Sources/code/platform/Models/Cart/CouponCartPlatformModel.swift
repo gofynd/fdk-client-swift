@@ -38,6 +38,12 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var description: String?
         
+        public var startDate: String?
+        
+        public var endDate: String?
+        
+        public var couponApplicableMessage: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -65,9 +71,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case description = "description"
             
+            case startDate = "start_date"
+            
+            case endDate = "end_date"
+            
+            case couponApplicableMessage = "coupon_applicable_message"
+            
         }
 
-        public init(couponCode: String? = nil, couponType: String? = nil, couponValue: Double? = nil, description: String? = nil, expiresOn: String? = nil, isApplicable: Bool? = nil, isApplied: Bool? = nil, maxDiscountValue: Double? = nil, message: String? = nil, minimumCartValue: Double? = nil, subTitle: String? = nil, title: String? = nil) {
+        public init(couponApplicableMessage: String? = nil, couponCode: String? = nil, couponType: String? = nil, couponValue: Double? = nil, description: String? = nil, endDate: String? = nil, expiresOn: String? = nil, isApplicable: Bool? = nil, isApplied: Bool? = nil, maxDiscountValue: Double? = nil, message: String? = nil, minimumCartValue: Double? = nil, startDate: String? = nil, subTitle: String? = nil, title: String? = nil) {
             
             self.title = title
             
@@ -92,6 +104,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.message = message
             
             self.description = description
+            
+            self.startDate = startDate
+            
+            self.endDate = endDate
+            
+            self.couponApplicableMessage = couponApplicableMessage
             
         }
 
@@ -242,6 +260,42 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    startDate = try container.decode(String.self, forKey: .startDate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    endDate = try container.decode(String.self, forKey: .endDate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    couponApplicableMessage = try container.decode(String.self, forKey: .couponApplicableMessage)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -305,6 +359,21 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(startDate, forKey: .startDate)
+            
+            
+            
+            
+            try? container.encodeIfPresent(endDate, forKey: .endDate)
+            
+            
+            
+            
+            try? container.encodeIfPresent(couponApplicableMessage, forKey: .couponApplicableMessage)
             
             
         }

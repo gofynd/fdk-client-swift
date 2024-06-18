@@ -68,6 +68,14 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var paymentExtraIdentifiers: [String: Any]?
         
+        public var iin: String?
+        
+        public var network: String?
+        
+        public var type: String?
+        
+        public var cardId: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -125,9 +133,17 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case paymentExtraIdentifiers = "payment_extra_identifiers"
             
+            case iin = "iin"
+            
+            case network = "network"
+            
+            case type = "type"
+            
+            case cardId = "card_id"
+            
         }
 
-        public init(addressId: String? = nil, aggregator: String? = nil, billingAddress: [String: Any]? = nil, billingAddressId: String? = nil, callbackUrl: String? = nil, checkoutMode: String? = nil, customerDetails: CustomerDetails? = nil, customMeta: [CartCheckoutCustomMeta]? = nil, deliveryAddress: [String: Any]? = nil, deviceId: String? = nil, employeeCode: String? = nil, extraMeta: [String: Any]? = nil, files: [Files]? = nil, id: String, merchantCode: String? = nil, meta: [String: Any]? = nil, orderingStore: Int? = nil, orderType: String, paymentAutoConfirm: Bool? = nil, paymentExtraIdentifiers: [String: Any]? = nil, paymentIdentifier: String? = nil, paymentMode: String, paymentParams: [String: Any]? = nil, pickAtStoreUid: Int? = nil, pos: Bool? = nil, staff: StaffCheckout? = nil, userId: String) {
+        public init(addressId: String? = nil, aggregator: String? = nil, billingAddress: [String: Any]? = nil, billingAddressId: String? = nil, callbackUrl: String? = nil, cardId: String? = nil, checkoutMode: String? = nil, customerDetails: CustomerDetails? = nil, customMeta: [CartCheckoutCustomMeta]? = nil, deliveryAddress: [String: Any]? = nil, deviceId: String? = nil, employeeCode: String? = nil, extraMeta: [String: Any]? = nil, files: [Files]? = nil, id: String, iin: String? = nil, merchantCode: String? = nil, meta: [String: Any]? = nil, network: String? = nil, orderingStore: Int? = nil, orderType: String, paymentAutoConfirm: Bool? = nil, paymentExtraIdentifiers: [String: Any]? = nil, paymentIdentifier: String? = nil, paymentMode: String, paymentParams: [String: Any]? = nil, pickAtStoreUid: Int? = nil, pos: Bool? = nil, staff: StaffCheckout? = nil, type: String? = nil, userId: String) {
             
             self.customMeta = customMeta
             
@@ -182,6 +198,14 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.orderingStore = orderingStore
             
             self.paymentExtraIdentifiers = paymentExtraIdentifiers
+            
+            self.iin = iin
+            
+            self.network = network
+            
+            self.type = type
+            
+            self.cardId = cardId
             
         }
 
@@ -484,6 +508,54 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    iin = try container.decode(String.self, forKey: .iin)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    network = try container.decode(String.self, forKey: .network)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    cardId = try container.decode(String.self, forKey: .cardId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -622,6 +694,26 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(paymentExtraIdentifiers, forKey: .paymentExtraIdentifiers)
+            
+            
+            
+            
+            try? container.encodeIfPresent(iin, forKey: .iin)
+            
+            
+            
+            
+            try? container.encodeIfPresent(network, forKey: .network)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(cardId, forKey: .cardId)
             
             
         }

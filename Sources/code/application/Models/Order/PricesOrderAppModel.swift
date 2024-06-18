@@ -52,6 +52,8 @@ public extension ApplicationClient.Order {
         
         public var fyndCredits: Double?
         
+        public var amountToBeCollected: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -99,9 +101,11 @@ public extension ApplicationClient.Order {
             
             case fyndCredits = "fynd_credits"
             
+            case amountToBeCollected = "amount_to_be_collected"
+            
         }
 
-        public init(addedToFyndCash: Bool? = nil, amountPaid: Double? = nil, amountPaidRoundoff: Double? = nil, brandCalculatedAmount: Double? = nil, cashback: Double? = nil, cashbackApplied: Double? = nil, codCharges: Double? = nil, couponEffectiveDiscount: Double? = nil, couponValue: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, gstTaxPercentage: Double? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, promotionEffectiveDiscount: Double? = nil, refundAmount: Double? = nil, refundCredit: Double? = nil, transferPrice: Double? = nil, valueOfGood: Double? = nil) {
+        public init(addedToFyndCash: Bool? = nil, amountPaid: Double? = nil, amountPaidRoundoff: Double? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double? = nil, cashback: Double? = nil, cashbackApplied: Double? = nil, codCharges: Double? = nil, couponEffectiveDiscount: Double? = nil, couponValue: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, gstTaxPercentage: Double? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, promotionEffectiveDiscount: Double? = nil, refundAmount: Double? = nil, refundCredit: Double? = nil, transferPrice: Double? = nil, valueOfGood: Double? = nil) {
             
             self.deliveryCharge = deliveryCharge
             
@@ -146,6 +150,8 @@ public extension ApplicationClient.Order {
             self.currencyCode = currencyCode
             
             self.fyndCredits = fyndCredits
+            
+            self.amountToBeCollected = amountToBeCollected
             
         }
 
@@ -416,6 +422,18 @@ public extension ApplicationClient.Order {
             }
             
             
+            
+            do {
+                amountToBeCollected = try container.decode(Double.self, forKey: .amountToBeCollected)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -507,6 +525,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(fyndCredits, forKey: .fyndCredits)
+            
+            
+            
+            try? container.encodeIfPresent(amountToBeCollected, forKey: .amountToBeCollected)
             
             
         }

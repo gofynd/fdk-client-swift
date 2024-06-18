@@ -18,6 +18,8 @@ public extension PlatformClient.Payment {
         
         public var mobileNumber: String
         
+        public var countryPhoneCode: String?
+        
         public var description: String?
         
         public var meta: CreatePaymentLinkMeta
@@ -33,6 +35,8 @@ public extension PlatformClient.Payment {
             
             case mobileNumber = "mobile_number"
             
+            case countryPhoneCode = "country_phone_code"
+            
             case description = "description"
             
             case meta = "meta"
@@ -41,13 +45,15 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(amount: Double, description: String? = nil, email: String, externalOrderId: String, meta: CreatePaymentLinkMeta, mobileNumber: String) {
+        public init(amount: Double, countryPhoneCode: String? = nil, description: String? = nil, email: String, externalOrderId: String, meta: CreatePaymentLinkMeta, mobileNumber: String) {
             
             self.email = email
             
             self.amount = amount
             
             self.mobileNumber = mobileNumber
+            
+            self.countryPhoneCode = countryPhoneCode
             
             self.description = description
             
@@ -74,6 +80,18 @@ public extension PlatformClient.Payment {
                 mobileNumber = try container.decode(String.self, forKey: .mobileNumber)
                 
             
+            
+            
+                do {
+                    countryPhoneCode = try container.decode(String.self, forKey: .countryPhoneCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -115,6 +133,11 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(mobileNumber, forKey: .mobileNumber)
+            
+            
+            
+            
+            try? container.encodeIfPresent(countryPhoneCode, forKey: .countryPhoneCode)
             
             
             
@@ -154,6 +177,8 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var mobileNumber: String
         
+        public var countryPhoneCode: String?
+        
         public var description: String?
         
         public var meta: CreatePaymentLinkMeta
@@ -169,6 +194,8 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case mobileNumber = "mobile_number"
             
+            case countryPhoneCode = "country_phone_code"
+            
             case description = "description"
             
             case meta = "meta"
@@ -177,13 +204,15 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(amount: Double, description: String? = nil, email: String, externalOrderId: String, meta: CreatePaymentLinkMeta, mobileNumber: String) {
+        public init(amount: Double, countryPhoneCode: String? = nil, description: String? = nil, email: String, externalOrderId: String, meta: CreatePaymentLinkMeta, mobileNumber: String) {
             
             self.email = email
             
             self.amount = amount
             
             self.mobileNumber = mobileNumber
+            
+            self.countryPhoneCode = countryPhoneCode
             
             self.description = description
             
@@ -210,6 +239,18 @@ public extension PlatformClient.ApplicationClient.Payment {
                 mobileNumber = try container.decode(String.self, forKey: .mobileNumber)
                 
             
+            
+            
+                do {
+                    countryPhoneCode = try container.decode(String.self, forKey: .countryPhoneCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -251,6 +292,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(mobileNumber, forKey: .mobileNumber)
+            
+            
+            
+            
+            try? container.encodeIfPresent(countryPhoneCode, forKey: .countryPhoneCode)
             
             
             

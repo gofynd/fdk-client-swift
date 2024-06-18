@@ -12,11 +12,13 @@ public extension PlatformClient.Catalog {
     class GetConfigMetadataResponse: Codable {
         
         
-        public var condition: [[String: Any]]?
+        public var condition: [ConditionItem]?
         
-        public var data: [[String: Any]]
+        public var data: [DataItem]
         
-        public var values: [[String: Any]]?
+        public var page: Page?
+        
+        public var values: GetConfigMetadataValues?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,15 +27,19 @@ public extension PlatformClient.Catalog {
             
             case data = "data"
             
+            case page = "page"
+            
             case values = "values"
             
         }
 
-        public init(condition: [[String: Any]]? = nil, data: [[String: Any]], values: [[String: Any]]? = nil) {
+        public init(condition: [ConditionItem]? = nil, data: [DataItem], page: Page? = nil, values: GetConfigMetadataValues? = nil) {
             
             self.condition = condition
             
             self.data = data
+            
+            self.page = page
             
             self.values = values
             
@@ -44,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    condition = try container.decode([[String: Any]].self, forKey: .condition)
+                    condition = try container.decode([ConditionItem].self, forKey: .condition)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,13 +61,25 @@ public extension PlatformClient.Catalog {
                 
             
             
-                data = try container.decode([[String: Any]].self, forKey: .data)
+                data = try container.decode([DataItem].self, forKey: .data)
                 
             
             
             
                 do {
-                    values = try container.decode([[String: Any]].self, forKey: .values)
+                    page = try container.decode(Page.self, forKey: .page)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    values = try container.decode(GetConfigMetadataValues.self, forKey: .values)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,6 +102,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(page, forKey: .page)
             
             
             
@@ -107,11 +130,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetConfigMetadataResponse: Codable {
         
         
-        public var condition: [[String: Any]]?
+        public var condition: [ConditionItem]?
         
-        public var data: [[String: Any]]
+        public var data: [DataItem]
         
-        public var values: [[String: Any]]?
+        public var page: Page?
+        
+        public var values: GetConfigMetadataValues?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -120,15 +145,19 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case data = "data"
             
+            case page = "page"
+            
             case values = "values"
             
         }
 
-        public init(condition: [[String: Any]]? = nil, data: [[String: Any]], values: [[String: Any]]? = nil) {
+        public init(condition: [ConditionItem]? = nil, data: [DataItem], page: Page? = nil, values: GetConfigMetadataValues? = nil) {
             
             self.condition = condition
             
             self.data = data
+            
+            self.page = page
             
             self.values = values
             
@@ -139,7 +168,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    condition = try container.decode([[String: Any]].self, forKey: .condition)
+                    condition = try container.decode([ConditionItem].self, forKey: .condition)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,13 +179,25 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                data = try container.decode([[String: Any]].self, forKey: .data)
+                data = try container.decode([DataItem].self, forKey: .data)
                 
             
             
             
                 do {
-                    values = try container.decode([[String: Any]].self, forKey: .values)
+                    page = try container.decode(Page.self, forKey: .page)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    values = try container.decode(GetConfigMetadataValues.self, forKey: .values)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -179,6 +220,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(page, forKey: .page)
             
             
             

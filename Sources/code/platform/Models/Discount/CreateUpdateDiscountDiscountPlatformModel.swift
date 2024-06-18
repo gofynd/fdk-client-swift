@@ -20,7 +20,7 @@ public extension PlatformClient.Discount {
         
         public var appIds: [String]
         
-        public var extensionIds: [String]
+        public var extensionIds: [String]?
         
         public var jobType: String
         
@@ -77,7 +77,7 @@ public extension PlatformClient.Discount {
             
         }
 
-        public init(appIds: [String], brandIds: [Int]? = nil, companyId: Int, discountLevel: String, discountMeta: DiscountMeta? = nil, discountType: String, extensionIds: [String], filePath: String? = nil, isActive: Bool, jobType: String, name: String, storeIds: [Int]? = nil, validity: ValidityObject, value: Int? = nil, zoneIds: [String]? = nil) {
+        public init(appIds: [String], brandIds: [Int]? = nil, companyId: Int, discountLevel: String, discountMeta: DiscountMeta? = nil, discountType: String, extensionIds: [String]? = nil, filePath: String? = nil, isActive: Bool, jobType: String, name: String, storeIds: [Int]? = nil, validity: ValidityObject, value: Int? = nil, zoneIds: [String]? = nil) {
             
             self.name = name
             
@@ -135,9 +135,16 @@ public extension PlatformClient.Discount {
             
             
             
-                extensionIds = try container.decode([String].self, forKey: .extensionIds)
+                do {
+                    extensionIds = try container.decode([String].self, forKey: .extensionIds)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 jobType = try container.decode(String.self, forKey: .jobType)

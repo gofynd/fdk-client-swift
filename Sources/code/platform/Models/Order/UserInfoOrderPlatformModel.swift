@@ -16,7 +16,7 @@ public extension PlatformClient.Order {
         
         public var userType: String?
         
-        public var primaryEmail: String
+        public var primaryEmail: String?
         
         public var gender: String?
         
@@ -45,7 +45,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(firstName: String, gender: String? = nil, lastName: String? = nil, primaryEmail: String, primaryMobileNumber: String, userId: String? = nil, userType: String? = nil) {
+        public init(firstName: String, gender: String? = nil, lastName: String? = nil, primaryEmail: String? = nil, primaryMobileNumber: String, userId: String? = nil, userType: String? = nil) {
             
             self.userId = userId
             
@@ -91,9 +91,16 @@ public extension PlatformClient.Order {
                 
             
             
-                primaryEmail = try container.decode(String.self, forKey: .primaryEmail)
+                do {
+                    primaryEmail = try container.decode(String.self, forKey: .primaryEmail)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -189,7 +196,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var userType: String?
         
-        public var primaryEmail: String
+        public var primaryEmail: String?
         
         public var gender: String?
         
@@ -218,7 +225,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(firstName: String, gender: String? = nil, lastName: String? = nil, primaryEmail: String, primaryMobileNumber: String, userId: String? = nil, userType: String? = nil) {
+        public init(firstName: String, gender: String? = nil, lastName: String? = nil, primaryEmail: String? = nil, primaryMobileNumber: String, userId: String? = nil, userType: String? = nil) {
             
             self.userId = userId
             
@@ -264,9 +271,16 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-                primaryEmail = try container.decode(String.self, forKey: .primaryEmail)
+                do {
+                    primaryEmail = try container.decode(String.self, forKey: .primaryEmail)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

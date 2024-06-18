@@ -12,7 +12,7 @@ public extension ApplicationClient.Cart {
         
         public var itemName: String?
         
-        public var itemPriceDetails: [String: Any]?
+        public var itemPriceDetails: ItemPriceDetails?
         
         public var itemBrandName: String?
         
@@ -37,7 +37,7 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(itemBrandName: String? = nil, itemId: Int? = nil, itemImagesUrl: [String]? = nil, itemName: String? = nil, itemPriceDetails: [String: Any]? = nil, itemSlug: String? = nil) {
+        public init(itemBrandName: String? = nil, itemId: Int? = nil, itemImagesUrl: [String]? = nil, itemName: String? = nil, itemPriceDetails: ItemPriceDetails? = nil, itemSlug: String? = nil) {
             
             self.itemSlug = itemSlug
             
@@ -82,7 +82,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                itemPriceDetails = try container.decode([String: Any].self, forKey: .itemPriceDetails)
+                itemPriceDetails = try container.decode(ItemPriceDetails.self, forKey: .itemPriceDetails)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

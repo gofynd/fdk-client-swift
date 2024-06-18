@@ -18,11 +18,15 @@ public extension ApplicationClient.Configuration {
         
         public var createdAt: String?
         
-        public var updatedAt: String?
+        public var modifiedAt: String?
         
         public var decimalDigits: Int?
         
         public var symbol: String?
+        
+        public var countryName: String?
+        
+        public var countryCode: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -37,15 +41,19 @@ public extension ApplicationClient.Configuration {
             
             case createdAt = "created_at"
             
-            case updatedAt = "updated_at"
+            case modifiedAt = "modified_at"
             
             case decimalDigits = "decimal_digits"
             
             case symbol = "symbol"
             
+            case countryName = "country_name"
+            
+            case countryCode = "country_code"
+            
         }
 
-        public init(code: String? = nil, createdAt: String? = nil, decimalDigits: Int? = nil, isActive: Bool? = nil, name: String? = nil, symbol: String? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(code: String? = nil, countryCode: String? = nil, countryName: String? = nil, createdAt: String? = nil, decimalDigits: Int? = nil, isActive: Bool? = nil, modifiedAt: String? = nil, name: String? = nil, symbol: String? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -57,11 +65,15 @@ public extension ApplicationClient.Configuration {
             
             self.createdAt = createdAt
             
-            self.updatedAt = updatedAt
+            self.modifiedAt = modifiedAt
             
             self.decimalDigits = decimalDigits
             
             self.symbol = symbol
+            
+            self.countryName = countryName
+            
+            self.countryCode = countryCode
             
         }
 
@@ -130,7 +142,7 @@ public extension ApplicationClient.Configuration {
             
             
             do {
-                updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -155,6 +167,30 @@ public extension ApplicationClient.Configuration {
             
             do {
                 symbol = try container.decode(String.self, forKey: .symbol)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                countryName = try container.decode(String.self, forKey: .countryName)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                countryCode = try container.decode(String.self, forKey: .countryCode)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -190,7 +226,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
             
             
             
@@ -199,6 +235,14 @@ public extension ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(symbol, forKey: .symbol)
+            
+            
+            
+            try? container.encodeIfPresent(countryName, forKey: .countryName)
+            
+            
+            
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
             
             
         }

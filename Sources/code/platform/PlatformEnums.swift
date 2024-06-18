@@ -10,6 +10,8 @@ import Foundation
 
 
 
+
+
 public extension PlatformClient.Catalog {
     
     
@@ -38,6 +40,26 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
 
 
+public extension PlatformClient.Content {
+    
+    
+    /*
+        Enum: GenerationEntityType
+        Used By: Content
+    */
+    enum GenerationEntityType: String, Codable {
+        
+        case title = "title"
+        
+        case description = "description"
+        
+    }
+
+    
+    
+    
+}
+
 
 
 public extension PlatformClient.ApplicationClient.Content {
@@ -59,8 +81,6 @@ public extension PlatformClient.ApplicationClient.Content {
     
     
 }
-
-
 
 
 
@@ -106,6 +126,8 @@ public extension PlatformClient.Lead {
         case log = "log"
         
         case comment = "comment"
+        
+        case thread = "thread"
         
     }
 
@@ -189,6 +211,8 @@ public extension PlatformClient.ApplicationClient.Lead {
         
         case comment = "comment"
         
+        case thread = "thread"
+        
     }
 
     
@@ -254,6 +278,24 @@ public extension PlatformClient.ApplicationClient.Lead {
 
 
 
+public extension PlatformClient.Theme {
+    
+    
+    
+}
+
+
+
+public extension PlatformClient.ApplicationClient.Theme {
+    
+    
+    
+}
+
+
+
+
+
 
 
 
@@ -270,8 +312,6 @@ public extension PlatformClient.Webhook {
         case active = "active"
         
         case inactive = "inactive"
-        
-        case blocked = "blocked"
         
     }
 

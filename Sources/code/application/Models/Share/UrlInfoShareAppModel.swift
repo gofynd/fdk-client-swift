@@ -10,28 +10,28 @@ public extension ApplicationClient.Share {
         
         public var original: String?
         
-        public var short: String?
-        
         public var hash: String?
+        
+        public var shortUrl: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case original = "original"
             
-            case short = "short"
-            
             case hash = "hash"
+            
+            case shortUrl = "short_url"
             
         }
 
-        public init(hash: String? = nil, original: String? = nil, short: String? = nil) {
+        public init(hash: String? = nil, original: String? = nil, shortUrl: String? = nil) {
             
             self.original = original
             
-            self.short = short
-            
             self.hash = hash
+            
+            self.shortUrl = shortUrl
             
         }
 
@@ -41,18 +41,6 @@ public extension ApplicationClient.Share {
             
             do {
                 original = try container.decode(String.self, forKey: .original)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                short = try container.decode(String.self, forKey: .short)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,6 +62,18 @@ public extension ApplicationClient.Share {
             }
             
             
+            
+            do {
+                shortUrl = try container.decode(String.self, forKey: .shortUrl)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -84,11 +84,11 @@ public extension ApplicationClient.Share {
             
             
             
-            try? container.encodeIfPresent(short, forKey: .short)
-            
-            
-            
             try? container.encodeIfPresent(hash, forKey: .hash)
+            
+            
+            
+            try? container.encodeIfPresent(shortUrl, forKey: .shortUrl)
             
             
         }

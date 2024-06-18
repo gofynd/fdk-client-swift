@@ -12,18 +12,18 @@ public extension PlatformClient.Serviceability {
     class ErrorResponse: Codable {
         
         
-        public var message: String
-        
         public var value: String
+        
+        public var message: String
         
         public var type: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case message = "message"
-            
             case value = "value"
+            
+            case message = "message"
             
             case type = "type"
             
@@ -31,9 +31,9 @@ public extension PlatformClient.Serviceability {
 
         public init(message: String, type: String, value: String) {
             
-            self.message = message
-            
             self.value = value
+            
+            self.message = message
             
             self.type = type
             
@@ -43,12 +43,12 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                message = try container.decode(String.self, forKey: .message)
+                value = try container.decode(String.self, forKey: .value)
                 
             
             
             
-                value = try container.decode(String.self, forKey: .value)
+                message = try container.decode(String.self, forKey: .message)
                 
             
             
@@ -64,12 +64,12 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            
             try? container.encodeIfPresent(value, forKey: .value)
+            
+            
+            
+            
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
@@ -93,18 +93,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ErrorResponse: Codable {
         
         
-        public var message: String
-        
         public var value: String
+        
+        public var message: String
         
         public var type: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case message = "message"
-            
             case value = "value"
+            
+            case message = "message"
             
             case type = "type"
             
@@ -112,9 +112,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         public init(message: String, type: String, value: String) {
             
-            self.message = message
-            
             self.value = value
+            
+            self.message = message
             
             self.type = type
             
@@ -124,12 +124,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                message = try container.decode(String.self, forKey: .message)
+                value = try container.decode(String.self, forKey: .value)
                 
             
             
             
-                value = try container.decode(String.self, forKey: .value)
+                message = try container.decode(String.self, forKey: .message)
                 
             
             
@@ -145,12 +145,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            
             try? container.encodeIfPresent(value, forKey: .value)
+            
+            
+            
+            
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             

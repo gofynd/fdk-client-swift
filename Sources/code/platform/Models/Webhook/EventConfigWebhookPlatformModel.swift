@@ -20,6 +20,12 @@ public extension PlatformClient.Webhook {
         
         public var eventCategory: String?
         
+        public var subscriberEventMapping: SubscriberEventMapping?
+        
+        public var eventSchema: [String: Any]?
+        
+        public var group: String?
+        
         public var version: String?
         
         public var displayName: String?
@@ -27,6 +33,8 @@ public extension PlatformClient.Webhook {
         public var description: String?
         
         public var createdOn: String?
+        
+        public var updatedOn: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -39,6 +47,12 @@ public extension PlatformClient.Webhook {
             
             case eventCategory = "event_category"
             
+            case subscriberEventMapping = "subscriber_event_mapping"
+            
+            case eventSchema = "event_schema"
+            
+            case group = "group"
+            
             case version = "version"
             
             case displayName = "display_name"
@@ -47,9 +61,11 @@ public extension PlatformClient.Webhook {
             
             case createdOn = "created_on"
             
+            case updatedOn = "updated_on"
+            
         }
 
-        public init(createdOn: String? = nil, description: String? = nil, displayName: String? = nil, eventCategory: String? = nil, eventName: String? = nil, eventType: String? = nil, id: Int? = nil, version: String? = nil) {
+        public init(createdOn: String? = nil, description: String? = nil, displayName: String? = nil, eventCategory: String? = nil, eventName: String? = nil, eventSchema: [String: Any]? = nil, eventType: String? = nil, group: String? = nil, id: Int? = nil, subscriberEventMapping: SubscriberEventMapping? = nil, updatedOn: String? = nil, version: String? = nil) {
             
             self.id = id
             
@@ -59,6 +75,12 @@ public extension PlatformClient.Webhook {
             
             self.eventCategory = eventCategory
             
+            self.subscriberEventMapping = subscriberEventMapping
+            
+            self.eventSchema = eventSchema
+            
+            self.group = group
+            
             self.version = version
             
             self.displayName = displayName
@@ -66,6 +88,8 @@ public extension PlatformClient.Webhook {
             self.description = description
             
             self.createdOn = createdOn
+            
+            self.updatedOn = updatedOn
             
         }
 
@@ -111,6 +135,42 @@ public extension PlatformClient.Webhook {
             
                 do {
                     eventCategory = try container.decode(String.self, forKey: .eventCategory)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    subscriberEventMapping = try container.decode(SubscriberEventMapping.self, forKey: .subscriberEventMapping)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    eventSchema = try container.decode([String: Any].self, forKey: .eventSchema)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    group = try container.decode(String.self, forKey: .group)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -168,6 +228,18 @@ public extension PlatformClient.Webhook {
                 }
                 
             
+            
+                do {
+                    updatedOn = try container.decode(String.self, forKey: .updatedOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -195,6 +267,21 @@ public extension PlatformClient.Webhook {
             
             
             
+            try? container.encodeIfPresent(subscriberEventMapping, forKey: .subscriberEventMapping)
+            
+            
+            
+            
+            try? container.encodeIfPresent(eventSchema, forKey: .eventSchema)
+            
+            
+            
+            
+            try? container.encodeIfPresent(group, forKey: .group)
+            
+            
+            
+            
             try? container.encodeIfPresent(version, forKey: .version)
             
             
@@ -211,6 +298,11 @@ public extension PlatformClient.Webhook {
             
             
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(updatedOn, forKey: .updatedOn)
             
             
         }

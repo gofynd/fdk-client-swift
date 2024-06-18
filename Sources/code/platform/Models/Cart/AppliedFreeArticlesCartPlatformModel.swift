@@ -20,7 +20,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var articleId: String?
         
-        public var freeGiftItemDetails: FreeGiftItem?
+        public var freeGiftItemDetails: FreeGiftItems?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -35,7 +35,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(articleId: String? = nil, freeGiftItemDetails: FreeGiftItem? = nil, parentItemIdentifier: String? = nil, quantity: Int? = nil) {
+        public init(articleId: String? = nil, freeGiftItemDetails: FreeGiftItems? = nil, parentItemIdentifier: String? = nil, quantity: Int? = nil) {
             
             self.parentItemIdentifier = parentItemIdentifier
             
@@ -88,7 +88,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    freeGiftItemDetails = try container.decode(FreeGiftItem.self, forKey: .freeGiftItemDetails)
+                    freeGiftItemDetails = try container.decode(FreeGiftItems.self, forKey: .freeGiftItemDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

@@ -14,7 +14,7 @@ public extension PlatformClient.ApplicationClient.User {
     class CustomerListResponseSchema: Codable {
         
         
-        public var items: [UserSchema]?
+        public var items: [UserSearchSchema]?
         
         public var page: PaginationSchema?
         
@@ -27,7 +27,7 @@ public extension PlatformClient.ApplicationClient.User {
             
         }
 
-        public init(items: [UserSchema]? = nil, page: PaginationSchema? = nil) {
+        public init(items: [UserSearchSchema]? = nil, page: PaginationSchema? = nil) {
             
             self.items = items
             
@@ -40,7 +40,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    items = try container.decode([UserSchema].self, forKey: .items)
+                    items = try container.decode([UserSearchSchema].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

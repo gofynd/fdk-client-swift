@@ -12,9 +12,9 @@ public extension PlatformClient.Billing {
     class EntityChargePrice: Codable {
         
         
-        public var amount: Double
+        public var amount: Double?
         
-        public var currencyCode: String
+        public var currencyCode: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Billing {
             
         }
 
-        public init(amount: Double, currencyCode: String) {
+        public init(amount: Double? = nil, currencyCode: String? = nil) {
             
             self.amount = amount
             
@@ -37,14 +37,28 @@ public extension PlatformClient.Billing {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                amount = try container.decode(Double.self, forKey: .amount)
+                do {
+                    amount = try container.decode(Double.self, forKey: .amount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                do {
+                    currencyCode = try container.decode(String.self, forKey: .currencyCode)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         

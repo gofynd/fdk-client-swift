@@ -22,9 +22,7 @@ public extension PlatformClient.Serviceability {
         
         public var isActive: Bool
         
-        public var product: ListViewProduct
-        
-        public var pincodesCount: Int
+        public var regionsCount: Int
         
         public var companyId: Int
         
@@ -43,9 +41,7 @@ public extension PlatformClient.Serviceability {
             
             case isActive = "is_active"
             
-            case product = "product"
-            
-            case pincodesCount = "pincodes_count"
+            case regionsCount = "regions_count"
             
             case companyId = "company_id"
             
@@ -53,7 +49,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(channels: [ListViewChannels], companyId: Int, isActive: Bool, name: String, pincodesCount: Int, product: ListViewProduct, slug: String, storesCount: Int, zoneId: String) {
+        public init(channels: [ListViewChannels], companyId: Int, isActive: Bool, name: String, regionsCount: Int, slug: String, storesCount: Int, zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -65,9 +61,7 @@ public extension PlatformClient.Serviceability {
             
             self.isActive = isActive
             
-            self.product = product
-            
-            self.pincodesCount = pincodesCount
+            self.regionsCount = regionsCount
             
             self.companyId = companyId
             
@@ -104,12 +98,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-                product = try container.decode(ListViewProduct.self, forKey: .product)
-                
-            
-            
-            
-                pincodesCount = try container.decode(Int.self, forKey: .pincodesCount)
+                regionsCount = try container.decode(Int.self, forKey: .regionsCount)
                 
             
             
@@ -155,12 +144,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(product, forKey: .product)
-            
-            
-            
-            
-            try? container.encodeIfPresent(pincodesCount, forKey: .pincodesCount)
+            try? container.encodeIfPresent(regionsCount, forKey: .regionsCount)
             
             
             
@@ -199,9 +183,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var isActive: Bool
         
-        public var product: ListViewProduct
-        
-        public var pincodesCount: Int
+        public var regionsCount: Int
         
         public var companyId: Int
         
@@ -220,9 +202,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case isActive = "is_active"
             
-            case product = "product"
-            
-            case pincodesCount = "pincodes_count"
+            case regionsCount = "regions_count"
             
             case companyId = "company_id"
             
@@ -230,7 +210,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(channels: [ListViewChannels], companyId: Int, isActive: Bool, name: String, pincodesCount: Int, product: ListViewProduct, slug: String, storesCount: Int, zoneId: String) {
+        public init(channels: [ListViewChannels], companyId: Int, isActive: Bool, name: String, regionsCount: Int, slug: String, storesCount: Int, zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -242,9 +222,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             self.isActive = isActive
             
-            self.product = product
-            
-            self.pincodesCount = pincodesCount
+            self.regionsCount = regionsCount
             
             self.companyId = companyId
             
@@ -281,12 +259,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                product = try container.decode(ListViewProduct.self, forKey: .product)
-                
-            
-            
-            
-                pincodesCount = try container.decode(Int.self, forKey: .pincodesCount)
+                regionsCount = try container.decode(Int.self, forKey: .regionsCount)
                 
             
             
@@ -332,12 +305,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(product, forKey: .product)
-            
-            
-            
-            
-            try? container.encodeIfPresent(pincodesCount, forKey: .pincodesCount)
+            try? container.encodeIfPresent(regionsCount, forKey: .regionsCount)
             
             
             

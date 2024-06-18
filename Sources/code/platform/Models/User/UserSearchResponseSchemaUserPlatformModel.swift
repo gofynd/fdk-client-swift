@@ -14,7 +14,7 @@ public extension PlatformClient.ApplicationClient.User {
     class UserSearchResponseSchema: Codable {
         
         
-        public var users: [UserSchema]?
+        public var users: [UserSearchSchema]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -23,7 +23,7 @@ public extension PlatformClient.ApplicationClient.User {
             
         }
 
-        public init(users: [UserSchema]? = nil) {
+        public init(users: [UserSearchSchema]? = nil) {
             
             self.users = users
             
@@ -34,7 +34,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    users = try container.decode([UserSchema].self, forKey: .users)
+                    users = try container.decode([UserSearchSchema].self, forKey: .users)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

@@ -20,15 +20,15 @@ public extension PlatformClient.Order {
         
         public var articles: [ArticleDetails]
         
-        public var dpId: Int?
+        public var dpId: String?
         
         public var meta: [String: Any]?
         
         public var affiliateShipmentId: String
         
-        public var lockStatus: Bool?
+        public var dpOptions: [String: Any]?
         
-        public var lockMessage: String?
+        public var lockStatus: Bool?
         
         public var actionToStatus: [String: Any]?
         
@@ -49,15 +49,15 @@ public extension PlatformClient.Order {
             
             case affiliateShipmentId = "affiliate_shipment_id"
             
-            case lockStatus = "lock_status"
+            case dpOptions = "dp_options"
             
-            case lockMessage = "lock_message"
+            case lockStatus = "lock_status"
             
             case actionToStatus = "action_to_status"
             
         }
 
-        public init(actionToStatus: [String: Any]? = nil, affiliateShipmentId: String, articles: [ArticleDetails], boxType: String? = nil, dpId: Int? = nil, fulfillmentId: Int, lockMessage: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, shipments: Int) {
+        public init(actionToStatus: [String: Any]? = nil, affiliateShipmentId: String, articles: [ArticleDetails], boxType: String? = nil, dpId: String? = nil, dpOptions: [String: Any]? = nil, fulfillmentId: Int, lockStatus: Bool? = nil, meta: [String: Any]? = nil, shipments: Int) {
             
             self.boxType = boxType
             
@@ -73,9 +73,9 @@ public extension PlatformClient.Order {
             
             self.affiliateShipmentId = affiliateShipmentId
             
-            self.lockStatus = lockStatus
+            self.dpOptions = dpOptions
             
-            self.lockMessage = lockMessage
+            self.lockStatus = lockStatus
             
             self.actionToStatus = actionToStatus
             
@@ -113,7 +113,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    dpId = try container.decode(Int.self, forKey: .dpId)
+                    dpId = try container.decode(String.self, forKey: .dpId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    lockStatus = try container.decode(Bool.self, forKey: .lockStatus)
+                    dpOptions = try container.decode([String: Any].self, forKey: .dpOptions)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -154,7 +154,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    lockMessage = try container.decode(String.self, forKey: .lockMessage)
+                    lockStatus = try container.decode(Bool.self, forKey: .lockStatus)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -218,12 +218,12 @@ public extension PlatformClient.Order {
             
             
             
+            try? container.encodeIfPresent(dpOptions, forKey: .dpOptions)
+            
+            
+            
+            
             try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
-            
-            
-            
-            
-            try? container.encodeIfPresent(lockMessage, forKey: .lockMessage)
             
             
             
@@ -255,15 +255,15 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var articles: [ArticleDetails]
         
-        public var dpId: Int?
+        public var dpId: String?
         
         public var meta: [String: Any]?
         
         public var affiliateShipmentId: String
         
-        public var lockStatus: Bool?
+        public var dpOptions: [String: Any]?
         
-        public var lockMessage: String?
+        public var lockStatus: Bool?
         
         public var actionToStatus: [String: Any]?
         
@@ -284,15 +284,15 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case affiliateShipmentId = "affiliate_shipment_id"
             
-            case lockStatus = "lock_status"
+            case dpOptions = "dp_options"
             
-            case lockMessage = "lock_message"
+            case lockStatus = "lock_status"
             
             case actionToStatus = "action_to_status"
             
         }
 
-        public init(actionToStatus: [String: Any]? = nil, affiliateShipmentId: String, articles: [ArticleDetails], boxType: String? = nil, dpId: Int? = nil, fulfillmentId: Int, lockMessage: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, shipments: Int) {
+        public init(actionToStatus: [String: Any]? = nil, affiliateShipmentId: String, articles: [ArticleDetails], boxType: String? = nil, dpId: String? = nil, dpOptions: [String: Any]? = nil, fulfillmentId: Int, lockStatus: Bool? = nil, meta: [String: Any]? = nil, shipments: Int) {
             
             self.boxType = boxType
             
@@ -308,9 +308,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.affiliateShipmentId = affiliateShipmentId
             
-            self.lockStatus = lockStatus
+            self.dpOptions = dpOptions
             
-            self.lockMessage = lockMessage
+            self.lockStatus = lockStatus
             
             self.actionToStatus = actionToStatus
             
@@ -348,7 +348,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    dpId = try container.decode(Int.self, forKey: .dpId)
+                    dpId = try container.decode(String.self, forKey: .dpId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -377,7 +377,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    lockStatus = try container.decode(Bool.self, forKey: .lockStatus)
+                    dpOptions = try container.decode([String: Any].self, forKey: .dpOptions)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -389,7 +389,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    lockMessage = try container.decode(String.self, forKey: .lockMessage)
+                    lockStatus = try container.decode(Bool.self, forKey: .lockStatus)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -453,12 +453,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
+            try? container.encodeIfPresent(dpOptions, forKey: .dpOptions)
+            
+            
+            
+            
             try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
-            
-            
-            
-            
-            try? container.encodeIfPresent(lockMessage, forKey: .lockMessage)
             
             
             

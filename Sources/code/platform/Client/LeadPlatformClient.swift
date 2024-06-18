@@ -16,8 +16,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Gets the list of company level tickets and/or ticket filters depending on query params
-        * Description: Gets the list of company level tickets and/or ticket filters
+        * Summary: List tickets
+        * Description: List all tickets created within the platform at company level
         **/
         public func getPlatformTickets(
             items: Bool?,
@@ -126,109 +126,10 @@ if let value = pageSize {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
-        * Summary: get paginator for getPlatformTickets
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getPlatformTicketsPaginator(
-            items: Bool?,
-            filters: Bool?,
-            q: String?,
-            status: String?,
-            priority: PriorityEnum?,
-            category: String?,
-            pageSize: Int?
-            
-            ) -> Paginator<TicketList> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<TicketList>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getPlatformTickets(
-                        
-                        items: items,
-                        filters: filters,
-                        q: q,
-                        status: status,
-                        priority: priority,
-                        category: category,
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Creates a company level ticket
-        * Description: Creates a company level ticket
+        * Summary: Create ticket
+        * Description: Create a new ticket at application level
         **/
         public func createTicket(
             body: AddTicketPayload,
@@ -276,8 +177,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Retreives ticket details of a company level ticket with ticket ID
-        * Description: Retreives ticket details of a company level ticket
+        * Summary: Get a ticket
+        * Description: Get detailed information about a specific ticket which is raised at company level
         **/
         public func getPlatformTicket(
             id: String,
@@ -325,8 +226,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Edits ticket details of a company level ticket
-        * Description: Edits ticket details of a company level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
+        * Summary: Update a ticket
+        * Description: Modify the content and settings of a specific company level ticket.
         **/
         public func editPlatformTicket(
             id: String,
@@ -376,8 +277,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Create history for specific company level ticket
-        * Description: Create history for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+        * Summary: Create ticket history
+        * Description: Create futher interactions on a company level ticket such as changing it's status, priority or replying to a ticket via a thread.
         **/
         public func createPlatformTicketHistory(
             id: String,
@@ -425,8 +326,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Gets history list for specific company level ticket
-        * Description: Gets history list for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+        * Summary: Get ticket history
+        * Description: List history records for a company level ticket.
         **/
         public func getPlatformTicketHistory(
             id: String,
@@ -474,8 +375,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Gets a list of feedback submitted against that ticket
-        * Description: Gets a list of feedback submitted against that ticket
+        * Summary: List feedbacks
+        * Description: Get feedback information related to a ticket.
         **/
         public func getFeedbacks(
             id: String,
@@ -523,8 +424,8 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Submit a response for feeback form against that ticket
-        * Description: Submit a response for feeback form against that ticket
+        * Summary: Submit feedback
+        * Description: Provide feedback on a ticket and it's resolution.
         **/
         public func submitFeedback(
             id: String,
@@ -576,116 +477,15 @@ if let value = pageSize {
         
         
         
-        /**
-        *
-        * Summary: Get Token to join a specific Video Room using it's unqiue name
-        * Description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
-        **/
-        public func getTokenForPlatformVideoRoom(
-            uniqueName: String,
-            
-            onResponse: @escaping (_ response: GetTokenForVideoRoomResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/lead/v1.0/company/\(companyId)/video/room/\(uniqueName)/token",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetTokenForVideoRoomResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
         
         /**
         *
-        * Summary: Get participants of a specific Video Room using it's unique name
-        * Description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
-        **/
-        public func getPlatformVideoParticipants(
-            uniqueName: String,
-            
-            onResponse: @escaping (_ response: GetParticipantsInsideVideoRoomResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/lead/v1.0/company/\(companyId)/video/room/\(uniqueName)/participants",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetParticipantsInsideVideoRoomResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get general support configuration.
-        * Description: Get general support configuration.
+        * Summary: Get general configuration
+        * Description: Get general configuration settings related to support system for company tickets
         **/
         public func getGeneralConfig(
             
-            onResponse: @escaping (_ response: CloseVideoRoomResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GeneralConfigResponse?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -710,7 +510,7 @@ if let value = pageSize {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CloseVideoRoomResponse.self, from: data)
+                        let response = Utility.decode(GeneralConfigResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

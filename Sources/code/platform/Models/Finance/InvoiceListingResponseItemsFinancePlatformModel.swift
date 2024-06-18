@@ -12,7 +12,7 @@ public extension PlatformClient.Finance {
     class InvoiceListingResponseItems: Codable {
         
         
-        public var amount: String?
+        public var amount: Double?
         
         public var company: String?
         
@@ -31,6 +31,8 @@ public extension PlatformClient.Finance {
         public var isDownloadable: Bool?
         
         public var invoiceId: String?
+        
+        public var currency: Currency?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -55,9 +57,11 @@ public extension PlatformClient.Finance {
             
             case invoiceId = "invoice_id"
             
+            case currency = "currency"
+            
         }
 
-        public init(amount: String? = nil, company: String? = nil, dueDate: String? = nil, invoiceDate: String? = nil, invoiceId: String? = nil, invoiceNumber: String? = nil, invoiceType: String? = nil, isDownloadable: Bool? = nil, period: String? = nil, status: String? = nil) {
+        public init(amount: Double? = nil, company: String? = nil, currency: Currency? = nil, dueDate: String? = nil, invoiceDate: String? = nil, invoiceId: String? = nil, invoiceNumber: String? = nil, invoiceType: String? = nil, isDownloadable: Bool? = nil, period: String? = nil, status: String? = nil) {
             
             self.amount = amount
             
@@ -79,6 +83,8 @@ public extension PlatformClient.Finance {
             
             self.invoiceId = invoiceId
             
+            self.currency = currency
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -86,7 +92,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    amount = try container.decode(String.self, forKey: .amount)
+                    amount = try container.decode(Double.self, forKey: .amount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -204,6 +210,18 @@ public extension PlatformClient.Finance {
                 }
                 
             
+            
+                do {
+                    currency = try container.decode(Currency.self, forKey: .currency)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -257,6 +275,11 @@ public extension PlatformClient.Finance {
             
             
             try? container.encodeIfPresent(invoiceId, forKey: .invoiceId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
         }

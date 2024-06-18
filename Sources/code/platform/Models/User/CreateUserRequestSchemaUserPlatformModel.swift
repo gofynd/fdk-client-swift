@@ -30,6 +30,8 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var externalId: String?
         
+        public var rrId: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -49,9 +51,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             case externalId = "external_id"
             
+            case rrId = "rr_id"
+            
         }
 
-        public init(email: String? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumber: String, username: String) {
+        public init(email: String? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumber: String, rrId: String? = nil, username: String) {
             
             self.phoneNumber = phoneNumber
             
@@ -68,6 +72,8 @@ public extension PlatformClient.ApplicationClient.User {
             self.meta = meta
             
             self.externalId = externalId
+            
+            self.rrId = rrId
             
         }
 
@@ -156,6 +162,18 @@ public extension PlatformClient.ApplicationClient.User {
                 }
                 
             
+            
+                do {
+                    rrId = try container.decode(String.self, forKey: .rrId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -199,6 +217,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(externalId, forKey: .externalId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(rrId, forKey: .rrId)
             
             
         }

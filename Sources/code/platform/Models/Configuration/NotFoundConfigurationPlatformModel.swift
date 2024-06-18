@@ -14,16 +14,22 @@ public extension PlatformClient.Configuration {
         
         public var message: String?
         
+        public var success: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case message = "message"
             
+            case success = "success"
+            
         }
 
-        public init(message: String? = nil) {
+        public init(message: String? = nil, success: Bool? = nil) {
             
             self.message = message
+            
+            self.success = success
             
         }
 
@@ -42,6 +48,18 @@ public extension PlatformClient.Configuration {
                 }
                 
             
+            
+                do {
+                    success = try container.decode(Bool.self, forKey: .success)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -50,6 +68,11 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }
@@ -70,16 +93,22 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var message: String?
         
+        public var success: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case message = "message"
             
+            case success = "success"
+            
         }
 
-        public init(message: String? = nil) {
+        public init(message: String? = nil, success: Bool? = nil) {
             
             self.message = message
+            
+            self.success = success
             
         }
 
@@ -98,6 +127,18 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
+            
+                do {
+                    success = try container.decode(Bool.self, forKey: .success)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -106,6 +147,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }

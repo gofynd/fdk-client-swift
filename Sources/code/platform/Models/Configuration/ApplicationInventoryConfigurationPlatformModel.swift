@@ -28,6 +28,12 @@ public extension PlatformClient.Configuration {
         
         public var logistics: AppLogisticsConfig?
         
+        public var piiMasking: PiiMasking?
+        
+        public var tags: [String]?
+        
+        public var v: Int?
+        
         public var business: String?
         
         public var commsEnabled: Bool?
@@ -44,7 +50,7 @@ public extension PlatformClient.Configuration {
         
         public var createdAt: String?
         
-        public var updatedAt: String?
+        public var modifiedAt: String?
         
         public var modifiedBy: String?
         
@@ -67,6 +73,12 @@ public extension PlatformClient.Configuration {
             
             case logistics = "logistics"
             
+            case piiMasking = "pii_masking"
+            
+            case tags = "tags"
+            
+            case v = "__v"
+            
             case business = "business"
             
             case commsEnabled = "comms_enabled"
@@ -83,13 +95,13 @@ public extension PlatformClient.Configuration {
             
             case createdAt = "created_at"
             
-            case updatedAt = "updated_at"
+            case modifiedAt = "modified_at"
             
             case modifiedBy = "modified_by"
             
         }
 
-        public init(app: String? = nil, articleAssignment: ArticleAssignmentConfig? = nil, authentication: AuthenticationConfig? = nil, business: String? = nil, cart: AppCartConfig? = nil, commsEnabled: Bool? = nil, communication: CommunicationConfig? = nil, createdAt: String? = nil, inventory: AppInventoryConfig? = nil, logistics: AppLogisticsConfig? = nil, loyaltyPoints: LoyaltyPointsConfig? = nil, modifiedBy: String? = nil, order: AppOrderConfig? = nil, payment: AppPaymentConfig? = nil, platforms: [String]? = nil, rewardPoints: RewardPointsConfig? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(app: String? = nil, articleAssignment: ArticleAssignmentConfig? = nil, authentication: AuthenticationConfig? = nil, business: String? = nil, cart: AppCartConfig? = nil, commsEnabled: Bool? = nil, communication: CommunicationConfig? = nil, createdAt: String? = nil, inventory: AppInventoryConfig? = nil, logistics: AppLogisticsConfig? = nil, loyaltyPoints: LoyaltyPointsConfig? = nil, modifiedAt: String? = nil, modifiedBy: String? = nil, order: AppOrderConfig? = nil, payment: AppPaymentConfig? = nil, piiMasking: PiiMasking? = nil, platforms: [String]? = nil, rewardPoints: RewardPointsConfig? = nil, tags: [String]? = nil, id: String? = nil, v: Int? = nil) {
             
             self.inventory = inventory
             
@@ -107,6 +119,12 @@ public extension PlatformClient.Configuration {
             
             self.logistics = logistics
             
+            self.piiMasking = piiMasking
+            
+            self.tags = tags
+            
+            self.v = v
+            
             self.business = business
             
             self.commsEnabled = commsEnabled
@@ -123,7 +141,7 @@ public extension PlatformClient.Configuration {
             
             self.createdAt = createdAt
             
-            self.updatedAt = updatedAt
+            self.modifiedAt = modifiedAt
             
             self.modifiedBy = modifiedBy
             
@@ -219,6 +237,42 @@ public extension PlatformClient.Configuration {
             
                 do {
                     logistics = try container.decode(AppLogisticsConfig.self, forKey: .logistics)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    piiMasking = try container.decode(PiiMasking.self, forKey: .piiMasking)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    tags = try container.decode([String].self, forKey: .tags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    v = try container.decode(Int.self, forKey: .v)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -326,7 +380,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -395,6 +449,21 @@ public extension PlatformClient.Configuration {
             
             
             
+            try? container.encodeIfPresent(piiMasking, forKey: .piiMasking)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(v, forKey: .v)
+            
+            
+            
+            
             try? container.encodeIfPresent(business, forKey: .business)
             
             
@@ -435,7 +504,7 @@ public extension PlatformClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
             
             
             
@@ -475,6 +544,12 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var logistics: AppLogisticsConfig?
         
+        public var piiMasking: PiiMasking?
+        
+        public var tags: [String]?
+        
+        public var v: Int?
+        
         public var business: String?
         
         public var commsEnabled: Bool?
@@ -491,7 +566,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var createdAt: String?
         
-        public var updatedAt: String?
+        public var modifiedAt: String?
         
         public var modifiedBy: String?
         
@@ -514,6 +589,12 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case logistics = "logistics"
             
+            case piiMasking = "pii_masking"
+            
+            case tags = "tags"
+            
+            case v = "__v"
+            
             case business = "business"
             
             case commsEnabled = "comms_enabled"
@@ -530,13 +611,13 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case createdAt = "created_at"
             
-            case updatedAt = "updated_at"
+            case modifiedAt = "modified_at"
             
             case modifiedBy = "modified_by"
             
         }
 
-        public init(app: String? = nil, articleAssignment: ArticleAssignmentConfig? = nil, authentication: AuthenticationConfig? = nil, business: String? = nil, cart: AppCartConfig? = nil, commsEnabled: Bool? = nil, communication: CommunicationConfig? = nil, createdAt: String? = nil, inventory: AppInventoryConfig? = nil, logistics: AppLogisticsConfig? = nil, loyaltyPoints: LoyaltyPointsConfig? = nil, modifiedBy: String? = nil, order: AppOrderConfig? = nil, payment: AppPaymentConfig? = nil, platforms: [String]? = nil, rewardPoints: RewardPointsConfig? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(app: String? = nil, articleAssignment: ArticleAssignmentConfig? = nil, authentication: AuthenticationConfig? = nil, business: String? = nil, cart: AppCartConfig? = nil, commsEnabled: Bool? = nil, communication: CommunicationConfig? = nil, createdAt: String? = nil, inventory: AppInventoryConfig? = nil, logistics: AppLogisticsConfig? = nil, loyaltyPoints: LoyaltyPointsConfig? = nil, modifiedAt: String? = nil, modifiedBy: String? = nil, order: AppOrderConfig? = nil, payment: AppPaymentConfig? = nil, piiMasking: PiiMasking? = nil, platforms: [String]? = nil, rewardPoints: RewardPointsConfig? = nil, tags: [String]? = nil, id: String? = nil, v: Int? = nil) {
             
             self.inventory = inventory
             
@@ -554,6 +635,12 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             self.logistics = logistics
             
+            self.piiMasking = piiMasking
+            
+            self.tags = tags
+            
+            self.v = v
+            
             self.business = business
             
             self.commsEnabled = commsEnabled
@@ -570,7 +657,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             self.createdAt = createdAt
             
-            self.updatedAt = updatedAt
+            self.modifiedAt = modifiedAt
             
             self.modifiedBy = modifiedBy
             
@@ -666,6 +753,42 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
                 do {
                     logistics = try container.decode(AppLogisticsConfig.self, forKey: .logistics)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    piiMasking = try container.decode(PiiMasking.self, forKey: .piiMasking)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    tags = try container.decode([String].self, forKey: .tags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    v = try container.decode(Int.self, forKey: .v)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -773,7 +896,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -842,6 +965,21 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             
+            try? container.encodeIfPresent(piiMasking, forKey: .piiMasking)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(v, forKey: .v)
+            
+            
+            
+            
             try? container.encodeIfPresent(business, forKey: .business)
             
             
@@ -882,7 +1020,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
             
             
             

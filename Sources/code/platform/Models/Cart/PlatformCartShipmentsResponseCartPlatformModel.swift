@@ -58,6 +58,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var panNo: String?
         
+        public var customCartMeta: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -105,9 +107,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case panNo = "pan_no"
             
+            case customCartMeta = "custom_cart_meta"
+            
         }
 
-        public init(appliedPromoDetails: [AppliedPromotion]? = nil, breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, checkoutMode: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, error: Bool? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, panConfig: [String: Any]? = nil, panNo: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, shipments: [PlatformShipmentResponse]? = nil, staffUserId: String? = nil) {
+        public init(appliedPromoDetails: [AppliedPromotion]? = nil, breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, checkoutMode: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customCartMeta: [String: Any]? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, error: Bool? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, panConfig: [String: Any]? = nil, panNo: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, shipments: [PlatformShipmentResponse]? = nil, staffUserId: String? = nil) {
             
             self.couponText = couponText
             
@@ -152,6 +156,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.error = error
             
             self.panNo = panNo
+            
+            self.customCartMeta = customCartMeta
             
         }
 
@@ -422,6 +428,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    customCartMeta = try container.decode([String: Any].self, forKey: .customCartMeta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -535,6 +553,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(panNo, forKey: .panNo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customCartMeta, forKey: .customCartMeta)
             
             
         }

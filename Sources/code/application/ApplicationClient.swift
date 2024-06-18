@@ -26,8 +26,6 @@ public class ApplicationClient {
 
     public let payment: Payment
 
-    public let posCart: PosCart
-
     public let rewards: Rewards
 
     public let share: Share
@@ -35,6 +33,8 @@ public class ApplicationClient {
     public let theme: Theme
 
     public let user: User
+
+    public let webhook: Webhook
 
     public init(config: ApplicationConfig) {
         self.config = config
@@ -62,8 +62,6 @@ public class ApplicationClient {
         
         payment = Payment(config: config)
         
-        posCart = PosCart(config: config)
-        
         rewards = Rewards(config: config)
         
         share = Share(config: config)
@@ -71,6 +69,8 @@ public class ApplicationClient {
         theme = Theme(config: config)
         
         user = User(config: config)
+        
+        webhook = Webhook(config: config)
         
     }
 

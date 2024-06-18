@@ -14,11 +14,11 @@ public extension ApplicationClient.Cart {
         
         public var offerText: String?
         
-        public var promotionGroup: String?
+        public var promotionType: String?
         
         public var promotionName: String?
         
-        public var promotionType: String?
+        public var promotionGroup: String?
         
         public var validTill: String?
         
@@ -37,11 +37,11 @@ public extension ApplicationClient.Cart {
             
             case offerText = "offer_text"
             
-            case promotionGroup = "promotion_group"
+            case promotionType = "promotion_type"
             
             case promotionName = "promotion_name"
             
-            case promotionType = "promotion_type"
+            case promotionGroup = "promotion_group"
             
             case validTill = "valid_till"
             
@@ -61,11 +61,11 @@ public extension ApplicationClient.Cart {
             
             self.offerText = offerText
             
-            self.promotionGroup = promotionGroup
+            self.promotionType = promotionType
             
             self.promotionName = promotionName
             
-            self.promotionType = promotionType
+            self.promotionGroup = promotionGroup
             
             self.validTill = validTill
             
@@ -118,7 +118,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                promotionGroup = try container.decode(String.self, forKey: .promotionGroup)
+                promotionType = try container.decode(String.self, forKey: .promotionType)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                promotionType = try container.decode(String.self, forKey: .promotionType)
+                promotionGroup = try container.decode(String.self, forKey: .promotionGroup)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -218,7 +218,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
+            try? container.encodeIfPresent(promotionType, forKey: .promotionType)
             
             
             
@@ -226,7 +226,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(promotionType, forKey: .promotionType)
+            try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
             
             
             

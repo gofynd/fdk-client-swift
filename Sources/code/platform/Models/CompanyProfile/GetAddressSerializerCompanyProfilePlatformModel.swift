@@ -28,6 +28,10 @@ public extension PlatformClient.CompanyProfile {
         
         public var state: String?
         
+        public var stateCode: String?
+        
+        public var sector: String?
+        
         public var address1: String?
         
         public var city: String?
@@ -53,6 +57,10 @@ public extension PlatformClient.CompanyProfile {
             
             case state = "state"
             
+            case stateCode = "state_code"
+            
+            case sector = "sector"
+            
             case address1 = "address1"
             
             case city = "city"
@@ -61,7 +69,7 @@ public extension PlatformClient.CompanyProfile {
             
         }
 
-        public init(address1: String? = nil, address2: String? = nil, addressType: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, landmark: String? = nil, latitude: Double, longitude: Double, pincode: Int? = nil, state: String? = nil) {
+        public init(address1: String? = nil, address2: String? = nil, addressType: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, landmark: String? = nil, latitude: Double, longitude: Double, pincode: Int? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil) {
             
             self.landmark = landmark
             
@@ -78,6 +86,10 @@ public extension PlatformClient.CompanyProfile {
             self.address2 = address2
             
             self.state = state
+            
+            self.stateCode = stateCode
+            
+            self.sector = sector
             
             self.address1 = address1
             
@@ -181,6 +193,30 @@ public extension PlatformClient.CompanyProfile {
             
             
                 do {
+                    stateCode = try container.decode(String.self, forKey: .stateCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    sector = try container.decode(String.self, forKey: .sector)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     address1 = try container.decode(String.self, forKey: .address1)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -251,6 +287,16 @@ public extension PlatformClient.CompanyProfile {
             
             
             try? container.encodeIfPresent(state, forKey: .state)
+            
+            
+            
+            
+            try? container.encodeIfPresent(stateCode, forKey: .stateCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sector, forKey: .sector)
             
             
             

@@ -30,6 +30,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var orderType: String
         
+        public var callbackUrl: String?
+        
         public var cartItems: [OverrideCartItem]
         
         public var orderingStore: Int?
@@ -55,6 +57,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case orderType = "order_type"
             
+            case callbackUrl = "callback_url"
+            
             case cartItems = "cart_items"
             
             case orderingStore = "ordering_store"
@@ -63,7 +67,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(aggregator: String, billingAddress: [String: Any]? = nil, cartId: String, cartItems: [OverrideCartItem], currencyCode: String, merchantCode: String, orderingStore: Int? = nil, orderType: String, paymentIdentifier: String, paymentMode: String, shippingAddress: [String: Any]? = nil) {
+        public init(aggregator: String, billingAddress: [String: Any]? = nil, callbackUrl: String? = nil, cartId: String, cartItems: [OverrideCartItem], currencyCode: String, merchantCode: String, orderingStore: Int? = nil, orderType: String, paymentIdentifier: String, paymentMode: String, shippingAddress: [String: Any]? = nil) {
             
             self.cartId = cartId
             
@@ -80,6 +84,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.aggregator = aggregator
             
             self.orderType = orderType
+            
+            self.callbackUrl = callbackUrl
             
             self.cartItems = cartItems
             
@@ -138,6 +144,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 orderType = try container.decode(String.self, forKey: .orderType)
                 
             
+            
+            
+                do {
+                    callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 cartItems = try container.decode([OverrideCartItem].self, forKey: .cartItems)
@@ -211,6 +229,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(orderType, forKey: .orderType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
             
             
             

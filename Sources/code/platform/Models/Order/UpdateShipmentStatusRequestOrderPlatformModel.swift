@@ -22,6 +22,8 @@ public extension PlatformClient.Order {
         
         public var task: Bool?
         
+        public var resumeTasksAfterUnlock: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,9 +37,11 @@ public extension PlatformClient.Order {
             
             case task = "task"
             
+            case resumeTasksAfterUnlock = "resume_tasks_after_unlock"
+            
         }
 
-        public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, statuses: [StatuesRequest]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
+        public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, resumeTasksAfterUnlock: Bool? = nil, statuses: [StatuesRequest]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
             
             self.forceTransition = forceTransition
             
@@ -48,6 +52,8 @@ public extension PlatformClient.Order {
             self.unlockBeforeTransition = unlockBeforeTransition
             
             self.task = task
+            
+            self.resumeTasksAfterUnlock = resumeTasksAfterUnlock
             
         }
 
@@ -114,6 +120,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    resumeTasksAfterUnlock = try container.decode(Bool.self, forKey: .resumeTasksAfterUnlock)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -142,6 +160,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(task, forKey: .task)
+            
+            
+            
+            
+            try? container.encodeIfPresent(resumeTasksAfterUnlock, forKey: .resumeTasksAfterUnlock)
             
             
         }
@@ -170,6 +193,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var task: Bool?
         
+        public var resumeTasksAfterUnlock: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -183,9 +208,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case task = "task"
             
+            case resumeTasksAfterUnlock = "resume_tasks_after_unlock"
+            
         }
 
-        public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, statuses: [StatuesRequest]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
+        public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, resumeTasksAfterUnlock: Bool? = nil, statuses: [StatuesRequest]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
             
             self.forceTransition = forceTransition
             
@@ -196,6 +223,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.unlockBeforeTransition = unlockBeforeTransition
             
             self.task = task
+            
+            self.resumeTasksAfterUnlock = resumeTasksAfterUnlock
             
         }
 
@@ -262,6 +291,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    resumeTasksAfterUnlock = try container.decode(Bool.self, forKey: .resumeTasksAfterUnlock)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -290,6 +331,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(task, forKey: .task)
+            
+            
+            
+            
+            try? container.encodeIfPresent(resumeTasksAfterUnlock, forKey: .resumeTasksAfterUnlock)
             
             
         }

@@ -21,10 +21,6 @@ extension ApplicationClient {
             
             ulrs["submitCustomForm"] = config.domain.appendAsPath("/service/application/lead/v1.0/form/{slug}/submit") 
             
-            ulrs["getParticipantsInsideVideoRoom"] = config.domain.appendAsPath("/service/application/lead/v1.0/video/room/{unique_name}/participants") 
-            
-            ulrs["getTokenForVideoRoom"] = config.domain.appendAsPath("/service/application/lead/v1.0/video/room/{unique_name}/token") 
-            
             self.relativeUrls = ulrs
         }
         public func update(updatedUrl : [String: String]){
@@ -37,8 +33,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get Ticket with the specific id
-        * Description: Get Ticket with the specific id, this is used to view the ticket details
+        * Summary: Get a support ticket
+        * Description: Get details of a specific customer support ticket.
         **/
         public func getTicket(
             id: String,
@@ -90,8 +86,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Create history for specific Ticket
-        * Description: Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+        * Summary: Log ticket history
+        * Description: Adds a history entry for a specific support ticket.
         **/
         public func createHistory(
             id: String,
@@ -143,8 +139,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Create Ticket
-        * Description: This is used to Create Ticket.
+        * Summary: Creates a ticket
+        * Description: Generates a new customer support ticket for a user query.
         **/
         public func createTicket(
             body: AddTicketPayload,
@@ -193,8 +189,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get specific Custom Form using it's slug
-        * Description: Get specific Custom Form using it's slug, this is used to view the form.
+        * Summary: Get custom form
+        * Description: Get a customizable form template for data collection.
         **/
         public func getCustomForm(
             slug: String,
@@ -246,8 +242,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Submit Response for a specific Custom Form using it's slug
-        * Description: Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
+        * Summary: Submits form data
+        * Description: Sends user-entered data from a custom form for processing.
         **/
         public func submitCustomForm(
             slug: String,
@@ -283,112 +279,6 @@ extension ApplicationClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SubmitCustomFormResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get participants of a specific Video Room using it's unique name
-        * Description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
-        **/
-        public func getParticipantsInsideVideoRoom(
-            uniqueName: String,
-            
-            onResponse: @escaping (_ response: GetParticipantsInsideVideoRoomResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            var fullUrl = relativeUrls["getParticipantsInsideVideoRoom"] ?? ""
-            
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "unique_name" + "}", with: "\(uniqueName)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetParticipantsInsideVideoRoomResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get Token to join a specific Video Room using it's unqiue name
-        * Description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
-        **/
-        public func getTokenForVideoRoom(
-            uniqueName: String,
-            
-            onResponse: @escaping (_ response: GetTokenForVideoRoomResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            var fullUrl = relativeUrls["getTokenForVideoRoom"] ?? ""
-            
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "unique_name" + "}", with: "\(uniqueName)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetTokenForVideoRoomResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

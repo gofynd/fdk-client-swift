@@ -24,13 +24,13 @@ public extension PlatformClient.Configuration {
         
         public var id: String?
         
-        public var businessHighlights: BusinessHighlights?
+        public var businessHighlights: [BusinessHighlights]?
         
         public var application: String?
         
         public var createdAt: String?
         
-        public var updatedAt: String?
+        public var modifiedAt: String?
         
         public var v: Int?
         
@@ -55,13 +55,13 @@ public extension PlatformClient.Configuration {
             
             case createdAt = "created_at"
             
-            case updatedAt = "updated_at"
+            case modifiedAt = "modified_at"
             
             case v = "__v"
             
         }
 
-        public init(address: InformationAddress? = nil, application: String? = nil, businessHighlights: BusinessHighlights? = nil, copyrightText: String? = nil, createdAt: String? = nil, links: [Links]? = nil, socialLinks: SocialLinks? = nil, support: InformationSupport? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(address: InformationAddress? = nil, application: String? = nil, businessHighlights: [BusinessHighlights]? = nil, copyrightText: String? = nil, createdAt: String? = nil, links: [Links]? = nil, modifiedAt: String? = nil, socialLinks: SocialLinks? = nil, support: InformationSupport? = nil, id: String? = nil, v: Int? = nil) {
             
             self.address = address
             
@@ -81,7 +81,7 @@ public extension PlatformClient.Configuration {
             
             self.createdAt = createdAt
             
-            self.updatedAt = updatedAt
+            self.modifiedAt = modifiedAt
             
             self.v = v
             
@@ -164,7 +164,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    businessHighlights = try container.decode(BusinessHighlights.self, forKey: .businessHighlights)
+                    businessHighlights = try container.decode([BusinessHighlights].self, forKey: .businessHighlights)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -200,7 +200,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -274,7 +274,7 @@ public extension PlatformClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
             
             
             
@@ -310,13 +310,13 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var id: String?
         
-        public var businessHighlights: BusinessHighlights?
+        public var businessHighlights: [BusinessHighlights]?
         
         public var application: String?
         
         public var createdAt: String?
         
-        public var updatedAt: String?
+        public var modifiedAt: String?
         
         public var v: Int?
         
@@ -341,13 +341,13 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case createdAt = "created_at"
             
-            case updatedAt = "updated_at"
+            case modifiedAt = "modified_at"
             
             case v = "__v"
             
         }
 
-        public init(address: InformationAddress? = nil, application: String? = nil, businessHighlights: BusinessHighlights? = nil, copyrightText: String? = nil, createdAt: String? = nil, links: [Links]? = nil, socialLinks: SocialLinks? = nil, support: InformationSupport? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(address: InformationAddress? = nil, application: String? = nil, businessHighlights: [BusinessHighlights]? = nil, copyrightText: String? = nil, createdAt: String? = nil, links: [Links]? = nil, modifiedAt: String? = nil, socialLinks: SocialLinks? = nil, support: InformationSupport? = nil, id: String? = nil, v: Int? = nil) {
             
             self.address = address
             
@@ -367,7 +367,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             self.createdAt = createdAt
             
-            self.updatedAt = updatedAt
+            self.modifiedAt = modifiedAt
             
             self.v = v
             
@@ -450,7 +450,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    businessHighlights = try container.decode(BusinessHighlights.self, forKey: .businessHighlights)
+                    businessHighlights = try container.decode([BusinessHighlights].self, forKey: .businessHighlights)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -486,7 +486,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -560,7 +560,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
             
             
             

@@ -20,6 +20,8 @@ public extension ApplicationClient.Cart {
         
         public var quantity: Int?
         
+        public var charges: [Charges]?
+        
         public var discount: String?
         
         public var availability: ProductAvailability?
@@ -65,6 +67,8 @@ public extension ApplicationClient.Cart {
             
             case quantity = "quantity"
             
+            case charges = "charges"
+            
             case discount = "discount"
             
             case availability = "availability"
@@ -97,7 +101,7 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(article: ProductArticle? = nil, availability: ProductAvailability? = nil, bulkOffer: [String: Any]? = nil, coupon: CouponDetails? = nil, couponMessage: String? = nil, customOrder: [String: Any]? = nil, deliveryPromise: ShipmentPromise? = nil, discount: String? = nil, identifiers: CartProductIdentifer, isSet: Bool? = nil, key: String? = nil, message: String? = nil, moq: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ProductPriceInfo? = nil, pricePerUnit: ProductPricePerUnitInfo? = nil, product: CartProduct? = nil, productEanId: String? = nil, promotionsApplied: [AppliedPromotion]? = nil, promoMeta: PromoMeta? = nil, quantity: Int? = nil) {
+        public init(article: ProductArticle? = nil, availability: ProductAvailability? = nil, bulkOffer: [String: Any]? = nil, charges: [Charges]? = nil, coupon: CouponDetails? = nil, couponMessage: String? = nil, customOrder: [String: Any]? = nil, deliveryPromise: ShipmentPromise? = nil, discount: String? = nil, identifiers: CartProductIdentifer, isSet: Bool? = nil, key: String? = nil, message: String? = nil, moq: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ProductPriceInfo? = nil, pricePerUnit: ProductPricePerUnitInfo? = nil, product: CartProduct? = nil, productEanId: String? = nil, promotionsApplied: [AppliedPromotion]? = nil, promoMeta: PromoMeta? = nil, quantity: Int? = nil) {
             
             self.article = article
             
@@ -110,6 +114,8 @@ public extension ApplicationClient.Cart {
             self.price = price
             
             self.quantity = quantity
+            
+            self.charges = charges
             
             self.discount = discount
             
@@ -202,6 +208,18 @@ public extension ApplicationClient.Cart {
             
             do {
                 quantity = try container.decode(Int.self, forKey: .quantity)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                charges = try container.decode([Charges].self, forKey: .charges)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -418,6 +436,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+            
+            
+            
+            try? container.encodeIfPresent(charges, forKey: .charges)
             
             
             

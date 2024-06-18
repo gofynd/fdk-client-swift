@@ -12,13 +12,13 @@ public extension PlatformClient.Billing {
     class OneTimeChargeItem: Codable {
         
         
-        public var name: String
+        public var name: String?
         
         public var term: String?
         
-        public var pricingType: String
+        public var pricingType: String?
         
-        public var price: EntityChargePrice
+        public var price: EntityChargePrice?
         
         public var cappedAmount: Double?
         
@@ -45,7 +45,7 @@ public extension PlatformClient.Billing {
             
         }
 
-        public init(cappedAmount: Double? = nil, isTest: Bool? = nil, metadata: [String: Any]? = nil, name: String, price: EntityChargePrice, pricingType: String, term: String? = nil) {
+        public init(cappedAmount: Double? = nil, isTest: Bool? = nil, metadata: [String: Any]? = nil, name: String? = nil, price: EntityChargePrice? = nil, pricingType: String? = nil, term: String? = nil) {
             
             self.name = name
             
@@ -67,9 +67,16 @@ public extension PlatformClient.Billing {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                name = try container.decode(String.self, forKey: .name)
+                do {
+                    name = try container.decode(String.self, forKey: .name)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -84,14 +91,28 @@ public extension PlatformClient.Billing {
                 
             
             
-                pricingType = try container.decode(String.self, forKey: .pricingType)
+                do {
+                    pricingType = try container.decode(String.self, forKey: .pricingType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                price = try container.decode(EntityChargePrice.self, forKey: .price)
+                do {
+                    price = try container.decode(EntityChargePrice.self, forKey: .price)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

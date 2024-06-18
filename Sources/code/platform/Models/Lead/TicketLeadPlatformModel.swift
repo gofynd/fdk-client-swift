@@ -30,6 +30,8 @@ public extension PlatformClient.Lead {
         
         public var priority: Priority
         
+        public var sla: SLA?
+        
         public var createdBy: [String: Any]?
         
         public var assignedTo: [String: Any]?
@@ -69,6 +71,8 @@ public extension PlatformClient.Lead {
             
             case priority = "priority"
             
+            case sla = "sla"
+            
             case createdBy = "created_by"
             
             case assignedTo = "assigned_to"
@@ -89,7 +93,7 @@ public extension PlatformClient.Lead {
             
         }
 
-        public init(assignedTo: [String: Any]? = nil, category: TicketCategory, content: TicketContent? = nil, context: TicketContext? = nil, createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, integration: [String: Any]? = nil, isFeedbackPending: Bool? = nil, priority: Priority, responseId: String? = nil, source: TicketSourceEnum, status: Status, subCategory: String? = nil, tags: [String]? = nil, updatedAt: String? = nil, customJson: [String: Any]? = nil, id: String) {
+        public init(assignedTo: [String: Any]? = nil, category: TicketCategory, content: TicketContent? = nil, context: TicketContext? = nil, createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, integration: [String: Any]? = nil, isFeedbackPending: Bool? = nil, priority: Priority, responseId: String? = nil, sla: SLA? = nil, source: TicketSourceEnum, status: Status, subCategory: String? = nil, tags: [String]? = nil, updatedAt: String? = nil, customJson: [String: Any]? = nil, id: String) {
             
             self.context = context
             
@@ -108,6 +112,8 @@ public extension PlatformClient.Lead {
             self.status = status
             
             self.priority = priority
+            
+            self.sla = sla
             
             self.createdBy = createdBy
             
@@ -211,6 +217,18 @@ public extension PlatformClient.Lead {
                 priority = try container.decode(Priority.self, forKey: .priority)
                 
             
+            
+            
+                do {
+                    sla = try container.decode(SLA.self, forKey: .sla)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -361,6 +379,11 @@ public extension PlatformClient.Lead {
             
             
             try? container.encodeIfPresent(priority, forKey: .priority)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sla, forKey: .sla)
             
             
             
@@ -442,6 +465,8 @@ public extension PlatformClient.ApplicationClient.Lead {
         
         public var priority: Priority
         
+        public var sla: SLA?
+        
         public var createdBy: [String: Any]?
         
         public var assignedTo: [String: Any]?
@@ -481,6 +506,8 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             case priority = "priority"
             
+            case sla = "sla"
+            
             case createdBy = "created_by"
             
             case assignedTo = "assigned_to"
@@ -501,7 +528,7 @@ public extension PlatformClient.ApplicationClient.Lead {
             
         }
 
-        public init(assignedTo: [String: Any]? = nil, category: TicketCategory, content: TicketContent? = nil, context: TicketContext? = nil, createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, integration: [String: Any]? = nil, isFeedbackPending: Bool? = nil, priority: Priority, responseId: String? = nil, source: TicketSourceEnum, status: Status, subCategory: String? = nil, tags: [String]? = nil, updatedAt: String? = nil, customJson: [String: Any]? = nil, id: String) {
+        public init(assignedTo: [String: Any]? = nil, category: TicketCategory, content: TicketContent? = nil, context: TicketContext? = nil, createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, integration: [String: Any]? = nil, isFeedbackPending: Bool? = nil, priority: Priority, responseId: String? = nil, sla: SLA? = nil, source: TicketSourceEnum, status: Status, subCategory: String? = nil, tags: [String]? = nil, updatedAt: String? = nil, customJson: [String: Any]? = nil, id: String) {
             
             self.context = context
             
@@ -520,6 +547,8 @@ public extension PlatformClient.ApplicationClient.Lead {
             self.status = status
             
             self.priority = priority
+            
+            self.sla = sla
             
             self.createdBy = createdBy
             
@@ -623,6 +652,18 @@ public extension PlatformClient.ApplicationClient.Lead {
                 priority = try container.decode(Priority.self, forKey: .priority)
                 
             
+            
+            
+                do {
+                    sla = try container.decode(SLA.self, forKey: .sla)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -773,6 +814,11 @@ public extension PlatformClient.ApplicationClient.Lead {
             
             
             try? container.encodeIfPresent(priority, forKey: .priority)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sla, forKey: .sla)
             
             
             

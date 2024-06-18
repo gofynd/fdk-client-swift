@@ -18,6 +18,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var timestamp: PromiseTimestamp?
         
+        public var iso: PromiseISOFormat?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -25,13 +27,17 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case timestamp = "timestamp"
             
+            case iso = "iso"
+            
         }
 
-        public init(formatted: PromiseFormatted? = nil, timestamp: PromiseTimestamp? = nil) {
+        public init(formatted: PromiseFormatted? = nil, iso: PromiseISOFormat? = nil, timestamp: PromiseTimestamp? = nil) {
             
             self.formatted = formatted
             
             self.timestamp = timestamp
+            
+            self.iso = iso
             
         }
 
@@ -62,6 +68,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    iso = try container.decode(PromiseISOFormat.self, forKey: .iso)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -75,6 +93,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(timestamp, forKey: .timestamp)
+            
+            
+            
+            
+            try? container.encodeIfPresent(iso, forKey: .iso)
             
             
         }

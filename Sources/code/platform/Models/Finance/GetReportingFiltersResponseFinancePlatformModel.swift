@@ -12,6 +12,8 @@ public extension PlatformClient.Finance {
     class GetReportingFiltersResponse: Codable {
         
         
+        public var reason: GetReportingFiltersReason?
+        
         public var search: GetReportingFilters?
         
         public var filters: [GetReportingNestedFilters]?
@@ -21,6 +23,8 @@ public extension PlatformClient.Finance {
 
         public enum CodingKeys: String, CodingKey {
             
+            case reason = "reason"
+            
             case search = "search"
             
             case filters = "filters"
@@ -29,7 +33,9 @@ public extension PlatformClient.Finance {
             
         }
 
-        public init(filters: [GetReportingNestedFilters]? = nil, search: GetReportingFilters? = nil, status: GetReportingFilters? = nil) {
+        public init(filters: [GetReportingNestedFilters]? = nil, reason: GetReportingFiltersReason? = nil, search: GetReportingFilters? = nil, status: GetReportingFilters? = nil) {
+            
+            self.reason = reason
             
             self.search = search
             
@@ -41,6 +47,18 @@ public extension PlatformClient.Finance {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    reason = try container.decode(GetReportingFiltersReason.self, forKey: .reason)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -82,6 +100,11 @@ public extension PlatformClient.Finance {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(reason, forKey: .reason)
+            
             
             
             

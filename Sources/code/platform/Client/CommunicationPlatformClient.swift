@@ -71,10 +71,16 @@ extension PlatformClient {
         
         
         
+        
+        
+        
+        
+        
+        
         /**
         *
         * Summary: Get system notifications
-        * Description: Get system notifications
+        * Description: Retrieves a list of system notifications.
         **/
         public func getSystemNotifications(
             pageNo: Int?,
@@ -133,55 +139,6 @@ if let value = pageSize {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: get paginator for getSystemNotifications
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getSystemNotificationsPaginator(
-            pageSize: Int?
-            
-            ) -> Paginator<SystemNotifications> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<SystemNotifications>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getSystemNotifications(
-                        
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
         
         
         

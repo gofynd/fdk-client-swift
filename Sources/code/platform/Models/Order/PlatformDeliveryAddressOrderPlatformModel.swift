@@ -34,6 +34,8 @@ public extension PlatformClient.Order {
         
         public var address1: String?
         
+        public var displayAddress: String?
+        
         public var landmark: String?
         
         public var updatedAt: String?
@@ -73,6 +75,8 @@ public extension PlatformClient.Order {
             
             case address1 = "address1"
             
+            case displayAddress = "display_address"
+            
             case landmark = "landmark"
             
             case updatedAt = "updated_at"
@@ -89,7 +93,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(address1: String? = nil, address2: String? = nil, addressCategory: String? = nil, addressType: String? = nil, area: String? = nil, city: String? = nil, contactPerson: String? = nil, country: String? = nil, createdAt: String? = nil, email: String? = nil, landmark: String? = nil, latitude: Int? = nil, longitude: Int? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, updatedAt: String? = nil, version: String? = nil) {
+        public init(address1: String? = nil, address2: String? = nil, addressCategory: String? = nil, addressType: String? = nil, area: String? = nil, city: String? = nil, contactPerson: String? = nil, country: String? = nil, createdAt: String? = nil, displayAddress: String? = nil, email: String? = nil, landmark: String? = nil, latitude: Int? = nil, longitude: Int? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, updatedAt: String? = nil, version: String? = nil) {
             
             self.phone = phone
             
@@ -112,6 +116,8 @@ public extension PlatformClient.Order {
             self.createdAt = createdAt
             
             self.address1 = address1
+            
+            self.displayAddress = displayAddress
             
             self.landmark = landmark
             
@@ -266,6 +272,18 @@ public extension PlatformClient.Order {
             
             
                 do {
+                    displayAddress = try container.decode(String.self, forKey: .displayAddress)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     landmark = try container.decode(String.self, forKey: .landmark)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -406,6 +424,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(address1, forKey: .address1)
+            
+            
+            
+            
+            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
             
             
             
@@ -481,6 +504,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var address1: String?
         
+        public var displayAddress: String?
+        
         public var landmark: String?
         
         public var updatedAt: String?
@@ -520,6 +545,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case address1 = "address1"
             
+            case displayAddress = "display_address"
+            
             case landmark = "landmark"
             
             case updatedAt = "updated_at"
@@ -536,7 +563,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(address1: String? = nil, address2: String? = nil, addressCategory: String? = nil, addressType: String? = nil, area: String? = nil, city: String? = nil, contactPerson: String? = nil, country: String? = nil, createdAt: String? = nil, email: String? = nil, landmark: String? = nil, latitude: Int? = nil, longitude: Int? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, updatedAt: String? = nil, version: String? = nil) {
+        public init(address1: String? = nil, address2: String? = nil, addressCategory: String? = nil, addressType: String? = nil, area: String? = nil, city: String? = nil, contactPerson: String? = nil, country: String? = nil, createdAt: String? = nil, displayAddress: String? = nil, email: String? = nil, landmark: String? = nil, latitude: Int? = nil, longitude: Int? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, updatedAt: String? = nil, version: String? = nil) {
             
             self.phone = phone
             
@@ -559,6 +586,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.createdAt = createdAt
             
             self.address1 = address1
+            
+            self.displayAddress = displayAddress
             
             self.landmark = landmark
             
@@ -713,6 +742,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
+                    displayAddress = try container.decode(String.self, forKey: .displayAddress)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     landmark = try container.decode(String.self, forKey: .landmark)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -853,6 +894,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(address1, forKey: .address1)
+            
+            
+            
+            
+            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
             
             
             

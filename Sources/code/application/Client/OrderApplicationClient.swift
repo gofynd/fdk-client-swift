@@ -15,8 +15,6 @@ extension ApplicationClient {
             
             ulrs["getOrderById"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/{order_id}") 
             
-            ulrs["getPosOrderById"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/pos-order/{order_id}") 
-            
             ulrs["getShipmentById"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}") 
             
             ulrs["getInvoiceByShipmentId"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}/invoice") 
@@ -47,8 +45,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get all orders
-        * Description: Use this API to retrieve all the orders.
+        * Summary: List customer orders
+        * Description: Retrieves all orders associated with a customer account
         **/
         public func getOrders(
             status: Int?,
@@ -56,7 +54,10 @@ extension ApplicationClient {
             pageSize: Int?,
             fromDate: String?,
             toDate: String?,
+            startDate: String?,
+            endDate: String?,
             customMeta: String?,
+            allowInactive: Bool?,
             
             onResponse: @escaping (_ response: OrderList?, _ error: FDKError?) -> Void
         ) {
@@ -98,9 +99,30 @@ if let value = toDate {
 }
 
 
+if let value = startDate {
+    
+    xQuery["start_date"] = value
+    
+}
+
+
+if let value = endDate {
+    
+    xQuery["end_date"] = value
+    
+}
+
+
 if let value = customMeta {
     
     xQuery["custom_meta"] = value
+    
+}
+
+
+if let value = allowInactive {
+    
+    xQuery["allow_inactive"] = value
     
 }
 
@@ -145,16 +167,24 @@ if let value = customMeta {
         
         /**
         *
-        * Summary: Get details of an order
-        * Description: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
+        * Summary: Get an order
+        * Description: Retrieve order details such as tracking details, shipment, store information using Fynd Order ID
         **/
         public func getOrderById(
             orderId: String,
+            allowInactive: Bool?,
             
             onResponse: @escaping (_ response: OrderById?, _ error: FDKError?) -> Void
         ) {
             
- 
+var xQuery: [String: Any] = [:] 
+
+if let value = allowInactive {
+    
+    xQuery["allow_inactive"] = value
+    
+}
+
 
  
 
@@ -168,7 +198,7 @@ if let value = customMeta {
                 config: config,
                 method: "GET",
                 url: fullUrl,
-                query: nil,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 responseType: "application/json",
@@ -198,69 +228,24 @@ if let value = customMeta {
         
         /**
         *
-        * Summary: Get POS Order
-        * Description: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
-        **/
-        public func getPosOrderById(
-            orderId: String,
-            
-            onResponse: @escaping (_ response: OrderById?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            var fullUrl = relativeUrls["getPosOrderById"] ?? ""
-            
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "order_id" + "}", with: "\(orderId)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(OrderById.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get details of a shipment
-        * Description: Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
+        * Summary: Get a Shipment
+        * Description: Retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
         **/
         public func getShipmentById(
             shipmentId: String,
+            allowInactive: Bool?,
             
             onResponse: @escaping (_ response: ShipmentById?, _ error: FDKError?) -> Void
         ) {
             
- 
+var xQuery: [String: Any] = [:] 
+
+if let value = allowInactive {
+    
+    xQuery["allow_inactive"] = value
+    
+}
+
 
  
 
@@ -274,7 +259,7 @@ if let value = customMeta {
                 config: config,
                 method: "GET",
                 url: fullUrl,
-                query: nil,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 responseType: "application/json",
@@ -304,8 +289,8 @@ if let value = customMeta {
         
         /**
         *
-        * Summary: Get Invoice of a shipment
-        * Description: Use this API to retrieve shipment invoice.
+        * Summary: Retrieves invoice for shipment
+        * Description: Retrieve the invoice corresponding to a specific shipment ID.
         **/
         public func getInvoiceByShipmentId(
             shipmentId: String,
@@ -357,8 +342,8 @@ if let value = customMeta {
         
         /**
         *
-        * Summary: Track shipment
-        * Description: Track Shipment by shipment id, for application based on application Id
+        * Summary: Track shipment status
+        * Description: Track Shipment by shipment id, for application based on application Id.
         **/
         public func trackShipment(
             shipmentId: String,
@@ -410,8 +395,8 @@ if let value = customMeta {
         
         /**
         *
-        * Summary: Get Customer Details by Shipment Id
-        * Description: Use this API to retrieve customer details such as mobileno using Shipment ID.
+        * Summary: Get shipment's customer
+        * Description: Retrieve customer details such as mobile number using Shipment ID.
         **/
         public func getCustomerDetailsByShipmentId(
             orderId: String,
@@ -466,8 +451,8 @@ if let value = customMeta {
         
         /**
         *
-        * Summary: Send and Resend Otp code to Order-Shipment customer
-        * Description: Use this API to send OTP to the customer of the mapped Shipment.
+        * Summary: Send OTP to customer
+        * Description: Sends a one-time password (OTP) to the customer for shipment verification
         **/
         public func sendOtpToShipmentCustomer(
             orderId: String,
@@ -522,8 +507,8 @@ if let value = customMeta {
         
         /**
         *
-        * Summary: Verify Otp code
-        * Description: Use this API to verify OTP and create a session token with custom payload.
+        * Summary: Verifies OTP
+        * Description: Confirms the OTP sent to the shipment customer for verification.
         **/
         public func verifyOtpShipmentCustomer(
             orderId: String,
@@ -578,8 +563,8 @@ if let value = customMeta {
         
         /**
         *
-        * Summary: Get reasons behind full or partial cancellation of a shipment
-        * Description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+        * Summary: List bag cancellation reasons
+        * Description: Get reasons to perform full or partial cancellation of a bag
         **/
         public func getShipmentBagReasons(
             shipmentId: String,
@@ -634,8 +619,8 @@ if let value = customMeta {
         
         /**
         *
-        * Summary: Get reasons behind full or partial cancellation of a shipment
-        * Description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+        * Summary: List shipment cancellation reasons
+        * Description: Get reasons to perform full or partial cancellation of a shipment
         **/
         public func getShipmentReasons(
             shipmentId: String,
@@ -687,8 +672,8 @@ if let value = customMeta {
         
         /**
         *
-        * Summary: Update the shipment status
-        * Description: Use this API to update the status of a shipment using its shipment ID.
+        * Summary: Updates shipment status
+        * Description: Modifies the current status of a specific shipment using its shipment ID. Supports both partial and full transition as per the configured settings.
         **/
         public func updateShipmentStatus(
             shipmentId: String,

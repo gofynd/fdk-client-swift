@@ -8,9 +8,9 @@ public extension ApplicationClient.User {
     */
     class SendOtpRequestSchema: Codable {
         
-        public var countryCode: String?
+        public var encryptOtp: Bool?
         
-        public var captchaCode: String?
+        public var countryCode: String?
         
         public var mobile: String?
         
@@ -19,9 +19,9 @@ public extension ApplicationClient.User {
 
         public enum CodingKeys: String, CodingKey {
             
-            case countryCode = "country_code"
+            case encryptOtp = "encrypt_otp"
             
-            case captchaCode = "captcha_code"
+            case countryCode = "country_code"
             
             case mobile = "mobile"
             
@@ -29,11 +29,11 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(androidHash: String? = nil, captchaCode: String? = nil, countryCode: String? = nil, mobile: String? = nil) {
+        public init(androidHash: String? = nil, countryCode: String? = nil, encryptOtp: Bool? = nil, mobile: String? = nil) {
+            
+            self.encryptOtp = encryptOtp
             
             self.countryCode = countryCode
-            
-            self.captchaCode = captchaCode
             
             self.mobile = mobile
             
@@ -46,7 +46,7 @@ public extension ApplicationClient.User {
             
             
             do {
-                countryCode = try container.decode(String.self, forKey: .countryCode)
+                encryptOtp = try container.decode(Bool.self, forKey: .encryptOtp)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -58,7 +58,7 @@ public extension ApplicationClient.User {
             
             
             do {
-                captchaCode = try container.decode(String.self, forKey: .captchaCode)
+                countryCode = try container.decode(String.self, forKey: .countryCode)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,11 +98,11 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
+            try? container.encodeIfPresent(encryptOtp, forKey: .encryptOtp)
+            
+            
+            
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-            
-            
-            
-            try? container.encodeIfPresent(captchaCode, forKey: .captchaCode)
             
             
             

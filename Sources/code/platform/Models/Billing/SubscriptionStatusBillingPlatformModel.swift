@@ -22,7 +22,9 @@ public extension PlatformClient.Billing {
         
         public var currentSubscriptions: [Subscription]?
         
-        public var mandateAmount: String?
+        public var mandateAmount: Double?
+        
+        public var message: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -39,9 +41,11 @@ public extension PlatformClient.Billing {
             
             case mandateAmount = "mandate_amount"
             
+            case message = "message"
+            
         }
 
-        public init(currentSubscriptions: [Subscription]? = nil, isEnabled: Bool? = nil, latestInvoice: InvoicesData? = nil, mandateAmount: String? = nil, nextPlan: Plan? = nil, subscription: Subscription? = nil) {
+        public init(currentSubscriptions: [Subscription]? = nil, isEnabled: Bool? = nil, latestInvoice: InvoicesData? = nil, mandateAmount: Double? = nil, message: String? = nil, nextPlan: Plan? = nil, subscription: Subscription? = nil) {
             
             self.isEnabled = isEnabled
             
@@ -54,6 +58,8 @@ public extension PlatformClient.Billing {
             self.currentSubscriptions = currentSubscriptions
             
             self.mandateAmount = mandateAmount
+            
+            self.message = message
             
         }
 
@@ -122,7 +128,19 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    mandateAmount = try container.decode(String.self, forKey: .mandateAmount)
+                    mandateAmount = try container.decode(Double.self, forKey: .mandateAmount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    message = try container.decode(String.self, forKey: .message)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,6 +183,11 @@ public extension PlatformClient.Billing {
             
             
             try? container.encodeIfPresent(mandateAmount, forKey: .mandateAmount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }

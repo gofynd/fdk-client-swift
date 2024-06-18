@@ -18,7 +18,7 @@ public extension ApplicationClient.Cart {
         
         public var isValid: Bool?
         
-        public var deliveryCharges: Int?
+        public var deliveryCharges: Double?
         
         public var id: String?
         
@@ -64,7 +64,9 @@ public extension ApplicationClient.Cart {
         
         public var buyNow: Bool?
         
-        public var codCharges: Int?
+        public var codCharges: Double?
+        
+        public var customCartMeta: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -127,9 +129,11 @@ public extension ApplicationClient.Cart {
             
             case codCharges = "cod_charges"
             
+            case customCartMeta = "custom_cart_meta"
+            
         }
 
-        public init(breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, codAvailable: Bool? = nil, codCharges: Int? = nil, codMessage: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, deliveryCharges: Int? = nil, deliveryChargeInfo: String? = nil, deliveryChargeOrderValue: Int? = nil, deliveryPromise: ShipmentPromise? = nil, errorMessage: String? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, orderId: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, storeCode: String? = nil, storeEmps: [[String: Any]]? = nil, success: Bool? = nil, uid: String? = nil, userType: String? = nil) {
+        public init(breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, codAvailable: Bool? = nil, codCharges: Double? = nil, codMessage: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customCartMeta: [String: Any]? = nil, deliveryCharges: Double? = nil, deliveryChargeInfo: String? = nil, deliveryChargeOrderValue: Int? = nil, deliveryPromise: ShipmentPromise? = nil, errorMessage: String? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, orderId: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, storeCode: String? = nil, storeEmps: [[String: Any]]? = nil, success: Bool? = nil, uid: String? = nil, userType: String? = nil) {
             
             self.checkoutMode = checkoutMode
             
@@ -188,6 +192,8 @@ public extension ApplicationClient.Cart {
             self.buyNow = buyNow
             
             self.codCharges = codCharges
+            
+            self.customCartMeta = customCartMeta
             
         }
 
@@ -256,7 +262,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                deliveryCharges = try container.decode(Int.self, forKey: .deliveryCharges)
+                deliveryCharges = try container.decode(Double.self, forKey: .deliveryCharges)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -532,7 +538,19 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                codCharges = try container.decode(Int.self, forKey: .codCharges)
+                codCharges = try container.decode(Double.self, forKey: .codCharges)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                customCartMeta = try container.decode([String: Any].self, forKey: .customCartMeta)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -661,6 +679,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(codCharges, forKey: .codCharges)
+            
+            
+            
+            try? container.encodeIfPresent(customCartMeta, forKey: .customCartMeta)
             
             
         }

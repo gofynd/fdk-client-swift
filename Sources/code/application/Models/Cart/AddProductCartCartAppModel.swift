@@ -36,6 +36,8 @@ public extension ApplicationClient.Cart {
         
         public var meta: [String: Any]?
         
+        public var sellerIdentifier: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -67,9 +69,11 @@ public extension ApplicationClient.Cart {
             
             case meta = "meta"
             
+            case sellerIdentifier = "seller_identifier"
+            
         }
 
-        public init(articleAssignment: [String: Any]? = nil, articleId: String? = nil, display: String? = nil, extraMeta: [String: Any]? = nil, itemId: Int? = nil, itemSize: String? = nil, meta: [String: Any]? = nil, parentItemIdentifiers: [[String: String]]? = nil, pos: Bool? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, sellerId: Int? = nil, storeId: Int? = nil, customJson: [String: Any]? = nil) {
+        public init(articleAssignment: [String: Any]? = nil, articleId: String? = nil, display: String? = nil, extraMeta: [String: Any]? = nil, itemId: Int? = nil, itemSize: String? = nil, meta: [String: Any]? = nil, parentItemIdentifiers: [[String: String]]? = nil, pos: Bool? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, sellerId: Int? = nil, sellerIdentifier: String? = nil, storeId: Int? = nil, customJson: [String: Any]? = nil) {
             
             self.articleAssignment = articleAssignment
             
@@ -98,6 +102,8 @@ public extension ApplicationClient.Cart {
             self.itemId = itemId
             
             self.meta = meta
+            
+            self.sellerIdentifier = sellerIdentifier
             
         }
 
@@ -272,6 +278,18 @@ public extension ApplicationClient.Cart {
             }
             
             
+            
+            do {
+                sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -331,6 +349,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
             
             
         }

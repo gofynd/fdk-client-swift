@@ -28,6 +28,10 @@ public extension PlatformClient.FileStorage {
         
         public var gstin: String?
         
+        public var displayAddress: String?
+        
+        public var sector: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -47,9 +51,13 @@ public extension PlatformClient.FileStorage {
             
             case gstin = "gstin"
             
+            case displayAddress = "display_address"
+            
+            case sector = "sector"
+            
         }
 
-        public init(address: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, gstin: String? = nil, state: String? = nil, stateCode: String? = nil, zipCode: String? = nil) {
+        public init(address: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, displayAddress: String? = nil, gstin: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil, zipCode: String? = nil) {
             
             self.address = address
             
@@ -66,6 +74,10 @@ public extension PlatformClient.FileStorage {
             self.stateCode = stateCode
             
             self.gstin = gstin
+            
+            self.displayAddress = displayAddress
+            
+            self.sector = sector
             
         }
 
@@ -168,6 +180,30 @@ public extension PlatformClient.FileStorage {
                 }
                 
             
+            
+                do {
+                    displayAddress = try container.decode(String.self, forKey: .displayAddress)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    sector = try container.decode(String.self, forKey: .sector)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -211,6 +247,16 @@ public extension PlatformClient.FileStorage {
             
             
             try? container.encodeIfPresent(gstin, forKey: .gstin)
+            
+            
+            
+            
+            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sector, forKey: .sector)
             
             
         }
@@ -245,6 +291,10 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var gstin: String?
         
+        public var displayAddress: String?
+        
+        public var sector: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -264,9 +314,13 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             case gstin = "gstin"
             
+            case displayAddress = "display_address"
+            
+            case sector = "sector"
+            
         }
 
-        public init(address: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, gstin: String? = nil, state: String? = nil, stateCode: String? = nil, zipCode: String? = nil) {
+        public init(address: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, displayAddress: String? = nil, gstin: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil, zipCode: String? = nil) {
             
             self.address = address
             
@@ -283,6 +337,10 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             self.stateCode = stateCode
             
             self.gstin = gstin
+            
+            self.displayAddress = displayAddress
+            
+            self.sector = sector
             
         }
 
@@ -385,6 +443,30 @@ public extension PlatformClient.ApplicationClient.FileStorage {
                 }
                 
             
+            
+                do {
+                    displayAddress = try container.decode(String.self, forKey: .displayAddress)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    sector = try container.decode(String.self, forKey: .sector)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -428,6 +510,16 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(gstin, forKey: .gstin)
+            
+            
+            
+            
+            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sector, forKey: .sector)
             
             
         }

@@ -18,6 +18,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var message: String?
         
+        public var error: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -25,13 +27,17 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case message = "message"
             
+            case error = "error"
+            
         }
 
-        public init(message: String? = nil, success: Bool? = nil) {
+        public init(error: String? = nil, message: String? = nil, success: Bool? = nil) {
             
             self.success = success
             
             self.message = message
+            
+            self.error = error
             
         }
 
@@ -62,6 +68,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    error = try container.decode(String.self, forKey: .error)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -75,6 +93,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
+            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }

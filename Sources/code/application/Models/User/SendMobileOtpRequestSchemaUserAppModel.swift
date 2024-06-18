@@ -8,6 +8,8 @@ public extension ApplicationClient.User {
     */
     class SendMobileOtpRequestSchema: Codable {
         
+        public var encryptOtp: Bool?
+        
         public var mobile: String?
         
         public var countryCode: String?
@@ -20,10 +22,10 @@ public extension ApplicationClient.User {
         
         public var force: String?
         
-        public var captchaCode: String?
-        
 
         public enum CodingKeys: String, CodingKey {
+            
+            case encryptOtp = "encrypt_otp"
             
             case mobile = "mobile"
             
@@ -37,11 +39,11 @@ public extension ApplicationClient.User {
             
             case force = "force"
             
-            case captchaCode = "captcha_code"
-            
         }
 
-        public init(action: String? = nil, androidHash: String? = nil, captchaCode: String? = nil, countryCode: String? = nil, force: String? = nil, mobile: String? = nil, token: String? = nil) {
+        public init(action: String? = nil, androidHash: String? = nil, countryCode: String? = nil, encryptOtp: Bool? = nil, force: String? = nil, mobile: String? = nil, token: String? = nil) {
+            
+            self.encryptOtp = encryptOtp
             
             self.mobile = mobile
             
@@ -55,12 +57,22 @@ public extension ApplicationClient.User {
             
             self.force = force
             
-            self.captchaCode = captchaCode
-            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+            do {
+                encryptOtp = try container.decode(Bool.self, forKey: .encryptOtp)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
             
             
             do {
@@ -134,22 +146,14 @@ public extension ApplicationClient.User {
             }
             
             
-            
-            do {
-                captchaCode = try container.decode(String.self, forKey: .captchaCode)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            try? container.encodeIfPresent(encryptOtp, forKey: .encryptOtp)
+            
             
             
             try? container.encodeIfPresent(mobile, forKey: .mobile)
@@ -173,10 +177,6 @@ public extension ApplicationClient.User {
             
             
             try? container.encodeIfPresent(force, forKey: .force)
-            
-            
-            
-            try? container.encodeIfPresent(captchaCode, forKey: .captchaCode)
             
             
         }

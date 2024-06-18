@@ -8,9 +8,11 @@ public extension ApplicationClient.Payment {
     */
     class LinkStatus: Codable {
         
-        public var status: Bool
+        public var status: String
         
         public var message: String
+        
+        public var isPaymentDone: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -19,13 +21,17 @@ public extension ApplicationClient.Payment {
             
             case message = "message"
             
+            case isPaymentDone = "is_payment_done"
+            
         }
 
-        public init(message: String, status: Bool) {
+        public init(isPaymentDone: Bool? = nil, message: String, status: String) {
             
             self.status = status
             
             self.message = message
+            
+            self.isPaymentDone = isPaymentDone
             
         }
 
@@ -33,13 +39,25 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            status = try container.decode(Bool.self, forKey: .status)
+            status = try container.decode(String.self, forKey: .status)
             
             
             
             
             message = try container.decode(String.self, forKey: .message)
             
+            
+            
+            
+            do {
+                isPaymentDone = try container.decode(Bool.self, forKey: .isPaymentDone)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
         }
@@ -53,6 +71,10 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            try? container.encodeIfPresent(isPaymentDone, forKey: .isPaymentDone)
             
             
         }

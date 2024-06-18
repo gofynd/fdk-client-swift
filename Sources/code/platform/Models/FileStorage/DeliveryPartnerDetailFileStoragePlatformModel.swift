@@ -18,6 +18,10 @@ public extension PlatformClient.FileStorage {
         
         public var awbNumber: String?
         
+        public var origin: String?
+        
+        public var destination: String?
+        
         public var ewayBillNumber: String?
         
 
@@ -29,17 +33,25 @@ public extension PlatformClient.FileStorage {
             
             case awbNumber = "awb_number"
             
+            case origin = "origin"
+            
+            case destination = "destination"
+            
             case ewayBillNumber = "eway_bill_number"
             
         }
 
-        public init(awbNumber: String? = nil, awbNumberBarcode: String? = nil, ewayBillNumber: String? = nil, name: String? = nil) {
+        public init(awbNumber: String? = nil, awbNumberBarcode: String? = nil, destination: String? = nil, ewayBillNumber: String? = nil, name: String? = nil, origin: String? = nil) {
             
             self.name = name
             
             self.awbNumberBarcode = awbNumberBarcode
             
             self.awbNumber = awbNumber
+            
+            self.origin = origin
+            
+            self.destination = destination
             
             self.ewayBillNumber = ewayBillNumber
             
@@ -86,6 +98,30 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
+                    origin = try container.decode(String.self, forKey: .origin)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    destination = try container.decode(String.self, forKey: .destination)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     ewayBillNumber = try container.decode(String.self, forKey: .ewayBillNumber)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -114,6 +150,16 @@ public extension PlatformClient.FileStorage {
             
             
             try? container.encodeIfPresent(awbNumber, forKey: .awbNumber)
+            
+            
+            
+            
+            try? container.encodeIfPresent(origin, forKey: .origin)
+            
+            
+            
+            
+            try? container.encodeIfPresent(destination, forKey: .destination)
             
             
             
@@ -143,6 +189,10 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var awbNumber: String?
         
+        public var origin: String?
+        
+        public var destination: String?
+        
         public var ewayBillNumber: String?
         
 
@@ -154,17 +204,25 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             case awbNumber = "awb_number"
             
+            case origin = "origin"
+            
+            case destination = "destination"
+            
             case ewayBillNumber = "eway_bill_number"
             
         }
 
-        public init(awbNumber: String? = nil, awbNumberBarcode: String? = nil, ewayBillNumber: String? = nil, name: String? = nil) {
+        public init(awbNumber: String? = nil, awbNumberBarcode: String? = nil, destination: String? = nil, ewayBillNumber: String? = nil, name: String? = nil, origin: String? = nil) {
             
             self.name = name
             
             self.awbNumberBarcode = awbNumberBarcode
             
             self.awbNumber = awbNumber
+            
+            self.origin = origin
+            
+            self.destination = destination
             
             self.ewayBillNumber = ewayBillNumber
             
@@ -211,6 +269,30 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
+                    origin = try container.decode(String.self, forKey: .origin)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    destination = try container.decode(String.self, forKey: .destination)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     ewayBillNumber = try container.decode(String.self, forKey: .ewayBillNumber)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -239,6 +321,16 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(awbNumber, forKey: .awbNumber)
+            
+            
+            
+            
+            try? container.encodeIfPresent(origin, forKey: .origin)
+            
+            
+            
+            
+            try? container.encodeIfPresent(destination, forKey: .destination)
             
             
             

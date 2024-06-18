@@ -14,6 +14,8 @@ public extension PlatformClient.Order {
         
         public var orderDate: String?
         
+        public var createdTs: String?
+        
         public var taxDetails: [String: Any]?
         
         public var codCharges: String?
@@ -23,6 +25,8 @@ public extension PlatformClient.Order {
         public var fyndOrderId: String
         
         public var affiliateId: String?
+        
+        public var affiliateOrderId: String?
         
         public var orderingChannelLogo: [String: Any]?
         
@@ -37,6 +41,8 @@ public extension PlatformClient.Order {
             
             case orderDate = "order_date"
             
+            case createdTs = "created_ts"
+            
             case taxDetails = "tax_details"
             
             case codCharges = "cod_charges"
@@ -46,6 +52,8 @@ public extension PlatformClient.Order {
             case fyndOrderId = "fynd_order_id"
             
             case affiliateId = "affiliate_id"
+            
+            case affiliateOrderId = "affiliate_order_id"
             
             case orderingChannelLogo = "ordering_channel_logo"
             
@@ -57,9 +65,11 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(affiliateId: String? = nil, codCharges: String? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingChannelLogo: [String: Any]? = nil, orderDate: String? = nil, orderValue: String? = nil, source: String? = nil, taxDetails: [String: Any]? = nil) {
+        public init(affiliateId: String? = nil, affiliateOrderId: String? = nil, codCharges: String? = nil, createdTs: String? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingChannelLogo: [String: Any]? = nil, orderDate: String? = nil, orderValue: String? = nil, source: String? = nil, taxDetails: [String: Any]? = nil) {
             
             self.orderDate = orderDate
+            
+            self.createdTs = createdTs
             
             self.taxDetails = taxDetails
             
@@ -70,6 +80,8 @@ public extension PlatformClient.Order {
             self.fyndOrderId = fyndOrderId
             
             self.affiliateId = affiliateId
+            
+            self.affiliateOrderId = affiliateOrderId
             
             self.orderingChannelLogo = orderingChannelLogo
             
@@ -87,6 +99,18 @@ public extension PlatformClient.Order {
             
                 do {
                     orderDate = try container.decode(String.self, forKey: .orderDate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    createdTs = try container.decode(String.self, forKey: .createdTs)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -140,6 +164,18 @@ public extension PlatformClient.Order {
             
                 do {
                     affiliateId = try container.decode(String.self, forKey: .affiliateId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -209,6 +245,11 @@ public extension PlatformClient.Order {
             
             
             
+            try? container.encodeIfPresent(createdTs, forKey: .createdTs)
+            
+            
+            
+            
             try? container.encodeIfPresent(taxDetails, forKey: .taxDetails)
             
             
@@ -230,6 +271,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
             
             
             
@@ -270,6 +316,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var orderDate: String?
         
+        public var createdTs: String?
+        
         public var taxDetails: [String: Any]?
         
         public var codCharges: String?
@@ -279,6 +327,8 @@ public extension PlatformClient.ApplicationClient.Order {
         public var fyndOrderId: String
         
         public var affiliateId: String?
+        
+        public var affiliateOrderId: String?
         
         public var orderingChannelLogo: [String: Any]?
         
@@ -293,6 +343,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case orderDate = "order_date"
             
+            case createdTs = "created_ts"
+            
             case taxDetails = "tax_details"
             
             case codCharges = "cod_charges"
@@ -302,6 +354,8 @@ public extension PlatformClient.ApplicationClient.Order {
             case fyndOrderId = "fynd_order_id"
             
             case affiliateId = "affiliate_id"
+            
+            case affiliateOrderId = "affiliate_order_id"
             
             case orderingChannelLogo = "ordering_channel_logo"
             
@@ -313,9 +367,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(affiliateId: String? = nil, codCharges: String? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingChannelLogo: [String: Any]? = nil, orderDate: String? = nil, orderValue: String? = nil, source: String? = nil, taxDetails: [String: Any]? = nil) {
+        public init(affiliateId: String? = nil, affiliateOrderId: String? = nil, codCharges: String? = nil, createdTs: String? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingChannelLogo: [String: Any]? = nil, orderDate: String? = nil, orderValue: String? = nil, source: String? = nil, taxDetails: [String: Any]? = nil) {
             
             self.orderDate = orderDate
+            
+            self.createdTs = createdTs
             
             self.taxDetails = taxDetails
             
@@ -326,6 +382,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.fyndOrderId = fyndOrderId
             
             self.affiliateId = affiliateId
+            
+            self.affiliateOrderId = affiliateOrderId
             
             self.orderingChannelLogo = orderingChannelLogo
             
@@ -343,6 +401,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     orderDate = try container.decode(String.self, forKey: .orderDate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    createdTs = try container.decode(String.self, forKey: .createdTs)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -396,6 +466,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     affiliateId = try container.decode(String.self, forKey: .affiliateId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -465,6 +547,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
+            try? container.encodeIfPresent(createdTs, forKey: .createdTs)
+            
+            
+            
+            
             try? container.encodeIfPresent(taxDetails, forKey: .taxDetails)
             
             
@@ -486,6 +573,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
             
             
             

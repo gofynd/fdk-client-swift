@@ -26,6 +26,14 @@ public extension PlatformClient.FileStorage {
         
         public var upiQrcode: String?
         
+        public var deviceId: String?
+        
+        public var marketplaceInvoiceId: String?
+        
+        public var marketplaceShipmentId: String?
+        
+        public var channelOrderId: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -43,9 +51,17 @@ public extension PlatformClient.FileStorage {
             
             case upiQrcode = "upi_qrcode"
             
+            case deviceId = "device_id"
+            
+            case marketplaceInvoiceId = "marketplace_invoice_id"
+            
+            case marketplaceShipmentId = "marketplace_shipment_id"
+            
+            case channelOrderId = "channel_order_id"
+            
         }
 
-        public init(externalOrderId: String? = nil, invoiceDate: String? = nil, invoiceId: String? = nil, irn: String? = nil, shipmentId: String? = nil, signedQrcode: String? = nil, upiQrcode: String? = nil) {
+        public init(channelOrderId: String? = nil, deviceId: String? = nil, externalOrderId: String? = nil, invoiceDate: String? = nil, invoiceId: String? = nil, irn: String? = nil, marketplaceInvoiceId: String? = nil, marketplaceShipmentId: String? = nil, shipmentId: String? = nil, signedQrcode: String? = nil, upiQrcode: String? = nil) {
             
             self.invoiceId = invoiceId
             
@@ -60,6 +76,14 @@ public extension PlatformClient.FileStorage {
             self.signedQrcode = signedQrcode
             
             self.upiQrcode = upiQrcode
+            
+            self.deviceId = deviceId
+            
+            self.marketplaceInvoiceId = marketplaceInvoiceId
+            
+            self.marketplaceShipmentId = marketplaceShipmentId
+            
+            self.channelOrderId = channelOrderId
             
         }
 
@@ -150,6 +174,54 @@ public extension PlatformClient.FileStorage {
                 }
                 
             
+            
+                do {
+                    deviceId = try container.decode(String.self, forKey: .deviceId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    marketplaceInvoiceId = try container.decode(String.self, forKey: .marketplaceInvoiceId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    marketplaceShipmentId = try container.decode(String.self, forKey: .marketplaceShipmentId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    channelOrderId = try container.decode(String.self, forKey: .channelOrderId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -188,6 +260,26 @@ public extension PlatformClient.FileStorage {
             
             
             try? container.encodeIfPresent(upiQrcode, forKey: .upiQrcode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(deviceId, forKey: .deviceId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(marketplaceInvoiceId, forKey: .marketplaceInvoiceId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(marketplaceShipmentId, forKey: .marketplaceShipmentId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(channelOrderId, forKey: .channelOrderId)
             
             
         }
@@ -220,6 +312,14 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var upiQrcode: String?
         
+        public var deviceId: String?
+        
+        public var marketplaceInvoiceId: String?
+        
+        public var marketplaceShipmentId: String?
+        
+        public var channelOrderId: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -237,9 +337,17 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             case upiQrcode = "upi_qrcode"
             
+            case deviceId = "device_id"
+            
+            case marketplaceInvoiceId = "marketplace_invoice_id"
+            
+            case marketplaceShipmentId = "marketplace_shipment_id"
+            
+            case channelOrderId = "channel_order_id"
+            
         }
 
-        public init(externalOrderId: String? = nil, invoiceDate: String? = nil, invoiceId: String? = nil, irn: String? = nil, shipmentId: String? = nil, signedQrcode: String? = nil, upiQrcode: String? = nil) {
+        public init(channelOrderId: String? = nil, deviceId: String? = nil, externalOrderId: String? = nil, invoiceDate: String? = nil, invoiceId: String? = nil, irn: String? = nil, marketplaceInvoiceId: String? = nil, marketplaceShipmentId: String? = nil, shipmentId: String? = nil, signedQrcode: String? = nil, upiQrcode: String? = nil) {
             
             self.invoiceId = invoiceId
             
@@ -254,6 +362,14 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             self.signedQrcode = signedQrcode
             
             self.upiQrcode = upiQrcode
+            
+            self.deviceId = deviceId
+            
+            self.marketplaceInvoiceId = marketplaceInvoiceId
+            
+            self.marketplaceShipmentId = marketplaceShipmentId
+            
+            self.channelOrderId = channelOrderId
             
         }
 
@@ -344,6 +460,54 @@ public extension PlatformClient.ApplicationClient.FileStorage {
                 }
                 
             
+            
+                do {
+                    deviceId = try container.decode(String.self, forKey: .deviceId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    marketplaceInvoiceId = try container.decode(String.self, forKey: .marketplaceInvoiceId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    marketplaceShipmentId = try container.decode(String.self, forKey: .marketplaceShipmentId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    channelOrderId = try container.decode(String.self, forKey: .channelOrderId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -382,6 +546,26 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(upiQrcode, forKey: .upiQrcode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(deviceId, forKey: .deviceId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(marketplaceInvoiceId, forKey: .marketplaceInvoiceId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(marketplaceShipmentId, forKey: .marketplaceShipmentId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(channelOrderId, forKey: .channelOrderId)
             
             
         }

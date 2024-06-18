@@ -14,7 +14,7 @@ public extension PlatformClient.Configuration {
         
         public var app: App?
         
-        public var configuration: AppInventory?
+        public var configuration: ApplicationInventory?
         
         public var domain: AppDomain?
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Configuration {
             
         }
 
-        public init(app: App? = nil, configuration: AppInventory? = nil, domain: AppDomain? = nil) {
+        public init(app: App? = nil, configuration: ApplicationInventory? = nil, domain: AppDomain? = nil) {
             
             self.app = app
             
@@ -56,7 +56,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    configuration = try container.decode(AppInventory.self, forKey: .configuration)
+                    configuration = try container.decode(ApplicationInventory.self, forKey: .configuration)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,7 +116,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var app: App?
         
-        public var configuration: AppInventory?
+        public var configuration: ApplicationInventory?
         
         public var domain: AppDomain?
         
@@ -131,7 +131,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
         }
 
-        public init(app: App? = nil, configuration: AppInventory? = nil, domain: AppDomain? = nil) {
+        public init(app: App? = nil, configuration: ApplicationInventory? = nil, domain: AppDomain? = nil) {
             
             self.app = app
             
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    configuration = try container.decode(AppInventory.self, forKey: .configuration)
+                    configuration = try container.decode(ApplicationInventory.self, forKey: .configuration)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

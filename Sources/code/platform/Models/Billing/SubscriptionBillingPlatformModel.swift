@@ -12,6 +12,8 @@ public extension PlatformClient.Billing {
     class Subscription: Codable {
         
         
+        public var meta: [String: Any]?
+        
         public var currentPeriod: SubscriptionCurrentPeriod?
         
         public var pauseCollection: SubscriptionPauseCollection?
@@ -46,8 +48,16 @@ public extension PlatformClient.Billing {
         
         public var channelType: String?
         
+        public var freezed: Bool?
+        
+        public var cancelAt: String?
+        
+        public var canceledAt: String?
+        
 
         public enum CodingKeys: String, CodingKey {
+            
+            case meta = "meta"
             
             case currentPeriod = "current_period"
             
@@ -83,9 +93,17 @@ public extension PlatformClient.Billing {
             
             case channelType = "channel_type"
             
+            case freezed = "freezed"
+            
+            case cancelAt = "cancel_at"
+            
+            case canceledAt = "canceled_at"
+            
         }
 
-        public init(cancelAtPeriodEnd: Bool? = nil, channelType: String? = nil, collectionMethod: String? = nil, createdAt: String? = nil, currentPeriod: SubscriptionCurrentPeriod? = nil, currentStatus: String? = nil, invoiceSettings: SubscriptionInvoiceSettings? = nil, isActive: Bool? = nil, latestInvoice: String? = nil, modifiedAt: String? = nil, pauseCollection: SubscriptionPauseCollection? = nil, planData: Plan? = nil, planId: String? = nil, productSuiteId: String? = nil, subscriberId: String? = nil, trial: SubscriptionTrial? = nil, id: String? = nil) {
+        public init(canceledAt: String? = nil, cancelAt: String? = nil, cancelAtPeriodEnd: Bool? = nil, channelType: String? = nil, collectionMethod: String? = nil, createdAt: String? = nil, currentPeriod: SubscriptionCurrentPeriod? = nil, currentStatus: String? = nil, freezed: Bool? = nil, invoiceSettings: SubscriptionInvoiceSettings? = nil, isActive: Bool? = nil, latestInvoice: String? = nil, meta: [String: Any]? = nil, modifiedAt: String? = nil, pauseCollection: SubscriptionPauseCollection? = nil, planData: Plan? = nil, planId: String? = nil, productSuiteId: String? = nil, subscriberId: String? = nil, trial: SubscriptionTrial? = nil, id: String? = nil) {
+            
+            self.meta = meta
             
             self.currentPeriod = currentPeriod
             
@@ -121,10 +139,28 @@ public extension PlatformClient.Billing {
             
             self.channelType = channelType
             
+            self.freezed = freezed
+            
+            self.cancelAt = cancelAt
+            
+            self.canceledAt = canceledAt
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -330,10 +366,51 @@ public extension PlatformClient.Billing {
                 }
                 
             
+            
+                do {
+                    freezed = try container.decode(Bool.self, forKey: .freezed)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    cancelAt = try container.decode(String.self, forKey: .cancelAt)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    canceledAt = try container.decode(String.self, forKey: .canceledAt)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
             
             
             
@@ -418,6 +495,21 @@ public extension PlatformClient.Billing {
             
             
             try? container.encodeIfPresent(channelType, forKey: .channelType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(freezed, forKey: .freezed)
+            
+            
+            
+            
+            try? container.encodeIfPresent(cancelAt, forKey: .cancelAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(canceledAt, forKey: .canceledAt)
             
             
         }

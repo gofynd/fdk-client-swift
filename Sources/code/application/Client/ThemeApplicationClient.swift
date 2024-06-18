@@ -31,8 +31,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get all pages of a theme
-        * Description: Use this API to retrieve all the available pages of a theme by its ID.
+        * Summary: List pages
+        * Description: Get all page level configs, sections and SEO data of a theme
         **/
         public func getAllPages(
             themeId: String,
@@ -84,17 +84,33 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get page of a theme
-        * Description: Use this API to retrieve a page of a theme.
+        * Summary: Get theme page
+        * Description: Get page level configurations, applied sections and SEO data of a page by `page_value` received from list pages API
         **/
         public func getPage(
             themeId: String,
             pageValue: String,
+            filters: String?,
+            company: Int?,
             
             onResponse: @escaping (_ response: AvailablePageSchema?, _ error: FDKError?) -> Void
         ) {
             
- 
+var xQuery: [String: Any] = [:] 
+
+if let value = filters {
+    
+    xQuery["filters"] = value
+    
+}
+
+
+if let value = company {
+    
+    xQuery["company"] = value
+    
+}
+
 
  
 
@@ -110,7 +126,7 @@ extension ApplicationClient {
                 config: config,
                 method: "GET",
                 url: fullUrl,
-                query: nil,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 responseType: "application/json",
@@ -140,8 +156,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get the theme currently applied to an application
-        * Description: An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application.
+        * Summary: Get applied theme 
+        * Description: Gets the theme configuration and template details of a theme applied to the application.
         **/
         public func getAppliedTheme(
             
@@ -190,8 +206,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get a theme for a preview
-        * Description: A theme can be previewed before applying it. Use this API to retrieve the preview of a theme by its ID.
+        * Summary: Get theme for preview 
+        * Description: Gets the theme configuration and template details of a theme by theme Id.
         **/
         public func getThemeForPreview(
             themeId: String,

@@ -12,9 +12,9 @@ public extension PlatformClient.Catalog {
     class ApplicationItemSeoMetaTagItem: Codable {
         
         
-        public var key: String?
+        public var key: String
         
-        public var value: String?
+        public var value: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(key: String? = nil, value: String? = nil) {
+        public init(key: String, value: String) {
             
             self.key = key
             
@@ -37,28 +37,14 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    key = try container.decode(String.self, forKey: .key)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                key = try container.decode(String.self, forKey: .key)
                 
             
             
-                do {
-                    value = try container.decode(String.self, forKey: .value)
+            
+                value = try container.decode(String.self, forKey: .value)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -91,9 +77,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ApplicationItemSeoMetaTagItem: Codable {
         
         
-        public var key: String?
+        public var key: String
         
-        public var value: String?
+        public var value: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -104,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(key: String? = nil, value: String? = nil) {
+        public init(key: String, value: String) {
             
             self.key = key
             
@@ -116,28 +102,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    key = try container.decode(String.self, forKey: .key)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                key = try container.decode(String.self, forKey: .key)
                 
             
             
-                do {
-                    value = try container.decode(String.self, forKey: .value)
+            
+                value = try container.decode(String.self, forKey: .value)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         

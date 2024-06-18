@@ -12,15 +12,17 @@ public extension PlatformClient.Webhook {
     class EventProcessRequest: Codable {
         
         
-        public var searchText: String?
+        public var searchText: String
         
-        public var endDate: String?
+        public var endDate: String
         
-        public var startDate: String?
+        public var startDate: String
         
-        public var subscriberIds: [Int]?
+        public var subscriberIds: [Int]
         
-        public var event: [Event]?
+        public var status: String
+        
+        public var event: [Event]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,11 +35,13 @@ public extension PlatformClient.Webhook {
             
             case subscriberIds = "subscriber_ids"
             
+            case status = "status"
+            
             case event = "event"
             
         }
 
-        public init(endDate: String? = nil, event: [Event]? = nil, searchText: String? = nil, startDate: String? = nil, subscriberIds: [Int]? = nil) {
+        public init(endDate: String, event: [Event], searchText: String, startDate: String, status: String, subscriberIds: [Int]) {
             
             self.searchText = searchText
             
@@ -47,6 +51,8 @@ public extension PlatformClient.Webhook {
             
             self.subscriberIds = subscriberIds
             
+            self.status = status
+            
             self.event = event
             
         }
@@ -55,64 +61,34 @@ public extension PlatformClient.Webhook {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    searchText = try container.decode(String.self, forKey: .searchText)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                searchText = try container.decode(String.self, forKey: .searchText)
                 
             
             
-                do {
-                    endDate = try container.decode(String.self, forKey: .endDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                endDate = try container.decode(String.self, forKey: .endDate)
                 
             
             
-                do {
-                    startDate = try container.decode(String.self, forKey: .startDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                startDate = try container.decode(String.self, forKey: .startDate)
                 
             
             
-                do {
-                    subscriberIds = try container.decode([Int].self, forKey: .subscriberIds)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                subscriberIds = try container.decode([Int].self, forKey: .subscriberIds)
                 
             
             
-                do {
-                    event = try container.decode([Event].self, forKey: .event)
+            
+                status = try container.decode(String.self, forKey: .status)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+            
+            
+                event = try container.decode([Event].self, forKey: .event)
                 
+            
             
         }
         
@@ -137,6 +113,11 @@ public extension PlatformClient.Webhook {
             
             
             try? container.encodeIfPresent(subscriberIds, forKey: .subscriberIds)
+            
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             

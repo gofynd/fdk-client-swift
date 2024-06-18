@@ -16,6 +16,8 @@ public extension PlatformClient.Payment {
         
         public var success: Bool
         
+        public var paymentBreakup: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,13 +25,17 @@ public extension PlatformClient.Payment {
             
             case success = "success"
             
+            case paymentBreakup = "payment_breakup"
+            
         }
 
-        public init(paymentOptions: PaymentOptions, success: Bool) {
+        public init(paymentBreakup: [String: Any]? = nil, paymentOptions: PaymentOptions, success: Bool) {
             
             self.paymentOptions = paymentOptions
             
             self.success = success
+            
+            self.paymentBreakup = paymentBreakup
             
         }
 
@@ -46,6 +52,18 @@ public extension PlatformClient.Payment {
                 
             
             
+            
+                do {
+                    paymentBreakup = try container.decode([String: Any].self, forKey: .paymentBreakup)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -59,6 +77,11 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(success, forKey: .success)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentBreakup, forKey: .paymentBreakup)
             
             
         }
@@ -81,6 +104,8 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var success: Bool
         
+        public var paymentBreakup: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -88,13 +113,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case success = "success"
             
+            case paymentBreakup = "payment_breakup"
+            
         }
 
-        public init(paymentOptions: PaymentOptions, success: Bool) {
+        public init(paymentBreakup: [String: Any]? = nil, paymentOptions: PaymentOptions, success: Bool) {
             
             self.paymentOptions = paymentOptions
             
             self.success = success
+            
+            self.paymentBreakup = paymentBreakup
             
         }
 
@@ -111,6 +140,18 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
+            
+                do {
+                    paymentBreakup = try container.decode([String: Any].self, forKey: .paymentBreakup)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -124,6 +165,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(success, forKey: .success)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentBreakup, forKey: .paymentBreakup)
             
             
         }
