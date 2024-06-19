@@ -1474,7 +1474,7 @@ if let value = uid {
             public func getPriceAdjustments(
                 cartId: String,
                 
-                onResponse: @escaping (_ response: PriceAdjustmentResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetPriceAdjustmentResponse?, _ error: FDKError?) -> Void
             ) {
                 
 var xQuery: [String: Any] = [:] 
@@ -1504,7 +1504,7 @@ var xQuery: [String: Any] = [:]
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PriceAdjustmentResponse.self, from: data)
+                            let response = Utility.decode(GetPriceAdjustmentResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -27090,11 +27090,27 @@ var xQuery: [String: Any] = [:]
             * Description: Retrieve the list of extension sections for a given application in the specified company.
             **/
             public func getExtensionSections(
+                type: String?,
+                companyMode: String?,
                 
                 onResponse: @escaping (_ response: [GetExtensionSectionRes]?, _ error: FDKError?) -> Void
             ) {
                 
- 
+var xQuery: [String: Any] = [:] 
+
+if let value = type {
+    
+    xQuery["type"] = value
+    
+}
+
+
+if let value = companyMode {
+    
+    xQuery["company_mode"] = value
+    
+}
+
 
  
 
@@ -27103,7 +27119,7 @@ var xQuery: [String: Any] = [:]
                     config: config,
                     method: "GET",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/extension-section",
-                    query: nil,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     responseType: "application/json",

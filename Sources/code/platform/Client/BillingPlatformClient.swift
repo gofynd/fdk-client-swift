@@ -525,8 +525,10 @@ var xQuery: [String: Any] = [:]
             type: String,
             pageSize: Int?,
             pageNo: Int?,
-            sort: [String: Any]?,
-            query: [String: Any]?,
+            startDate: String?,
+            endDate: String?,
+            searchType: String?,
+            searchValue: String?,
             
             onResponse: @escaping (_ response: CreditTransactionResponse?, _ error: FDKError?) -> Void
         ) {
@@ -562,16 +564,30 @@ if let value = pageNo {
 }
 
 
-if let value = sort {
+if let value = startDate {
     
-    xQuery["sort"] = value
+    xQuery["start_date"] = value
     
 }
 
 
-if let value = query {
+if let value = endDate {
     
-    xQuery["query"] = value
+    xQuery["end_date"] = value
+    
+}
+
+
+if let value = searchType {
+    
+    xQuery["search_type"] = value
+    
+}
+
+
+if let value = searchValue {
+    
+    xQuery["search_value"] = value
     
 }
 

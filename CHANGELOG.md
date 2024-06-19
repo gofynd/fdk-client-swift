@@ -1,4 +1,4 @@
-# CHANGE LOG (1.4.6-beta.1) - v1.9.4-prerelease-v1
+# CHANGE LOG (1.4.8-beta.2) - v1.9.4-prerelease-v2
 
 ## Application Client
 
@@ -897,6 +897,19 @@
 
 ### Cart
 
+
+
+#### getPriceAdjustments
+
+- ##### What's New
+	- [Added] property <code>data[]</code> of schema <code>GetPriceAdjustmentResponse</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] properties <code>data.value</code>, <code>data.message</code>, <code>data.restrictions</code>, <code>data.id</code>, <code>data.collection</code>, <code>data.type</code>, <code>data.meta</code>, <code>data.applyExpiry</code>, <code>data.articleLevelDistribution</code>, <code>data.allowedRefund</code>, <code>data.isAuthenticated</code>, <code>data.articleIds</code>, <code>data.cartId</code> in response with status code 200
+	- [Deleted] Required status from properties <code>data.article_ids</code>, <code>data.article_level_distribution</code>, <code>data.cart_id</code>, <code>data.collection</code>, <code>data.is_authenticated</code>, <code>data.message</code>, <code>data.type</code>, <code>data.value</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>data</code> of schema <code>PriceAdjustment</code> in response with status code 200
 
 
 #### getAbandonedCartDetails
