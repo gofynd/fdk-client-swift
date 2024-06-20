@@ -2133,6 +2133,12 @@
 	- [Added] property <code>resumeTasksAfterUnlock</code> of schema <code>UpdateShipmentStatusRequest</code> in request body
 
 
+#### createOrder
+
+- ##### What's New
+	- [Added] property <code>shipmentRequestData</code> of schema <code>CreateOrderAPI</code> in request body
+
+
 ### Payment
 
 
