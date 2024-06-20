@@ -184,6 +184,8 @@ if let value = rootId {
         public func getBlogs(
             pageNo: Int?,
             pageSize: Int?,
+            tags: String?,
+            search: String?,
             
             onResponse: @escaping (_ response: BlogGetResponse?, _ error: FDKError?) -> Void
         ) {
@@ -200,6 +202,20 @@ if let value = pageNo {
 if let value = pageSize {
     
     xQuery["page_size"] = value
+    
+}
+
+
+if let value = tags {
+    
+    xQuery["tags"] = value
+    
+}
+
+
+if let value = search {
+    
+    xQuery["search"] = value
     
 }
 

@@ -14661,6 +14661,11 @@ if let value = pageSize {
             public func getBlogs(
                 pageNo: Int?,
                 pageSize: Int?,
+                tags: String?,
+                q: String?,
+                slug: String?,
+                title: String?,
+                status: String?,
                 
                 onResponse: @escaping (_ response: BlogGetResponse?, _ error: FDKError?) -> Void
             ) {
@@ -14677,6 +14682,41 @@ if let value = pageNo {
 if let value = pageSize {
     
     xQuery["page_size"] = value
+    
+}
+
+
+if let value = tags {
+    
+    xQuery["tags"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = slug {
+    
+    xQuery["slug"] = value
+    
+}
+
+
+if let value = title {
+    
+    xQuery["title"] = value
+    
+}
+
+
+if let value = status {
+    
+    xQuery["status"] = value
     
 }
 

@@ -38,11 +38,11 @@ public extension PlatformClient.Content {
         
         public var seo: SEO?
         
-        public var schedule: CronSchedule?
-        
         public var title: String?
         
         public var dateMeta: DateMeta?
+        
+        public var summary: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -73,15 +73,15 @@ public extension PlatformClient.Content {
             
             case seo = "seo"
             
-            case schedule = "_schedule"
-            
             case title = "title"
             
             case dateMeta = "date_meta"
             
+            case summary = "summary"
+            
         }
 
-        public init(application: String? = nil, archived: Bool? = nil, author: Author? = nil, content: [ResourceContent]? = nil, dateMeta: DateMeta? = nil, featureImage: Asset? = nil, published: Bool? = nil, publishDate: String? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: CronSchedule? = nil) {
+        public init(application: String? = nil, archived: Bool? = nil, author: Author? = nil, content: [ResourceContent]? = nil, dateMeta: DateMeta? = nil, featureImage: Asset? = nil, published: Bool? = nil, publishDate: String? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, summary: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -109,11 +109,11 @@ public extension PlatformClient.Content {
             
             self.seo = seo
             
-            self.schedule = schedule
-            
             self.title = title
             
             self.dateMeta = dateMeta
+            
+            self.summary = summary
             
         }
 
@@ -278,18 +278,6 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    schedule = try container.decode(CronSchedule.self, forKey: .schedule)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     title = try container.decode(String.self, forKey: .title)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -303,6 +291,18 @@ public extension PlatformClient.Content {
             
                 do {
                     dateMeta = try container.decode(DateMeta.self, forKey: .dateMeta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    summary = try container.decode(String.self, forKey: .summary)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -384,17 +384,17 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(schedule, forKey: .schedule)
-            
-            
-            
-            
             try? container.encodeIfPresent(title, forKey: .title)
             
             
             
             
             try? container.encodeIfPresent(dateMeta, forKey: .dateMeta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(summary, forKey: .summary)
             
             
         }
@@ -439,11 +439,11 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var seo: SEO?
         
-        public var schedule: CronSchedule?
-        
         public var title: String?
         
         public var dateMeta: DateMeta?
+        
+        public var summary: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -474,15 +474,15 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case seo = "seo"
             
-            case schedule = "_schedule"
-            
             case title = "title"
             
             case dateMeta = "date_meta"
             
+            case summary = "summary"
+            
         }
 
-        public init(application: String? = nil, archived: Bool? = nil, author: Author? = nil, content: [ResourceContent]? = nil, dateMeta: DateMeta? = nil, featureImage: Asset? = nil, published: Bool? = nil, publishDate: String? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: CronSchedule? = nil) {
+        public init(application: String? = nil, archived: Bool? = nil, author: Author? = nil, content: [ResourceContent]? = nil, dateMeta: DateMeta? = nil, featureImage: Asset? = nil, published: Bool? = nil, publishDate: String? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, summary: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -510,11 +510,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             self.seo = seo
             
-            self.schedule = schedule
-            
             self.title = title
             
             self.dateMeta = dateMeta
+            
+            self.summary = summary
             
         }
 
@@ -679,18 +679,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    schedule = try container.decode(CronSchedule.self, forKey: .schedule)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     title = try container.decode(String.self, forKey: .title)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -704,6 +692,18 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     dateMeta = try container.decode(DateMeta.self, forKey: .dateMeta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    summary = try container.decode(String.self, forKey: .summary)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -785,17 +785,17 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(schedule, forKey: .schedule)
-            
-            
-            
-            
             try? container.encodeIfPresent(title, forKey: .title)
             
             
             
             
             try? container.encodeIfPresent(dateMeta, forKey: .dateMeta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(summary, forKey: .summary)
             
             
         }
