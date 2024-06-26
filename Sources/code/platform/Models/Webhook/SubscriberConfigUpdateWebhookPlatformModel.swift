@@ -16,15 +16,15 @@ public extension PlatformClient.Webhook {
         
         public var name: String?
         
-        public var webhookUrl: String
+        public var webhookUrl: String?
         
-        public var association: Association
+        public var association: Association?
         
         public var customHeaders: [String: Any]?
         
-        public var status: SubscriberStatus
+        public var status: SubscriberStatus?
         
-        public var emailId: String
+        public var emailId: String?
         
         public var authMeta: AuthMeta?
         
@@ -53,7 +53,7 @@ public extension PlatformClient.Webhook {
             
         }
 
-        public init(association: Association, authMeta: AuthMeta? = nil, customHeaders: [String: Any]? = nil, emailId: String, eventId: [Int], id: Int, name: String? = nil, status: SubscriberStatus, webhookUrl: String) {
+        public init(association: Association? = nil, authMeta: AuthMeta? = nil, customHeaders: [String: Any]? = nil, emailId: String? = nil, eventId: [Int], id: Int, name: String? = nil, status: SubscriberStatus? = nil, webhookUrl: String? = nil) {
             
             self.id = id
             
@@ -96,14 +96,28 @@ public extension PlatformClient.Webhook {
                 
             
             
-                webhookUrl = try container.decode(String.self, forKey: .webhookUrl)
+                do {
+                    webhookUrl = try container.decode(String.self, forKey: .webhookUrl)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                association = try container.decode(Association.self, forKey: .association)
+                do {
+                    association = try container.decode(Association.self, forKey: .association)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -118,14 +132,28 @@ public extension PlatformClient.Webhook {
                 
             
             
-                status = try container.decode(SubscriberStatus.self, forKey: .status)
+                do {
+                    status = try container.decode(SubscriberStatus.self, forKey: .status)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                emailId = try container.decode(String.self, forKey: .emailId)
+                do {
+                    emailId = try container.decode(String.self, forKey: .emailId)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

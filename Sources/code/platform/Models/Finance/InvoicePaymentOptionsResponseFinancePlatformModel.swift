@@ -14,7 +14,11 @@ public extension PlatformClient.Finance {
         
         public var reason: String?
         
-        public var data: InvoicePaymentOptionsResponseData?
+        public var data: [InvoicePaymentOptionsResponseData]?
+        
+        public var totalPayableAmount: Double?
+        
+        public var invoiceCount: Int?
         
         public var success: Bool?
         
@@ -25,15 +29,23 @@ public extension PlatformClient.Finance {
             
             case data = "data"
             
+            case totalPayableAmount = "total_payable_amount"
+            
+            case invoiceCount = "invoice_count"
+            
             case success = "success"
             
         }
 
-        public init(data: InvoicePaymentOptionsResponseData? = nil, reason: String? = nil, success: Bool? = nil) {
+        public init(data: [InvoicePaymentOptionsResponseData]? = nil, invoiceCount: Int? = nil, reason: String? = nil, success: Bool? = nil, totalPayableAmount: Double? = nil) {
             
             self.reason = reason
             
             self.data = data
+            
+            self.totalPayableAmount = totalPayableAmount
+            
+            self.invoiceCount = invoiceCount
             
             self.success = success
             
@@ -56,7 +68,31 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    data = try container.decode(InvoicePaymentOptionsResponseData.self, forKey: .data)
+                    data = try container.decode([InvoicePaymentOptionsResponseData].self, forKey: .data)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    totalPayableAmount = try container.decode(Double.self, forKey: .totalPayableAmount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    invoiceCount = try container.decode(Int.self, forKey: .invoiceCount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,6 +127,16 @@ public extension PlatformClient.Finance {
             
             
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(totalPayableAmount, forKey: .totalPayableAmount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(invoiceCount, forKey: .invoiceCount)
             
             
             

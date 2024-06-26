@@ -5900,6 +5900,11 @@ if let value = q {
                 timestamp: String?,
                 pageSize: Int?,
                 pageId: String?,
+                qtyGt: Int?,
+                qtyLt: Int?,
+                qtyType: String?,
+                fromDate: String?,
+                toDate: String?,
                 
                 onResponse: @escaping (_ response: InventoryStockResponse?, _ error: FDKError?) -> Void
             ) {
@@ -5951,6 +5956,41 @@ if let value = pageSize {
 if let value = pageId {
     
     xQuery["page_id"] = value
+    
+}
+
+
+if let value = qtyGt {
+    
+    xQuery["qty_gt"] = value
+    
+}
+
+
+if let value = qtyLt {
+    
+    xQuery["qty_lt"] = value
+    
+}
+
+
+if let value = qtyType {
+    
+    xQuery["qty_type"] = value
+    
+}
+
+
+if let value = fromDate {
+    
+    xQuery["from_date"] = value
+    
+}
+
+
+if let value = toDate {
+    
+    xQuery["to_date"] = value
     
 }
 

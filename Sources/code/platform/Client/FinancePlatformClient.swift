@@ -1188,8 +1188,8 @@ if let value = affiliateId {
         
         /**
         *
-        * Summary: Display all payment options for an invoice.
-        * Description: Display all payment options for an invoice.
+        * Summary: Display all payment options for invoice.
+        * Description: Display all payment options for invoice.
         **/
         public func invoicePaymentOptions(
             body: InvoicePaymentOptionsReq,

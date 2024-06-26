@@ -25,7 +25,7 @@ extension PlatformClient {
             isActive: Bool?,
             channelId: String?,
             q: String?,
-            country: String?,
+            countryIsoCode: String?,
             state: String?,
             city: String?,
             pincode: String?,
@@ -71,9 +71,9 @@ if let value = q {
 }
 
 
-if let value = country {
+if let value = countryIsoCode {
     
-    xQuery["country"] = value
+    xQuery["country_iso_code"] = value
     
 }
 
@@ -346,7 +346,7 @@ if let value = sector {
         * Description: Creates a courier partner account.
         **/
         public func createCourierPartnerAccount(
-            body: CourierAccount,
+            body: CourierAccountRequestBody,
             onResponse: @escaping (_ response: CourierAccount?, _ error: FDKError?) -> Void
         ) {
             

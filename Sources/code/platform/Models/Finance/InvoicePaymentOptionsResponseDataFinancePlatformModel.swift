@@ -12,7 +12,7 @@ public extension PlatformClient.Finance {
     class InvoicePaymentOptionsResponseData: Codable {
         
         
-        public var currency: Currency?
+        public var invoiceNumber: String?
         
         public var invoiceType: String?
         
@@ -24,10 +24,12 @@ public extension PlatformClient.Finance {
         
         public var payableAmounts: [InvoicePaymentOptionsResponsePayableAmounts]?
         
+        public var currency: Currency?
+        
 
         public enum CodingKeys: String, CodingKey {
             
-            case currency = "currency"
+            case invoiceNumber = "invoice_number"
             
             case invoiceType = "invoice_type"
             
@@ -39,11 +41,13 @@ public extension PlatformClient.Finance {
             
             case payableAmounts = "payable_amounts"
             
+            case currency = "currency"
+            
         }
 
-        public init(currency: Currency? = nil, deductedAmounts: [String: Any]? = nil, displayAmounts: [InvoicePaymentOptionsResponsePayableAmounts]? = nil, invoiceType: String? = nil, payableAmounts: [InvoicePaymentOptionsResponsePayableAmounts]? = nil, totalAmount: [String: Any]? = nil) {
+        public init(currency: Currency? = nil, deductedAmounts: [String: Any]? = nil, displayAmounts: [InvoicePaymentOptionsResponsePayableAmounts]? = nil, invoiceNumber: String? = nil, invoiceType: String? = nil, payableAmounts: [InvoicePaymentOptionsResponsePayableAmounts]? = nil, totalAmount: [String: Any]? = nil) {
             
-            self.currency = currency
+            self.invoiceNumber = invoiceNumber
             
             self.invoiceType = invoiceType
             
@@ -55,6 +59,8 @@ public extension PlatformClient.Finance {
             
             self.payableAmounts = payableAmounts
             
+            self.currency = currency
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,7 +68,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    currency = try container.decode(Currency.self, forKey: .currency)
+                    invoiceNumber = try container.decode(String.self, forKey: .invoiceNumber)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,6 +138,18 @@ public extension PlatformClient.Finance {
                 }
                 
             
+            
+                do {
+                    currency = try container.decode(Currency.self, forKey: .currency)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -139,7 +157,7 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(invoiceNumber, forKey: .invoiceNumber)
             
             
             
@@ -165,6 +183,11 @@ public extension PlatformClient.Finance {
             
             
             try? container.encodeIfPresent(payableAmounts, forKey: .payableAmounts)
+            
+            
+            
+            
+            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
         }

@@ -20,13 +20,13 @@ public extension PlatformClient.Webhook {
         
         public var provider: String
         
-        public var association: Association
+        public var association: Association?
         
         public var customHeaders: [String: Any]?
         
         public var status: SubscriberStatus
         
-        public var emailId: String
+        public var emailId: String?
         
         public var authMeta: AuthMeta?
         
@@ -57,7 +57,7 @@ public extension PlatformClient.Webhook {
             
         }
 
-        public init(association: Association, authMeta: AuthMeta? = nil, customHeaders: [String: Any]? = nil, emailId: String, events: [Events]? = nil, id: Int, name: String? = nil, provider: String, status: SubscriberStatus, webhookUrl: String? = nil) {
+        public init(association: Association? = nil, authMeta: AuthMeta? = nil, customHeaders: [String: Any]? = nil, emailId: String? = nil, events: [Events]? = nil, id: Int, name: String? = nil, provider: String, status: SubscriberStatus, webhookUrl: String? = nil) {
             
             self.id = id
             
@@ -119,9 +119,16 @@ public extension PlatformClient.Webhook {
             
             
             
-                association = try container.decode(Association.self, forKey: .association)
+                do {
+                    association = try container.decode(Association.self, forKey: .association)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -141,9 +148,16 @@ public extension PlatformClient.Webhook {
             
             
             
-                emailId = try container.decode(String.self, forKey: .emailId)
+                do {
+                    emailId = try container.decode(String.self, forKey: .emailId)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

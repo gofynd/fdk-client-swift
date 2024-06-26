@@ -1,4 +1,4 @@
-# CHANGE LOG (1.4.8-beta.2) - v1.9.4-prerelease-v2
+# CHANGE LOG (1.4.8-beta.3) - v1.9.4-prerelease-v3
 
 ## Application Client
 
@@ -214,6 +214,12 @@
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>media[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
 
 
+#### getSupportInformation
+
+- ##### What's New
+	- [Added] property <code>contact.phone.phone[].phoneType</code> of schema <code>PhoneProperties</code> in response with status code 200
+
+
 #### getPage
 
 - ##### What's Deprecated
@@ -293,13 +299,21 @@
 #### getOrders
 
 - ##### What's New
+	- [Added] property <code>items[].shipments[].gstinCode</code> of schema <code>Shipments</code> in response with status code 200
 	- [Added] property <code>items[].meta</code> of schema <code>OrderSchema</code> in response with status code 200
 
 
 #### getOrderById
 
 - ##### What's New
+	- [Added] property <code>order.shipments[].gstinCode</code> of schema <code>Shipments</code> in response with status code 200
 	- [Added] property <code>order.meta</code> of schema <code>OrderSchema</code> in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property <code>shipment.gstinCode</code> of schema <code>Shipments</code> in response with status code 200
 
 
 ### Payment
@@ -1106,6 +1120,21 @@
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>items[].brand.action.popup.type</code> of schema <code>PageType</code> in response with status code 200
 
 
+#### getAppInventory
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>qtyGt</code> (type: <code>integer</code>)
+
+	- [Added] <code>query</code> parameter <code>qtyLt</code> (type: <code>integer</code>)
+
+	- [Added] <code>query</code> parameter <code>qtyType</code> (type: <code>string</code>)
+
+	- [Added] <code>query</code> parameter <code>fromDate</code> (type: <code>string</code>)
+
+	- [Added] <code>query</code> parameter <code>toDate</code> (type: <code>string</code>)
+
+
+
 #### getAppicationProducts
 
 - ##### What's Deprecated
@@ -1379,6 +1408,19 @@
 	- [Deleted] Possible nullable value from <code>true</code> from property <code>media[].action.popup.type</code> of schema <code>PageType</code> in response with status code 200
 
 
+#### getSupportInformation
+
+- ##### What's New
+	- [Added] property <code>contact.phone.phone[].phoneType</code> of schema <code>PhoneProperties</code> in response with status code 200
+
+
+#### updateSupportInformation
+
+- ##### What's New
+	- [Added] property <code>contact.phone.phone[].phoneType</code> of schema <code>PhoneProperties</code> in request body
+	- [Added] property <code>contact.phone.phone[].phoneType</code> of schema <code>PhoneProperties</code> in response with status code 200
+
+
 #### getBlogBySlug
 
 - ##### What's New
@@ -1555,9 +1597,11 @@
 #### paymentProcess
 
 - ##### What's New
+	- [Added] property <code>data.invoiceBillingItems</code> of schema <code>PaymentProcessPayload</code> in request body
 	- [Added] Response with status 400
 
 - ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>data.invoiceNumber</code> of schema <code>PaymentProcessPayload</code> in request body
 	- [Breaking] [Deleted] Response with status 4XX
 
 - ##### What's Changed
@@ -1988,6 +2032,19 @@
 
 
 
+#### getZones
+
+- ##### What's New
+	- [Breaking] [Deleted] <code>query</code> parameter <code>country</code> (type: <code>string</code>),
+ [Added] <code>query</code> parameter <code>countryIsoCode</code> (type: <code>string</code>)
+
+
+#### createCourierPartnerAccount
+
+- ##### What's Deprecated
+	- [Deleted] Required status from property <code>account_id</code> in request body
+
+
 #### getCourierPartnerAccounts
 
 - ##### What's New
@@ -2191,6 +2248,36 @@
 	- [Added] property <code>shipmentRequestData</code> of schema <code>CreateOrderAPI</code> in request body
 
 
+#### getShipments
+
+- ##### What's New
+	- [Added] property <code>items[].isLapaEnabled</code> of schema <code>ShipmentItem</code> in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property <code>shipments[].isLapaEnabled</code> of schema <code>PlatformShipment</code> in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property <code>shipments[].isLapaEnabled</code> of schema <code>PlatformShipment</code> in response with status code 200
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property <code>items[].shipments[].isLapaEnabled</code> of schema <code>PlatformShipment</code> in response with status code 200
+
+
+#### getApplicationShipments
+
+- ##### What's New
+	- [Added] property <code>items[].isLapaEnabled</code> of schema <code>ShipmentItem</code> in response with status code 200
+
+
 ### Payment
 
 
@@ -2266,6 +2353,16 @@
 
 
 
+### User
+
+
+
+#### createUserSession
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>maxAge</code> of schema <code>CreateUserSessionRequestSchema</code> in request body
+
+
 ### Webhook
 
 
@@ -2301,7 +2398,7 @@
 #### downloadDeliveryReport
 
 - ##### What's New
-	- [Breaking] [Added] Required status to properties <code>search_text</code>, <code>end_date</code>, <code>start_date</code>, <code>subscriber_ids</code>, <code>status</code>, <code>event</code> in request body
+	- [Breaking] [Added] Required status to properties <code>end_date</code>, <code>start_date</code> in request body
 
 
 #### pingWebhook
@@ -2325,14 +2422,14 @@
 #### getDeliveryReports
 
 - ##### What's New
-	- [Breaking] [Added] Required status to properties <code>search_text</code>, <code>end_date</code>, <code>start_date</code>, <code>subscriber_ids</code>, <code>status</code>, <code>event</code> in request body
+	- [Breaking] [Added] Required status to properties <code>end_date</code>, <code>start_date</code> in request body
 
 
 #### registerSubscriberToEventV2
 
 - ##### What's New
 	- [Breaking] [Added] Type <code>object</code> to property <code></code> of schema <code>SubscriberConfigPostRequestV2</code> in request body
-	- [Breaking] [Added] Required status to properties <code>provider</code>, <code>association</code>, <code>status</code>, <code>email_id</code> in request body
+	- [Breaking] [Added] Required status to properties <code>provider</code>, <code>association</code>, <code>status</code>, <code>email_id</code>, <code>name</code>, <code>events</code> in request body
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>id</code> of schema <code>SubscriberConfigRequestV2</code> in request body
@@ -2343,7 +2440,7 @@
 
 - ##### What's New
 	- [Breaking] [Added] Type <code>object</code> to property <code></code> of schema <code>SubscriberConfigUpdateRequestV2</code> in request body
-	- [Breaking] [Added] Required status to properties <code>id</code>, <code>provider</code>, <code>association</code>, <code>status</code>, <code>email_id</code> in request body
+	- [Breaking] [Added] Required status to properties <code>id</code>, <code>provider</code>, <code>status</code> in request body
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>association.companyId</code> of schema <code>Association</code> in request body
@@ -2353,7 +2450,7 @@
 
 - ##### What's New
 	- [Breaking] [Added] Type <code>object</code> to property <code></code> of schema <code>SubscriberConfigPost</code> in request body
-	- [Breaking] [Added] Required status to properties <code>webhook_url</code>, <code>association</code>, <code>status</code>, <code>email_id</code>, <code>event_id</code> in request body
+	- [Breaking] [Added] Required status to properties <code>webhook_url</code>, <code>association</code>, <code>status</code>, <code>email_id</code>, <code>event_id</code>, <code>name</code> in request body
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>id</code> of schema <code>SubscriberConfig</code> in request body
@@ -2364,7 +2461,7 @@
 
 - ##### What's New
 	- [Breaking] [Added] Type <code>object</code> to property <code></code> of schema <code>SubscriberConfigUpdate</code> in request body
-	- [Breaking] [Added] Required status to properties <code>id</code>, <code>webhook_url</code>, <code>association</code>, <code>status</code>, <code>email_id</code>, <code>event_id</code> in request body
+	- [Breaking] [Added] Required status to properties <code>id</code>, <code>event_id</code> in request body
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>association.companyId</code> of schema <code>Association</code> in request body

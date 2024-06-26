@@ -3,35 +3,33 @@
 import Foundation
 
 
-
-
-public extension PlatformClient.ApplicationClient.User {
+public extension PlatformClient.Finance {
     /*
-        Model: CreateUserSessionRequestSchema
-        Used By: User
+        Model: InvoiceBillingItem
+        Used By: Finance
     */
 
-    class CreateUserSessionRequestSchema: Codable {
+    class InvoiceBillingItem: Codable {
         
         
-        public var domain: String?
+        public var invoiceNumber: String?
         
-        public var userId: String?
+        public var amount: Double?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case domain = "domain"
+            case invoiceNumber = "invoice_number"
             
-            case userId = "user_id"
+            case amount = "amount"
             
         }
 
-        public init(domain: String? = nil, userId: String? = nil) {
+        public init(amount: Double? = nil, invoiceNumber: String? = nil) {
             
-            self.domain = domain
+            self.invoiceNumber = invoiceNumber
             
-            self.userId = userId
+            self.amount = amount
             
         }
 
@@ -40,7 +38,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    domain = try container.decode(String.self, forKey: .domain)
+                    invoiceNumber = try container.decode(String.self, forKey: .invoiceNumber)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -52,7 +50,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    userId = try container.decode(String.self, forKey: .userId)
+                    amount = try container.decode(Double.self, forKey: .amount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,17 +67,19 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             
-            try? container.encodeIfPresent(domain, forKey: .domain)
+            try? container.encodeIfPresent(invoiceNumber, forKey: .invoiceNumber)
             
             
             
             
-            try? container.encodeIfPresent(userId, forKey: .userId)
+            try? container.encodeIfPresent(amount, forKey: .amount)
             
             
         }
         
     }
 }
+
+
 
 

@@ -14,6 +14,8 @@ public extension ApplicationClient.Order {
         
         public var orderType: String?
         
+        public var gstinCode: String?
+        
         public var showDownloadInvoice: Bool?
         
         public var canCancel: Bool?
@@ -97,6 +99,8 @@ public extension ApplicationClient.Order {
             
             case orderType = "order_type"
             
+            case gstinCode = "gstin_code"
+            
             case showDownloadInvoice = "show_download_invoice"
             
             case canCancel = "can_cancel"
@@ -173,13 +177,15 @@ public extension ApplicationClient.Order {
             
         }
 
-        public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, billingAddress: Address? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, comment: String? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: Address? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, invoice: Invoice? = nil, needHelpUrl: String? = nil, order: OrderRequest? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, paymentInfo: [ShipmentPaymentInfo]? = nil, prices: Prices? = nil, promise: Promise? = nil, refundDetails: [String: Any]? = nil, returnableDate: String? = nil, returnMeta: [String: Any]? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
+        public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, billingAddress: Address? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, comment: String? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: Address? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, gstinCode: String? = nil, invoice: Invoice? = nil, needHelpUrl: String? = nil, order: OrderRequest? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, paymentInfo: [ShipmentPaymentInfo]? = nil, prices: Prices? = nil, promise: Promise? = nil, refundDetails: [String: Any]? = nil, returnableDate: String? = nil, returnMeta: [String: Any]? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
             
             self.payment = payment
             
             self.paymentInfo = paymentInfo
             
             self.orderType = orderType
+            
+            self.gstinCode = gstinCode
             
             self.showDownloadInvoice = showDownloadInvoice
             
@@ -287,6 +293,18 @@ public extension ApplicationClient.Order {
             
             do {
                 orderType = try container.decode(String.self, forKey: .orderType)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                gstinCode = try container.decode(String.self, forKey: .gstinCode)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -755,6 +773,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(orderType, forKey: .orderType)
+            
+            
+            
+            try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
             
             
             

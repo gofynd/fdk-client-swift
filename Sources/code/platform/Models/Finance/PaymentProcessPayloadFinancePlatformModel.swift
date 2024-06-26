@@ -30,7 +30,7 @@ public extension PlatformClient.Finance {
         
         public var modeOfPayment: String?
         
-        public var invoiceNumber: String?
+        public var invoiceBillingItems: [InvoiceBillingItem]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -53,11 +53,11 @@ public extension PlatformClient.Finance {
             
             case modeOfPayment = "mode_of_payment"
             
-            case invoiceNumber = "invoice_number"
+            case invoiceBillingItems = "invoice_billing_items"
             
         }
 
-        public init(amount: Double? = nil, currency: String? = nil, invoiceNumber: String? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, platform: String? = nil, sellerId: String? = nil, sourceReference: String? = nil, totalAmount: Double? = nil, transactionType: String? = nil) {
+        public init(amount: Double? = nil, currency: String? = nil, invoiceBillingItems: [InvoiceBillingItem]? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, platform: String? = nil, sellerId: String? = nil, sourceReference: String? = nil, totalAmount: Double? = nil, transactionType: String? = nil) {
             
             self.platform = platform
             
@@ -77,7 +77,7 @@ public extension PlatformClient.Finance {
             
             self.modeOfPayment = modeOfPayment
             
-            self.invoiceNumber = invoiceNumber
+            self.invoiceBillingItems = invoiceBillingItems
             
         }
 
@@ -194,7 +194,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    invoiceNumber = try container.decode(String.self, forKey: .invoiceNumber)
+                    invoiceBillingItems = try container.decode([InvoiceBillingItem].self, forKey: .invoiceBillingItems)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -256,7 +256,7 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(invoiceNumber, forKey: .invoiceNumber)
+            try? container.encodeIfPresent(invoiceBillingItems, forKey: .invoiceBillingItems)
             
             
         }

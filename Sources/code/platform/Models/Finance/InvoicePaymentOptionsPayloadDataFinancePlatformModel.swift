@@ -12,18 +12,18 @@ public extension PlatformClient.Finance {
     class InvoicePaymentOptionsPayloadData: Codable {
         
         
-        public var invoiceNumber: String?
+        public var invoiceNumbers: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case invoiceNumber = "invoice_number"
+            case invoiceNumbers = "invoice_numbers"
             
         }
 
-        public init(invoiceNumber: String? = nil) {
+        public init(invoiceNumbers: [String]? = nil) {
             
-            self.invoiceNumber = invoiceNumber
+            self.invoiceNumbers = invoiceNumbers
             
         }
 
@@ -32,7 +32,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    invoiceNumber = try container.decode(String.self, forKey: .invoiceNumber)
+                    invoiceNumbers = try container.decode([String].self, forKey: .invoiceNumbers)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(invoiceNumber, forKey: .invoiceNumber)
+            try? container.encodeIfPresent(invoiceNumbers, forKey: .invoiceNumbers)
             
             
         }

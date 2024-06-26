@@ -12,7 +12,7 @@ public extension PlatformClient.Webhook {
     class SubscriberConfigPost: Codable {
         
         
-        public var name: String?
+        public var name: String
         
         public var webhookUrl: String
         
@@ -49,7 +49,7 @@ public extension PlatformClient.Webhook {
             
         }
 
-        public init(association: Association, authMeta: AuthMeta? = nil, customHeaders: [String: Any]? = nil, emailId: String, eventId: [Int], name: String? = nil, status: SubscriberStatus, webhookUrl: String) {
+        public init(association: Association, authMeta: AuthMeta? = nil, customHeaders: [String: Any]? = nil, emailId: String, eventId: [Int], name: String, status: SubscriberStatus, webhookUrl: String) {
             
             self.name = name
             
@@ -73,16 +73,9 @@ public extension PlatformClient.Webhook {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    name = try container.decode(String.self, forKey: .name)
+                name = try container.decode(String.self, forKey: .name)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 webhookUrl = try container.decode(String.self, forKey: .webhookUrl)
