@@ -40,6 +40,10 @@ public extension ApplicationClient.Cart {
         
         public var couponApplicableMessage: String?
         
+        public var offerText: String?
+        
+        public var isBankOffer: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -75,9 +79,13 @@ public extension ApplicationClient.Cart {
             
             case couponApplicableMessage = "coupon_applicable_message"
             
+            case offerText = "offer_text"
+            
+            case isBankOffer = "is_bank_offer"
+            
         }
 
-        public init(couponAmount: Double? = nil, couponApplicableMessage: String? = nil, couponCode: String? = nil, couponType: String? = nil, couponValue: Double? = nil, description: String? = nil, endDate: String? = nil, expiresOn: String? = nil, isApplicable: Bool? = nil, isApplied: Bool? = nil, maxDiscountValue: Double? = nil, message: String? = nil, minimumCartValue: Double? = nil, startDate: String? = nil, subTitle: String? = nil, title: String? = nil) {
+        public init(couponAmount: Double? = nil, couponApplicableMessage: String? = nil, couponCode: String? = nil, couponType: String? = nil, couponValue: Double? = nil, description: String? = nil, endDate: String? = nil, expiresOn: String? = nil, isApplicable: Bool? = nil, isApplied: Bool? = nil, isBankOffer: Bool? = nil, maxDiscountValue: Double? = nil, message: String? = nil, minimumCartValue: Double? = nil, offerText: String? = nil, startDate: String? = nil, subTitle: String? = nil, title: String? = nil) {
             
             self.couponAmount = couponAmount
             
@@ -110,6 +118,10 @@ public extension ApplicationClient.Cart {
             self.endDate = endDate
             
             self.couponApplicableMessage = couponApplicableMessage
+            
+            self.offerText = offerText
+            
+            self.isBankOffer = isBankOffer
             
         }
 
@@ -308,6 +320,30 @@ public extension ApplicationClient.Cart {
             }
             
             
+            
+            do {
+                offerText = try container.decode(String.self, forKey: .offerText)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                isBankOffer = try container.decode(Bool.self, forKey: .isBankOffer)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -375,6 +411,14 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(couponApplicableMessage, forKey: .couponApplicableMessage)
+            
+            
+            
+            try? container.encodeIfPresent(offerText, forKey: .offerText)
+            
+            
+            
+            try? container.encodeIfPresent(isBankOffer, forKey: .isBankOffer)
             
             
         }

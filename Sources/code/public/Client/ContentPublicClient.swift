@@ -20,20 +20,24 @@ extension PublicClient {
         public func getCredentialsByEntity(
             entity: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CredentialsSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PublicAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/public/content/credentials/\(entity)",
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -55,8 +59,5 @@ extension PublicClient {
                         onResponse(nil, err)
                     }
             });
-        }
-        
-        
-    }
+        }}
 }

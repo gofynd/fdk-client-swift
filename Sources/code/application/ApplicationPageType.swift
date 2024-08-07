@@ -28,6 +28,7 @@ public extension ApplicationClient.Content {
         case collections = "collections"
         case contactUs = "contact-us"
         case external = "external"
+        case custom = "custom"
         case faq = "faq"
         case freshchat = "freshchat"
         case home = "home"
@@ -134,6 +135,8 @@ public extension ApplicationClient.Content {
                 return "/contact-us/"
             case .external:
                 return "/external/"
+            case .custom:
+                return "/c/"
             case .faq:
                 return "/faq"
             case .freshchat:
@@ -232,6 +235,8 @@ public extension ApplicationClient.Content {
                 return "Contact Us"
             case .external:
                 return "External Link"
+            case .custom:
+                return "Custom theme link"
             case .faq:
                 return "FAQ"
             case .freshchat:
@@ -330,6 +335,8 @@ public extension ApplicationClient.Content {
                 return []
             case .external:
                 return []
+            case .custom:
+                return []
             case .faq:
                 return []
             case .freshchat:
@@ -427,6 +434,8 @@ public extension ApplicationClient.Content {
             case .contactUs:
                 return []
             case .external:
+                return [(name: "url", required: true)]
+            case .custom:
                 return [(name: "url", required: true)]
             case .faq:
                 return []
@@ -532,6 +541,7 @@ public extension ApplicationClient.Theme {
         case collections = "collections"
         case contactUs = "contact-us"
         case external = "external"
+        case custom = "custom"
         case faq = "faq"
         case freshchat = "freshchat"
         case home = "home"
@@ -638,6 +648,8 @@ public extension ApplicationClient.Theme {
                 return "/contact-us/"
             case .external:
                 return "/external/"
+            case .custom:
+                return "/c/"
             case .faq:
                 return "/faq"
             case .freshchat:
@@ -736,6 +748,8 @@ public extension ApplicationClient.Theme {
                 return "Contact Us"
             case .external:
                 return "External Link"
+            case .custom:
+                return "Custom theme link"
             case .faq:
                 return "FAQ"
             case .freshchat:
@@ -834,6 +848,8 @@ public extension ApplicationClient.Theme {
                 return []
             case .external:
                 return []
+            case .custom:
+                return []
             case .faq:
                 return []
             case .freshchat:
@@ -931,6 +947,8 @@ public extension ApplicationClient.Theme {
             case .contactUs:
                 return []
             case .external:
+                return [(name: "url", required: true)]
+            case .custom:
                 return [(name: "url", required: true)]
             case .faq:
                 return []

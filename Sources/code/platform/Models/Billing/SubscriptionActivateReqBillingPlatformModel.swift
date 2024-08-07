@@ -22,6 +22,12 @@ public extension PlatformClient.Billing {
         
         public var paymentMethod: String?
         
+        public var subscriptionId: String?
+        
+        public var coupon: String?
+        
+        public var meta: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,9 +41,15 @@ public extension PlatformClient.Billing {
             
             case paymentMethod = "payment_method"
             
+            case subscriptionId = "subscription_id"
+            
+            case coupon = "coupon"
+            
+            case meta = "meta"
+            
         }
 
-        public init(paymentMethod: String? = nil, planId: String? = nil, productSuite: String? = nil, type: String? = nil, uniqueId: String? = nil) {
+        public init(coupon: String? = nil, meta: [String: Any]? = nil, paymentMethod: String? = nil, planId: String? = nil, productSuite: String? = nil, subscriptionId: String? = nil, type: String? = nil, uniqueId: String? = nil) {
             
             self.uniqueId = uniqueId
             
@@ -48,6 +60,12 @@ public extension PlatformClient.Billing {
             self.planId = planId
             
             self.paymentMethod = paymentMethod
+            
+            self.subscriptionId = subscriptionId
+            
+            self.coupon = coupon
+            
+            self.meta = meta
             
         }
 
@@ -114,6 +132,42 @@ public extension PlatformClient.Billing {
                 }
                 
             
+            
+                do {
+                    subscriptionId = try container.decode(String.self, forKey: .subscriptionId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    coupon = try container.decode(String.self, forKey: .coupon)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -142,6 +196,21 @@ public extension PlatformClient.Billing {
             
             
             try? container.encodeIfPresent(paymentMethod, forKey: .paymentMethod)
+            
+            
+            
+            
+            try? container.encodeIfPresent(subscriptionId, forKey: .subscriptionId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(coupon, forKey: .coupon)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }

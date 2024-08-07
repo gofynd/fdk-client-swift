@@ -14,6 +14,10 @@ public extension ApplicationClient.Cart {
         
         public var offerText: String?
         
+        public var promotionType: String?
+        
+        public var promotionName: String?
+        
         public var promotionGroup: String?
         
         public var validTill: String?
@@ -33,6 +37,10 @@ public extension ApplicationClient.Cart {
             
             case offerText = "offer_text"
             
+            case promotionType = "promotion_type"
+            
+            case promotionName = "promotion_name"
+            
             case promotionGroup = "promotion_group"
             
             case validTill = "valid_till"
@@ -45,13 +53,17 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(buyRules: [String: Any]? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, validTill: String? = nil) {
+        public init(buyRules: [String: Any]? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, validTill: String? = nil) {
             
             self.id = id
             
             self.buyRules = buyRules
             
             self.offerText = offerText
+            
+            self.promotionType = promotionType
+            
+            self.promotionName = promotionName
             
             self.promotionGroup = promotionGroup
             
@@ -95,6 +107,30 @@ public extension ApplicationClient.Cart {
             
             do {
                 offerText = try container.decode(String.self, forKey: .offerText)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                promotionType = try container.decode(String.self, forKey: .promotionType)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                promotionName = try container.decode(String.self, forKey: .promotionName)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -179,6 +215,14 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(offerText, forKey: .offerText)
+            
+            
+            
+            try? container.encodeIfPresent(promotionType, forKey: .promotionType)
+            
+            
+            
+            try? container.encodeIfPresent(promotionName, forKey: .promotionName)
             
             
             

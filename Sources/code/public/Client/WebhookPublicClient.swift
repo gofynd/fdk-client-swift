@@ -19,20 +19,24 @@ extension PublicClient {
         **/
         public func fetchAllWebhookEvents(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: EventConfigResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PublicAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/common/webhook/v1.0/events",
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -57,8 +61,6 @@ extension PublicClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Query webhook event details.
@@ -66,20 +68,24 @@ extension PublicClient {
         **/
         public func queryWebhookEventDetails(
             body: [EventConfigBase],
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: EventConfigResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PublicAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/common/webhook/v1.0/events/query-event-details",
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -104,8 +110,6 @@ extension PublicClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Notifies all the events that are going to depricate
@@ -113,20 +117,24 @@ extension PublicClient {
         **/
         public func notifyDepricatedEvent(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: EventNotifier?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PublicAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/common/webhook/v1.0/events/depricated-event-notifier",
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -151,8 +159,6 @@ extension PublicClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Test transformation of handler
@@ -160,20 +166,24 @@ extension PublicClient {
         **/
         public func testHandlerTransformation(
             body: TransformEventRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: TransformEventResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PublicAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/common/webhook/v1.0/events/transform-event",
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -198,8 +208,6 @@ extension PublicClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Validate Schema for an event
@@ -207,20 +215,24 @@ extension PublicClient {
         **/
         public func validateSchema(
             body: ValidateSchemaRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ValidateSchemaResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PublicAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/common/webhook/v1.0/events/validate-event-schema",
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -242,8 +254,5 @@ extension PublicClient {
                         onResponse(nil, err)
                     }
             });
-        }
-        
-        
-    }
+        }}
 }

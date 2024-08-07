@@ -12,6 +12,8 @@ public extension ApplicationClient.Theme {
         
         public var label: String?
         
+        public var source: String?
+        
         public var props: [String: Any]?
         
         public var blocks: [[String: Any]]?
@@ -27,6 +29,8 @@ public extension ApplicationClient.Theme {
             
             case label = "label"
             
+            case source = "source"
+            
             case props = "props"
             
             case blocks = "blocks"
@@ -37,11 +41,13 @@ public extension ApplicationClient.Theme {
             
         }
 
-        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil) {
+        public init(blocks: [[String: Any]]? = nil, label: String? = nil, name: String? = nil, predicate: AvailablePagePredicate? = nil, preset: [String: Any]? = nil, props: [String: Any]? = nil, source: String? = nil) {
             
             self.name = name
             
             self.label = label
+            
+            self.source = source
             
             self.props = props
             
@@ -71,6 +77,18 @@ public extension ApplicationClient.Theme {
             
             do {
                 label = try container.decode(String.self, forKey: .label)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                source = try container.decode(String.self, forKey: .source)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -139,6 +157,10 @@ public extension ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(label, forKey: .label)
+            
+            
+            
+            try? container.encodeIfPresent(source, forKey: .source)
             
             
             

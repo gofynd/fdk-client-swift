@@ -56,18 +56,22 @@ extension ApplicationClient {
         /**
         *
         * Summary: Get sales channel
-        * Description: Retrieve details of the current sales channel.
+        * Description: Get details of the current sales channel.
         **/
         public func getApplication(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: Application?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getApplication"] ?? ""
             
@@ -76,7 +80,7 @@ extension ApplicationClient {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -101,23 +105,25 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get sales channel owner
-        * Description: Retrieve details of the sales channel owner.
+        * Description: Get details of the sales channel owner.
         **/
         public func getOwnerInfo(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ApplicationAboutResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getOwnerInfo"] ?? ""
             
@@ -126,7 +132,7 @@ extension ApplicationClient {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -151,23 +157,25 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get Sales channel
-        * Description: Retrieve basic details of the sales channel.
+        * Description: Get basic details of the sales channel.
         **/
         public func getBasicDetails(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ApplicationDetail?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getBasicDetails"] ?? ""
             
@@ -176,7 +184,7 @@ extension ApplicationClient {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -201,23 +209,25 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get API tokens
-        * Description: Retrieve tools integration token of the sales channel. For ex- Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook.
+        * Description: Get tools integration token of the sales channel. For example, Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, and Facebook.
         **/
         public func getIntegrationTokens(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AppTokenResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getIntegrationTokens"] ?? ""
             
@@ -226,7 +236,7 @@ extension ApplicationClient {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -251,47 +261,40 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: List order-enabled selling locations
-        * Description: Retrieve details of all the deployment store locations where the sales channel will be used for order placement.
+        * Description: Get details of all the deployment store locations where the sales channel will be used for order placement.
         **/
         public func getOrderingStores(
             pageNo: Int?,
             pageSize: Int?,
             q: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: OrderingStores?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
- 
-
-
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = q {
+                xQuery["q"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getOrderingStores"] ?? ""
             
@@ -300,7 +303,7 @@ if let value = q {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -325,35 +328,37 @@ if let value = q {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get a selling location
-        * Description: Retrieve detail of a selling location (store) by it's Id.
+        * Description: Get details of a selling location (store) by its ID.
         **/
         public func getStoreDetailById(
             storeId: Int,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: OrderingStore?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getStoreDetailById"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "store_id" + "}", with: "\(storeId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "store_id" + "}", with: "\(storeId)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -378,23 +383,25 @@ if let value = q {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get sales channel features
-        * Description: Retrieve configuration of the features of the sales channel.
+        * Description: Get configuration of the features of the sales channel.
         **/
         public func getFeatures(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AppFeatureResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getFeatures"] ?? ""
             
@@ -403,7 +410,7 @@ if let value = q {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -428,23 +435,25 @@ if let value = q {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get sales channel contact
-        * Description: Retrieve contact details of the sales channel.
+        * Description: Get contact details of the sales channel.
         **/
         public func getContactInfo(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ApplicationInformation?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getContactInfo"] ?? ""
             
@@ -453,7 +462,7 @@ if let value = q {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -478,23 +487,25 @@ if let value = q {
         }
         
         
-        
-        
         /**
         *
         * Summary: List currencies
-        * Description: Retrieve a list of available currencies.
+        * Description: List available currencies.
         **/
         public func getCurrencies(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CurrenciesResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getCurrencies"] ?? ""
             
@@ -503,7 +514,7 @@ if let value = q {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -528,35 +539,37 @@ if let value = q {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get a currency
-        * Description: Retrieve details of the currency.
+        * Description: Get details of the currency.
         **/
         public func getCurrencyById(
             id: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: Currency?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getCurrencyById"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -581,23 +594,25 @@ if let value = q {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get currency configuration
-        * Description: Retrieve currency configuration of the sales channel.
+        * Description: Get currency configuration of the sales channel.
         **/
         public func getAppCurrencies(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AppCurrencyResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getAppCurrencies"] ?? ""
             
@@ -606,7 +621,7 @@ if let value = q {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -631,23 +646,25 @@ if let value = q {
         }
         
         
-        
-        
         /**
         *
         * Summary: List languages
-        * Description: Retrieve a list of available languages.
+        * Description: List available languages.
         **/
         public func getLanguages(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: LanguageResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getLanguages"] ?? ""
             
@@ -656,7 +673,7 @@ if let value = q {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -681,8 +698,6 @@ if let value = q {
         }
         
         
-        
-        
         /**
         *
         * Summary: Create cookies
@@ -690,14 +705,18 @@ if let value = q {
         **/
         public func getOrderingStoreCookie(
             body: OrderingStoreSelectRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getOrderingStoreCookie"] ?? ""
             
@@ -706,7 +725,7 @@ if let value = q {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -731,23 +750,25 @@ if let value = q {
         }
         
         
-        
-        
         /**
         *
         * Summary: Delete store cookie
-        * Description: Remove store cookie
+        * Description: Delete store cookie.
         **/
         public func removeOrderingStoreCookie(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["removeOrderingStoreCookie"] ?? ""
             
@@ -756,7 +777,7 @@ if let value = q {
                 method: "DELETE",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -781,12 +802,10 @@ if let value = q {
         }
         
         
-        
-        
         /**
         *
         * Summary: List staff members
-        * Description: Retrieve a list of all staff members of the sales channel.
+        * Description: List all staff members of the sales channel.
         **/
         public func getAppStaffList(
             pageNo: Int?,
@@ -796,56 +815,42 @@ if let value = q {
             user: String?,
             userName: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AppStaffListResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = orderIncent {
-    
-    xQuery["order_incent"] = value
-    
-}
-
-
-if let value = orderingStore {
-    
-    xQuery["ordering_store"] = value
-    
-}
-
-
-if let value = user {
-    
-    xQuery["user"] = value
-    
-}
-
-
-if let value = userName {
-    
-    xQuery["user_name"] = value
-    
-}
-
-
- 
-
-
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = orderIncent {
+                xQuery["order_incent"] = value
+            }
+            
+            if let value = orderingStore {
+                xQuery["ordering_store"] = value
+            }
+            
+            if let value = user {
+                xQuery["user"] = value
+            }
+            
+            if let value = userName {
+                xQuery["user_name"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getAppStaffList"] ?? ""
             
@@ -854,7 +859,7 @@ if let value = userName {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -879,47 +884,40 @@ if let value = userName {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get staff member
-        * Description: Retrieve a staff user including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the sales channel.
+        * Description: Get a staff user including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the sales channel.
         **/
         public func getAppStaffs(
             orderIncent: Bool?,
             orderingStore: Int?,
             user: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AppStaffResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = orderIncent {
-    
-    xQuery["order_incent"] = value
-    
-}
-
-
-if let value = orderingStore {
-    
-    xQuery["ordering_store"] = value
-    
-}
-
-
-if let value = user {
-    
-    xQuery["user"] = value
-    
-}
-
-
- 
-
-
+            if let value = orderIncent {
+                xQuery["order_incent"] = value
+            }
+            
+            if let value = orderingStore {
+                xQuery["ordering_store"] = value
+            }
+            
+            if let value = user {
+                xQuery["user"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getAppStaffs"] ?? ""
             
@@ -928,7 +926,7 @@ if let value = user {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -950,8 +948,5 @@ if let value = user {
                         onResponse(nil, err)
                     }
             });
-        }
-        
-        
-    }
+        }}
 }

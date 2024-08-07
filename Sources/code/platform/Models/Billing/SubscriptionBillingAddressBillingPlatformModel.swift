@@ -14,6 +14,8 @@ public extension PlatformClient.Billing {
         
         public var country: String?
         
+        public var countryCode: String?
+        
         public var state: String?
         
         public var city: String?
@@ -29,6 +31,8 @@ public extension PlatformClient.Billing {
             
             case country = "country"
             
+            case countryCode = "country_code"
+            
             case state = "state"
             
             case city = "city"
@@ -41,9 +45,11 @@ public extension PlatformClient.Billing {
             
         }
 
-        public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) {
+        public init(city: String? = nil, country: String? = nil, countryCode: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) {
             
             self.country = country
+            
+            self.countryCode = countryCode
             
             self.state = state
             
@@ -63,6 +69,18 @@ public extension PlatformClient.Billing {
             
                 do {
                     country = try container.decode(String.self, forKey: .country)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    countryCode = try container.decode(String.self, forKey: .countryCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -140,6 +158,11 @@ public extension PlatformClient.Billing {
             
             
             try? container.encodeIfPresent(country, forKey: .country)
+            
+            
+            
+            
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
             
             
             

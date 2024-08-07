@@ -26,18 +26,22 @@ extension ApplicationClient {
         /**
         *
         * Summary: Endpoint to capture click events from sales channels and persist them in database.
-        * Description: Endpoint to capture click events from sales channels.
+        * Description: Send click events from sales channels.
         **/
         public func saveClickEvent(
             body: ClickEventRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ClickEventResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["saveClickEvent"] ?? ""
             
@@ -46,7 +50,7 @@ extension ApplicationClient {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -68,8 +72,5 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     }
             });
-        }
-        
-        
-    }
+        }}
 }

@@ -10,16 +10,22 @@ public extension ApplicationClient.Logistic {
         
         public var error: String?
         
+        public var message: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case error = "error"
             
+            case message = "message"
+            
         }
 
-        public init(error: String? = nil) {
+        public init(error: String? = nil, message: String? = nil) {
             
             self.error = error
+            
+            self.message = message
             
         }
 
@@ -38,6 +44,18 @@ public extension ApplicationClient.Logistic {
             }
             
             
+            
+            do {
+                message = try container.decode(String.self, forKey: .message)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -45,6 +63,10 @@ public extension ApplicationClient.Logistic {
             
             
             try? container.encodeIfPresent(error, forKey: .error)
+            
+            
+            
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }

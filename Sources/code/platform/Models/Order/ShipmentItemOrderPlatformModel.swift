@@ -76,6 +76,8 @@ public extension PlatformClient.Order {
         
         public var currencyInfo: CurrencyInfo?
         
+        public var isLapaEnabled: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -143,9 +145,11 @@ public extension PlatformClient.Order {
             
             case currencyInfo = "currency_info"
             
+            case isLapaEnabled = "is_lapa_enabled"
+            
         }
 
-        public init(bags: [BagUnit]? = nil, canProcess: Bool? = nil, channel: ShipmentListingChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customerNote: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, estimatedSlaTime: String? = nil, estimatedSlaTs: String? = nil, fulfillingStore: ShipmentItemFulFillingStore? = nil, invoiceId: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, orderingChannnel: String? = nil, orderCreatedTs: String? = nil, orderDate: String? = nil, orderId: String, paymentInfo: [[String: Any]]? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, shipmentCreatedAt: String, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, statusCreatedAt: String? = nil, statusCreatedTs: String? = nil, totalBags: Int, user: UserDataInfo? = nil) {
+        public init(bags: [BagUnit]? = nil, canProcess: Bool? = nil, channel: ShipmentListingChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customerNote: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, estimatedSlaTime: String? = nil, estimatedSlaTs: String? = nil, fulfillingStore: ShipmentItemFulFillingStore? = nil, invoiceId: String? = nil, isLapaEnabled: Bool? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, orderingChannnel: String? = nil, orderCreatedTs: String? = nil, orderDate: String? = nil, orderId: String, paymentInfo: [[String: Any]]? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, shipmentCreatedAt: String, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, statusCreatedAt: String? = nil, statusCreatedTs: String? = nil, totalBags: Int, user: UserDataInfo? = nil) {
             
             self.orderDate = orderDate
             
@@ -210,6 +214,8 @@ public extension PlatformClient.Order {
             self.currency = currency
             
             self.currencyInfo = currencyInfo
+            
+            self.isLapaEnabled = isLapaEnabled
             
         }
 
@@ -579,6 +585,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    isLapaEnabled = try container.decode(Bool.self, forKey: .isLapaEnabled)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -742,6 +760,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(currencyInfo, forKey: .currencyInfo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isLapaEnabled, forKey: .isLapaEnabled)
             
             
         }
@@ -824,6 +847,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var currencyInfo: CurrencyInfo?
         
+        public var isLapaEnabled: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -891,9 +916,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case currencyInfo = "currency_info"
             
+            case isLapaEnabled = "is_lapa_enabled"
+            
         }
 
-        public init(bags: [BagUnit]? = nil, canProcess: Bool? = nil, channel: ShipmentListingChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customerNote: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, estimatedSlaTime: String? = nil, estimatedSlaTs: String? = nil, fulfillingStore: ShipmentItemFulFillingStore? = nil, invoiceId: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, orderingChannnel: String? = nil, orderCreatedTs: String? = nil, orderDate: String? = nil, orderId: String, paymentInfo: [[String: Any]]? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, shipmentCreatedAt: String, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, statusCreatedAt: String? = nil, statusCreatedTs: String? = nil, totalBags: Int, user: UserDataInfo? = nil) {
+        public init(bags: [BagUnit]? = nil, canProcess: Bool? = nil, channel: ShipmentListingChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customerNote: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, estimatedSlaTime: String? = nil, estimatedSlaTs: String? = nil, fulfillingStore: ShipmentItemFulFillingStore? = nil, invoiceId: String? = nil, isLapaEnabled: Bool? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, orderingChannnel: String? = nil, orderCreatedTs: String? = nil, orderDate: String? = nil, orderId: String, paymentInfo: [[String: Any]]? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, shipmentCreatedAt: String, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, statusCreatedAt: String? = nil, statusCreatedTs: String? = nil, totalBags: Int, user: UserDataInfo? = nil) {
             
             self.orderDate = orderDate
             
@@ -958,6 +985,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.currency = currency
             
             self.currencyInfo = currencyInfo
+            
+            self.isLapaEnabled = isLapaEnabled
             
         }
 
@@ -1327,6 +1356,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    isLapaEnabled = try container.decode(Bool.self, forKey: .isLapaEnabled)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -1490,6 +1531,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(currencyInfo, forKey: .currencyInfo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isLapaEnabled, forKey: .isLapaEnabled)
             
             
         }

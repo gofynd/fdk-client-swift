@@ -12,6 +12,8 @@ public extension ApplicationClient.Lead {
         
         public var ticket: Ticket?
         
+        public var response: FormFieldResponse?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -19,13 +21,17 @@ public extension ApplicationClient.Lead {
             
             case ticket = "ticket"
             
+            case response = "response"
+            
         }
 
-        public init(message: String, ticket: Ticket? = nil) {
+        public init(message: String, response: FormFieldResponse? = nil, ticket: Ticket? = nil) {
             
             self.message = message
             
             self.ticket = ticket
+            
+            self.response = response
             
         }
 
@@ -49,6 +55,18 @@ public extension ApplicationClient.Lead {
             }
             
             
+            
+            do {
+                response = try container.decode(FormFieldResponse.self, forKey: .response)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -60,6 +78,10 @@ public extension ApplicationClient.Lead {
             
             
             try? container.encodeIfPresent(ticket, forKey: .ticket)
+            
+            
+            
+            try? container.encodeIfPresent(response, forKey: .response)
             
             
         }

@@ -22,21 +22,25 @@ extension PlatformClient {
         public func startUpload(
             namespace: String,
             body: StartRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: StartResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/upload/start",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -61,8 +65,6 @@ extension PlatformClient {
         
         
         
-        
-        
         /**
         *
         * Summary: Complete file upload
@@ -71,21 +73,25 @@ extension PlatformClient {
         public func completeUpload(
             namespace: String,
             body: StartResponse,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CompleteResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/upload/complete",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -112,8 +118,6 @@ extension PlatformClient {
         
         
         
-        
-        
         /**
         *
         * Summary: Get signed URLs
@@ -121,21 +125,25 @@ extension PlatformClient {
         **/
         public func getSignUrls(
             body: SignUrlRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SignUrlResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/assets/v1.0/company/\(companyId)/sign-urls",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -160,8 +168,6 @@ extension PlatformClient {
         
         
         
-        
-        
         /**
         *
         * Summary: Copy files
@@ -170,28 +176,29 @@ extension PlatformClient {
         public func copyFiles(
             sync: Bool?,
             body: CopyFiles,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = sync {
-    
-    xQuery["sync"] = value
-    
-}
-
-
- 
-
-
+            if let value = sync {
+                xQuery["sync"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/assets/v1.0/company/\(companyId)/uploads/copy",
                 query: xQuery,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -213,8 +220,6 @@ if let value = sync {
                     }
             });
         }
-        
-        
         
         
         
@@ -229,35 +234,33 @@ if let value = sync {
             page: Int?,
             limit: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = page {
-    
-    xQuery["page"] = value
-    
-}
-
-
-if let value = limit {
-    
-    xQuery["limit"] = value
-    
-}
-
-
- 
-
-
+            if let value = page {
+                xQuery["page"] = value
+            }
+            
+            if let value = limit {
+                xQuery["limit"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/browse",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -284,8 +287,6 @@ if let value = limit {
         
         
         
-        
-        
         /**
         *
         * Summary: Access files through a proxy
@@ -294,26 +295,26 @@ if let value = limit {
         public func proxy(
             url: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProxyResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["url"] = url
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["url"] = url
-
-
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/assets/v1.0/company/\(companyId)/proxy",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -335,8 +336,6 @@ var xQuery: [String: Any] = [:]
                     }
             });
         }
-        
-        
         
         
         

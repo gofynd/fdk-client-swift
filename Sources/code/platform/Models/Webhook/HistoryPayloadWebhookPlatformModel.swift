@@ -12,7 +12,7 @@ public extension PlatformClient.Webhook {
     class HistoryPayload: Codable {
         
         
-        public var type: String?
+        public var type: String
         
         public var pageNo: Int?
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Webhook {
             
         }
 
-        public init(pageNo: Int? = nil, pageSize: Int? = nil, type: String? = nil) {
+        public init(pageNo: Int? = nil, pageSize: Int? = nil, type: String) {
             
             self.type = type
             
@@ -43,16 +43,9 @@ public extension PlatformClient.Webhook {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    type = try container.decode(String.self, forKey: .type)
+                type = try container.decode(String.self, forKey: .type)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {

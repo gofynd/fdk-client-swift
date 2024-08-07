@@ -26,6 +26,8 @@ public extension ApplicationClient.Order {
         
         public var bagsForReorder: [BagsForReorder]?
         
+        public var meta: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -47,9 +49,11 @@ public extension ApplicationClient.Order {
             
             case bagsForReorder = "bags_for_reorder"
             
+            case meta = "meta"
+            
         }
 
-        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, gstinCode: String? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
+        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, gstinCode: String? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
             
             self.totalShipmentsInOrder = totalShipmentsInOrder
             
@@ -68,6 +72,8 @@ public extension ApplicationClient.Order {
             self.shipments = shipments
             
             self.bagsForReorder = bagsForReorder
+            
+            self.meta = meta
             
         }
 
@@ -182,6 +188,18 @@ public extension ApplicationClient.Order {
             }
             
             
+            
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -221,6 +239,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(bagsForReorder, forKey: .bagsForReorder)
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }

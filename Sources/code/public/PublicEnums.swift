@@ -13,10 +13,6 @@ public extension PublicClient.Content {
     
 }
 
-public extension PublicClient.Inventory {
-    
-}
-
 public extension PublicClient.Partner {
     
 }

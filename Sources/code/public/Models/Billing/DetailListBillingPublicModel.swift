@@ -10,11 +10,9 @@ public extension PublicClient.Billing {
     class DetailList: Codable {
         
         
-        public var plans: [Plan]?
+        public var plans: PlanTypes?
         
-        public var trialPlan: Plan?
-        
-        public var componentGroups: [String]?
+        public var trialPlan: TrialPlanDetails?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -23,17 +21,13 @@ public extension PublicClient.Billing {
             
             case trialPlan = "trial_plan"
             
-            case componentGroups = "component_groups"
-            
         }
 
-        public init(componentGroups: [String]? = nil, plans: [Plan]? = nil, trialPlan: Plan? = nil) {
+        public init(plans: PlanTypes? = nil, trialPlan: TrialPlanDetails? = nil) {
             
             self.plans = plans
             
             self.trialPlan = trialPlan
-            
-            self.componentGroups = componentGroups
             
         }
 
@@ -42,7 +36,7 @@ public extension PublicClient.Billing {
             
             
                 do {
-                    plans = try container.decode([Plan].self, forKey: .plans)
+                    plans = try container.decode(PlanTypes.self, forKey: .plans)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -54,19 +48,7 @@ public extension PublicClient.Billing {
             
             
                 do {
-                    trialPlan = try container.decode(Plan.self, forKey: .trialPlan)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    componentGroups = try container.decode([String].self, forKey: .componentGroups)
+                    trialPlan = try container.decode(TrialPlanDetails.self, forKey: .trialPlan)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -87,10 +69,6 @@ public extension PublicClient.Billing {
             
             
             try? container.encodeIfPresent(trialPlan, forKey: .trialPlan)
-            
-            
-            
-            try? container.encodeIfPresent(componentGroups, forKey: .componentGroups)
             
             
         }

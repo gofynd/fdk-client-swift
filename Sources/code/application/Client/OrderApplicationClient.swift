@@ -46,7 +46,7 @@ extension ApplicationClient {
         /**
         *
         * Summary: List customer orders
-        * Description: Retrieves all orders associated with a customer account
+        * Description: Get all orders associated with a customer account.
         **/
         public func getOrders(
             status: Int?,
@@ -59,77 +59,54 @@ extension ApplicationClient {
             customMeta: String?,
             allowInactive: Bool?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: OrderList?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = status {
-    
-    xQuery["status"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = fromDate {
-    
-    xQuery["from_date"] = value
-    
-}
-
-
-if let value = toDate {
-    
-    xQuery["to_date"] = value
-    
-}
-
-
-if let value = startDate {
-    
-    xQuery["start_date"] = value
-    
-}
-
-
-if let value = endDate {
-    
-    xQuery["end_date"] = value
-    
-}
-
-
-if let value = customMeta {
-    
-    xQuery["custom_meta"] = value
-    
-}
-
-
-if let value = allowInactive {
-    
-    xQuery["allow_inactive"] = value
-    
-}
-
-
- 
-
-
+            if let value = status {
+                xQuery["status"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = fromDate {
+                xQuery["from_date"] = value
+            }
+            
+            if let value = toDate {
+                xQuery["to_date"] = value
+            }
+            
+            if let value = startDate {
+                xQuery["start_date"] = value
+            }
+            
+            if let value = endDate {
+                xQuery["end_date"] = value
+            }
+            
+            if let value = customMeta {
+                xQuery["custom_meta"] = value
+            }
+            
+            if let value = allowInactive {
+                xQuery["allow_inactive"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getOrders"] ?? ""
             
@@ -138,7 +115,7 @@ if let value = allowInactive {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -163,43 +140,42 @@ if let value = allowInactive {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get an order
-        * Description: Retrieve order details such as tracking details, shipment, store information using Fynd Order ID
+        * Description: Get order details such as tracking details, shipment, store information using Fynd Order ID.
         **/
         public func getOrderById(
             orderId: String,
             allowInactive: Bool?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: OrderById?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = allowInactive {
-    
-    xQuery["allow_inactive"] = value
-    
-}
-
-
- 
-
-
+            if let value = allowInactive {
+                xQuery["allow_inactive"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getOrderById"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "order_id" + "}", with: "\(orderId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "order_id" + "}", with: "\(orderId)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -224,43 +200,42 @@ if let value = allowInactive {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get a Shipment
-        * Description: Retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
+        * Description: Get shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
         **/
         public func getShipmentById(
             shipmentId: String,
             allowInactive: Bool?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ShipmentById?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = allowInactive {
-    
-    xQuery["allow_inactive"] = value
-    
-}
-
-
- 
-
-
+            if let value = allowInactive {
+                xQuery["allow_inactive"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getShipmentById"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -285,35 +260,37 @@ if let value = allowInactive {
         }
         
         
-        
-        
         /**
         *
         * Summary: Retrieves invoice for shipment
-        * Description: Retrieve the invoice corresponding to a specific shipment ID.
+        * Description: Get invoice corresponding to a specific shipment ID.
         **/
         public func getInvoiceByShipmentId(
             shipmentId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ResponseGetInvoiceShipment?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getInvoiceByShipmentId"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -338,8 +315,6 @@ if let value = allowInactive {
         }
         
         
-        
-        
         /**
         *
         * Summary: Track shipment status
@@ -348,25 +323,29 @@ if let value = allowInactive {
         public func trackShipment(
             shipmentId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ShipmentTrack?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["trackShipment"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -391,38 +370,40 @@ if let value = allowInactive {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get shipment's customer
-        * Description: Retrieve customer details such as mobile number using Shipment ID.
+        * Description: Get customer details such as mobile number using Shipment ID.
         **/
         public func getCustomerDetailsByShipmentId(
             orderId: String,
             shipmentId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomerDetailsResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getCustomerDetailsByShipmentId"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "order_id" + "}", with: "\(orderId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "order_id" + "}", with: "\(orderId)")
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -447,38 +428,40 @@ if let value = allowInactive {
         }
         
         
-        
-        
         /**
         *
         * Summary: Send OTP to customer
-        * Description: Sends a one-time password (OTP) to the customer for shipment verification
+        * Description: Send OTP to the customer for shipment verification.
         **/
         public func sendOtpToShipmentCustomer(
             orderId: String,
             shipmentId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SendOtpToCustomerResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["sendOtpToShipmentCustomer"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "order_id" + "}", with: "\(orderId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "order_id" + "}", with: "\(orderId)")
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -503,38 +486,40 @@ if let value = allowInactive {
         }
         
         
-        
-        
         /**
         *
         * Summary: Verifies OTP
-        * Description: Confirms the OTP sent to the shipment customer for verification.
+        * Description: Verify OTP sent by customer.
         **/
         public func verifyOtpShipmentCustomer(
             orderId: String,
             shipmentId: String,
             body: VerifyOtp,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: VerifyOtpResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["verifyOtpShipmentCustomer"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "order_id" + "}", with: "\(orderId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "order_id" + "}", with: "\(orderId)")
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -559,38 +544,40 @@ if let value = allowInactive {
         }
         
         
-        
-        
         /**
         *
         * Summary: List bag cancellation reasons
-        * Description: Get reasons to perform full or partial cancellation of a bag
+        * Description: Get reasons to perform full or partial cancellation of a bag.
         **/
         public func getShipmentBagReasons(
             shipmentId: String,
             bagId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ShipmentBagReasons?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getShipmentBagReasons"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "bag_id" + "}", with: "\(bagId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "bag_id" + "}", with: "\(bagId)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -615,35 +602,37 @@ if let value = allowInactive {
         }
         
         
-        
-        
         /**
         *
         * Summary: List shipment cancellation reasons
-        * Description: Get reasons to perform full or partial cancellation of a shipment
+        * Description: Get reasons to perform full or partial cancellation of a shipment.
         **/
         public func getShipmentReasons(
             shipmentId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ShipmentReasons?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getShipmentReasons"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -668,35 +657,37 @@ if let value = allowInactive {
         }
         
         
-        
-        
         /**
         *
         * Summary: Updates shipment status
-        * Description: Modifies the current status of a specific shipment using its shipment ID. Supports both partial and full transition as per the configured settings.
+        * Description: Update current status of a specific shipment using its shipment ID. Supports both partial and full transition as per the configured settings.
         **/
         public func updateShipmentStatus(
             shipmentId: String,
             body: UpdateShipmentStatusRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ShipmentApplicationStatusResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["updateShipmentStatus"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "PUT",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -718,8 +709,5 @@ if let value = allowInactive {
                         onResponse(nil, err)
                     }
             });
-        }
-        
-        
-    }
+        }}
 }

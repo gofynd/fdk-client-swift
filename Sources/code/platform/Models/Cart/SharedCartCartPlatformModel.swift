@@ -52,6 +52,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var gstin: String?
         
+        public var customCartMeta: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -93,9 +95,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case gstin = "gstin"
             
+            case customCartMeta = "custom_cart_meta"
+            
         }
 
-        public init(breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, sharedCartDetails: SharedCartDetails? = nil, uid: String? = nil) {
+        public init(breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customCartMeta: [String: Any]? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, sharedCartDetails: SharedCartDetails? = nil, uid: String? = nil) {
             
             self.couponText = couponText
             
@@ -134,6 +138,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.cartId = cartId
             
             self.gstin = gstin
+            
+            self.customCartMeta = customCartMeta
             
         }
 
@@ -368,6 +374,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    customCartMeta = try container.decode([String: Any].self, forKey: .customCartMeta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -466,6 +484,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(gstin, forKey: .gstin)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customCartMeta, forKey: .customCartMeta)
             
             
         }

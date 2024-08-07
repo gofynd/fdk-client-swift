@@ -12,6 +12,8 @@ public extension PlatformClient.Billing {
     class Plan: Codable {
         
         
+        public var feeComponents: [[String: Any]]?
+        
         public var recurring: PlanRecurring?
         
         public var isTrialPlan: Bool?
@@ -21,6 +23,8 @@ public extension PlatformClient.Billing {
         public var tagLines: [String]?
         
         public var currency: String?
+        
+        public var approvedBy: String?
         
         public var isActive: Bool?
         
@@ -34,7 +38,7 @@ public extension PlatformClient.Billing {
         
         public var type: String?
         
-        public var country: String?
+        public var country: CountryRes?
         
         public var id: String?
         
@@ -50,8 +54,30 @@ public extension PlatformClient.Billing {
         
         public var modifiedAt: String?
         
+        public var taxation: Taxation?
+        
+        public var oneTimeFees: OneTimeFees?
+        
+        public var creditLine: CreditLine?
+        
+        public var currentStatus: String?
+        
+        public var channelType: String?
+        
+        public var companyIds: [String]?
+        
+        public var platform: String?
+        
+        public var activatedOn: String?
+        
+        public var meta: PlanMeta?
+        
+        public var createdBy: String?
+        
 
         public enum CodingKeys: String, CodingKey {
+            
+            case feeComponents = "fee_components"
             
             case recurring = "recurring"
             
@@ -62,6 +88,8 @@ public extension PlatformClient.Billing {
             case tagLines = "tag_lines"
             
             case currency = "currency"
+            
+            case approvedBy = "approved_by"
             
             case isActive = "is_active"
             
@@ -91,9 +119,31 @@ public extension PlatformClient.Billing {
             
             case modifiedAt = "modified_at"
             
+            case taxation = "taxation"
+            
+            case oneTimeFees = "one_time_fees"
+            
+            case creditLine = "credit_line"
+            
+            case currentStatus = "current_status"
+            
+            case channelType = "channel_type"
+            
+            case companyIds = "company_ids"
+            
+            case platform = "platform"
+            
+            case activatedOn = "activated_on"
+            
+            case meta = "meta"
+            
+            case createdBy = "created_by"
+            
         }
 
-        public init(addons: [String]? = nil, amount: Double? = nil, country: String? = nil, createdAt: String? = nil, currency: String? = nil, description: String? = nil, isActive: Bool? = nil, isTrialPlan: Bool? = nil, isVisible: Bool? = nil, modifiedAt: String? = nil, name: String? = nil, planGroup: String? = nil, productSuiteId: String? = nil, recurring: PlanRecurring? = nil, tags: [String]? = nil, tagLines: [String]? = nil, trialPeriod: Double? = nil, type: String? = nil, id: String? = nil) {
+        public init(activatedOn: String? = nil, addons: [String]? = nil, amount: Double? = nil, approvedBy: String? = nil, channelType: String? = nil, companyIds: [String]? = nil, country: CountryRes? = nil, createdAt: String? = nil, createdBy: String? = nil, creditLine: CreditLine? = nil, currency: String? = nil, currentStatus: String? = nil, description: String? = nil, feeComponents: [[String: Any]]? = nil, isActive: Bool? = nil, isTrialPlan: Bool? = nil, isVisible: Bool? = nil, meta: PlanMeta? = nil, modifiedAt: String? = nil, name: String? = nil, oneTimeFees: OneTimeFees? = nil, planGroup: String? = nil, platform: String? = nil, productSuiteId: String? = nil, recurring: PlanRecurring? = nil, tags: [String]? = nil, tagLines: [String]? = nil, taxation: Taxation? = nil, trialPeriod: Double? = nil, type: String? = nil, id: String? = nil) {
+            
+            self.feeComponents = feeComponents
             
             self.recurring = recurring
             
@@ -104,6 +154,8 @@ public extension PlatformClient.Billing {
             self.tagLines = tagLines
             
             self.currency = currency
+            
+            self.approvedBy = approvedBy
             
             self.isActive = isActive
             
@@ -133,10 +185,42 @@ public extension PlatformClient.Billing {
             
             self.modifiedAt = modifiedAt
             
+            self.taxation = taxation
+            
+            self.oneTimeFees = oneTimeFees
+            
+            self.creditLine = creditLine
+            
+            self.currentStatus = currentStatus
+            
+            self.channelType = channelType
+            
+            self.companyIds = companyIds
+            
+            self.platform = platform
+            
+            self.activatedOn = activatedOn
+            
+            self.meta = meta
+            
+            self.createdBy = createdBy
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    feeComponents = try container.decode([[String: Any]].self, forKey: .feeComponents)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -189,6 +273,18 @@ public extension PlatformClient.Billing {
             
                 do {
                     currency = try container.decode(String.self, forKey: .currency)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    approvedBy = try container.decode(String.self, forKey: .approvedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -272,7 +368,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    country = try container.decode(String.self, forKey: .country)
+                    country = try container.decode(CountryRes.self, forKey: .country)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -366,10 +462,135 @@ public extension PlatformClient.Billing {
                 }
                 
             
+            
+                do {
+                    taxation = try container.decode(Taxation.self, forKey: .taxation)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    oneTimeFees = try container.decode(OneTimeFees.self, forKey: .oneTimeFees)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    creditLine = try container.decode(CreditLine.self, forKey: .creditLine)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    currentStatus = try container.decode(String.self, forKey: .currentStatus)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    channelType = try container.decode(String.self, forKey: .channelType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    companyIds = try container.decode([String].self, forKey: .companyIds)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    platform = try container.decode(String.self, forKey: .platform)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    activatedOn = try container.decode(String.self, forKey: .activatedOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    meta = try container.decode(PlanMeta.self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    createdBy = try container.decode(String.self, forKey: .createdBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(feeComponents, forKey: .feeComponents)
+            
             
             
             
@@ -394,6 +615,11 @@ public extension PlatformClient.Billing {
             
             
             try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(approvedBy, forKey: .approvedBy)
             
             
             
@@ -464,6 +690,56 @@ public extension PlatformClient.Billing {
             
             
             try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(taxation, forKey: .taxation)
+            
+            
+            
+            
+            try? container.encodeIfPresent(oneTimeFees, forKey: .oneTimeFees)
+            
+            
+            
+            
+            try? container.encodeIfPresent(creditLine, forKey: .creditLine)
+            
+            
+            
+            
+            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
+            
+            
+            
+            
+            try? container.encodeIfPresent(channelType, forKey: .channelType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyIds, forKey: .companyIds)
+            
+            
+            
+            
+            try? container.encodeIfPresent(platform, forKey: .platform)
+            
+            
+            
+            
+            try? container.encodeIfPresent(activatedOn, forKey: .activatedOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
             
             
         }

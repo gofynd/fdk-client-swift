@@ -86,35 +86,33 @@ extension PlatformClient {
             pageNo: Int?,
             pageSize: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SystemNotifications?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/communication/v1.0/company/\(companyId)/notification/system-notifications/",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -136,8 +134,6 @@ if let value = pageSize {
                     }
             });
         }
-        
-        
         
         
         

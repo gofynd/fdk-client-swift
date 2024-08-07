@@ -20,6 +20,8 @@ public extension ApplicationClient.Cart {
         
         public var gstin: String?
         
+        public var customCartMeta: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,9 +37,11 @@ public extension ApplicationClient.Cart {
             
             case gstin = "gstin"
             
+            case customCartMeta = "custom_cart_meta"
+            
         }
 
-        public init(checkoutMode: String? = nil, comment: String? = nil, deliverySlots: [String: Any]? = nil, giftDetails: ArticleGiftDetail? = nil, gstin: String? = nil, pickUpCustomerDetails: [String: Any]? = nil) {
+        public init(checkoutMode: String? = nil, comment: String? = nil, customCartMeta: [String: Any]? = nil, deliverySlots: [String: Any]? = nil, giftDetails: ArticleGiftDetail? = nil, gstin: String? = nil, pickUpCustomerDetails: [String: Any]? = nil) {
             
             self.deliverySlots = deliverySlots
             
@@ -50,6 +54,8 @@ public extension ApplicationClient.Cart {
             self.comment = comment
             
             self.gstin = gstin
+            
+            self.customCartMeta = customCartMeta
             
         }
 
@@ -128,6 +134,18 @@ public extension ApplicationClient.Cart {
             }
             
             
+            
+            do {
+                customCartMeta = try container.decode([String: Any].self, forKey: .customCartMeta)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -155,6 +173,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(gstin, forKey: .gstin)
+            
+            
+            
+            try? container.encodeIfPresent(customCartMeta, forKey: .customCartMeta)
             
             
         }

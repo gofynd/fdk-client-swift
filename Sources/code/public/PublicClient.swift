@@ -9,8 +9,6 @@ public class PublicClient {
 
     public let content: Content
 
-    public let inventory: Inventory
-
     public let partner: Partner
 
     public let webhook: Webhook
@@ -22,8 +20,6 @@ public class PublicClient {
         configuration = Configuration(config: config)
         
         content = Content(config: config)
-        
-        inventory = Inventory(config: config)
         
         partner = Partner(config: config)
         

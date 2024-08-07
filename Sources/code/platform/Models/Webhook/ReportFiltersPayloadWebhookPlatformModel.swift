@@ -12,7 +12,7 @@ public extension PlatformClient.Webhook {
     class ReportFiltersPayload: Codable {
         
         
-        public var subscriberIds: [Int]?
+        public var subscriberIds: [Int]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension PlatformClient.Webhook {
             
         }
 
-        public init(subscriberIds: [Int]? = nil) {
+        public init(subscriberIds: [Int]) {
             
             self.subscriberIds = subscriberIds
             
@@ -31,16 +31,9 @@ public extension PlatformClient.Webhook {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    subscriberIds = try container.decode([Int].self, forKey: .subscriberIds)
+                subscriberIds = try container.decode([Int].self, forKey: .subscriberIds)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         

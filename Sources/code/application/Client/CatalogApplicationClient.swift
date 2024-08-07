@@ -84,30 +84,34 @@ extension ApplicationClient {
         /**
         *
         * Summary: Get a product
-        * Description: Fetches properties related to Product such as price, attributes, HSN code, SKU code, etc.
+        * Description: Get product details such as price, attributes, HSN code, SKU code, etc.
         **/
         public func getProductDetailBySlug(
             slug: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProductDetail?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getProductDetailBySlug"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -132,8 +136,6 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: List sizes
@@ -143,32 +145,33 @@ extension ApplicationClient {
             slug: String,
             storeId: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProductSizes?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = storeId {
-    
-    xQuery["store_id"] = value
-    
-}
-
-
- 
-
-
+            if let value = storeId {
+                xQuery["store_id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getProductSizesBySlug"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -193,29 +196,27 @@ if let value = storeId {
         }
         
         
-        
-        
         /**
         *
         * Summary: List products for comparison
-        * Description: Retrives all the products that have same category.
+        * Description: Get all the products that have the same category.
         **/
         public func getProductComparisonBySlugs(
             slug: [String],
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProductsComparisonResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["slug"] = slug
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["slug"] = slug
-
-
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getProductComparisonBySlugs"] ?? ""
             
@@ -224,7 +225,7 @@ var xQuery: [String: Any] = [:]
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -249,35 +250,37 @@ var xQuery: [String: Any] = [:]
         }
         
         
-        
-        
         /**
         *
         * Summary: List similar products
-        * Description: Retrives all products within the same category as the one specified by the provided slug.
+        * Description: Get all products within the same category as the one specified by the provided slug.
         **/
         public func getSimilarComparisonProductBySlug(
             slug: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProductCompareResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getSimilarComparisonProductBySlug"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -302,35 +305,37 @@ var xQuery: [String: Any] = [:]
         }
         
         
-        
-        
         /**
         *
         * Summary: List frequent products
-        * Description: Retrieve products that are often compared to the product specified by its slug.
+        * Description: Get products that are often compared to the product specified by its slug.
         **/
         public func getComparedFrequentlyProductBySlug(
             slug: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProductFrequentlyComparedSimilarResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getComparedFrequentlyProductBySlug"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -355,35 +360,37 @@ var xQuery: [String: Any] = [:]
         }
         
         
-        
-        
         /**
         *
         * Summary: List product variants
-        * Description: Retrieves all available variants of a specific product identified by its slug.
+        * Description: Get all available variants of a specific product identified by its slug.
         **/
         public func getProductVariantsBySlug(
             slug: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProductVariantsResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getProductVariantsBySlug"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -408,12 +415,10 @@ var xQuery: [String: Any] = [:]
         }
         
         
-        
-        
         /**
         *
         * Summary: Get product stocks
-        * Description: Retrieves the current stock status for products identified by their IDs. such as SKU,ALU,EAN etc
+        * Description: Get the current stock status for products identified by their IDs, such as SKU, ALU, EAN, etc.
         **/
         public func getProductStockByIds(
             itemId: String?,
@@ -422,49 +427,38 @@ var xQuery: [String: Any] = [:]
             ean: String?,
             upc: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProductStockStatusResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = itemId {
-    
-    xQuery["item_id"] = value
-    
-}
-
-
-if let value = alu {
-    
-    xQuery["alu"] = value
-    
-}
-
-
-if let value = skuCode {
-    
-    xQuery["sku_code"] = value
-    
-}
-
-
-if let value = ean {
-    
-    xQuery["ean"] = value
-    
-}
-
-
-if let value = upc {
-    
-    xQuery["upc"] = value
-    
-}
-
-
- 
-
-
+            if let value = itemId {
+                xQuery["item_id"] = value
+            }
+            
+            if let value = alu {
+                xQuery["alu"] = value
+            }
+            
+            if let value = skuCode {
+                xQuery["sku_code"] = value
+            }
+            
+            if let value = ean {
+                xQuery["ean"] = value
+            }
+            
+            if let value = upc {
+                xQuery["upc"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getProductStockByIds"] ?? ""
             
@@ -473,7 +467,7 @@ if let value = upc {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -498,45 +492,37 @@ if let value = upc {
         }
         
         
-        
-        
         /**
         *
         * Summary: List future stock
-        * Description: Retrives the available stock levels for all products associated with a particular sales channel at a specified future time.
+        * Description: Get the available stock levels for all products associated with a particular sales channel at a specified future time.
         **/
         public func getProductStockForTimeByIds(
             timestamp: String,
             pageSize: Int?,
             pageId: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProductStockPolling?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["timestamp"] = timestamp
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["timestamp"] = timestamp
-
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = pageId {
-    
-    xQuery["page_id"] = value
-    
-}
-
-
- 
-
-
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getProductStockForTimeByIds"] ?? ""
             
@@ -545,7 +531,7 @@ if let value = pageId {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -573,20 +559,6 @@ if let value = pageId {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: get paginator for getProductStockForTimeByIds
@@ -594,20 +566,19 @@ if let value = pageId {
         **/
         public func getProductStockForTimeByIdsPaginator(
             timestamp: String,
-            pageSize: Int?
-            
+            pageSize: Int?,
+            headers: [(key: String, value: String)]? = nil
             ) -> Paginator<ProductStockPolling> {
             let pageSize = pageSize ?? 20
             let paginator = Paginator<ProductStockPolling>(pageSize: pageSize, type: "cursor")
             paginator.onPage = {
                 self.getProductStockForTimeByIds(
-                        
-                        timestamp: timestamp,
-                        pageSize: paginator.pageSize
-                        ,
-                        pageId: paginator.pageId
-                        
-                    ) { response, error in                    
+                    timestamp: timestamp,
+                    pageSize: paginator.pageSize,
+                    pageId: paginator.pageId,
+                    
+                    headers: headers
+                ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page.hasNext ?? false
                         paginator.pageId = response.page.nextId
@@ -621,11 +592,10 @@ if let value = pageId {
         
         
         
-        
         /**
         *
         * Summary: List products
-        * Description: Retrieves a list of all products available in the catalog. It supports filtering based on product name, brand, department, category, collection, and more, while also offering sorting options based on factors like price, ratings, discounts, and other relevant criteria.
+        * Description: List all products available in the catalog. It supports filtering based on product name, brand, department, category, collection, and more, while also offering sorting options based on factors like price, ratings, discounts, and other relevant criteria.
         **/
         public func getProducts(
             q: String?,
@@ -637,70 +607,50 @@ if let value = pageId {
             pageNo: Int?,
             pageType: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
-if let value = f {
-    
-    xQuery["f"] = value
-    
-}
-
-
-if let value = filters {
-    
-    xQuery["filters"] = value
-    
-}
-
-
-if let value = sortOn {
-    
-    xQuery["sort_on"] = value
-    
-}
-
-
-if let value = pageId {
-    
-    xQuery["page_id"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageType {
-    
-    xQuery["page_type"] = value
-    
-}
-
-
- 
-
-
+            if let value = q {
+                xQuery["q"] = value
+            }
+            
+            if let value = f {
+                xQuery["f"] = value
+            }
+            
+            if let value = filters {
+                xQuery["filters"] = value
+            }
+            
+            if let value = sortOn {
+                xQuery["sort_on"] = value
+            }
+            
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageType {
+                xQuery["page_type"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getProducts"] ?? ""
             
@@ -709,7 +659,7 @@ if let value = pageType {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -747,30 +697,6 @@ if let value = pageType {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: get paginator for getProducts
@@ -781,27 +707,24 @@ if let value = pageType {
             f: String?,
             filters: Bool?,
             sortOn: String?,
-            pageSize: Int?
-            
+            pageSize: Int?,
+            headers: [(key: String, value: String)]? = nil
             ) -> Paginator<ProductListingResponse> {
             let pageSize = pageSize ?? 20
             let paginator = Paginator<ProductListingResponse>(pageSize: pageSize, type: "cursor")
             paginator.onPage = {
                 self.getProducts(
-                        
-                        q: q,
-                        f: f,
-                        filters: filters,
-                        sortOn: sortOn,
-                        pageId: paginator.pageId
-                        ,
-                        pageSize: paginator.pageSize
-                        ,
-                        pageNo: paginator.pageNo
-                        ,
-                        pageType: paginator.type
-                        
-                    ) { response, error in                    
+                    q: q,
+                    f: f,
+                    filters: filters,
+                    sortOn: sortOn,
+                    pageId: paginator.pageId,
+                    pageSize: paginator.pageSize,
+                    pageNo: paginator.pageNo,
+                    pageType: paginator.type,
+                    
+                    headers: headers
+                ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page.hasNext ?? false
                         paginator.pageId = response.page.nextId
@@ -815,46 +738,40 @@ if let value = pageType {
         
         
         
-        
         /**
         *
         * Summary: List brands
-        * Description: Retrieves a list of all the availabe brands. Filtering can be applied on department.
+        * Description: Get a list of all the available brands. Filtering can be applied to the department.
         **/
         public func getBrands(
             department: String?,
             pageNo: Int?,
             pageSize: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: BrandListingResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = department {
-    
-    xQuery["department"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+            if let value = department {
+                xQuery["department"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getBrands"] ?? ""
             
@@ -863,7 +780,7 @@ if let value = pageSize {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -891,20 +808,6 @@ if let value = pageSize {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: get paginator for getBrands
@@ -912,20 +815,19 @@ if let value = pageSize {
         **/
         public func getBrandsPaginator(
             department: String?,
-            pageSize: Int?
-            
+            pageSize: Int?,
+            headers: [(key: String, value: String)]? = nil
             ) -> Paginator<BrandListingResponse> {
             let pageSize = pageSize ?? 20
             let paginator = Paginator<BrandListingResponse>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getBrands(
-                        
-                        department: department,
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
+                    department: department,
+                    pageNo: paginator.pageNo,
+                    pageSize: paginator.pageSize,
+                    
+                    headers: headers
+                ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page.hasNext ?? false
                         paginator.pageNo = (paginator.pageNo ?? 0) + 1
@@ -938,34 +840,37 @@ if let value = pageSize {
         
         
         
-        
         /**
         *
         * Summary: Get a brand
-        * Description: Retrieve metadata of a brand such as name, information, logo, banner, etc.
+        * Description: Get metadata of a brand such as name, information, logo, banner, etc.
         **/
         public func getBrandDetailBySlug(
             slug: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: BrandDetailResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getBrandDetailBySlug"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -990,31 +895,30 @@ if let value = pageSize {
         }
         
         
-        
-        
         /**
         *
         * Summary: List product categories
-        * Description: Retrieves a list of all available product categories. Also user can filter the categories by department.
+        * Description: List all available product categories. Also, users can filter the categories by department.
         **/
         public func getCategories(
             department: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CategoryListingResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = department {
-    
-    xQuery["department"] = value
-    
-}
-
-
- 
-
-
+            if let value = department {
+                xQuery["department"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getCategories"] ?? ""
             
@@ -1023,7 +927,7 @@ if let value = department {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1048,35 +952,37 @@ if let value = department {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get category by slug
-        * Description: Retrieve detailed information about a specific product category using its slug and Retrieve metadata of a category such as name, information, logo, banner, etc.
+        * Description: Get detailed information about a specific product category using its slug and get metadata of a category such as name, information, logo, banner, etc.
         **/
         public func getCategoryDetailBySlug(
             slug: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CategoryMetaResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getCategoryDetailBySlug"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1101,8 +1007,6 @@ if let value = department {
         }
         
         
-        
-        
         /**
         *
         * Summary: List homepage-featured products
@@ -1113,35 +1017,30 @@ if let value = department {
             pageId: String?,
             pageSize: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: HomeListingResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = sortOn {
-    
-    xQuery["sort_on"] = value
-    
-}
-
-
-if let value = pageId {
-    
-    xQuery["page_id"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+            if let value = sortOn {
+                xQuery["sort_on"] = value
+            }
+            
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getHomeProducts"] ?? ""
             
@@ -1150,7 +1049,7 @@ if let value = pageSize {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1178,20 +1077,6 @@ if let value = pageSize {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: get paginator for getHomeProducts
@@ -1199,20 +1084,19 @@ if let value = pageSize {
         **/
         public func getHomeProductsPaginator(
             sortOn: String?,
-            pageSize: Int?
-            
+            pageSize: Int?,
+            headers: [(key: String, value: String)]? = nil
             ) -> Paginator<HomeListingResponse> {
             let pageSize = pageSize ?? 20
             let paginator = Paginator<HomeListingResponse>(pageSize: pageSize, type: "cursor")
             paginator.onPage = {
                 self.getHomeProducts(
-                        
-                        sortOn: sortOn,
-                        pageId: paginator.pageId
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
+                    sortOn: sortOn,
+                    pageId: paginator.pageId,
+                    pageSize: paginator.pageSize,
+                    
+                    headers: headers
+                ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page.hasNext ?? false
                         paginator.pageId = response.page.nextId
@@ -1226,22 +1110,25 @@ if let value = pageSize {
         
         
         
-        
         /**
         *
         * Summary: List departments
-        * Description: Retrieve a list of all departments associated with available products.
+        * Description: List all departments associated with available products.
         **/
         public func getDepartments(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: DepartmentResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getDepartments"] ?? ""
             
@@ -1250,7 +1137,7 @@ if let value = pageSize {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1275,29 +1162,27 @@ if let value = pageSize {
         }
         
         
-        
-        
         /**
         *
         * Summary: List product, brand, category
-        * Description: Retrieve products, brands, or categories based on a search query, which can be a partial or full name match.
+        * Description: Get products, brands, or categories based on a search query, which can be a partial or full name match.
         **/
         public func getSearchResults(
             q: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AutoCompleteResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["q"] = q
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["q"] = q
-
-
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getSearchResults"] ?? ""
             
@@ -1306,7 +1191,7 @@ var xQuery: [String: Any] = [:]
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1331,12 +1216,10 @@ var xQuery: [String: Any] = [:]
         }
         
         
-        
-        
         /**
         *
         * Summary: List collections
-        * Description: Retrieve a list of curated product collections with filtering options based on tags and collection names.
+        * Description: List of curated product collections with filtering options based on tags and collection names.
         **/
         public func getCollections(
             pageNo: Int?,
@@ -1344,42 +1227,34 @@ var xQuery: [String: Any] = [:]
             tag: [String]?,
             q: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetCollectionListingResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = tag {
-    
-    xQuery["tag"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
- 
-
-
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = tag {
+                xQuery["tag"] = value
+            }
+            
+            if let value = q {
+                xQuery["q"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getCollections"] ?? ""
             
@@ -1388,7 +1263,7 @@ if let value = q {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1418,22 +1293,6 @@ if let value = q {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: get paginator for getCollections
@@ -1442,21 +1301,20 @@ if let value = q {
         public func getCollectionsPaginator(
             pageSize: Int?,
             tag: [String]?,
-            q: String?
-            
+            q: String?,
+            headers: [(key: String, value: String)]? = nil
             ) -> Paginator<GetCollectionListingResponse> {
             let pageSize = pageSize ?? 20
             let paginator = Paginator<GetCollectionListingResponse>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getCollections(
-                        
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        ,
-                        tag: tag,
-                        q: q
-                    ) { response, error in                    
+                    pageNo: paginator.pageNo,
+                    pageSize: paginator.pageSize,
+                    tag: tag,
+                    q: q,
+                    
+                    headers: headers
+                ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page.hasNext ?? false
                         paginator.pageNo = (paginator.pageNo ?? 0) + 1
@@ -1466,7 +1324,6 @@ if let value = q {
             }
             return paginator
         }
-        
         
         
         
@@ -1486,81 +1343,61 @@ if let value = q {
             pageNo: Int?,
             pageType: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = f {
-    
-    xQuery["f"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
-if let value = filters {
-    
-    xQuery["filters"] = value
-    
-}
-
-
-if let value = sortOn {
-    
-    xQuery["sort_on"] = value
-    
-}
-
-
-if let value = pageId {
-    
-    xQuery["page_id"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageType {
-    
-    xQuery["page_type"] = value
-    
-}
-
-
- 
-
-
+            if let value = f {
+                xQuery["f"] = value
+            }
+            
+            if let value = q {
+                xQuery["q"] = value
+            }
+            
+            if let value = filters {
+                xQuery["filters"] = value
+            }
+            
+            if let value = sortOn {
+                xQuery["sort_on"] = value
+            }
+            
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageType {
+                xQuery["page_type"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getCollectionItemsBySlug"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1600,32 +1437,6 @@ if let value = pageType {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: get paginator for getCollectionItemsBySlug
@@ -1637,28 +1448,25 @@ if let value = pageType {
             q: String?,
             filters: Bool?,
             sortOn: String?,
-            pageSize: Int?
-            
+            pageSize: Int?,
+            headers: [(key: String, value: String)]? = nil
             ) -> Paginator<ProductListingResponse> {
             let pageSize = pageSize ?? 20
             let paginator = Paginator<ProductListingResponse>(pageSize: pageSize, type: "cursor")
             paginator.onPage = {
                 self.getCollectionItemsBySlug(
-                        
-                        slug: slug,
-                        f: f,
-                        q: q,
-                        filters: filters,
-                        sortOn: sortOn,
-                        pageId: paginator.pageId
-                        ,
-                        pageSize: paginator.pageSize
-                        ,
-                        pageNo: paginator.pageNo
-                        ,
-                        pageType: paginator.type
-                        
-                    ) { response, error in                    
+                    slug: slug,
+                    f: f,
+                    q: q,
+                    filters: filters,
+                    sortOn: sortOn,
+                    pageId: paginator.pageId,
+                    pageSize: paginator.pageSize,
+                    pageNo: paginator.pageNo,
+                    pageType: paginator.type,
+                    
+                    headers: headers
+                ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page.hasNext ?? false
                         paginator.pageId = response.page.nextId
@@ -1672,34 +1480,37 @@ if let value = pageType {
         
         
         
-        
         /**
         *
         * Summary: Get a collection
-        * Description: Retrieve detailed information about a specific collection using its slug.
+        * Description: Get detailed information about a specific collection using its slug.
         **/
         public func getCollectionDetailBySlug(
             slug: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CollectionDetailResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getCollectionDetailBySlug"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1724,51 +1535,47 @@ if let value = pageType {
         }
         
         
-        
-        
         /**
         *
         * Summary: List followed products, brands
-        * Description: Retrieve a list of products or brands the user is following.
+        * Description: Get a list of products or brands the user is following.
         **/
         public func getFollowedListing(
             collectionType: String,
             pageId: String?,
             pageSize: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetFollowListingResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = pageId {
-    
-    xQuery["page_id"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getFollowedListing"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1796,20 +1603,6 @@ if let value = pageSize {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: get paginator for getFollowedListing
@@ -1817,20 +1610,19 @@ if let value = pageSize {
         **/
         public func getFollowedListingPaginator(
             collectionType: String,
-            pageSize: Int?
-            
+            pageSize: Int?,
+            headers: [(key: String, value: String)]? = nil
             ) -> Paginator<GetFollowListingResponse> {
             let pageSize = pageSize ?? 20
             let paginator = Paginator<GetFollowListingResponse>(pageSize: pageSize, type: "cursor")
             paginator.onPage = {
                 self.getFollowedListing(
-                        
-                        collectionType: collectionType,
-                        pageId: paginator.pageId
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
+                    collectionType: collectionType,
+                    pageId: paginator.pageId,
+                    pageSize: paginator.pageSize,
+                    
+                    headers: headers
+                ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page.hasNext ?? false
                         paginator.pageId = response.page.nextId
@@ -1844,37 +1636,40 @@ if let value = pageSize {
         
         
         
-        
         /**
         *
         * Summary: Delete item, brand, product
-        * Description: Removes a followed item, brand, or product using its collection ID.
+        * Description: Remove a followed item, brand, or product using its collection ID.
         **/
         public func unfollowById(
             collectionType: String,
             collectionId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["unfollowById"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_id" + "}", with: "\(collectionId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_id" + "}", with: "\(collectionId)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "DELETE",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1899,38 +1694,40 @@ if let value = pageSize {
         }
         
         
-        
-        
         /**
         *
         * Summary: Create item, brand, product
-        * Description: Adds a product, brand, or item to the user's followed list by collection Id
+        * Description: Add a product, brand, or item to the user's followed list by collection Id.
         **/
         public func followById(
             collectionType: String,
             collectionId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["followById"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_id" + "}", with: "\(collectionId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_id" + "}", with: "\(collectionId)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1955,38 +1752,40 @@ if let value = pageSize {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get follower count
-        * Description: Retrieves the total number of followers for a specific item by its Id.
+        * Description: Get the total number of followers for a specific item by its ID.
         **/
         public func getFollowerCountById(
             collectionType: String,
             collectionId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: FollowerCountResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getFollowerCountById"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_id" + "}", with: "\(collectionId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_id" + "}", with: "\(collectionId)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2011,31 +1810,30 @@ if let value = pageSize {
         }
         
         
-        
-        
         /**
         *
         * Summary: List Ids of followed item, brand, product
-        * Description: Retrieves the IDs of all items the user is currently following like Products, Brands and Collections
+        * Description: Get the IDs of all items the user is currently following, such as Products, Brands, and Collections.
         **/
         public func getFollowIds(
             collectionType: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: FollowIdsResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = collectionType {
-    
-    xQuery["collection_type"] = value
-    
-}
-
-
- 
-
-
+            if let value = collectionType {
+                xQuery["collection_type"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getFollowIds"] ?? ""
             
@@ -2044,7 +1842,7 @@ if let value = collectionType {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2069,12 +1867,10 @@ if let value = collectionType {
         }
         
         
-        
-        
         /**
         *
         * Summary: List available stores
-        * Description: Retrieves a list of all stores associated with sales channel
+        * Description: List all stores associated with the sales channel.
         **/
         public func getStores(
             pageNo: Int?,
@@ -2086,70 +1882,50 @@ if let value = collectionType {
             longitude: Double?,
             tags: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: StoreListingResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
-if let value = city {
-    
-    xQuery["city"] = value
-    
-}
-
-
-if let value = range {
-    
-    xQuery["range"] = value
-    
-}
-
-
-if let value = latitude {
-    
-    xQuery["latitude"] = value
-    
-}
-
-
-if let value = longitude {
-    
-    xQuery["longitude"] = value
-    
-}
-
-
-if let value = tags {
-    
-    xQuery["tags"] = value
-    
-}
-
-
- 
-
-
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = q {
+                xQuery["q"] = value
+            }
+            
+            if let value = city {
+                xQuery["city"] = value
+            }
+            
+            if let value = range {
+                xQuery["range"] = value
+            }
+            
+            if let value = latitude {
+                xQuery["latitude"] = value
+            }
+            
+            if let value = longitude {
+                xQuery["longitude"] = value
+            }
+            
+            if let value = tags {
+                xQuery["tags"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getStores"] ?? ""
             
@@ -2158,7 +1934,7 @@ if let value = tags {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2196,30 +1972,6 @@ if let value = tags {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: get paginator for getStores
@@ -2232,25 +1984,24 @@ if let value = tags {
             range: Int?,
             latitude: Double?,
             longitude: Double?,
-            tags: String?
-            
+            tags: String?,
+            headers: [(key: String, value: String)]? = nil
             ) -> Paginator<StoreListingResponse> {
             let pageSize = pageSize ?? 20
             let paginator = Paginator<StoreListingResponse>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getStores(
-                        
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        ,
-                        q: q,
-                        city: city,
-                        range: range,
-                        latitude: latitude,
-                        longitude: longitude,
-                        tags: tags
-                    ) { response, error in                    
+                    pageNo: paginator.pageNo,
+                    pageSize: paginator.pageSize,
+                    q: q,
+                    city: city,
+                    range: range,
+                    latitude: latitude,
+                    longitude: longitude,
+                    tags: tags,
+                    
+                    headers: headers
+                ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page.hasNext ?? false
                         paginator.pageNo = (paginator.pageNo ?? 0) + 1
@@ -2263,11 +2014,10 @@ if let value = tags {
         
         
         
-        
         /**
         *
         * Summary: List stores with inventory
-        * Description: Lists stores where specified products are currently in stock.
+        * Description: List stores where specified products are currently in stock.
         **/
         public func getInStockLocations(
             pageNo: Int?,
@@ -2278,63 +2028,46 @@ if let value = tags {
             latitude: Double?,
             longitude: Double?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ApplicationStoreListing?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
-if let value = city {
-    
-    xQuery["city"] = value
-    
-}
-
-
-if let value = range {
-    
-    xQuery["range"] = value
-    
-}
-
-
-if let value = latitude {
-    
-    xQuery["latitude"] = value
-    
-}
-
-
-if let value = longitude {
-    
-    xQuery["longitude"] = value
-    
-}
-
-
- 
-
-
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = q {
+                xQuery["q"] = value
+            }
+            
+            if let value = city {
+                xQuery["city"] = value
+            }
+            
+            if let value = range {
+                xQuery["range"] = value
+            }
+            
+            if let value = latitude {
+                xQuery["latitude"] = value
+            }
+            
+            if let value = longitude {
+                xQuery["longitude"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getInStockLocations"] ?? ""
             
@@ -2343,7 +2076,7 @@ if let value = longitude {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2379,28 +2112,6 @@ if let value = longitude {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: get paginator for getInStockLocations
@@ -2412,24 +2123,23 @@ if let value = longitude {
             city: String?,
             range: Int?,
             latitude: Double?,
-            longitude: Double?
-            
+            longitude: Double?,
+            headers: [(key: String, value: String)]? = nil
             ) -> Paginator<ApplicationStoreListing> {
             let pageSize = pageSize ?? 20
             let paginator = Paginator<ApplicationStoreListing>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getInStockLocations(
-                        
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        ,
-                        q: q,
-                        city: city,
-                        range: range,
-                        latitude: latitude,
-                        longitude: longitude
-                    ) { response, error in                    
+                    pageNo: paginator.pageNo,
+                    pageSize: paginator.pageSize,
+                    q: q,
+                    city: city,
+                    range: range,
+                    latitude: latitude,
+                    longitude: longitude,
+                    
+                    headers: headers
+                ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page?.hasNext ?? false
                         paginator.pageNo = (paginator.pageNo ?? 0) + 1
@@ -2442,34 +2152,37 @@ if let value = longitude {
         
         
         
-        
         /**
         *
         * Summary: Get selling location
-        * Description: This API retrieves comprehensive details about a store based on its location Id
+        * Description: Get details about a store based on its location Id.
         **/
         public func getLocationDetailsById(
             locationId: Int,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: StoreDetails?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getLocationDetailsById"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "location_id" + "}", with: "\(locationId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "location_id" + "}", with: "\(locationId)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2494,39 +2207,35 @@ if let value = longitude {
         }
         
         
-        
-        
         /**
         *
         * Summary: List product bundles
-        * Description: Retrieve products bundles to the one specified by its slug.
+        * Description: Get products bundles to the one specified by its slug.
         **/
         public func getProductBundlesBySlug(
             slug: String?,
             id: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProductBundle?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = slug {
-    
-    xQuery["slug"] = value
-    
-}
-
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
- 
-
-
+            if let value = slug {
+                xQuery["slug"] = value
+            }
+            
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getProductBundlesBySlug"] ?? ""
             
@@ -2535,7 +2244,7 @@ if let value = id {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2560,12 +2269,10 @@ if let value = id {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get product price
-        * Description: Retrieve the price of a product size at all the selling locations near to a PIN Code.
+        * Description: Get the price of a product size at all the selling locations near to a PIN Code.
         **/
         public func getProductPriceBySlug(
             slug: String,
@@ -2573,41 +2280,39 @@ if let value = id {
             storeId: Int?,
             moq: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProductSizePriceResponseV3?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = storeId {
-    
-    xQuery["store_id"] = value
-    
-}
-
-
-if let value = moq {
-    
-    xQuery["moq"] = value
-    
-}
-
-
- 
-
-
+            if let value = storeId {
+                xQuery["store_id"] = value
+            }
+            
+            if let value = moq {
+                xQuery["moq"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getProductPriceBySlug"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "size" + "}", with: "\(size)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "size" + "}", with: "\(size)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2632,12 +2337,10 @@ if let value = moq {
         }
         
         
-        
-        
         /**
         *
         * Summary: List sellers
-        * Description: Retrieve a list of all sellers offering a specific product identified by its slug and size
+        * Description: List all sellers offering a specific product identified by its slug and size.
         **/
         public func getProductSellersBySlug(
             slug: String,
@@ -2646,48 +2349,43 @@ if let value = moq {
             pageNo: Int?,
             pageSize: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProductSizeSellersResponseV3?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = strategy {
-    
-    xQuery["strategy"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+            if let value = strategy {
+                xQuery["strategy"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getProductSellersBySlug"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "size" + "}", with: "\(size)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "size" + "}", with: "\(size)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2719,24 +2417,6 @@ if let value = pageSize {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: get paginator for getProductSellersBySlug
@@ -2746,22 +2426,21 @@ if let value = pageSize {
             slug: String,
             size: String,
             strategy: String?,
-            pageSize: Int?
-            
+            pageSize: Int?,
+            headers: [(key: String, value: String)]? = nil
             ) -> Paginator<ProductSizeSellersResponseV3> {
             let pageSize = pageSize ?? 20
             let paginator = Paginator<ProductSizeSellersResponseV3>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getProductSellersBySlug(
-                        
-                        slug: slug,
-                        size: size,
-                        strategy: strategy,
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
+                    slug: slug,
+                    size: size,
+                    strategy: strategy,
+                    pageNo: paginator.pageNo,
+                    pageSize: paginator.pageSize,
+                    
+                    headers: headers
+                ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page.hasNext ?? false
                         paginator.pageNo = (paginator.pageNo ?? 0) + 1
@@ -2771,7 +2450,5 @@ if let value = pageSize {
             }
             return paginator
         }
-        
-        
-    }
+        }
 }

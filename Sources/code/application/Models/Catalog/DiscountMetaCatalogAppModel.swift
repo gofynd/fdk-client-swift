@@ -8,7 +8,7 @@ public extension ApplicationClient.Catalog {
     */
     class DiscountMeta: Codable {
         
-        public var timer: Bool
+        public var timer: Bool?
         
         public var startTimerInMinutes: Double?
         
@@ -29,7 +29,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(end: String? = nil, start: String? = nil, startTimerInMinutes: Double? = nil, timer: Bool) {
+        public init(end: String? = nil, start: String? = nil, startTimerInMinutes: Double? = nil, timer: Bool? = nil) {
             
             self.timer = timer
             
@@ -45,8 +45,15 @@ public extension ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            timer = try container.decode(Bool.self, forKey: .timer)
+            do {
+                timer = try container.decode(Bool.self, forKey: .timer)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             

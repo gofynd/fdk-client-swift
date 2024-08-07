@@ -42,14 +42,18 @@ extension ApplicationClient {
         **/
         public func getApplicationQRCode(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getApplicationQRCode"] ?? ""
             
@@ -58,7 +62,7 @@ extension ApplicationClient {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -81,8 +85,6 @@ extension ApplicationClient {
                     }
             });
         }
-        
-        
         
         
         /**
@@ -93,25 +95,29 @@ extension ApplicationClient {
         public func getProductQRCodeBySlug(
             slug: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getProductQRCodeBySlug"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -134,8 +140,6 @@ extension ApplicationClient {
                     }
             });
         }
-        
-        
         
         
         /**
@@ -146,25 +150,29 @@ extension ApplicationClient {
         public func getCollectionQRCodeBySlug(
             slug: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getCollectionQRCodeBySlug"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -187,8 +195,6 @@ extension ApplicationClient {
                     }
             });
         }
-        
-        
         
         
         /**
@@ -199,19 +205,19 @@ extension ApplicationClient {
         public func getUrlQRCode(
             url: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: QRCodeResp?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["url"] = url
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["url"] = url
-
-
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getUrlQRCode"] ?? ""
             
@@ -220,7 +226,7 @@ var xQuery: [String: Any] = [:]
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -245,8 +251,6 @@ var xQuery: [String: Any] = [:]
         }
         
         
-        
-        
         /**
         *
         * Summary: Shorten URL
@@ -254,14 +258,18 @@ var xQuery: [String: Any] = [:]
         **/
         public func createShortLink(
             body: ShortLinkReq,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["createShortLink"] ?? ""
             
@@ -270,7 +278,7 @@ var xQuery: [String: Any] = [:]
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -295,8 +303,6 @@ var xQuery: [String: Any] = [:]
         }
         
         
-        
-        
         /**
         *
         * Summary: Get short link
@@ -305,25 +311,29 @@ var xQuery: [String: Any] = [:]
         public func getShortLinkByHash(
             hash: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getShortLinkByHash"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "hash" + "}", with: "\(hash)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "hash" + "}", with: "\(hash)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -346,8 +356,6 @@ var xQuery: [String: Any] = [:]
                     }
             });
         }
-        
-        
         
         
         /**
@@ -358,25 +366,29 @@ var xQuery: [String: Any] = [:]
         public func getOriginalShortLinkByHash(
             hash: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getOriginalShortLinkByHash"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "hash" + "}", with: "\(hash)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "hash" + "}", with: "\(hash)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -398,8 +410,5 @@ var xQuery: [String: Any] = [:]
                         onResponse(nil, err)
                     }
             });
-        }
-        
-        
-    }
+        }}
 }

@@ -1,0 +1,116 @@
+
+
+import Foundation
+
+
+public extension PlatformClient.Order {
+    /*
+        Model: TransitionConfigPayload
+        Used By: Order
+    */
+
+    class TransitionConfigPayload: Codable {
+        
+        
+        public var data: TransitionConfigData?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case data = "data"
+            
+        }
+
+        public init(data: TransitionConfigData? = nil) {
+            
+            self.data = data
+            
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    data = try container.decode(TransitionConfigData.self, forKey: .data)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+        }
+        
+    }
+}
+
+
+
+public extension PlatformClient.ApplicationClient.Order {
+    /*
+        Model: TransitionConfigPayload
+        Used By: Order
+    */
+
+    class TransitionConfigPayload: Codable {
+        
+        
+        public var data: TransitionConfigData?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case data = "data"
+            
+        }
+
+        public init(data: TransitionConfigData? = nil) {
+            
+            self.data = data
+            
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    data = try container.decode(TransitionConfigData.self, forKey: .data)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+        }
+        
+    }
+}
+
+

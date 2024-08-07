@@ -34,7 +34,7 @@ public extension PlatformClient.Content {
         
         public var seo: SEO?
         
-        public var schedule: CronSchedule?
+        public var summary: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -61,11 +61,11 @@ public extension PlatformClient.Content {
             
             case seo = "seo"
             
-            case schedule = "_schedule"
+            case summary = "summary"
             
         }
 
-        public init(application: String? = nil, author: Author? = nil, content: [ResourceContent]? = nil, featureImage: Asset? = nil, published: Bool? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, schedule: CronSchedule? = nil) {
+        public init(application: String? = nil, author: Author? = nil, content: [ResourceContent]? = nil, featureImage: Asset? = nil, published: Bool? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, summary: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil) {
             
             self.application = application
             
@@ -89,7 +89,7 @@ public extension PlatformClient.Content {
             
             self.seo = seo
             
-            self.schedule = schedule
+            self.summary = summary
             
         }
 
@@ -230,7 +230,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    schedule = try container.decode(CronSchedule.self, forKey: .schedule)
+                    summary = try container.decode(String.self, forKey: .summary)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -302,7 +302,7 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(schedule, forKey: .schedule)
+            try? container.encodeIfPresent(summary, forKey: .summary)
             
             
         }
@@ -343,7 +343,7 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var seo: SEO?
         
-        public var schedule: CronSchedule?
+        public var summary: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -370,11 +370,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case seo = "seo"
             
-            case schedule = "_schedule"
+            case summary = "summary"
             
         }
 
-        public init(application: String? = nil, author: Author? = nil, content: [ResourceContent]? = nil, featureImage: Asset? = nil, published: Bool? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, schedule: CronSchedule? = nil) {
+        public init(application: String? = nil, author: Author? = nil, content: [ResourceContent]? = nil, featureImage: Asset? = nil, published: Bool? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, summary: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil) {
             
             self.application = application
             
@@ -398,7 +398,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             self.seo = seo
             
-            self.schedule = schedule
+            self.summary = summary
             
         }
 
@@ -539,7 +539,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    schedule = try container.decode(CronSchedule.self, forKey: .schedule)
+                    summary = try container.decode(String.self, forKey: .summary)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -611,7 +611,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(schedule, forKey: .schedule)
+            try? container.encodeIfPresent(summary, forKey: .summary)
             
             
         }

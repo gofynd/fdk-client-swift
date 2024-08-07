@@ -22,7 +22,7 @@ public extension PlatformClient.Webhook {
         
         public var webhookUrl: String?
         
-        public var association: Association?
+        public var association: AssociationResp?
         
         public var customHeaders: [String: Any]?
         
@@ -73,7 +73,7 @@ public extension PlatformClient.Webhook {
             
         }
 
-        public init(association: Association? = nil, authMeta: AuthMeta? = nil, createdOn: String? = nil, customHeaders: [String: Any]? = nil, emailId: String? = nil, eventConfigs: [EventConfig]? = nil, id: Int? = nil, modifiedBy: String? = nil, name: String? = nil, provider: String? = nil, status: SubscriberStatus? = nil, type: String? = nil, updatedOn: String? = nil, webhookUrl: String? = nil) {
+        public init(association: AssociationResp? = nil, authMeta: AuthMeta? = nil, createdOn: String? = nil, customHeaders: [String: Any]? = nil, emailId: String? = nil, eventConfigs: [EventConfig]? = nil, id: Int? = nil, modifiedBy: String? = nil, name: String? = nil, provider: String? = nil, status: SubscriberStatus? = nil, type: String? = nil, updatedOn: String? = nil, webhookUrl: String? = nil) {
             
             self.id = id
             
@@ -170,7 +170,7 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    association = try container.decode(Association.self, forKey: .association)
+                    association = try container.decode(AssociationResp.self, forKey: .association)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

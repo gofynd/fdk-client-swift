@@ -14,9 +14,9 @@ public extension PlatformClient.Webhook {
         
         public var searchText: String?
         
-        public var endDate: String?
+        public var endDate: String
         
-        public var startDate: String?
+        public var startDate: String
         
         public var subscriberIds: [Int]?
         
@@ -41,7 +41,7 @@ public extension PlatformClient.Webhook {
             
         }
 
-        public init(endDate: String? = nil, event: [Event]? = nil, searchText: String? = nil, startDate: String? = nil, status: String? = nil, subscriberIds: [Int]? = nil) {
+        public init(endDate: String, event: [Event]? = nil, searchText: String? = nil, startDate: String, status: String? = nil, subscriberIds: [Int]? = nil) {
             
             self.searchText = searchText
             
@@ -73,28 +73,14 @@ public extension PlatformClient.Webhook {
                 
             
             
-                do {
-                    endDate = try container.decode(String.self, forKey: .endDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                endDate = try container.decode(String.self, forKey: .endDate)
                 
             
             
-                do {
-                    startDate = try container.decode(String.self, forKey: .startDate)
+            
+                startDate = try container.decode(String.self, forKey: .startDate)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {

@@ -32,30 +32,34 @@ extension ApplicationClient {
         /**
         *
         * Summary: List pages
-        * Description: Get all page level configs, sections and SEO data of a theme
+        * Description: Get all page level configs, sections and seo data of a theme.
         **/
         public func getAllPages(
             themeId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AllAvailablePageSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getAllPages"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "theme_id" + "}", with: "\(themeId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "theme_id" + "}", with: "\(themeId)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -80,54 +84,55 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get theme page
-        * Description: Get page level configurations, applied sections and SEO data of a page by `page_value` received from list pages API
+        * Description: Get page level configurations, applied sections and seo data of a page by `page_value` received from list pages api.
         **/
         public func getPage(
             themeId: String,
             pageValue: String,
             filters: String?,
+            sectionPreviewHash: String?,
             company: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AvailablePageSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = filters {
-    
-    xQuery["filters"] = value
-    
-}
-
-
-if let value = company {
-    
-    xQuery["company"] = value
-    
-}
-
-
- 
-
-
+            if let value = filters {
+                xQuery["filters"] = value
+            }
+            
+            if let value = sectionPreviewHash {
+                xQuery["section_preview_hash"] = value
+            }
+            
+            if let value = company {
+                xQuery["company"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getPage"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "theme_id" + "}", with: "\(themeId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "theme_id" + "}", with: "\(themeId)")
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "page_value" + "}", with: "\(pageValue)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "page_value" + "}", with: "\(pageValue)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -152,8 +157,6 @@ if let value = company {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get applied theme 
@@ -161,14 +164,18 @@ if let value = company {
         **/
         public func getAppliedTheme(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getAppliedTheme"] ?? ""
             
@@ -177,7 +184,7 @@ if let value = company {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -202,35 +209,37 @@ if let value = company {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get theme for preview 
-        * Description: Gets the theme configuration and template details of a theme by theme Id.
+        * Description: Gets the theme configuration and template details of a theme by theme id.
         **/
         public func getThemeForPreview(
             themeId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getThemeForPreview"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "theme_id" + "}", with: "\(themeId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "theme_id" + "}", with: "\(themeId)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -252,8 +261,5 @@ if let value = company {
                         onResponse(nil, err)
                     }
             });
-        }
-        
-        
-    }
+        }}
 }

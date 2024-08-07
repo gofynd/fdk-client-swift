@@ -12,8 +12,6 @@ public extension PlatformClient.Webhook {
     class Association: Codable {
         
         
-        public var companyId: Int?
-        
         public var applicationId: [String]?
         
         public var extensionId: String?
@@ -23,8 +21,6 @@ public extension PlatformClient.Webhook {
 
         public enum CodingKeys: String, CodingKey {
             
-            case companyId = "company_id"
-            
             case applicationId = "application_id"
             
             case extensionId = "extension_id"
@@ -33,9 +29,7 @@ public extension PlatformClient.Webhook {
             
         }
 
-        public init(applicationId: [String]? = nil, companyId: Int? = nil, criteria: String? = nil, extensionId: String? = nil) {
-            
-            self.companyId = companyId
+        public init(applicationId: [String]? = nil, criteria: String? = nil, extensionId: String? = nil) {
             
             self.applicationId = applicationId
             
@@ -47,18 +41,6 @@ public extension PlatformClient.Webhook {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    companyId = try container.decode(Int.self, forKey: .companyId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -100,11 +82,6 @@ public extension PlatformClient.Webhook {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
             
             
             

@@ -18,6 +18,8 @@ public extension PlatformClient.Content {
         
         public var number: String?
         
+        public var phoneType: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -27,15 +29,19 @@ public extension PlatformClient.Content {
             
             case number = "number"
             
+            case phoneType = "phone_type"
+            
         }
 
-        public init(code: String? = nil, key: String? = nil, number: String? = nil) {
+        public init(code: String? = nil, key: String? = nil, number: String? = nil, phoneType: String? = nil) {
             
             self.key = key
             
             self.code = code
             
             self.number = number
+            
+            self.phoneType = phoneType
             
         }
 
@@ -78,6 +84,18 @@ public extension PlatformClient.Content {
                 }
                 
             
+            
+                do {
+                    phoneType = try container.decode(String.self, forKey: .phoneType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -96,6 +114,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(number, forKey: .number)
+            
+            
+            
+            
+            try? container.encodeIfPresent(phoneType, forKey: .phoneType)
             
             
         }
@@ -120,6 +143,8 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var number: String?
         
+        public var phoneType: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -129,15 +154,19 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case number = "number"
             
+            case phoneType = "phone_type"
+            
         }
 
-        public init(code: String? = nil, key: String? = nil, number: String? = nil) {
+        public init(code: String? = nil, key: String? = nil, number: String? = nil, phoneType: String? = nil) {
             
             self.key = key
             
             self.code = code
             
             self.number = number
+            
+            self.phoneType = phoneType
             
         }
 
@@ -180,6 +209,18 @@ public extension PlatformClient.ApplicationClient.Content {
                 }
                 
             
+            
+                do {
+                    phoneType = try container.decode(String.self, forKey: .phoneType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -198,6 +239,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(number, forKey: .number)
+            
+            
+            
+            
+            try? container.encodeIfPresent(phoneType, forKey: .phoneType)
             
             
         }

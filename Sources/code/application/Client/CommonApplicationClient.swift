@@ -28,33 +28,32 @@ extension ApplicationClient {
         /**
         *
         * Summary: Get sales channel
-        * Description: Retrieves an active sales channel based on a provided query. The query can be a valid sales channel ID or a verified domain name. If the sales channel is found, a success response is returned. If not, a 404 error response is returned
+        * Description: Get an active sales channel based on a provided query. The query can be a valid sales channel ID or a verified domain name. If the sales channel is found, a success response is returned. If not, a 404 error response is returned.
         **/
         public func searchApplication(
             authorization: String?,
             query: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ApplicationResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = query {
-    
-    xQuery["query"] = value
-    
-}
-
-
-var xHeaders: [(key: String, value: String)] = [] 
-
-if let value = authorization {
-    
-    xHeaders.append((key: "authorization", value: value))
-    
-}
-
-
+            if let value = query {
+                xQuery["query"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            if let value = authorization {
+                xHeaders.append((key: "authorization", value: value))
+            }
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["searchApplication"] ?? ""
             
@@ -63,7 +62,7 @@ if let value = authorization {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  xHeaders,
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -88,39 +87,35 @@ if let value = authorization {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get a location
-        * Description: Retrieves countries , state , cities data associated with the sales channel
+        * Description: Get countries , state , cities data associated with the sales channel.
         **/
         public func getLocations(
             locationType: String?,
             id: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: Locations?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = locationType {
-    
-    xQuery["location_type"] = value
-    
-}
-
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
- 
-
-
+            if let value = locationType {
+                xQuery["location_type"] = value
+            }
+            
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getLocations"] ?? ""
             
@@ -129,7 +124,7 @@ if let value = id {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -151,8 +146,5 @@ if let value = id {
                         onResponse(nil, err)
                     }
             });
-        }
-        
-        
-    }
+        }}
 }

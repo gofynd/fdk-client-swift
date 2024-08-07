@@ -8,7 +8,7 @@ public extension ApplicationClient.Payment {
     */
     class ValidateCustomerResponse: Codable {
         
-        public var data: [String: Any]
+        public var data: [String: Any]?
         
         public var success: Bool
         
@@ -25,7 +25,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(data: [String: Any], message: String, success: Bool) {
+        public init(data: [String: Any]? = nil, message: String, success: Bool) {
             
             self.data = data
             
@@ -39,8 +39,15 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            data = try container.decode([String: Any].self, forKey: .data)
+            do {
+                data = try container.decode([String: Any].self, forKey: .data)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             

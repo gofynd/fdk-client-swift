@@ -29,77 +29,57 @@ extension PlatformClient {
             pageNo: Int?,
             pageSize: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: TicketList?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = items {
-    
-    xQuery["items"] = value
-    
-}
-
-
-if let value = filters {
-    
-    xQuery["filters"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
-if let value = status {
-    
-    xQuery["status"] = value
-    
-}
-
-
-if let value = priority {
-    
-    xQuery["priority"] = value.rawValue
-    
-}
-
-
-if let value = category {
-    
-    xQuery["category"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+            if let value = items {
+                xQuery["items"] = value
+            }
+            
+            if let value = filters {
+                xQuery["filters"] = value
+            }
+            
+            if let value = q {
+                xQuery["q"] = value
+            }
+            
+            if let value = status {
+                xQuery["status"] = value
+            }
+            
+            if let value = priority {
+                xQuery["priority"] = value.rawValue
+            }
+            
+            if let value = category {
+                xQuery["category"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -124,8 +104,6 @@ if let value = pageSize {
         
         
         
-        
-        
         /**
         *
         * Summary: Create ticket
@@ -133,21 +111,25 @@ if let value = pageSize {
         **/
         public func createTicket(
             body: AddTicketPayload,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -169,8 +151,6 @@ if let value = pageSize {
                     }
             });
         }
-        
-        
         
         
         
@@ -183,21 +163,25 @@ if let value = pageSize {
         public func getPlatformTicket(
             id: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(id)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -219,8 +203,6 @@ if let value = pageSize {
                     }
             });
         }
-        
-        
         
         
         
@@ -232,21 +214,25 @@ if let value = pageSize {
         public func editPlatformTicket(
             id: String,
             body: EditTicketPayload,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(id)",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -268,8 +254,6 @@ if let value = pageSize {
                     }
             });
         }
-        
-        
         
         
         
@@ -283,21 +267,25 @@ if let value = pageSize {
         public func createPlatformTicketHistory(
             id: String,
             body: TicketHistoryPayload,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: TicketHistory?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(id)/history",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -322,8 +310,6 @@ if let value = pageSize {
         
         
         
-        
-        
         /**
         *
         * Summary: Get ticket history
@@ -332,21 +318,25 @@ if let value = pageSize {
         public func getPlatformTicketHistory(
             id: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: TicketHistoryList?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(id)/history",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -371,8 +361,6 @@ if let value = pageSize {
         
         
         
-        
-        
         /**
         *
         * Summary: List feedbacks
@@ -381,21 +369,25 @@ if let value = pageSize {
         public func getFeedbacks(
             id: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: TicketFeedbackList?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(id)/feedback",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -420,8 +412,6 @@ if let value = pageSize {
         
         
         
-        
-        
         /**
         *
         * Summary: Submit feedback
@@ -430,21 +420,25 @@ if let value = pageSize {
         public func submitFeedback(
             id: String,
             body: TicketFeedbackPayload,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: TicketFeedback?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(id)/feedback",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -476,110 +470,6 @@ if let value = pageSize {
         
         
         
-        
-        
-        /**
-        *
-        * Summary: Get video Room Token 
-        * Description: Get an access token for a platform video room.
-        **/
-        public func getTokenForPlatformVideoRoom(
-            uniqueName: String,
-            
-            onResponse: @escaping (_ response: GetTokenForVideoRoomResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/lead/v1.0/company/\(companyId)/video/room/\(uniqueName)/token",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetTokenForVideoRoomResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: List video Room Participants 
-        * Description: Get a list of participants in a platform video room
-        **/
-        public func getPlatformVideoParticipants(
-            uniqueName: String,
-            
-            onResponse: @escaping (_ response: GetParticipantsInsideVideoRoomResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/lead/v1.0/company/\(companyId)/video/room/\(uniqueName)/participants",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetParticipantsInsideVideoRoomResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: Get general configuration
@@ -587,21 +477,25 @@ if let value = pageSize {
         **/
         public func getGeneralConfig(
             
-            onResponse: @escaping (_ response: CloseVideoRoomResponse?, _ error: FDKError?) -> Void
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: GeneralConfigResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/general-config",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -612,7 +506,7 @@ if let value = pageSize {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CloseVideoRoomResponse.self, from: data)
+                        let response = Utility.decode(GeneralConfigResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -623,7 +517,5 @@ if let value = pageSize {
                     }
             });
         }
-        
-        
     }
 }

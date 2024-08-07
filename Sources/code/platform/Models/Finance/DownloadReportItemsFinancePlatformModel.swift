@@ -22,8 +22,6 @@ public extension PlatformClient.Finance {
         
         public var filters: GenerateReportFilters?
         
-        public var typeOfRequest: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -37,11 +35,9 @@ public extension PlatformClient.Finance {
             
             case filters = "filters"
             
-            case typeOfRequest = "type_of_request"
-            
         }
 
-        public init(endDate: String? = nil, filters: GenerateReportFilters? = nil, meta: GenerateReportMeta? = nil, reportId: String? = nil, startDate: String? = nil, typeOfRequest: String? = nil) {
+        public init(endDate: String? = nil, filters: GenerateReportFilters? = nil, meta: GenerateReportMeta? = nil, reportId: String? = nil, startDate: String? = nil) {
             
             self.startDate = startDate
             
@@ -52,8 +48,6 @@ public extension PlatformClient.Finance {
             self.reportId = reportId
             
             self.filters = filters
-            
-            self.typeOfRequest = typeOfRequest
             
         }
 
@@ -120,18 +114,6 @@ public extension PlatformClient.Finance {
                 }
                 
             
-            
-                do {
-                    typeOfRequest = try container.decode(String.self, forKey: .typeOfRequest)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -160,11 +142,6 @@ public extension PlatformClient.Finance {
             
             
             try? container.encodeIfPresent(filters, forKey: .filters)
-            
-            
-            
-            
-            try? container.encodeIfPresent(typeOfRequest, forKey: .typeOfRequest)
             
             
         }

@@ -12,7 +12,7 @@ public extension PlatformClient.Webhook {
     class PingWebhook: Codable {
         
         
-        public var webhookUrl: String?
+        public var webhookUrl: String
         
         public var authMeta: [String: Any]?
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Webhook {
             
         }
 
-        public init(authMeta: [String: Any]? = nil, customHeaders: [String: Any]? = nil, webhookUrl: String? = nil) {
+        public init(authMeta: [String: Any]? = nil, customHeaders: [String: Any]? = nil, webhookUrl: String) {
             
             self.webhookUrl = webhookUrl
             
@@ -43,16 +43,9 @@ public extension PlatformClient.Webhook {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    webhookUrl = try container.decode(String.self, forKey: .webhookUrl)
+                webhookUrl = try container.decode(String.self, forKey: .webhookUrl)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {

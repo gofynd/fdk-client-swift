@@ -10,17 +10,17 @@ public extension PublicClient.Webhook {
     class ValidateSchemaRequest: Codable {
         
         
-        public var eventName: String?
+        public var eventName: String
         
-        public var eventType: String?
+        public var eventType: String
         
-        public var eventCategory: String?
+        public var eventCategory: String
         
-        public var eventVersion: String?
+        public var eventVersion: String
         
-        public var event: EventSchema?
+        public var event: EventSchema
         
-        public var eventSchema: [String: Any]?
+        public var eventSchema: [String: Any]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -39,7 +39,7 @@ public extension PublicClient.Webhook {
             
         }
 
-        public init(event: EventSchema? = nil, eventCategory: String? = nil, eventName: String? = nil, eventSchema: [String: Any]? = nil, eventType: String? = nil, eventVersion: String? = nil) {
+        public init(event: EventSchema, eventCategory: String, eventName: String, eventSchema: [String: Any], eventType: String, eventVersion: String) {
             
             self.eventName = eventName
             
@@ -59,76 +59,34 @@ public extension PublicClient.Webhook {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    eventName = try container.decode(String.self, forKey: .eventName)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                eventName = try container.decode(String.self, forKey: .eventName)
                 
             
             
-                do {
-                    eventType = try container.decode(String.self, forKey: .eventType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                eventType = try container.decode(String.self, forKey: .eventType)
                 
             
             
-                do {
-                    eventCategory = try container.decode(String.self, forKey: .eventCategory)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                eventCategory = try container.decode(String.self, forKey: .eventCategory)
                 
             
             
-                do {
-                    eventVersion = try container.decode(String.self, forKey: .eventVersion)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                eventVersion = try container.decode(String.self, forKey: .eventVersion)
                 
             
             
-                do {
-                    event = try container.decode(EventSchema.self, forKey: .event)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                event = try container.decode(EventSchema.self, forKey: .event)
                 
             
             
-                do {
-                    eventSchema = try container.decode([String: Any].self, forKey: .eventSchema)
+            
+                eventSchema = try container.decode([String: Any].self, forKey: .eventSchema)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         

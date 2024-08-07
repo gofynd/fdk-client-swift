@@ -16,10 +16,6 @@ public extension PlatformClient.Serviceability {
         
         public var accountId: String
         
-        public var name: String
-        
-        public var isSelfShip: Bool
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -27,21 +23,13 @@ public extension PlatformClient.Serviceability {
             
             case accountId = "account_id"
             
-            case name = "name"
-            
-            case isSelfShip = "is_self_ship"
-            
         }
 
-        public init(accountId: String, extensionId: String, isSelfShip: Bool, name: String) {
+        public init(accountId: String, extensionId: String) {
             
             self.extensionId = extensionId
             
             self.accountId = accountId
-            
-            self.name = name
-            
-            self.isSelfShip = isSelfShip
             
         }
 
@@ -58,16 +46,6 @@ public extension PlatformClient.Serviceability {
                 
             
             
-            
-                name = try container.decode(String.self, forKey: .name)
-                
-            
-            
-            
-                isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
-                
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -81,16 +59,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(accountId, forKey: .accountId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isSelfShip, forKey: .isSelfShip)
             
             
         }
@@ -113,10 +81,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var accountId: String
         
-        public var name: String
-        
-        public var isSelfShip: Bool
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -124,21 +88,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case accountId = "account_id"
             
-            case name = "name"
-            
-            case isSelfShip = "is_self_ship"
-            
         }
 
-        public init(accountId: String, extensionId: String, isSelfShip: Bool, name: String) {
+        public init(accountId: String, extensionId: String) {
             
             self.extensionId = extensionId
             
             self.accountId = accountId
-            
-            self.name = name
-            
-            self.isSelfShip = isSelfShip
             
         }
 
@@ -155,16 +111,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
-            
-                name = try container.decode(String.self, forKey: .name)
-                
-            
-            
-            
-                isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
-                
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -178,16 +124,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(accountId, forKey: .accountId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isSelfShip, forKey: .isSelfShip)
             
             
         }

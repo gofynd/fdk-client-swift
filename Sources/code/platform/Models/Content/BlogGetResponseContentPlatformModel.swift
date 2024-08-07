@@ -16,6 +16,8 @@ public extension PlatformClient.Content {
         
         public var page: Page?
         
+        public var filters: BlogFilters?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,13 +25,17 @@ public extension PlatformClient.Content {
             
             case page = "page"
             
+            case filters = "filters"
+            
         }
 
-        public init(items: [BlogSchema]? = nil, page: Page? = nil) {
+        public init(filters: BlogFilters? = nil, items: [BlogSchema]? = nil, page: Page? = nil) {
             
             self.items = items
             
             self.page = page
+            
+            self.filters = filters
             
         }
 
@@ -60,6 +66,18 @@ public extension PlatformClient.Content {
                 }
                 
             
+            
+                do {
+                    filters = try container.decode(BlogFilters.self, forKey: .filters)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -73,6 +91,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(page, forKey: .page)
+            
+            
+            
+            
+            try? container.encodeIfPresent(filters, forKey: .filters)
             
             
         }
@@ -95,6 +118,8 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var page: Page?
         
+        public var filters: BlogFilters?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -102,13 +127,17 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case page = "page"
             
+            case filters = "filters"
+            
         }
 
-        public init(items: [BlogSchema]? = nil, page: Page? = nil) {
+        public init(filters: BlogFilters? = nil, items: [BlogSchema]? = nil, page: Page? = nil) {
             
             self.items = items
             
             self.page = page
+            
+            self.filters = filters
             
         }
 
@@ -139,6 +168,18 @@ public extension PlatformClient.ApplicationClient.Content {
                 }
                 
             
+            
+                do {
+                    filters = try container.decode(BlogFilters.self, forKey: .filters)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -152,6 +193,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(page, forKey: .page)
+            
+            
+            
+            
+            try? container.encodeIfPresent(filters, forKey: .filters)
             
             
         }

@@ -16,8 +16,6 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var domain: String?
         
-        public var maxAge: Double?
-        
         public var userId: String?
         
 
@@ -25,17 +23,13 @@ public extension PlatformClient.ApplicationClient.User {
             
             case domain = "domain"
             
-            case maxAge = "max_age"
-            
             case userId = "user_id"
             
         }
 
-        public init(domain: String? = nil, maxAge: Double? = nil, userId: String? = nil) {
+        public init(domain: String? = nil, userId: String? = nil) {
             
             self.domain = domain
-            
-            self.maxAge = maxAge
             
             self.userId = userId
             
@@ -47,18 +41,6 @@ public extension PlatformClient.ApplicationClient.User {
             
                 do {
                     domain = try container.decode(String.self, forKey: .domain)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    maxAge = try container.decode(Double.self, forKey: .maxAge)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,11 +70,6 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(domain, forKey: .domain)
-            
-            
-            
-            
-            try? container.encodeIfPresent(maxAge, forKey: .maxAge)
             
             
             

@@ -23,27 +23,26 @@ extension PlatformClient {
             authorization: String?,
             query: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ApplicationResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = query {
-    
-    xQuery["query"] = value
-    
-}
-
-
-var xHeaders: [(key: String, value: String)] = [] 
-
-if let value = authorization {
-    
-    xHeaders.append((key: "authorization", value: value))
-    
-}
-
-
+            if let value = query {
+                xQuery["query"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            if let value = authorization {
+                xHeaders.append((key: "authorization", value: value))
+            }
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
@@ -75,8 +74,6 @@ if let value = authorization {
         
         
         
-        
-        
         /**
         *
         * Summary: Get company locations
@@ -86,35 +83,33 @@ if let value = authorization {
             locationType: String?,
             id: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: Locations?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = locationType {
-    
-    xQuery["location_type"] = value
-    
-}
-
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
- 
-
-
+            if let value = locationType {
+                xQuery["location_type"] = value
+            }
+            
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/common/configuration/v1.0/location",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -136,7 +131,5 @@ if let value = id {
                     }
             });
         }
-        
-        
     }
 }

@@ -54,6 +54,8 @@ public extension PlatformClient.FileStorage {
         
         public var businessCountryCurrency: [String: Any]?
         
+        public var meta: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -99,9 +101,11 @@ public extension PlatformClient.FileStorage {
             
             case businessCountryCurrency = "business_country_currency"
             
+            case meta = "meta"
+            
         }
 
-        public init(address: String? = nil, businessCountryCurrency: [String: Any]? = nil, businessCountryTimezone: String? = nil, cin: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, displayAddress: String? = nil, email: String? = nil, gstin: String? = nil, name: String? = nil, pan: String? = nil, phone: [String: Any]? = nil, phoneNo: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil, trn: String? = nil, vat: String? = nil, websiteUrl: String? = nil, zipCode: Double? = nil) {
+        public init(address: String? = nil, businessCountryCurrency: [String: Any]? = nil, businessCountryTimezone: String? = nil, cin: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, displayAddress: String? = nil, email: String? = nil, gstin: String? = nil, meta: [String: Any]? = nil, name: String? = nil, pan: String? = nil, phone: [String: Any]? = nil, phoneNo: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil, trn: String? = nil, vat: String? = nil, websiteUrl: String? = nil, zipCode: Double? = nil) {
             
             self.name = name
             
@@ -144,6 +148,8 @@ public extension PlatformClient.FileStorage {
             self.businessCountryTimezone = businessCountryTimezone
             
             self.businessCountryCurrency = businessCountryCurrency
+            
+            self.meta = meta
             
         }
 
@@ -402,6 +408,18 @@ public extension PlatformClient.FileStorage {
                 }
                 
             
+            
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -510,6 +528,11 @@ public extension PlatformClient.FileStorage {
             
             
             try? container.encodeIfPresent(businessCountryCurrency, forKey: .businessCountryCurrency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }
@@ -570,6 +593,8 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var businessCountryCurrency: [String: Any]?
         
+        public var meta: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -615,9 +640,11 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             case businessCountryCurrency = "business_country_currency"
             
+            case meta = "meta"
+            
         }
 
-        public init(address: String? = nil, businessCountryCurrency: [String: Any]? = nil, businessCountryTimezone: String? = nil, cin: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, displayAddress: String? = nil, email: String? = nil, gstin: String? = nil, name: String? = nil, pan: String? = nil, phone: [String: Any]? = nil, phoneNo: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil, trn: String? = nil, vat: String? = nil, websiteUrl: String? = nil, zipCode: Double? = nil) {
+        public init(address: String? = nil, businessCountryCurrency: [String: Any]? = nil, businessCountryTimezone: String? = nil, cin: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, displayAddress: String? = nil, email: String? = nil, gstin: String? = nil, meta: [String: Any]? = nil, name: String? = nil, pan: String? = nil, phone: [String: Any]? = nil, phoneNo: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil, trn: String? = nil, vat: String? = nil, websiteUrl: String? = nil, zipCode: Double? = nil) {
             
             self.name = name
             
@@ -660,6 +687,8 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             self.businessCountryTimezone = businessCountryTimezone
             
             self.businessCountryCurrency = businessCountryCurrency
+            
+            self.meta = meta
             
         }
 
@@ -918,6 +947,18 @@ public extension PlatformClient.ApplicationClient.FileStorage {
                 }
                 
             
+            
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -1026,6 +1067,11 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(businessCountryCurrency, forKey: .businessCountryCurrency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }

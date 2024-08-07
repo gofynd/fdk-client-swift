@@ -8,7 +8,7 @@ public extension ApplicationClient.Cart {
     */
     class AppliedFreeArticles: Codable {
         
-        public var freeGiftItemDetails: FreeGiftItem?
+        public var freeGiftItemDetails: FreeGiftItems?
         
         public var parentItemIdentifier: String?
         
@@ -29,7 +29,7 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(articleId: String? = nil, freeGiftItemDetails: FreeGiftItem? = nil, parentItemIdentifier: String? = nil, quantity: Int? = nil) {
+        public init(articleId: String? = nil, freeGiftItemDetails: FreeGiftItems? = nil, parentItemIdentifier: String? = nil, quantity: Int? = nil) {
             
             self.freeGiftItemDetails = freeGiftItemDetails
             
@@ -46,7 +46,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                freeGiftItemDetails = try container.decode(FreeGiftItem.self, forKey: .freeGiftItemDetails)
+                freeGiftItemDetails = try container.decode(FreeGiftItems.self, forKey: .freeGiftItemDetails)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

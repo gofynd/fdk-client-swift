@@ -23,7 +23,7 @@ extension ApplicationClient {
             
             ulrs["getLocations"] = config.domain.appendAsPath("/service/application/logistics/v1.0/locations") 
             
-            ulrs["getCountries"] = config.domain.appendAsPath("/service/application/logistics/v1.0/countries") 
+            ulrs["getCountries"] = config.domain.appendAsPath("/service/application/logistics/v2.0/countries") 
             
             ulrs["getCountry"] = config.domain.appendAsPath("/service/application/logistics/v1.0/countries/{country_iso_code}") 
             
@@ -46,30 +46,34 @@ extension ApplicationClient {
         /**
         *
         * Summary: Get pincode details
-        * Description: Retrieve details of a specific pincode, such as obtaining its city and state information.
+        * Description: Get details of a specific pincode, such as obtaining its city and state information.
         **/
         public func getPincodeCity(
             pincode: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PincodeApiResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getPincodeCity"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "pincode" + "}", with: "\(pincode)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "pincode" + "}", with: "\(pincode)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -94,23 +98,25 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get product's turnaround time
-        * Description: Retrieve the estimated delivery timeframe for a specific product from a designated store.
+        * Description: Get the estimated delivery time frame for a specific product from a designated store.
         **/
         public func getTatProduct(
             body: TATViewRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: TATViewResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getTatProduct"] ?? ""
             
@@ -119,7 +125,7 @@ extension ApplicationClient {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -144,23 +150,25 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get deliverable countries
-        * Description: Retrieves a list of countries within the specified delivery zones for that application.
+        * Description: Get a list of countries within the specified delivery zones for that application.
         **/
         public func getAllCountries(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CountryListResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getAllCountries"] ?? ""
             
@@ -169,7 +177,7 @@ extension ApplicationClient {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -194,23 +202,25 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get zones
-        * Description: Retrieve the delivery zone associated with a given pincode
+        * Description: Get the delivery zone associated with a given pincode.
         **/
         public func getPincodeZones(
             body: GetZoneFromPincodeViewRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetZoneFromPincodeViewResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getPincodeZones"] ?? ""
             
@@ -219,7 +229,7 @@ extension ApplicationClient {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -244,23 +254,25 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get selling locations
-        * Description: Determines and returns the best fulfillment center for customers by analyzing their location, product availability, and inventory levels.
+        * Description: Get optimal fulfillment centre for customers by analyzing their location, product availability, and inventory levels.
         **/
         public func getOptimalLocations(
             body: ReAssignStoreRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ReAssignStoreResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getOptimalLocations"] ?? ""
             
@@ -269,7 +281,7 @@ extension ApplicationClient {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -294,12 +306,10 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get available selling locations
-        * Description: Retrieves stores available for the application based on Delivery Zones and Order Orchestration rules.
+        * Description: Get stores available for the application based on Delivery Zones and Order Orchestration rules.
         **/
         public func getLocations(
             xApplicationId: String,
@@ -312,73 +322,48 @@ extension ApplicationClient {
             pageNo: Int?,
             pageSize: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetStoreResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["x-application-id"] = xApplicationId
+            xQuery["x-application-data"] = xApplicationData
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["x-application-id"] = xApplicationId
-
-
-
-
-    xQuery["x-application-data"] = xApplicationData
-
-
-
-if let value = country {
-    
-    xQuery["country"] = value
-    
-}
-
-
-if let value = state {
-    
-    xQuery["state"] = value
-    
-}
-
-
-if let value = city {
-    
-    xQuery["city"] = value
-    
-}
-
-
-if let value = pincode {
-    
-    xQuery["pincode"] = value
-    
-}
-
-
-if let value = sector {
-    
-    xQuery["sector"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+            if let value = country {
+                xQuery["country"] = value
+            }
+            
+            if let value = state {
+                xQuery["state"] = value
+            }
+            
+            if let value = city {
+                xQuery["city"] = value
+            }
+            
+            if let value = pincode {
+                xQuery["pincode"] = value
+            }
+            
+            if let value = sector {
+                xQuery["sector"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getLocations"] ?? ""
             
@@ -387,7 +372,7 @@ if let value = pageSize {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -412,12 +397,10 @@ if let value = pageSize {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get countries
-        * Description: Fetch the list of supported countries.
+        * Description: List of supported countries.
         **/
         public func getCountries(
             onboarding: Bool?,
@@ -425,42 +408,34 @@ if let value = pageSize {
             pageSize: Int?,
             q: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetCountries?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = onboarding {
-    
-    xQuery["onboarding"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
- 
-
-
+            if let value = onboarding {
+                xQuery["onboarding"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = q {
+                xQuery["q"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getCountries"] ?? ""
             
@@ -469,7 +444,7 @@ if let value = q {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -494,35 +469,37 @@ if let value = q {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get country details
-        * Description: Fetch details about a particular country and its address format customized for different business scenarios.
+        * Description: Get details about a particular country and its address format customized for different business scenarios.
         **/
         public func getCountry(
             countryIsoCode: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetCountry?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getCountry"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "country_iso_code" + "}", with: "\(countryIsoCode)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "country_iso_code" + "}", with: "\(countryIsoCode)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -547,12 +524,10 @@ if let value = q {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get localities
-        * Description: Retrieve geographical data for a specific type of locality based on the provided filters. For instance, obtain a list of cities for a given country and state.
+        * Description: Get geographical data for a specific type of locality based on the provided filters. For instance, obtain a list of cities for a given country and state.
         **/
         public func getLocalities(
             localityType: String,
@@ -563,67 +538,53 @@ if let value = q {
             pageSize: Int?,
             q: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetLocalities?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = country {
-    
-    xQuery["country"] = value
-    
-}
-
-
-if let value = state {
-    
-    xQuery["state"] = value
-    
-}
-
-
-if let value = city {
-    
-    xQuery["city"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
- 
-
-
+            if let value = country {
+                xQuery["country"] = value
+            }
+            
+            if let value = state {
+                xQuery["state"] = value
+            }
+            
+            if let value = city {
+                xQuery["city"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = q {
+                xQuery["q"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getLocalities"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "locality_type" + "}", with: "\(localityType)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "locality_type" + "}", with: "\(localityType)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -648,12 +609,10 @@ if let value = q {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get locality detail
-        * Description: Retrieve detailed geographical data for a specific locality, such as a pincode. For example, for a pincode value of 400603, the service returns its parent locations, including city, state, and country details.
+        * Description: Get detailed geographical data for a specific locality, such as a pincode. For example, for a pincode value of 400603, the service returns its parent locations, including city, state, and country details.
         **/
         public func getLocality(
             localityType: String,
@@ -662,48 +621,43 @@ if let value = q {
             state: String?,
             city: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetLocality?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = country {
-    
-    xQuery["country"] = value
-    
-}
-
-
-if let value = state {
-    
-    xQuery["state"] = value
-    
-}
-
-
-if let value = city {
-    
-    xQuery["city"] = value
-    
-}
-
-
- 
-
-
+            if let value = country {
+                xQuery["country"] = value
+            }
+            
+            if let value = state {
+                xQuery["state"] = value
+            }
+            
+            if let value = city {
+                xQuery["city"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getLocality"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "locality_type" + "}", with: "\(localityType)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "locality_type" + "}", with: "\(localityType)")
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "locality_value" + "}", with: "\(localityValue)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "locality_value" + "}", with: "\(localityValue)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -728,8 +682,6 @@ if let value = city {
         }
         
         
-        
-        
         /**
         *
         * Summary: Validate address
@@ -739,27 +691,31 @@ if let value = city {
             countryIsoCode: String,
             templateName: String,
             body: ValidateAddressRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ValidateAddressRequest?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["validateAddress"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "country_iso_code" + "}", with: "\(countryIsoCode)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "country_iso_code" + "}", with: "\(countryIsoCode)")
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "template_name" + "}", with: "\(templateName)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "template_name" + "}", with: "\(templateName)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -781,8 +737,5 @@ if let value = city {
                         onResponse(nil, err)
                     }
             });
-        }
-        
-        
-    }
+        }}
 }
