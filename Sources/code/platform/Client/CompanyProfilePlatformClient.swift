@@ -21,21 +21,25 @@ extension PlatformClient {
         **/
         public func cbsOnboardGet(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetCompanyProfileSerializerResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -60,8 +64,6 @@ extension PlatformClient {
         
         
         
-        
-        
         /**
         *
         * Summary: Update company profile
@@ -69,21 +71,25 @@ extension PlatformClient {
         **/
         public func updateCompany(
             body: UpdateCompany,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "PATCH",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -108,8 +114,6 @@ extension PlatformClient {
         
         
         
-        
-        
         /**
         *
         * Summary: Get company metrics
@@ -117,21 +121,25 @@ extension PlatformClient {
         **/
         public func getCompanyMetrics(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: MetricsSerializer?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/metrics",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -156,8 +164,6 @@ extension PlatformClient {
         
         
         
-        
-        
         /**
         *
         * Summary: Get a brand
@@ -166,21 +172,25 @@ extension PlatformClient {
         public func getBrand(
             brandId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetBrandResponseSerializer?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -205,8 +215,6 @@ extension PlatformClient {
         
         
         
-        
-        
         /**
         *
         * Summary: update brand 
@@ -215,21 +223,25 @@ extension PlatformClient {
         public func editBrand(
             brandId: String,
             body: UpdateBrandRequestSerializer,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -251,8 +263,6 @@ extension PlatformClient {
                     }
             });
         }
-        
-        
         
         
         
@@ -263,21 +273,25 @@ extension PlatformClient {
         **/
         public func createBrand(
             body: CreateBrandRequestSerializer,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -299,8 +313,6 @@ extension PlatformClient {
                     }
             });
         }
-        
-        
         
         
         
@@ -314,42 +326,37 @@ extension PlatformClient {
             pageSize: Int?,
             q: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CompanyBrandListSerializer?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
- 
-
-
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = q {
+                xQuery["q"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -376,31 +383,6 @@ if let value = q {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: get paginator for getBrands
@@ -408,20 +390,19 @@ if let value = q {
         **/
         public func getBrandsPaginator(
             pageSize: Int?,
-            q: String?
-            
+            q: String?,
+            headers: [(key: String, value: String)]? = nil
             ) -> Paginator<CompanyBrandListSerializer> {
             let pageSize = pageSize ?? 20
             let paginator = Paginator<CompanyBrandListSerializer>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getBrands(
-                        
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        ,
-                        q: q
-                    ) { response, error in                    
+                    pageNo: paginator.pageNo,
+                    pageSize: paginator.pageSize,
+                    q: q,
+                    
+                    headers: headers
+                ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page?.hasNext ?? false
                         paginator.pageNo = (paginator.pageNo ?? 0) + 1
@@ -442,21 +423,25 @@ if let value = q {
         **/
         public func createCompanyBrandMapping(
             body: CompanyBrandPostRequestSerializer,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -481,8 +466,6 @@ if let value = q {
         
         
         
-        
-        
         /**
         *
         * Summary: Get company specific stores
@@ -498,77 +481,57 @@ if let value = q {
             types: [String]?,
             tags: [String]?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: LocationListSerializer?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = storeType {
-    
-    xQuery["store_type"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
-if let value = stage {
-    
-    xQuery["stage"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = locationIds {
-    
-    xQuery["location_ids"] = value
-    
-}
-
-
-if let value = types {
-    
-    xQuery["types"] = value
-    
-}
-
-
-if let value = tags {
-    
-    xQuery["tags"] = value
-    
-}
-
-
- 
-
-
+            if let value = storeType {
+                xQuery["store_type"] = value
+            }
+            
+            if let value = q {
+                xQuery["q"] = value
+            }
+            
+            if let value = stage {
+                xQuery["stage"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = locationIds {
+                xQuery["location_ids"] = value
+            }
+            
+            if let value = types {
+                xQuery["types"] = value
+            }
+            
+            if let value = tags {
+                xQuery["tags"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -605,51 +568,6 @@ if let value = tags {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: get paginator for getLocations
@@ -662,25 +580,24 @@ if let value = tags {
             pageSize: Int?,
             locationIds: [Int]?,
             types: [String]?,
-            tags: [String]?
-            
+            tags: [String]?,
+            headers: [(key: String, value: String)]? = nil
             ) -> Paginator<LocationListSerializer> {
             let pageSize = pageSize ?? 20
             let paginator = Paginator<LocationListSerializer>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getLocations(
-                        
-                        storeType: storeType,
-                        q: q,
-                        stage: stage,
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        ,
-                        locationIds: locationIds,
-                        types: types,
-                        tags: tags
-                    ) { response, error in                    
+                    storeType: storeType,
+                    q: q,
+                    stage: stage,
+                    pageNo: paginator.pageNo,
+                    pageSize: paginator.pageSize,
+                    locationIds: locationIds,
+                    types: types,
+                    tags: tags,
+                    
+                    headers: headers
+                ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page?.hasNext ?? false
                         paginator.pageNo = (paginator.pageNo ?? 0) + 1
@@ -701,21 +618,25 @@ if let value = tags {
         **/
         public func createLocation(
             body: LocationSerializer,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -740,8 +661,6 @@ if let value = tags {
         
         
         
-        
-        
         /**
         *
         * Summary: Get company stores
@@ -750,21 +669,25 @@ if let value = tags {
         public func getLocationDetail(
             locationId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetLocationSerializer?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -789,8 +712,6 @@ if let value = tags {
         
         
         
-        
-        
         /**
         *
         * Summary: Update company stores
@@ -799,21 +720,25 @@ if let value = tags {
         public func updateLocation(
             locationId: String,
             body: LocationSerializer,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -835,8 +760,6 @@ if let value = tags {
                     }
             });
         }
-        
-        
         
         
         
@@ -847,21 +770,25 @@ if let value = tags {
         **/
         public func createLocationBulk(
             body: BulkLocationSerializer,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/bulk",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -886,8 +813,6 @@ if let value = tags {
         
         
         
-        
-        
         /**
         *
         * Summary: Get company store tags
@@ -895,21 +820,25 @@ if let value = tags {
         **/
         public func getLocationTags(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: StoreTagsResponseSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/tags",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -931,7 +860,5 @@ if let value = tags {
                     }
             });
         }
-        
-        
     }
 }

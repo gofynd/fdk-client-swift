@@ -186,21 +186,25 @@ public class PlatformClient {
             **/
             public func executeJobForProvidedParametersV2(
                 body: JobExecute,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/insights/v2.0/company/\(companyId)/application/\(applicationId)/job/execute",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -222,8 +226,6 @@ public class PlatformClient {
                         }
                 });
             }
-            
-            
             
             
             
@@ -235,26 +237,26 @@ public class PlatformClient {
             public func startDownloadForQueryV2(
                 exportType: String,
                 body: FileDownloadRequestBody,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["export_type"] = exportType
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["export_type"] = exportType
-
-
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/insights/v2.0/company/\(companyId)/application/\(applicationId)/job/download",
                     query: xQuery,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -276,8 +278,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -289,21 +289,25 @@ var xQuery: [String: Any] = [:]
             public func checkJobStatusByNameV2(
                 fileName: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/insights/v2.0/company/\(companyId)/application/\(applicationId)/job/\(fileName)/status",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -325,8 +329,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
         }
         
         
@@ -360,77 +362,57 @@ var xQuery: [String: Any] = [:]
                 typeSlug: String?,
                 code: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CouponsResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = isArchived {
-    
-    xQuery["is_archived"] = value
-    
-}
-
-
-if let value = title {
-    
-    xQuery["title"] = value
-    
-}
-
-
-if let value = isPublic {
-    
-    xQuery["is_public"] = value
-    
-}
-
-
-if let value = isDisplay {
-    
-    xQuery["is_display"] = value
-    
-}
-
-
-if let value = typeSlug {
-    
-    xQuery["type_slug"] = value
-    
-}
-
-
-if let value = code {
-    
-    xQuery["code"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = isArchived {
+                    xQuery["is_archived"] = value
+                }
+                
+                if let value = title {
+                    xQuery["title"] = value
+                }
+                
+                if let value = isPublic {
+                    xQuery["is_public"] = value
+                }
+                
+                if let value = isDisplay {
+                    xQuery["is_display"] = value
+                }
+                
+                if let value = typeSlug {
+                    xQuery["type_slug"] = value
+                }
+                
+                if let value = code {
+                    xQuery["code"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/coupon",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -455,8 +437,6 @@ if let value = code {
             
             
             
-            
-            
             /**
             *
             * Summary: Create a coupon
@@ -464,21 +444,25 @@ if let value = code {
             **/
             public func createCoupon(
                 body: CouponAdd,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/coupon",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -503,8 +487,6 @@ if let value = code {
             
             
             
-            
-            
             /**
             *
             * Summary: Get a coupon
@@ -513,21 +495,25 @@ if let value = code {
             public func getCouponById(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CouponUpdate?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/coupon/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -552,8 +538,6 @@ if let value = code {
             
             
             
-            
-            
             /**
             *
             * Summary: Update a coupon
@@ -562,21 +546,25 @@ if let value = code {
             public func updateCoupon(
                 id: String,
                 body: CouponUpdate,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/coupon/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -598,8 +586,6 @@ if let value = code {
                         }
                 });
             }
-            
-            
             
             
             
@@ -611,21 +597,25 @@ if let value = code {
             public func updateCouponPartially(
                 id: String,
                 body: CouponPartialUpdate,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/coupon/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -647,8 +637,6 @@ if let value = code {
                         }
                 });
             }
-            
-            
             
             
             
@@ -667,77 +655,57 @@ if let value = code {
                 fpPanel: String?,
                 promotionId: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PromotionsResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
-if let value = isActive {
-    
-    xQuery["is_active"] = value
-    
-}
-
-
-if let value = promoGroup {
-    
-    xQuery["promo_group"] = value
-    
-}
-
-
-if let value = promotionType {
-    
-    xQuery["promotion_type"] = value
-    
-}
-
-
-if let value = fpPanel {
-    
-    xQuery["fp_panel"] = value
-    
-}
-
-
-if let value = promotionId {
-    
-    xQuery["promotion_id"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                if let value = isActive {
+                    xQuery["is_active"] = value
+                }
+                
+                if let value = promoGroup {
+                    xQuery["promo_group"] = value
+                }
+                
+                if let value = promotionType {
+                    xQuery["promotion_type"] = value
+                }
+                
+                if let value = fpPanel {
+                    xQuery["fp_panel"] = value
+                }
+                
+                if let value = promotionId {
+                    xQuery["promotion_id"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/promotion",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -762,8 +730,6 @@ if let value = promotionId {
             
             
             
-            
-            
             /**
             *
             * Summary: Create a promotion
@@ -771,21 +737,25 @@ if let value = promotionId {
             **/
             public func createPromotion(
                 body: PromotionAdd,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PromotionAdd?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/promotion",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -810,8 +780,6 @@ if let value = promotionId {
             
             
             
-            
-            
             /**
             *
             * Summary: Get a promotion
@@ -820,21 +788,25 @@ if let value = promotionId {
             public func getPromotionById(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PromotionUpdate?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/promotion/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -856,8 +828,6 @@ if let value = promotionId {
                         }
                 });
             }
-            
-            
             
             
             
@@ -869,21 +839,25 @@ if let value = promotionId {
             public func updatePromotion(
                 id: String,
                 body: PromotionUpdate,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PromotionUpdate?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/promotion/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -908,8 +882,6 @@ if let value = promotionId {
             
             
             
-            
-            
             /**
             *
             * Summary: Update a promotion partially 
@@ -918,21 +890,25 @@ if let value = promotionId {
             public func updatePromotionPartially(
                 id: String,
                 body: PromotionPartialUpdate,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/promotion/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -957,8 +933,6 @@ if let value = promotionId {
             
             
             
-            
-            
             /**
             *
             * Summary: Get promotion and coupon type
@@ -968,35 +942,33 @@ if let value = promotionId {
                 entityType: String?,
                 isHidden: Bool?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ActivePromosResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = entityType {
-    
-    xQuery["entity_type"] = value
-    
-}
-
-
-if let value = isHidden {
-    
-    xQuery["is_hidden"] = value
-    
-}
-
-
- 
-
-
+                if let value = entityType {
+                    xQuery["entity_type"] = value
+                }
+                
+                if let value = isHidden {
+                    xQuery["is_hidden"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/promo-coupons",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -1021,8 +993,6 @@ if let value = isHidden {
             
             
             
-            
-            
             /**
             *
             * Summary: List available promotion offers
@@ -1035,56 +1005,45 @@ if let value = isHidden {
                 storeId: Int?,
                 cartType: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PromotionOffersResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = slug {
-    
-    xQuery["slug"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = promotionGroup {
-    
-    xQuery["promotion_group"] = value
-    
-}
-
-
-if let value = storeId {
-    
-    xQuery["store_id"] = value
-    
-}
-
-
-if let value = cartType {
-    
-    xQuery["cart_type"] = value
-    
-}
-
-
- 
-
-
+                if let value = slug {
+                    xQuery["slug"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = promotionGroup {
+                    xQuery["promotion_group"] = value
+                }
+                
+                if let value = storeId {
+                    xQuery["store_id"] = value
+                }
+                
+                if let value = cartType {
+                    xQuery["cart_type"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/available-promotions",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -1109,8 +1068,6 @@ if let value = cartType {
             
             
             
-            
-            
             /**
             *
             * Summary: Fetch available promotions payment offers
@@ -1120,35 +1077,33 @@ if let value = cartType {
                 id: String?,
                 uid: Int?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PromotionPaymentOffersResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = uid {
-    
-    xQuery["uid"] = value
-    
-}
-
-
- 
-
-
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                if let value = uid {
+                    xQuery["uid"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/available-payment-offers",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -1173,8 +1128,6 @@ if let value = uid {
             
             
             
-            
-            
             /**
             *
             * Summary: Update cart meta
@@ -1183,21 +1136,25 @@ if let value = uid {
             public func updateCartMetaConfig(
                 cartMetaId: String,
                 body: CartMetaConfigUpdate,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CartMetaConfigUpdate?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/cartConfiguration/\(cartMetaId)",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/cart_configuration/\(cartMetaId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -1222,8 +1179,6 @@ if let value = uid {
             
             
             
-            
-            
             /**
             *
             * Summary: Get cart meta
@@ -1231,21 +1186,25 @@ if let value = uid {
             **/
             public func fetchCartMetaConfig(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CartMetaConfigAdd?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/cart_configuration",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -1267,8 +1226,6 @@ if let value = uid {
                         }
                 });
             }
-            
-            
             
             
             
@@ -1279,21 +1236,25 @@ if let value = uid {
             **/
             public func createCartMetaConfig(
                 body: CartMetaConfigAdd,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CartMetaConfigAdd?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/cart_configuration",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -1315,8 +1276,6 @@ if let value = uid {
                         }
                 });
             }
-            
-            
             
             
             
@@ -1328,21 +1287,25 @@ if let value = uid {
             public func updatePriceAdjustment(
                 id: String,
                 body: PriceAdjustmentUpdate,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PriceAdjustmentResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/priceAdjustment/\(id)",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/price-adjustment/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -1367,8 +1330,6 @@ if let value = uid {
             
             
             
-            
-            
             /**
             *
             * Summary: Remove price adjustments
@@ -1377,21 +1338,25 @@ if let value = uid {
             public func removePriceAdjustment(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
-                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/priceAdjustment/\(id)",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/price-adjustment/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -1416,8 +1381,6 @@ if let value = uid {
             
             
             
-            
-            
             /**
             *
             * Summary: Create price adjustments
@@ -1425,21 +1388,25 @@ if let value = uid {
             **/
             public func addPriceAdjustment(
                 body: PriceAdjustmentAdd,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PriceAdjustmentResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/price-adjustment",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -1464,8 +1431,6 @@ if let value = uid {
             
             
             
-            
-            
             /**
             *
             * Summary: Get a list of all price adjustments associated with a cart
@@ -1474,26 +1439,26 @@ if let value = uid {
             public func getPriceAdjustments(
                 cartId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetPriceAdjustmentResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["cart_id"] = cartId
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["cart_id"] = cartId
-
-
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/price-adjustment",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -1518,8 +1483,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Get and validate cart items
@@ -1527,21 +1490,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func fetchAndvalidateCartItems(
                 body: OpenapiCartDetailsRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OpenapiCartDetailsResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/cart/validate",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -1566,8 +1533,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Check cart serviceability
@@ -1575,21 +1540,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func checkCartServiceability(
                 body: OpenApiCartServiceabilityRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OpenApiCartServiceabilityResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/cart/serviceability",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -1614,8 +1583,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Checkout cart
@@ -1623,21 +1590,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func checkoutCart(
                 body: OpenApiPlatformCheckoutReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OpenApiCheckoutResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/cart/checkout",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -1662,8 +1633,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Get abandoned carts
@@ -1678,70 +1647,53 @@ var xQuery: [String: Any] = [:]
                 lastId: String?,
                 sortOn: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AbandonedCartResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = fromDate {
-    
-    xQuery["from_date"] = value
-    
-}
-
-
-if let value = toDate {
-    
-    xQuery["to_date"] = value
-    
-}
-
-
-if let value = anonymousCart {
-    
-    xQuery["anonymous_cart"] = value
-    
-}
-
-
-if let value = lastId {
-    
-    xQuery["last_id"] = value
-    
-}
-
-
-if let value = sortOn {
-    
-    xQuery["sort_on"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = fromDate {
+                    xQuery["from_date"] = value
+                }
+                
+                if let value = toDate {
+                    xQuery["to_date"] = value
+                }
+                
+                if let value = anonymousCart {
+                    xQuery["anonymous_cart"] = value
+                }
+                
+                if let value = lastId {
+                    xQuery["last_id"] = value
+                }
+                
+                if let value = sortOn {
+                    xQuery["sort_on"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/abandoned/carts",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -1766,8 +1718,6 @@ if let value = sortOn {
             
             
             
-            
-            
             /**
             *
             * Summary: Get abandoned cart details
@@ -1779,49 +1729,41 @@ if let value = sortOn {
                 b: Bool?,
                 c: Bool?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = i {
-    
-    xQuery["i"] = value
-    
-}
-
-
-if let value = b {
-    
-    xQuery["b"] = value
-    
-}
-
-
-if let value = c {
-    
-    xQuery["c"] = value
-    
-}
-
-
- 
-
-
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                if let value = i {
+                    xQuery["i"] = value
+                }
+                
+                if let value = b {
+                    xQuery["b"] = value
+                }
+                
+                if let value = c {
+                    xQuery["c"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/abandoned/cart/detail",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -1846,8 +1788,6 @@ if let value = c {
             
             
             
-            
-            
             /**
             *
             * Summary: Add items to cart
@@ -1857,28 +1797,29 @@ if let value = c {
                 cartId: String,
                 b: Bool?,
                 body: AddCartRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = b {
-    
-    xQuery["b"] = value
-    
-}
-
-
- 
-
-
+                if let value = b {
+                    xQuery["b"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/abandoned/carts/\(cartId)",
                     query: xQuery,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -1903,8 +1844,6 @@ if let value = b {
             
             
             
-            
-            
             /**
             *
             * Summary: Update cart items
@@ -1914,28 +1853,29 @@ if let value = b {
                 cartId: String,
                 b: Bool?,
                 body: UpdateCartRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = b {
-    
-    xQuery["b"] = value
-    
-}
-
-
- 
-
-
+                if let value = b {
+                    xQuery["b"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/abandoned/carts/\(cartId)",
                     query: xQuery,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -1960,8 +1900,6 @@ if let value = b {
             
             
             
-            
-            
             /**
             *
             * Summary: Get coupon option values
@@ -1969,21 +1907,25 @@ if let value = b {
             **/
             public func getCouponOptionValues(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/coupon_options",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -2005,8 +1947,6 @@ if let value = b {
                         }
                 });
             }
-            
-            
             
             
             
@@ -2018,28 +1958,29 @@ if let value = b {
             public func getCouponCodeExists(
                 code: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = code {
-    
-    xQuery["code"] = value
-    
-}
-
-
- 
-
-
+                if let value = code {
+                    xQuery["code"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/coupon_code_exists",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -2061,8 +2002,6 @@ if let value = code {
                         }
                 });
             }
-            
-            
             
             
             
@@ -2074,28 +2013,29 @@ if let value = code {
             public func getPromotionCodeExists(
                 code: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = code {
-    
-    xQuery["code"] = value
-    
-}
-
-
- 
-
-
+                if let value = code {
+                    xQuery["code"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/promotion_code_exists",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -2120,8 +2060,6 @@ if let value = code {
             
             
             
-            
-            
             /**
             *
             * Summary: Update cart checkout
@@ -2129,21 +2067,25 @@ if let value = code {
             **/
             public func overrideCart(
                 body: OverrideCheckoutReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OverrideCheckoutResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/checkout/over-ride",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -2168,8 +2110,6 @@ if let value = code {
             
             
             
-            
-            
             /**
             *
             * Summary: Share cart link
@@ -2177,21 +2117,25 @@ if let value = code {
             **/
             public func getCartShareLink(
                 body: GetShareCartLinkRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetShareCartLinkResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/share-cart",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -2216,8 +2160,6 @@ if let value = code {
             
             
             
-            
-            
             /**
             *
             * Summary: List shared cart items
@@ -2226,21 +2168,25 @@ if let value = code {
             public func getCartSharedItems(
                 token: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/shareCart/\(token)",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/share-cart/\(token)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -2262,8 +2208,6 @@ if let value = code {
                         }
                 });
             }
-            
-            
             
             
             
@@ -2277,28 +2221,29 @@ if let value = code {
                 action: String,
                 cartId: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = cartId {
-    
-    xQuery["cart_id"] = value
-    
-}
-
-
- 
-
-
+                if let value = cartId {
+                    xQuery["cart_id"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/shareCart/\(token)/\(action)",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/share-cart/\(token)/\(action)",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -2323,8 +2268,6 @@ if let value = cartId {
             
             
             
-            
-            
             /**
             *
             * Summary: List carts
@@ -2335,42 +2278,37 @@ if let value = cartId {
                 toDate: String?,
                 filterOn: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: MultiCartResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = fromDate {
-    
-    xQuery["from_date"] = value
-    
-}
-
-
-if let value = toDate {
-    
-    xQuery["to_date"] = value
-    
-}
-
-
-if let value = filterOn {
-    
-    xQuery["filter_on"] = value
-    
-}
-
-
- 
-
-
+                if let value = fromDate {
+                    xQuery["from_date"] = value
+                }
+                
+                if let value = toDate {
+                    xQuery["to_date"] = value
+                }
+                
+                if let value = filterOn {
+                    xQuery["filter_on"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/cart-list",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -2395,8 +2333,6 @@ if let value = filterOn {
             
             
             
-            
-            
             /**
             *
             * Summary: Update user of a cart
@@ -2405,28 +2341,29 @@ if let value = filterOn {
             public func updateCartUser(
                 id: String?,
                 body: UpdateUserCartMapping,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UserCartMappingResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
- 
-
-
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/update-user",
                     query: xQuery,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -2451,8 +2388,6 @@ if let value = id {
             
             
             
-            
-            
             /**
             *
             * Summary: Get a cart
@@ -2467,70 +2402,53 @@ if let value = id {
                 assignCardId: Int?,
                 buyNow: Bool?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = userId {
-    
-    xQuery["user_id"] = value
-    
-}
-
-
-if let value = orderType {
-    
-    xQuery["order_type"] = value
-    
-}
-
-
-if let value = i {
-    
-    xQuery["i"] = value
-    
-}
-
-
-if let value = b {
-    
-    xQuery["b"] = value
-    
-}
-
-
-if let value = assignCardId {
-    
-    xQuery["assign_card_id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
- 
-
-
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                if let value = userId {
+                    xQuery["user_id"] = value
+                }
+                
+                if let value = orderType {
+                    xQuery["order_type"] = value
+                }
+                
+                if let value = i {
+                    xQuery["i"] = value
+                }
+                
+                if let value = b {
+                    xQuery["b"] = value
+                }
+                
+                if let value = assignCardId {
+                    xQuery["assign_card_id"] = value
+                }
+                
+                if let value = buyNow {
+                    xQuery["buy_now"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/detail",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -2555,8 +2473,6 @@ if let value = buyNow {
             
             
             
-            
-            
             /**
             *
             * Summary: Add items to cart
@@ -2569,56 +2485,45 @@ if let value = buyNow {
                 orderType: String?,
                 id: String?,
                 body: PlatformAddCartRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = i {
-    
-    xQuery["i"] = value
-    
-}
-
-
-if let value = b {
-    
-    xQuery["b"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
-if let value = orderType {
-    
-    xQuery["order_type"] = value
-    
-}
-
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
- 
-
-
+                if let value = i {
+                    xQuery["i"] = value
+                }
+                
+                if let value = b {
+                    xQuery["b"] = value
+                }
+                
+                if let value = buyNow {
+                    xQuery["buy_now"] = value
+                }
+                
+                if let value = orderType {
+                    xQuery["order_type"] = value
+                }
+                
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/detail",
                     query: xQuery,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -2643,8 +2548,6 @@ if let value = id {
             
             
             
-            
-            
             /**
             *
             * Summary: Update cart items
@@ -2657,56 +2560,45 @@ if let value = id {
                 b: Bool?,
                 buyNow: Bool?,
                 body: PlatformUpdateCartRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = i {
-    
-    xQuery["i"] = value
-    
-}
-
-
-if let value = orderType {
-    
-    xQuery["order_type"] = value
-    
-}
-
-
-if let value = b {
-    
-    xQuery["b"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
- 
-
-
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                if let value = i {
+                    xQuery["i"] = value
+                }
+                
+                if let value = orderType {
+                    xQuery["order_type"] = value
+                }
+                
+                if let value = b {
+                    xQuery["b"] = value
+                }
+                
+                if let value = buyNow {
+                    xQuery["buy_now"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/detail",
                     query: xQuery,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -2731,8 +2623,6 @@ if let value = buyNow {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete a cart
@@ -2741,28 +2631,29 @@ if let value = buyNow {
             public func deleteCart(
                 id: String?,
                 body: DeleteCartRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DeleteCartDetailResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
- 
-
-
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/cart_archive",
                     query: xQuery,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -2787,8 +2678,6 @@ if let value = id {
             
             
             
-            
-            
             /**
             *
             * Summary: Get a cart items count
@@ -2798,35 +2687,33 @@ if let value = id {
                 id: String?,
                 buyNow: Bool?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CartItemCountResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
- 
-
-
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                if let value = buyNow {
+                    xQuery["buy_now"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/basic",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -2851,8 +2738,6 @@ if let value = buyNow {
             
             
             
-            
-            
             /**
             *
             * Summary: List coupons
@@ -2864,49 +2749,41 @@ if let value = buyNow {
                 slug: String?,
                 storeId: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetCouponResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
-if let value = slug {
-    
-    xQuery["slug"] = value
-    
-}
-
-
-if let value = storeId {
-    
-    xQuery["store_id"] = value
-    
-}
-
-
- 
-
-
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                if let value = buyNow {
+                    xQuery["buy_now"] = value
+                }
+                
+                if let value = slug {
+                    xQuery["slug"] = value
+                }
+                
+                if let value = storeId {
+                    xQuery["store_id"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/platform-pos-coupon",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -2931,8 +2808,6 @@ if let value = storeId {
             
             
             
-            
-            
             /**
             *
             * Summary: Apply coupon
@@ -2946,56 +2821,45 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 id: String?,
                 buyNow: Bool?,
                 body: ApplyCouponRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = i {
-    
-    xQuery["i"] = value
-    
-}
-
-
-if let value = b {
-    
-    xQuery["b"] = value
-    
-}
-
-
-if let value = p {
-    
-    xQuery["p"] = value
-    
-}
-
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
- 
-
-
+                if let value = i {
+                    xQuery["i"] = value
+                }
+                
+                if let value = b {
+                    xQuery["b"] = value
+                }
+                
+                if let value = p {
+                    xQuery["p"] = value
+                }
+                
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                if let value = buyNow {
+                    xQuery["buy_now"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/platform-pos-coupon",
                     query: xQuery,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -3017,8 +2881,6 @@ if let value = buyNow {
                         }
                 });
             }
-            
-            
             
             
             
@@ -3031,35 +2893,33 @@ if let value = buyNow {
                 uid: String?,
                 buyNow: Bool?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = uid {
-    
-    xQuery["uid"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
- 
-
-
+                if let value = uid {
+                    xQuery["uid"] = value
+                }
+                
+                if let value = buyNow {
+                    xQuery["buy_now"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/platform-pos-coupon",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -3081,8 +2941,6 @@ if let value = buyNow {
                         }
                 });
             }
-            
-            
             
             
             
@@ -3100,70 +2958,53 @@ if let value = buyNow {
                 isDefault: Bool?,
                 userId: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PlatformGetAddressesResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = cartId {
-    
-    xQuery["cart_id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
-if let value = mobileNo {
-    
-    xQuery["mobile_no"] = value
-    
-}
-
-
-if let value = checkoutMode {
-    
-    xQuery["checkout_mode"] = value
-    
-}
-
-
-if let value = tags {
-    
-    xQuery["tags"] = value
-    
-}
-
-
-if let value = isDefault {
-    
-    xQuery["is_default"] = value
-    
-}
-
-
-if let value = userId {
-    
-    xQuery["user_id"] = value
-    
-}
-
-
- 
-
-
+                if let value = cartId {
+                    xQuery["cart_id"] = value
+                }
+                
+                if let value = buyNow {
+                    xQuery["buy_now"] = value
+                }
+                
+                if let value = mobileNo {
+                    xQuery["mobile_no"] = value
+                }
+                
+                if let value = checkoutMode {
+                    xQuery["checkout_mode"] = value
+                }
+                
+                if let value = tags {
+                    xQuery["tags"] = value
+                }
+                
+                if let value = isDefault {
+                    xQuery["is_default"] = value
+                }
+                
+                if let value = userId {
+                    xQuery["user_id"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/address",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -3188,8 +3029,6 @@ if let value = userId {
             
             
             
-            
-            
             /**
             *
             * Summary: Create a new address
@@ -3197,21 +3036,25 @@ if let value = userId {
             **/
             public func addAddress(
                 body: PlatformAddress,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SaveAddressResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/address",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -3236,8 +3079,6 @@ if let value = userId {
             
             
             
-            
-            
             /**
             *
             * Summary: Get a address
@@ -3253,70 +3094,53 @@ if let value = userId {
                 isDefault: Bool?,
                 userId: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PlatformAddress?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = cartId {
-    
-    xQuery["cart_id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
-if let value = mobileNo {
-    
-    xQuery["mobile_no"] = value
-    
-}
-
-
-if let value = checkoutMode {
-    
-    xQuery["checkout_mode"] = value
-    
-}
-
-
-if let value = tags {
-    
-    xQuery["tags"] = value
-    
-}
-
-
-if let value = isDefault {
-    
-    xQuery["is_default"] = value
-    
-}
-
-
-if let value = userId {
-    
-    xQuery["user_id"] = value
-    
-}
-
-
- 
-
-
+                if let value = cartId {
+                    xQuery["cart_id"] = value
+                }
+                
+                if let value = buyNow {
+                    xQuery["buy_now"] = value
+                }
+                
+                if let value = mobileNo {
+                    xQuery["mobile_no"] = value
+                }
+                
+                if let value = checkoutMode {
+                    xQuery["checkout_mode"] = value
+                }
+                
+                if let value = tags {
+                    xQuery["tags"] = value
+                }
+                
+                if let value = isDefault {
+                    xQuery["is_default"] = value
+                }
+                
+                if let value = userId {
+                    xQuery["user_id"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/address/\(id)",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -3341,8 +3165,6 @@ if let value = userId {
             
             
             
-            
-            
             /**
             *
             * Summary: Update address
@@ -3351,21 +3173,25 @@ if let value = userId {
             public func updateAddress(
                 id: String,
                 body: PlatformAddress,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UpdateAddressResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/address/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -3390,8 +3216,6 @@ if let value = userId {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete a address
@@ -3401,28 +3225,29 @@ if let value = userId {
                 id: String,
                 userId: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DeleteAddressResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = userId {
-    
-    xQuery["user_id"] = value
-    
-}
-
-
- 
-
-
+                if let value = userId {
+                    xQuery["user_id"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/address/\(id)",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -3447,8 +3272,6 @@ if let value = userId {
             
             
             
-            
-            
             /**
             *
             * Summary: select a delivery address
@@ -3460,49 +3283,41 @@ if let value = userId {
                 i: Bool?,
                 b: Bool?,
                 body: PlatformSelectCartAddressRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = cartId {
-    
-    xQuery["cart_id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
-if let value = i {
-    
-    xQuery["i"] = value
-    
-}
-
-
-if let value = b {
-    
-    xQuery["b"] = value
-    
-}
-
-
- 
-
-
+                if let value = cartId {
+                    xQuery["cart_id"] = value
+                }
+                
+                if let value = buyNow {
+                    xQuery["buy_now"] = value
+                }
+                
+                if let value = i {
+                    xQuery["i"] = value
+                }
+                
+                if let value = b {
+                    xQuery["b"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/select-address",
                     query: xQuery,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -3527,8 +3342,6 @@ if let value = b {
             
             
             
-            
-            
             /**
             *
             * Summary: Get shipments details
@@ -3544,77 +3357,57 @@ if let value = b {
                 areaCode: String?,
                 orderType: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PlatformCartShipmentsResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pickAtStoreUid {
-    
-    xQuery["pick_at_store_uid"] = value
-    
-}
-
-
-if let value = orderingStoreId {
-    
-    xQuery["ordering_store_id"] = value
-    
-}
-
-
-if let value = i {
-    
-    xQuery["i"] = value
-    
-}
-
-
-if let value = p {
-    
-    xQuery["p"] = value
-    
-}
-
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = addressId {
-    
-    xQuery["address_id"] = value
-    
-}
-
-
-if let value = areaCode {
-    
-    xQuery["area_code"] = value
-    
-}
-
-
-if let value = orderType {
-    
-    xQuery["order_type"] = value
-    
-}
-
-
- 
-
-
+                if let value = pickAtStoreUid {
+                    xQuery["pick_at_store_uid"] = value
+                }
+                
+                if let value = orderingStoreId {
+                    xQuery["ordering_store_id"] = value
+                }
+                
+                if let value = i {
+                    xQuery["i"] = value
+                }
+                
+                if let value = p {
+                    xQuery["p"] = value
+                }
+                
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                if let value = addressId {
+                    xQuery["address_id"] = value
+                }
+                
+                if let value = areaCode {
+                    xQuery["area_code"] = value
+                }
+                
+                if let value = orderType {
+                    xQuery["order_type"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/shipment",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -3636,8 +3429,6 @@ if let value = orderType {
                         }
                 });
             }
-            
-            
             
             
             
@@ -3654,63 +3445,49 @@ if let value = orderType {
                 areaCode: String?,
                 orderType: String?,
                 body: UpdateCartShipmentRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PlatformCartShipmentsResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = i {
-    
-    xQuery["i"] = value
-    
-}
-
-
-if let value = p {
-    
-    xQuery["p"] = value
-    
-}
-
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = addressId {
-    
-    xQuery["address_id"] = value
-    
-}
-
-
-if let value = areaCode {
-    
-    xQuery["area_code"] = value
-    
-}
-
-
-if let value = orderType {
-    
-    xQuery["order_type"] = value
-    
-}
-
-
- 
-
-
+                if let value = i {
+                    xQuery["i"] = value
+                }
+                
+                if let value = p {
+                    xQuery["p"] = value
+                }
+                
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                if let value = addressId {
+                    xQuery["address_id"] = value
+                }
+                
+                if let value = areaCode {
+                    xQuery["area_code"] = value
+                }
+                
+                if let value = orderType {
+                    xQuery["order_type"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/shipment",
                     query: xQuery,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -3735,8 +3512,6 @@ if let value = orderType {
             
             
             
-            
-            
             /**
             *
             * Summary: Update cart metadata
@@ -3746,35 +3521,33 @@ if let value = orderType {
                 id: String?,
                 buyNow: Bool?,
                 body: PlatformCartMetaRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CartMetaResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
- 
-
-
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                if let value = buyNow {
+                    xQuery["buy_now"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/meta",
                     query: xQuery,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -3799,8 +3572,6 @@ if let value = buyNow {
             
             
             
-            
-            
             /**
             *
             * Summary: Checkout cart
@@ -3809,28 +3580,29 @@ if let value = buyNow {
             public func platformCheckoutCart(
                 id: String?,
                 body: PlatformCartCheckoutDetailRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
- 
-
-
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/checkout",
                     query: xQuery,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -3855,8 +3627,6 @@ if let value = id {
             
             
             
-            
-            
             /**
             *
             * Summary: Get delivery modes
@@ -3866,33 +3636,30 @@ if let value = id {
                 areaCode: String,
                 id: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CartDeliveryModesResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["area_code"] = areaCode
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["area_code"] = areaCode
-
-
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
- 
-
-
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/available-delivery-mode",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -3917,8 +3684,6 @@ if let value = id {
             
             
             
-            
-            
             /**
             *
             * Summary: Get Store Address
@@ -3927,26 +3692,26 @@ if let value = id {
             public func getStoreAddressByUid(
                 storeUid: Int,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: StoreDetailsResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["store_uid"] = storeUid
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["store_uid"] = storeUid
-
-
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/store-address",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -3971,8 +3736,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Select payment mode
@@ -3983,42 +3746,37 @@ var xQuery: [String: Any] = [:]
                 buyNow: Bool?,
                 orderType: String?,
                 body: UpdateCartPaymentRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
-if let value = orderType {
-    
-    xQuery["order_type"] = value
-    
-}
-
-
- 
-
-
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                if let value = buyNow {
+                    xQuery["buy_now"] = value
+                }
+                
+                if let value = orderType {
+                    xQuery["order_type"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/payment",
                     query: xQuery,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -4043,8 +3801,6 @@ if let value = orderType {
             
             
             
-            
-            
             /**
             *
             * Summary: Validate applied coupon
@@ -4059,70 +3815,53 @@ if let value = orderType {
                 aggregatorName: String?,
                 merchantCode: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
-if let value = addressId {
-    
-    xQuery["address_id"] = value
-    
-}
-
-
-if let value = paymentMode {
-    
-    xQuery["payment_mode"] = value
-    
-}
-
-
-if let value = paymentIdentifier {
-    
-    xQuery["payment_identifier"] = value
-    
-}
-
-
-if let value = aggregatorName {
-    
-    xQuery["aggregator_name"] = value
-    
-}
-
-
-if let value = merchantCode {
-    
-    xQuery["merchant_code"] = value
-    
-}
-
-
- 
-
-
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                if let value = buyNow {
+                    xQuery["buy_now"] = value
+                }
+                
+                if let value = addressId {
+                    xQuery["address_id"] = value
+                }
+                
+                if let value = paymentMode {
+                    xQuery["payment_mode"] = value
+                }
+                
+                if let value = paymentIdentifier {
+                    xQuery["payment_identifier"] = value
+                }
+                
+                if let value = aggregatorName {
+                    xQuery["aggregator_name"] = value
+                }
+                
+                if let value = merchantCode {
+                    xQuery["merchant_code"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/payment/validate/",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -4147,8 +3886,6 @@ if let value = merchantCode {
             
             
             
-            
-            
             /**
             *
             * Summary: Cart checkout (latest)
@@ -4157,28 +3894,29 @@ if let value = merchantCode {
             public func platformCheckoutCartV2(
                 id: String?,
                 body: PlatformCartCheckoutDetailV2Request,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
- 
-
-
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/cart/v2.0/company/\(companyId)/application/\(applicationId)/checkout",
                     query: xQuery,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -4203,8 +3941,6 @@ if let value = id {
             
             
             
-            
-            
             /**
             *
             * Summary: Select payment mode (latest)
@@ -4215,42 +3951,37 @@ if let value = id {
                 buyNow: Bool?,
                 orderType: String?,
                 body: UpdateCartPaymentRequestV2,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
-if let value = orderType {
-    
-    xQuery["order_type"] = value
-    
-}
-
-
- 
-
-
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                if let value = buyNow {
+                    xQuery["buy_now"] = value
+                }
+                
+                if let value = orderType {
+                    xQuery["order_type"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/cart/v2.0/company/\(companyId)/application/\(applicationId)/payment",
                     query: xQuery,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -4272,8 +4003,6 @@ if let value = orderType {
                         }
                 });
             }
-            
-            
         }
         
         
@@ -4300,28 +4029,29 @@ if let value = orderType {
             public func getCatalogInsights(
                 brand: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CatalogInsightResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = brand {
-    
-    xQuery["brand"] = value
-    
-}
-
-
- 
-
-
+                if let value = brand {
+                    xQuery["brand"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/analytics/insights/",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -4346,8 +4076,6 @@ if let value = brand {
             
             
             
-            
-            
             /**
             *
             * Summary: List sales channel brands
@@ -4358,42 +4086,37 @@ if let value = brand {
                 pageSize: Int?,
                 q: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: BrandListingResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/brand",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -4420,33 +4143,6 @@ if let value = q {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
             * Summary: get paginator for getApplicationBrandListing
@@ -4454,20 +4150,19 @@ if let value = q {
             **/
             public func getApplicationBrandListingPaginator(
                 pageSize: Int?,
-                q: String?
-                
+                q: String?,
+                headers: [(key: String, value: String)]? = nil
                 ) -> Paginator<BrandListingResponse> {
                 let pageSize = pageSize ?? 20
                 let paginator = Paginator<BrandListingResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getApplicationBrandListing(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            q: q
-                        ) { response, error in                    
+                        pageNo: paginator.pageNo,
+                        pageSize: paginator.pageSize,
+                        q: q,
+                        
+                        headers: headers
+                    ) { response, error in                    
                         if let response = response {
                             paginator.hasNext = response.page.hasNext ?? false
                             paginator.pageNo = (paginator.pageNo ?? 0) + 1
@@ -4489,21 +4184,25 @@ if let value = q {
             public func updateAppBrand(
                 brandUid: String,
                 body: ApplicationBrandJson,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/brand/\(brandUid)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -4528,8 +4227,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: List brands
@@ -4542,56 +4239,45 @@ if let value = q {
                 q: String?,
                 brandId: [Int]?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: BrandListingResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = department {
-    
-    xQuery["department"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
-if let value = brandId {
-    
-    xQuery["brand_id"] = value
-    
-}
-
-
- 
-
-
+                if let value = department {
+                    xQuery["department"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                if let value = brandId {
+                    xQuery["brand_id"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/brands",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -4622,41 +4308,6 @@ if let value = brandId {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
             * Summary: get paginator for getApplicationBrands
@@ -4666,22 +4317,21 @@ if let value = brandId {
                 department: String?,
                 pageSize: Int?,
                 q: String?,
-                brandId: [Int]?
-                
+                brandId: [Int]?,
+                headers: [(key: String, value: String)]? = nil
                 ) -> Paginator<BrandListingResponse> {
                 let pageSize = pageSize ?? 20
                 let paginator = Paginator<BrandListingResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getApplicationBrands(
-                            
-                            department: department,
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            q: q,
-                            brandId: brandId
-                        ) { response, error in                    
+                        department: department,
+                        pageNo: paginator.pageNo,
+                        pageSize: paginator.pageSize,
+                        q: q,
+                        brandId: brandId,
+                        
+                        headers: headers
+                    ) { response, error in                    
                         if let response = response {
                             paginator.hasNext = response.page.hasNext ?? false
                             paginator.pageNo = (paginator.pageNo ?? 0) + 1
@@ -4703,28 +4353,29 @@ if let value = brandId {
             public func getCategories(
                 department: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CategoryListingResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = department {
-    
-    xQuery["department"] = value
-    
-}
-
-
- 
-
-
+                if let value = department {
+                    xQuery["department"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/categories",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -4749,8 +4400,6 @@ if let value = department {
             
             
             
-            
-            
             /**
             *
             * Summary: List sales channel categories
@@ -4762,49 +4411,41 @@ if let value = department {
                 pageSize: Int?,
                 q: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: BrandListingResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = departmentId {
-    
-    xQuery["department_id"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
- 
-
-
+                if let value = departmentId {
+                    xQuery["department_id"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/category",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -4833,37 +4474,6 @@ if let value = q {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
             * Summary: get paginator for getApplicationCategoryListing
@@ -4872,21 +4482,20 @@ if let value = q {
             public func getApplicationCategoryListingPaginator(
                 departmentId: Int?,
                 pageSize: Int?,
-                q: String?
-                
+                q: String?,
+                headers: [(key: String, value: String)]? = nil
                 ) -> Paginator<BrandListingResponse> {
                 let pageSize = pageSize ?? 20
                 let paginator = Paginator<BrandListingResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getApplicationCategoryListing(
-                            
-                            departmentId: departmentId,
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            q: q
-                        ) { response, error in                    
+                        departmentId: departmentId,
+                        pageNo: paginator.pageNo,
+                        pageSize: paginator.pageSize,
+                        q: q,
+                        
+                        headers: headers
+                    ) { response, error in                    
                         if let response = response {
                             paginator.hasNext = response.page.hasNext ?? false
                             paginator.pageNo = (paginator.pageNo ?? 0) + 1
@@ -4908,21 +4517,25 @@ if let value = q {
             public func updateAppCategory(
                 categoryUid: String,
                 body: ApplicationCategoryJson,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/category/\(categoryUid)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -4947,8 +4560,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: List collections
@@ -4963,70 +4574,53 @@ if let value = q {
                 pageNo: Int?,
                 pageSize: Int?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetCollectionListingResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
-if let value = scheduleStatus {
-    
-    xQuery["schedule_status"] = value
-    
-}
-
-
-if let value = type {
-    
-    xQuery["type"] = value
-    
-}
-
-
-if let value = tags {
-    
-    xQuery["tags"] = value
-    
-}
-
-
-if let value = isActive {
-    
-    xQuery["is_active"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                if let value = scheduleStatus {
+                    xQuery["schedule_status"] = value
+                }
+                
+                if let value = type {
+                    xQuery["type"] = value
+                }
+                
+                if let value = tags {
+                    xQuery["tags"] = value
+                }
+                
+                if let value = isActive {
+                    xQuery["is_active"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -5061,49 +4655,6 @@ if let value = pageSize {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
             * Summary: get paginator for getAllCollections
@@ -5115,24 +4666,23 @@ if let value = pageSize {
                 type: String?,
                 tags: [String]?,
                 isActive: Bool?,
-                pageSize: Int?
-                
+                pageSize: Int?,
+                headers: [(key: String, value: String)]? = nil
                 ) -> Paginator<GetCollectionListingResponse> {
                 let pageSize = pageSize ?? 20
                 let paginator = Paginator<GetCollectionListingResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getAllCollections(
-                            
-                            q: q,
-                            scheduleStatus: scheduleStatus,
-                            type: type,
-                            tags: tags,
-                            isActive: isActive,
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            
-                        ) { response, error in                    
+                        q: q,
+                        scheduleStatus: scheduleStatus,
+                        type: type,
+                        tags: tags,
+                        isActive: isActive,
+                        pageNo: paginator.pageNo,
+                        pageSize: paginator.pageSize,
+                        
+                        headers: headers
+                    ) { response, error in                    
                         if let response = response {
                             paginator.hasNext = response.page?.hasNext ?? false
                             paginator.pageNo = (paginator.pageNo ?? 0) + 1
@@ -5153,21 +4703,25 @@ if let value = pageSize {
             **/
             public func createCollection(
                 body: CreateCollection,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CollectionCreateResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -5192,8 +4746,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: List product filters
@@ -5208,56 +4760,45 @@ if let value = pageSize {
                 pageSize: Int?,
                 q: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetQueryFiltersValuesResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = c {
-    
-    xQuery["c"] = value
-    
-}
-
-
-if let value = collectionId {
-    
-    xQuery["collection_id"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
- 
-
-
+                if let value = c {
+                    xQuery["c"] = value
+                }
+                
+                if let value = collectionId {
+                    xQuery["collection_id"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/filterOptions/\(filterKey)/values",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/filter-options/\(filterKey)/values",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -5282,8 +4823,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: List filter keys
@@ -5292,28 +4831,29 @@ if let value = q {
             public func getApplicationFilterKeys(
                 c: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetQueryFiltersKeysResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = c {
-    
-    xQuery["c"] = value
-    
-}
-
-
- 
-
-
+                if let value = c {
+                    xQuery["c"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/filter-options/keys",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -5338,8 +4878,6 @@ if let value = c {
             
             
             
-            
-            
             /**
             *
             * Summary: Get collection query filters
@@ -5347,21 +4885,25 @@ if let value = c {
             **/
             public func getQueryFilters(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetQueryFiltersResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/query-options/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -5386,8 +4928,6 @@ if let value = c {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete a collection
@@ -5396,21 +4936,25 @@ if let value = c {
             public func deleteCollection(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CommonResponseSchemaCollection?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(id)/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -5435,8 +4979,6 @@ if let value = c {
             
             
             
-            
-            
             /**
             *
             * Summary: Update a collection
@@ -5445,21 +4987,25 @@ if let value = c {
             public func updateCollection(
                 id: String,
                 body: UpdateCollection,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UpdateCollection?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(id)/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -5484,8 +5030,6 @@ if let value = c {
             
             
             
-            
-            
             /**
             *
             * Summary: List items of collection
@@ -5497,42 +5041,37 @@ if let value = c {
                 pageId: String?,
                 pageSize: Int?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetCollectionItemsResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = sortOn {
-    
-    xQuery["sort_on"] = value
-    
-}
-
-
-if let value = pageId {
-    
-    xQuery["page_id"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+                if let value = sortOn {
+                    xQuery["sort_on"] = value
+                }
+                
+                if let value = pageId {
+                    xQuery["page_id"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(id)/items/",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -5557,8 +5096,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Create items in a collection
@@ -5567,21 +5104,25 @@ if let value = pageSize {
             public func addCollectionItems(
                 id: String,
                 body: CollectionItemUpdateSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CommonResponseSchemaCollection?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(id)/items/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -5606,8 +5147,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Get a collection
@@ -5616,21 +5155,25 @@ if let value = pageSize {
             public func getCollectionDetail(
                 slug: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetCollectionDetailResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(slug)/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -5655,8 +5198,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: List sales channel departments
@@ -5667,42 +5208,37 @@ if let value = pageSize {
                 pageSize: Int?,
                 q: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ApplicationDepartmentListingResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/department",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -5729,33 +5265,6 @@ if let value = q {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
             * Summary: get paginator for getApplicationDepartmentListing
@@ -5763,20 +5272,19 @@ if let value = q {
             **/
             public func getApplicationDepartmentListingPaginator(
                 pageSize: Int?,
-                q: String?
-                
+                q: String?,
+                headers: [(key: String, value: String)]? = nil
                 ) -> Paginator<ApplicationDepartmentListingResponse> {
                 let pageSize = pageSize ?? 20
                 let paginator = Paginator<ApplicationDepartmentListingResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getApplicationDepartmentListing(
-                            
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            q: q
-                        ) { response, error in                    
+                        pageNo: paginator.pageNo,
+                        pageSize: paginator.pageSize,
+                        q: q,
+                        
+                        headers: headers
+                    ) { response, error in                    
                         if let response = response {
                             paginator.hasNext = response.page.hasNext ?? false
                             paginator.pageNo = (paginator.pageNo ?? 0) + 1
@@ -5798,21 +5306,25 @@ if let value = q {
             public func updateAppDepartment(
                 departmentUid: String,
                 body: ApplicationDepartmentJson,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/department/\(departmentUid)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -5837,8 +5349,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: List departments
@@ -5846,21 +5356,25 @@ if let value = q {
             **/
             public func getDepartments(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DepartmentResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/departments",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -5885,8 +5399,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: List sales channel inventory
@@ -5906,105 +5418,73 @@ if let value = q {
                 fromDate: String?,
                 toDate: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: InventoryStockResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = itemIds {
-    
-    xQuery["item_ids"] = value
-    
-}
-
-
-if let value = storeIds {
-    
-    xQuery["store_ids"] = value
-    
-}
-
-
-if let value = brandIds {
-    
-    xQuery["brand_ids"] = value
-    
-}
-
-
-if let value = sellerIdentifiers {
-    
-    xQuery["seller_identifiers"] = value
-    
-}
-
-
-if let value = timestamp {
-    
-    xQuery["timestamp"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = pageId {
-    
-    xQuery["page_id"] = value
-    
-}
-
-
-if let value = qtyGt {
-    
-    xQuery["qty_gt"] = value
-    
-}
-
-
-if let value = qtyLt {
-    
-    xQuery["qty_lt"] = value
-    
-}
-
-
-if let value = qtyType {
-    
-    xQuery["qty_type"] = value
-    
-}
-
-
-if let value = fromDate {
-    
-    xQuery["from_date"] = value
-    
-}
-
-
-if let value = toDate {
-    
-    xQuery["to_date"] = value
-    
-}
-
-
- 
-
-
+                if let value = itemIds {
+                    xQuery["item_ids"] = value
+                }
+                
+                if let value = storeIds {
+                    xQuery["store_ids"] = value
+                }
+                
+                if let value = brandIds {
+                    xQuery["brand_ids"] = value
+                }
+                
+                if let value = sellerIdentifiers {
+                    xQuery["seller_identifiers"] = value
+                }
+                
+                if let value = timestamp {
+                    xQuery["timestamp"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = pageId {
+                    xQuery["page_id"] = value
+                }
+                
+                if let value = qtyGt {
+                    xQuery["qty_gt"] = value
+                }
+                
+                if let value = qtyLt {
+                    xQuery["qty_lt"] = value
+                }
+                
+                if let value = qtyType {
+                    xQuery["qty_type"] = value
+                }
+                
+                if let value = fromDate {
+                    xQuery["from_date"] = value
+                }
+                
+                if let value = toDate {
+                    xQuery["to_date"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/inventory/",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -6029,8 +5509,6 @@ if let value = toDate {
             
             
             
-            
-            
             /**
             *
             * Summary: List sales channels
@@ -6046,77 +5524,57 @@ if let value = toDate {
                 tags: [String]?,
                 storeTypes: [String]?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: LocationListSerializer?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = storeType {
-    
-    xQuery["store_type"] = value
-    
-}
-
-
-if let value = uid {
-    
-    xQuery["uid"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
-if let value = stage {
-    
-    xQuery["stage"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = tags {
-    
-    xQuery["tags"] = value
-    
-}
-
-
-if let value = storeTypes {
-    
-    xQuery["store_types"] = value
-    
-}
-
-
- 
-
-
+                if let value = storeType {
+                    xQuery["store_type"] = value
+                }
+                
+                if let value = uid {
+                    xQuery["uid"] = value
+                }
+                
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                if let value = stage {
+                    xQuery["stage"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = tags {
+                    xQuery["tags"] = value
+                }
+                
+                if let value = storeTypes {
+                    xQuery["store_types"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/locations",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -6153,53 +5611,6 @@ if let value = storeTypes {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
             * Summary: get paginator for getAppLocations
@@ -6212,25 +5623,24 @@ if let value = storeTypes {
                 stage: String?,
                 pageSize: Int?,
                 tags: [String]?,
-                storeTypes: [String]?
-                
+                storeTypes: [String]?,
+                headers: [(key: String, value: String)]? = nil
                 ) -> Paginator<LocationListSerializer> {
                 let pageSize = pageSize ?? 20
                 let paginator = Paginator<LocationListSerializer>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getAppLocations(
-                            
-                            storeType: storeType,
-                            uid: uid,
-                            q: q,
-                            stage: stage,
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            tags: tags,
-                            storeTypes: storeTypes
-                        ) { response, error in                    
+                        storeType: storeType,
+                        uid: uid,
+                        q: q,
+                        stage: stage,
+                        pageNo: paginator.pageNo,
+                        pageSize: paginator.pageSize,
+                        tags: tags,
+                        storeTypes: storeTypes,
+                        
+                        headers: headers
+                    ) { response, error in                    
                         if let response = response {
                             paginator.hasNext = response.page?.hasNext ?? false
                             paginator.pageNo = (paginator.pageNo ?? 0) + 1
@@ -6251,21 +5661,25 @@ if let value = storeTypes {
             **/
             public func getConfigurations(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetAppCatalogConfiguration?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product-configuration/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -6287,8 +5701,6 @@ if let value = storeTypes {
                         }
                 });
             }
-            
-            
             
             
             
@@ -6299,21 +5711,25 @@ if let value = storeTypes {
             **/
             public func createConfigurationProductListing(
                 body: AppConfiguration,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetAppCatalogConfiguration?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product-configuration/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -6338,8 +5754,6 @@ if let value = storeTypes {
             
             
             
-            
-            
             /**
             *
             * Summary: Get catalog configuration meta data
@@ -6347,21 +5761,25 @@ if let value = storeTypes {
             **/
             public func getCatalogConfiguration(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetCatalogConfigurationMetaData?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product-configuration/metadata/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -6386,8 +5804,6 @@ if let value = storeTypes {
             
             
             
-            
-            
             /**
             *
             * Summary: Get configuration
@@ -6396,21 +5812,25 @@ if let value = storeTypes {
             public func getConfigurationByType(
                 type: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetAppCatalogEntityConfiguration?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(type)/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product-configuration/\(type)/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -6435,8 +5855,6 @@ if let value = storeTypes {
             
             
             
-            
-            
             /**
             *
             * Summary: Create configuration
@@ -6445,21 +5863,25 @@ if let value = storeTypes {
             public func createConfigurationByType(
                 type: String,
                 body: AppConfiguration,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetAppCatalogConfiguration?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(type)/",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product-configuration/\(type)/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -6484,8 +5906,6 @@ if let value = storeTypes {
             
             
             
-            
-            
             /**
             *
             * Summary: Get sales channel product
@@ -6494,21 +5914,25 @@ if let value = storeTypes {
             public func getAppProduct(
                 itemId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OwnerAppItemResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product/\(itemId)/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -6533,8 +5957,6 @@ if let value = storeTypes {
             
             
             
-            
-            
             /**
             *
             * Summary: Update sales channel product
@@ -6543,21 +5965,25 @@ if let value = storeTypes {
             public func updateAppProduct(
                 itemId: String,
                 body: ApplicationItemMeta,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/product/\(itemId)/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -6582,8 +6008,6 @@ if let value = storeTypes {
             
             
             
-            
-            
             /**
             *
             * Summary: List sales channel products
@@ -6602,98 +6026,69 @@ if let value = storeTypes {
                 pageType: String?,
                 itemIds: [Int]?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ApplicationProductListingResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
-if let value = f {
-    
-    xQuery["f"] = value
-    
-}
-
-
-if let value = c {
-    
-    xQuery["c"] = value
-    
-}
-
-
-if let value = filters {
-    
-    xQuery["filters"] = value
-    
-}
-
-
-if let value = isDependent {
-    
-    xQuery["is_dependent"] = value
-    
-}
-
-
-if let value = sortOn {
-    
-    xQuery["sort_on"] = value
-    
-}
-
-
-if let value = pageId {
-    
-    xQuery["page_id"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageType {
-    
-    xQuery["page_type"] = value
-    
-}
-
-
-if let value = itemIds {
-    
-    xQuery["item_ids"] = value
-    
-}
-
-
- 
-
-
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                if let value = f {
+                    xQuery["f"] = value
+                }
+                
+                if let value = c {
+                    xQuery["c"] = value
+                }
+                
+                if let value = filters {
+                    xQuery["filters"] = value
+                }
+                
+                if let value = isDependent {
+                    xQuery["is_dependent"] = value
+                }
+                
+                if let value = sortOn {
+                    xQuery["sort_on"] = value
+                }
+                
+                if let value = pageId {
+                    xQuery["page_id"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageType {
+                    xQuery["page_type"] = value
+                }
+                
+                if let value = itemIds {
+                    xQuery["item_ids"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/products",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -6736,65 +6131,6 @@ if let value = itemIds {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
             * Summary: get paginator for getAppicationProducts
@@ -6808,30 +6144,27 @@ if let value = itemIds {
                 isDependent: Bool?,
                 sortOn: String?,
                 pageSize: Int?,
-                itemIds: [Int]?
-                
+                itemIds: [Int]?,
+                headers: [(key: String, value: String)]? = nil
                 ) -> Paginator<ApplicationProductListingResponse> {
                 let pageSize = pageSize ?? 20
                 let paginator = Paginator<ApplicationProductListingResponse>(pageSize: pageSize, type: "cursor")
                 paginator.onPage = {
                     self.getAppicationProducts(
-                            
-                            q: q,
-                            f: f,
-                            c: c,
-                            filters: filters,
-                            isDependent: isDependent,
-                            sortOn: sortOn,
-                            pageId: paginator.pageId
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            pageNo: paginator.pageNo
-                            ,
-                            pageType: paginator.type
-                            ,
-                            itemIds: itemIds
-                        ) { response, error in                    
+                        q: q,
+                        f: f,
+                        c: c,
+                        filters: filters,
+                        isDependent: isDependent,
+                        sortOn: sortOn,
+                        pageId: paginator.pageId,
+                        pageSize: paginator.pageSize,
+                        pageNo: paginator.pageNo,
+                        pageType: paginator.type,
+                        itemIds: itemIds,
+                        
+                        headers: headers
+                    ) { response, error in                    
                         if let response = response {
                             paginator.hasNext = response.page.hasNext ?? false
                             paginator.pageId = response.page.nextId
@@ -6859,49 +6192,41 @@ if let value = itemIds {
                 q: String?,
                 locationIds: [Int]?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: InventorySellerIdentifierResponsePaginated?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
-if let value = locationIds {
-    
-    xQuery["location_ids"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                if let value = locationIds {
+                    xQuery["location_ids"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/products/\(itemId)/inventory/\(sizeIdentifier)",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -6934,45 +6259,6 @@ if let value = locationIds {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
             * Summary: get paginator for getDiscountedInventoryBySizeIdentifier
@@ -6983,23 +6269,22 @@ if let value = locationIds {
                 sizeIdentifier: String,
                 pageSize: Int?,
                 q: String?,
-                locationIds: [Int]?
-                
+                locationIds: [Int]?,
+                headers: [(key: String, value: String)]? = nil
                 ) -> Paginator<InventorySellerIdentifierResponsePaginated> {
                 let pageSize = pageSize ?? 20
                 let paginator = Paginator<InventorySellerIdentifierResponsePaginated>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getDiscountedInventoryBySizeIdentifier(
-                            
-                            itemId: itemId,
-                            sizeIdentifier: sizeIdentifier,
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            q: q,
-                            locationIds: locationIds
-                        ) { response, error in                    
+                        itemId: itemId,
+                        sizeIdentifier: sizeIdentifier,
+                        pageNo: paginator.pageNo,
+                        pageSize: paginator.pageSize,
+                        q: q,
+                        locationIds: locationIds,
+                        
+                        headers: headers
+                    ) { response, error in                    
                         if let response = response {
                             paginator.hasNext = response.page?.hasNext ?? false
                             paginator.pageNo = (paginator.pageNo ?? 0) + 1
@@ -7021,21 +6306,25 @@ if let value = locationIds {
             public func getProductDetailBySlug(
                 slug: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ProductDetail?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/products/\(slug)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -7060,8 +6349,6 @@ if let value = locationIds {
             
             
             
-            
-            
             /**
             *
             * Summary: List sales channel products
@@ -7077,77 +6364,57 @@ if let value = locationIds {
                 pageSize: Int?,
                 q: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: RawProductListingResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = brandIds {
-    
-    xQuery["brand_ids"] = value
-    
-}
-
-
-if let value = categoryIds {
-    
-    xQuery["category_ids"] = value
-    
-}
-
-
-if let value = departmentIds {
-    
-    xQuery["department_ids"] = value
-    
-}
-
-
-if let value = tags {
-    
-    xQuery["tags"] = value
-    
-}
-
-
-if let value = itemIds {
-    
-    xQuery["item_ids"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
- 
-
-
+                if let value = brandIds {
+                    xQuery["brand_ids"] = value
+                }
+                
+                if let value = categoryIds {
+                    xQuery["category_ids"] = value
+                }
+                
+                if let value = departmentIds {
+                    xQuery["department_ids"] = value
+                }
+                
+                if let value = tags {
+                    xQuery["tags"] = value
+                }
+                
+                if let value = itemIds {
+                    xQuery["item_ids"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/raw-products/",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -7184,53 +6451,6 @@ if let value = q {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
             * Summary: get paginator for getAppProducts
@@ -7243,25 +6463,24 @@ if let value = q {
                 tags: [String]?,
                 itemIds: [Int]?,
                 pageSize: Int?,
-                q: String?
-                
+                q: String?,
+                headers: [(key: String, value: String)]? = nil
                 ) -> Paginator<RawProductListingResponse> {
                 let pageSize = pageSize ?? 20
                 let paginator = Paginator<RawProductListingResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getAppProducts(
-                            
-                            brandIds: brandIds,
-                            categoryIds: categoryIds,
-                            departmentIds: departmentIds,
-                            tags: tags,
-                            itemIds: itemIds,
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            ,
-                            q: q
-                        ) { response, error in                    
+                        brandIds: brandIds,
+                        categoryIds: categoryIds,
+                        departmentIds: departmentIds,
+                        tags: tags,
+                        itemIds: itemIds,
+                        pageNo: paginator.pageNo,
+                        pageSize: paginator.pageSize,
+                        q: q,
+                        
+                        headers: headers
+                    ) { response, error in                    
                         if let response = response {
                             paginator.hasNext = response.page?.hasNext ?? false
                             paginator.pageNo = (paginator.pageNo ?? 0) + 1
@@ -7282,21 +6501,25 @@ if let value = q {
             **/
             public func getAppReturnConfiguration(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AppReturnConfigResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/return-config",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -7321,8 +6544,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Create product return configuration
@@ -7330,21 +6551,25 @@ if let value = q {
             **/
             public func createAppReturnConfiguration(
                 body: CreateUpdateAppReturnConfig,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/return-config",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -7366,8 +6591,6 @@ if let value = q {
                         }
                 });
             }
-            
-            
             
             
             
@@ -7378,21 +6601,25 @@ if let value = q {
             **/
             public func updateAppReturnConfiguration(
                 body: CreateUpdateAppReturnConfig,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/return-config",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -7417,8 +6644,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete product return configuration
@@ -7426,21 +6651,25 @@ if let value = q {
             **/
             public func deleteAppCategoryReturnConfiguration(
                 body: DeleteAppCategoryReturnConfig,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/return-config/categories",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -7465,8 +6694,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Get category return configuration
@@ -7474,21 +6701,25 @@ if let value = q {
             **/
             public func getAppCategoryReturnConfig(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: BaseAppCategoryReturnConfigResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/return-config/categories",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -7513,8 +6744,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Create return configuration
@@ -7522,21 +6751,25 @@ if let value = q {
             **/
             public func createAppCategoryReturnConfiguration(
                 body: BaseAppCategoryReturnConfig,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/return-config/categories",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -7561,8 +6794,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Update return Configuration
@@ -7570,21 +6801,25 @@ if let value = q {
             **/
             public func updateAppCategoryReturnConfiguration(
                 body: BaseAppCategoryReturnConfig,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/return-config/categories",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -7609,8 +6844,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Get autocomplete configuration
@@ -7618,21 +6851,25 @@ if let value = q {
             **/
             public func getAutocompleteConfig(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -7657,8 +6894,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Create autocomplete configurations
@@ -7666,21 +6901,25 @@ if let value = q {
             **/
             public func createCustomAutocompleteRule(
                 body: CreateAutocompleteKeyword,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CreateAutocompleteWordsResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -7705,8 +6944,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete autocomplete keyword
@@ -7715,21 +6952,25 @@ if let value = q {
             public func deleteAutocompleteKeyword(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DeleteResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -7754,8 +6995,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Get autocomplete keyword
@@ -7764,21 +7003,25 @@ if let value = q {
             public func getAutocompleteKeywordDetail(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -7800,8 +7043,6 @@ if let value = q {
                         }
                 });
             }
-            
-            
             
             
             
@@ -7813,21 +7054,25 @@ if let value = q {
             public func updateAutocompleteKeyword(
                 id: String,
                 body: CreateAutocompleteKeyword,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -7852,8 +7097,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete search configuration
@@ -7861,21 +7104,25 @@ if let value = q {
             **/
             public func deleteSearchConfiguration(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DeleteSearchConfigurationResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/configuration/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -7900,8 +7147,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Get Search configuration
@@ -7909,21 +7154,25 @@ if let value = q {
             **/
             public func getSearchConfiguration(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetSearchConfigurationResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/configuration/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -7948,8 +7197,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Create search configuration
@@ -7957,21 +7204,25 @@ if let value = q {
             **/
             public func createSearchConfiguration(
                 body: CreateSearchConfigurationRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CreateSearchConfigurationResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/configuration/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -7996,8 +7247,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Update search configuration
@@ -8005,21 +7254,25 @@ if let value = q {
             **/
             public func updateSearchConfiguration(
                 body: UpdateSearchConfigurationRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UpdateSearchConfigurationResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/configuration/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -8044,8 +7297,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: List search keywords
@@ -8053,21 +7304,25 @@ if let value = q {
             **/
             public func getAllSearchKeyword(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetSearchWordsResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -8092,8 +7347,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Create search keywords
@@ -8101,21 +7354,25 @@ if let value = q {
             **/
             public func createCustomKeyword(
                 body: CreateSearchKeyword,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetSearchWordsData?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -8140,8 +7397,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete search keywords
@@ -8150,21 +7405,25 @@ if let value = q {
             public func deleteSearchKeywords(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DeleteResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -8189,8 +7448,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Get search keywords
@@ -8199,21 +7456,25 @@ if let value = q {
             public func getSearchKeywords(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetSearchWordsDetailResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -8238,8 +7499,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Update search keywords
@@ -8248,21 +7507,25 @@ if let value = q {
             public func updateSearchKeywords(
                 id: String,
                 body: CreateSearchKeyword,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetSearchWordsData?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -8287,8 +7550,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Update sales channel location
@@ -8297,21 +7558,25 @@ if let value = q {
             public func updateAppLocation(
                 storeUid: String,
                 body: ApplicationStoreJson,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/store/\(storeUid)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -8333,8 +7598,6 @@ if let value = q {
                         }
                 });
             }
-            
-            
             
             
             
@@ -8404,21 +7667,25 @@ if let value = q {
             **/
             public func updateAllowSingle(
                 body: AllowSingleRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ConfigSuccessResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/product-configuration/filter/allow_single",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -8440,8 +7707,6 @@ if let value = q {
                         }
                 });
             }
-            
-            
             
             
             
@@ -8452,21 +7717,25 @@ if let value = q {
             **/
             public func updateDefaultSort(
                 body: DefaultKeyRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ConfigSuccessResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/product-configuration/sort/default_key",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -8488,8 +7757,6 @@ if let value = q {
                         }
                 });
             }
-            
-            
             
             
             
@@ -8504,42 +7771,37 @@ if let value = q {
                 pageSize: Int?,
                 search: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetConfigResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = search {
-    
-    xQuery["search"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = search {
+                    xQuery["search"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/product-configuration/\(configType)/",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -8564,8 +7826,6 @@ if let value = search {
             
             
             
-            
-            
             /**
             *
             * Summary: Create listing configuration
@@ -8574,21 +7834,25 @@ if let value = search {
             public func createListingConfiguration(
                 configType: String,
                 body: AppConfigurationsSort,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AppConfigurationsSort?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/product-configuration/\(configType)/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -8610,8 +7874,6 @@ if let value = search {
                         }
                 });
             }
-            
-            
             
             
             
@@ -8627,49 +7889,41 @@ if let value = search {
                 search: String?,
                 templateSlug: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetConfigResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = search {
-    
-    xQuery["search"] = value
-    
-}
-
-
-if let value = templateSlug {
-    
-    xQuery["template_slug"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = search {
+                    xQuery["search"] = value
+                }
+                
+                if let value = templateSlug {
+                    xQuery["template_slug"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/groups",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/product-configuration/\(configType)/groups",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -8694,8 +7948,6 @@ if let value = templateSlug {
             
             
             
-            
-            
             /**
             *
             * Summary: Create group configuration
@@ -8704,21 +7956,25 @@ if let value = templateSlug {
             public func createGroupConfiguration(
                 configType: String,
                 body: AppConfigurationDetail,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AppConfigurationDetail?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/groups",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/product-configuration/\(configType)/groups",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -8740,8 +7996,6 @@ if let value = templateSlug {
                         }
                 });
             }
-            
-            
             
             
             
@@ -8754,21 +8008,25 @@ if let value = templateSlug {
                 configType: String,
                 groupSlug: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ConfigSuccessResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
-                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/groups/\(groupSlug)",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/product-configuration/\(configType)/groups/\(groupSlug)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -8793,8 +8051,6 @@ if let value = templateSlug {
             
             
             
-            
-            
             /**
             *
             * Summary: Update group configuration
@@ -8804,21 +8060,25 @@ if let value = templateSlug {
                 configType: String,
                 groupSlug: String,
                 body: AppConfigurationDetail,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AppConfigurationDetail?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/groups/\(groupSlug)",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/product-configuration/\(configType)/groups/\(groupSlug)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -8843,8 +8103,6 @@ if let value = templateSlug {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete listing configuration
@@ -8854,21 +8112,25 @@ if let value = templateSlug {
                 configType: String,
                 configId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ConfigSuccessResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
-                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/item/\(configId)/",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/product-configuration/\(configType)/item/\(configId)/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -8893,8 +8155,6 @@ if let value = templateSlug {
             
             
             
-            
-            
             /**
             *
             * Summary: Update listing configuration
@@ -8904,21 +8164,25 @@ if let value = templateSlug {
                 configType: String,
                 configId: String,
                 body: AppConfigurationsSort,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AppConfigurationsSort?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/item/\(configId)/",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/product-configuration/\(configType)/item/\(configId)/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -8943,8 +8207,6 @@ if let value = templateSlug {
             
             
             
-            
-            
             /**
             *
             * Summary: Get configuration metadata
@@ -8957,49 +8219,41 @@ if let value = templateSlug {
                 pageSize: Int?,
                 q: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetConfigMetadataResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = templateSlug {
-    
-    xQuery["template_slug"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
- 
-
-
+                if let value = templateSlug {
+                    xQuery["template_slug"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/metadata/",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/product-configuration/\(configType)/metadata/",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -9021,8 +8275,6 @@ if let value = q {
                         }
                 });
             }
-            
-            
             
             
             
@@ -9067,21 +8319,25 @@ if let value = q {
             **/
             public func getAppProviders(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AppProvider?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/app-provider/get-provider",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -9103,8 +8359,6 @@ if let value = q {
                         }
                 });
             }
-            
-            
             
             
             
@@ -9115,21 +8369,25 @@ if let value = q {
             **/
             public func updateAppProviders(
                 body: AppProviderReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AppProvider?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/app-provider/update-provider",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -9154,8 +8412,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Get global providers
@@ -9163,21 +8419,25 @@ if let value = q {
             **/
             public func getGlobalProviders(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GlobalProviders?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/app-provider/global-providers",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -9202,8 +8462,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Get all email providers
@@ -9215,49 +8473,41 @@ if let value = q {
                 sort: [String: Any]?,
                 query: [String: Any]?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EmailProviders?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = sort {
-    
-    xQuery["sort"] = value
-    
-}
-
-
-if let value = query {
-    
-    xQuery["query"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = sort {
+                    xQuery["sort"] = value
+                }
+                
+                if let value = query {
+                    xQuery["query"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/providers",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -9282,8 +8532,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Create an email provider
@@ -9291,21 +8539,25 @@ if let value = query {
             **/
             public func createEmailProvider(
                 body: EmailProviderReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EmailProvider?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/providers",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -9327,8 +8579,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
             
             
             
@@ -9340,21 +8590,25 @@ if let value = query {
             public func getEmailProviderById(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EmailProvider?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/providers/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -9376,8 +8630,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
             
             
             
@@ -9389,21 +8641,25 @@ if let value = query {
             public func updateEmailProviderById(
                 id: String,
                 body: EmailProviderReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EmailProvider?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/providers/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -9428,8 +8684,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete an email provider
@@ -9438,21 +8692,25 @@ if let value = query {
             public func deleteEmailProviderById(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GenericDelete?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/providers/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -9477,8 +8735,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get all SMS providers
@@ -9490,49 +8746,41 @@ if let value = query {
                 sort: [String: Any]?,
                 query: [String: Any]?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = sort {
-    
-    xQuery["sort"] = value
-    
-}
-
-
-if let value = query {
-    
-    xQuery["query"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = sort {
+                    xQuery["sort"] = value
+                }
+                
+                if let value = query {
+                    xQuery["query"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/providers",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -9554,8 +8802,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
             
             
             
@@ -9566,21 +8812,25 @@ if let value = query {
             **/
             public func createSmsProvider(
                 body: SmsProviderReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/providers",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -9605,8 +8855,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get all default SMS providers
@@ -9614,21 +8862,25 @@ if let value = query {
             **/
             public func getDefaultSmsProviders(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [DefaultSmsProviders]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/default-providers",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -9653,8 +8905,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get a SMS provider
@@ -9663,21 +8913,25 @@ if let value = query {
             public func getSmsProviderById(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/providers/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -9699,8 +8953,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
             
             
             
@@ -9712,21 +8964,25 @@ if let value = query {
             public func updateSmsProviderById(
                 id: String,
                 body: SmsProviderReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/providers/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -9751,8 +9007,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete an SMS provider
@@ -9761,21 +9015,25 @@ if let value = query {
             public func deleteSmsProviderById(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GenericDelete?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/providers/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -9800,8 +9058,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get all campaigns
@@ -9813,49 +9069,41 @@ if let value = query {
                 pageSize: Int?,
                 sort: [String: Any]?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Campaigns?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = query {
-    
-    xQuery["query"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = sort {
-    
-    xQuery["sort"] = value
-    
-}
-
-
- 
-
-
+                if let value = query {
+                    xQuery["query"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = sort {
+                    xQuery["sort"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/campaigns/campaigns",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -9880,8 +9128,6 @@ if let value = sort {
             
             
             
-            
-            
             /**
             *
             * Summary: Create a campaign
@@ -9889,21 +9135,25 @@ if let value = sort {
             **/
             public func createCampaign(
                 body: CampaignReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Campaign?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/campaigns/campaigns",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -9925,8 +9175,6 @@ if let value = sort {
                         }
                 });
             }
-            
-            
             
             
             
@@ -9938,21 +9186,25 @@ if let value = sort {
             public func getCampaignById(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Campaign?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/campaigns/campaigns/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -9974,8 +9226,6 @@ if let value = sort {
                         }
                 });
             }
-            
-            
             
             
             
@@ -9987,21 +9237,25 @@ if let value = sort {
             public func updateCampaignById(
                 id: String,
                 body: CampaignReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Campaign?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/campaigns/campaigns/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -10026,8 +9280,6 @@ if let value = sort {
             
             
             
-            
-            
             /**
             *
             * Summary: Get campaign statistics
@@ -10036,21 +9288,25 @@ if let value = sort {
             public func getStatsOfCampaignById(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetStats?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/campaigns/getStats/\(id)",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/campaigns/get-stats/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -10075,8 +9331,6 @@ if let value = sort {
             
             
             
-            
-            
             /**
             *
             * Summary: Get BigQuery row count
@@ -10085,21 +9339,25 @@ if let value = sort {
             public func getBigQueryRowCountById(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/bigqueryRowCount/\(id)",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/bigquery-row-count/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -10121,8 +9379,6 @@ if let value = sort {
                         }
                 });
             }
-            
-            
             
             
             
@@ -10133,21 +9389,25 @@ if let value = sort {
             **/
             public func createBigQueryRowCount(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/bigquery-row-count",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -10169,8 +9429,6 @@ if let value = sort {
                         }
                 });
             }
-            
-            
             
             
             
@@ -10182,21 +9440,25 @@ if let value = sort {
             public func getBigQueryHeadersById(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/bigqueryHeaders/\(id)",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/bigquery-headers/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -10218,8 +9480,6 @@ if let value = sort {
                         }
                 });
             }
-            
-            
             
             
             
@@ -10230,21 +9490,25 @@ if let value = sort {
             **/
             public func createBigQueryNCount(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/bigquery-n-records",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -10266,8 +9530,6 @@ if let value = sort {
                         }
                 });
             }
-            
-            
             
             
             
@@ -10278,21 +9540,25 @@ if let value = sort {
             **/
             public func createBigQueryHeaders(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/bigquery-headers",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -10314,8 +9580,6 @@ if let value = sort {
                         }
                 });
             }
-            
-            
             
             
             
@@ -10326,21 +9590,25 @@ if let value = sort {
             **/
             public func getSystemAudiences(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/system-datasources",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -10362,8 +9630,6 @@ if let value = sort {
                         }
                 });
             }
-            
-            
             
             
             
@@ -10378,49 +9644,41 @@ if let value = sort {
                 sort: [String: Any]?,
                 query: [String: Any]?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Audiences?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = sort {
-    
-    xQuery["sort"] = value
-    
-}
-
-
-if let value = query {
-    
-    xQuery["query"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = sort {
+                    xQuery["sort"] = value
+                }
+                
+                if let value = query {
+                    xQuery["query"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/datasources",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -10445,8 +9703,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Create an audience
@@ -10454,21 +9710,25 @@ if let value = query {
             **/
             public func createAudience(
                 body: AudienceReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Audience?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/datasources",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -10490,8 +9750,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
             
             
             
@@ -10503,21 +9761,25 @@ if let value = query {
             public func getAudienceById(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Audience?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/datasources/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -10539,8 +9801,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
             
             
             
@@ -10552,21 +9812,25 @@ if let value = query {
             public func updateAudienceById(
                 id: String,
                 body: AudienceReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Audience?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/datasources/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -10588,8 +9852,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
             
             
             
@@ -10601,21 +9863,25 @@ if let value = query {
             public func deleteAudienceById(
                 id: String,
                 body: AudienceReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Audience?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/datasources/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -10640,8 +9906,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get dummy data sources
@@ -10649,21 +9913,25 @@ if let value = query {
             **/
             public func getDummyDatasources(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [DummyDatasources]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/datasources/dummy-data-sources",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -10688,8 +9956,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get dummy data sources metadata
@@ -10698,21 +9964,25 @@ if let value = query {
             public func getDummyDatasourcesMeta(
                 id: Int,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DummyDatasourcesMeta?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/datasources/dummyDataSourcesMeta/\(id)",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/datasources/dummy-data-sources-meta/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -10737,8 +10007,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get N sample records of a CSV
@@ -10746,21 +10014,25 @@ if let value = query {
             **/
             public func getNSampleRecordsFromCsvByGet(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetNRecordsCsvRes?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/get-n-records",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -10782,8 +10054,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
             
             
             
@@ -10794,21 +10064,25 @@ if let value = query {
             **/
             public func getNSampleRecordsFromCsv(
                 body: GetNRecordsCsvReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetNRecordsCsvRes?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sources/get-n-records",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -10830,8 +10104,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
             
             
             
@@ -10846,49 +10118,41 @@ if let value = query {
                 sort: [String: Any]?,
                 query: [String: Any]?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EmailTemplates?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = sort {
-    
-    xQuery["sort"] = value
-    
-}
-
-
-if let value = query {
-    
-    xQuery["query"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = sort {
+                    xQuery["sort"] = value
+                }
+                
+                if let value = query {
+                    xQuery["query"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/templates",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -10913,8 +10177,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Creat an email template
@@ -10922,21 +10184,25 @@ if let value = query {
             **/
             public func createEmailTemplate(
                 body: EmailTemplateReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EmailTemplate?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/templates",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -10961,8 +10227,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get all system email templates
@@ -10970,21 +10234,25 @@ if let value = query {
             **/
             public func getSystemEmailTemplates(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SystemEmailTemplates?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/system-templates",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -11009,8 +10277,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get an email template
@@ -11019,21 +10285,25 @@ if let value = query {
             public func getEmailTemplateById(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EmailTemplate?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/templates/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -11055,8 +10325,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
             
             
             
@@ -11068,21 +10336,25 @@ if let value = query {
             public func updateEmailTemplateById(
                 id: String,
                 body: EmailTemplateReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EmailTemplate?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/templates/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -11107,8 +10379,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete an email template
@@ -11117,21 +10387,25 @@ if let value = query {
             public func deleteEmailTemplateById(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GenericDelete?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/templates/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -11156,8 +10430,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get all subscribed email templates
@@ -11168,42 +10440,37 @@ if let value = query {
                 pageSize: Int?,
                 query: [String: Any]?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EmailTemplates?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = query {
-    
-    xQuery["query"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = query {
+                    xQuery["query"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/subscribedTemplates",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -11228,8 +10495,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get all SMS templates
@@ -11241,49 +10506,41 @@ if let value = query {
                 sort: [String: Any]?,
                 query: [String: Any]?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SmsTemplates?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = sort {
-    
-    xQuery["sort"] = value
-    
-}
-
-
-if let value = query {
-    
-    xQuery["query"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = sort {
+                    xQuery["sort"] = value
+                }
+                
+                if let value = query {
+                    xQuery["query"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/templates",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -11308,8 +10565,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Create a SMS template
@@ -11317,21 +10572,25 @@ if let value = query {
             **/
             public func createSmsTemplate(
                 body: SmsTemplateReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SmsTemplate?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/templates",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -11356,8 +10615,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Gets all system SMS templates
@@ -11365,21 +10622,25 @@ if let value = query {
             **/
             public func getSystemSmsTemplates(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [SystemSmsTemplates]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/system-templates",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -11404,8 +10665,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get a SMS template
@@ -11414,21 +10673,25 @@ if let value = query {
             public func getSmsTemplateById(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SmsTemplate?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/templates/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -11450,8 +10713,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
             
             
             
@@ -11463,21 +10724,25 @@ if let value = query {
             public func updateSmsTemplateById(
                 id: String,
                 body: SmsTemplateReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SmsTemplate?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/templates/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -11502,8 +10767,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete an SMS template
@@ -11512,21 +10775,25 @@ if let value = query {
             public func deleteSmsTemplateById(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GenericDelete?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/templates/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -11551,8 +10818,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get all subscribed SMS templates
@@ -11563,42 +10828,37 @@ if let value = query {
                 pageSize: Int?,
                 query: [String: Any]?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SmsTemplates?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = query {
-    
-    xQuery["query"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = query {
+                    xQuery["query"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/subscribedTemplates",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -11623,8 +10883,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Send communication synchronously
@@ -11632,21 +10890,25 @@ if let value = query {
             **/
             public func sendCommunicationSynchronously(
                 body: EngineRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EngineResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/engine/send-instant",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -11668,8 +10930,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
             
             
             
@@ -11680,21 +10940,25 @@ if let value = query {
             **/
             public func sendCommunicationAsynchronously(
                 body: EngineRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EngineResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/engine/send-async",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -11716,8 +10980,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
             
             
             
@@ -11731,42 +10993,37 @@ if let value = query {
                 pageSize: Int?,
                 populate: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EventSubscriptions?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = populate {
-    
-    xQuery["populate"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = populate {
+                    xQuery["populate"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/event/event-subscriptions",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -11791,8 +11048,6 @@ if let value = populate {
             
             
             
-            
-            
             /**
             *
             * Summary: Create an event subscription
@@ -11800,21 +11055,25 @@ if let value = populate {
             **/
             public func createEventSubscriptions(
                 body: SubscriptionsObject,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EventSubscriptionsBulkUpdateResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/event/event-subscriptions",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -11839,8 +11098,6 @@ if let value = populate {
             
             
             
-            
-            
             /**
             *
             * Summary: Get an event subscription
@@ -11850,28 +11107,29 @@ if let value = populate {
                 id: String,
                 populate: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EventSubscription?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = populate {
-    
-    xQuery["populate"] = value
-    
-}
-
-
- 
-
-
+                if let value = populate {
+                    xQuery["populate"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/event/eventSubscriptions/\(id)",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/event/event-subscriptions/\(id)",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -11896,8 +11154,6 @@ if let value = populate {
             
             
             
-            
-            
             /**
             *
             * Summary: Update an event subscriptions
@@ -11906,21 +11162,25 @@ if let value = populate {
             public func editEventSubscriptions(
                 id: String,
                 body: SubscriptionsObject,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EventSubscriptionsBulkUpdateResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/event/eventSubscriptions/\(id)",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/event/event-subscriptions/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -11945,8 +11205,6 @@ if let value = populate {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete an event subscriptions
@@ -11955,21 +11213,25 @@ if let value = populate {
             public func deleteEventSubscriptionsById(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GenericDelete?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
-                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/event/eventSubscriptions/\(id)",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/event/event-subscriptions/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -11994,8 +11256,6 @@ if let value = populate {
             
             
             
-            
-            
             /**
             *
             * Summary: Create event subscriptions in bulk
@@ -12003,21 +11263,25 @@ if let value = populate {
             **/
             public func createEventSubscriptionsByBulk(
                 body: EventSubscriptionsBulkUpdateRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [EventSubscriptionsBulkUpdateResponse]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/event/event-subscriptions/bulkUpdate",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -12042,8 +11306,6 @@ if let value = populate {
             
             
             
-            
-            
             /**
             *
             * Summary: Get all global variables
@@ -12051,21 +11313,25 @@ if let value = populate {
             **/
             public func getGlobalVariables(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GlobalVariablesGetResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/global-variables",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -12090,8 +11356,6 @@ if let value = populate {
             
             
             
-            
-            
             /**
             *
             * Summary: Create global variables
@@ -12099,21 +11363,25 @@ if let value = populate {
             **/
             public func postGlobalVariables(
                 body: GlobalVariablesReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GlobalVariablesPostResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/global-variables",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -12138,8 +11406,6 @@ if let value = populate {
             
             
             
-            
-            
             /**
             *
             * Summary: Get all campaign jobs
@@ -12151,49 +11417,41 @@ if let value = populate {
                 sort: [String: Any]?,
                 query: [String: Any]?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Jobs?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = sort {
-    
-    xQuery["sort"] = value
-    
-}
-
-
-if let value = query {
-    
-    xQuery["query"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = sort {
+                    xQuery["sort"] = value
+                }
+                
+                if let value = query {
+                    xQuery["query"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/jobs/jobs",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -12218,8 +11476,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Create a campaign  jobs
@@ -12227,21 +11483,25 @@ if let value = query {
             **/
             public func createJobs(
                 body: CreateJobsReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CreateJobsRes?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/jobs/jobs",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -12266,8 +11526,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Trigger a campaign job
@@ -12275,21 +11533,25 @@ if let value = query {
             **/
             public func triggerCampaignJob(
                 body: TriggerJobRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: TriggerJobResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/jobs/trigger-job",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -12314,8 +11576,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get logs of all campaign job
@@ -12327,49 +11587,41 @@ if let value = query {
                 sort: [String: Any]?,
                 query: [String: Any]?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: JobLogs?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = sort {
-    
-    xQuery["sort"] = value
-    
-}
-
-
-if let value = query {
-    
-    xQuery["query"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = sort {
+                    xQuery["sort"] = value
+                }
+                
+                if let value = query {
+                    xQuery["query"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/jobs/logs",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -12394,8 +11646,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get communication reports
@@ -12407,49 +11657,41 @@ if let value = query {
                 sort: [String: Any]?,
                 query: [String: Any]?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Logs?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageId {
-    
-    xQuery["page_id"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = sort {
-    
-    xQuery["sort"] = value
-    
-}
-
-
-if let value = query {
-    
-    xQuery["query"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageId {
+                    xQuery["page_id"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = sort {
+                    xQuery["sort"] = value
+                }
+                
+                if let value = query {
+                    xQuery["query"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/log",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -12475,8 +11717,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Send OTP
@@ -12484,21 +11724,25 @@ if let value = query {
             **/
             public func sendOtp(
                 body: SendOtpCommsReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SendOtpCommsRes?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/otp/send-otp-comms",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -12523,8 +11767,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Verify OTP
@@ -12532,21 +11774,25 @@ if let value = query {
             **/
             public func verfiyOtp(
                 body: VerifyOtpCommsReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: VerifyOtpCommsSuccessRes?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/otp/verify-otp-comms",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -12571,8 +11817,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get configuration of otp
@@ -12580,21 +11824,25 @@ if let value = query {
             **/
             public func getOtpConfiguration(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OtpConfiguration?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/otp/otp-configuration",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -12616,8 +11864,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
             
             
             
@@ -12628,21 +11874,25 @@ if let value = query {
             **/
             public func updateOtpConfiguration(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OtpConfiguration?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/otp/otp-configuration",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -12664,8 +11914,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
         }
         
         
@@ -12692,21 +11940,25 @@ if let value = query {
             public func getBuildConfig(
                 platformType: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: MobileAppConfiguration?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/build/\(platformType)/configuration",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -12728,8 +11980,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
             
             
             
@@ -12741,21 +11991,25 @@ if let value = query {
             public func updateBuildConfig(
                 platformType: String,
                 body: MobileAppConfigRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: MobileAppConfiguration?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/build/\(platformType)/configuration",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -12780,8 +12034,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get previous versions
@@ -12790,21 +12042,25 @@ if let value = query {
             public func getPreviousVersions(
                 platformType: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: BuildVersionHistory?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/build/\(platformType)/versions",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -12829,8 +12085,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get sales channel
@@ -12838,21 +12092,25 @@ if let value = query {
             **/
             public func getAppFeatures(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AppFeatureResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/feature",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -12877,8 +12135,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Update sales channel
@@ -12886,21 +12142,25 @@ if let value = query {
             **/
             public func updateAppFeatures(
                 body: AppFeatureRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AppFeature?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/feature",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -12922,8 +12182,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
             
             
             
@@ -12934,21 +12192,25 @@ if let value = query {
             **/
             public func modifyAppFeatures(
                 body: AppFeatureRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AppFeature?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/feature",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -12973,8 +12235,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get sales channel
@@ -12982,21 +12242,25 @@ if let value = query {
             **/
             public func getAppBasicDetails(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ApplicationDetail?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/detail",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -13018,8 +12282,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
             
             
             
@@ -13030,21 +12292,25 @@ if let value = query {
             **/
             public func updateAppBasicDetails(
                 body: ApplicationDetail,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ApplicationDetail?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/detail",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -13069,8 +12335,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get sales channel contact
@@ -13078,21 +12342,25 @@ if let value = query {
             **/
             public func getAppContactInfo(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ApplicationInformation?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/information",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -13114,8 +12382,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
             
             
             
@@ -13126,21 +12392,25 @@ if let value = query {
             **/
             public func updateAppContactInfo(
                 body: ApplicationInformation,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ApplicationInformation?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/information",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -13165,8 +12435,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Get sales channel API tokens
@@ -13174,21 +12442,25 @@ if let value = query {
             **/
             public func getAppApiTokens(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: TokenResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/token",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -13210,8 +12482,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
             
             
             
@@ -13222,21 +12492,25 @@ if let value = query {
             **/
             public func updateAppApiTokens(
                 body: TokenResponse,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: TokenResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/token",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -13258,8 +12532,6 @@ if let value = query {
                         }
                 });
             }
-            
-            
             
             
             
@@ -13273,42 +12545,37 @@ if let value = query {
                 pageNo: Int?,
                 pageSize: Int?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CompaniesResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = uid {
-    
-    xQuery["uid"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+                if let value = uid {
+                    xQuery["uid"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/companies",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -13333,8 +12600,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: list sales channel stores
@@ -13344,35 +12609,33 @@ if let value = pageSize {
                 pageNo: Int?,
                 pageSize: Int?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: StoresResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/stores",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -13397,8 +12660,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Get inventory configuration
@@ -13406,21 +12667,25 @@ if let value = pageSize {
             **/
             public func getInventoryConfig(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ApplicationInventory?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/configuration",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -13442,8 +12707,6 @@ if let value = pageSize {
                         }
                 });
             }
-            
-            
             
             
             
@@ -13454,21 +12717,25 @@ if let value = pageSize {
             **/
             public func updateInventoryConfig(
                 body: ApplicationInventory,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ApplicationInventory?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/configuration",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -13490,8 +12757,6 @@ if let value = pageSize {
                         }
                 });
             }
-            
-            
             
             
             
@@ -13502,21 +12767,25 @@ if let value = pageSize {
             **/
             public func partiallyUpdateInventoryConfig(
                 body: AppInventoryPartialUpdate,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ApplicationInventory?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/configuration",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -13541,8 +12810,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Get sales channel currency configuration
@@ -13550,21 +12817,25 @@ if let value = pageSize {
             **/
             public func getAppCurrencyConfig(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AppSupportedCurrency?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/currency",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -13586,8 +12857,6 @@ if let value = pageSize {
                         }
                 });
             }
-            
-            
             
             
             
@@ -13598,21 +12867,25 @@ if let value = pageSize {
             **/
             public func updateAppCurrencyConfig(
                 body: AppSupportedCurrency,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AppSupportedCurrency?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/currency",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -13637,8 +12910,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: List supported currencies
@@ -13646,21 +12917,25 @@ if let value = pageSize {
             **/
             public func getAppSupportedCurrency(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AppCurrencyResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/currency/supported",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -13685,8 +12960,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: List ordering stores 
@@ -13696,35 +12969,33 @@ if let value = pageSize {
                 pageNo: Int?,
                 pageSize: Int?,
                 body: FilterOrderingStoreRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OrderingStores?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/ordering-store/stores/filter",
                     query: xQuery,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -13749,8 +13020,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Update ordering store configuration
@@ -13758,21 +13027,25 @@ if let value = pageSize {
             **/
             public func updateOrderingStoreConfig(
                 body: OrderingStoreConfig,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DeploymentMeta?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/ordering-store",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -13797,8 +13070,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Get ordering store configuration
@@ -13806,21 +13077,25 @@ if let value = pageSize {
             **/
             public func getOrderingStoreConfig(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OrderingStoreConfig?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/ordering-store",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -13845,8 +13120,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Get staff ordering stores
@@ -13857,42 +13130,37 @@ if let value = pageSize {
                 pageSize: Int?,
                 q: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OrderingStoresResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/ordering-store/staff-stores",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -13917,8 +13185,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Get ordering store signed cookie
@@ -13926,21 +13192,25 @@ if let value = q {
             **/
             public func getOrderingStoreCookie(
                 body: OrderingStoreSelectRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/ordering-store/select",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -13962,8 +13232,6 @@ if let value = q {
                         }
                 });
             }
-            
-            
             
             
             
@@ -13974,21 +13242,25 @@ if let value = q {
             **/
             public func removeOrderingStoreCookie(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/ordering-store/select",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -14013,8 +13285,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: List  domains
@@ -14022,21 +13292,25 @@ if let value = q {
             **/
             public func getDomains(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DomainsResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/domain",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -14061,8 +13335,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Create domain
@@ -14070,21 +13342,25 @@ if let value = q {
             **/
             public func addDomain(
                 body: DomainAddRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Domain?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/domain",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -14109,8 +13385,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Remove domain
@@ -14119,21 +13393,25 @@ if let value = q {
             public func removeDomainById(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/domain/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -14158,8 +13436,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Update domain
@@ -14167,21 +13443,25 @@ if let value = q {
             **/
             public func changeDomainType(
                 body: UpdateDomainTypeRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DomainsResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/domain/set-domain",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -14206,8 +13486,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Get domain status
@@ -14215,21 +13493,25 @@ if let value = q {
             **/
             public func getDomainStatus(
                 body: DomainStatusRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DomainStatusResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)/domain/domain-status",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -14256,8 +13538,6 @@ if let value = q {
             
             
             
-            
-            
             /**
             *
             * Summary: Get sales channel by id
@@ -14265,21 +13545,25 @@ if let value = q {
             **/
             public func getApplicationById(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ApplicationById?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/configuration/v1.0/company/\(companyId)/application/\(applicationId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -14301,16 +13585,6 @@ if let value = q {
                         }
                 });
             }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             
             
             
@@ -14346,35 +13620,33 @@ if let value = q {
                 pageNo: Int?,
                 pageSize: Int?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetAnnouncementListSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/announcements",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -14399,8 +13671,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Create announcement
@@ -14408,21 +13678,25 @@ if let value = pageSize {
             **/
             public func createAnnouncement(
                 body: AdminAnnouncementSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CreateAnnouncementSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/announcements",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -14447,8 +13721,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Get announcement
@@ -14457,21 +13729,25 @@ if let value = pageSize {
             public func getAnnouncementById(
                 announcementId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AdminAnnouncementSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/announcements/\(announcementId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -14496,8 +13772,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Update announcement
@@ -14506,21 +13780,25 @@ if let value = pageSize {
             public func updateAnnouncement(
                 announcementId: String,
                 body: AdminAnnouncementSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CreateAnnouncementSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/announcements/\(announcementId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -14542,8 +13820,6 @@ if let value = pageSize {
                         }
                 });
             }
-            
-            
             
             
             
@@ -14555,21 +13831,25 @@ if let value = pageSize {
             public func updateAnnouncementSchedule(
                 announcementId: String,
                 body: ScheduleSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CreateAnnouncementSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/announcements/\(announcementId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -14591,8 +13871,6 @@ if let value = pageSize {
                         }
                 });
             }
-            
-            
             
             
             
@@ -14604,21 +13882,25 @@ if let value = pageSize {
             public func deleteAnnouncement(
                 announcementId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CreateAnnouncementSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/announcements/\(announcementId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -14643,8 +13925,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Create blog
@@ -14652,21 +13932,25 @@ if let value = pageSize {
             **/
             public func createBlog(
                 body: BlogRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/blogs/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -14691,8 +13975,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: List blogs
@@ -14707,70 +13989,53 @@ if let value = pageSize {
                 title: String?,
                 status: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: BlogGetResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = tags {
-    
-    xQuery["tags"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
-if let value = slug {
-    
-    xQuery["slug"] = value
-    
-}
-
-
-if let value = title {
-    
-    xQuery["title"] = value
-    
-}
-
-
-if let value = status {
-    
-    xQuery["status"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = tags {
+                    xQuery["tags"] = value
+                }
+                
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                if let value = slug {
+                    xQuery["slug"] = value
+                }
+                
+                if let value = title {
+                    xQuery["title"] = value
+                }
+                
+                if let value = status {
+                    xQuery["status"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/blogs/",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -14795,8 +14060,6 @@ if let value = status {
             
             
             
-            
-            
             /**
             *
             * Summary: Update a blog
@@ -14805,21 +14068,25 @@ if let value = status {
             public func updateBlog(
                 id: String,
                 body: BlogRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/blogs/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -14841,8 +14108,6 @@ if let value = status {
                         }
                 });
             }
-            
-            
             
             
             
@@ -14854,21 +14119,25 @@ if let value = status {
             public func deleteBlog(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/blogs/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -14890,57 +14159,6 @@ if let value = status {
                         }
                 });
             }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Get component
-            * Description: Retrieve detailed information about a specific component.
-            **/
-            public func getComponentById(
-                slug: String,
-                
-                onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
-            ) {
-                
- 
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "GET",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/blogs/\(slug)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(BlogSchema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
             
             
             
@@ -14951,21 +14169,25 @@ if let value = status {
             **/
             public func addDataLoader(
                 body: DataLoaderSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DataLoaderResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/data-loader",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -14990,8 +14212,6 @@ if let value = status {
             
             
             
-            
-            
             /**
             *
             * Summary: List data loaders
@@ -14999,21 +14219,25 @@ if let value = status {
             **/
             public func getDataLoaders(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DataLoadersSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/data-loader",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -15038,8 +14262,6 @@ if let value = status {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete a data loader
@@ -15048,21 +14270,25 @@ if let value = status {
             public func deleteDataLoader(
                 dataLoaderId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DataLoaderResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/dataLoader/\(dataLoaderId)",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/data-loader/\(dataLoaderId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -15084,8 +14310,6 @@ if let value = status {
                         }
                 });
             }
-            
-            
             
             
             
@@ -15097,21 +14321,25 @@ if let value = status {
             public func editDataLoader(
                 dataLoaderId: String,
                 body: DataLoaderSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DataLoaderResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/dataLoader/\(dataLoaderId)",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/data-loader/\(dataLoaderId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -15133,8 +14361,6 @@ if let value = status {
                         }
                 });
             }
-            
-            
             
             
             
@@ -15146,21 +14372,25 @@ if let value = status {
             public func getDataLoadersByService(
                 serviceName: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DataLoaderResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/dataLoader/service/\(serviceName)",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/data-loader/service/\(serviceName)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -15182,8 +14412,6 @@ if let value = status {
                         }
                 });
             }
-            
-            
             
             
             
@@ -15195,21 +14423,25 @@ if let value = status {
             public func selectDataLoader(
                 dataLoaderId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DataLoaderResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/dataLoader/\(dataLoaderId)/select",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/data-loader/\(dataLoaderId)/select",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -15231,8 +14463,6 @@ if let value = status {
                         }
                 });
             }
-            
-            
             
             
             
@@ -15245,21 +14475,25 @@ if let value = status {
                 service: String,
                 operationId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DataLoaderResetResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/dataLoader/\(service)/\(operationId)/reset",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/data-loader/\(service)/\(operationId)/reset",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -15284,8 +14518,6 @@ if let value = status {
             
             
             
-            
-            
             /**
             *
             * Summary: List FAQ Categories
@@ -15293,21 +14525,25 @@ if let value = status {
             **/
             public func getFaqCategories(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetFaqCategoriesSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/categories",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -15332,8 +14568,6 @@ if let value = status {
             
             
             
-            
-            
             /**
             *
             * Summary: Get FAQ category
@@ -15342,21 +14576,25 @@ if let value = status {
             public func getFaqCategoryBySlugOrId(
                 idOrSlug: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetFaqCategoryBySlugSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(idOrSlug)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -15381,8 +14619,6 @@ if let value = status {
             
             
             
-            
-            
             /**
             *
             * Summary: Create FAQ Category
@@ -15390,21 +14626,25 @@ if let value = status {
             **/
             public func createFaqCategory(
                 body: CreateFaqCategoryRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CreateFaqCategorySchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -15426,8 +14666,6 @@ if let value = status {
                         }
                 });
             }
-            
-            
             
             
             
@@ -15439,21 +14677,25 @@ if let value = status {
             public func updateFaqCategory(
                 id: String,
                 body: UpdateFaqCategoryRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CreateFaqCategorySchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -15478,8 +14720,6 @@ if let value = status {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete FAQ category
@@ -15488,21 +14728,25 @@ if let value = status {
             public func deleteFaqCategory(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: FaqSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -15527,8 +14771,6 @@ if let value = status {
             
             
             
-            
-            
             /**
             *
             * Summary: List FAQs
@@ -15537,21 +14779,25 @@ if let value = status {
             public func getFaqsByCategoryIdOrSlug(
                 idOrSlug: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetFaqSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(idOrSlug)/faqs",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -15576,8 +14822,6 @@ if let value = status {
             
             
             
-            
-            
             /**
             *
             * Summary: Create FAQ
@@ -15586,21 +14830,25 @@ if let value = status {
             public func addFaq(
                 categoryId: String,
                 body: CreateFaqSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CreateFaqResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(categoryId)/faq",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -15622,8 +14870,6 @@ if let value = status {
                         }
                 });
             }
-            
-            
             
             
             
@@ -15636,21 +14882,25 @@ if let value = status {
                 categoryId: String,
                 faqId: String,
                 body: CreateFaqSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CreateFaqResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(categoryId)/faq/\(faqId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -15672,8 +14922,6 @@ if let value = status {
                         }
                 });
             }
-            
-            
             
             
             
@@ -15686,21 +14934,25 @@ if let value = status {
                 categoryId: String,
                 faqId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CreateFaqResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/category/\(categoryId)/faq/\(faqId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -15722,8 +14974,6 @@ if let value = status {
                         }
                 });
             }
-            
-            
             
             
             
@@ -15735,21 +14985,25 @@ if let value = status {
             public func getFaqByIdOrSlug(
                 idOrSlug: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CreateFaqResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/faq/\(idOrSlug)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -15774,8 +15028,6 @@ if let value = status {
             
             
             
-            
-            
             /**
             *
             * Summary: Generate SEO title
@@ -15784,21 +15036,25 @@ if let value = status {
             public func generateSEOTitle(
                 type: GenerationEntityType,
                 body: GenerateSEOContent,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GeneratedSEOContent?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/generateSeo/\(type)",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/generate-seo/\(type)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -15823,8 +15079,6 @@ if let value = status {
             
             
             
-            
-            
             /**
             *
             * Summary: Get landing pages
@@ -15834,35 +15088,33 @@ if let value = status {
                 pageNo: Int?,
                 pageSize: Int?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: LandingPageGetResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/landing-page/",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -15887,8 +15139,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Create landing page
@@ -15896,21 +15146,25 @@ if let value = pageSize {
             **/
             public func createLandingPage(
                 body: LandingPageSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: LandingPageSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/landing-page/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -15932,8 +15186,6 @@ if let value = pageSize {
                         }
                 });
             }
-            
-            
             
             
             
@@ -15945,21 +15197,25 @@ if let value = pageSize {
             public func updateLandingPage(
                 id: String,
                 body: LandingPageSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: LandingPageSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/landingPage/\(id)",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/landing-page/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -15981,8 +15237,6 @@ if let value = pageSize {
                         }
                 });
             }
-            
-            
             
             
             
@@ -15994,21 +15248,25 @@ if let value = pageSize {
             public func deleteLandingPage(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: LandingPageSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/landingPage/\(id)",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/landing-page/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -16033,8 +15291,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Get Legal Pages
@@ -16042,21 +15298,25 @@ if let value = pageSize {
             **/
             public func getLegalInformation(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ApplicationLegal?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/legal",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -16078,8 +15338,6 @@ if let value = pageSize {
                         }
                 });
             }
-            
-            
             
             
             
@@ -16090,21 +15348,25 @@ if let value = pageSize {
             **/
             public func updateLegalInformation(
                 body: ApplicationLegal,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ApplicationLegal?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/legal",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -16126,8 +15388,6 @@ if let value = pageSize {
                         }
                 });
             }
-            
-            
             
             
             
@@ -16141,40 +15401,34 @@ if let value = pageSize {
                 pageNo: Int?,
                 pageSize: Int?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: NavigationGetResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["device_platform"] = devicePlatform
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["device_platform"] = devicePlatform
-
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/navigations/",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -16199,8 +15453,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Create navigation items
@@ -16208,21 +15460,25 @@ if let value = pageSize {
             **/
             public func createNavigation(
                 body: NavigationRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: NavigationSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/navigations/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -16247,8 +15503,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Get default navigations
@@ -16256,21 +15510,25 @@ if let value = pageSize {
             **/
             public func getDefaultNavigations(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DefaultNavigationResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/navigations/default",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -16295,8 +15553,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Get navigation by slug
@@ -16306,26 +15562,26 @@ if let value = pageSize {
                 slug: String,
                 devicePlatform: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: NavigationSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["device_platform"] = devicePlatform
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["device_platform"] = devicePlatform
-
-
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/navigations/\(slug)",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -16347,8 +15603,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -16360,21 +15614,25 @@ var xQuery: [String: Any] = [:]
             public func updateNavigation(
                 id: String,
                 body: NavigationRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: NavigationSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/navigations/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -16396,8 +15654,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -16409,21 +15665,25 @@ var xQuery: [String: Any] = [:]
             public func deleteNavigation(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: NavigationSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/navigations/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -16448,8 +15708,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Get page meta
@@ -16457,21 +15715,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func getPageMeta(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PageMetaSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/meta",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -16496,8 +15758,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Get page specification
@@ -16505,21 +15765,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func getPageSpec(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PageSpec?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/spec",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -16544,8 +15808,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Create page preview
@@ -16553,21 +15815,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func createPagePreview(
                 body: PageRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/preview/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -16589,8 +15855,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -16602,21 +15866,25 @@ var xQuery: [String: Any] = [:]
             public func updatePagePreview(
                 slug: String,
                 body: PagePublishRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/publish/\(slug)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -16638,8 +15906,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -16651,21 +15917,25 @@ var xQuery: [String: Any] = [:]
             public func deletePage(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pages/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -16690,8 +15960,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Create path redirection rules
@@ -16699,21 +15967,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func addPathRedirectionRules(
                 body: PathMappingSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PathMappingSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/path-mappings",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -16735,8 +16007,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -16749,35 +16019,33 @@ var xQuery: [String: Any] = [:]
                 pageSize: Int?,
                 pageNo: Int?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PathMappingSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/path-mappings",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -16799,8 +16067,6 @@ if let value = pageNo {
                         }
                 });
             }
-            
-            
             
             
             
@@ -16812,21 +16078,25 @@ if let value = pageNo {
             public func getPathRedirectionRule(
                 pathId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PathMappingSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pathMappings/\(pathId)",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/path-mappings/\(pathId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -16848,8 +16118,6 @@ if let value = pageNo {
                         }
                 });
             }
-            
-            
             
             
             
@@ -16861,21 +16129,25 @@ if let value = pageNo {
             public func updatePathRedirectionRules(
                 pathId: String,
                 body: PathMappingSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PathMappingSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pathMappings/\(pathId)",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/path-mappings/\(pathId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -16900,8 +16172,6 @@ if let value = pageNo {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete path redirection rule
@@ -16910,21 +16180,25 @@ if let value = pageNo {
             public func deletePathRedirectionRules(
                 pathId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/pathMappings/\(pathId)",
+                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/path-mappings/\(pathId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -16949,8 +16223,6 @@ if let value = pageNo {
             
             
             
-            
-            
             /**
             *
             * Summary: Get sales channel SEO
@@ -16958,21 +16230,25 @@ if let value = pageNo {
             **/
             public func getSEOConfiguration(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SeoComponent?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/seo",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -16997,8 +16273,6 @@ if let value = pageNo {
             
             
             
-            
-            
             /**
             *
             * Summary: Update sales channel SEO information
@@ -17006,21 +16280,25 @@ if let value = pageNo {
             **/
             public func updateSEOConfiguration(
                 body: SeoComponent,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SeoSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/seo",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -17045,8 +16323,6 @@ if let value = pageNo {
             
             
             
-            
-            
             /**
             *
             * Summary: List default SEO Markup Schemas
@@ -17055,28 +16331,29 @@ if let value = pageNo {
             public func getDefaultSEOMarkupSchema(
                 pageType: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DefaultSchemaComponent?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageType {
-    
-    xQuery["page_type"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageType {
+                    xQuery["page_type"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/seo/schema/default",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -17101,8 +16378,6 @@ if let value = pageType {
             
             
             
-            
-            
             /**
             *
             * Summary: List default SEO Markup Schemas
@@ -17114,49 +16389,41 @@ if let value = pageType {
                 pageNo: Int?,
                 pageSize: Int?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SeoSchemaComponent?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = title {
-    
-    xQuery["title"] = value
-    
-}
-
-
-if let value = active {
-    
-    xQuery["active"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+                if let value = title {
+                    xQuery["title"] = value
+                }
+                
+                if let value = active {
+                    xQuery["active"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/seo/schema",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -17181,8 +16448,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Create SEO Markup Schema
@@ -17190,21 +16455,25 @@ if let value = pageSize {
             **/
             public func createSEOMarkupSchema(
                 body: SEOSchemaMarkupTemplateRequestBody,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SEOSchemaMarkupTemplate?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/seo/schema",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -17226,8 +16495,6 @@ if let value = pageSize {
                         }
                 });
             }
-            
-            
             
             
             
@@ -17239,21 +16506,25 @@ if let value = pageSize {
             public func getSEOMarkupSchema(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SEOSchemaMarkupTemplate?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/seo/schema/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -17275,8 +16546,6 @@ if let value = pageSize {
                         }
                 });
             }
-            
-            
             
             
             
@@ -17288,21 +16557,25 @@ if let value = pageSize {
             public func editSEOMarkupSchema(
                 id: String,
                 body: SEOSchemaMarkupTemplateRequestBody,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SEOSchemaMarkupTemplate?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/seo/schema/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -17324,8 +16597,6 @@ if let value = pageSize {
                         }
                 });
             }
-            
-            
             
             
             
@@ -17337,21 +16608,25 @@ if let value = pageSize {
             public func deleteSEOMarkupSchema(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SEOSchemaMarkupTemplate?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/seo/schema/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -17373,8 +16648,6 @@ if let value = pageSize {
                         }
                 });
             }
-            
-            
             
             
             
@@ -17388,40 +16661,34 @@ if let value = pageSize {
                 pageNo: Int?,
                 pageSize: Int?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SlideshowGetResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["device_platform"] = devicePlatform
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["device_platform"] = devicePlatform
-
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -17448,33 +16715,6 @@ if let value = pageSize {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             /**
             *
             * Summary: get paginator for getSlideshows
@@ -17482,20 +16722,19 @@ if let value = pageSize {
             **/
             public func getSlideshowsPaginator(
                 devicePlatform: String,
-                pageSize: Int?
-                
+                pageSize: Int?,
+                headers: [(key: String, value: String)]? = nil
                 ) -> Paginator<SlideshowGetResponse> {
                 let pageSize = pageSize ?? 20
                 let paginator = Paginator<SlideshowGetResponse>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getSlideshows(
-                            
-                            devicePlatform: devicePlatform,
-                            pageNo: paginator.pageNo
-                            ,
-                            pageSize: paginator.pageSize
-                            
-                        ) { response, error in                    
+                        devicePlatform: devicePlatform,
+                        pageNo: paginator.pageNo,
+                        pageSize: paginator.pageSize,
+                        
+                        headers: headers
+                    ) { response, error in                    
                         if let response = response {
                             paginator.hasNext = response.page?.hasNext ?? false
                             paginator.pageNo = (paginator.pageNo ?? 0) + 1
@@ -17516,21 +16755,25 @@ if let value = pageSize {
             **/
             public func createSlideshow(
                 body: SlideshowRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -17552,8 +16795,6 @@ if let value = pageSize {
                         }
                 });
             }
-            
-            
             
             
             
@@ -17566,26 +16807,26 @@ if let value = pageSize {
                 slug: String,
                 devicePlatform: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["device_platform"] = devicePlatform
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["device_platform"] = devicePlatform
-
-
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows/\(slug)",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -17607,8 +16848,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -17620,21 +16859,25 @@ var xQuery: [String: Any] = [:]
             public func updateSlideshow(
                 id: String,
                 body: SlideshowRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -17656,8 +16899,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -17669,21 +16910,25 @@ var xQuery: [String: Any] = [:]
             public func deleteSlideshow(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -17708,8 +16953,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Get support information
@@ -17717,21 +16960,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func getSupportInformation(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Support?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/support",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -17753,8 +17000,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -17765,21 +17010,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func updateSupportInformation(
                 body: Support,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Support?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/support",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -17804,8 +17053,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Update HTML tag
@@ -17813,21 +17060,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func updateInjectableTag(
                 body: CreateTagRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -17849,8 +17100,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -17862,28 +17111,29 @@ var xQuery: [String: Any] = [:]
             public func getInjectableTags(
                 all: Bool?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = all {
-    
-    xQuery["all"] = value
-    
-}
-
-
- 
-
-
+                if let value = all {
+                    xQuery["all"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -17905,8 +17155,6 @@ if let value = all {
                         }
                 });
             }
-            
-            
             
             
             
@@ -17917,21 +17165,25 @@ if let value = all {
             **/
             public func addInjectableTag(
                 body: CreateTagRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags/add",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -17956,8 +17208,6 @@ if let value = all {
             
             
             
-            
-            
             /**
             *
             * Summary: Remove HTML tag
@@ -17965,21 +17215,25 @@ if let value = all {
             **/
             public func removeInjectableTag(
                 body: RemoveHandpickedSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: TagDeleteSuccessResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags/remove/handpicked",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -18004,8 +17258,6 @@ if let value = all {
             
             
             
-            
-            
             /**
             *
             * Summary: Update HTML tag
@@ -18014,21 +17266,25 @@ if let value = all {
             public func editInjectableTag(
                 tagId: String,
                 body: UpdateHandpickedSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags/edit/handpicked/\(tagId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -18053,8 +17309,6 @@ if let value = all {
             
             
             
-            
-            
             /**
             *
             * Summary: Get blog by slug
@@ -18063,21 +17317,25 @@ if let value = all {
             public func getBlogBySlug(
                 slug: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/blogs/\(slug)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -18102,8 +17360,6 @@ if let value = all {
             
             
             
-            
-            
             /**
             *
             * Summary: Create page
@@ -18111,21 +17367,25 @@ if let value = all {
             **/
             public func createPage(
                 body: PageRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/pages/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -18150,8 +17410,6 @@ if let value = all {
             
             
             
-            
-            
             /**
             *
             * Summary: Get pages
@@ -18161,35 +17419,33 @@ if let value = all {
                 pageNo: Int?,
                 pageSize: Int?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PageGetResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/pages/",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -18214,8 +17470,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Update page
@@ -18224,21 +17478,25 @@ if let value = pageSize {
             public func updatePage(
                 id: String,
                 body: PageSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/pages/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -18260,8 +17518,6 @@ if let value = pageSize {
                         }
                 });
             }
-            
-            
             
             
             
@@ -18273,21 +17529,25 @@ if let value = pageSize {
             public func getPageBySlug(
                 slug: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/pages/\(slug)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -18309,8 +17569,6 @@ if let value = pageSize {
                         }
                 });
             }
-            
-            
             
             
             
@@ -18345,21 +17603,25 @@ if let value = pageSize {
             **/
             public func getAppCustomFieldTypes(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomObjectByIdSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/types",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -18384,8 +17646,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Get resources
@@ -18393,21 +17653,25 @@ if let value = pageSize {
             **/
             public func getAppResources(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ResourcesSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/resources",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -18432,8 +17696,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Get custom fields definitions
@@ -18446,52 +17708,39 @@ if let value = pageSize {
                 type: String?,
                 search: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomFieldDefinitionsSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["page_no"] = pageNo
+                xQuery["page_size"] = pageSize
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["page_no"] = pageNo
-
-
-
-
-    xQuery["page_size"] = pageSize
-
-
-
-if let value = resource {
-    
-    xQuery["resource"] = value
-    
-}
-
-
-if let value = type {
-    
-    xQuery["type"] = value
-    
-}
-
-
-if let value = search {
-    
-    xQuery["search"] = value
-    
-}
-
-
- 
-
-
+                if let value = resource {
+                    xQuery["resource"] = value
+                }
+                
+                if let value = type {
+                    xQuery["type"] = value
+                }
+                
+                if let value = search {
+                    xQuery["search"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/definitions",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -18516,8 +17765,6 @@ if let value = search {
             
             
             
-            
-            
             /**
             *
             * Summary: Create custom field definition
@@ -18525,21 +17772,25 @@ if let value = search {
             **/
             public func createAppCustomFieldDefinition(
                 body: CustomFieldDefinitionRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomFieldDefinitionDetailResSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/definitions",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -18561,8 +17812,6 @@ if let value = search {
                         }
                 });
             }
-            
-            
             
             
             
@@ -18574,21 +17823,25 @@ if let value = search {
             public func getAppCustomFieldDefinition(
                 definitionId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomFieldDefinitionDetailResSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/definitions/\(definitionId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -18610,8 +17863,6 @@ if let value = search {
                         }
                 });
             }
-            
-            
             
             
             
@@ -18623,21 +17874,25 @@ if let value = search {
             public func updateAppCustomFieldDefinition(
                 definitionId: String,
                 body: CustomFieldDefinitionRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomFieldDefinitionDetailResSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/definitions/\(definitionId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -18662,8 +17917,6 @@ if let value = search {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete custom fields definition
@@ -18672,21 +17925,25 @@ if let value = search {
             public func deleteAppCustomFieldDefinition(
                 definitionId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomDataDeleteSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/definitions/\(definitionId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -18711,8 +17968,6 @@ if let value = search {
             
             
             
-            
-            
             /**
             *
             * Summary: Get list of custom fields of gives resource
@@ -18721,21 +17976,25 @@ if let value = search {
             public func getAppCustomFields(
                 resource: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomFieldsResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/\(resource)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -18760,8 +18019,6 @@ if let value = search {
             
             
             
-            
-            
             /**
             *
             * Summary: Get list of custom fields of given resource and resource id
@@ -18771,21 +18028,25 @@ if let value = search {
                 resource: String,
                 resourceId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomFieldsResponseByResourceIdSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/\(resource)/\(resourceId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -18807,8 +18068,6 @@ if let value = search {
                         }
                 });
             }
-            
-            
             
             
             
@@ -18821,21 +18080,25 @@ if let value = search {
                 resource: String,
                 resourceId: String,
                 body: CustomFieldRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomFieldsResponseByResourceIdSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/\(resource)/\(resourceId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -18860,8 +18123,6 @@ if let value = search {
             
             
             
-            
-            
             /**
             *
             * Summary: Create custom object definition
@@ -18869,21 +18130,25 @@ if let value = search {
             **/
             public func createAppCustomObjectDefinition(
                 body: CustomObjectDefinitionRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomObjectDefinitionSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/definitions",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -18908,8 +18173,6 @@ if let value = search {
             
             
             
-            
-            
             /**
             *
             * Summary: Get custom object definitions
@@ -18920,38 +18183,31 @@ if let value = search {
                 pageSize: String,
                 search: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomObjectDefinitionsSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["page_no"] = pageNo
+                xQuery["page_size"] = pageSize
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["page_no"] = pageNo
-
-
-
-
-    xQuery["page_size"] = pageSize
-
-
-
-if let value = search {
-    
-    xQuery["search"] = value
-    
-}
-
-
- 
-
-
+                if let value = search {
+                    xQuery["search"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/definitions",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -18976,8 +18232,6 @@ if let value = search {
             
             
             
-            
-            
             /**
             *
             * Summary: Get custom object definition
@@ -18986,21 +18240,25 @@ if let value = search {
             public func getAppCustomObjectDefinition(
                 definitionId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomObjectDefinitionSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/definitions/\(definitionId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -19022,8 +18280,6 @@ if let value = search {
                         }
                 });
             }
-            
-            
             
             
             
@@ -19035,21 +18291,25 @@ if let value = search {
             public func updateAppCustomObjectDefinition(
                 definitionId: String,
                 body: CustomObjectDefinitionUpdateRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomObjectDefinitionSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/definitions/\(definitionId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -19074,8 +18334,6 @@ if let value = search {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete custom object definition
@@ -19084,21 +18342,25 @@ if let value = search {
             public func deleteAppCustomObjectDefinition(
                 definitionId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomObjectDefinitionDeleteResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/definitions/\(definitionId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -19123,8 +18385,6 @@ if let value = search {
             
             
             
-            
-            
             /**
             *
             * Summary: Get list of custom objects
@@ -19135,38 +18395,31 @@ if let value = search {
                 pageNo: String,
                 pageSize: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomObjectsSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = definitionId {
-    
-    xQuery["definition_id"] = value
-    
-}
-
-
-
-    xQuery["page_no"] = pageNo
-
-
-
-
-    xQuery["page_size"] = pageSize
-
-
-
- 
-
-
+                if let value = definitionId {
+                    xQuery["definition_id"] = value
+                }
+                xQuery["page_no"] = pageNo
+                xQuery["page_size"] = pageSize
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -19191,8 +18444,6 @@ if let value = definitionId {
             
             
             
-            
-            
             /**
             *
             * Summary: Create custom object entries
@@ -19200,21 +18451,25 @@ if let value = definitionId {
             **/
             public func createAppCustomObject(
                 body: CustomObjectRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomObjectSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -19239,8 +18494,6 @@ if let value = definitionId {
             
             
             
-            
-            
             /**
             *
             * Summary: Get custom object details
@@ -19249,21 +18502,25 @@ if let value = definitionId {
             public func getAppCustomObject(
                 metaobjectId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomObjectByIdSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/\(metaobjectId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -19288,8 +18545,6 @@ if let value = definitionId {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete custom object
@@ -19298,21 +18553,25 @@ if let value = definitionId {
             public func deleteAppCustomObject(
                 metaobjectId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomDataDeleteSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/\(metaobjectId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -19337,8 +18596,6 @@ if let value = definitionId {
             
             
             
-            
-            
             /**
             *
             * Summary: Update custom object details
@@ -19347,21 +18604,25 @@ if let value = definitionId {
             public func updateAppCustomObject(
                 metaobjectId: String,
                 body: CustomObjectRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomObjectByIdSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/\(metaobjectId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -19386,8 +18647,6 @@ if let value = definitionId {
             
             
             
-            
-            
             /**
             *
             * Summary: Get bulk import and export job list
@@ -19398,36 +18657,28 @@ if let value = definitionId {
                 pageSize: String,
                 actionType: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomObjectBulkEntry?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["page"] = page
+                xQuery["page_size"] = pageSize
+                xQuery["action_type"] = actionType
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["page"] = page
-
-
-
-
-    xQuery["page_size"] = pageSize
-
-
-
-
-    xQuery["action_type"] = actionType
-
-
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/jobs",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -19452,8 +18703,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Bulk custom object entries upload
@@ -19462,21 +18711,25 @@ var xQuery: [String: Any] = [:]
             public func importAppCustomObjectEntries(
                 definitionId: String,
                 body: CustomObjectBulkSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomObjectEntryBulkUploadResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/bulk/\(definitionId)/upload",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -19501,8 +18754,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Initiate download for bulk custom object entries
@@ -19511,21 +18762,25 @@ var xQuery: [String: Any] = [:]
             public func exportAppCustomObjectEntries(
                 definitionId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomObjectBulkEntryInitiateDownload?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/bulk/\(definitionId)/download",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -19550,8 +18805,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Download sample for custom object bulk entry
@@ -19560,21 +18813,25 @@ var xQuery: [String: Any] = [:]
             public func sampleAppCustomObjectBulkEntry(
                 definitionId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/bulk/\(definitionId)/sample",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -19596,8 +18853,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
         }
         
         
@@ -19626,21 +18881,25 @@ var xQuery: [String: Any] = [:]
             public func appStartUpload(
                 namespace: String,
                 body: StartRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: StartResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/upload/start",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -19665,8 +18924,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Complete file upload for Application
@@ -19675,21 +18932,25 @@ var xQuery: [String: Any] = [:]
             public func appCompleteUpload(
                 namespace: String,
                 body: StartResponse,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CompleteResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/upload/complete",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -19716,8 +18977,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Copy files for Application
@@ -19726,28 +18985,29 @@ var xQuery: [String: Any] = [:]
             public func appCopyFiles(
                 sync: Bool?,
                 body: CopyFiles,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = sync {
-    
-    xQuery["sync"] = value
-    
-}
-
-
- 
-
-
+                if let value = sync {
+                    xQuery["sync"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/uploads/copy",
                     query: xQuery,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -19769,8 +19029,6 @@ if let value = sync {
                         }
                 });
             }
-            
-            
             
             
             
@@ -19786,42 +19044,37 @@ if let value = sync {
                 limit: Int?,
                 search: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = page {
-    
-    xQuery["page"] = value
-    
-}
-
-
-if let value = limit {
-    
-    xQuery["limit"] = value
-    
-}
-
-
-if let value = search {
-    
-    xQuery["search"] = value
-    
-}
-
-
- 
-
-
+                if let value = page {
+                    xQuery["page"] = value
+                }
+                
+                if let value = limit {
+                    xQuery["limit"] = value
+                }
+                
+                if let value = search {
+                    xQuery["search"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/browse",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -19843,8 +19096,6 @@ if let value = search {
                         }
                 });
             }
-            
-            
             
             
             
@@ -19859,42 +19110,37 @@ if let value = search {
                 limit: Int?,
                 search: String?,
                 body: ExtensionSlug,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = page {
-    
-    xQuery["page"] = value
-    
-}
-
-
-if let value = limit {
-    
-    xQuery["limit"] = value
-    
-}
-
-
-if let value = search {
-    
-    xQuery["search"] = value
-    
-}
-
-
- 
-
-
+                if let value = page {
+                    xQuery["page"] = value
+                }
+                
+                if let value = limit {
+                    xQuery["limit"] = value
+                }
+                
+                if let value = search {
+                    xQuery["search"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/browse",
                     query: xQuery,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -19920,8 +19166,6 @@ if let value = search {
             
             
             
-            
-            
             /**
             *
             * Summary: Get PDF types
@@ -19930,28 +19174,29 @@ if let value = search {
             public func getPdfTypes(
                 countryCode: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: InvoiceTypesResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = countryCode {
-    
-    xQuery["country_code"] = value
-    
-}
-
-
- 
-
-
+                if let value = countryCode {
+                    xQuery["country_code"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/types",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -19976,8 +19221,6 @@ if let value = countryCode {
             
             
             
-            
-            
             /**
             *
             * Summary: Get default PDF data
@@ -19987,33 +19230,30 @@ if let value = countryCode {
                 pdfTypeId: Int,
                 countryCode: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: DummyTemplateDataItems?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["pdf_type_id"] = pdfTypeId
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["pdf_type_id"] = pdfTypeId
-
-
-
-if let value = countryCode {
-    
-    xQuery["country_code"] = value
-    
-}
-
-
- 
-
-
+                if let value = countryCode {
+                    xQuery["country_code"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/mapper",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -20038,8 +19278,6 @@ if let value = countryCode {
             
             
             
-            
-            
             /**
             *
             * Summary: Update HTML Template
@@ -20048,21 +19286,25 @@ if let value = countryCode {
             public func updateHtmlTemplate(
                 id: String,
                 body: PdfConfig,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PdfConfigSaveSuccess?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/config/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -20087,8 +19329,6 @@ if let value = countryCode {
             
             
             
-            
-            
             /**
             *
             * Summary: Get html template for Application
@@ -20101,38 +19341,31 @@ Get the saved html template for provided sales channel
                 format: String,
                 countryCode: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PdfConfigSuccess?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["pdf_type_id"] = pdfTypeId
+                xQuery["format"] = format
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["pdf_type_id"] = pdfTypeId
-
-
-
-
-    xQuery["format"] = format
-
-
-
-if let value = countryCode {
-    
-    xQuery["country_code"] = value
-    
-}
-
-
- 
-
-
+                if let value = countryCode {
+                    xQuery["country_code"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/config",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -20157,8 +19390,6 @@ if let value = countryCode {
             
             
             
-            
-            
             /**
             *
             * Summary: Save PDF template
@@ -20166,21 +19397,25 @@ if let value = countryCode {
             **/
             public func saveHtmlTemplate(
                 body: PdfConfig,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PdfConfigSaveSuccess?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/config",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -20205,8 +19440,6 @@ if let value = countryCode {
             
             
             
-            
-            
             /**
             *
             * Summary: Get default PDF template
@@ -20217,38 +19450,31 @@ if let value = countryCode {
                 format: String,
                 countryCode: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PdfDefaultTemplateSuccess?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["pdf_type_id"] = pdfTypeId
+                xQuery["format"] = format
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["pdf_type_id"] = pdfTypeId
-
-
-
-
-    xQuery["format"] = format
-
-
-
-if let value = countryCode {
-    
-    xQuery["country_code"] = value
-    
-}
-
-
- 
-
-
+                if let value = countryCode {
+                    xQuery["country_code"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/default-template",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -20273,8 +19499,6 @@ if let value = countryCode {
             
             
             
-            
-            
             /**
             *
             * Summary: Generate payment receipt
@@ -20282,21 +19506,25 @@ if let value = countryCode {
             **/
             public func generatePaymentReceipt(
                 body: PaymentReceiptRequestBody,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/payment-receipt",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -20318,8 +19546,6 @@ if let value = countryCode {
                         }
                 });
             }
-            
-            
         }
         
         
@@ -20353,63 +19579,49 @@ if let value = countryCode {
                 priority: PriorityEnum?,
                 category: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: TicketList?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = items {
-    
-    xQuery["items"] = value
-    
-}
-
-
-if let value = filters {
-    
-    xQuery["filters"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
-if let value = status {
-    
-    xQuery["status"] = value
-    
-}
-
-
-if let value = priority {
-    
-    xQuery["priority"] = value.rawValue
-    
-}
-
-
-if let value = category {
-    
-    xQuery["category"] = value
-    
-}
-
-
- 
-
-
+                if let value = items {
+                    xQuery["items"] = value
+                }
+                
+                if let value = filters {
+                    xQuery["filters"] = value
+                }
+                
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                if let value = status {
+                    xQuery["status"] = value
+                }
+                
+                if let value = priority {
+                    xQuery["priority"] = value.rawValue
+                }
+                
+                if let value = category {
+                    xQuery["category"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/ticket",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -20436,8 +19648,6 @@ if let value = category {
             
             
             
-            
-            
             /**
             *
             * Summary: Get Ticket Details
@@ -20446,21 +19656,25 @@ if let value = category {
             public func getNewTicket(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/ticket/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -20482,8 +19696,6 @@ if let value = category {
                         }
                 });
             }
-            
-            
             
             
             
@@ -20495,21 +19707,25 @@ if let value = category {
             public func editNewTicket(
                 id: String,
                 body: EditTicketPayload,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/ticket/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -20531,8 +19747,6 @@ if let value = category {
                         }
                 });
             }
-            
-            
             
             
             
@@ -20548,21 +19762,25 @@ if let value = category {
             public func createNewHistory(
                 id: String,
                 body: TicketHistoryPayload,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: TicketHistory?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/ticket/\(id)/history",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -20587,8 +19805,6 @@ if let value = category {
             
             
             
-            
-            
             /**
             *
             * Summary: Get ticket history interaction
@@ -20597,21 +19813,25 @@ if let value = category {
             public func getNewTicketHistory(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: TicketHistoryList?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/ticket/\(id)/history",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -20636,8 +19856,6 @@ if let value = category {
             
             
             
-            
-            
             /**
             *
             * Summary: Get custom form
@@ -20646,21 +19864,25 @@ if let value = category {
             public func getCustomForm(
                 slug: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomForm?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/form/\(slug)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -20682,8 +19904,6 @@ if let value = category {
                         }
                 });
             }
-            
-            
             
             
             
@@ -20695,21 +19915,25 @@ if let value = category {
             public func editCustomForm(
                 slug: String,
                 body: EditCustomFormPayload,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomForm?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/form/\(slug)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -20731,8 +19955,6 @@ if let value = category {
                         }
                 });
             }
-            
-            
             
             
             
@@ -20744,21 +19966,25 @@ if let value = category {
             public func deleteCustomForm(
                 slug: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomForm?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/form/\(slug)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -20783,8 +20009,6 @@ if let value = category {
             
             
             
-            
-            
             /**
             *
             * Summary: Get custom forms
@@ -20792,21 +20016,25 @@ if let value = category {
             **/
             public func getCustomForms(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomFormList?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/form",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -20831,8 +20059,6 @@ if let value = category {
             
             
             
-            
-            
             /**
             *
             * Summary: Create custom form
@@ -20840,21 +20066,25 @@ if let value = category {
             **/
             public func createCustomForm(
                 body: CreateCustomFormPayload,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomForm?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/lead/v1.0/company/\(companyId)/application/\(applicationId)/form",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -20876,8 +20106,6 @@ if let value = category {
                         }
                 });
             }
-            
-            
             
         }
         
@@ -20909,21 +20137,25 @@ if let value = category {
             **/
             public func updatePincodeMopView(
                 body: PincodeMopData,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PincodeMOPresponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/pincode-mop-update",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -20948,8 +20180,6 @@ if let value = category {
             
             
             
-            
-            
             /**
             *
             * Summary: Bulk update pincode COD support 
@@ -20957,21 +20187,25 @@ if let value = category {
             **/
             public func updatePincodeBulkView(
                 body: PincodeMopBulkData,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PincodeBulkViewResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/pincode-mop-bulk-update",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -20996,8 +20230,6 @@ if let value = category {
             
             
             
-            
-            
             /**
             *
             * Summary: Get COD enabled pincodes
@@ -21005,21 +20237,25 @@ if let value = category {
             **/
             public func updatePincodeCoDListing(
                 body: PincodeCodStatusListingRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PincodeCodStatusListingResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/pincode-mop-data",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -21044,8 +20280,6 @@ if let value = category {
             
             
             
-            
-            
             /**
             *
             * Summary: Get audit trail
@@ -21053,21 +20287,25 @@ if let value = category {
             **/
             public func updatePincodeAuditHistory(
                 body: PincodeMopUpdateAuditHistoryRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PincodeMopUpdateAuditHistoryResponseData?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/history",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -21096,8 +20334,6 @@ if let value = category {
             
             
             
-            
-            
             /**
             *
             * Summary: Update courier rule
@@ -21106,21 +20342,25 @@ if let value = category {
             public func updateCourierRule(
                 ruleId: String,
                 body: CourierPartnerRule,
-                onResponse: @escaping (_ response: CourierPartnerRule?, _ error: FDKError?) -> Void
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: CourierPartnerRuleResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/courierPartner/rules/\(ruleId)",
+                    url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/courier-partner/rules/\(ruleId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -21131,7 +20371,7 @@ if let value = category {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CourierPartnerRule.self, from: data)
+                            let response = Utility.decode(CourierPartnerRuleResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21142,8 +20382,6 @@ if let value = category {
                         }
                 });
             }
-            
-            
             
             
             
@@ -21155,21 +20393,25 @@ if let value = category {
             public func getCourierPartnerRule(
                 ruleId: String,
                 
-                onResponse: @escaping (_ response: CourierPartnerRule?, _ error: FDKError?) -> Void
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: CourierPartnerRuleResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/courierPartner/rules/\(ruleId)",
+                    url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/courier-partner/rules/\(ruleId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -21180,7 +20422,7 @@ if let value = category {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CourierPartnerRule.self, from: data)
+                            let response = Utility.decode(CourierPartnerRuleResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21191,8 +20433,6 @@ if let value = category {
                         }
                 });
             }
-            
-            
             
             
             
@@ -21203,21 +20443,25 @@ if let value = category {
             **/
             public func createCourierPartnerRule(
                 body: CourierPartnerRule,
-                onResponse: @escaping (_ response: CourierPartnerRule?, _ error: FDKError?) -> Void
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: CourierPartnerRuleResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/courier-partner/rules",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -21228,7 +20472,7 @@ if let value = category {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CourierPartnerRule.self, from: data)
+                            let response = Utility.decode(CourierPartnerRuleResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21239,8 +20483,6 @@ if let value = category {
                         }
                 });
             }
-            
-            
             
             
             
@@ -21254,42 +20496,37 @@ if let value = category {
                 pageSize: Int?,
                 status: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CourierPartnerRulesListResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = status {
-    
-    xQuery["status"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = status {
+                    xQuery["status"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/courier-partner/rules",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -21316,8 +20553,6 @@ if let value = status {
             
             
             
-            
-            
             /**
             *
             * Summary: Update delivery configuration
@@ -21325,21 +20560,25 @@ if let value = status {
             **/
             public func updateApplicationConfiguration(
                 body: ApplicationConfig,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ApplicationConfig?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/configuration",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -21361,8 +20600,6 @@ if let value = status {
                         }
                 });
             }
-            
-            
             
             
             
@@ -21373,21 +20610,25 @@ if let value = status {
             **/
             public func getApplicationConfiguration(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ApplicationConfig?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/configuration",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -21409,8 +20650,6 @@ if let value = status {
                         }
                 });
             }
-            
-            
             
             
             
@@ -21423,21 +20662,25 @@ if let value = status {
             **/
             public func patchApplicationServiceabilitySelfShipment(
                 body: SelfShipResponse,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ApplicationSelfShipConfigResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
                     url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/selfship",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -21459,8 +20702,6 @@ if let value = status {
                         }
                 });
             }
-            
-            
             
             
             
@@ -21471,21 +20712,25 @@ if let value = status {
             **/
             public func getApplicationServiceabilitySelfShipment(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ApplicationSelfShipConfigResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/selfship",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -21510,8 +20755,6 @@ if let value = status {
             
             
             
-            
-            
             /**
             *
             * Summary: Get store rule configuration
@@ -21519,21 +20762,25 @@ if let value = status {
             **/
             public func getApplicationConfig(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: StoreRuleConfigData?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/store/configuration",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -21555,8 +20802,6 @@ if let value = status {
                         }
                 });
             }
-            
-            
             
             
             
@@ -21567,21 +20812,25 @@ if let value = status {
             **/
             public func insertApplicationConfig(
                 body: StoreRuleConfigData,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: StoreRuleConfigData?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/store/configuration",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -21603,8 +20852,6 @@ if let value = status {
                         }
                 });
             }
-            
-            
             
             
             
@@ -21615,21 +20862,25 @@ if let value = status {
             **/
             public func updateStoreRulesConfig(
                 body: StoreRuleConfigData,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: StoreRuleConfigData?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/store/configuration",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -21651,8 +20902,6 @@ if let value = status {
                         }
                 });
             }
-            
-            
             
             
             
@@ -21666,42 +20915,37 @@ if let value = status {
                 pageSize: Int?,
                 status: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetStoreRulesApiResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = status {
-    
-    xQuery["status"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = status {
+                    xQuery["status"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/store/rules",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -21726,8 +20970,6 @@ if let value = status {
             
             
             
-            
-            
             /**
             *
             * Summary: Create store rule
@@ -21735,21 +20977,25 @@ if let value = status {
             **/
             public func createStoreRules(
                 body: CreateStoreRuleRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: StoreRuleResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/store/rules",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -21774,8 +21020,6 @@ if let value = status {
             
             
             
-            
-            
             /**
             *
             * Summary: Get store rule
@@ -21784,21 +21028,25 @@ if let value = status {
             public func getStoreRule(
                 ruleUid: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: StoreRuleDataSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/store/rules/\(ruleUid)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -21823,8 +21071,6 @@ if let value = status {
             
             
             
-            
-            
             /**
             *
             * Summary: Update store rule
@@ -21833,21 +21079,25 @@ if let value = status {
             public func updateStoreRules(
                 ruleUid: String,
                 body: CreateStoreRuleRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: StoreRuleUpdateResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/store/rules/\(ruleUid)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -21884,8 +21134,6 @@ if let value = status {
             
             
             
-            
-            
             /**
             *
             * Summary: Update courier partner rule priority
@@ -21893,21 +21141,25 @@ if let value = status {
             **/
             public func updateCourierPartnerRulePriority(
                 body: RulePriorityRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: RulePriorityResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/courier-partner/rules/priority",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -21929,8 +21181,6 @@ if let value = status {
                         }
                 });
             }
-            
-            
             
         }
         
@@ -21992,6 +21242,8 @@ if let value = status {
             
             
             
+            
+            
             /**
             *
             * Summary: List bag cancellation reasons
@@ -22001,21 +21253,25 @@ if let value = status {
                 shipmentId: String,
                 lineNumber: Int,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ShipmentBagReasons?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/orders/shipments/\(shipmentId)/lineNumber/\(lineNumber)/reasons",
+                    url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/orders/shipments/\(shipmentId)/line_number/\(lineNumber)/reasons",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -22037,8 +21293,6 @@ if let value = status {
                         }
                 });
             }
-            
-            
             
             
             
@@ -22069,126 +21323,85 @@ if let value = status {
                 isPrioritySort: Bool?,
                 excludeLockedShipments: Bool?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = lane {
-    
-    xQuery["lane"] = value
-    
-}
-
-
-if let value = searchType {
-    
-    xQuery["search_type"] = value
-    
-}
-
-
-if let value = searchId {
-    
-    xQuery["search_id"] = value
-    
-}
-
-
-if let value = fromDate {
-    
-    xQuery["from_date"] = value
-    
-}
-
-
-if let value = toDate {
-    
-    xQuery["to_date"] = value
-    
-}
-
-
-if let value = dpIds {
-    
-    xQuery["dp_ids"] = value
-    
-}
-
-
-if let value = orderingCompanyId {
-    
-    xQuery["ordering_company_id"] = value
-    
-}
-
-
-if let value = stores {
-    
-    xQuery["stores"] = value
-    
-}
-
-
-if let value = salesChannel {
-    
-    xQuery["sales_channel"] = value
-    
-}
-
-
-if let value = requestByExt {
-    
-    xQuery["request_by_ext"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = customerId {
-    
-    xQuery["customer_id"] = value
-    
-}
-
-
-if let value = isPrioritySort {
-    
-    xQuery["is_priority_sort"] = value
-    
-}
-
-
-if let value = excludeLockedShipments {
-    
-    xQuery["exclude_locked_shipments"] = value
-    
-}
-
-
- 
-
-
+                if let value = lane {
+                    xQuery["lane"] = value
+                }
+                
+                if let value = searchType {
+                    xQuery["search_type"] = value
+                }
+                
+                if let value = searchId {
+                    xQuery["search_id"] = value
+                }
+                
+                if let value = fromDate {
+                    xQuery["from_date"] = value
+                }
+                
+                if let value = toDate {
+                    xQuery["to_date"] = value
+                }
+                
+                if let value = dpIds {
+                    xQuery["dp_ids"] = value
+                }
+                
+                if let value = orderingCompanyId {
+                    xQuery["ordering_company_id"] = value
+                }
+                
+                if let value = stores {
+                    xQuery["stores"] = value
+                }
+                
+                if let value = salesChannel {
+                    xQuery["sales_channel"] = value
+                }
+                
+                if let value = requestByExt {
+                    xQuery["request_by_ext"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = customerId {
+                    xQuery["customer_id"] = value
+                }
+                
+                if let value = isPrioritySort {
+                    xQuery["is_priority_sort"] = value
+                }
+                
+                if let value = excludeLockedShipments {
+                    xQuery["exclude_locked_shipments"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/shipments/",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -22213,8 +21426,6 @@ if let value = excludeLockedShipments {
             
             
             
-            
-            
             /**
             *
             * Summary: Track shipment
@@ -22223,21 +21434,25 @@ if let value = excludeLockedShipments {
             public func trackShipmentPlatform(
                 shipmentId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PlatformShipmentTrack?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/orders/shipments/\(shipmentId)/track",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -22267,8 +21482,6 @@ if let value = excludeLockedShipments {
             
             
             
-            
-            
             /**
             *
             * Summary: List shipment cancellation reasons
@@ -22277,21 +21490,25 @@ if let value = excludeLockedShipments {
             public func getPlatformShipmentReasons(
                 action: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ShipmentReasonsResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/orders/shipments/reasons/\(action)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -22313,8 +21530,6 @@ if let value = excludeLockedShipments {
                         }
                 });
             }
-            
-            
             
             
             
@@ -22346,21 +21561,25 @@ if let value = excludeLockedShipments {
             public func addProxyPath(
                 extensionId: String,
                 body: AddProxyReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AddProxyResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/partners/v1.0/company/\(companyId)/application/\(applicationId)/proxy/\(extensionId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -22385,8 +21604,6 @@ if let value = excludeLockedShipments {
             
             
             
-            
-            
             /**
             *
             * Summary: Remove extension proxy
@@ -22396,21 +21613,25 @@ if let value = excludeLockedShipments {
                 extensionId: String,
                 attachedPath: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: RemoveProxyResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/partners/v1.0/company/\(companyId)/application/\(applicationId)/proxy/\(extensionId)/\(attachedPath)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -22432,8 +21653,6 @@ if let value = excludeLockedShipments {
                         }
                 });
             }
-            
-            
         }
         
         
@@ -22461,35 +21680,33 @@ if let value = excludeLockedShipments {
                 aggregator: String?,
                 configType: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PaymentGatewayConfigResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = aggregator {
-    
-    xQuery["aggregator"] = value
-    
-}
-
-
-if let value = configType {
-    
-    xQuery["config_type"] = value
-    
-}
-
-
- 
-
-
+                if let value = aggregator {
+                    xQuery["aggregator"] = value
+                }
+                
+                if let value = configType {
+                    xQuery["config_type"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/aggregator/request",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -22514,8 +21731,6 @@ if let value = configType {
             
             
             
-            
-            
             /**
             *
             * Summary: Save brand payment gateway config
@@ -22523,21 +21738,25 @@ if let value = configType {
             **/
             public func saveBrandPaymentGatewayConfig(
                 body: PaymentGatewayConfigRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PaymentGatewayToBeReviewed?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/aggregator/request",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -22562,8 +21781,6 @@ if let value = configType {
             
             
             
-            
-            
             /**
             *
             * Summary: Get payment modes
@@ -22575,45 +21792,35 @@ if let value = configType {
                 orderId: String?,
                 shipmentId: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PaymentOptionsResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["refresh"] = refresh
+                xQuery["request_type"] = requestType
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["refresh"] = refresh
-
-
-
-
-    xQuery["request_type"] = requestType
-
-
-
-if let value = orderId {
-    
-    xQuery["order_id"] = value
-    
-}
-
-
-if let value = shipmentId {
-    
-    xQuery["shipment_id"] = value
-    
-}
-
-
- 
-
-
+                if let value = orderId {
+                    xQuery["order_id"] = value
+                }
+                
+                if let value = shipmentId {
+                    xQuery["shipment_id"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -22647,8 +21854,6 @@ if let value = shipmentId {
             
             
             
-            
-            
             /**
             *
             * Summary: Get bank account details
@@ -22658,33 +21863,30 @@ if let value = shipmentId {
                 orderId: String,
                 requestHash: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["order_id"] = orderId
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["order_id"] = orderId
-
-
-
-if let value = requestHash {
-    
-    xQuery["request_hash"] = value
-    
-}
-
-
- 
-
-
+                if let value = requestHash {
+                    xQuery["request_hash"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/refund/account",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -22706,8 +21908,6 @@ if let value = requestHash {
                         }
                 });
             }
-            
-            
             
             
             
@@ -22718,21 +21918,25 @@ if let value = requestHash {
             **/
             public func addRefundBankAccountUsingOTP(
                 body: AddBeneficiaryDetailsOTPRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/refund/account",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -22754,8 +21958,6 @@ if let value = requestHash {
                         }
                 });
             }
-            
-            
             
             
             
@@ -22768,26 +21970,26 @@ if let value = requestHash {
             public func getUserOrderBeneficiaries(
                 orderId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OrderBeneficiaryResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["order_id"] = orderId
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["order_id"] = orderId
-
-
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/refund/accounts/order",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -22809,8 +22011,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -22822,26 +22022,26 @@ var xQuery: [String: Any] = [:]
             public func getUserBeneficiaries(
                 orderId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OrderBeneficiaryResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["order_id"] = orderId
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["order_id"] = orderId
-
-
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/refund/accounts/user",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -22866,8 +22066,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Payment confirmation
@@ -22875,21 +22073,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func confirmPayment(
                 body: PaymentConfirmationRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PaymentConfirmationResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/confirm",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -22914,8 +22116,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Get user COD 
@@ -22925,31 +22125,27 @@ var xQuery: [String: Any] = [:]
                 merchantUserId: String,
                 mobileNo: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetUserCODLimitResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["merchant_user_id"] = merchantUserId
+                xQuery["mobile_no"] = mobileNo
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["merchant_user_id"] = merchantUserId
-
-
-
-
-    xQuery["mobile_no"] = mobileNo
-
-
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/user-cod",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -22974,8 +22170,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Set user COD
@@ -22983,21 +22177,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func setUserCODlimitRoutes(
                 body: SetCODForUserRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SetCODOptionResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/user-cod",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -23022,8 +22220,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: EDC aggregators and model list
@@ -23031,21 +22227,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func edcAggregatorsAndModelList(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EdcAggregatorAndModelListResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/edc-aggregator-list",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -23070,8 +22270,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: EDC device stats
@@ -23079,21 +22277,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func edcDeviceStats(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EdcDeviceStatsResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/edc-device-stats",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -23118,8 +22320,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Update EDC device
@@ -23127,21 +22327,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func updateEdcDevice(
                 body: EdcAddRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EdcDeviceAddResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/edc-device",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -23166,8 +22370,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Get an EDC device
@@ -23176,21 +22378,25 @@ var xQuery: [String: Any] = [:]
             public func getEdcDevice(
                 terminalUniqueIdentifier: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EdcDeviceDetailsResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/edcDevice/\(terminalUniqueIdentifier)",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/edc-device/\(terminalUniqueIdentifier)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -23215,8 +22421,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Create an EDC device
@@ -23225,21 +22429,25 @@ var xQuery: [String: Any] = [:]
             public func addEdcDevice(
                 terminalUniqueIdentifier: String,
                 body: EdcUpdateRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EdcDeviceUpdateResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/edcDevice/\(terminalUniqueIdentifier)",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/edc-device/\(terminalUniqueIdentifier)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -23264,8 +22472,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: List EDC devices
@@ -23278,56 +22484,45 @@ var xQuery: [String: Any] = [:]
                 storeId: Int?,
                 deviceTag: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: EdcDeviceListResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = isActive {
-    
-    xQuery["is_active"] = value
-    
-}
-
-
-if let value = storeId {
-    
-    xQuery["store_id"] = value
-    
-}
-
-
-if let value = deviceTag {
-    
-    xQuery["device_tag"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = isActive {
+                    xQuery["is_active"] = value
+                }
+                
+                if let value = storeId {
+                    xQuery["store_id"] = value
+                }
+                
+                if let value = deviceTag {
+                    xQuery["device_tag"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/edc-device-list",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -23352,8 +22547,6 @@ if let value = deviceTag {
             
             
             
-            
-            
             /**
             *
             * Summary: List POS payment modes
@@ -23373,99 +22566,64 @@ if let value = deviceTag {
                 advancePayment: Bool?,
                 shipmentId: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["amount"] = amount
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["amount"] = amount
-
-
-
-if let value = cartId {
-    
-    xQuery["cart_id"] = value
-    
-}
-
-
-
-    xQuery["pincode"] = pincode
-
-
-
-if let value = checkoutMode {
-    
-    xQuery["checkout_mode"] = value
-    
-}
-
-
-if let value = refresh {
-    
-    xQuery["refresh"] = value
-    
-}
-
-
-if let value = orderId {
-    
-    xQuery["order_id"] = value
-    
-}
-
-
-if let value = cardReference {
-    
-    xQuery["card_reference"] = value
-    
-}
-
-
-
-    xQuery["order_type"] = orderType
-
-
-
-if let value = userDetails {
-    
-    xQuery["user_details"] = value
-    
-}
-
-
-if let value = displaySplit {
-    
-    xQuery["display_split"] = value
-    
-}
-
-
-if let value = advancePayment {
-    
-    xQuery["advance_payment"] = value
-    
-}
-
-
-if let value = shipmentId {
-    
-    xQuery["shipment_id"] = value
-    
-}
-
-
- 
-
-
+                if let value = cartId {
+                    xQuery["cart_id"] = value
+                }
+                xQuery["pincode"] = pincode
+                
+                if let value = checkoutMode {
+                    xQuery["checkout_mode"] = value
+                }
+                
+                if let value = refresh {
+                    xQuery["refresh"] = value
+                }
+                
+                if let value = orderId {
+                    xQuery["order_id"] = value
+                }
+                
+                if let value = cardReference {
+                    xQuery["card_reference"] = value
+                }
+                xQuery["order_type"] = orderType
+                
+                if let value = userDetails {
+                    xQuery["user_details"] = value
+                }
+                
+                if let value = displaySplit {
+                    xQuery["display_split"] = value
+                }
+                
+                if let value = advancePayment {
+                    xQuery["advance_payment"] = value
+                }
+                
+                if let value = shipmentId {
+                    xQuery["shipment_id"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/pos",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -23490,8 +22648,6 @@ if let value = shipmentId {
             
             
             
-            
-            
             /**
             *
             * Summary: Start payment process
@@ -23499,21 +22655,25 @@ if let value = shipmentId {
             **/
             public func initialisePayment(
                 body: PaymentInitializationRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PaymentInitializationResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/request",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -23538,8 +22698,6 @@ if let value = shipmentId {
             
             
             
-            
-            
             /**
             *
             * Summary: Poll and update payment status
@@ -23547,21 +22705,25 @@ if let value = shipmentId {
             **/
             public func checkAndUpdatePaymentStatus(
                 body: PaymentStatusUpdateRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PaymentStatusUpdateResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/confirm/polling",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -23586,8 +22748,6 @@ if let value = shipmentId {
             
             
             
-            
-            
             /**
             *
             * Summary: Resend or cancel payment
@@ -23595,21 +22755,25 @@ if let value = shipmentId {
             **/
             public func resendOrCancelPayment(
                 body: ResendOrCancelPaymentRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ResendOrCancelPaymentResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/cancel",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -23634,8 +22798,6 @@ if let value = shipmentId {
             
             
             
-            
-            
             /**
             *
             * Summary: Retrieve status of multiple payments in bulk
@@ -23643,21 +22805,25 @@ if let value = shipmentId {
             **/
             public func paymentStatusBulk(
                 body: PaymentStatusBulkHandlerRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PaymentStatusBulkHandlerResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/payment-status-bulk/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -23682,8 +22848,6 @@ if let value = shipmentId {
             
             
             
-            
-            
             /**
             *
             * Summary: Get OAuth URL
@@ -23694,35 +22858,33 @@ if let value = shipmentId {
                 successRedirectUrl: String?,
                 failureRedirectUrl: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetOauthUrlResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = successRedirectUrl {
-    
-    xQuery["success_redirect_url"] = value
-    
-}
-
-
-if let value = failureRedirectUrl {
-    
-    xQuery["failure_redirect_url"] = value
-    
-}
-
-
- 
-
-
+                if let value = successRedirectUrl {
+                    xQuery["success_redirect_url"] = value
+                }
+                
+                if let value = failureRedirectUrl {
+                    xQuery["failure_redirect_url"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/onboard/\(aggregator)/",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -23747,8 +22909,6 @@ if let value = failureRedirectUrl {
             
             
             
-            
-            
             /**
             *
             * Summary: Revoke OAuth token
@@ -23757,21 +22917,25 @@ if let value = failureRedirectUrl {
             public func revokeOauthToken(
                 aggregator: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: RevokeOAuthToken?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/revoke/\(aggregator)/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -23796,8 +22960,6 @@ if let value = failureRedirectUrl {
             
             
             
-            
-            
             /**
             *
             * Summary: Repayment details for BNPL
@@ -23805,21 +22967,25 @@ if let value = failureRedirectUrl {
             **/
             public func repaymentDetails(
                 body: RepaymentDetailsSerialiserPayAll,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: RepaymentResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/repayment-details",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -23844,8 +23010,6 @@ if let value = failureRedirectUrl {
             
             
             
-            
-            
             /**
             *
             * Summary: Merchant onboarding for BNPL
@@ -23853,21 +23017,25 @@ if let value = failureRedirectUrl {
             **/
             public func merchantOnBoarding(
                 body: MerchantOnBoardingRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: MerchantOnBoardingResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/merchant-onboarding",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -23892,8 +23060,6 @@ if let value = failureRedirectUrl {
             
             
             
-            
-            
             /**
             *
             * Summary: Validate customer for paylater
@@ -23901,21 +23067,25 @@ if let value = failureRedirectUrl {
             **/
             public func verifyCustomerForPayment(
                 body: ValidateCustomerRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ValidateCustomerResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/customer/validation",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -23940,8 +23110,6 @@ if let value = failureRedirectUrl {
             
             
             
-            
-            
             /**
             *
             * Summary: Get payment link
@@ -23950,28 +23118,29 @@ if let value = failureRedirectUrl {
             public func getPaymentLink(
                 paymentLinkId: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetPaymentLinkResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = paymentLinkId {
-    
-    xQuery["payment_link_id"] = value
-    
-}
-
-
- 
-
-
+                if let value = paymentLinkId {
+                    xQuery["payment_link_id"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/create-payment-link/",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -23996,8 +23165,6 @@ if let value = paymentLinkId {
             
             
             
-            
-            
             /**
             *
             * Summary: Create payment link
@@ -24005,21 +23172,25 @@ if let value = paymentLinkId {
             **/
             public func createPaymentLink(
                 body: CreatePaymentLinkRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CreatePaymentLinkResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/create-payment-link/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -24044,8 +23215,6 @@ if let value = paymentLinkId {
             
             
             
-            
-            
             /**
             *
             * Summary: Poll status of payment link
@@ -24054,28 +23223,29 @@ if let value = paymentLinkId {
             public func pollingPaymentLink(
                 paymentLinkId: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PollingPaymentLinkResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = paymentLinkId {
-    
-    xQuery["payment_link_id"] = value
-    
-}
-
-
- 
-
-
+                if let value = paymentLinkId {
+                    xQuery["payment_link_id"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/polling-payment-link/",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -24100,8 +23270,6 @@ if let value = paymentLinkId {
             
             
             
-            
-            
             /**
             *
             * Summary: Resend payment link
@@ -24109,21 +23277,25 @@ if let value = paymentLinkId {
             **/
             public func resendPaymentLink(
                 body: CancelOrResendPaymentLinkRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ResendPaymentLinkResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/resend-payment-link/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -24148,8 +23320,6 @@ if let value = paymentLinkId {
             
             
             
-            
-            
             /**
             *
             * Summary: Cancel payment link
@@ -24157,21 +23327,25 @@ if let value = paymentLinkId {
             **/
             public func cancelPaymentLink(
                 body: CancelOrResendPaymentLinkRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CancelPaymentLinkResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/cancel-payment-link/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -24196,8 +23370,6 @@ if let value = paymentLinkId {
             
             
             
-            
-            
             /**
             *
             * Summary: Get offline/advance payment mode
@@ -24206,21 +23378,25 @@ if let value = paymentLinkId {
             public func getPaymentModeControlRoutes(
                 mode: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PlatformPaymentModeResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/modes/\(mode)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -24242,8 +23418,6 @@ if let value = paymentLinkId {
                         }
                 });
             }
-            
-            
             
             
             
@@ -24255,21 +23429,25 @@ if let value = paymentLinkId {
             public func setMerchantModeControlRoutes(
                 mode: String,
                 body: MerchantPaymentModeRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PlatformPaymentModeResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/modes/\(mode)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -24294,8 +23472,6 @@ if let value = paymentLinkId {
             
             
             
-            
-            
             /**
             *
             * Summary: Get advance payment custom configurations 
@@ -24304,21 +23480,25 @@ if let value = paymentLinkId {
             public func getPaymentModeCustomConfig(
                 mode: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PaymentCustomConfigResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/modes/\(mode)/custom-config",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -24340,8 +23520,6 @@ if let value = paymentLinkId {
                         }
                 });
             }
-            
-            
             
             
             
@@ -24353,21 +23531,25 @@ if let value = paymentLinkId {
             public func setPaymentModeCustomConfig(
                 mode: String,
                 body: PaymentCustomConfigRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PaymentCustomConfigResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/modes/\(mode)/custom-config",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -24392,8 +23574,6 @@ if let value = paymentLinkId {
             
             
             
-            
-            
             /**
             *
             * Summary: Get payment mode codes
@@ -24401,21 +23581,25 @@ if let value = paymentLinkId {
             **/
             public func getPaymentCodeOption(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetPaymentCodeResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/codes",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -24440,8 +23624,6 @@ if let value = paymentLinkId {
             
             
             
-            
-            
             /**
             *
             * Summary: Get payment session
@@ -24451,28 +23633,29 @@ if let value = paymentLinkId {
                 gid: String,
                 lineItem: Bool?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PaymentSessionSerializer?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = lineItem {
-    
-    xQuery["line-item"] = value
-    
-}
-
-
- 
-
-
+                if let value = lineItem {
+                    xQuery["line-item"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/session/\(gid)",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -24497,8 +23680,6 @@ if let value = lineItem {
             
             
             
-            
-            
             /**
             *
             * Summary: Update payment session 
@@ -24507,21 +23688,25 @@ if let value = lineItem {
             public func updatePaymentSession(
                 gid: String,
                 body: PaymentSessionRequestSerializer,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PaymentSessionResponseSerializer?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/session/\(gid)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -24546,8 +23731,6 @@ if let value = lineItem {
             
             
             
-            
-            
             /**
             *
             * Summary: Update refund session
@@ -24557,21 +23740,25 @@ if let value = lineItem {
                 gid: String,
                 requestId: String,
                 body: RefundSessionRequestSerializer,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: RefundSessionResponseSerializer?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/\(gid)/refund/session/\(requestId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -24596,8 +23783,6 @@ if let value = lineItem {
             
             
             
-            
-            
             /**
             *
             * Summary: Get merchant payment option
@@ -24605,21 +23790,25 @@ if let value = lineItem {
             **/
             public func getMerchantPaymentOption(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PlatformPaymentModeResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/configuration",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -24641,8 +23830,6 @@ if let value = lineItem {
                         }
                 });
             }
-            
-            
             
             
             
@@ -24653,21 +23840,25 @@ if let value = lineItem {
             **/
             public func patchMerchantPaymentOption(
                 body: MerchnatPaymentModeRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PlatformPaymentModeResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/configuration",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -24689,8 +23880,6 @@ if let value = lineItem {
                         }
                 });
             }
-            
-            
             
             
             
@@ -24704,31 +23893,27 @@ if let value = lineItem {
                 businessUnit: String,
                 device: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PlatformPaymentModeResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["business_unit"] = businessUnit
+                xQuery["device"] = device
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["business_unit"] = businessUnit
-
-
-
-
-    xQuery["device"] = device
-
-
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/aggregators/\(aggregatorId)",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -24750,8 +23935,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -24763,21 +23946,25 @@ var xQuery: [String: Any] = [:]
             public func patchMerchantAggregatorPaymentModeDetails(
                 aggregatorId: Int,
                 body: PlatformPaymentModeResponse,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PlatformPaymentModeResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/aggregators/\(aggregatorId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -24799,8 +23986,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -24811,21 +23996,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func getPGConfigAggregators(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PlatformPaymentModeResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/configuration/aggregator",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -24847,8 +24036,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -24860,21 +24047,25 @@ var xQuery: [String: Any] = [:]
             public func getMerchantRefundPriority(
                 configType: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: RefundPriorityResponseSerializer?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/refundPriority/config/\(configType)",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/refund_priority/config/\(configType)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -24896,8 +24087,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -24909,21 +24098,25 @@ var xQuery: [String: Any] = [:]
             public func createMerchantRefundPriority(
                 configType: String,
                 body: RefundPriorityRequestSerializer,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: RefundPriorityResponseSerializer?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/refundPriority/config/\(configType)",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/refund_priority/config/\(configType)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -24945,8 +24138,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -24958,21 +24149,25 @@ var xQuery: [String: Any] = [:]
             public func updateMerchantRefundPriority(
                 configType: String,
                 body: RefundPriorityRequestSerializer,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: RefundPriorityResponseSerializer?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/refundPriority/config/\(configType)",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/refund_priority/config/\(configType)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -24997,8 +24192,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Create Order
@@ -25006,21 +24199,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func createPaymentOrder(
                 body: PaymentOrderRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PaymentOrderResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment-orders/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -25045,8 +24242,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Get app version for  Aggregator
@@ -25059,45 +24254,35 @@ var xQuery: [String: Any] = [:]
                 paymentModeId: Int?,
                 subPaymentMode: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AggregatorVersionResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["business_unit"] = businessUnit
+                xQuery["device"] = device
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["business_unit"] = businessUnit
-
-
-
-
-    xQuery["device"] = device
-
-
-
-if let value = paymentModeId {
-    
-    xQuery["payment_mode_id"] = value
-    
-}
-
-
-if let value = subPaymentMode {
-    
-    xQuery["sub_payment_mode"] = value
-    
-}
-
-
- 
-
-
+                if let value = paymentModeId {
+                    xQuery["payment_mode_id"] = value
+                }
+                
+                if let value = subPaymentMode {
+                    xQuery["sub_payment_mode"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/aggregators/\(aggregatorId)/version",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -25122,8 +24307,6 @@ if let value = subPaymentMode {
             
             
             
-            
-            
             /**
             *
             * Summary: Update app version for Aggrgator
@@ -25132,21 +24315,25 @@ if let value = subPaymentMode {
             public func patchMerchantPaymentOptionVersion(
                 aggregatorId: Int,
                 body: AggregatorControlRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PlatformPaymentModeResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/aggregators/\(aggregatorId)/version",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -25168,8 +24355,6 @@ if let value = subPaymentMode {
                         }
                 });
             }
-            
-            
         }
         
         
@@ -25197,31 +24382,27 @@ if let value = subPaymentMode {
                 pageId: String,
                 pageSize: Int,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GiveawayResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["page_id"] = pageId
+                xQuery["page_size"] = pageSize
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["page_id"] = pageId
-
-
-
-
-    xQuery["page_size"] = pageSize
-
-
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/rewards/v1.0/company/\(companyId)/application/\(applicationId)/giveaways",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -25246,8 +24427,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Create a giveaway
@@ -25255,21 +24434,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func saveGiveAway(
                 body: Giveaway,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Giveaway?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/rewards/v1.0/company/\(companyId)/application/\(applicationId)/giveaways",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -25291,8 +24474,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -25304,21 +24485,25 @@ var xQuery: [String: Any] = [:]
             public func getGiveawayById(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Giveaway?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/rewards/v1.0/company/\(companyId)/application/\(applicationId)/giveaways/\(id)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -25340,8 +24525,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -25353,21 +24536,25 @@ var xQuery: [String: Any] = [:]
             public func updateGiveAway(
                 id: String,
                 body: Giveaway,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Giveaway?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/rewards/v1.0/company/\(companyId)/application/\(applicationId)/giveaways/\(id)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -25392,8 +24579,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: List offers
@@ -25401,21 +24586,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func showOffers(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [Offer]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/rewards/v1.0/company/\(companyId)/application/\(applicationId)/offers/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -25440,8 +24629,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Get offer by name
@@ -25450,21 +24637,25 @@ var xQuery: [String: Any] = [:]
             public func getOfferByName(
                 name: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Offer?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/rewards/v1.0/company/\(companyId)/application/\(applicationId)/offers/\(name)/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -25486,8 +24677,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -25499,21 +24688,25 @@ var xQuery: [String: Any] = [:]
             public func updateOfferByName(
                 name: String,
                 body: Offer,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Offer?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/rewards/v1.0/company/\(companyId)/application/\(applicationId)/offers/\(name)/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -25538,8 +24731,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Update user status
@@ -25548,21 +24739,25 @@ var xQuery: [String: Any] = [:]
             public func updateUserStatus(
                 userId: String,
                 body: AppUser,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AppUser?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
                     url: "/service/platform/rewards/v1.0/company/\(companyId)/application/\(applicationId)/users/\(userId)/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -25587,8 +24782,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Get a user
@@ -25597,21 +24790,25 @@ var xQuery: [String: Any] = [:]
             public func getUserDetails(
                 userId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UserRes?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/rewards/v1.0/company/\(companyId)/application/\(applicationId)/users/\(userId)/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -25636,8 +24833,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Get reward user points history
@@ -25648,35 +24843,33 @@ var xQuery: [String: Any] = [:]
                 pageId: String?,
                 pageSize: Int?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: HistoryRes?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageId {
-    
-    xQuery["page_id"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageId {
+                    xQuery["page_id"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/rewards/v1.0/company/\(companyId)/application/\(applicationId)/users/\(userId)/points/history/",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -25701,8 +24894,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Get rewards configuration
@@ -25710,21 +24901,25 @@ if let value = pageSize {
             **/
             public func getRewardsConfiguration(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ConfigurationRes?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/rewards/v1.0/company/\(companyId)/application/\(applicationId)/configuration/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -25749,8 +24944,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Set rewards configuration
@@ -25758,21 +24951,25 @@ if let value = pageSize {
             **/
             public func setRewardsConfiguration(
                 body: ConfigurationRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SetConfigurationRes?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/rewards/v1.0/company/\(companyId)/application/\(applicationId)/configuration/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -25794,8 +24991,6 @@ if let value = pageSize {
                         }
                 });
             }
-            
-            
         }
         
         
@@ -25821,21 +25016,25 @@ if let value = pageSize {
             **/
             public func createShortLink(
                 body: ShortLinkReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/share/v1.0/company/\(companyId)/application/\(applicationId)/links/short-link/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -25860,8 +25059,6 @@ if let value = pageSize {
             
             
             
-            
-            
             /**
             *
             * Summary: Get short links
@@ -25876,70 +25073,53 @@ if let value = pageSize {
                 originalUrl: String?,
                 title: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ShortLinkList?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = createdBy {
-    
-    xQuery["created_by"] = value
-    
-}
-
-
-if let value = active {
-    
-    xQuery["active"] = value
-    
-}
-
-
-if let value = shortUrl {
-    
-    xQuery["short_url"] = value
-    
-}
-
-
-if let value = originalUrl {
-    
-    xQuery["original_url"] = value
-    
-}
-
-
-if let value = title {
-    
-    xQuery["title"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = createdBy {
+                    xQuery["created_by"] = value
+                }
+                
+                if let value = active {
+                    xQuery["active"] = value
+                }
+                
+                if let value = shortUrl {
+                    xQuery["short_url"] = value
+                }
+                
+                if let value = originalUrl {
+                    xQuery["original_url"] = value
+                }
+                
+                if let value = title {
+                    xQuery["title"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/share/v1.0/company/\(companyId)/application/\(applicationId)/links/short-link/",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -25964,8 +25144,6 @@ if let value = title {
             
             
             
-            
-            
             /**
             *
             * Summary: Get short link by hash
@@ -25974,21 +25152,25 @@ if let value = title {
             public func getShortLinkByHash(
                 hash: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/share/v1.0/company/\(companyId)/application/\(applicationId)/links/shortLink/\(hash)/",
+                    url: "/service/platform/share/v1.0/company/\(companyId)/application/\(applicationId)/links/short-link/\(hash)/",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -26010,8 +25192,6 @@ if let value = title {
                         }
                 });
             }
-            
-            
             
             
             
@@ -26023,21 +25203,25 @@ if let value = title {
             public func updateShortLinkById(
                 id: String,
                 body: ShortLinkReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ShortLinkRes?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
-                    url: "/service/platform/share/v1.0/company/\(companyId)/application/\(applicationId)/links/shortLink/\(id)/",
+                    url: "/service/platform/share/v1.0/company/\(companyId)/application/\(applicationId)/links/short-link/\(id)/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -26062,8 +25246,6 @@ if let value = title {
             
             
             
-            
-            
             /**
             *
             * Summary: Get short link click statistics
@@ -26072,26 +25254,26 @@ if let value = title {
             public func getShortLinkClickStats(
                 surlId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ClickStatsResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["surl_id"] = surlId
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["surl_id"] = surlId
-
-
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/share/v1.0/company/\(companyId)/application/\(applicationId)/links/short-link/click-stats",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -26113,8 +25295,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
         }
         
         
@@ -26141,21 +25321,25 @@ var xQuery: [String: Any] = [:]
             public func getAllPages(
                 themeId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AllAvailablePageSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/page",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -26180,8 +25364,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Create theme page
@@ -26190,21 +25372,25 @@ var xQuery: [String: Any] = [:]
             public func createPage(
                 themeId: String,
                 body: AvailablePageSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AvailablePageSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/page",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -26229,8 +25415,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Update theme pages
@@ -26239,21 +25423,25 @@ var xQuery: [String: Any] = [:]
             public func updateMultiplePages(
                 themeId: String,
                 body: AllAvailablePageSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AllAvailablePageSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/page",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -26275,8 +25463,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -26289,21 +25475,25 @@ var xQuery: [String: Any] = [:]
                 themeId: String,
                 pageValue: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AvailablePageSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/\(pageValue)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -26325,8 +25515,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -26339,21 +25527,25 @@ var xQuery: [String: Any] = [:]
                 themeId: String,
                 pageValue: String,
                 body: AvailablePageSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AvailablePageSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/\(pageValue)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -26375,8 +25567,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -26389,21 +25579,25 @@ var xQuery: [String: Any] = [:]
                 themeId: String,
                 pageValue: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AvailablePageSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/\(pageValue)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -26428,8 +25622,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: List theme fonts 
@@ -26437,21 +25629,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func getFonts(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: FontsSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/fonts",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -26480,8 +25676,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: List sales channel themes
@@ -26489,21 +25683,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func getApplicationThemes(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [ThemesSchema]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/theme/v2.0/company/\(companyId)/application/\(applicationId)/themes",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -26528,8 +25726,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Get sales channel themes count
@@ -26537,21 +25733,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func getApplicationThemesCount(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/theme/v2.0/company/\(companyId)/application/\(applicationId)/application_themes_count",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -26573,8 +25773,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -26586,21 +25784,25 @@ var xQuery: [String: Any] = [:]
             public func getThemeById(
                 themeId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/theme/v2.0/company/\(companyId)/application/\(applicationId)/\(themeId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -26622,8 +25824,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -26635,21 +25835,25 @@ var xQuery: [String: Any] = [:]
             public func updateTheme(
                 themeId: String,
                 body: UpdateThemeRequestBody,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/theme/v2.0/company/\(companyId)/application/\(applicationId)/\(themeId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -26671,8 +25875,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -26684,21 +25886,25 @@ var xQuery: [String: Any] = [:]
             public func deleteTheme(
                 themeId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/theme/v2.0/company/\(companyId)/application/\(applicationId)/\(themeId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -26720,8 +25926,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -26732,21 +25936,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func addThemeToApplication(
                 body: ThemeReq,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/theme/v2.0/company/\(companyId)/application/\(applicationId)/",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -26768,8 +25976,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -26781,21 +25987,25 @@ var xQuery: [String: Any] = [:]
             public func updateThemeName(
                 themeId: String,
                 body: UpdateThemeNameRequestBody,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
                     url: "/service/platform/theme/v2.0/company/\(companyId)/application/\(applicationId)/\(themeId)/name",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -26817,8 +26027,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -26830,21 +26038,25 @@ var xQuery: [String: Any] = [:]
             public func applyTheme(
                 themeId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
                     url: "/service/platform/theme/v2.0/company/\(companyId)/application/\(applicationId)/\(themeId)/apply",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -26866,8 +26078,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -26879,21 +26089,25 @@ var xQuery: [String: Any] = [:]
             public func duplicateTheme(
                 themeId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/theme/v2.0/company/\(companyId)/application/\(applicationId)/\(themeId)/duplicate",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -26915,8 +26129,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -26927,21 +26139,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func getAppliedTheme(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/theme/v2.0/company/\(companyId)/application/\(applicationId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -26963,8 +26179,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -26976,21 +26190,25 @@ var xQuery: [String: Any] = [:]
             public func getThemeForPreview(
                 themeId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/theme/v2.0/company/\(companyId)/application/\(applicationId)/\(themeId)/preview",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -27015,8 +26233,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Get theme last modified date
@@ -27025,21 +26241,25 @@ var xQuery: [String: Any] = [:]
             public func getThemeLastModified(
                 themeId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "HEAD",
                     url: "/service/platform/theme/v2.0/company/\(companyId)/application/\(applicationId)/\(themeId)/polling",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -27064,8 +26284,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Check theme is upgradable 
@@ -27074,21 +26292,25 @@ var xQuery: [String: Any] = [:]
             public func isUpgradable(
                 themeId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ThemeUpgradableResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/theme/v2.0/company/\(companyId)/application/\(applicationId)/\(themeId)/upgradable",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -27113,8 +26335,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Upgrade theme
@@ -27123,21 +26343,25 @@ var xQuery: [String: Any] = [:]
             public func upgradeTheme(
                 themeId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/theme/v2.0/company/\(companyId)/application/\(applicationId)/\(themeId)/upgrade",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -27162,8 +26386,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Get extension sections
@@ -27173,35 +26395,33 @@ var xQuery: [String: Any] = [:]
                 type: String?,
                 companyMode: String?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [GetExtensionSectionRes]?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = type {
-    
-    xQuery["type"] = value
-    
-}
-
-
-if let value = companyMode {
-    
-    xQuery["company_mode"] = value
-    
-}
-
-
- 
-
-
+                if let value = type {
+                    xQuery["type"] = value
+                }
+                
+                if let value = companyMode {
+                    xQuery["company_mode"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/extension-section",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -27223,8 +26443,6 @@ if let value = companyMode {
                         }
                 });
             }
-            
-            
         }
         
         
@@ -27253,42 +26471,37 @@ if let value = companyMode {
                 pageSize: Int?,
                 pageNo: Int?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomerListResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
- 
-
-
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/list",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -27313,8 +26526,6 @@ if let value = pageNo {
             
             
             
-            
-            
             /**
             *
             * Summary: Search an Existing Users
@@ -27324,35 +26535,33 @@ if let value = pageNo {
                 q: String?,
                 query: [String]?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UserSearchResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
-if let value = query {
-    
-    xQuery["query"] = value
-    
-}
-
-
- 
-
-
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                if let value = query {
+                    xQuery["query"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/search",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -27377,8 +26586,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Create User
@@ -27386,21 +26593,25 @@ if let value = query {
             **/
             public func createUser(
                 body: CreateUserRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CreateUserResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -27425,8 +26636,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Block/Unblock Users
@@ -27434,21 +26643,25 @@ if let value = query {
             **/
             public func blockOrUnblockUsers(
                 body: BlockUserRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: BlockUserSuccess?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/activation",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -27473,8 +26686,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Restore Deleted User
@@ -27482,21 +26693,25 @@ if let value = query {
             **/
             public func unDeleteUser(
                 body: UnDeleteUserRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UnDeleteUserSuccess?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/undelete",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -27521,8 +26736,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Update User Details
@@ -27531,21 +26744,25 @@ if let value = query {
             public func updateUser(
                 userId: String,
                 body: UpdateUserRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CreateUserResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/\(userId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -27570,8 +26787,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Create User Session
@@ -27579,21 +26794,25 @@ if let value = query {
             **/
             public func createUserSession(
                 body: CreateUserSessionRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CreateUserSessionResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/session",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -27618,8 +26837,6 @@ if let value = query {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete User Session
@@ -27630,36 +26847,28 @@ if let value = query {
                 sessionId: String,
                 reason: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SessionDeleteResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["id"] = id
+                xQuery["session_id"] = sessionId
+                xQuery["reason"] = reason
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["id"] = id
-
-
-
-
-    xQuery["session_id"] = sessionId
-
-
-
-
-    xQuery["reason"] = reason
-
-
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/session",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -27684,8 +26893,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Get User Active Sessions
@@ -27694,26 +26901,26 @@ var xQuery: [String: Any] = [:]
             public func getActiveSessions(
                 id: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SessionListResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["id"] = id
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["id"] = id
-
-
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/sessions",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -27738,8 +26945,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Delete User Active Sessions
@@ -27749,31 +26954,27 @@ var xQuery: [String: Any] = [:]
                 id: String,
                 reason: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SessionsDeleteResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["id"] = id
+                xQuery["reason"] = reason
                 
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["id"] = id
-
-
-
-
-    xQuery["reason"] = reason
-
-
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/sessions",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -27798,8 +26999,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Archive User
@@ -27807,21 +27006,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func archiveUser(
                 body: ArchiveUserRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ArchiveUserSuccess?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/customers/archive",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -27846,8 +27049,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Get Platform Config
@@ -27855,21 +27056,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func getPlatformConfig(
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PlatformSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/platform/config",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -27891,8 +27096,6 @@ var xQuery: [String: Any] = [:]
                         }
                 });
             }
-            
-            
             
             
             
@@ -27903,21 +27106,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func updatePlatformConfig(
                 body: PlatformSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PlatformSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/platform/config",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -27942,8 +27149,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Create User Group
@@ -27951,21 +27156,25 @@ var xQuery: [String: Any] = [:]
             **/
             public func createUserGroup(
                 body: CreateUserGroup,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UserGroupResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/user_group",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -27990,8 +27199,6 @@ var xQuery: [String: Any] = [:]
             
             
             
-            
-            
             /**
             *
             * Summary: Get User Groups
@@ -28005,63 +27212,49 @@ var xQuery: [String: Any] = [:]
                 status: String?,
                 groupUid: Int?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UserGroupListResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = name {
-    
-    xQuery["name"] = value
-    
-}
-
-
-if let value = type {
-    
-    xQuery["type"] = value
-    
-}
-
-
-if let value = status {
-    
-    xQuery["status"] = value
-    
-}
-
-
-if let value = groupUid {
-    
-    xQuery["group_uid"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = name {
+                    xQuery["name"] = value
+                }
+                
+                if let value = type {
+                    xQuery["type"] = value
+                }
+                
+                if let value = status {
+                    xQuery["status"] = value
+                }
+                
+                if let value = groupUid {
+                    xQuery["group_uid"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/user_group",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -28086,8 +27279,6 @@ if let value = groupUid {
             
             
             
-            
-            
             /**
             *
             * Summary: Update User Group
@@ -28096,21 +27287,25 @@ if let value = groupUid {
             public func updateUserGroup(
                 groupId: String,
                 body: UpdateUserGroupSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UserGroupResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/userGroup/\(groupId)",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/user_group/\(groupId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -28132,8 +27327,6 @@ if let value = groupUid {
                         }
                 });
             }
-            
-            
             
             
             
@@ -28145,21 +27338,25 @@ if let value = groupUid {
             public func getUserGroupById(
                 groupId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UserGroupResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/userGroup/\(groupId)",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/user_group/\(groupId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -28181,8 +27378,6 @@ if let value = groupUid {
                         }
                 });
             }
-            
-            
             
             
             
@@ -28194,21 +27389,25 @@ if let value = groupUid {
             public func updateUserGroupPartially(
                 groupId: String,
                 body: PartialUserGroupUpdateSchema,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UserGroupResponseSchema?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PATCH",
-                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/userGroup/\(groupId)",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/user_group/\(groupId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -28233,8 +27432,6 @@ if let value = groupUid {
             
             
             
-            
-            
             /**
             *
             * Summary: Create a User Attribute Definition
@@ -28242,21 +27439,25 @@ if let value = groupUid {
             **/
             public func createUserAttributeDefinition(
                 body: CreateUserAttributeDefinition,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UserAttributeDefinitionResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/user_attribute/definition",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -28281,8 +27482,6 @@ if let value = groupUid {
             
             
             
-            
-            
             /**
             *
             * Summary: Get User Attribute Definitions
@@ -28301,98 +27500,69 @@ if let value = groupUid {
                 pageSize: Int?,
                 pageNo: Int?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = excludingIds {
-    
-    xQuery["excluding_ids"] = value
-    
-}
-
-
-if let value = slug {
-    
-    xQuery["slug"] = value
-    
-}
-
-
-if let value = type {
-    
-    xQuery["type"] = value
-    
-}
-
-
-if let value = customerEditable {
-    
-    xQuery["customer_editable"] = value
-    
-}
-
-
-if let value = encrypted {
-    
-    xQuery["encrypted"] = value
-    
-}
-
-
-if let value = pinned {
-    
-    xQuery["pinned"] = value
-    
-}
-
-
-if let value = pinOrder {
-    
-    xQuery["pin_order"] = value
-    
-}
-
-
-if let value = isLocked {
-    
-    xQuery["is_locked"] = value
-    
-}
-
-
-if let value = name {
-    
-    xQuery["name"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
- 
-
-
+                if let value = excludingIds {
+                    xQuery["excluding_ids"] = value
+                }
+                
+                if let value = slug {
+                    xQuery["slug"] = value
+                }
+                
+                if let value = type {
+                    xQuery["type"] = value
+                }
+                
+                if let value = customerEditable {
+                    xQuery["customer_editable"] = value
+                }
+                
+                if let value = encrypted {
+                    xQuery["encrypted"] = value
+                }
+                
+                if let value = pinned {
+                    xQuery["pinned"] = value
+                }
+                
+                if let value = pinOrder {
+                    xQuery["pin_order"] = value
+                }
+                
+                if let value = isLocked {
+                    xQuery["is_locked"] = value
+                }
+                
+                if let value = name {
+                    xQuery["name"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/user_attribute/definition",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -28417,8 +27587,6 @@ if let value = pageNo {
             
             
             
-            
-            
             /**
             *
             * Summary: Update User Attribute Definition
@@ -28427,21 +27595,25 @@ if let value = pageNo {
             public func updateUserAttributeDefinition(
                 attributeDefId: String,
                 body: CreateUserAttributeDefinition,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UserAttributeDefinition?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/userAttribute/definition/\(attributeDefId)",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/user_attribute/definition/\(attributeDefId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -28466,8 +27638,6 @@ if let value = pageNo {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete User Attribute Definition
@@ -28476,21 +27646,25 @@ if let value = pageNo {
             public func deleteUserAttributeDefinitionById(
                 attributeDefId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
-                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/userAttribute/definition/\(attributeDefId)",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/user_attribute/definition/\(attributeDefId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -28515,8 +27689,6 @@ if let value = pageNo {
             
             
             
-            
-            
             /**
             *
             * Summary: Get User Attribute Definition
@@ -28525,21 +27697,25 @@ if let value = pageNo {
             public func getUserAttributeDefinitionById(
                 attributeDefId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UserAttributeDefinition?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/userAttribute/definition/\(attributeDefId)",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/user_attribute/definition/\(attributeDefId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -28561,8 +27737,6 @@ if let value = pageNo {
                         }
                 });
             }
-            
-            
             
             
             
@@ -28575,21 +27749,25 @@ if let value = pageNo {
                 attributeDefId: String,
                 userId: String,
                 body: CreateUserAttributeRequest,
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UserAttributeResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/userAttribute/definition/\(attributeDefId)/user/\(userId)",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/user_attribute/definition/\(attributeDefId)/user/\(userId)",
                     query: nil,
                     body: body.dictionary,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -28611,8 +27789,6 @@ if let value = pageNo {
                         }
                 });
             }
-            
-            
             
             
             
@@ -28625,21 +27801,25 @@ if let value = pageNo {
                 attributeDefId: String,
                 userId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UserAttributeResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/userAttribute/definition/\(attributeDefId)/user/\(userId)",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/user_attribute/definition/\(attributeDefId)/user/\(userId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -28664,8 +27844,6 @@ if let value = pageNo {
             
             
             
-            
-            
             /**
             *
             * Summary: Delete User Attribute
@@ -28675,21 +27853,25 @@ if let value = pageNo {
                 attributeDefId: String,
                 userId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
-                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/userAttribute/definition/\(attributeDefId)/user/\(userId)",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/user_attribute/definition/\(attributeDefId)/user/\(userId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -28711,8 +27893,6 @@ if let value = pageNo {
                         }
                 });
             }
-            
-            
             
             
             
@@ -28726,35 +27906,33 @@ if let value = pageNo {
                 pageSize: Int?,
                 pageNo: Int?,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
+                                
+                var xQuery: [String: Any] = [:] 
                 
-var xQuery: [String: Any] = [:] 
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
- 
-
-
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/userAttribute/user/\(userId)",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/user_attribute/user/\(userId)",
                     query: xQuery,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -28779,8 +27957,6 @@ if let value = pageNo {
             
             
             
-            
-            
             /**
             *
             * Summary: Get User Attribute
@@ -28789,21 +27965,25 @@ if let value = pageNo {
             public func getUserAttributeById(
                 attributeId: String,
                 
+                headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: UserAttributeResponse?, _ error: FDKError?) -> Void
             ) {
+                                
+                 
                 
- 
-
- 
-
-
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/userAttribute/attribute/\(attributeId)",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/user_attribute/attribute/\(attributeId)",
                     query: nil,
                     body: nil,
-                    headers: [],
+                    headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
                         if let _ = error, let data = responseData {
@@ -28825,8 +28005,6 @@ if let value = pageNo {
                         }
                 });
             }
-            
-            
         }
         
         

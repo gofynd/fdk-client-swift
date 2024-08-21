@@ -29,28 +29,29 @@ extension PlatformClient {
         public func getCompanyLevelThemes(
             searchText: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: [CompanyThemeSchema]?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = searchText {
-    
-    xQuery["search_text"] = value
-    
-}
-
-
- 
-
-
+            if let value = searchText {
+                xQuery["search_text"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/theme/v2.0/company/\(companyId)/themes",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -75,8 +76,6 @@ if let value = searchText {
         
         
         
-        
-        
         /**
         *
         * Summary: List private company themes
@@ -85,28 +84,29 @@ if let value = searchText {
         public func getCompanyLevelPrivateThemes(
             searchText: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: [CompanyPrivateTheme]?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = searchText {
-    
-    xQuery["search_text"] = value
-    
-}
-
-
- 
-
-
+            if let value = searchText {
+                xQuery["search_text"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/theme/v2.0/company/\(companyId)/private_themes",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -131,8 +131,6 @@ if let value = searchText {
         
         
         
-        
-        
         /**
         *
         * Summary: Create a company theme
@@ -140,21 +138,25 @@ if let value = searchText {
         **/
         public func addMarketplaceThemeToCompany(
             body: ThemeReq,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CompanyThemeSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/theme/v2.0/company/\(companyId)",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -176,8 +178,6 @@ if let value = searchText {
                     }
             });
         }
-        
-        
         
         
         
@@ -189,21 +189,25 @@ if let value = searchText {
         public func deleteCompanyTheme(
             themeId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CompanyThemeSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "DELETE",
                 url: "/service/platform/theme/v2.0/company/\(companyId)/\(themeId)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -225,8 +229,6 @@ if let value = searchText {
                     }
             });
         }
-        
-        
         
         
         

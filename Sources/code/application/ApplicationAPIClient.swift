@@ -13,8 +13,7 @@ class ApplicationAPIClient {
         var headers = [
             (key: "Authorization", value: "Bearer " + "\(config.applicationId):\(config.applicationToken)".asBase64)
         ]
-        headers.append((key: "x-fp-sdk-version", value: "1.4.8-beta.3"))
-        headers.append(contentsOf: extraHeaders)
+        headers.append((key: "x-fp-sdk-version", value: "1.4.10-beta.1"))
         headers.append(contentsOf: config.extraHeaders)
         if let userAgent = config.userAgent {
             headers.append((key: "User-Agent", value: userAgent))
@@ -28,6 +27,10 @@ class ApplicationAPIClient {
         if let locationDetails = config.locationDetails, let dict =  locationDetails.dictionary, dict.keys.count > 0 {
             headers.append((key: "x-location-detail", value: dict.minifiedJson))
         }
+
+        // add the externally passed headers at the last to make sure it always override the preset values
+        headers.append(contentsOf: extraHeaders)
+
         AlmofireHelper.request(url,
                                 query: query,
                                 parameters: body,

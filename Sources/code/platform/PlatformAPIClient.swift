@@ -11,9 +11,9 @@ public class PlatformAPIClient {
                                 onResponse: @escaping OnResponse) {
         config.oauthClient.getAccessToken { (token) in
             if let token = token {
-                var finalHeaders = headers
+                var finalHeaders = [(key: String, value: String)]()
                 finalHeaders.append((key: "Authorization", value: "Bearer " + token.accessToken))
-                finalHeaders.append((key: "x-fp-sdk-version", value: "1.4.8-beta.3"))
+                finalHeaders.append((key: "x-fp-sdk-version", value: "1.4.10-beta.1"))
                 finalHeaders.append(contentsOf: config.extraHeaders)
                 if let userAgent = config.userAgent {
                     finalHeaders.append((key: "User-Agent", value: userAgent))
@@ -27,6 +27,10 @@ public class PlatformAPIClient {
                 if let locationDetails = config.locationDetails, let dict =  locationDetails.dictionary, dict.keys.count > 0{
                     finalHeaders.append((key: "x-location-detail", value: dict.minifiedJson))
                 }
+
+                // add the externally passed headers at the last to make sure it always override the preset values
+                finalHeaders.append(contentsOf: headers)
+
                 //CustomServerTrustManager.enableSSLPinning = config.enableSSLPinning
                 //CustomServerTrustManager.host.insert(URL(string: url)?.host ?? "")
 

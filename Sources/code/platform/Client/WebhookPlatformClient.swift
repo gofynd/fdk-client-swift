@@ -21,21 +21,25 @@ extension PlatformClient {
         **/
         public func downloadDeliveryReport(
             body: EventProcessRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: DownloadReportResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/reports/download",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -60,8 +64,6 @@ extension PlatformClient {
         
         
         
-        
-        
         /**
         *
         * Summary: Ping webhook
@@ -69,21 +71,25 @@ extension PlatformClient {
         **/
         public func pingWebhook(
             body: PingWebhook,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PingWebhookResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/subscriber/ping",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -108,8 +114,6 @@ extension PlatformClient {
         
         
         
-        
-        
         /**
         *
         * Summary: Get report filters
@@ -117,21 +121,25 @@ extension PlatformClient {
         **/
         public func getReportFilters(
             body: ReportFiltersPayload,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: [ReportFilterResponse]?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/filters",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -156,8 +164,6 @@ extension PlatformClient {
         
         
         
-        
-        
         /**
         *
         * Summary: Get historical reports
@@ -165,21 +171,25 @@ extension PlatformClient {
         **/
         public func getHistoricalReports(
             body: HistoryPayload,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: HistoryResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/reports/history",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -204,8 +214,6 @@ extension PlatformClient {
         
         
         
-        
-        
         /**
         *
         * Summary: Cancel job by name
@@ -215,21 +223,25 @@ historical delivery summery
         public func cancelJobByName(
             filename: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CancelResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/reports/cancel/file/\(filename)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -254,8 +266,6 @@ historical delivery summery
         
         
         
-        
-        
         /**
         *
         * Summary: Get delivery reports
@@ -263,21 +273,25 @@ historical delivery summery
         **/
         public func getDeliveryReports(
             body: EventProcessRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: EventProcessReports?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/reports/event_processed",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -302,8 +316,6 @@ historical delivery summery
         
         
         
-        
-        
         /**
         *
         * Summary: List event configurations
@@ -311,21 +323,25 @@ historical delivery summery
         **/
         public func fetchAllEventConfigurations(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: EventConfigResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/events",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -350,8 +366,6 @@ historical delivery summery
         
         
         
-        
-        
         /**
         *
         * Summary: Register Subscriber.
@@ -360,21 +374,25 @@ historical delivery summery
         **/
         public func registerSubscriberToEventV2(
             body: SubscriberConfigPostRequestV2,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SubscriberConfigResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/webhook/v2.0/company/\(companyId)/subscriber/",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -396,8 +414,6 @@ historical delivery summery
                     }
             });
         }
-        
-        
         
         
         
@@ -409,21 +425,25 @@ historical delivery summery
         **/
         public func updateSubscriberV2(
             body: SubscriberConfigUpdateRequestV2,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SubscriberConfigResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
                 url: "/service/platform/webhook/v2.0/company/\(companyId)/subscriber/",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -445,8 +465,6 @@ historical delivery summery
                     }
             });
         }
-        
-        
         
         
         
@@ -457,21 +475,25 @@ historical delivery summery
         **/
         public func registerSubscriberToEvent(
             body: SubscriberConfigPost,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SubscriberConfigResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/subscriber/",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -493,8 +515,6 @@ historical delivery summery
                     }
             });
         }
-        
-        
         
         
         
@@ -508,42 +528,37 @@ historical delivery summery
             pageSize: Int?,
             extensionId: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SubscriberConfigList?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = extensionId {
-    
-    xQuery["extension_id"] = value
-    
-}
-
-
- 
-
-
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = extensionId {
+                xQuery["extension_id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/subscriber/",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -568,8 +583,6 @@ if let value = extensionId {
         
         
         
-        
-        
         /**
         *
         * Summary: Update a subscriber config
@@ -577,21 +590,25 @@ if let value = extensionId {
         **/
         public func updateSubscriberConfig(
             body: SubscriberConfigUpdate,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SubscriberConfigResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/subscriber/",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -616,8 +633,6 @@ if let value = extensionId {
         
         
         
-        
-        
         /**
         *
         * Summary: Get a subscriber
@@ -626,21 +641,25 @@ if let value = extensionId {
         public func getSubscriberById(
             subscriberId: Int,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SubscriberResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/subscriber/\(subscriberId)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -665,8 +684,6 @@ if let value = extensionId {
         
         
         
-        
-        
         /**
         *
         * Summary: List subscribers by extension ID
@@ -677,35 +694,33 @@ if let value = extensionId {
             pageSize: Int?,
             extensionId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SubscriberConfigList?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/extension/\(extensionId)/subscriber/",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -727,7 +742,5 @@ if let value = pageSize {
                     }
             });
         }
-        
-        
     }
 }

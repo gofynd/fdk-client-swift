@@ -39,25 +39,29 @@ extension ApplicationClient {
         public func getTicket(
             id: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getTicket"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -82,35 +86,37 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Log ticket history
-        * Description: Adds a history entry for a specific support ticket.
+        * Description: Create a history entry for a specific support ticket.
         **/
         public func createHistory(
             id: String,
             body: TicketHistoryPayload,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: TicketHistory?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["createHistory"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -135,23 +141,25 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Creates a ticket
-        * Description: Generates a new customer support ticket for a user query.
+        * Description: Create a new customer support ticket for a user query.
         **/
         public func createTicket(
             body: AddTicketPayload,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["createTicket"] ?? ""
             
@@ -160,7 +168,7 @@ extension ApplicationClient {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -185,8 +193,6 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get custom form
@@ -195,25 +201,29 @@ extension ApplicationClient {
         public func getCustomForm(
             slug: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomForm?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getCustomForm"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -238,35 +248,37 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Submits form data
-        * Description: Sends user-entered data from a custom form for processing.
+        * Description: Create user-entered data from a custom form for processing.
         **/
         public func submitCustomForm(
             slug: String,
             body: CustomFormSubmissionPayload,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SubmitCustomFormResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["submitCustomForm"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -288,8 +300,5 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     }
             });
-        }
-        
-        
-    }
+        }}
 }

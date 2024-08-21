@@ -110,26 +110,27 @@ extension ApplicationClient {
         /**
         *
         * Summary: Login with Facebook
-        * Description: Enables users to log in to the system using their Facebook accounts.
+        * Description: Enable users to log in to the system using their facebook accounts.
         **/
         public func loginWithFacebook(
             platform: String?,
             body: OAuthRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["loginWithFacebook"] ?? ""
             
@@ -138,7 +139,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -163,31 +164,30 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Login with Google
-        * Description: Enables website users to log in to the system using their Google accounts.
+        * Description: Enable website users to log in to the system using their google accounts.
         **/
         public func loginWithGoogle(
             platform: String?,
             body: OAuthRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["loginWithGoogle"] ?? ""
             
@@ -196,7 +196,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -221,31 +221,30 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Android Login with Google
-        * Description: Enables Android users to log in to the system using their Facebook accounts.
+        * Description: Enable android users to log in to the system using their facebook accounts.
         **/
         public func loginWithGoogleAndroid(
             platform: String?,
             body: OAuthRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["loginWithGoogleAndroid"] ?? ""
             
@@ -254,7 +253,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -279,31 +278,30 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: iOS Login with Google
-        * Description: Enables iOS users to log in to the system using their Facebook accounts.
+        * Description: Enable ios users to log in to the system using their facebook accounts.
         **/
         public func loginWithGoogleIOS(
             platform: String?,
             body: OAuthRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["loginWithGoogleIOS"] ?? ""
             
@@ -312,7 +310,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -337,31 +335,30 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: iOS Login with Apple
-        * Description: Enables iOS users to log in to the system using their Apple ID.
+        * Description: Enable ios users to log in to the system using their apple id.
         **/
         public func loginWithAppleIOS(
             platform: String?,
             body: OAuthRequestAppleSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AuthSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["loginWithAppleIOS"] ?? ""
             
@@ -370,7 +367,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -395,31 +392,30 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Login with Mobile OTP
-        * Description: Allows users to log in using a one-time password sent to their mobile
+        * Description: Allow users to log in using a one-time password sent to their mobile.
         **/
         public func loginWithOTP(
             platform: String?,
             body: SendOtpRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SendOtpResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["loginWithOTP"] ?? ""
             
@@ -428,7 +424,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -453,23 +449,25 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Email and Password Login
-        * Description: Allows login using an email and password combination.
+        * Description: Allow login using an email and password combination.
         **/
         public func loginWithEmailAndPassword(
             body: PasswordLoginRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["loginWithEmailAndPassword"] ?? ""
             
@@ -478,7 +476,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -503,31 +501,30 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Reset Password via Email
-        * Description: Sends a password reset link to the user's email.
+        * Description: Send a password reset link to the user's email.
         **/
         public func sendResetPasswordEmail(
             platform: String?,
             body: SendResetPasswordEmailRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ResetPasswordSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["sendResetPasswordEmail"] ?? ""
             
@@ -536,7 +533,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -561,31 +558,30 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Reset Password via Mobile
-        * Description: Sends a password reset link to the user's Mobile.
+        * Description: Send a password reset link to the user's mobile.
         **/
         public func sendResetPasswordMobile(
             platform: String?,
             body: SendResetPasswordMobileRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["sendResetPasswordMobile"] ?? ""
             
@@ -594,7 +590,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -619,23 +615,25 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Validate Password Reset Code
-        * Description: Validate Password Reset link Code
+        * Description: Validate password reset link code.
         **/
         public func sendResetToken(
             body: CodeRequestBodySchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ResetPasswordSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["sendResetToken"] ?? ""
             
@@ -644,7 +642,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -669,23 +667,25 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Reset Password via Code and login
-        * Description: Reset a password using the code sent on email or SMS the Login.
+        * Description: Reset a password using the code sent on email or sms the login.
         **/
         public func forgotPassword(
             body: ForgotPasswordRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["forgotPassword"] ?? ""
             
@@ -694,7 +694,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -719,23 +719,25 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Reset Password via Code
-        * Description: Reset a password using the code sent on email or SMS.
+        * Description: Reset a password using the code sent on email or sms.
         **/
         public func resetForgotPassword(
             body: ForgotPasswordRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ResetForgotPasswordSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["resetForgotPassword"] ?? ""
             
@@ -744,7 +746,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -769,23 +771,25 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Login with Token
-        * Description: Login User using a token for authentication.
+        * Description: Login user using a token for authentication.
         **/
         public func loginWithToken(
             body: TokenRequestBodySchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["loginWithToken"] ?? ""
             
@@ -794,7 +798,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -819,31 +823,30 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Register User with Form
-        * Description: Enables new users to register using a form.
+        * Description: Enable new users to register using a form.
         **/
         public func registerWithForm(
             platform: String?,
             body: FormRegisterRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: RegisterFormSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["registerWithForm"] ?? ""
             
@@ -852,7 +855,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -877,23 +880,25 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Verify Email with Code
-        * Description: Verifies user email with a code sent within a link sent to their email.
+        * Description: Verify user email with a code sent within a link sent to their email.
         **/
         public func verifyEmail(
             body: CodeRequestBodySchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: VerifyEmailSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["verifyEmail"] ?? ""
             
@@ -902,7 +907,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -927,23 +932,25 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Verify Mobile with Code
-        * Description: Verifies user mobile with a code sent within a link sent to their mobile.
+        * Description: Verify user mobile with a code sent within a link sent to their mobile.
         **/
         public func verifyMobile(
             body: CodeRequestBodySchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: VerifyEmailSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["verifyMobile"] ?? ""
             
@@ -952,7 +959,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -977,23 +984,25 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Check Password Existence
-        * Description: Check if user has set an account password
+        * Description: Check if user has set an account password.
         **/
         public func hasPassword(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: HasPasswordSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["hasPassword"] ?? ""
             
@@ -1002,7 +1011,7 @@ if let value = platform {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1027,8 +1036,6 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Update Password
@@ -1036,14 +1043,18 @@ if let value = platform {
         **/
         public func updatePassword(
             body: UpdatePasswordRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: VerifyEmailSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["updatePassword"] ?? ""
             
@@ -1052,7 +1063,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1077,31 +1088,30 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Send OTP on Mobile
-        * Description: Sends a one-time password to the user's mobile for verification.
+        * Description: Send a one-time password to the user's mobile for verification.
         **/
         public func sendOTPOnMobile(
             platform: String?,
             body: SendMobileOtpRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: OtpSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["sendOTPOnMobile"] ?? ""
             
@@ -1110,7 +1120,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1135,31 +1145,30 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Send mobile OTP for forgot-password
-        * Description: Sends a one-time password to the user's mobile for verification when resetting a forgotten password.
+        * Description: Send a one-time password to the user's mobile for verification when resetting a forgotten password.
         **/
         public func sendForgotOTPOnMobile(
             platform: String?,
             body: SendMobileForgotOtpRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: OtpSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["sendForgotOTPOnMobile"] ?? ""
             
@@ -1168,7 +1177,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1191,8 +1200,6 @@ if let value = platform {
                     }
             });
         }
-        
-        
         
         
         /**
@@ -1203,21 +1210,22 @@ if let value = platform {
         public func verifyMobileOTP(
             platform: String?,
             body: VerifyOtpRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: VerifyOtpSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["verifyMobileOTP"] ?? ""
             
@@ -1226,7 +1234,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1251,31 +1259,30 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Verify Mobile OTP for Forgot Password
-        * Description: Verify one-time password sent to user's mobile for resetting a forgotten password
+        * Description: Verify one-time password sent to user's mobile for resetting a forgotten password.
         **/
         public func verifyMobileForgotOTP(
             platform: String?,
             body: VerifyMobileForgotOtpRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: VerifyForgotOtpSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["verifyMobileForgotOTP"] ?? ""
             
@@ -1284,7 +1291,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1309,31 +1316,30 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Send OTP on Email
-        * Description: Sends a one-time password to the user's email for verification.
+        * Description: Send a one-time password to the user's email for verification.
         **/
         public func sendOTPOnEmail(
             platform: String?,
             body: SendEmailOtpRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: EmailOtpSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["sendOTPOnEmail"] ?? ""
             
@@ -1342,7 +1348,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1367,31 +1373,30 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Send Email OTP for Forgot Password
-        * Description: Sends a one-time password to the user's email for verification when resetting a forgotten password.
+        * Description: Send a one-time password to the user's email for verification when resetting a forgotten password.
         **/
         public func sendForgotOTPOnEmail(
             platform: String?,
             body: SendEmailForgotOtpRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: EmailOtpSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["sendForgotOTPOnEmail"] ?? ""
             
@@ -1400,7 +1405,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1423,8 +1428,6 @@ if let value = platform {
                     }
             });
         }
-        
-        
         
         
         /**
@@ -1435,21 +1438,22 @@ if let value = platform {
         public func verifyEmailOTP(
             platform: String?,
             body: VerifyEmailOtpRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: VerifyOtpSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["verifyEmailOTP"] ?? ""
             
@@ -1458,7 +1462,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1483,31 +1487,30 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Verify Email OTP for Forgot Password
-        * Description: Verify one-time password sent to user's email for resetting a forgotten password
+        * Description: Verify one-time password sent to user's email for resetting a forgotten password.
         **/
         public func verifyEmailForgotOTP(
             platform: String?,
             body: VerifyEmailForgotOtpRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: VerifyForgotOtpSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["verifyEmailForgotOTP"] ?? ""
             
@@ -1516,7 +1519,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1541,8 +1544,6 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get Logged in User
@@ -1550,14 +1551,18 @@ if let value = platform {
         **/
         public func getLoggedInUser(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: UserObjectSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getLoggedInUser"] ?? ""
             
@@ -1566,7 +1571,7 @@ if let value = platform {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1591,8 +1596,6 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get List OF Active Sessions
@@ -1600,14 +1603,18 @@ if let value = platform {
         **/
         public func getListOfActiveSessions(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SessionListSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getListOfActiveSessions"] ?? ""
             
@@ -1616,7 +1623,7 @@ if let value = platform {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1641,8 +1648,6 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get Platform Configuration
@@ -1651,21 +1656,22 @@ if let value = platform {
         public func getPlatformConfig(
             name: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PlatformSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = name {
-    
-    xQuery["name"] = value
-    
-}
-
-
- 
-
-
+            if let value = name {
+                xQuery["name"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getPlatformConfig"] ?? ""
             
@@ -1674,7 +1680,7 @@ if let value = name {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1699,31 +1705,30 @@ if let value = name {
         }
         
         
-        
-        
         /**
         *
         * Summary: Edit User Profile Details
-        * Description: Allows users to modify and update their profile details
+        * Description: Allow users to modify and update their profile details.
         **/
         public func updateProfile(
             platform: String?,
             body: EditProfileRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProfileEditSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["updateProfile"] ?? ""
             
@@ -1732,7 +1737,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1757,31 +1762,30 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Add Mobile Number to Profile
-        * Description: Adds a new mobile number to the user's profile.
+        * Description: Add a new mobile number to the user's profile.
         **/
         public func addMobileNumber(
             platform: String?,
             body: EditMobileRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: VerifyMobileOTPSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["addMobileNumber"] ?? ""
             
@@ -1790,7 +1794,7 @@ if let value = platform {
                 method: "PUT",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1815,12 +1819,10 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Delete Mobile Number From Profile
-        * Description: Delete Mobile Number From Profile.
+        * Description: Delete mobile number from profile.
         **/
         public func deleteMobileNumber(
             platform: String?,
@@ -1830,46 +1832,27 @@ if let value = platform {
             countryCode: String,
             phone: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
-
-    xQuery["active"] = active
-
-
-
-
-    xQuery["primary"] = primary
-
-
-
-
-    xQuery["verified"] = verified
-
-
-
-
-    xQuery["country_code"] = countryCode
-
-
-
-
-    xQuery["phone"] = phone
-
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            xQuery["active"] = active
+            xQuery["primary"] = primary
+            xQuery["verified"] = verified
+            xQuery["country_code"] = countryCode
+            xQuery["phone"] = phone
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["deleteMobileNumber"] ?? ""
             
@@ -1878,7 +1861,7 @@ if let value = platform {
                 method: "DELETE",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1903,23 +1886,25 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Set Mobile as Primary
-        * Description: Sets a mobile number as the primary contact for the user.
+        * Description: Set a mobile number as the primary contact for the user.
         **/
         public func setMobileNumberAsPrimary(
             body: SendVerificationLinkMobileRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["setMobileNumberAsPrimary"] ?? ""
             
@@ -1928,7 +1913,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1953,31 +1938,30 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Send Verification Link to Mobile
-        * Description: Sends a verification link to a newly added mobile number.
+        * Description: Send a verification link to a newly added mobile number.
         **/
         public func sendVerificationLinkToMobile(
             platform: String?,
             body: SendVerificationLinkMobileRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SendMobileVerifyLinkSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["sendVerificationLinkToMobile"] ?? ""
             
@@ -1986,7 +1970,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2011,31 +1995,30 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Add Email to Profile
-        * Description: Adds a new email address to the user's profile.
+        * Description: Add a new email address to the user's profile.
         **/
         public func addEmail(
             platform: String?,
             body: EditEmailRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: VerifyEmailOTPSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["addEmail"] ?? ""
             
@@ -2044,7 +2027,7 @@ if let value = platform {
                 method: "PUT",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2069,12 +2052,10 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Delete Email From Profile
-        * Description: Delete Email From Profile
+        * Description: Delete email from profile.
         **/
         public func deleteEmail(
             platform: String?,
@@ -2083,41 +2064,26 @@ if let value = platform {
             verified: Bool,
             email: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
-
-    xQuery["active"] = active
-
-
-
-
-    xQuery["primary"] = primary
-
-
-
-
-    xQuery["verified"] = verified
-
-
-
-
-    xQuery["email"] = email
-
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            xQuery["active"] = active
+            xQuery["primary"] = primary
+            xQuery["verified"] = verified
+            xQuery["email"] = email
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["deleteEmail"] ?? ""
             
@@ -2126,7 +2092,7 @@ if let value = platform {
                 method: "DELETE",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2151,23 +2117,25 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Set Email as Primary
-        * Description: Sets an email address as the primary contact for the user.
+        * Description: Set an email address as the primary contact for the user.
         **/
         public func setEmailAsPrimary(
             body: EditEmailRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: LoginSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["setEmailAsPrimary"] ?? ""
             
@@ -2176,7 +2144,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2201,31 +2169,30 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Send Verification Link to Email
-        * Description: Sends a verification link to a newly added email address.
+        * Description: Send a verification link to a newly added email address.
         **/
         public func sendVerificationLinkToEmail(
             platform: String?,
             body: EditEmailRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SendEmailVerifyLinkSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = platform {
-    
-    xQuery["platform"] = value
-    
-}
-
-
- 
-
-
+            if let value = platform {
+                xQuery["platform"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["sendVerificationLinkToEmail"] ?? ""
             
@@ -2234,7 +2201,7 @@ if let value = platform {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2259,8 +2226,6 @@ if let value = platform {
         }
         
         
-        
-        
         /**
         *
         * Summary: Chcek User Existence
@@ -2269,19 +2234,19 @@ if let value = platform {
         public func userExists(
             q: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: UserExistsResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["q"] = q
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["q"] = q
-
-
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["userExists"] ?? ""
             
@@ -2290,7 +2255,7 @@ var xQuery: [String: Any] = [:]
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2315,23 +2280,25 @@ var xQuery: [String: Any] = [:]
         }
         
         
-        
-        
         /**
         *
         * Summary: Verify OTP and Delete User
-        * Description: Verify OTP sent to mobile/email and Delete the user's account.
+        * Description: Verify OTP sent to mobile/email and delete the user's account.
         **/
         public func deleteUser(
             body: DeleteApplicationUserRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: DeleteUserSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["deleteUser"] ?? ""
             
@@ -2340,7 +2307,7 @@ var xQuery: [String: Any] = [:]
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2365,23 +2332,25 @@ var xQuery: [String: Any] = [:]
         }
         
         
-        
-        
         /**
         *
         * Summary: Logout Current User
-        * Description: Logout currently logged-in user
+        * Description: Logout currently logged-in user.
         **/
         public func logout(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: LogoutSuccess?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["logout"] ?? ""
             
@@ -2390,7 +2359,7 @@ var xQuery: [String: Any] = [:]
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2415,31 +2384,30 @@ var xQuery: [String: Any] = [:]
         }
         
         
-        
-        
         /**
         *
         * Summary: Get User Attributes
-        * Description: Get the list of user attributes
+        * Description: Get the list of user attributes.
         **/
         public func getUserAttributes(
             slug: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: UserAttributes?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = slug {
-    
-    xQuery["slug"] = value
-    
-}
-
-
- 
-
-
+            if let value = slug {
+                xQuery["slug"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getUserAttributes"] ?? ""
             
@@ -2448,7 +2416,7 @@ if let value = slug {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2473,23 +2441,25 @@ if let value = slug {
         }
         
         
-        
-        
         /**
         *
         * Summary: Update User Attributes
-        * Description: Update user attributes
+        * Description: Update user attributes.
         **/
         public func updateUserAttributes(
             body: UpdateUserAttributesRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: UserAttributes?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["updateUserAttributes"] ?? ""
             
@@ -2498,7 +2468,7 @@ if let value = slug {
                 method: "PATCH",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2520,8 +2490,5 @@ if let value = slug {
                         onResponse(nil, err)
                     }
             });
-        }
-        
-        
-    }
+        }}
 }

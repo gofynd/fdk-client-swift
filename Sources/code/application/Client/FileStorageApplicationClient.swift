@@ -29,31 +29,35 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Initiate file upload
-        * Description: Get a signed url for uploading a file
+        * Summary: Initiates file upload
+        * Description: Starts the process of uploading a file to storage location, and returns a signed url in response.
         **/
         public func startUpload(
             namespace: String,
             body: StartRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: StartResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["startUpload"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "namespace" + "}", with: "\(namespace)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "namespace" + "}", with: "\(namespace)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -78,36 +82,38 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Complete file upload
         * Description: 
-Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database
+Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database.
         **/
         public func completeUpload(
             namespace: String,
             body: StartResponse,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CompleteResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["completeUpload"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "namespace" + "}", with: "\(namespace)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "namespace" + "}", with: "\(namespace)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -132,8 +138,6 @@ Complete the file upload and store the file details such as name, size, content 
         }
         
         
-        
-        
         /**
         *
         * Summary: Get signed URLs
@@ -141,14 +145,18 @@ Complete the file upload and store the file details such as name, size, content 
         **/
         public func signUrls(
             body: SignUrlRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SignUrlResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["signUrls"] ?? ""
             
@@ -157,7 +165,7 @@ Complete the file upload and store the file details such as name, size, content 
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -179,8 +187,5 @@ Complete the file upload and store the file details such as name, size, content 
                         onResponse(nil, err)
                     }
             });
-        }
-        
-        
-    }
+        }}
 }

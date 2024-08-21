@@ -30,18 +30,22 @@ extension ApplicationClient {
         /**
         *
         * Summary: Retrieve consent status
-        * Description: Retrieve the consent provided by the user for receiving communication
+        * Description: Get the consent provided by the user for receiving communication.
         **/
         public func getCommunicationConsent(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CommunicationConsent?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getCommunicationConsent"] ?? ""
             
@@ -50,7 +54,7 @@ extension ApplicationClient {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -75,23 +79,25 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Update or adds consent settings
-        * Description: Update or inserts the consent provided by the user for receiving communication messages
+        * Description: Update or insert the consent provided by the user for receiving communication messages.
         **/
         public func upsertCommunicationConsent(
             body: CommunicationConsentReq,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CommunicationConsentRes?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["upsertCommunicationConsent"] ?? ""
             
@@ -100,7 +106,7 @@ extension ApplicationClient {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -125,8 +131,6 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Update or adds app push token
@@ -134,14 +138,18 @@ extension ApplicationClient {
         **/
         public func upsertAppPushtoken(
             body: PushtokenReq,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PushtokenRes?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["upsertAppPushtoken"] ?? ""
             
@@ -150,7 +158,7 @@ extension ApplicationClient {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -172,8 +180,5 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     }
             });
-        }
-        
-        
-    }
+        }}
 }

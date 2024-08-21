@@ -116,33 +116,32 @@ extension ApplicationClient {
         /**
         *
         * Summary: Get payment aggregators
-        * Description: Retrieve the aggregator secret key of all payment gateways utilized for payments when using the SDK for the payment gateway
+        * Description: Get aggregator secret key of all payment gateways utilized for payments when using the SDK for the payment gateway.
         **/
         public func getAggregatorsConfig(
             xApiToken: String?,
             refresh: Bool?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AggregatorsConfigDetailResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = refresh {
-    
-    xQuery["refresh"] = value
-    
-}
-
-
-var xHeaders: [(key: String, value: String)] = [] 
-
-if let value = xApiToken {
-    
-    xHeaders.append((key: "x-api-token", value: value))
-    
-}
-
-
+            if let value = refresh {
+                xQuery["refresh"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            if let value = xApiToken {
+                xHeaders.append((key: "x-api-token", value: value))
+            }
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getAggregatorsConfig"] ?? ""
             
@@ -151,7 +150,7 @@ if let value = xApiToken {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  xHeaders,
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -176,23 +175,25 @@ if let value = xApiToken {
         }
         
         
-        
-        
         /**
         *
         * Summary: Link payment card to customer
-        * Description: Linking of a payment card to a user's account for seamless transactions. Upon successful linking, the card becomes associated with the user's profile, enabling secure and convenient payments
+        * Description: Link payment card to a user account for seamless transactions. Upon successful linking, the card becomes associated with the user's profile, enabling secure and convenient payments.
         **/
         public func attachCardToCustomer(
             body: AttachCardRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AttachCardsResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["attachCardToCustomer"] ?? ""
             
@@ -201,7 +202,7 @@ if let value = xApiToken {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -226,31 +227,30 @@ if let value = xApiToken {
         }
         
         
-        
-        
         /**
         *
         * Summary: Retrieve active card aggregator
-        * Description: Fetches details about the active card aggregator used by the user, including the aggregator's name.You can refresh the data by setting the "refresh" parameter to true if needed.
+        * Description: Get details about the active card aggregator used by the user, including the aggregator name.You can refresh the data by setting the 'refresh' parameter to true if needed.
         **/
         public func getActiveCardAggregator(
             refresh: Bool?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ActiveCardPaymentGatewayResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = refresh {
-    
-    xQuery["refresh"] = value
-    
-}
-
-
- 
-
-
+            if let value = refresh {
+                xQuery["refresh"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getActiveCardAggregator"] ?? ""
             
@@ -259,7 +259,7 @@ if let value = refresh {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -284,31 +284,30 @@ if let value = refresh {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get customer cards
-        * Description: Retrieves a list of all active cards saved by the user.Includes details such as the card's aggregator name, card ID, token, reference, number, expiration date, type, issuer, brand, nickname, and whether it has expired.
+        * Description: List all active cards saved by the user.Includes details such as the card's aggregator name, card ID, token, reference, number, expiration date, type, issuer, brand, nickname, and whether it has expired.
         **/
         public func getActiveUserCards(
             forceRefresh: Bool?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ListCardsResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = forceRefresh {
-    
-    xQuery["force_refresh"] = value
-    
-}
-
-
- 
-
-
+            if let value = forceRefresh {
+                xQuery["force_refresh"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getActiveUserCards"] ?? ""
             
@@ -317,7 +316,7 @@ if let value = forceRefresh {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -342,23 +341,25 @@ if let value = forceRefresh {
         }
         
         
-        
-        
         /**
         *
         * Summary: Delete customer card
-        * Description: Deletion of a payment card from the user's account
+        * Description: Delete payment card from the user's account.
         **/
         public func deleteUserCard(
             body: DeletehCardRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: DeleteCardsResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["deleteUserCard"] ?? ""
             
@@ -367,7 +368,7 @@ if let value = forceRefresh {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -392,23 +393,25 @@ if let value = forceRefresh {
         }
         
         
-        
-        
         /**
         *
         * Summary: Verify payment customer
-        * Description: Verify whether the user is eligible for pay-later payment from the payment aggregator's side using the customer's phone number
+        * Description: Verify if the user is eligible for pay-later payment from the payment aggregator side using the customer's phone number.
         **/
         public func verifyCustomerForPayment(
             body: ValidateCustomerRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ValidateCustomerResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["verifyCustomerForPayment"] ?? ""
             
@@ -417,7 +420,7 @@ if let value = forceRefresh {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -442,8 +445,6 @@ if let value = forceRefresh {
         }
         
         
-        
-        
         /**
         *
         * Summary: Verify order confirmation and charge
@@ -451,14 +452,18 @@ if let value = forceRefresh {
         **/
         public func verifyAndChargePayment(
             body: ChargeCustomerRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ChargeCustomerResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["verifyAndChargePayment"] ?? ""
             
@@ -467,7 +472,7 @@ if let value = forceRefresh {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -492,23 +497,25 @@ if let value = forceRefresh {
         }
         
         
-        
-        
         /**
         *
         * Summary: Start payment process
-        * Description: Initiates the payment procedure for an order.Upon successful initiation, it returns a  details including the success status, aggregator information, payment method, status, merchant order ID aggregator order , polling URL, timeout, virtual ID, Razorpay payment ID, customer ID, and device ID.
+        * Description: Initiate the payment procedure for an order. Upon successful initiation, it returns a  details including the success status, aggregator information, payment method, status, merchant order ID aggregator order , polling URL, timeout, virtual ID, Razorpay payment ID, customer ID, and device ID.
         **/
         public func initialisePayment(
             body: PaymentInitializationRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PaymentInitializationResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["initialisePayment"] ?? ""
             
@@ -517,7 +524,7 @@ if let value = forceRefresh {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -542,8 +549,6 @@ if let value = forceRefresh {
         }
         
         
-        
-        
         /**
         *
         * Summary: Update payment status
@@ -551,14 +556,18 @@ if let value = forceRefresh {
         **/
         public func checkAndUpdatePaymentStatus(
             body: PaymentStatusUpdateRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PaymentStatusUpdateResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["checkAndUpdatePaymentStatus"] ?? ""
             
@@ -567,7 +576,7 @@ if let value = forceRefresh {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -592,12 +601,10 @@ if let value = forceRefresh {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get payment modes
-        * Description: Available payment methods on the payment page, specifying the aggregator for each option, such as 'Netbanking powered by Juspay' and 'Card powered by Razorpay'.
+        * Description: Get available payment methods on the payment page, specifying the aggregator for each option, such as 'Netbanking powered by Juspay' and 'Card powered by Razorpay'.
         **/
         public func getPaymentModeRoutes(
             amount: Int,
@@ -611,82 +618,55 @@ if let value = forceRefresh {
             advancePayment: Bool?,
             shipmentId: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["amount"] = amount
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["amount"] = amount
-
-
-
-if let value = cartId {
-    
-    xQuery["cart_id"] = value
-    
-}
-
-
-if let value = checkoutMode {
-    
-    xQuery["checkout_mode"] = value
-    
-}
-
-
-if let value = refresh {
-    
-    xQuery["refresh"] = value
-    
-}
-
-
-if let value = orderId {
-    
-    xQuery["order_id"] = value
-    
-}
-
-
-if let value = cardReference {
-    
-    xQuery["card_reference"] = value
-    
-}
-
-
-if let value = userDetails {
-    
-    xQuery["user_details"] = value
-    
-}
-
-
-if let value = displaySplit {
-    
-    xQuery["display_split"] = value
-    
-}
-
-
-if let value = advancePayment {
-    
-    xQuery["advance_payment"] = value
-    
-}
-
-
-if let value = shipmentId {
-    
-    xQuery["shipment_id"] = value
-    
-}
-
-
- 
-
-
+            if let value = cartId {
+                xQuery["cart_id"] = value
+            }
+            
+            if let value = checkoutMode {
+                xQuery["checkout_mode"] = value
+            }
+            
+            if let value = refresh {
+                xQuery["refresh"] = value
+            }
+            
+            if let value = orderId {
+                xQuery["order_id"] = value
+            }
+            
+            if let value = cardReference {
+                xQuery["card_reference"] = value
+            }
+            
+            if let value = userDetails {
+                xQuery["user_details"] = value
+            }
+            
+            if let value = displaySplit {
+                xQuery["display_split"] = value
+            }
+            
+            if let value = advancePayment {
+                xQuery["advance_payment"] = value
+            }
+            
+            if let value = shipmentId {
+                xQuery["shipment_id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getPaymentModeRoutes"] ?? ""
             
@@ -695,7 +675,7 @@ if let value = shipmentId {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -720,12 +700,10 @@ if let value = shipmentId {
         }
         
         
-        
-        
         /**
         *
         * Summary: POS payment modes
-        * Description: Available payment methods on the payment page for POS, specifying the aggregator for each option, such as 'CARD powered by Juspay' and 'QR powered by Razorpay'.
+        * Description: Get available payment methods on the payment page for POS, specifying the aggregator for each option, such as 'CARD powered by Juspay' and 'QR powered by Razorpay'.
         **/
         public func getPosPaymentModeRoutes(
             amount: Int,
@@ -737,64 +715,41 @@ if let value = shipmentId {
             orderType: String,
             userDetails: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["amount"] = amount
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["amount"] = amount
-
-
-
-if let value = cartId {
-    
-    xQuery["cart_id"] = value
-    
-}
-
-
-
-    xQuery["pincode"] = pincode
-
-
-
-if let value = checkoutMode {
-    
-    xQuery["checkout_mode"] = value
-    
-}
-
-
-if let value = refresh {
-    
-    xQuery["refresh"] = value
-    
-}
-
-
-if let value = cardReference {
-    
-    xQuery["card_reference"] = value
-    
-}
-
-
-
-    xQuery["order_type"] = orderType
-
-
-
-if let value = userDetails {
-    
-    xQuery["user_details"] = value
-    
-}
-
-
- 
-
-
+            if let value = cartId {
+                xQuery["cart_id"] = value
+            }
+            xQuery["pincode"] = pincode
+            
+            if let value = checkoutMode {
+                xQuery["checkout_mode"] = value
+            }
+            
+            if let value = refresh {
+                xQuery["refresh"] = value
+            }
+            
+            if let value = cardReference {
+                xQuery["card_reference"] = value
+            }
+            xQuery["order_type"] = orderType
+            
+            if let value = userDetails {
+                xQuery["user_details"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getPosPaymentModeRoutes"] ?? ""
             
@@ -803,7 +758,7 @@ if let value = userDetails {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -828,8 +783,6 @@ if let value = userDetails {
         }
         
         
-        
-        
         /**
         *
         * Summary: Initiate linking of wallet
@@ -837,14 +790,18 @@ if let value = userDetails {
         **/
         public func walletLinkInitiate(
             body: WalletLinkRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: WalletResponseSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["walletLinkInitiate"] ?? ""
             
@@ -853,7 +810,7 @@ if let value = userDetails {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -878,23 +835,25 @@ if let value = userDetails {
         }
         
         
-        
-        
         /**
         *
         * Summary: OTP verification
-        * Description: Verifies the linking of wallet using OTP for further processing of payment.
+        * Description: Verify the linking of wallet using OTP for further processing of payment.
         **/
         public func linkWallet(
             body: WalletVerifyRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: WalletResponseSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["linkWallet"] ?? ""
             
@@ -903,7 +862,7 @@ if let value = userDetails {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -928,23 +887,25 @@ if let value = userDetails {
         }
         
         
-        
-        
         /**
         *
         * Summary: Delink the wallet
-        * Description: User removes already linked wallet.
+        * Description: Delink the wallet.
         **/
         public func delinkWallet(
             body: WalletDelinkRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: WalletResponseSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["delinkWallet"] ?? ""
             
@@ -953,7 +914,7 @@ if let value = userDetails {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -978,23 +939,25 @@ if let value = userDetails {
         }
         
         
-        
-        
         /**
         *
         * Summary: Rupifi banner info
-        * Description: Retrieves details necessary for displaying the Rupifi payment banner. It provides information such as the KYC URL and the current status of the Rupifi payment banner.
+        * Description: Get Rupifi payment banner details. It provides information such as the KYC URL and the current status of the Rupifi payment banner.
         **/
         public func getRupifiBannerDetails(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: RupifiBannerResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getRupifiBannerDetails"] ?? ""
             
@@ -1003,7 +966,7 @@ if let value = userDetails {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1028,23 +991,25 @@ if let value = userDetails {
         }
         
         
-        
-        
         /**
         *
         * Summary: Epaylater banner info
-        * Description: Retrieves details required to display the Epaylater payment banner. It provides information about the banner's display status, along with relevant messages and the user's registration status.
+        * Description: Get Epaylater payment banner details. It provides information about the banner's display status, along with relevant messages and the user's registration status.
         **/
         public func getEpaylaterBannerDetails(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: EpaylaterBannerResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getEpaylaterBannerDetails"] ?? ""
             
@@ -1053,7 +1018,7 @@ if let value = userDetails {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1078,23 +1043,25 @@ if let value = userDetails {
         }
         
         
-        
-        
         /**
         *
         * Summary: Resend or cancel a pending payment transaction
-        * Description: Enable you to perform actions related to the resending and cancellation of payment links through SMS or E-mail. Resend or cancel payment link that have been initiated but may require modification or cancellation for various reasons, ensuring flexibility and control in payment processing.
+        * Description: Resend or cancel payment link that have been initiated but may require modification or cancellation for various reasons, ensuring flexibility and control in payment processing.
         **/
         public func resendOrCancelPayment(
             body: ResendOrCancelPaymentRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ResendOrCancelPaymentResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["resendOrCancelPayment"] ?? ""
             
@@ -1103,7 +1070,7 @@ if let value = userDetails {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1128,23 +1095,25 @@ if let value = userDetails {
         }
         
         
-        
-        
         /**
         *
         * Summary: Render HTML
-        * Description: Render HTML for a payment aggregator page
+        * Description: Render HTML for a payment aggregator page.
         **/
         public func renderHTML(
             body: renderHTMLRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: renderHTMLResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["renderHTML"] ?? ""
             
@@ -1153,7 +1122,7 @@ if let value = userDetails {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "text/html",
                 onResponse: { (responseData, error, responseCode) in
@@ -1178,23 +1147,25 @@ if let value = userDetails {
         }
         
         
-        
-        
         /**
         *
         * Summary: Validate VPA
-        * Description: Checks whether a Virtual Payment Address (VPA) is valid for processing payments and returns the validation result.is_valid boolean value indicating whether the VPA is valid for payments
+        * Description: Validate if a Virtual Payment Address (VPA) is valid for processing payments and returns the validation result.is_valid boolean value indicating whether the VPA is valid for payments.
         **/
         public func validateVPA(
             body: ValidateVPARequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ValidateVPAResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["validateVPA"] ?? ""
             
@@ -1203,7 +1174,7 @@ if let value = userDetails {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1228,43 +1199,42 @@ if let value = userDetails {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get card details
-        * Description: Fetches the details of a specified payment card, including information such as the card type, brand, country, and expiration date.
+        * Description: Get details of a specified payment card, including information such as the card type, brand, country, and expiration date.
         **/
         public func cardDetails(
             cardInfo: String,
             aggregator: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CardDetailsResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = aggregator {
-    
-    xQuery["aggregator"] = value
-    
-}
-
-
- 
-
-
+            if let value = aggregator {
+                xQuery["aggregator"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["cardDetails"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "card_info" + "}", with: "\(cardInfo)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "card_info" + "}", with: "\(cardInfo)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1289,23 +1259,25 @@ if let value = aggregator {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get refund transfer modes
-        * Description: Lists the available refund modes, such as UPI, providing details like display name, logo, and ID for each mode
+        * Description: Lists available refund modes, such as UPI, providing details like display name, logo, and ID for each mode.
         **/
         public func getActiveRefundTransferModes(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: TransferModeResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getActiveRefundTransferModes"] ?? ""
             
@@ -1314,7 +1286,7 @@ if let value = aggregator {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1339,23 +1311,25 @@ if let value = aggregator {
         }
         
         
-        
-        
         /**
         *
         * Summary: Toggle refund mode
-        * Description: Enables or disables a particular refund transfer mode based on the request body parameters, indicating whether the mode should be enabled or disabled
+        * Description: Enable/Disable a particular refund transfer mode based on the request body parameters, indicating whether the mode should be enabled or disabled.
         **/
         public func enableOrDisableRefundTransferMode(
             body: UpdateRefundTransferModeRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: UpdateRefundTransferModeResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["enableOrDisableRefundTransferMode"] ?? ""
             
@@ -1364,7 +1338,7 @@ if let value = aggregator {
                 method: "PUT",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1389,29 +1363,27 @@ if let value = aggregator {
         }
         
         
-        
-        
         /**
         *
         * Summary: Retrieve beneficiary details 
-        * Description: Retrieves information about beneficiaries associated with the user for processing refunds, based on the provided order ID
+        * Description: Get beneficiaries associated with the user for processing refunds, based on the provided order ID.
         **/
         public func getUserBeneficiariesDetail(
             orderId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: OrderBeneficiaryResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["order_id"] = orderId
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["order_id"] = orderId
-
-
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getUserBeneficiariesDetail"] ?? ""
             
@@ -1420,7 +1392,7 @@ var xQuery: [String: Any] = [:]
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1445,31 +1417,30 @@ var xQuery: [String: Any] = [:]
         }
         
         
-        
-        
         /**
         *
         * Summary: Verify IFSC
-        * Description: Checks the validity of the provided IFSC code and returns bank details if valid.
+        * Description: Validate IFSC code and returns bank details if valid.
         **/
         public func verifyIfscCode(
             ifscCode: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: IfscCodeResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = ifscCode {
-    
-    xQuery["ifsc_code"] = value
-    
-}
-
-
- 
-
-
+            if let value = ifscCode {
+                xQuery["ifsc_code"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["verifyIfscCode"] ?? ""
             
@@ -1478,7 +1449,7 @@ if let value = ifscCode {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1503,29 +1474,27 @@ if let value = ifscCode {
         }
         
         
-        
-        
         /**
         *
         * Summary: Retrieve beneficiary details
-        * Description: Retrieve beneficiary details like bank name , ifsc code , branch name associated with a specific order for refund processing 
+        * Description: Get beneficiary details like bank name , ifsc code , branch name associated with a specific order for refund processing.
         **/
         public func getOrderBeneficiariesDetail(
             orderId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: OrderBeneficiaryResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["order_id"] = orderId
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["order_id"] = orderId
-
-
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getOrderBeneficiariesDetail"] ?? ""
             
@@ -1534,7 +1503,7 @@ var xQuery: [String: Any] = [:]
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1559,23 +1528,25 @@ var xQuery: [String: Any] = [:]
         }
         
         
-        
-        
         /**
         *
         * Summary: Verify OTP for bank and add beneficiary
-        * Description: This endpoint confirms the OTP provided by the user and adds a bank beneficiary for refund processing
+        * Description: Verify the OTP provided by the user and adds a bank beneficiary for refund processing.
         **/
         public func verifyOtpAndAddBeneficiaryForBank(
             body: AddBeneficiaryViaOtpVerificationRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AddBeneficiaryViaOtpVerificationResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["verifyOtpAndAddBeneficiaryForBank"] ?? ""
             
@@ -1584,7 +1555,7 @@ var xQuery: [String: Any] = [:]
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1609,23 +1580,25 @@ var xQuery: [String: Any] = [:]
         }
         
         
-        
-        
         /**
         *
         * Summary: Add beneficiary for refund
-        * Description: Adds beneficiary details specifically for refund transactions, including account holder name, account number and bank details.
+        * Description: Add beneficiary details specifically for refund transactions, including account holder name, account number and bank details.
         **/
         public func addBeneficiaryDetails(
             body: AddBeneficiaryDetailsRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["addBeneficiaryDetails"] ?? ""
             
@@ -1634,7 +1607,7 @@ var xQuery: [String: Any] = [:]
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1659,23 +1632,25 @@ var xQuery: [String: Any] = [:]
         }
         
         
-        
-        
         /**
         *
         * Summary: Add refund account using OTP verification
-        * Description: The addition of a bank account specifically for refunds, employing OTP verification for security
+        * Description: Add bank account specifically for refunds, employing OTP verification for security.
         **/
         public func addRefundBankAccountUsingOTP(
             body: AddBeneficiaryDetailsOTPRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["addRefundBankAccountUsingOTP"] ?? ""
             
@@ -1684,7 +1659,7 @@ var xQuery: [String: Any] = [:]
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1709,23 +1684,25 @@ var xQuery: [String: Any] = [:]
         }
         
         
-        
-        
         /**
         *
         * Summary: Verify OTP for wallet
-        * Description: Confirm OTP provided by the user and adds a wallet beneficiary
+        * Description: Verify OTP provided by the user and adds a wallet beneficiary.
         **/
         public func verifyOtpAndAddBeneficiaryForWallet(
             body: WalletOtpRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: WalletOtpResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["verifyOtpAndAddBeneficiaryForWallet"] ?? ""
             
@@ -1734,7 +1711,7 @@ var xQuery: [String: Any] = [:]
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1759,23 +1736,25 @@ var xQuery: [String: Any] = [:]
         }
         
         
-        
-        
         /**
         *
         * Summary: Set default beneficiary for refund 
-        * Description: Updates the default beneficiary for the order refund of the user.
+        * Description: Update default beneficiary for the order refund of the user.
         **/
         public func updateDefaultBeneficiary(
             body: SetDefaultBeneficiaryRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SetDefaultBeneficiaryResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["updateDefaultBeneficiary"] ?? ""
             
@@ -1784,7 +1763,7 @@ var xQuery: [String: Any] = [:]
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1809,31 +1788,30 @@ var xQuery: [String: Any] = [:]
         }
         
         
-        
-        
         /**
         *
         * Summary: Get payment link
-        * Description: Retrieves a generated payment link.
+        * Description: Get a generated payment link.
         **/
         public func getPaymentLink(
             paymentLinkId: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetPaymentLinkResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = paymentLinkId {
-    
-    xQuery["payment_link_id"] = value
-    
-}
-
-
- 
-
-
+            if let value = paymentLinkId {
+                xQuery["payment_link_id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getPaymentLink"] ?? ""
             
@@ -1842,7 +1820,7 @@ if let value = paymentLinkId {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1867,23 +1845,25 @@ if let value = paymentLinkId {
         }
         
         
-        
-        
         /**
         *
         * Summary: Create payment link
-        * Description: Generates a new payment link for transactions.
+        * Description: Create new payment link for transactions.
         **/
         public func createPaymentLink(
             body: CreatePaymentLinkRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CreatePaymentLinkResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["createPaymentLink"] ?? ""
             
@@ -1892,7 +1872,7 @@ if let value = paymentLinkId {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1917,23 +1897,25 @@ if let value = paymentLinkId {
         }
         
         
-        
-        
         /**
         *
         * Summary: Resend payment link
-        * Description: Resends an existing payment link to the user to complete the payment.
+        * Description: Resend an existing payment link to the user to complete the payment.
         **/
         public func resendPaymentLink(
             body: CancelOrResendPaymentLinkRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ResendPaymentLinkResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["resendPaymentLink"] ?? ""
             
@@ -1942,7 +1924,7 @@ if let value = paymentLinkId {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1967,23 +1949,25 @@ if let value = paymentLinkId {
         }
         
         
-        
-        
         /**
         *
         * Summary: Cancel payment link
-        * Description: Cancels a previously generated payment link.
+        * Description: Cancel previously generated payment link.
         **/
         public func cancelPaymentLink(
             body: CancelOrResendPaymentLinkRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CancelPaymentLinkResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["cancelPaymentLink"] ?? ""
             
@@ -1992,7 +1976,7 @@ if let value = paymentLinkId {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2017,29 +2001,27 @@ if let value = paymentLinkId {
         }
         
         
-        
-        
         /**
         *
         * Summary: Payment modes for payment link
-        * Description: Lists payment modes available for a given payment link.
+        * Description: List payment modes available for a given payment link.
         **/
         public func getPaymentModeRoutesPaymentLink(
             paymentLinkId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["payment_link_id"] = paymentLinkId
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["payment_link_id"] = paymentLinkId
-
-
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getPaymentModeRoutesPaymentLink"] ?? ""
             
@@ -2048,7 +2030,7 @@ var xQuery: [String: Any] = [:]
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2073,31 +2055,30 @@ var xQuery: [String: Any] = [:]
         }
         
         
-        
-        
         /**
         *
         * Summary: Poll status of payment link
-        * Description: Periodically checks the status of a payment link to monitor for any updates or changes.retrieve real-time information about the payment link's current status, such as whether it has been processed, cancelled, or expired. 
+        * Description: Get real-time information about the payment link's current status, such as whether it has been processed, cancelled, or expired.
         **/
         public func pollingPaymentLink(
             paymentLinkId: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PollingPaymentLinkResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = paymentLinkId {
-    
-    xQuery["payment_link_id"] = value
-    
-}
-
-
- 
-
-
+            if let value = paymentLinkId {
+                xQuery["payment_link_id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["pollingPaymentLink"] ?? ""
             
@@ -2106,7 +2087,7 @@ if let value = paymentLinkId {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2131,23 +2112,25 @@ if let value = paymentLinkId {
         }
         
         
-        
-        
         /**
         *
         * Summary: Create order for payment via link
-        * Description: Initiates the creation of an order handler for processing payments through a link.
+        * Description: Initiate the creation of an order handler for processing payments through a link.
         **/
         public func createOrderHandlerPaymentLink(
             body: CreateOrderUserRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CreateOrderUserResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["createOrderHandlerPaymentLink"] ?? ""
             
@@ -2156,7 +2139,7 @@ if let value = paymentLinkId {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2181,23 +2164,25 @@ if let value = paymentLinkId {
         }
         
         
-        
-        
         /**
         *
         * Summary: Initialize payment link
-        * Description: Begins the payment process for an order by initializing it through a payment link.Upon successful initialization, the response includes details about the payment status, aggregator details, order IDs, polling URL for status updates, and other relevant information.
+        * Description: Begin payment process for an order by initializing it through a payment link.Upon successful initialization, the response includes details about the payment status, aggregator details, order IDs, polling URL for status updates, and other relevant information.
         **/
         public func initialisePaymentPaymentLink(
             body: PaymentInitializationRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PaymentInitializationResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["initialisePaymentPaymentLink"] ?? ""
             
@@ -2206,7 +2191,7 @@ if let value = paymentLinkId {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2231,23 +2216,25 @@ if let value = paymentLinkId {
         }
         
         
-        
-        
         /**
         *
         * Summary: Update payment link status
-        * Description: Verifies and updates the status of a payment made through a link.Upon successful verification and update, the response includes details about the aggregator name, payment status, and whether retrying the process is required.
+        * Description: Verify and update status of a payment made through a link.Upon successful verification and update, the response includes details about the aggregator name, payment status, and whether retrying the process is required.
         **/
         public func checkAndUpdatePaymentStatusPaymentLink(
             body: PaymentStatusUpdateRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PaymentStatusUpdateResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["checkAndUpdatePaymentStatusPaymentLink"] ?? ""
             
@@ -2256,7 +2243,7 @@ if let value = paymentLinkId {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2281,31 +2268,30 @@ if let value = paymentLinkId {
         }
         
         
-        
-        
         /**
         *
         * Summary: Credit summary
-        * Description: Fetches a summary of the customer's credit information, including details such as merchant customer reference ID, status, balance, limit, due amount, used amount, due date, days overdue, total due amount, and a repayment URL.
+        * Description: Get summary of the customer's credit information, including details such as merchant customer reference ID, status, balance, limit, due amount, used amount, due date, days overdue, total due amount, and a repayment URL.
         **/
         public func customerCreditSummary(
             aggregator: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomerCreditSummaryResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = aggregator {
-    
-    xQuery["aggregator"] = value
-    
-}
-
-
- 
-
-
+            if let value = aggregator {
+                xQuery["aggregator"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["customerCreditSummary"] ?? ""
             
@@ -2314,7 +2300,7 @@ if let value = aggregator {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2339,39 +2325,35 @@ if let value = aggregator {
         }
         
         
-        
-        
         /**
         *
         * Summary: Redirects users to the payment aggregator's interface
-        * Description: Redirects users to the payment aggregator's interface and provides necessary parameters such as the callback URL and aggregator name. Returns the status of the payment along with the redirect URL and signup URL.
+        * Description: Get details about the active card aggregator used by the user, including the aggregator's name. You can refresh the data by setting the 'refresh' parameter to true if needed.
         **/
         public func redirectToAggregator(
             source: String?,
             aggregator: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: RedirectToAggregatorResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = source {
-    
-    xQuery["source"] = value
-    
-}
-
-
-if let value = aggregator {
-    
-    xQuery["aggregator"] = value
-    
-}
-
-
- 
-
-
+            if let value = source {
+                xQuery["source"] = value
+            }
+            
+            if let value = aggregator {
+                xQuery["aggregator"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["redirectToAggregator"] ?? ""
             
@@ -2380,7 +2362,7 @@ if let value = aggregator {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2405,31 +2387,30 @@ if let value = aggregator {
         }
         
         
-        
-        
         /**
         *
         * Summary: Verify credit availability and status
-        * Description: Checks the availability and status of customer credit, providing the status of payment along with registration information and signup URL if the customer is not registered.
+        * Description: Check the availability and status of customer credit, providing the status of payment along with registration information and signup URL if the customer is not registered.
         **/
         public func checkCredit(
             aggregator: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CheckCreditResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = aggregator {
-    
-    xQuery["aggregator"] = value
-    
-}
-
-
- 
-
-
+            if let value = aggregator {
+                xQuery["aggregator"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["checkCredit"] ?? ""
             
@@ -2438,7 +2419,7 @@ if let value = aggregator {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2463,23 +2444,25 @@ if let value = aggregator {
         }
         
         
-        
-        
         /**
         *
         * Summary: Onboard customer for payment
-        * Description: Initiates the onboarding process for payment services, providing personal, business, and device information, along with marketplace details, to enable customer registration and credit availability.
+        * Description: Initiate the onboarding process for payment services, providing personal, business, and device information, along with marketplace details, to enable customer registration and credit availability.
         **/
         public func customerOnboard(
             body: CustomerOnboardingRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomerOnboardingResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["customerOnboard"] ?? ""
             
@@ -2488,7 +2471,7 @@ if let value = aggregator {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2513,31 +2496,30 @@ if let value = aggregator {
         }
         
         
-        
-        
         /**
         *
         * Summary: Outstanding orders
-        * Description: Retrieve details of orders with outstanding payments.
+        * Description: Get details of orders with outstanding payments.
         **/
         public func outstandingOrderDetails(
             aggregator: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: OutstandingOrderDetailsResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = aggregator {
-    
-    xQuery["aggregator"] = value
-    
-}
-
-
- 
-
-
+            if let value = aggregator {
+                xQuery["aggregator"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["outstandingOrderDetails"] ?? ""
             
@@ -2546,7 +2528,7 @@ if let value = aggregator {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2571,31 +2553,30 @@ if let value = aggregator {
         }
         
         
-        
-        
         /**
         *
         * Summary: Retrieve details of paid orders
-        * Description: Retrieves details of orders that have been paid for, including shipment ID, order ID, due date, payment date, amount, and transaction ID, based on the aggregator's merchant user ID.
+        * Description: Get details of orders that have been paid for, including shipment ID, order ID, due date, payment date, amount, and transaction ID, based on the aggregator merchant user ID.
         **/
         public func paidOrderDetails(
             aggregator: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PaidOrderDetailsResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = aggregator {
-    
-    xQuery["aggregator"] = value
-    
-}
-
-
- 
-
-
+            if let value = aggregator {
+                xQuery["aggregator"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["paidOrderDetails"] ?? ""
             
@@ -2604,7 +2585,7 @@ if let value = aggregator {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2629,23 +2610,25 @@ if let value = aggregator {
         }
         
         
-        
-        
         /**
         *
         * Summary: Create Order
-        * Description: Create an order and payment on the aggregator side
+        * Description: Create an order and payment on the aggregator side.
         **/
         public func createPaymentOrder(
             body: PaymentOrderRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PaymentOrderResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["createPaymentOrder"] ?? ""
             
@@ -2654,7 +2637,7 @@ if let value = aggregator {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2676,8 +2659,5 @@ if let value = aggregator {
                         onResponse(nil, err)
                     }
             });
-        }
-        
-        
-    }
+        }}
 }

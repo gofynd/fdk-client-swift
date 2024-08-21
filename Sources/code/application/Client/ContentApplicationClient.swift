@@ -72,14 +72,18 @@ extension ApplicationClient {
         **/
         public func getAnnouncements(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AnnouncementsResponseSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getAnnouncements"] ?? ""
             
@@ -88,7 +92,7 @@ extension ApplicationClient {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -113,43 +117,42 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get a blog
-        * Description: Get all information related to a specific blog such as it's contents, author, publish date, SEO related information.
+        * Description: Get information related to a specific blog such as it's contents, author, publish date, SEO related information.
         **/
         public func getBlog(
             slug: String,
             rootId: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = rootId {
-    
-    xQuery["root_id"] = value
-    
-}
-
-
- 
-
-
+            if let value = rootId {
+                xQuery["root_id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getBlog"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -174,12 +177,10 @@ if let value = rootId {
         }
         
         
-        
-        
         /**
         *
         * Summary: List blogs
-        * Description: List all the blogs against an application
+        * Description: List all the blogs against an application.
         **/
         public func getBlogs(
             pageNo: Int?,
@@ -187,42 +188,34 @@ if let value = rootId {
             tags: String?,
             search: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: BlogGetResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = tags {
-    
-    xQuery["tags"] = value
-    
-}
-
-
-if let value = search {
-    
-    xQuery["search"] = value
-    
-}
-
-
- 
-
-
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = tags {
+                xQuery["tags"] = value
+            }
+            
+            if let value = search {
+                xQuery["search"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getBlogs"] ?? ""
             
@@ -231,7 +224,7 @@ if let value = search {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -256,23 +249,25 @@ if let value = search {
         }
         
         
-        
-        
         /**
         *
         * Summary: List Dataloaders
-        * Description: List all the data loaders that are enabled for an application
+        * Description: List all the data loaders that are enabled for an application.
         **/
         public func getDataLoaders(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: DataLoadersSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getDataLoaders"] ?? ""
             
@@ -281,7 +276,7 @@ if let value = search {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -306,23 +301,25 @@ if let value = search {
         }
         
         
-        
-        
         /**
         *
         * Summary: List FAQs
-        * Description: List a list of frequently asked questions and ansers
+        * Description: List frequently asked questions and answers.
         **/
         public func getFaqs(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: FaqResponseSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getFaqs"] ?? ""
             
@@ -331,7 +328,7 @@ if let value = search {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -356,23 +353,25 @@ if let value = search {
         }
         
         
-        
-        
         /**
         *
         * Summary: List FAQ Categories
-        * Description: Lists categories for organizing FAQs.
+        * Description: List categories for organizing FAQs.
         **/
         public func getFaqCategories(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetFaqCategoriesSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getFaqCategories"] ?? ""
             
@@ -381,7 +380,7 @@ if let value = search {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -406,8 +405,6 @@ if let value = search {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get FAQ
@@ -416,25 +413,29 @@ if let value = search {
         public func getFaqBySlug(
             slug: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: FaqSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getFaqBySlug"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -459,8 +460,6 @@ if let value = search {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get a FAQ category
@@ -469,25 +468,29 @@ if let value = search {
         public func getFaqCategoryBySlug(
             slug: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetFaqCategoryBySlugSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getFaqCategoryBySlug"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -512,35 +515,37 @@ if let value = search {
         }
         
         
-        
-        
         /**
         *
         * Summary: List FAQs by category
-        * Description: Get FAQs belonging to a specific category slug
+        * Description: Get FAQs belonging to a specific category slug.
         **/
         public func getFaqsByCategorySlug(
             slug: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetFaqSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getFaqsByCategorySlug"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -565,23 +570,25 @@ if let value = search {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get a landing page
-        * Description: Gets the content of the application's landing page.
+        * Description: Get content of the application's landing page.
         **/
         public func getLandingPage(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: LandingPageSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getLandingPage"] ?? ""
             
@@ -590,7 +597,7 @@ if let value = search {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -615,8 +622,6 @@ if let value = search {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get legal information
@@ -624,14 +629,18 @@ if let value = search {
         **/
         public func getLegalInformation(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ApplicationLegal?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getLegalInformation"] ?? ""
             
@@ -640,7 +649,7 @@ if let value = search {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -665,39 +674,35 @@ if let value = search {
         }
         
         
-        
-        
         /**
         *
         * Summary: List navigation items
-        * Description: Get the navigation link items which can be powered to genreate menus on application's website or equivalent mobile apps
+        * Description: Get the navigation link items which can be powered to generate menus on application's website or equivalent mobile apps.
         **/
         public func getNavigations(
             pageNo: Int?,
             pageSize: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: NavigationGetResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getNavigations"] ?? ""
             
@@ -706,7 +711,7 @@ if let value = pageSize {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -731,23 +736,25 @@ if let value = pageSize {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get SEO settings
-        * Description: Get search engine optimization configurations of an application. Details include the title, description and an image
+        * Description: Get search engine optimization configurations of an application. Details include the title, description and an image.
         **/
         public func getSEOConfiguration(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SeoComponent?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getSEOConfiguration"] ?? ""
             
@@ -756,7 +763,7 @@ if let value = pageSize {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -781,39 +788,35 @@ if let value = pageSize {
         }
         
         
-        
-        
         /**
         *
         * Summary: List SEO Markup schemas
-        * Description: Get all SEO Markup schema Templates setup for an application
+        * Description: Get all SEO Markup schema Templates setup for an application.
         **/
         public func getSEOMarkupSchemas(
             pageType: String?,
             active: Bool?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SeoSchemaComponent?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = pageType {
-    
-    xQuery["page_type"] = value
-    
-}
-
-
-if let value = active {
-    
-    xQuery["active"] = value
-    
-}
-
-
- 
-
-
+            if let value = pageType {
+                xQuery["page_type"] = value
+            }
+            
+            if let value = active {
+                xQuery["active"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getSEOMarkupSchemas"] ?? ""
             
@@ -822,7 +825,7 @@ if let value = active {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -847,39 +850,35 @@ if let value = active {
         }
         
         
-        
-        
         /**
         *
         * Summary: List Slideshows
-        * Description: Get a list of slideshows along with their details.
+        * Description: List slideshows along with their details.
         **/
         public func getSlideshows(
             pageNo: Int?,
             pageSize: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SlideshowGetResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getSlideshows"] ?? ""
             
@@ -888,7 +887,7 @@ if let value = pageSize {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -914,37 +913,24 @@ if let value = pageSize {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: get paginator for getSlideshows
         * Description: fetch the next page by calling .next(...) function
         **/
         public func getSlideshowsPaginator(
-            pageSize: Int?
-            
+            pageSize: Int?,
+            headers: [(key: String, value: String)]? = nil
             ) -> Paginator<SlideshowGetResponse> {
             let pageSize = pageSize ?? 20
             let paginator = Paginator<SlideshowGetResponse>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getSlideshows(
-                        
-                        pageNo: paginator.pageNo
-                        ,
-                        pageSize: paginator.pageSize
-                        
-                    ) { response, error in                    
+                    pageNo: paginator.pageNo,
+                    pageSize: paginator.pageSize,
+                    
+                    headers: headers
+                ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page?.hasNext ?? false
                         paginator.pageNo = (paginator.pageNo ?? 0) + 1
@@ -957,7 +943,6 @@ if let value = pageSize {
         
         
         
-        
         /**
         *
         * Summary: Get a Slideshow
@@ -966,25 +951,29 @@ if let value = pageSize {
         public func getSlideshow(
             slug: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getSlideshow"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1009,23 +998,25 @@ if let value = pageSize {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get customer support information
-        * Description: Get customer support contact details. Contact Details can be either a phone number or an email-id or both
+        * Description: Get customer support contact details. Contact Details can be either a phone number or an email-id or both.
         **/
         public func getSupportInformation(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: Support?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getSupportInformation"] ?? ""
             
@@ -1034,7 +1025,7 @@ if let value = pageSize {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1059,8 +1050,6 @@ if let value = pageSize {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get HTML tags
@@ -1068,14 +1057,18 @@ if let value = pageSize {
         **/
         public func getTags(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getTags"] ?? ""
             
@@ -1084,7 +1077,7 @@ if let value = pageSize {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1109,8 +1102,6 @@ if let value = pageSize {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get a page
@@ -1120,32 +1111,33 @@ if let value = pageSize {
             slug: String,
             rootId: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = rootId {
-    
-    xQuery["root_id"] = value
-    
-}
-
-
- 
-
-
+            if let value = rootId {
+                xQuery["root_id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getPage"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "slug" + "}", with: "\(slug)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1170,39 +1162,35 @@ if let value = rootId {
         }
         
         
-        
-        
         /**
         *
         * Summary: Lists pages
-        * Description: Lists all Custom Pages
+        * Description: Lists all Custom Pages.
         **/
         public func getPages(
             pageNo: Int?,
             pageSize: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PageGetResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getPages"] ?? ""
             
@@ -1211,7 +1199,7 @@ if let value = pageSize {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1236,35 +1224,37 @@ if let value = pageSize {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get custom object
-        * Description: Details of custom objects, their field details, definitions, and references can be obtained using this endpoint.
+        * Description: Get details of custom objects, their field details, definitions, and references can be obtained using this endpoint.
         **/
         public func getCustomObject(
             metaobjectId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomObjectByIdSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getCustomObject"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "metaobject_id" + "}", with: "\(metaobjectId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "metaobject_id" + "}", with: "\(metaobjectId)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1289,38 +1279,40 @@ if let value = pageSize {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get list of custom fields 
-        * Description: Retrieves a list of custom fields attached to a particular resource by using the resource.
+        * Description: List custom fields attached to a particular resource by using the resource.
         **/
         public func getCustomFields(
             resource: String,
             resourceId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomFieldsResponseByResourceIdSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getCustomFields"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "resource" + "}", with: "\(resource)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "resource" + "}", with: "\(resource)")
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "resource_id" + "}", with: "\(resourceId)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "resource_id" + "}", with: "\(resourceId)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1342,8 +1334,5 @@ if let value = pageSize {
                         onResponse(nil, err)
                     }
             });
-        }
-        
-        
-    }
+        }}
 }

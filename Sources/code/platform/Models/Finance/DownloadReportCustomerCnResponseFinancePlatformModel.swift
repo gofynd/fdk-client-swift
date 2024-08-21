@@ -14,8 +14,6 @@ public extension PlatformClient.Finance {
         
         public var items: [DownloadReportResponseData]?
         
-        public var data: [DownloadReportResponseData]?
-        
         public var itemCount: Int?
         
         public var page: Page?
@@ -25,19 +23,15 @@ public extension PlatformClient.Finance {
             
             case items = "items"
             
-            case data = "data"
-            
             case itemCount = "item_count"
             
             case page = "page"
             
         }
 
-        public init(data: [DownloadReportResponseData]? = nil, items: [DownloadReportResponseData]? = nil, itemCount: Int? = nil, page: Page? = nil) {
+        public init(items: [DownloadReportResponseData]? = nil, itemCount: Int? = nil, page: Page? = nil) {
             
             self.items = items
-            
-            self.data = data
             
             self.itemCount = itemCount
             
@@ -51,18 +45,6 @@ public extension PlatformClient.Finance {
             
                 do {
                     items = try container.decode([DownloadReportResponseData].self, forKey: .items)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    data = try container.decode([DownloadReportResponseData].self, forKey: .data)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,11 +86,6 @@ public extension PlatformClient.Finance {
             
             
             try? container.encodeIfPresent(items, forKey: .items)
-            
-            
-            
-            
-            try? container.encodeIfPresent(data, forKey: .data)
             
             
             

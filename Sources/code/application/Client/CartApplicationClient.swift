@@ -82,7 +82,7 @@ extension ApplicationClient {
         /**
         *
         * Summary: Get a cart
-        * Description: Retrieve details of a cart linked to a specific customer using either the customer's ID or a unique cart ID. It offers an overview of the items, quantities, prices, and other relevant information associated with the cart.
+        * Description: Get details of a cart linked to a specific customer using a unique cart ID. It offers an overview of the items, quantities, prices, and other relevant information associated with the cart.
         **/
         public func getCart(
             id: String?,
@@ -94,70 +94,50 @@ extension ApplicationClient {
             buyNow: Bool?,
             orderType: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = i {
-    
-    xQuery["i"] = value
-    
-}
-
-
-if let value = b {
-    
-    xQuery["b"] = value
-    
-}
-
-
-if let value = c {
-    
-    xQuery["c"] = value
-    
-}
-
-
-if let value = assignCardId {
-    
-    xQuery["assign_card_id"] = value
-    
-}
-
-
-if let value = areaCode {
-    
-    xQuery["area_code"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
-if let value = orderType {
-    
-    xQuery["order_type"] = value
-    
-}
-
-
- 
-
-
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = i {
+                xQuery["i"] = value
+            }
+            
+            if let value = b {
+                xQuery["b"] = value
+            }
+            
+            if let value = c {
+                xQuery["c"] = value
+            }
+            
+            if let value = assignCardId {
+                xQuery["assign_card_id"] = value
+            }
+            
+            if let value = areaCode {
+                xQuery["area_code"] = value
+            }
+            
+            if let value = buyNow {
+                xQuery["buy_now"] = value
+            }
+            
+            if let value = orderType {
+                xQuery["order_type"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getCart"] ?? ""
             
@@ -166,7 +146,7 @@ if let value = orderType {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -191,8 +171,6 @@ if let value = orderType {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get last modified timestamp of a cart
@@ -201,21 +179,22 @@ if let value = orderType {
         public func getCartLastModified(
             id: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
- 
-
-
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getCartLastModified"] ?? ""
             
@@ -224,7 +203,7 @@ if let value = id {
                 method: "HEAD",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -249,8 +228,6 @@ if let value = id {
         }
         
         
-        
-        
         /**
         *
         * Summary: Add items to a cart
@@ -264,56 +241,42 @@ if let value = id {
             id: String?,
             orderType: String?,
             body: AddCartRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = i {
-    
-    xQuery["i"] = value
-    
-}
-
-
-if let value = b {
-    
-    xQuery["b"] = value
-    
-}
-
-
-if let value = areaCode {
-    
-    xQuery["area_code"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = orderType {
-    
-    xQuery["order_type"] = value
-    
-}
-
-
- 
-
-
+            if let value = i {
+                xQuery["i"] = value
+            }
+            
+            if let value = b {
+                xQuery["b"] = value
+            }
+            
+            if let value = areaCode {
+                xQuery["area_code"] = value
+            }
+            
+            if let value = buyNow {
+                xQuery["buy_now"] = value
+            }
+            
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = orderType {
+                xQuery["order_type"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["addItems"] ?? ""
             
@@ -322,7 +285,7 @@ if let value = orderType {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -347,12 +310,10 @@ if let value = orderType {
         }
         
         
-        
-        
         /**
         *
         * Summary: Update cart items
-        * Description: Customers can modify added product attributes such as quantity and size, as well as remove items from the cart.
+        * Description: Update cart. Customers can modify added product attributes such as quantity and size, as well as remove items from the cart.
         **/
         public func updateCart(
             id: String?,
@@ -363,63 +324,46 @@ if let value = orderType {
             cartType: String?,
             orderType: String?,
             body: UpdateCartRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = i {
-    
-    xQuery["i"] = value
-    
-}
-
-
-if let value = b {
-    
-    xQuery["b"] = value
-    
-}
-
-
-if let value = areaCode {
-    
-    xQuery["area_code"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
-if let value = cartType {
-    
-    xQuery["cart_type"] = value
-    
-}
-
-
-if let value = orderType {
-    
-    xQuery["order_type"] = value
-    
-}
-
-
- 
-
-
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = i {
+                xQuery["i"] = value
+            }
+            
+            if let value = b {
+                xQuery["b"] = value
+            }
+            
+            if let value = areaCode {
+                xQuery["area_code"] = value
+            }
+            
+            if let value = buyNow {
+                xQuery["buy_now"] = value
+            }
+            
+            if let value = cartType {
+                xQuery["cart_type"] = value
+            }
+            
+            if let value = orderType {
+                xQuery["order_type"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["updateCart"] ?? ""
             
@@ -428,7 +372,7 @@ if let value = orderType {
                 method: "PUT",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -453,8 +397,6 @@ if let value = orderType {
         }
         
         
-        
-        
         /**
         *
         * Summary: Delete a cart
@@ -463,21 +405,22 @@ if let value = orderType {
         public func deleteCart(
             id: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: DeleteCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
- 
-
-
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["deleteCart"] ?? ""
             
@@ -486,7 +429,7 @@ if let value = id {
                 method: "PUT",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -511,39 +454,35 @@ if let value = id {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get a cart items count
-        * Description: Retrieve the total count of items currently present in the customer's cart.
+        * Description: Get total count of items currently present in the customer's cart.
         **/
         public func getItemCount(
             id: String?,
             buyNow: Bool?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CartItemCountResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
- 
-
-
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = buyNow {
+                xQuery["buy_now"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getItemCount"] ?? ""
             
@@ -552,7 +491,7 @@ if let value = buyNow {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -577,12 +516,10 @@ if let value = buyNow {
         }
         
         
-        
-        
         /**
         *
         * Summary: List available coupons
-        * Description: Retrieve a list of all available coupons that customer can apply to their carts. It provides details about each coupon, including its code, discount amount, and applicable conditions.
+        * Description: List all available coupons that customer can apply to their carts. It provides details about each coupon, including its code, discount amount, and applicable conditions.
         **/
         public func getCoupons(
             id: String?,
@@ -590,42 +527,34 @@ if let value = buyNow {
             slug: String?,
             storeId: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetCouponResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
-if let value = slug {
-    
-    xQuery["slug"] = value
-    
-}
-
-
-if let value = storeId {
-    
-    xQuery["store_id"] = value
-    
-}
-
-
- 
-
-
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = buyNow {
+                xQuery["buy_now"] = value
+            }
+            
+            if let value = slug {
+                xQuery["slug"] = value
+            }
+            
+            if let value = storeId {
+                xQuery["store_id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getCoupons"] ?? ""
             
@@ -634,7 +563,7 @@ if let value = storeId {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -659,13 +588,10 @@ if let value = storeId {
         }
         
         
-        
-        
         /**
         *
         * Summary: Apply coupon
-        * Description: 
-Apply a coupon code to the customer's cart to trigger discounts on eligible items
+        * Description: Apply a coupon code to the cart to trigger discounts on eligible items.
         **/
         public func applyCoupon(
             i: Bool?,
@@ -675,56 +601,42 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             buyNow: Bool?,
             cartType: String?,
             body: ApplyCouponRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = i {
-    
-    xQuery["i"] = value
-    
-}
-
-
-if let value = b {
-    
-    xQuery["b"] = value
-    
-}
-
-
-if let value = p {
-    
-    xQuery["p"] = value
-    
-}
-
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
-if let value = cartType {
-    
-    xQuery["cart_type"] = value
-    
-}
-
-
- 
-
-
+            if let value = i {
+                xQuery["i"] = value
+            }
+            
+            if let value = b {
+                xQuery["b"] = value
+            }
+            
+            if let value = p {
+                xQuery["p"] = value
+            }
+            
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = buyNow {
+                xQuery["buy_now"] = value
+            }
+            
+            if let value = cartType {
+                xQuery["cart_type"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["applyCoupon"] ?? ""
             
@@ -733,7 +645,7 @@ if let value = cartType {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -758,8 +670,6 @@ if let value = cartType {
         }
         
         
-        
-        
         /**
         *
         * Summary: Remove coupon
@@ -769,28 +679,26 @@ if let value = cartType {
             id: String?,
             buyNow: Bool?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
- 
-
-
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = buyNow {
+                xQuery["buy_now"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["removeCoupon"] ?? ""
             
@@ -799,7 +707,7 @@ if let value = buyNow {
                 method: "DELETE",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -824,12 +732,10 @@ if let value = buyNow {
         }
         
         
-        
-        
         /**
         *
         * Summary: List bulk discounts
-        * Description: Retrieve a list of offer discounts with information about quantity and seller. One offer is marked with a "best" flag, indicating it as the best offer among the list.
+        * Description: List offer discounts with information about quantity and seller. One offer is marked with a "best" flag, indicating it as the best offer among the list.
         **/
         public func getBulkDiscountOffers(
             itemId: Int?,
@@ -837,42 +743,34 @@ if let value = buyNow {
             uid: Int?,
             slug: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: BulkPriceResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = itemId {
-    
-    xQuery["item_id"] = value
-    
-}
-
-
-if let value = articleId {
-    
-    xQuery["article_id"] = value
-    
-}
-
-
-if let value = uid {
-    
-    xQuery["uid"] = value
-    
-}
-
-
-if let value = slug {
-    
-    xQuery["slug"] = value
-    
-}
-
-
- 
-
-
+            if let value = itemId {
+                xQuery["item_id"] = value
+            }
+            
+            if let value = articleId {
+                xQuery["article_id"] = value
+            }
+            
+            if let value = uid {
+                xQuery["uid"] = value
+            }
+            
+            if let value = slug {
+                xQuery["slug"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getBulkDiscountOffers"] ?? ""
             
@@ -881,7 +779,7 @@ if let value = slug {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -906,8 +804,6 @@ if let value = slug {
         }
         
         
-        
-        
         /**
         *
         * Summary: Use reward points
@@ -919,42 +815,34 @@ if let value = slug {
             b: Bool?,
             buyNow: Bool?,
             body: RewardPointRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = i {
-    
-    xQuery["i"] = value
-    
-}
-
-
-if let value = b {
-    
-    xQuery["b"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
- 
-
-
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = i {
+                xQuery["i"] = value
+            }
+            
+            if let value = b {
+                xQuery["b"] = value
+            }
+            
+            if let value = buyNow {
+                xQuery["buy_now"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["applyRewardPoints"] ?? ""
             
@@ -963,7 +851,7 @@ if let value = buyNow {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -988,12 +876,10 @@ if let value = buyNow {
         }
         
         
-        
-        
         /**
         *
         * Summary: List customer addresses
-        * Description: Retrieve a list of all addresses saved by the customer, simplifying the checkout process by offering pre-saved address options for delivery.
+        * Description: List all addresses saved by the customer, simplifying the checkout process by offering pre-saved address options for delivery.
         **/
         public func getAddresses(
             cartId: String?,
@@ -1003,56 +889,42 @@ if let value = buyNow {
             tags: String?,
             isDefault: Bool?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetAddressesResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = cartId {
-    
-    xQuery["cart_id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
-if let value = mobileNo {
-    
-    xQuery["mobile_no"] = value
-    
-}
-
-
-if let value = checkoutMode {
-    
-    xQuery["checkout_mode"] = value
-    
-}
-
-
-if let value = tags {
-    
-    xQuery["tags"] = value
-    
-}
-
-
-if let value = isDefault {
-    
-    xQuery["is_default"] = value
-    
-}
-
-
- 
-
-
+            if let value = cartId {
+                xQuery["cart_id"] = value
+            }
+            
+            if let value = buyNow {
+                xQuery["buy_now"] = value
+            }
+            
+            if let value = mobileNo {
+                xQuery["mobile_no"] = value
+            }
+            
+            if let value = checkoutMode {
+                xQuery["checkout_mode"] = value
+            }
+            
+            if let value = tags {
+                xQuery["tags"] = value
+            }
+            
+            if let value = isDefault {
+                xQuery["is_default"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getAddresses"] ?? ""
             
@@ -1061,7 +933,7 @@ if let value = isDefault {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1086,23 +958,25 @@ if let value = isDefault {
         }
         
         
-        
-        
         /**
         *
         * Summary: Create a new address
-        * Description: Customers can add a new address to their cart to save details such as name, email, contact information, and address.
+        * Description: Add a new address to their cart to save details such as name, email, contact information, and address.
         **/
         public func addAddress(
             body: Address,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SaveAddressResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["addAddress"] ?? ""
             
@@ -1111,7 +985,7 @@ if let value = isDefault {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1136,12 +1010,10 @@ if let value = isDefault {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get a address
-        * Description: Retrieve a specific customer address stored in the system by providing its unique identifier. This API provides detailed information about the address, including the recipient's name, address, city, postal code, and other relevant details.
+        * Description: Get a specific customer address stored in the system by providing its unique identifier. This API provides detailed information about the address, including the recipient's name, address, city, postal code, and other relevant details.
         **/
         public func getAddressById(
             id: String,
@@ -1152,67 +1024,53 @@ if let value = isDefault {
             tags: String?,
             isDefault: Bool?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: Address?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = cartId {
-    
-    xQuery["cart_id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
-if let value = mobileNo {
-    
-    xQuery["mobile_no"] = value
-    
-}
-
-
-if let value = checkoutMode {
-    
-    xQuery["checkout_mode"] = value
-    
-}
-
-
-if let value = tags {
-    
-    xQuery["tags"] = value
-    
-}
-
-
-if let value = isDefault {
-    
-    xQuery["is_default"] = value
-    
-}
-
-
- 
-
-
+            if let value = cartId {
+                xQuery["cart_id"] = value
+            }
+            
+            if let value = buyNow {
+                xQuery["buy_now"] = value
+            }
+            
+            if let value = mobileNo {
+                xQuery["mobile_no"] = value
+            }
+            
+            if let value = checkoutMode {
+                xQuery["checkout_mode"] = value
+            }
+            
+            if let value = tags {
+                xQuery["tags"] = value
+            }
+            
+            if let value = isDefault {
+                xQuery["is_default"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getAddressById"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1237,35 +1095,37 @@ if let value = isDefault {
         }
         
         
-        
-        
         /**
         *
         * Summary: Update a address
-        * Description: Customer can modify the details of a previously saved addresses. 
+        * Description: Customer can modify the details of a previously saved addresses.
         **/
         public func updateAddress(
             id: String,
             body: Address,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: UpdateAddressResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["updateAddress"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "PUT",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1290,35 +1150,37 @@ if let value = isDefault {
         }
         
         
-        
-        
         /**
         *
         * Summary: Delete a address
-        * Description: Removes an existing customer address from the system.
+        * Description: Delete an existing customer address from the system.
         **/
         public func removeAddress(
             id: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: DeleteAddressResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["removeAddress"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "id" + "}", with: "\(id)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "DELETE",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1343,12 +1205,10 @@ if let value = isDefault {
         }
         
         
-        
-        
         /**
         *
         * Summary: Select a delivery address
-        * Description: Selects an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address.
+        * Description: Select an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address.
         **/
         public func selectAddress(
             cartId: String?,
@@ -1356,42 +1216,34 @@ if let value = isDefault {
             i: Bool?,
             b: Bool?,
             body: SelectCartAddressRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = cartId {
-    
-    xQuery["cart_id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
-if let value = i {
-    
-    xQuery["i"] = value
-    
-}
-
-
-if let value = b {
-    
-    xQuery["b"] = value
-    
-}
-
-
- 
-
-
+            if let value = cartId {
+                xQuery["cart_id"] = value
+            }
+            
+            if let value = buyNow {
+                xQuery["buy_now"] = value
+            }
+            
+            if let value = i {
+                xQuery["i"] = value
+            }
+            
+            if let value = b {
+                xQuery["b"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["selectAddress"] ?? ""
             
@@ -1400,7 +1252,7 @@ if let value = b {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1425,39 +1277,35 @@ if let value = b {
         }
         
         
-        
-        
         /**
         *
         * Summary: Select payment mode
-        * Description: Customers can select a preferred payment mode from available options during the cart checkout process to securely and efficiently complete their transaction.
+        * Description: Select a preferred payment mode from available options during the cart checkout process to securely and efficiently complete their transaction.
         **/
         public func selectPaymentMode(
             id: String?,
             buyNow: Bool?,
             body: UpdateCartPaymentRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
- 
-
-
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = buyNow {
+                xQuery["buy_now"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["selectPaymentMode"] ?? ""
             
@@ -1466,7 +1314,7 @@ if let value = buyNow {
                 method: "PUT",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1489,8 +1337,6 @@ if let value = buyNow {
                     }
             });
         }
-        
-        
         
         
         /**
@@ -1512,98 +1358,66 @@ if let value = buyNow {
             cardId: String?,
             cartType: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
-if let value = addressId {
-    
-    xQuery["address_id"] = value
-    
-}
-
-
-if let value = paymentMode {
-    
-    xQuery["payment_mode"] = value
-    
-}
-
-
-if let value = paymentIdentifier {
-    
-    xQuery["payment_identifier"] = value
-    
-}
-
-
-if let value = aggregatorName {
-    
-    xQuery["aggregator_name"] = value
-    
-}
-
-
-if let value = merchantCode {
-    
-    xQuery["merchant_code"] = value
-    
-}
-
-
-if let value = iin {
-    
-    xQuery["iin"] = value
-    
-}
-
-
-if let value = network {
-    
-    xQuery["network"] = value
-    
-}
-
-
-if let value = type {
-    
-    xQuery["type"] = value
-    
-}
-
-
-if let value = cardId {
-    
-    xQuery["card_id"] = value
-    
-}
-
-
-if let value = cartType {
-    
-    xQuery["cart_type"] = value
-    
-}
-
-
- 
-
-
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = buyNow {
+                xQuery["buy_now"] = value
+            }
+            
+            if let value = addressId {
+                xQuery["address_id"] = value
+            }
+            
+            if let value = paymentMode {
+                xQuery["payment_mode"] = value
+            }
+            
+            if let value = paymentIdentifier {
+                xQuery["payment_identifier"] = value
+            }
+            
+            if let value = aggregatorName {
+                xQuery["aggregator_name"] = value
+            }
+            
+            if let value = merchantCode {
+                xQuery["merchant_code"] = value
+            }
+            
+            if let value = iin {
+                xQuery["iin"] = value
+            }
+            
+            if let value = network {
+                xQuery["network"] = value
+            }
+            
+            if let value = type {
+                xQuery["type"] = value
+            }
+            
+            if let value = cardId {
+                xQuery["card_id"] = value
+            }
+            
+            if let value = cartType {
+                xQuery["cart_type"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["validateCouponForPayment"] ?? ""
             
@@ -1612,7 +1426,7 @@ if let value = cartType {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1637,12 +1451,10 @@ if let value = cartType {
         }
         
         
-        
-        
         /**
         *
         * Summary: List shipments
-        * Description: Retrieve shipment details for the items in a cart, specific to the selected address. Shipment details include delivery promises, seller information, item details, and other relevant information.
+        * Description: Get shipment details for the items in a cart, specific to the selected address. Shipment details include delivery promises, seller information, item details, and other relevant information.
         **/
         public func getShipments(
             p: Bool?,
@@ -1652,56 +1464,42 @@ if let value = cartType {
             areaCode: String?,
             orderType: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = p {
-    
-    xQuery["p"] = value
-    
-}
-
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
-if let value = addressId {
-    
-    xQuery["address_id"] = value
-    
-}
-
-
-if let value = areaCode {
-    
-    xQuery["area_code"] = value
-    
-}
-
-
-if let value = orderType {
-    
-    xQuery["order_type"] = value
-    
-}
-
-
- 
-
-
+            if let value = p {
+                xQuery["p"] = value
+            }
+            
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = buyNow {
+                xQuery["buy_now"] = value
+            }
+            
+            if let value = addressId {
+                xQuery["address_id"] = value
+            }
+            
+            if let value = areaCode {
+                xQuery["area_code"] = value
+            }
+            
+            if let value = orderType {
+                xQuery["order_type"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getShipments"] ?? ""
             
@@ -1710,7 +1508,7 @@ if let value = orderType {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1735,8 +1533,6 @@ if let value = orderType {
         }
         
         
-        
-        
         /**
         *
         * Summary: Checkout cart
@@ -1746,28 +1542,26 @@ if let value = orderType {
             buyNow: Bool?,
             cartType: String?,
             body: CartCheckoutDetailRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
-if let value = cartType {
-    
-    xQuery["cart_type"] = value
-    
-}
-
-
- 
-
-
+            if let value = buyNow {
+                xQuery["buy_now"] = value
+            }
+            
+            if let value = cartType {
+                xQuery["cart_type"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["checkoutCart"] ?? ""
             
@@ -1776,7 +1570,7 @@ if let value = cartType {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1801,39 +1595,35 @@ if let value = cartType {
         }
         
         
-        
-        
         /**
         *
         * Summary: Update cart metadata
-        * Description: Add or modify metadata associated with a cart, which includes customer preferences, delivery instructions, or any special requirements related to the cart items.
+        * Description: Update metadata associated with a cart, which includes customer preferences, delivery instructions, or any special requirements related to the cart items.
         **/
         public func updateCartMeta(
             id: String?,
             buyNow: Bool?,
             body: CartMetaRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CartMetaResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
- 
-
-
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = buyNow {
+                xQuery["buy_now"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["updateCartMeta"] ?? ""
             
@@ -1842,7 +1632,7 @@ if let value = buyNow {
                 method: "PUT",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1867,8 +1657,6 @@ if let value = buyNow {
         }
         
         
-        
-        
         /**
         *
         * Summary: Create share cart link
@@ -1876,14 +1664,18 @@ if let value = buyNow {
         **/
         public func getCartShareLink(
             body: GetShareCartLinkRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetShareCartLinkResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getCartShareLink"] ?? ""
             
@@ -1892,7 +1684,7 @@ if let value = buyNow {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1917,35 +1709,37 @@ if let value = buyNow {
         }
         
         
-        
-        
         /**
         *
         * Summary: List shared cart items
-        * Description: Retrieve the cart items from the shared cart link based on unique token.
+        * Description: Get cart items from the shared cart link based on unique token.
         **/
         public func getCartSharedItems(
             token: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getCartSharedItems"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "token" + "}", with: "\(token)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "token" + "}", with: "\(token)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1970,38 +1764,40 @@ if let value = buyNow {
         }
         
         
-        
-        
         /**
         *
         * Summary: Update with shared items
-        * Description: Customer can either merge or replace shared cart items with existing cart.
+        * Description: Merge or replace shared cart items with existing cart.
         **/
         public func updateCartWithSharedItems(
             token: String,
             action: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["updateCartWithSharedItems"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "token" + "}", with: "\(token)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "token" + "}", with: "\(token)")
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "action" + "}", with: "\(action)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "action" + "}", with: "\(action)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2026,12 +1822,10 @@ if let value = buyNow {
         }
         
         
-        
-        
         /**
         *
         * Summary: List available promotion offers
-        * Description: Retrieve a list of all promotional offers available for the items in the cart, including details such as offer text, unique promotion ID, and validity period.
+        * Description: List all promotional offers available for the items in the cart, including details such as offer text, unique promotion ID, and validity period.
         **/
         public func getPromotionOffers(
             slug: String?,
@@ -2040,49 +1834,38 @@ if let value = buyNow {
             storeId: Int?,
             cartType: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PromotionOffersResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = slug {
-    
-    xQuery["slug"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = promotionGroup {
-    
-    xQuery["promotion_group"] = value
-    
-}
-
-
-if let value = storeId {
-    
-    xQuery["store_id"] = value
-    
-}
-
-
-if let value = cartType {
-    
-    xQuery["cart_type"] = value
-    
-}
-
-
- 
-
-
+            if let value = slug {
+                xQuery["slug"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = promotionGroup {
+                xQuery["promotion_group"] = value
+            }
+            
+            if let value = storeId {
+                xQuery["store_id"] = value
+            }
+            
+            if let value = cartType {
+                xQuery["cart_type"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getPromotionOffers"] ?? ""
             
@@ -2091,7 +1874,7 @@ if let value = cartType {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2116,12 +1899,10 @@ if let value = cartType {
         }
         
         
-        
-        
         /**
         *
         * Summary: List ladder offers
-        * Description: Retrieve ladder offers associated for the items in the cart. Ladder offers provide discounts or special pricing based on item quantity, allowing users to benefit from bulk purchases or promotional deals.
+        * Description: Get ladder offers associated for the items in the cart. Ladder offers provide discounts or special pricing based on item quantity, allowing users to benefit from bulk purchases or promotional deals.
         **/
         public func getLadderOffers(
             slug: String,
@@ -2129,40 +1910,31 @@ if let value = cartType {
             promotionId: String?,
             pageSize: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: LadderPriceOffers?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["slug"] = slug
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["slug"] = slug
-
-
-
-if let value = storeId {
-    
-    xQuery["store_id"] = value
-    
-}
-
-
-if let value = promotionId {
-    
-    xQuery["promotion_id"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+            if let value = storeId {
+                xQuery["store_id"] = value
+            }
+            
+            if let value = promotionId {
+                xQuery["promotion_id"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getLadderOffers"] ?? ""
             
@@ -2171,7 +1943,7 @@ if let value = pageSize {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2196,39 +1968,35 @@ if let value = pageSize {
         }
         
         
-        
-        
         /**
         *
         * Summary: Fetch available promotions payment offers
-        * Description: Use this API to get top 5 payment offers available for current product
+        * Description: Use this API to get top 5 payment offers available for current product.
         **/
         public func getPromotionPaymentOffers(
             id: String?,
             uid: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PromotionPaymentOffersResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
-if let value = uid {
-    
-    xQuery["uid"] = value
-    
-}
-
-
- 
-
-
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            if let value = uid {
+                xQuery["uid"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getPromotionPaymentOffers"] ?? ""
             
@@ -2237,7 +2005,7 @@ if let value = uid {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2262,8 +2030,6 @@ if let value = uid {
         }
         
         
-        
-        
         /**
         *
         * Summary: Start cart checkout (latest)
@@ -2273,28 +2039,26 @@ if let value = uid {
             buyNow: Bool?,
             cartType: String?,
             body: CartCheckoutDetailV2Request,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = buyNow {
-    
-    xQuery["buy_now"] = value
-    
-}
-
-
-if let value = cartType {
-    
-    xQuery["cart_type"] = value
-    
-}
-
-
- 
-
-
+            if let value = buyNow {
+                xQuery["buy_now"] = value
+            }
+            
+            if let value = cartType {
+                xQuery["cart_type"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["checkoutCartV2"] ?? ""
             
@@ -2303,7 +2067,7 @@ if let value = cartType {
                 method: "POST",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -2325,8 +2089,5 @@ if let value = cartType {
                         onResponse(nil, err)
                     }
             });
-        }
-        
-        
-    }
+        }}
 }

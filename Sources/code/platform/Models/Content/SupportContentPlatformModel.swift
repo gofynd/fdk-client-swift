@@ -16,8 +16,6 @@ public extension PlatformClient.Content {
         
         public var id: String?
         
-        public var configType: String?
-        
         public var application: String?
         
         public var createdAt: String?
@@ -33,8 +31,6 @@ public extension PlatformClient.Content {
             
             case id = "_id"
             
-            case configType = "config_type"
-            
             case application = "application"
             
             case createdAt = "created_at"
@@ -45,13 +41,11 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(application: String? = nil, configType: String? = nil, contact: ContactSchema? = nil, created: Bool? = nil, createdAt: String? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(application: String? = nil, contact: ContactSchema? = nil, created: Bool? = nil, createdAt: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             
             self.created = created
             
             self.id = id
-            
-            self.configType = configType
             
             self.application = application
             
@@ -81,18 +75,6 @@ public extension PlatformClient.Content {
             
                 do {
                     id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    configType = try container.decode(String.self, forKey: .configType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,11 +145,6 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(configType, forKey: .configType)
             
             
             
@@ -210,8 +187,6 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var id: String?
         
-        public var configType: String?
-        
         public var application: String?
         
         public var createdAt: String?
@@ -227,8 +202,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case id = "_id"
             
-            case configType = "config_type"
-            
             case application = "application"
             
             case createdAt = "created_at"
@@ -239,13 +212,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(application: String? = nil, configType: String? = nil, contact: ContactSchema? = nil, created: Bool? = nil, createdAt: String? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(application: String? = nil, contact: ContactSchema? = nil, created: Bool? = nil, createdAt: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             
             self.created = created
             
             self.id = id
-            
-            self.configType = configType
             
             self.application = application
             
@@ -275,18 +246,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    configType = try container.decode(String.self, forKey: .configType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -357,11 +316,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(configType, forKey: .configType)
             
             
             

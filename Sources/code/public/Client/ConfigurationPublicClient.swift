@@ -21,33 +21,32 @@ extension PublicClient {
             authorization: String?,
             query: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ApplicationResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = query {
-    
-    xQuery["query"] = value
-    
-}
-
-
-var xHeaders: [(key: String, value: String)] = [] 
-
-if let value = authorization {
-    
-    xHeaders.append((key: "authorization", value: value))
-    
-}
-
-
+            if let value = query {
+                xQuery["query"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            if let value = authorization {
+                xHeaders.append((key: "authorization", value: value))
+            }
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PublicAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/common/configuration/v1.0/application/search-application",
                 query: xQuery,
-                extraHeaders:  xHeaders,
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -72,8 +71,6 @@ if let value = authorization {
         }
         
         
-        
-        
         /**
         *
         * Summary: Get countries, states, cities
@@ -83,34 +80,32 @@ if let value = authorization {
             locationType: String?,
             id: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: Locations?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = locationType {
-    
-    xQuery["location_type"] = value
-    
-}
-
-
-if let value = id {
-    
-    xQuery["id"] = value
-    
-}
-
-
- 
-
-
+            if let value = locationType {
+                xQuery["location_type"] = value
+            }
+            
+            if let value = id {
+                xQuery["id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PublicAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/common/configuration/v1.0/location",
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -132,8 +127,5 @@ if let value = id {
                         onResponse(nil, err)
                     }
             });
-        }
-        
-        
-    }
+        }}
 }

@@ -30,84 +30,61 @@ extension PlatformClient {
             type: String?,
             appIds: [String]?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ListOrCalender?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = view {
-    
-    xQuery["view"] = value
-    
-}
-
-
-if let value = q {
-    
-    xQuery["q"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = archived {
-    
-    xQuery["archived"] = value
-    
-}
-
-
-if let value = month {
-    
-    xQuery["month"] = value
-    
-}
-
-
-if let value = year {
-    
-    xQuery["year"] = value
-    
-}
-
-
-if let value = type {
-    
-    xQuery["type"] = value
-    
-}
-
-
-if let value = appIds {
-    
-    xQuery["app_ids"] = value
-    
-}
-
-
- 
-
-
+            if let value = view {
+                xQuery["view"] = value
+            }
+            
+            if let value = q {
+                xQuery["q"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = archived {
+                xQuery["archived"] = value
+            }
+            
+            if let value = month {
+                xQuery["month"] = value
+            }
+            
+            if let value = year {
+                xQuery["year"] = value
+            }
+            
+            if let value = type {
+                xQuery["type"] = value
+            }
+            
+            if let value = appIds {
+                xQuery["app_ids"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/job/",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -132,8 +109,6 @@ if let value = appIds {
         
         
         
-        
-        
         /**
         *
         * Summary: Create discount
@@ -141,21 +116,25 @@ if let value = appIds {
         **/
         public func createDiscount(
             body: CreateUpdateDiscount,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: DiscountJob?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/job/",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -177,8 +156,6 @@ if let value = appIds {
                     }
             });
         }
-        
-        
         
         
         
@@ -190,21 +167,25 @@ if let value = appIds {
         public func getDiscount(
             id: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: DiscountJob?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/job/\(id)/",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -226,8 +207,6 @@ if let value = appIds {
                     }
             });
         }
-        
-        
         
         
         
@@ -239,21 +218,25 @@ if let value = appIds {
         public func updateDiscount(
             id: String,
             body: CreateUpdateDiscount,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: DiscountJob?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/job/\(id)/",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -278,8 +261,6 @@ if let value = appIds {
         
         
         
-        
-        
         /**
         *
         * Summary: Upsert discount items
@@ -288,21 +269,25 @@ if let value = appIds {
         public func upsertDiscountItems(
             id: String,
             body: BulkDiscount,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/job/\(id)/items/",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -327,8 +312,6 @@ if let value = appIds {
         
         
         
-        
-        
         /**
         *
         * Summary: Validate discount file
@@ -337,28 +320,29 @@ if let value = appIds {
         public func validateDiscountFile(
             discount: String?,
             body: FileJobRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = discount {
-    
-    xQuery["discount"] = value
-    
-}
-
-
- 
-
-
+            if let value = discount {
+                xQuery["discount"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/file/validation/",
                 query: xQuery,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -380,8 +364,6 @@ if let value = discount {
                     }
             });
         }
-        
-        
         
         
         
@@ -393,21 +375,25 @@ if let value = discount {
         public func downloadDiscountFile(
             type: String,
             body: DownloadFileJob,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/file/\(type)/download/",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -429,8 +415,6 @@ if let value = discount {
                     }
             });
         }
-        
-        
         
         
         
@@ -442,21 +426,25 @@ if let value = discount {
         public func getValidationJob(
             id: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/file/validation/\(id)/",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -478,8 +466,6 @@ if let value = discount {
                     }
             });
         }
-        
-        
         
         
         
@@ -491,21 +477,25 @@ if let value = discount {
         public func cancelValidationJob(
             id: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CancelJobResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "DELETE",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/file/validation/\(id)/",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -530,8 +520,6 @@ if let value = discount {
         
         
         
-        
-        
         /**
         *
         * Summary: List discount download job
@@ -540,21 +528,25 @@ if let value = discount {
         public func getDownloadJob(
             id: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/file/download/\(id)/",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -579,8 +571,6 @@ if let value = discount {
         
         
         
-        
-        
         /**
         *
         * Summary: delete discount download job
@@ -589,21 +579,25 @@ if let value = discount {
         public func cancelDownloadJob(
             id: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CancelJobResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "DELETE",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/file/download/\(id)/",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -625,7 +619,5 @@ if let value = discount {
                     }
             });
         }
-        
-        
     }
 }

@@ -25,28 +25,29 @@ extension PlatformClient {
         public func getAllPayouts(
             uniqueExternalId: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PayoutsResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = uniqueExternalId {
-    
-    xQuery["unique_external_id"] = value
-    
-}
-
-
- 
-
-
+            if let value = uniqueExternalId {
+                xQuery["unique_external_id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/payouts",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -71,8 +72,6 @@ if let value = uniqueExternalId {
         
         
         
-        
-        
         /**
         *
         * Summary: Save payout
@@ -80,21 +79,25 @@ if let value = uniqueExternalId {
         **/
         public func savePayout(
             body: PayoutRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PayoutResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/payouts",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -119,8 +122,6 @@ if let value = uniqueExternalId {
         
         
         
-        
-        
         /**
         *
         * Summary: Update payout
@@ -129,21 +130,25 @@ if let value = uniqueExternalId {
         public func updatePayout(
             uniqueTransferNo: String,
             body: PayoutRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: UpdatePayoutResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/payouts/\(uniqueTransferNo)",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -165,8 +170,6 @@ if let value = uniqueExternalId {
                     }
             });
         }
-        
-        
         
         
         
@@ -178,21 +181,25 @@ if let value = uniqueExternalId {
         public func activateAndDectivatePayout(
             uniqueTransferNo: String,
             body: UpdatePayoutRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: UpdatePayoutResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "PATCH",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/payouts/\(uniqueTransferNo)",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -217,8 +224,6 @@ if let value = uniqueExternalId {
         
         
         
-        
-        
         /**
         *
         * Summary: Delete payout
@@ -227,21 +232,25 @@ if let value = uniqueExternalId {
         public func deletePayout(
             uniqueTransferNo: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: DeletePayoutResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "DELETE",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/payouts/\(uniqueTransferNo)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -266,8 +275,6 @@ if let value = uniqueExternalId {
         
         
         
-        
-        
         /**
         *
         * Summary: Get subscription payment method
@@ -276,28 +283,29 @@ if let value = uniqueExternalId {
         public func getSubscriptionPaymentMethod(
             uniqueExternalId: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SubscriptionPaymentMethodResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = uniqueExternalId {
-    
-    xQuery["unique_external_id"] = value
-    
-}
-
-
- 
-
-
+            if let value = uniqueExternalId {
+                xQuery["unique_external_id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/subscription/methods",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -322,8 +330,6 @@ if let value = uniqueExternalId {
         
         
         
-        
-        
         /**
         *
         * Summary: Delete subscription payment method
@@ -333,31 +339,27 @@ if let value = uniqueExternalId {
             uniqueExternalId: String,
             paymentMethodId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: DeleteSubscriptionPaymentMethodResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["unique_external_id"] = uniqueExternalId
+            xQuery["payment_method_id"] = paymentMethodId
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["unique_external_id"] = uniqueExternalId
-
-
-
-
-    xQuery["payment_method_id"] = paymentMethodId
-
-
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "DELETE",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/subscription/methods",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -382,8 +384,6 @@ var xQuery: [String: Any] = [:]
         
         
         
-        
-        
         /**
         *
         * Summary: Get subscription config
@@ -391,21 +391,25 @@ var xQuery: [String: Any] = [:]
         **/
         public func getSubscriptionConfig(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SubscriptionConfigResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/subscription/configs",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -430,8 +434,6 @@ var xQuery: [String: Any] = [:]
         
         
         
-        
-        
         /**
         *
         * Summary: Save subscription setup intent
@@ -439,21 +441,25 @@ var xQuery: [String: Any] = [:]
         **/
         public func saveSubscriptionSetupIntent(
             body: SaveSubscriptionSetupIntentRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SaveSubscriptionSetupIntentResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/subscription/setup/intent",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -480,8 +486,6 @@ var xQuery: [String: Any] = [:]
         
         
         
-        
-        
         /**
         *
         * Summary: Verify IFSC code
@@ -490,28 +494,29 @@ var xQuery: [String: Any] = [:]
         public func verifyIfscCode(
             ifscCode: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: IfscCodeResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = ifscCode {
-    
-    xQuery["ifsc_code"] = value
-    
-}
-
-
- 
-
-
+            if let value = ifscCode {
+                xQuery["ifsc_code"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/ifsc-code/verify",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -533,8 +538,6 @@ if let value = ifscCode {
                     }
             });
         }
-        
-        
         
         
         

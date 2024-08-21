@@ -21,21 +21,25 @@ extension PlatformClient {
         **/
         public func invalidateShipmentCache(
             body: InvalidateShipmentCachePayload,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: InvalidateShipmentCacheResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/update-cache",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -60,8 +64,6 @@ extension PlatformClient {
         
         
         
-        
-        
         /**
         *
         * Summary: Reassign location
@@ -69,21 +71,25 @@ extension PlatformClient {
         **/
         public func reassignLocation(
             body: StoreReassign,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: StoreReassignResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/store/reassign-internal",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -108,8 +114,6 @@ extension PlatformClient {
         
         
         
-        
-        
         /**
         *
         * Summary: Update a shipment lock
@@ -117,21 +121,25 @@ extension PlatformClient {
         **/
         public func updateShipmentLock(
             body: UpdateShipmentLockPayload,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: UpdateShipmentLockResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/entity/lock-manager",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -156,8 +164,6 @@ extension PlatformClient {
         
         
         
-        
-        
         /**
         *
         * Summary: List announcements
@@ -166,28 +172,29 @@ extension PlatformClient {
         public func getAnnouncements(
             date: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AnnouncementsResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = date {
-    
-    xQuery["date"] = value
-    
-}
-
-
- 
-
-
+            if let value = date {
+                xQuery["date"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/announcements",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -212,8 +219,6 @@ if let value = date {
         
         
         
-        
-        
         /**
         *
         * Summary: Update shipment address
@@ -233,101 +238,67 @@ if let value = date {
             state: String?,
             country: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: BaseResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["shipment_id"] = shipmentId
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["shipment_id"] = shipmentId
-
-
-
-if let value = name {
-    
-    xQuery["name"] = value
-    
-}
-
-
-if let value = address {
-    
-    xQuery["address"] = value
-    
-}
-
-
-if let value = addressType {
-    
-    xQuery["address_type"] = value
-    
-}
-
-
-if let value = pincode {
-    
-    xQuery["pincode"] = value
-    
-}
-
-
-if let value = phone {
-    
-    xQuery["phone"] = value
-    
-}
-
-
-if let value = email {
-    
-    xQuery["email"] = value
-    
-}
-
-
-if let value = landmark {
-    
-    xQuery["landmark"] = value
-    
-}
-
-
-
-    xQuery["address_category"] = addressCategory
-
-
-
-if let value = city {
-    
-    xQuery["city"] = value
-    
-}
-
-
-if let value = state {
-    
-    xQuery["state"] = value
-    
-}
-
-
-if let value = country {
-    
-    xQuery["country"] = value
-    
-}
-
-
- 
-
-
+            if let value = name {
+                xQuery["name"] = value
+            }
+            
+            if let value = address {
+                xQuery["address"] = value
+            }
+            
+            if let value = addressType {
+                xQuery["address_type"] = value
+            }
+            
+            if let value = pincode {
+                xQuery["pincode"] = value
+            }
+            
+            if let value = phone {
+                xQuery["phone"] = value
+            }
+            
+            if let value = email {
+                xQuery["email"] = value
+            }
+            
+            if let value = landmark {
+                xQuery["landmark"] = value
+            }
+            xQuery["address_category"] = addressCategory
+            
+            if let value = city {
+                xQuery["city"] = value
+            }
+            
+            if let value = state {
+                xQuery["state"] = value
+            }
+            
+            if let value = country {
+                xQuery["country"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/delight/update-address",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -352,8 +323,6 @@ if let value = country {
         
         
         
-        
-        
         /**
         *
         * Summary: Update a shipment's status
@@ -361,21 +330,25 @@ if let value = country {
         **/
         public func updateShipmentStatus(
             body: UpdateShipmentStatusRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: UpdateShipmentStatusResponseBody?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/shipment/status-internal",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -400,8 +373,6 @@ if let value = country {
         
         
         
-        
-        
         /**
         *
         * Summary: Get role-based actions
@@ -409,21 +380,25 @@ if let value = country {
         **/
         public func getRoleBasedActions(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetActionsResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/roles",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -448,8 +423,6 @@ if let value = country {
         
         
         
-        
-        
         /**
         *
         * Summary: Get a shipment's history
@@ -459,35 +432,33 @@ if let value = country {
             shipmentId: String?,
             bagId: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ShipmentHistoryResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = shipmentId {
-    
-    xQuery["shipment_id"] = value
-    
-}
-
-
-if let value = bagId {
-    
-    xQuery["bag_id"] = value
-    
-}
-
-
- 
-
-
+            if let value = shipmentId {
+                xQuery["shipment_id"] = value
+            }
+            
+            if let value = bagId {
+                xQuery["bag_id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/shipment/history",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -509,8 +480,6 @@ if let value = bagId {
                     }
             });
         }
-        
-        
         
         
         
@@ -521,21 +490,25 @@ if let value = bagId {
         **/
         public func postShipmentHistory(
             body: PostShipmentHistory,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ShipmentHistoryResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/shipment/history",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -560,8 +533,6 @@ if let value = bagId {
         
         
         
-        
-        
         /**
         *
         * Summary: Send SMS
@@ -569,21 +540,25 @@ if let value = bagId {
         **/
         public func sendSmsNinja(
             body: SendSmsPayload,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: OrderStatusResult?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/ninja/send-sms",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -608,8 +583,6 @@ if let value = bagId {
         
         
         
-        
-        
         /**
         *
         * Summary: Update packaging dimensions
@@ -617,21 +590,25 @@ if let value = bagId {
         **/
         public func updatePackagingDimensions(
             body: UpdatePackagingDimensionsPayload,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: UpdatePackagingDimensionsResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/update-packaging-dimension",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -656,8 +633,6 @@ if let value = bagId {
         
         
         
-        
-        
         /**
         *
         * Summary: Create order
@@ -665,21 +640,25 @@ if let value = bagId {
         **/
         public func createOrder(
             body: CreateOrderAPI,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CreateOrderResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/create-order",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -704,8 +683,6 @@ if let value = bagId {
         
         
         
-        
-        
         /**
         *
         * Summary: Get channel configuration
@@ -713,21 +690,25 @@ if let value = bagId {
         **/
         public func getChannelConfig(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CreateChannelConfigData?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/order-config",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -752,8 +733,6 @@ if let value = bagId {
         
         
         
-        
-        
         /**
         *
         * Summary: Create channel configuration
@@ -761,21 +740,25 @@ if let value = bagId {
         **/
         public func createChannelConfig(
             body: CreateChannelConfigData,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CreateChannelConfigResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/order-config",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -800,8 +783,6 @@ if let value = bagId {
         
         
         
-        
-        
         /**
         *
         * Summary: Update an order
@@ -809,21 +790,25 @@ if let value = bagId {
         **/
         public func orderUpdate(
             body: PlatformOrderUpdate,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ResponseDetail?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/order/validation",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -848,8 +833,6 @@ if let value = bagId {
         
         
         
-        
-        
         /**
         *
         * Summary: Debug order
@@ -857,21 +840,25 @@ if let value = bagId {
         **/
         public func checkOrderStatus(
             body: OrderStatus,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: OrderStatusResult?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/debug/order_status",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -896,8 +883,6 @@ if let value = bagId {
         
         
         
-        
-        
         /**
         *
         * Summary: Get state transition map
@@ -905,21 +890,25 @@ if let value = bagId {
         **/
         public func getStateTransitionMap(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: BagStateTransitionMap?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/bag/state/transition",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -944,8 +933,6 @@ if let value = bagId {
         
         
         
-        
-        
         /**
         *
         * Summary: Get allowed state transition
@@ -955,31 +942,27 @@ if let value = bagId {
             orderingChannel: String,
             status: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: RoleBaseStateTransitionMapping?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["ordering_channel"] = orderingChannel
+            xQuery["status"] = status
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["ordering_channel"] = orderingChannel
-
-
-
-
-    xQuery["status"] = status
-
-
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/allowed/state/transition",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1004,8 +987,6 @@ var xQuery: [String: Any] = [:]
         
         
         
-        
-        
         /**
         *
         * Summary: Get credit balance detail
@@ -1013,21 +994,25 @@ var xQuery: [String: Any] = [:]
         **/
         public func fetchCreditBalanceDetail(
             body: FetchCreditBalanceRequestPayload,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: FetchCreditBalanceResponsePayload?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/customer-credit-balance",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1052,8 +1037,6 @@ var xQuery: [String: Any] = [:]
         
         
         
-        
-        
         /**
         *
         * Summary: List refund modes
@@ -1061,21 +1044,25 @@ var xQuery: [String: Any] = [:]
         **/
         public func fetchRefundModeConfig(
             body: RefundModeConfigRequestPayload,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: RefundModeConfigResponsePayload?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/refund-mode-config",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1100,8 +1087,6 @@ var xQuery: [String: Any] = [:]
         
         
         
-        
-        
         /**
         *
         * Summary: Attach order to a user
@@ -1109,21 +1094,25 @@ var xQuery: [String: Any] = [:]
         **/
         public func attachOrderUser(
             body: AttachOrderUser,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AttachOrderUserResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/user/attach",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1148,8 +1137,6 @@ var xQuery: [String: Any] = [:]
         
         
         
-        
-        
         /**
         *
         * Summary: Send user mobile OTP
@@ -1157,21 +1144,25 @@ var xQuery: [String: Any] = [:]
         **/
         public func sendUserMobileOTP(
             body: SendUserMobileOTP,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SendUserMobileOtpResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/user/send/otp/mobile",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1196,8 +1187,6 @@ var xQuery: [String: Any] = [:]
         
         
         
-        
-        
         /**
         *
         * Summary: Verify mobile OTP
@@ -1205,21 +1194,25 @@ var xQuery: [String: Any] = [:]
         **/
         public func verifyMobileOTP(
             body: VerifyMobileOTP,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: VerifyOtpResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/user/verify/otp",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1244,8 +1237,6 @@ var xQuery: [String: Any] = [:]
         
         
         
-        
-        
         /**
         *
         * Summary: Download Lane report
@@ -1253,21 +1244,25 @@ var xQuery: [String: Any] = [:]
         **/
         public func downloadLanesReport(
             body: BulkReportsDownloadRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: BulkReportsDownloadResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/reports/lanes/download",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1292,8 +1287,6 @@ var xQuery: [String: Any] = [:]
         
         
         
-        
-        
         /**
         *
         * Summary: Upload bulk state transitions file
@@ -1301,21 +1294,25 @@ var xQuery: [String: Any] = [:]
         **/
         public func bulkStateTransistion(
             body: BulkStateTransistionRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: BulkStateTransistionResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/jobs/state-transition",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1340,8 +1337,6 @@ var xQuery: [String: Any] = [:]
         
         
         
-        
-        
         /**
         *
         * Summary: Lists bulk operations
@@ -1356,62 +1351,41 @@ var xQuery: [String: Any] = [:]
             bulkActionType: String?,
             searchKey: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: BulkListingResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["page_size"] = pageSize
+            xQuery["page_no"] = pageNo
+            xQuery["start_date"] = startDate
+            xQuery["end_date"] = endDate
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["page_size"] = pageSize
-
-
-
-
-    xQuery["page_no"] = pageNo
-
-
-
-
-    xQuery["start_date"] = startDate
-
-
-
-
-    xQuery["end_date"] = endDate
-
-
-
-if let value = status {
-    
-    xQuery["status"] = value
-    
-}
-
-
-if let value = bulkActionType {
-    
-    xQuery["bulk_action_type"] = value
-    
-}
-
-
-if let value = searchKey {
-    
-    xQuery["search_key"] = value
-    
-}
-
-
- 
-
-
+            if let value = status {
+                xQuery["status"] = value
+            }
+            
+            if let value = bulkActionType {
+                xQuery["bulk_action_type"] = value
+            }
+            
+            if let value = searchKey {
+                xQuery["search_key"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/jobs",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1436,8 +1410,6 @@ if let value = searchKey {
         
         
         
-        
-        
         /**
         *
         * Summary: Get bulk operation details 
@@ -1446,21 +1418,25 @@ if let value = searchKey {
         public func jobDetails(
             batchId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: JobDetailsResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/jobs/\(batchId)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1485,8 +1461,6 @@ if let value = searchKey {
         
         
         
-        
-        
         /**
         *
         * Summary: Download file used for Bulk operation
@@ -1498,38 +1472,31 @@ if let value = searchKey {
             fileType: String,
             reportType: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: JobFailedResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["status"] = status
+            xQuery["file_type"] = fileType
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["status"] = status
-
-
-
-
-    xQuery["file_type"] = fileType
-
-
-
-if let value = reportType {
-    
-    xQuery["report_type"] = value
-    
-}
-
-
- 
-
-
+            if let value = reportType {
+                xQuery["report_type"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/jobs/\(batchId)/file",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1554,8 +1521,6 @@ if let value = reportType {
         
         
         
-        
-        
         /**
         *
         * Summary: List manifest shipments
@@ -1573,83 +1538,53 @@ if let value = reportType {
             pageNo: Int?,
             pageSize: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ManifestShipmentListing?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["dp_ids"] = dpIds
+            xQuery["stores"] = stores
+            xQuery["to_date"] = toDate
+            xQuery["from_date"] = fromDate
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["dp_ids"] = dpIds
-
-
-
-
-    xQuery["stores"] = stores
-
-
-
-
-    xQuery["to_date"] = toDate
-
-
-
-
-    xQuery["from_date"] = fromDate
-
-
-
-if let value = dpName {
-    
-    xQuery["dp_name"] = value
-    
-}
-
-
-if let value = salesChannels {
-    
-    xQuery["sales_channels"] = value
-    
-}
-
-
-if let value = searchType {
-    
-    xQuery["search_type"] = value
-    
-}
-
-
-if let value = searchValue {
-    
-    xQuery["search_value"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+            if let value = dpName {
+                xQuery["dp_name"] = value
+            }
+            
+            if let value = salesChannels {
+                xQuery["sales_channels"] = value
+            }
+            
+            if let value = searchType {
+                xQuery["search_type"] = value
+            }
+            
+            if let value = searchValue {
+                xQuery["search_value"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifest/shipments-listing",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1674,8 +1609,6 @@ if let value = pageSize {
         
         
         
-        
-        
         /**
         *
         * Summary: List manifests
@@ -1692,84 +1625,61 @@ if let value = pageSize {
             pageNo: Int?,
             pageSize: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ManifestList?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = status {
-    
-    xQuery["status"] = value
-    
-}
-
-
-if let value = startDate {
-    
-    xQuery["start_date"] = value
-    
-}
-
-
-if let value = endDate {
-    
-    xQuery["end_date"] = value
-    
-}
-
-
-if let value = searchType {
-    
-    xQuery["search_type"] = value
-    
-}
-
-
-if let value = storeId {
-    
-    xQuery["store_id"] = value
-    
-}
-
-
-if let value = searchValue {
-    
-    xQuery["search_value"] = value
-    
-}
-
-
-if let value = dpIds {
-    
-    xQuery["dp_ids"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+            if let value = status {
+                xQuery["status"] = value
+            }
+            
+            if let value = startDate {
+                xQuery["start_date"] = value
+            }
+            
+            if let value = endDate {
+                xQuery["end_date"] = value
+            }
+            
+            if let value = searchType {
+                xQuery["search_type"] = value
+            }
+            
+            if let value = storeId {
+                xQuery["store_id"] = value
+            }
+            
+            if let value = searchValue {
+                xQuery["search_value"] = value
+            }
+            
+            if let value = dpIds {
+                xQuery["dp_ids"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifests",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1794,8 +1704,6 @@ if let value = pageSize {
         
         
         
-        
-        
         /**
         *
         * Summary: Generate manifest
@@ -1803,21 +1711,25 @@ if let value = pageSize {
         **/
         public func processManifests(
             body: ProcessManifest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProcessManifestItemResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifests",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1842,8 +1754,6 @@ if let value = pageSize {
         
         
         
-        
-        
         /**
         *
         * Summary: Get a manifest
@@ -1852,21 +1762,25 @@ if let value = pageSize {
         public func getManifestDetails(
             manifestId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ManifestDetails?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifests/\(manifestId)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1891,8 +1805,6 @@ if let value = pageSize {
         
         
         
-        
-        
         /**
         *
         * Summary: Dispatch manifest
@@ -1900,21 +1812,25 @@ if let value = pageSize {
         **/
         public func dispatchManifests(
             body: DispatchManifest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifest/dispatch",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1936,8 +1852,6 @@ if let value = pageSize {
                     }
             });
         }
-        
-        
         
         
         
@@ -1949,21 +1863,25 @@ if let value = pageSize {
         public func uploadConsents(
             manifestId: String,
             body: UploadConsent,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifest/\(manifestId)/upload-consent",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1988,8 +1906,6 @@ if let value = pageSize {
         
         
         
-        
-        
         /**
         *
         * Summary: List filters
@@ -1998,26 +1914,26 @@ if let value = pageSize {
         public func getManifestfilters(
             view: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ManifestFiltersResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["view"] = view
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["view"] = view
-
-
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/filter/listing",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2042,8 +1958,6 @@ var xQuery: [String: Any] = [:]
         
         
         
-        
-        
         /**
         *
         * Summary: Retry E-invoice
@@ -2051,21 +1965,25 @@ var xQuery: [String: Any] = [:]
         **/
         public func eInvoiceRetry(
             body: EInvoiceRetry,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: EInvoiceRetryResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/einvoice/retry/irn",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2090,8 +2008,6 @@ var xQuery: [String: Any] = [:]
         
         
         
-        
-        
         /**
         *
         * Summary: Track shipment
@@ -2103,49 +2019,41 @@ var xQuery: [String: Any] = [:]
             pageNo: Int?,
             pageSize: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CourierPartnerTrackingResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = shipmentId {
-    
-    xQuery["shipment_id"] = value
-    
-}
-
-
-if let value = awb {
-    
-    xQuery["awb"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+            if let value = shipmentId {
+                xQuery["shipment_id"] = value
+            }
+            
+            if let value = awb {
+                xQuery["awb"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/tracking",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2170,8 +2078,6 @@ if let value = pageSize {
         
         
         
-        
-        
         /**
         *
         * Summary: Update shipment tracking
@@ -2179,21 +2085,25 @@ if let value = pageSize {
         **/
         public func updateShipmentTracking(
             body: CourierPartnerTrackingDetails,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CourierPartnerTrackingDetails?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/tracking",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2218,8 +2128,6 @@ if let value = pageSize {
         
         
         
-        
-        
         /**
         *
         * Summary: List failed order logs
@@ -2232,56 +2140,45 @@ if let value = pageSize {
             searchType: String?,
             searchValue: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: FailedOrderLogs?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = applicationId {
-    
-    xQuery["application_id"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = searchType {
-    
-    xQuery["search_type"] = value
-    
-}
-
-
-if let value = searchValue {
-    
-    xQuery["search_value"] = value
-    
-}
-
-
- 
-
-
+            if let value = applicationId {
+                xQuery["application_id"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = searchType {
+                xQuery["search_type"] = value
+            }
+            
+            if let value = searchValue {
+                xQuery["search_value"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/orders/failed",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2306,8 +2203,6 @@ if let value = searchValue {
         
         
         
-        
-        
         /**
         *
         * Summary: Generate and attach invoice Id
@@ -2316,21 +2211,25 @@ if let value = searchValue {
         public func generateInvoiceID(
             invoiceType: String,
             body: GenerateInvoiceIDRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GenerateInvoiceIDResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/\(invoiceType)/id/generate",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2355,8 +2254,6 @@ if let value = searchValue {
         
         
         
-        
-        
         /**
         *
         * Summary: Get failed order log
@@ -2365,21 +2262,25 @@ if let value = searchValue {
         public func failedOrderLogDetails(
             logId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: FailedOrderLogDetails?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/orders/failed/logs/\(logId)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2404,8 +2305,6 @@ if let value = searchValue {
         
         
         
-        
-        
         /**
         *
         * Summary: Process Order Manifest
@@ -2413,21 +2312,25 @@ if let value = searchValue {
         **/
         public func generateProcessManifest(
             body: ProcessManifestRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ManifestResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/process-manifest",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2451,6 +2354,121 @@ if let value = searchValue {
         }
         
         
+        
+        /**
+        *
+        * Summary: Allows esm config updation
+        * Description: Update ESM config
+        **/
+        public func addStateManagerConfig(
+            body: TransitionConfigPayload,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: ConfigUpdatedResponse?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/state/manager/config",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ConfigUpdatedResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Retrieves Entity State Manager configuration which includes flags, hooks, and filters, for a specific application within a company's setup.
+        * Description: This endpoint retrieves the ESM (Entity State Manager) configuration for a specific application within a company. The retrieval is based on parameters such as application ID, ordering channel, and entity type.
+The ESM config stores order processing configuration. Each document in the ESM config collection of  Order Management System - OMS's database is a JSON object representing the configuration of a specific application ID. This includes filters, hooks, flags set on different state-transitions.  This configuration is picked and accordingly features are enabled. 
+
+        **/
+        public func getStateManagerConfig(
+            appId: String?,
+            orderingChannel: String?,
+            entity: String?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = appId {
+                xQuery["app_id"] = value
+            }
+            
+            if let value = orderingChannel {
+                xQuery["ordering_channel"] = value
+            }
+            
+            if let value = entity {
+                xQuery["entity"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/state/manager/config",
+                query: xQuery,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = data.dictionary
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
         
         
         
@@ -2493,238 +2511,149 @@ if let value = searchValue {
             customerId: String?,
             orderType: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = lane {
-    
-    xQuery["lane"] = value
-    
-}
-
-
-if let value = bagStatus {
-    
-    xQuery["bag_status"] = value
-    
-}
-
-
-if let value = statusOverrideLane {
-    
-    xQuery["status_override_lane"] = value
-    
-}
-
-
-if let value = timeToDispatch {
-    
-    xQuery["time_to_dispatch"] = value
-    
-}
-
-
-if let value = searchType {
-    
-    xQuery["search_type"] = value
-    
-}
-
-
-if let value = searchValue {
-    
-    xQuery["search_value"] = value
-    
-}
-
-
-if let value = fromDate {
-    
-    xQuery["from_date"] = value
-    
-}
-
-
-if let value = toDate {
-    
-    xQuery["to_date"] = value
-    
-}
-
-
-if let value = startDate {
-    
-    xQuery["start_date"] = value
-    
-}
-
-
-if let value = endDate {
-    
-    xQuery["end_date"] = value
-    
-}
-
-
-if let value = dpIds {
-    
-    xQuery["dp_ids"] = value
-    
-}
-
-
-if let value = stores {
-    
-    xQuery["stores"] = value
-    
-}
-
-
-if let value = salesChannels {
-    
-    xQuery["sales_channels"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = fetchActiveShipment {
-    
-    xQuery["fetch_active_shipment"] = value
-    
-}
-
-
-if let value = allowInactive {
-    
-    xQuery["allow_inactive"] = value
-    
-}
-
-
-if let value = excludeLockedShipments {
-    
-    xQuery["exclude_locked_shipments"] = value
-    
-}
-
-
-if let value = paymentMethods {
-    
-    xQuery["payment_methods"] = value
-    
-}
-
-
-if let value = channelShipmentId {
-    
-    xQuery["channel_shipment_id"] = value
-    
-}
-
-
-if let value = channelOrderId {
-    
-    xQuery["channel_order_id"] = value
-    
-}
-
-
-if let value = customMeta {
-    
-    xQuery["custom_meta"] = value
-    
-}
-
-
-if let value = orderingChannel {
-    
-    xQuery["ordering_channel"] = value
-    
-}
-
-
-if let value = companyAffiliateTag {
-    
-    xQuery["company_affiliate_tag"] = value
-    
-}
-
-
-if let value = myOrders {
-    
-    xQuery["my_orders"] = value
-    
-}
-
-
-if let value = platformUserId {
-    
-    xQuery["platform_user_id"] = value
-    
-}
-
-
-if let value = sortType {
-    
-    xQuery["sort_type"] = value
-    
-}
-
-
-if let value = showCrossCompanyData {
-    
-    xQuery["show_cross_company_data"] = value
-    
-}
-
-
-if let value = tags {
-    
-    xQuery["tags"] = value
-    
-}
-
-
-if let value = customerId {
-    
-    xQuery["customer_id"] = value
-    
-}
-
-
-if let value = orderType {
-    
-    xQuery["order_type"] = value
-    
-}
-
-
- 
-
-
+            if let value = lane {
+                xQuery["lane"] = value
+            }
+            
+            if let value = bagStatus {
+                xQuery["bag_status"] = value
+            }
+            
+            if let value = statusOverrideLane {
+                xQuery["status_override_lane"] = value
+            }
+            
+            if let value = timeToDispatch {
+                xQuery["time_to_dispatch"] = value
+            }
+            
+            if let value = searchType {
+                xQuery["search_type"] = value
+            }
+            
+            if let value = searchValue {
+                xQuery["search_value"] = value
+            }
+            
+            if let value = fromDate {
+                xQuery["from_date"] = value
+            }
+            
+            if let value = toDate {
+                xQuery["to_date"] = value
+            }
+            
+            if let value = startDate {
+                xQuery["start_date"] = value
+            }
+            
+            if let value = endDate {
+                xQuery["end_date"] = value
+            }
+            
+            if let value = dpIds {
+                xQuery["dp_ids"] = value
+            }
+            
+            if let value = stores {
+                xQuery["stores"] = value
+            }
+            
+            if let value = salesChannels {
+                xQuery["sales_channels"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = fetchActiveShipment {
+                xQuery["fetch_active_shipment"] = value
+            }
+            
+            if let value = allowInactive {
+                xQuery["allow_inactive"] = value
+            }
+            
+            if let value = excludeLockedShipments {
+                xQuery["exclude_locked_shipments"] = value
+            }
+            
+            if let value = paymentMethods {
+                xQuery["payment_methods"] = value
+            }
+            
+            if let value = channelShipmentId {
+                xQuery["channel_shipment_id"] = value
+            }
+            
+            if let value = channelOrderId {
+                xQuery["channel_order_id"] = value
+            }
+            
+            if let value = customMeta {
+                xQuery["custom_meta"] = value
+            }
+            
+            if let value = orderingChannel {
+                xQuery["ordering_channel"] = value
+            }
+            
+            if let value = companyAffiliateTag {
+                xQuery["company_affiliate_tag"] = value
+            }
+            
+            if let value = myOrders {
+                xQuery["my_orders"] = value
+            }
+            
+            if let value = platformUserId {
+                xQuery["platform_user_id"] = value
+            }
+            
+            if let value = sortType {
+                xQuery["sort_type"] = value
+            }
+            
+            if let value = showCrossCompanyData {
+                xQuery["show_cross_company_data"] = value
+            }
+            
+            if let value = tags {
+                xQuery["tags"] = value
+            }
+            
+            if let value = customerId {
+                xQuery["customer_id"] = value
+            }
+            
+            if let value = orderType {
+                xQuery["order_type"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/shipments-listing",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2749,8 +2678,6 @@ if let value = orderType {
         
         
         
-        
-        
         /**
         *
         * Summary: Get shipment
@@ -2762,49 +2689,41 @@ if let value = orderType {
             fetchActiveShipment: Bool?,
             allowInactive: Bool?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ShipmentInfoResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = channelShipmentId {
-    
-    xQuery["channel_shipment_id"] = value
-    
-}
-
-
-if let value = shipmentId {
-    
-    xQuery["shipment_id"] = value
-    
-}
-
-
-if let value = fetchActiveShipment {
-    
-    xQuery["fetch_active_shipment"] = value
-    
-}
-
-
-if let value = allowInactive {
-    
-    xQuery["allow_inactive"] = value
-    
-}
-
-
- 
-
-
+            if let value = channelShipmentId {
+                xQuery["channel_shipment_id"] = value
+            }
+            
+            if let value = shipmentId {
+                xQuery["shipment_id"] = value
+            }
+            
+            if let value = fetchActiveShipment {
+                xQuery["fetch_active_shipment"] = value
+            }
+            
+            if let value = allowInactive {
+                xQuery["allow_inactive"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/shipment-details",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2829,8 +2748,6 @@ if let value = allowInactive {
         
         
         
-        
-        
         /**
         *
         * Summary: Get order
@@ -2841,40 +2758,34 @@ if let value = allowInactive {
             myOrders: Bool?,
             allowInactive: Bool?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: OrderDetailsResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["order_id"] = orderId
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["order_id"] = orderId
-
-
-
-if let value = myOrders {
-    
-    xQuery["my_orders"] = value
-    
-}
-
-
-if let value = allowInactive {
-    
-    xQuery["allow_inactive"] = value
-    
-}
-
-
- 
-
-
+            if let value = myOrders {
+                xQuery["my_orders"] = value
+            }
+            
+            if let value = allowInactive {
+                xQuery["allow_inactive"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/order-details",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -2896,8 +2807,6 @@ if let value = allowInactive {
                     }
             });
         }
-        
-        
         
         
         
@@ -2927,154 +2836,101 @@ if let value = allowInactive {
             showCrossCompanyData: Bool?,
             orderType: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: LaneConfigResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = superLane {
-    
-    xQuery["super_lane"] = value
-    
-}
-
-
-if let value = groupEntity {
-    
-    xQuery["group_entity"] = value
-    
-}
-
-
-if let value = fromDate {
-    
-    xQuery["from_date"] = value
-    
-}
-
-
-if let value = toDate {
-    
-    xQuery["to_date"] = value
-    
-}
-
-
-if let value = startDate {
-    
-    xQuery["start_date"] = value
-    
-}
-
-
-if let value = endDate {
-    
-    xQuery["end_date"] = value
-    
-}
-
-
-if let value = dpIds {
-    
-    xQuery["dp_ids"] = value
-    
-}
-
-
-if let value = stores {
-    
-    xQuery["stores"] = value
-    
-}
-
-
-if let value = salesChannels {
-    
-    xQuery["sales_channels"] = value
-    
-}
-
-
-if let value = paymentMode {
-    
-    xQuery["payment_mode"] = value
-    
-}
-
-
-if let value = bagStatus {
-    
-    xQuery["bag_status"] = value
-    
-}
-
-
-if let value = searchType {
-    
-    xQuery["search_type"] = value
-    
-}
-
-
-if let value = searchValue {
-    
-    xQuery["search_value"] = value
-    
-}
-
-
-if let value = tags {
-    
-    xQuery["tags"] = value
-    
-}
-
-
-if let value = timeToDispatch {
-    
-    xQuery["time_to_dispatch"] = value
-    
-}
-
-
-if let value = paymentMethods {
-    
-    xQuery["payment_methods"] = value
-    
-}
-
-
-if let value = myOrders {
-    
-    xQuery["my_orders"] = value
-    
-}
-
-
-if let value = showCrossCompanyData {
-    
-    xQuery["show_cross_company_data"] = value
-    
-}
-
-
-if let value = orderType {
-    
-    xQuery["order_type"] = value
-    
-}
-
-
- 
-
-
+            if let value = superLane {
+                xQuery["super_lane"] = value
+            }
+            
+            if let value = groupEntity {
+                xQuery["group_entity"] = value
+            }
+            
+            if let value = fromDate {
+                xQuery["from_date"] = value
+            }
+            
+            if let value = toDate {
+                xQuery["to_date"] = value
+            }
+            
+            if let value = startDate {
+                xQuery["start_date"] = value
+            }
+            
+            if let value = endDate {
+                xQuery["end_date"] = value
+            }
+            
+            if let value = dpIds {
+                xQuery["dp_ids"] = value
+            }
+            
+            if let value = stores {
+                xQuery["stores"] = value
+            }
+            
+            if let value = salesChannels {
+                xQuery["sales_channels"] = value
+            }
+            
+            if let value = paymentMode {
+                xQuery["payment_mode"] = value
+            }
+            
+            if let value = bagStatus {
+                xQuery["bag_status"] = value
+            }
+            
+            if let value = searchType {
+                xQuery["search_type"] = value
+            }
+            
+            if let value = searchValue {
+                xQuery["search_value"] = value
+            }
+            
+            if let value = tags {
+                xQuery["tags"] = value
+            }
+            
+            if let value = timeToDispatch {
+                xQuery["time_to_dispatch"] = value
+            }
+            
+            if let value = paymentMethods {
+                xQuery["payment_methods"] = value
+            }
+            
+            if let value = myOrders {
+                xQuery["my_orders"] = value
+            }
+            
+            if let value = showCrossCompanyData {
+                xQuery["show_cross_company_data"] = value
+            }
+            
+            if let value = orderType {
+                xQuery["order_type"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/lane-config/",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3096,8 +2952,6 @@ if let value = orderType {
                     }
             });
         }
-        
-        
         
         
         
@@ -3131,182 +2985,117 @@ if let value = orderType {
             orderType: String?,
             allowInactive: Bool?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: OrderListingResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = lane {
-    
-    xQuery["lane"] = value
-    
-}
-
-
-if let value = searchType {
-    
-    xQuery["search_type"] = value
-    
-}
-
-
-if let value = bagStatus {
-    
-    xQuery["bag_status"] = value
-    
-}
-
-
-if let value = timeToDispatch {
-    
-    xQuery["time_to_dispatch"] = value
-    
-}
-
-
-if let value = paymentMethods {
-    
-    xQuery["payment_methods"] = value
-    
-}
-
-
-if let value = tags {
-    
-    xQuery["tags"] = value
-    
-}
-
-
-if let value = searchValue {
-    
-    xQuery["search_value"] = value
-    
-}
-
-
-if let value = fromDate {
-    
-    xQuery["from_date"] = value
-    
-}
-
-
-if let value = toDate {
-    
-    xQuery["to_date"] = value
-    
-}
-
-
-if let value = startDate {
-    
-    xQuery["start_date"] = value
-    
-}
-
-
-if let value = endDate {
-    
-    xQuery["end_date"] = value
-    
-}
-
-
-if let value = dpIds {
-    
-    xQuery["dp_ids"] = value
-    
-}
-
-
-if let value = stores {
-    
-    xQuery["stores"] = value
-    
-}
-
-
-if let value = salesChannels {
-    
-    xQuery["sales_channels"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
-if let value = isPrioritySort {
-    
-    xQuery["is_priority_sort"] = value
-    
-}
-
-
-if let value = customMeta {
-    
-    xQuery["custom_meta"] = value
-    
-}
-
-
-if let value = myOrders {
-    
-    xQuery["my_orders"] = value
-    
-}
-
-
-if let value = showCrossCompanyData {
-    
-    xQuery["show_cross_company_data"] = value
-    
-}
-
-
-if let value = customerId {
-    
-    xQuery["customer_id"] = value
-    
-}
-
-
-if let value = orderType {
-    
-    xQuery["order_type"] = value
-    
-}
-
-
-if let value = allowInactive {
-    
-    xQuery["allow_inactive"] = value
-    
-}
-
-
- 
-
-
+            if let value = lane {
+                xQuery["lane"] = value
+            }
+            
+            if let value = searchType {
+                xQuery["search_type"] = value
+            }
+            
+            if let value = bagStatus {
+                xQuery["bag_status"] = value
+            }
+            
+            if let value = timeToDispatch {
+                xQuery["time_to_dispatch"] = value
+            }
+            
+            if let value = paymentMethods {
+                xQuery["payment_methods"] = value
+            }
+            
+            if let value = tags {
+                xQuery["tags"] = value
+            }
+            
+            if let value = searchValue {
+                xQuery["search_value"] = value
+            }
+            
+            if let value = fromDate {
+                xQuery["from_date"] = value
+            }
+            
+            if let value = toDate {
+                xQuery["to_date"] = value
+            }
+            
+            if let value = startDate {
+                xQuery["start_date"] = value
+            }
+            
+            if let value = endDate {
+                xQuery["end_date"] = value
+            }
+            
+            if let value = dpIds {
+                xQuery["dp_ids"] = value
+            }
+            
+            if let value = stores {
+                xQuery["stores"] = value
+            }
+            
+            if let value = salesChannels {
+                xQuery["sales_channels"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = isPrioritySort {
+                xQuery["is_priority_sort"] = value
+            }
+            
+            if let value = customMeta {
+                xQuery["custom_meta"] = value
+            }
+            
+            if let value = myOrders {
+                xQuery["my_orders"] = value
+            }
+            
+            if let value = showCrossCompanyData {
+                xQuery["show_cross_company_data"] = value
+            }
+            
+            if let value = customerId {
+                xQuery["customer_id"] = value
+            }
+            
+            if let value = orderType {
+                xQuery["order_type"] = value
+            }
+            
+            if let value = allowInactive {
+                xQuery["allow_inactive"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/orders-listing",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3333,8 +3122,6 @@ if let value = allowInactive {
         
         
         
-        
-        
         /**
         *
         * Summary: List filters
@@ -3344,33 +3131,30 @@ if let value = allowInactive {
             view: String,
             groupEntity: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: FiltersResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["view"] = view
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["view"] = view
-
-
-
-if let value = groupEntity {
-    
-    xQuery["group_entity"] = value
-    
-}
-
-
- 
-
-
+            if let value = groupEntity {
+                xQuery["group_entity"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/filter-listing",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3395,8 +3179,6 @@ if let value = groupEntity {
         
         
         
-        
-        
         /**
         *
         * Summary: Generate the report
@@ -3416,105 +3198,73 @@ if let value = groupEntity {
             pageNo: Int?,
             pageSize: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: FileResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = salesChannels {
-    
-    xQuery["sales_channels"] = value
-    
-}
-
-
-if let value = dpIds {
-    
-    xQuery["dp_ids"] = value
-    
-}
-
-
-if let value = startDate {
-    
-    xQuery["start_date"] = value
-    
-}
-
-
-if let value = endDate {
-    
-    xQuery["end_date"] = value
-    
-}
-
-
-if let value = stores {
-    
-    xQuery["stores"] = value
-    
-}
-
-
-if let value = tags {
-    
-    xQuery["tags"] = value
-    
-}
-
-
-if let value = bagStatus {
-    
-    xQuery["bag_status"] = value
-    
-}
-
-
-if let value = paymentMethods {
-    
-    xQuery["payment_methods"] = value
-    
-}
-
-
-if let value = fileType {
-    
-    xQuery["file_type"] = value
-    
-}
-
-
-if let value = timeToDispatch {
-    
-    xQuery["time_to_dispatch"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+            if let value = salesChannels {
+                xQuery["sales_channels"] = value
+            }
+            
+            if let value = dpIds {
+                xQuery["dp_ids"] = value
+            }
+            
+            if let value = startDate {
+                xQuery["start_date"] = value
+            }
+            
+            if let value = endDate {
+                xQuery["end_date"] = value
+            }
+            
+            if let value = stores {
+                xQuery["stores"] = value
+            }
+            
+            if let value = tags {
+                xQuery["tags"] = value
+            }
+            
+            if let value = bagStatus {
+                xQuery["bag_status"] = value
+            }
+            
+            if let value = paymentMethods {
+                xQuery["payment_methods"] = value
+            }
+            
+            if let value = fileType {
+                xQuery["file_type"] = value
+            }
+            
+            if let value = timeToDispatch {
+                xQuery["time_to_dispatch"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/generate/file",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3539,8 +3289,6 @@ if let value = pageSize {
         
         
         
-        
-        
         /**
         *
         * Summary: List supported templates
@@ -3548,21 +3296,25 @@ if let value = pageSize {
         **/
         public func getBulkActionTemplate(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: BulkActionTemplateResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/bulk-action/get-seller-templates",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3587,8 +3339,6 @@ if let value = pageSize {
         
         
         
-        
-        
         /**
         *
         * Summary: Download bulk template
@@ -3597,28 +3347,29 @@ if let value = pageSize {
         public func downloadBulkActionTemplate(
             templateSlug: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: FileResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = templateSlug {
-    
-    xQuery["template_slug"] = value
-    
-}
-
-
- 
-
-
+            if let value = templateSlug {
+                xQuery["template_slug"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/bulk-action/download-seller-templates",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3643,8 +3394,6 @@ if let value = templateSlug {
         
         
         
-        
-        
         /**
         *
         * Summary: List bag cancellation reasons
@@ -3655,21 +3404,25 @@ if let value = templateSlug {
             bagId: String,
             state: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PlatformShipmentReasonsResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/shipments/\(shipmentId)/bags/\(bagId)/state/\(state)/reasons",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3695,8 +3448,6 @@ if let value = templateSlug {
         
         
         
-        
-        
         /**
         *
         * Summary: Get bag
@@ -3707,42 +3458,37 @@ if let value = templateSlug {
             channelBagId: String?,
             channelId: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: BagDetailsPlatformResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = bagId {
-    
-    xQuery["bag_id"] = value
-    
-}
-
-
-if let value = channelBagId {
-    
-    xQuery["channel_bag_id"] = value
-    
-}
-
-
-if let value = channelId {
-    
-    xQuery["channel_id"] = value
-    
-}
-
-
- 
-
-
+            if let value = bagId {
+                xQuery["bag_id"] = value
+            }
+            
+            if let value = channelBagId {
+                xQuery["channel_bag_id"] = value
+            }
+            
+            if let value = channelId {
+                xQuery["channel_id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/bag-details/",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3767,8 +3513,6 @@ if let value = channelId {
         
         
         
-        
-        
         /**
         *
         * Summary: List bags
@@ -3785,84 +3529,61 @@ if let value = channelId {
             pageNo: Int?,
             pageSize: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetBagsPlatformResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = bagIds {
-    
-    xQuery["bag_ids"] = value
-    
-}
-
-
-if let value = shipmentIds {
-    
-    xQuery["shipment_ids"] = value
-    
-}
-
-
-if let value = orderIds {
-    
-    xQuery["order_ids"] = value
-    
-}
-
-
-if let value = channelBagIds {
-    
-    xQuery["channel_bag_ids"] = value
-    
-}
-
-
-if let value = channelShipmentIds {
-    
-    xQuery["channel_shipment_ids"] = value
-    
-}
-
-
-if let value = channelOrderIds {
-    
-    xQuery["channel_order_ids"] = value
-    
-}
-
-
-if let value = channelId {
-    
-    xQuery["channel_id"] = value
-    
-}
-
-
-if let value = pageNo {
-    
-    xQuery["page_no"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+            if let value = bagIds {
+                xQuery["bag_ids"] = value
+            }
+            
+            if let value = shipmentIds {
+                xQuery["shipment_ids"] = value
+            }
+            
+            if let value = orderIds {
+                xQuery["order_ids"] = value
+            }
+            
+            if let value = channelBagIds {
+                xQuery["channel_bag_ids"] = value
+            }
+            
+            if let value = channelShipmentIds {
+                xQuery["channel_shipment_ids"] = value
+            }
+            
+            if let value = channelOrderIds {
+                xQuery["channel_order_ids"] = value
+            }
+            
+            if let value = channelId {
+                xQuery["channel_id"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/bags",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3887,8 +3608,6 @@ if let value = pageSize {
         
         
         
-        
-        
         /**
         *
         * Summary: Generate POS receipt by order Id
@@ -3899,35 +3618,33 @@ if let value = pageSize {
             shipmentId: String?,
             documentType: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GeneratePosOrderReceiptResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = shipmentId {
-    
-    xQuery["shipment_id"] = value
-    
-}
-
-
-if let value = documentType {
-    
-    xQuery["document_type"] = value
-    
-}
-
-
- 
-
-
+            if let value = shipmentId {
+                xQuery["shipment_id"] = value
+            }
+            
+            if let value = documentType {
+                xQuery["document_type"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/orders/\(orderId)/generate/pos-receipt",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -3952,8 +3669,6 @@ if let value = documentType {
         
         
         
-        
-        
         /**
         *
         * Summary: List bulk operation templates
@@ -3961,21 +3676,25 @@ if let value = documentType {
         **/
         public func getAllowedTemplatesForBulk(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: AllowedTemplatesResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/jobs/templates",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4000,8 +3719,6 @@ if let value = documentType {
         
         
         
-        
-        
         /**
         *
         * Summary: Download bulk operation templates
@@ -4010,21 +3727,25 @@ if let value = documentType {
         public func getTemplate(
             templateName: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: TemplateDownloadResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/jobs/templates/\(templateName)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -4046,7 +3767,5 @@ if let value = documentType {
                     }
             });
         }
-        
-        
     }
 }

@@ -89,7 +89,6 @@ extension PlatformClient {
         
         
         
-        
         /**
         *
         * Summary: Get custom field types
@@ -97,21 +96,25 @@ extension PlatformClient {
         **/
         public func getCustomFieldTypes(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomObjectByIdSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metafields/types",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -136,8 +139,6 @@ extension PlatformClient {
         
         
         
-        
-        
         /**
         *
         * Summary: Get resources
@@ -145,21 +146,25 @@ extension PlatformClient {
         **/
         public func getResources(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ResourcesSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metafields/resources",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -184,8 +189,6 @@ extension PlatformClient {
         
         
         
-        
-        
         /**
         *
         * Summary: Get custom fields definitions
@@ -198,52 +201,39 @@ extension PlatformClient {
             type: String?,
             search: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomFieldDefinitionsSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["page_no"] = pageNo
+            xQuery["page_size"] = pageSize
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["page_no"] = pageNo
-
-
-
-
-    xQuery["page_size"] = pageSize
-
-
-
-if let value = resource {
-    
-    xQuery["resource"] = value
-    
-}
-
-
-if let value = type {
-    
-    xQuery["type"] = value
-    
-}
-
-
-if let value = search {
-    
-    xQuery["search"] = value
-    
-}
-
-
- 
-
-
+            if let value = resource {
+                xQuery["resource"] = value
+            }
+            
+            if let value = type {
+                xQuery["type"] = value
+            }
+            
+            if let value = search {
+                xQuery["search"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metafields/definitions",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -268,8 +258,6 @@ if let value = search {
         
         
         
-        
-        
         /**
         *
         * Summary: Create custom field definition
@@ -277,21 +265,25 @@ if let value = search {
         **/
         public func createCustomFieldDefinition(
             body: CustomFieldDefinitionRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomFieldDefinitionDetailResSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metafields/definitions",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -313,8 +305,6 @@ if let value = search {
                     }
             });
         }
-        
-        
         
         
         
@@ -326,21 +316,25 @@ if let value = search {
         public func getCustomFieldDefinition(
             definitionId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomFieldDefinitionDetailResSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metafields/definitions/\(definitionId)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -362,8 +356,6 @@ if let value = search {
                     }
             });
         }
-        
-        
         
         
         
@@ -375,21 +367,25 @@ if let value = search {
         public func updateCustomFieldDefinition(
             definitionId: String,
             body: CustomFieldDefinitionRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomFieldDefinitionDetailResSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metafields/definitions/\(definitionId)",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -414,8 +410,6 @@ if let value = search {
         
         
         
-        
-        
         /**
         *
         * Summary: Delete custom fields definition
@@ -424,21 +418,25 @@ if let value = search {
         public func deleteCustomFieldDefinition(
             definitionId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomDataDeleteSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "DELETE",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metafields/definitions/\(definitionId)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -463,8 +461,6 @@ if let value = search {
         
         
         
-        
-        
         /**
         *
         * Summary: Get list of custom fields of given resource
@@ -473,21 +469,25 @@ if let value = search {
         public func getCustomFields(
             resource: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomFieldsResponseSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metafields/\(resource)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -512,8 +512,6 @@ if let value = search {
         
         
         
-        
-        
         /**
         *
         * Summary: Get list of custom fields of given resource and resource id
@@ -523,21 +521,25 @@ if let value = search {
             resource: String,
             resourceId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomFieldsResponseByResourceIdSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metafields/\(resource)/\(resourceId)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -559,8 +561,6 @@ if let value = search {
                     }
             });
         }
-        
-        
         
         
         
@@ -573,21 +573,25 @@ if let value = search {
             resource: String,
             resourceId: String,
             body: CustomFieldRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomFieldsResponseByResourceIdSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metafields/\(resource)/\(resourceId)",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -612,8 +616,6 @@ if let value = search {
         
         
         
-        
-        
         /**
         *
         * Summary: Create custom object definition
@@ -621,21 +623,25 @@ if let value = search {
         **/
         public func createCustomObjectDefinition(
             body: CustomObjectDefinitionRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomObjectDefinitionSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/definitions",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -660,8 +666,6 @@ if let value = search {
         
         
         
-        
-        
         /**
         *
         * Summary: Get custom object definitions
@@ -672,38 +676,31 @@ if let value = search {
             pageSize: String,
             search: String?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomObjectDefinitionsSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["page_no"] = pageNo
+            xQuery["page_size"] = pageSize
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["page_no"] = pageNo
-
-
-
-
-    xQuery["page_size"] = pageSize
-
-
-
-if let value = search {
-    
-    xQuery["search"] = value
-    
-}
-
-
- 
-
-
+            if let value = search {
+                xQuery["search"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/definitions",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -728,8 +725,6 @@ if let value = search {
         
         
         
-        
-        
         /**
         *
         * Summary: Get custom object definition
@@ -738,21 +733,25 @@ if let value = search {
         public func getCustomObjectDefinition(
             definitionId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomObjectDefinitionSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/definitions/\(definitionId)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -774,8 +773,6 @@ if let value = search {
                     }
             });
         }
-        
-        
         
         
         
@@ -787,21 +784,25 @@ if let value = search {
         public func updateCustomObjectDefinition(
             definitionId: String,
             body: CustomObjectDefinitionUpdateRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomObjectDefinitionSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/definitions/\(definitionId)",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -826,8 +827,6 @@ if let value = search {
         
         
         
-        
-        
         /**
         *
         * Summary: delete custom object definition
@@ -836,21 +835,25 @@ if let value = search {
         public func deleteCustomObjectDefinition(
             definitionId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomObjectDefinitionDeleteResponseSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "DELETE",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/definitions/\(definitionId)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -875,8 +878,6 @@ if let value = search {
         
         
         
-        
-        
         /**
         *
         * Summary: Get list of custom objects
@@ -887,38 +888,31 @@ if let value = search {
             pageNo: String,
             pageSize: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomObjectsSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = definitionId {
-    
-    xQuery["definition_id"] = value
-    
-}
-
-
-
-    xQuery["page_no"] = pageNo
-
-
-
-
-    xQuery["page_size"] = pageSize
-
-
-
- 
-
-
+            if let value = definitionId {
+                xQuery["definition_id"] = value
+            }
+            xQuery["page_no"] = pageNo
+            xQuery["page_size"] = pageSize
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -943,8 +937,6 @@ if let value = definitionId {
         
         
         
-        
-        
         /**
         *
         * Summary: Create custom object entries
@@ -952,21 +944,25 @@ if let value = definitionId {
         **/
         public func createCustomObject(
             body: CustomObjectRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomObjectSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -991,8 +987,6 @@ if let value = definitionId {
         
         
         
-        
-        
         /**
         *
         * Summary: Get custom object details
@@ -1001,21 +995,25 @@ if let value = definitionId {
         public func getCustomObject(
             metaobjectId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomObjectByIdSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/\(metaobjectId)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1040,8 +1038,6 @@ if let value = definitionId {
         
         
         
-        
-        
         /**
         *
         * Summary: Delete custom object
@@ -1050,21 +1046,25 @@ if let value = definitionId {
         public func deleteCustomObject(
             metaobjectId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomDataDeleteSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "DELETE",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/\(metaobjectId)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1089,8 +1089,6 @@ if let value = definitionId {
         
         
         
-        
-        
         /**
         *
         * Summary: Update custom object details
@@ -1099,21 +1097,25 @@ if let value = definitionId {
         public func updateCustomObject(
             metaobjectId: String,
             body: CustomObjectRequestSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomObjectByIdSchema?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/\(metaobjectId)",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1138,8 +1140,6 @@ if let value = definitionId {
         
         
         
-        
-        
         /**
         *
         * Summary: Get bulk import and export job list
@@ -1150,36 +1150,28 @@ if let value = definitionId {
             pageSize: String,
             actionType: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomObjectBulkEntry?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["page"] = page
+            xQuery["page_size"] = pageSize
+            xQuery["action_type"] = actionType
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["page"] = page
-
-
-
-
-    xQuery["page_size"] = pageSize
-
-
-
-
-    xQuery["action_type"] = actionType
-
-
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/jobs",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1204,8 +1196,6 @@ var xQuery: [String: Any] = [:]
         
         
         
-        
-        
         /**
         *
         * Summary: Bulk custom object entries upload
@@ -1214,21 +1204,25 @@ var xQuery: [String: Any] = [:]
         public func importCustomObjectEntries(
             definitionId: String,
             body: CustomObjectBulkSchema,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomObjectEntryBulkUploadResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/bulk/\(definitionId)/upload",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1253,8 +1247,6 @@ var xQuery: [String: Any] = [:]
         
         
         
-        
-        
         /**
         *
         * Summary: Initiate download for bulk custom object entries
@@ -1263,21 +1255,25 @@ var xQuery: [String: Any] = [:]
         public func exportCustomObjectEntries(
             definitionId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CustomObjectBulkEntryInitiateDownload?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/bulk/\(definitionId)/download",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1302,8 +1298,6 @@ var xQuery: [String: Any] = [:]
         
         
         
-        
-        
         /**
         *
         * Summary: Download sample for custom object bulk entry
@@ -1312,21 +1306,25 @@ var xQuery: [String: Any] = [:]
         public func sampleCustomObjectBulkEntry(
             definitionId: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/content/v1.0/company/\(companyId)/metaobjects/bulk/\(definitionId)/sample",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -1348,8 +1346,6 @@ var xQuery: [String: Any] = [:]
                     }
             });
         }
-        
-        
         
         
         

@@ -24,40 +24,34 @@ extension PlatformClient {
             limit: Int?,
             sort: [String: Any]?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: LogSchemaResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["qs"] = qs
             
-var xQuery: [String: Any] = [:] 
-
-
-    xQuery["qs"] = qs
-
-
-
-if let value = limit {
-    
-    xQuery["limit"] = value
-    
-}
-
-
-if let value = sort {
-    
-    xQuery["sort"] = value
-    
-}
-
-
- 
-
-
+            if let value = limit {
+                xQuery["limit"] = value
+            }
+            
+            if let value = sort {
+                xQuery["sort"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/audit-trail/v1.0/company/\(companyId)/logs",
                 query: xQuery,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -82,8 +76,6 @@ if let value = sort {
         
         
         
-        
-        
         /**
         *
         * Summary: Create an audit log
@@ -91,21 +83,25 @@ if let value = sort {
         **/
         public func createAuditLog(
             body: RequestBodyAuditLog,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CreateLogResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
                 url: "/service/platform/audit-trail/v1.0/company/\(companyId)/logs",
                 query: nil,
                 body: body.dictionary,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -130,8 +126,6 @@ if let value = sort {
         
         
         
-        
-        
         /**
         *
         * Summary: Get an audit log
@@ -140,21 +134,25 @@ if let value = sort {
         public func getAuditLog(
             id: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: LogSchemaResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/audit-trail/v1.0/company/\(companyId)/logs/\(id)",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -179,8 +177,6 @@ if let value = sort {
         
         
         
-        
-        
         /**
         *
         * Summary: List entity types
@@ -188,21 +184,25 @@ if let value = sort {
         **/
         public func getEntityTypes(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: EntityTypesResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: "/service/platform/audit-trail/v1.0/company/\(companyId)/entity-types",
                 query: nil,
                 body: nil,
-                headers: [],
+                headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
@@ -224,7 +224,5 @@ if let value = sort {
                     }
             });
         }
-        
-        
     }
 }

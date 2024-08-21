@@ -43,25 +43,29 @@ extension ApplicationClient {
         public func getOfferByName(
             name: String,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: Offer?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             var fullUrl = relativeUrls["getOfferByName"] ?? ""
             
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "name" + "}", with: "\(name)")
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "name" + "}", with: "\(name)")
             
             ApplicationAPIClient.execute(
                 config: config,
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -86,8 +90,6 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Order from catalogue
@@ -95,14 +97,18 @@ extension ApplicationClient {
         **/
         public func catalogueOrder(
             body: CatalogueOrderRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CatalogueOrderResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["catalogueOrder"] ?? ""
             
@@ -111,7 +117,7 @@ extension ApplicationClient {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -136,8 +142,6 @@ extension ApplicationClient {
         }
         
         
-        
-        
         /**
         *
         * Summary: Points history
@@ -147,28 +151,26 @@ extension ApplicationClient {
             pageId: String?,
             pageSize: Int?,
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PointsHistoryResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+            var xQuery: [String: Any] = [:] 
             
-var xQuery: [String: Any] = [:] 
-
-if let value = pageId {
-    
-    xQuery["page_id"] = value
-    
-}
-
-
-if let value = pageSize {
-    
-    xQuery["page_size"] = value
-    
-}
-
-
- 
-
-
+            if let value = pageId {
+                xQuery["page_id"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getUserPointsHistory"] ?? ""
             
@@ -177,7 +179,7 @@ if let value = pageSize {
                 method: "GET",
                 url: fullUrl,
                 query: xQuery,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -202,8 +204,6 @@ if let value = pageSize {
         }
         
         
-        
-        
         /**
         *
         * Summary: Current points
@@ -211,14 +211,18 @@ if let value = pageSize {
         **/
         public func getUserPoints(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PointsResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getUserPoints"] ?? ""
             
@@ -227,7 +231,7 @@ if let value = pageSize {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -252,8 +256,6 @@ if let value = pageSize {
         }
         
         
-        
-        
         /**
         *
         * Summary: Referral details
@@ -261,14 +263,18 @@ if let value = pageSize {
         **/
         public func getUserReferralDetails(
             
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ReferralDetailsResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getUserReferralDetails"] ?? ""
             
@@ -277,7 +283,7 @@ if let value = pageSize {
                 method: "GET",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: nil,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -302,8 +308,6 @@ if let value = pageSize {
         }
         
         
-        
-        
         /**
         *
         * Summary: Order discount
@@ -311,14 +315,18 @@ if let value = pageSize {
         **/
         public func getOrderDiscount(
             body: OrderDiscountRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: OrderDiscountResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["getOrderDiscount"] ?? ""
             
@@ -327,7 +335,7 @@ if let value = pageSize {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -352,8 +360,6 @@ if let value = pageSize {
         }
         
         
-        
-        
         /**
         *
         * Summary: Redeem code
@@ -361,14 +367,18 @@ if let value = pageSize {
         **/
         public func redeemReferralCode(
             body: RedeemReferralCodeRequest,
+            headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: RedeemReferralCodeResponse?, _ error: FDKError?) -> Void
         ) {
+                        
+             
             
- 
-
- 
-
-
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
             
             let fullUrl = relativeUrls["redeemReferralCode"] ?? ""
             
@@ -377,7 +387,7 @@ if let value = pageSize {
                 method: "POST",
                 url: fullUrl,
                 query: nil,
-                extraHeaders:  [],
+                extraHeaders: xHeaders,
                 body: body.dictionary,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -399,8 +409,5 @@ if let value = pageSize {
                         onResponse(nil, err)
                     }
             });
-        }
-        
-        
-    }
+        }}
 }
