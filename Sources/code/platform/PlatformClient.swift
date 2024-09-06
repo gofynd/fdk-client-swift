@@ -6700,12 +6700,27 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Get all category level configuration level set for an sales channel.
             **/
             public func getAppCategoryReturnConfig(
+                q: String?,
+                pageNo: Int?,
+                pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: BaseAppCategoryReturnConfigResponse?, _ error: FDKError?) -> Void
             ) {
                                 
-                 
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
                 
                 var xHeaders: [(key: String, value: String)] = []
                 
@@ -6717,7 +6732,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/return-config/categories",
-                    query: nil,
+                    query: xQuery,
                     body: nil,
                     headers: xHeaders,
                     responseType: "application/json",

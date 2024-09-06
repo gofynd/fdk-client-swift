@@ -5,49 +5,49 @@ import Foundation
 
 public extension PlatformClient.Order {
     /*
-        Model: ShipmentRequestData
+        Model: CreateOrderConfig
         Used By: Order
     */
 
-    class ShipmentRequestData: Codable {
+    class CreateOrderConfig: Codable {
         
         
-        public var lineItems: [LineItem]
+        public var dpConfiguration: DPConfiguration?
         
-        public var processingDates: ProcessingDates?
+        public var integrationType: String?
         
-        public var meta: [String: Any]?
+        public var locationReassignment: Bool?
         
-        public var priority: Int?
+        public var payment: PaymentConfig?
         
-        public var orderType: String?
+        public var optimalShipmentCreation: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case lineItems = "line_items"
+            case dpConfiguration = "dp_configuration"
             
-            case processingDates = "processing_dates"
+            case integrationType = "integration_type"
             
-            case meta = "meta"
+            case locationReassignment = "location_reassignment"
             
-            case priority = "priority"
+            case payment = "payment"
             
-            case orderType = "order_type"
+            case optimalShipmentCreation = "optimal_shipment_creation"
             
         }
 
-        public init(lineItems: [LineItem], meta: [String: Any]? = nil, orderType: String? = nil, priority: Int? = nil, processingDates: ProcessingDates? = nil) {
+        public init(dpConfiguration: DPConfiguration? = nil, integrationType: String? = nil, locationReassignment: Bool? = nil, optimalShipmentCreation: Bool? = nil, payment: PaymentConfig? = nil) {
             
-            self.lineItems = lineItems
+            self.dpConfiguration = dpConfiguration
             
-            self.processingDates = processingDates
+            self.integrationType = integrationType
             
-            self.meta = meta
+            self.locationReassignment = locationReassignment
             
-            self.priority = priority
+            self.payment = payment
             
-            self.orderType = orderType
+            self.optimalShipmentCreation = optimalShipmentCreation
             
         }
 
@@ -55,13 +55,8 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                lineItems = try container.decode([LineItem].self, forKey: .lineItems)
-                
-            
-            
-            
                 do {
-                    processingDates = try container.decode(ProcessingDates.self, forKey: .processingDates)
+                    dpConfiguration = try container.decode(DPConfiguration.self, forKey: .dpConfiguration)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73,7 +68,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
+                    integrationType = try container.decode(String.self, forKey: .integrationType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +80,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    priority = try container.decode(Int.self, forKey: .priority)
+                    locationReassignment = try container.decode(Bool.self, forKey: .locationReassignment)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +92,19 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    orderType = try container.decode(String.self, forKey: .orderType)
+                    payment = try container.decode(PaymentConfig.self, forKey: .payment)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    optimalShipmentCreation = try container.decode(Bool.self, forKey: .optimalShipmentCreation)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -114,27 +121,27 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(lineItems, forKey: .lineItems)
+            try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
             
             
             
             
-            try? container.encodeIfPresent(processingDates, forKey: .processingDates)
+            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
             
             
             
             
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(locationReassignment, forKey: .locationReassignment)
             
             
             
             
-            try? container.encodeIfPresent(priority, forKey: .priority)
+            try? container.encodeIfPresent(payment, forKey: .payment)
             
             
             
             
-            try? container.encodeIfPresent(orderType, forKey: .orderType)
+            try? container.encodeIfPresent(optimalShipmentCreation, forKey: .optimalShipmentCreation)
             
             
         }
@@ -146,49 +153,49 @@ public extension PlatformClient.Order {
 
 public extension PlatformClient.ApplicationClient.Order {
     /*
-        Model: ShipmentRequestData
+        Model: CreateOrderConfig
         Used By: Order
     */
 
-    class ShipmentRequestData: Codable {
+    class CreateOrderConfig: Codable {
         
         
-        public var lineItems: [LineItem]
+        public var dpConfiguration: DPConfiguration?
         
-        public var processingDates: ProcessingDates?
+        public var integrationType: String?
         
-        public var meta: [String: Any]?
+        public var locationReassignment: Bool?
         
-        public var priority: Int?
+        public var payment: PaymentConfig?
         
-        public var orderType: String?
+        public var optimalShipmentCreation: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case lineItems = "line_items"
+            case dpConfiguration = "dp_configuration"
             
-            case processingDates = "processing_dates"
+            case integrationType = "integration_type"
             
-            case meta = "meta"
+            case locationReassignment = "location_reassignment"
             
-            case priority = "priority"
+            case payment = "payment"
             
-            case orderType = "order_type"
+            case optimalShipmentCreation = "optimal_shipment_creation"
             
         }
 
-        public init(lineItems: [LineItem], meta: [String: Any]? = nil, orderType: String? = nil, priority: Int? = nil, processingDates: ProcessingDates? = nil) {
+        public init(dpConfiguration: DPConfiguration? = nil, integrationType: String? = nil, locationReassignment: Bool? = nil, optimalShipmentCreation: Bool? = nil, payment: PaymentConfig? = nil) {
             
-            self.lineItems = lineItems
+            self.dpConfiguration = dpConfiguration
             
-            self.processingDates = processingDates
+            self.integrationType = integrationType
             
-            self.meta = meta
+            self.locationReassignment = locationReassignment
             
-            self.priority = priority
+            self.payment = payment
             
-            self.orderType = orderType
+            self.optimalShipmentCreation = optimalShipmentCreation
             
         }
 
@@ -196,13 +203,8 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                lineItems = try container.decode([LineItem].self, forKey: .lineItems)
-                
-            
-            
-            
                 do {
-                    processingDates = try container.decode(ProcessingDates.self, forKey: .processingDates)
+                    dpConfiguration = try container.decode(DPConfiguration.self, forKey: .dpConfiguration)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -214,7 +216,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
+                    integrationType = try container.decode(String.self, forKey: .integrationType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -226,7 +228,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    priority = try container.decode(Int.self, forKey: .priority)
+                    locationReassignment = try container.decode(Bool.self, forKey: .locationReassignment)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -238,7 +240,19 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    orderType = try container.decode(String.self, forKey: .orderType)
+                    payment = try container.decode(PaymentConfig.self, forKey: .payment)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    optimalShipmentCreation = try container.decode(Bool.self, forKey: .optimalShipmentCreation)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -255,27 +269,27 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(lineItems, forKey: .lineItems)
+            try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
             
             
             
             
-            try? container.encodeIfPresent(processingDates, forKey: .processingDates)
+            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
             
             
             
             
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(locationReassignment, forKey: .locationReassignment)
             
             
             
             
-            try? container.encodeIfPresent(priority, forKey: .priority)
+            try? container.encodeIfPresent(payment, forKey: .payment)
             
             
             
             
-            try? container.encodeIfPresent(orderType, forKey: .orderType)
+            try? container.encodeIfPresent(optimalShipmentCreation, forKey: .optimalShipmentCreation)
             
             
         }

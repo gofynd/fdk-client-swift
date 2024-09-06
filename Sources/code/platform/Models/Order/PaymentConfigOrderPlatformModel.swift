@@ -3,33 +3,33 @@
 import Foundation
 
 
-public extension PlatformClient.Configuration {
+public extension PlatformClient.Order {
     /*
-        Model: GoogleMap
-        Used By: Configuration
+        Model: PaymentConfig
+        Used By: Order
     */
 
-    class GoogleMap: Codable {
+    class PaymentConfig: Codable {
         
         
-        public var enabled: Bool?
+        public var modeOfPayment: String?
         
-        public var credentials: GoogleMapCredentials?
+        public var source: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case enabled = "enabled"
+            case modeOfPayment = "mode_of_payment"
             
-            case credentials = "credentials"
+            case source = "source"
             
         }
 
-        public init(credentials: GoogleMapCredentials? = nil, enabled: Bool? = nil) {
+        public init(modeOfPayment: String? = nil, source: String? = nil) {
             
-            self.enabled = enabled
+            self.modeOfPayment = modeOfPayment
             
-            self.credentials = credentials
+            self.source = source
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    enabled = try container.decode(Bool.self, forKey: .enabled)
+                    modeOfPayment = try container.decode(String.self, forKey: .modeOfPayment)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    credentials = try container.decode(GoogleMapCredentials.self, forKey: .credentials)
+                    source = try container.decode(String.self, forKey: .source)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            try? container.encodeIfPresent(modeOfPayment, forKey: .modeOfPayment)
             
             
             
             
-            try? container.encodeIfPresent(credentials, forKey: .credentials)
+            try? container.encodeIfPresent(source, forKey: .source)
             
             
         }
@@ -82,33 +82,33 @@ public extension PlatformClient.Configuration {
 
 
 
-public extension PlatformClient.ApplicationClient.Configuration {
+public extension PlatformClient.ApplicationClient.Order {
     /*
-        Model: GoogleMap
-        Used By: Configuration
+        Model: PaymentConfig
+        Used By: Order
     */
 
-    class GoogleMap: Codable {
+    class PaymentConfig: Codable {
         
         
-        public var enabled: Bool?
+        public var modeOfPayment: String?
         
-        public var credentials: GoogleMapCredentials?
+        public var source: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case enabled = "enabled"
+            case modeOfPayment = "mode_of_payment"
             
-            case credentials = "credentials"
+            case source = "source"
             
         }
 
-        public init(credentials: GoogleMapCredentials? = nil, enabled: Bool? = nil) {
+        public init(modeOfPayment: String? = nil, source: String? = nil) {
             
-            self.enabled = enabled
+            self.modeOfPayment = modeOfPayment
             
-            self.credentials = credentials
+            self.source = source
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    enabled = try container.decode(Bool.self, forKey: .enabled)
+                    modeOfPayment = try container.decode(String.self, forKey: .modeOfPayment)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    credentials = try container.decode(GoogleMapCredentials.self, forKey: .credentials)
+                    source = try container.decode(String.self, forKey: .source)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            try? container.encodeIfPresent(modeOfPayment, forKey: .modeOfPayment)
             
             
             
             
-            try? container.encodeIfPresent(credentials, forKey: .credentials)
+            try? container.encodeIfPresent(source, forKey: .source)
             
             
         }
