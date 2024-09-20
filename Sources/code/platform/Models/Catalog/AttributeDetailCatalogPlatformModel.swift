@@ -5,11 +5,11 @@ import Foundation
 
 public extension PlatformClient.Catalog {
     /*
-        Model: GenderDetail
+        Model: AttributeDetail
         Used By: Catalog
     */
 
-    class GenderDetail: Codable {
+    class AttributeDetail: Codable {
         
         
         public var departments: [String]?
@@ -314,11 +314,11 @@ public extension PlatformClient.Catalog {
 
 public extension PlatformClient.ApplicationClient.Catalog {
     /*
-        Model: GenderDetail
+        Model: AttributeDetail
         Used By: Catalog
     */
 
-    class GenderDetail: Codable {
+    class AttributeDetail: Codable {
         
         
         public var departments: [String]?
