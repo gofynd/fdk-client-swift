@@ -2946,7 +2946,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             /**
             *
-            * Summary: List customer addresses
+            * Summary: Get a list of addresses for a customer
             * Description: Retrieves a list of all addresses saved by the customer, simplifying the checkout process by offering pre-saved address options for delivery.
             **/
             public func getAddresses(
@@ -3031,7 +3031,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             /**
             *
-            * Summary: Create a new address
+            * Summary: Creates a new address for a customer
             * Description: Customers can add a new address to their cart to save details such as name, email, contact information, and address.
             **/
             public func addAddress(
@@ -3081,7 +3081,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             /**
             *
-            * Summary: Get a address
+            * Summary: Get details for a single customer address
             * Description: Retrieve a specific customer address stored in the system by providing its unique identifier. This API provides detailed information about the address, including the recipient's name, address, city, postal code, and other relevant details.
             **/
             public func getAddressById(
@@ -3167,7 +3167,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             /**
             *
-            * Summary: Update address
+            * Summary: Updates an existing customer address
             * Description: Update the user address
             **/
             public func updateAddress(
@@ -3218,7 +3218,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             /**
             *
-            * Summary: Delete a address
+            * Summary: Removes an address from a customer's address list
             * Description: Remove an existing customer address from the system.
             **/
             public func removeAddress(
@@ -3274,7 +3274,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             /**
             *
-            * Summary: select a delivery address
+            * Summary: Select customer address for order processing
             * Description: Select an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address.
             **/
             public func selectAddress(
@@ -3574,61 +3574,6 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             /**
             *
-            * Summary: Checkout cart
-            * Description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement.
-            **/
-            public func platformCheckoutCart(
-                id: String?,
-                body: PlatformCartCheckoutDetailRequest,
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
-            ) {
-                                
-                var xQuery: [String: Any] = [:] 
-                
-                if let value = id {
-                    xQuery["id"] = value
-                }
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "POST",
-                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/checkout",
-                    query: xQuery,
-                    body: body.dictionary,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(CartCheckoutResponse.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
             * Summary: Get delivery modes
             * Description: Retrieve a list of delivery modes (home delivery/store pickup) along with a list of available pickup stores for a given cart at a specified PIN Code.
             **/
@@ -3888,8 +3833,8 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             /**
             *
-            * Summary: Cart checkout (latest)
-            * Description: Checkout process that supports multiple MOP(mode of payment).
+            * Summary: Checkout cart
+            * Description: The checkout cart initiates the order creation process based on the items in the user’s cart,  their selected address, and chosen payment methods. It also supports multiple payment method  options and revalidates the cart details to ensure a secure and seamless order placement.
             **/
             public func platformCheckoutCartV2(
                 id: String?,
@@ -6700,12 +6645,27 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Get all category level configuration level set for an sales channel.
             **/
             public func getAppCategoryReturnConfig(
+                q: String?,
+                pageNo: Int?,
+                pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: BaseAppCategoryReturnConfigResponse?, _ error: FDKError?) -> Void
             ) {
                                 
-                 
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
                 
                 var xHeaders: [(key: String, value: String)] = []
                 
@@ -6717,7 +6677,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/return-config/categories",
-                    query: nil,
+                    query: xQuery,
                     body: nil,
                     headers: xHeaders,
                     responseType: "application/json",
@@ -7598,10 +7558,6 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                         }
                 });
             }
-            
-            
-            
-            
             
             
             

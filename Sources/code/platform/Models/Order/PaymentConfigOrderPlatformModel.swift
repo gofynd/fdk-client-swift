@@ -3,33 +3,33 @@
 import Foundation
 
 
-public extension PlatformClient.Catalog {
+public extension PlatformClient.Order {
     /*
-        Model: CategoryCreateResponse
-        Used By: Catalog
+        Model: PaymentConfig
+        Used By: Order
     */
 
-    class CategoryCreateResponse: Codable {
+    class PaymentConfig: Codable {
         
         
-        public var message: String?
+        public var modeOfPayment: String?
         
-        public var uid: Int?
+        public var source: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case message = "message"
+            case modeOfPayment = "mode_of_payment"
             
-            case uid = "uid"
+            case source = "source"
             
         }
 
-        public init(message: String? = nil, uid: Int? = nil) {
+        public init(modeOfPayment: String? = nil, source: String? = nil) {
             
-            self.message = message
+            self.modeOfPayment = modeOfPayment
             
-            self.uid = uid
+            self.source = source
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    message = try container.decode(String.self, forKey: .message)
+                    modeOfPayment = try container.decode(String.self, forKey: .modeOfPayment)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    uid = try container.decode(Int.self, forKey: .uid)
+                    source = try container.decode(String.self, forKey: .source)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(modeOfPayment, forKey: .modeOfPayment)
             
             
             
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(source, forKey: .source)
             
             
         }
@@ -82,33 +82,33 @@ public extension PlatformClient.Catalog {
 
 
 
-public extension PlatformClient.ApplicationClient.Catalog {
+public extension PlatformClient.ApplicationClient.Order {
     /*
-        Model: CategoryCreateResponse
-        Used By: Catalog
+        Model: PaymentConfig
+        Used By: Order
     */
 
-    class CategoryCreateResponse: Codable {
+    class PaymentConfig: Codable {
         
         
-        public var message: String?
+        public var modeOfPayment: String?
         
-        public var uid: Int?
+        public var source: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case message = "message"
+            case modeOfPayment = "mode_of_payment"
             
-            case uid = "uid"
+            case source = "source"
             
         }
 
-        public init(message: String? = nil, uid: Int? = nil) {
+        public init(modeOfPayment: String? = nil, source: String? = nil) {
             
-            self.message = message
+            self.modeOfPayment = modeOfPayment
             
-            self.uid = uid
+            self.source = source
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    message = try container.decode(String.self, forKey: .message)
+                    modeOfPayment = try container.decode(String.self, forKey: .modeOfPayment)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    uid = try container.decode(Int.self, forKey: .uid)
+                    source = try container.decode(String.self, forKey: .source)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(modeOfPayment, forKey: .modeOfPayment)
             
             
             
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(source, forKey: .source)
             
             
         }

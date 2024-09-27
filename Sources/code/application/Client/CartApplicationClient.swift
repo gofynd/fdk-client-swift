@@ -51,8 +51,6 @@ extension ApplicationClient {
             
             ulrs["getShipments"] = config.domain.appendAsPath("/service/application/cart/v1.0/shipment") 
             
-            ulrs["checkoutCart"] = config.domain.appendAsPath("/service/application/cart/v1.0/checkout") 
-            
             ulrs["updateCartMeta"] = config.domain.appendAsPath("/service/application/cart/v1.0/meta") 
             
             ulrs["getCartShareLink"] = config.domain.appendAsPath("/service/application/cart/v1.0/share-cart") 
@@ -878,7 +876,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: List customer addresses
+        * Summary: Get a list of addresses for a customer
         * Description: List all addresses saved by the customer, simplifying the checkout process by offering pre-saved address options for delivery.
         **/
         public func getAddresses(
@@ -960,7 +958,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Create a new address
+        * Summary: Creates a new address for a customer
         * Description: Add a new address to their cart to save details such as name, email, contact information, and address.
         **/
         public func addAddress(
@@ -1012,7 +1010,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get a address
+        * Summary: Get details for a single customer address
         * Description: Get a specific customer address stored in the system by providing its unique identifier. This API provides detailed information about the address, including the recipient's name, address, city, postal code, and other relevant details.
         **/
         public func getAddressById(
@@ -1097,7 +1095,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Update a address
+        * Summary: Updates an existing customer address
         * Description: Customer can modify the details of a previously saved addresses.
         **/
         public func updateAddress(
@@ -1152,7 +1150,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Delete a address
+        * Summary: Removes an address from a customer's address list
         * Description: Delete an existing customer address from the system.
         **/
         public func removeAddress(
@@ -1207,7 +1205,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Select a delivery address
+        * Summary: Select customer address for order processing
         * Description: Select an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address.
         **/
         public func selectAddress(
@@ -1521,68 +1519,6 @@ extension ApplicationClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CartShipmentsResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        /**
-        *
-        * Summary: Checkout cart
-        * Description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement.
-        **/
-        public func checkoutCart(
-            buyNow: Bool?,
-            cartType: String?,
-            body: CartCheckoutDetailRequest,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
-        ) {
-                        
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = buyNow {
-                xQuery["buy_now"] = value
-            }
-            
-            if let value = cartType {
-                xQuery["cart_type"] = value
-            }
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            
-            let fullUrl = relativeUrls["checkoutCart"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders: xHeaders,
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CartCheckoutResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2032,8 +1968,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Start cart checkout (latest)
-        * Description: Enhanced version of checkout process that supports multiple mode of payment(MOP).
+        * Summary: Checkout cart
+        * Description: The checkout cart initiates the order creation process based on the items in the user’s cart,  their selected address, and chosen payment methods. It also supports multiple payment method  options and revalidates the cart details to ensure a secure and seamless order placement.
         **/
         public func checkoutCartV2(
             buyNow: Bool?,

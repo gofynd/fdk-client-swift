@@ -3,27 +3,27 @@
 import Foundation
 
 
-public extension PlatformClient.Catalog {
+public extension PlatformClient.Order {
     /*
-        Model: DepartmentCreateErrorResponse
-        Used By: Catalog
+        Model: DPConfiguration
+        Used By: Order
     */
 
-    class DepartmentCreateErrorResponse: Codable {
+    class DPConfiguration: Codable {
         
         
-        public var error: String?
+        public var shippingBy: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case error = "error"
+            case shippingBy = "shipping_by"
             
         }
 
-        public init(error: String? = nil) {
+        public init(shippingBy: String? = nil) {
             
-            self.error = error
+            self.shippingBy = shippingBy
             
         }
 
@@ -32,7 +32,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    error = try container.decode(String.self, forKey: .error)
+                    shippingBy = try container.decode(String.self, forKey: .shippingBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(shippingBy, forKey: .shippingBy)
             
             
         }
@@ -59,27 +59,27 @@ public extension PlatformClient.Catalog {
 
 
 
-public extension PlatformClient.ApplicationClient.Catalog {
+public extension PlatformClient.ApplicationClient.Order {
     /*
-        Model: DepartmentCreateErrorResponse
-        Used By: Catalog
+        Model: DPConfiguration
+        Used By: Order
     */
 
-    class DepartmentCreateErrorResponse: Codable {
+    class DPConfiguration: Codable {
         
         
-        public var error: String?
+        public var shippingBy: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case error = "error"
+            case shippingBy = "shipping_by"
             
         }
 
-        public init(error: String? = nil) {
+        public init(shippingBy: String? = nil) {
             
-            self.error = error
+            self.shippingBy = shippingBy
             
         }
 
@@ -88,7 +88,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    error = try container.decode(String.self, forKey: .error)
+                    shippingBy = try container.decode(String.self, forKey: .shippingBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(shippingBy, forKey: .shippingBy)
             
             
         }

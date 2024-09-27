@@ -22,6 +22,8 @@ public extension PlatformClient.Order {
         
         public var gstDetails: GSTDetailsData?
         
+        public var orderStatus: OrderStatusData?
+        
         public var deliverySlot: [String: Any]?
         
         public var order: OrderDetailsData?
@@ -151,6 +153,8 @@ public extension PlatformClient.Order {
             
             case gstDetails = "gst_details"
             
+            case orderStatus = "order_status"
+            
             case deliverySlot = "delivery_slot"
             
             case order = "order"
@@ -269,7 +273,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(affiliateDetails: AffiliateDetails? = nil, bags: [OrderBags]? = nil, bagStatusHistory: [BagStatusHistory]? = nil, billingDetails: UserDetailsData? = nil, canUpdateDimension: Bool? = nil, companyDetails: CompanyDetails? = nil, coupon: [String: Any]? = nil, creditNoteId: String? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customMessage: String? = nil, customMeta: [[String: Any]]? = nil, deliveryDetails: UserDetailsData? = nil, deliverySlot: [String: Any]? = nil, dpAssignment: Bool? = nil, dpDetails: DPDetailsData? = nil, enableDpTracking: Bool? = nil, estimatedSlaTime: String? = nil, estimatedSlaTs: String? = nil, forwardShipmentId: String? = nil, fulfillingStore: FulfillingStore? = nil, fulfilmentPriority: Int? = nil, gstDetails: GSTDetailsData? = nil, invoice: InvoiceInfo? = nil, invoiceId: String? = nil, isDpAssignEnabled: Bool? = nil, isLapaEnabled: Bool? = nil, isSelfShip: Bool? = nil, journeyType: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, operationalStatus: String? = nil, order: OrderDetailsData? = nil, orderingStore: OrderingStoreDetails? = nil, orderPlatform: String? = nil, packagingType: String? = nil, payments: ShipmentPayments? = nil, paymentInfo: [[String: Any]]? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, pdfLinks: [String: Any]? = nil, pickedDate: String? = nil, platformLogo: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, priorityText: String? = nil, rtoAddress: PlatformDeliveryAddress? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentDetails: ShipmentLockDetails? = nil, shipmentId: String, shipmentImages: [String]? = nil, shipmentQuantity: Int? = nil, shipmentStatus: String? = nil, shipmentUpdateTime: Double? = nil, status: ShipmentStatusData? = nil, totalBags: Int? = nil, totalItems: Int? = nil, trackingList: [TrackingList]? = nil, user: UserDataInfo? = nil, userAgent: String? = nil, vertical: String? = nil) {
+        public init(affiliateDetails: AffiliateDetails? = nil, bags: [OrderBags]? = nil, bagStatusHistory: [BagStatusHistory]? = nil, billingDetails: UserDetailsData? = nil, canUpdateDimension: Bool? = nil, companyDetails: CompanyDetails? = nil, coupon: [String: Any]? = nil, creditNoteId: String? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customMessage: String? = nil, customMeta: [[String: Any]]? = nil, deliveryDetails: UserDetailsData? = nil, deliverySlot: [String: Any]? = nil, dpAssignment: Bool? = nil, dpDetails: DPDetailsData? = nil, enableDpTracking: Bool? = nil, estimatedSlaTime: String? = nil, estimatedSlaTs: String? = nil, forwardShipmentId: String? = nil, fulfillingStore: FulfillingStore? = nil, fulfilmentPriority: Int? = nil, gstDetails: GSTDetailsData? = nil, invoice: InvoiceInfo? = nil, invoiceId: String? = nil, isDpAssignEnabled: Bool? = nil, isLapaEnabled: Bool? = nil, isSelfShip: Bool? = nil, journeyType: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, operationalStatus: String? = nil, order: OrderDetailsData? = nil, orderingStore: OrderingStoreDetails? = nil, orderPlatform: String? = nil, orderStatus: OrderStatusData? = nil, packagingType: String? = nil, payments: ShipmentPayments? = nil, paymentInfo: [[String: Any]]? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, pdfLinks: [String: Any]? = nil, pickedDate: String? = nil, platformLogo: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, priorityText: String? = nil, rtoAddress: PlatformDeliveryAddress? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentDetails: ShipmentLockDetails? = nil, shipmentId: String, shipmentImages: [String]? = nil, shipmentQuantity: Int? = nil, shipmentStatus: String? = nil, shipmentUpdateTime: Double? = nil, status: ShipmentStatusData? = nil, totalBags: Int? = nil, totalItems: Int? = nil, trackingList: [TrackingList]? = nil, user: UserDataInfo? = nil, userAgent: String? = nil, vertical: String? = nil) {
             
             self.pickedDate = pickedDate
             
@@ -280,6 +284,8 @@ public extension PlatformClient.Order {
             self.shipmentStatus = shipmentStatus
             
             self.gstDetails = gstDetails
+            
+            self.orderStatus = orderStatus
             
             self.deliverySlot = deliverySlot
             
@@ -453,6 +459,18 @@ public extension PlatformClient.Order {
             
                 do {
                     gstDetails = try container.decode(GSTDetailsData.self, forKey: .gstDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderStatus = try container.decode(OrderStatusData.self, forKey: .orderStatus)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1179,6 +1197,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(gstDetails, forKey: .gstDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderStatus, forKey: .orderStatus)
             
             
             
@@ -1497,6 +1520,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var gstDetails: GSTDetailsData?
         
+        public var orderStatus: OrderStatusData?
+        
         public var deliverySlot: [String: Any]?
         
         public var order: OrderDetailsData?
@@ -1626,6 +1651,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case gstDetails = "gst_details"
             
+            case orderStatus = "order_status"
+            
             case deliverySlot = "delivery_slot"
             
             case order = "order"
@@ -1744,7 +1771,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(affiliateDetails: AffiliateDetails? = nil, bags: [OrderBags]? = nil, bagStatusHistory: [BagStatusHistory]? = nil, billingDetails: UserDetailsData? = nil, canUpdateDimension: Bool? = nil, companyDetails: CompanyDetails? = nil, coupon: [String: Any]? = nil, creditNoteId: String? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customMessage: String? = nil, customMeta: [[String: Any]]? = nil, deliveryDetails: UserDetailsData? = nil, deliverySlot: [String: Any]? = nil, dpAssignment: Bool? = nil, dpDetails: DPDetailsData? = nil, enableDpTracking: Bool? = nil, estimatedSlaTime: String? = nil, estimatedSlaTs: String? = nil, forwardShipmentId: String? = nil, fulfillingStore: FulfillingStore? = nil, fulfilmentPriority: Int? = nil, gstDetails: GSTDetailsData? = nil, invoice: InvoiceInfo? = nil, invoiceId: String? = nil, isDpAssignEnabled: Bool? = nil, isLapaEnabled: Bool? = nil, isSelfShip: Bool? = nil, journeyType: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, operationalStatus: String? = nil, order: OrderDetailsData? = nil, orderingStore: OrderingStoreDetails? = nil, orderPlatform: String? = nil, packagingType: String? = nil, payments: ShipmentPayments? = nil, paymentInfo: [[String: Any]]? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, pdfLinks: [String: Any]? = nil, pickedDate: String? = nil, platformLogo: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, priorityText: String? = nil, rtoAddress: PlatformDeliveryAddress? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentDetails: ShipmentLockDetails? = nil, shipmentId: String, shipmentImages: [String]? = nil, shipmentQuantity: Int? = nil, shipmentStatus: String? = nil, shipmentUpdateTime: Double? = nil, status: ShipmentStatusData? = nil, totalBags: Int? = nil, totalItems: Int? = nil, trackingList: [TrackingList]? = nil, user: UserDataInfo? = nil, userAgent: String? = nil, vertical: String? = nil) {
+        public init(affiliateDetails: AffiliateDetails? = nil, bags: [OrderBags]? = nil, bagStatusHistory: [BagStatusHistory]? = nil, billingDetails: UserDetailsData? = nil, canUpdateDimension: Bool? = nil, companyDetails: CompanyDetails? = nil, coupon: [String: Any]? = nil, creditNoteId: String? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customMessage: String? = nil, customMeta: [[String: Any]]? = nil, deliveryDetails: UserDetailsData? = nil, deliverySlot: [String: Any]? = nil, dpAssignment: Bool? = nil, dpDetails: DPDetailsData? = nil, enableDpTracking: Bool? = nil, estimatedSlaTime: String? = nil, estimatedSlaTs: String? = nil, forwardShipmentId: String? = nil, fulfillingStore: FulfillingStore? = nil, fulfilmentPriority: Int? = nil, gstDetails: GSTDetailsData? = nil, invoice: InvoiceInfo? = nil, invoiceId: String? = nil, isDpAssignEnabled: Bool? = nil, isLapaEnabled: Bool? = nil, isSelfShip: Bool? = nil, journeyType: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, operationalStatus: String? = nil, order: OrderDetailsData? = nil, orderingStore: OrderingStoreDetails? = nil, orderPlatform: String? = nil, orderStatus: OrderStatusData? = nil, packagingType: String? = nil, payments: ShipmentPayments? = nil, paymentInfo: [[String: Any]]? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, pdfLinks: [String: Any]? = nil, pickedDate: String? = nil, platformLogo: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, priorityText: String? = nil, rtoAddress: PlatformDeliveryAddress? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentDetails: ShipmentLockDetails? = nil, shipmentId: String, shipmentImages: [String]? = nil, shipmentQuantity: Int? = nil, shipmentStatus: String? = nil, shipmentUpdateTime: Double? = nil, status: ShipmentStatusData? = nil, totalBags: Int? = nil, totalItems: Int? = nil, trackingList: [TrackingList]? = nil, user: UserDataInfo? = nil, userAgent: String? = nil, vertical: String? = nil) {
             
             self.pickedDate = pickedDate
             
@@ -1755,6 +1782,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.shipmentStatus = shipmentStatus
             
             self.gstDetails = gstDetails
+            
+            self.orderStatus = orderStatus
             
             self.deliverySlot = deliverySlot
             
@@ -1928,6 +1957,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     gstDetails = try container.decode(GSTDetailsData.self, forKey: .gstDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderStatus = try container.decode(OrderStatusData.self, forKey: .orderStatus)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -2654,6 +2695,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(gstDetails, forKey: .gstDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderStatus, forKey: .orderStatus)
             
             
             

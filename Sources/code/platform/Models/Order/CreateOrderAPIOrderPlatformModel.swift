@@ -14,8 +14,6 @@ public extension PlatformClient.Order {
         
         public var shipments: [Shipment]
         
-        public var shipmentRequestData: ShipmentRequestData?
-        
         public var shippingInfo: ShippingInfo
         
         public var billingInfo: BillingInfo
@@ -32,7 +30,7 @@ public extension PlatformClient.Order {
         
         public var taxInfo: TaxInfo?
         
-        public var config: [String: Any]?
+        public var config: CreateOrderConfig?
         
         public var paymentInfo: PaymentInfo
         
@@ -46,8 +44,6 @@ public extension PlatformClient.Order {
         public enum CodingKeys: String, CodingKey {
             
             case shipments = "shipments"
-            
-            case shipmentRequestData = "shipment_request_data"
             
             case shippingInfo = "shipping_info"
             
@@ -77,11 +73,9 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(billingInfo: BillingInfo, charges: [Charge]? = nil, config: [String: Any]? = nil, currencyInfo: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, meta: [String: Any]? = nil, orderingStoreId: Int? = nil, orderPlatform: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shipmentRequestData: ShipmentRequestData? = nil, shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
+        public init(billingInfo: BillingInfo, charges: [Charge]? = nil, config: CreateOrderConfig? = nil, currencyInfo: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, meta: [String: Any]? = nil, orderingStoreId: Int? = nil, orderPlatform: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
             
             self.shipments = shipments
-            
-            self.shipmentRequestData = shipmentRequestData
             
             self.shippingInfo = shippingInfo
             
@@ -118,18 +112,6 @@ public extension PlatformClient.Order {
                 shipments = try container.decode([Shipment].self, forKey: .shipments)
                 
             
-            
-            
-                do {
-                    shipmentRequestData = try container.decode(ShipmentRequestData.self, forKey: .shipmentRequestData)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 shippingInfo = try container.decode(ShippingInfo.self, forKey: .shippingInfo)
@@ -215,7 +197,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    config = try container.decode([String: Any].self, forKey: .config)
+                    config = try container.decode(CreateOrderConfig.self, forKey: .config)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -274,11 +256,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(shipments, forKey: .shipments)
-            
-            
-            
-            
-            try? container.encodeIfPresent(shipmentRequestData, forKey: .shipmentRequestData)
             
             
             
@@ -364,8 +341,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var shipments: [Shipment]
         
-        public var shipmentRequestData: ShipmentRequestData?
-        
         public var shippingInfo: ShippingInfo
         
         public var billingInfo: BillingInfo
@@ -382,7 +357,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var taxInfo: TaxInfo?
         
-        public var config: [String: Any]?
+        public var config: CreateOrderConfig?
         
         public var paymentInfo: PaymentInfo
         
@@ -396,8 +371,6 @@ public extension PlatformClient.ApplicationClient.Order {
         public enum CodingKeys: String, CodingKey {
             
             case shipments = "shipments"
-            
-            case shipmentRequestData = "shipment_request_data"
             
             case shippingInfo = "shipping_info"
             
@@ -427,11 +400,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(billingInfo: BillingInfo, charges: [Charge]? = nil, config: [String: Any]? = nil, currencyInfo: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, meta: [String: Any]? = nil, orderingStoreId: Int? = nil, orderPlatform: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shipmentRequestData: ShipmentRequestData? = nil, shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
+        public init(billingInfo: BillingInfo, charges: [Charge]? = nil, config: CreateOrderConfig? = nil, currencyInfo: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, meta: [String: Any]? = nil, orderingStoreId: Int? = nil, orderPlatform: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
             
             self.shipments = shipments
-            
-            self.shipmentRequestData = shipmentRequestData
             
             self.shippingInfo = shippingInfo
             
@@ -468,18 +439,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 shipments = try container.decode([Shipment].self, forKey: .shipments)
                 
             
-            
-            
-                do {
-                    shipmentRequestData = try container.decode(ShipmentRequestData.self, forKey: .shipmentRequestData)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 shippingInfo = try container.decode(ShippingInfo.self, forKey: .shippingInfo)
@@ -565,7 +524,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    config = try container.decode([String: Any].self, forKey: .config)
+                    config = try container.decode(CreateOrderConfig.self, forKey: .config)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -624,11 +583,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(shipments, forKey: .shipments)
-            
-            
-            
-            
-            try? container.encodeIfPresent(shipmentRequestData, forKey: .shipmentRequestData)
             
             
             
