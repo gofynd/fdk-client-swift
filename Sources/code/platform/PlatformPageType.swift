@@ -62,6 +62,7 @@ public extension PlatformClient.Catalog {
         case shippingPolicy = "shipping-policy"
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
+        case locateUs = "locate-us"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -203,6 +204,8 @@ public extension PlatformClient.Catalog {
                 return "/return-policy"
             case .orderStatus:
                 return "/cart/order-status"
+            case .locateUs:
+                return "/locate-us"
             }
         }
 
@@ -303,6 +306,8 @@ public extension PlatformClient.Catalog {
                 return "Return policy"
             case .orderStatus:
                 return "Order status"
+            case .locateUs:
+                return "Locate us"
             }
         }
 
@@ -403,6 +408,8 @@ public extension PlatformClient.Catalog {
                 return []
             case .orderStatus:
                 return []
+            case .locateUs:
+                return []
             }
         }
 
@@ -502,6 +509,8 @@ public extension PlatformClient.Catalog {
             case .returnPolicy:
                 return []
             case .orderStatus:
+                return []
+            case .locateUs:
                 return []
             }
         }
@@ -561,6 +570,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         case shippingPolicy = "shipping-policy"
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
+        case locateUs = "locate-us"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -702,6 +712,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 return "/return-policy"
             case .orderStatus:
                 return "/cart/order-status"
+            case .locateUs:
+                return "/locate-us"
             }
         }
 
@@ -802,6 +814,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 return "Return policy"
             case .orderStatus:
                 return "Order status"
+            case .locateUs:
+                return "Locate us"
             }
         }
 
@@ -902,6 +916,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 return []
             case .orderStatus:
                 return []
+            case .locateUs:
+                return []
             }
         }
 
@@ -1001,6 +1017,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case .returnPolicy:
                 return []
             case .orderStatus:
+                return []
+            case .locateUs:
                 return []
             }
         }
@@ -1072,6 +1090,7 @@ public extension PlatformClient.Content {
         case shippingPolicy = "shipping-policy"
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
+        case locateUs = "locate-us"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -1213,6 +1232,8 @@ public extension PlatformClient.Content {
                 return "/return-policy"
             case .orderStatus:
                 return "/cart/order-status"
+            case .locateUs:
+                return "/locate-us"
             }
         }
 
@@ -1313,6 +1334,8 @@ public extension PlatformClient.Content {
                 return "Return policy"
             case .orderStatus:
                 return "Order status"
+            case .locateUs:
+                return "Locate us"
             }
         }
 
@@ -1413,6 +1436,8 @@ public extension PlatformClient.Content {
                 return []
             case .orderStatus:
                 return []
+            case .locateUs:
+                return []
             }
         }
 
@@ -1512,6 +1537,8 @@ public extension PlatformClient.Content {
             case .returnPolicy:
                 return []
             case .orderStatus:
+                return []
+            case .locateUs:
                 return []
             }
         }
@@ -1571,6 +1598,7 @@ public extension PlatformClient.ApplicationClient.Content {
         case shippingPolicy = "shipping-policy"
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
+        case locateUs = "locate-us"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -1712,6 +1740,8 @@ public extension PlatformClient.ApplicationClient.Content {
                 return "/return-policy"
             case .orderStatus:
                 return "/cart/order-status"
+            case .locateUs:
+                return "/locate-us"
             }
         }
 
@@ -1812,6 +1842,8 @@ public extension PlatformClient.ApplicationClient.Content {
                 return "Return policy"
             case .orderStatus:
                 return "Order status"
+            case .locateUs:
+                return "Locate us"
             }
         }
 
@@ -1912,6 +1944,8 @@ public extension PlatformClient.ApplicationClient.Content {
                 return []
             case .orderStatus:
                 return []
+            case .locateUs:
+                return []
             }
         }
 
@@ -2011,6 +2045,8 @@ public extension PlatformClient.ApplicationClient.Content {
             case .returnPolicy:
                 return []
             case .orderStatus:
+                return []
+            case .locateUs:
                 return []
             }
         }
@@ -2094,6 +2130,7 @@ public extension PlatformClient.Theme {
         case shippingPolicy = "shipping-policy"
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
+        case locateUs = "locate-us"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -2235,6 +2272,8 @@ public extension PlatformClient.Theme {
                 return "/return-policy"
             case .orderStatus:
                 return "/cart/order-status"
+            case .locateUs:
+                return "/locate-us"
             }
         }
 
@@ -2335,6 +2374,8 @@ public extension PlatformClient.Theme {
                 return "Return policy"
             case .orderStatus:
                 return "Order status"
+            case .locateUs:
+                return "Locate us"
             }
         }
 
@@ -2435,6 +2476,8 @@ public extension PlatformClient.Theme {
                 return []
             case .orderStatus:
                 return []
+            case .locateUs:
+                return []
             }
         }
 
@@ -2534,6 +2577,8 @@ public extension PlatformClient.Theme {
             case .returnPolicy:
                 return []
             case .orderStatus:
+                return []
+            case .locateUs:
                 return []
             }
         }
@@ -2593,6 +2638,7 @@ public extension PlatformClient.ApplicationClient.Theme {
         case shippingPolicy = "shipping-policy"
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
+        case locateUs = "locate-us"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -2734,6 +2780,8 @@ public extension PlatformClient.ApplicationClient.Theme {
                 return "/return-policy"
             case .orderStatus:
                 return "/cart/order-status"
+            case .locateUs:
+                return "/locate-us"
             }
         }
 
@@ -2834,6 +2882,8 @@ public extension PlatformClient.ApplicationClient.Theme {
                 return "Return policy"
             case .orderStatus:
                 return "Order status"
+            case .locateUs:
+                return "Locate us"
             }
         }
 
@@ -2934,6 +2984,8 @@ public extension PlatformClient.ApplicationClient.Theme {
                 return []
             case .orderStatus:
                 return []
+            case .locateUs:
+                return []
             }
         }
 
@@ -3033,6 +3085,8 @@ public extension PlatformClient.ApplicationClient.Theme {
             case .returnPolicy:
                 return []
             case .orderStatus:
+                return []
+            case .locateUs:
                 return []
             }
         }

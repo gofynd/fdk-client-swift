@@ -22,7 +22,7 @@ public extension PlatformClient.Catalog {
         
         public var countryOfOrigin: String
         
-        public var createdBy: UserSerializer1?
+        public var createdBy: RequestUserSerializer?
         
         public var dimension: DimensionResponse
         
@@ -48,7 +48,7 @@ public extension PlatformClient.Catalog {
         
         public var meta: [String: Any]?
         
-        public var modifiedBy: UserSerializer1?
+        public var modifiedBy: RequestUserSerializer?
         
         public var price: PriceMeta
         
@@ -161,7 +161,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(addedOnStore: String? = nil, brand: BrandMeta, company: CompanyMeta, countryOfOrigin: String, createdBy: UserSerializer1? = nil, dimension: DimensionResponse, expirationDate: String? = nil, fragile: Bool, fyndArticleCode: String, fyndItemCode: String, fyndMeta: [String: Any]? = nil, identifier: [String: Any], isActive: Bool? = nil, isSet: Bool? = nil, itemId: Int, manufacturer: ManufacturerResponse, meta: [String: Any]? = nil, modifiedBy: UserSerializer1? = nil, price: PriceMeta, quantities: Quantities? = nil, rawMeta: [String: Any]? = nil, returnConfig: ReturnConfig1? = nil, sellerIdentifier: String, set: InventorySet? = nil, size: String, stage: String? = nil, store: StoreMeta, tags: [String]? = nil, taxIdentifier: [String: Any]? = nil, totalQuantity: Int, traceId: String? = nil, trackInventory: Bool? = nil, trader: [Trader1]? = nil, uid: String, weight: WeightResponse, customJson: [String: Any]? = nil) {
+        public init(addedOnStore: String? = nil, brand: BrandMeta, company: CompanyMeta, countryOfOrigin: String, createdBy: RequestUserSerializer? = nil, dimension: DimensionResponse, expirationDate: String? = nil, fragile: Bool, fyndArticleCode: String, fyndItemCode: String, fyndMeta: [String: Any]? = nil, identifier: [String: Any], isActive: Bool? = nil, isSet: Bool? = nil, itemId: Int, manufacturer: ManufacturerResponse, meta: [String: Any]? = nil, modifiedBy: RequestUserSerializer? = nil, price: PriceMeta, quantities: Quantities? = nil, rawMeta: [String: Any]? = nil, returnConfig: ReturnConfig1? = nil, sellerIdentifier: String, set: InventorySet? = nil, size: String, stage: String? = nil, store: StoreMeta, tags: [String]? = nil, taxIdentifier: [String: Any]? = nil, totalQuantity: Int, traceId: String? = nil, trackInventory: Bool? = nil, trader: [Trader1]? = nil, uid: String, weight: WeightResponse, customJson: [String: Any]? = nil) {
             
             self.customJson = customJson
             
@@ -281,7 +281,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserSerializer1.self, forKey: .createdBy)
+                    createdBy = try container.decode(RequestUserSerializer.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -388,7 +388,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(UserSerializer1.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(RequestUserSerializer.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -764,7 +764,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var countryOfOrigin: String
         
-        public var createdBy: UserSerializer1?
+        public var createdBy: RequestUserSerializer?
         
         public var dimension: DimensionResponse
         
@@ -790,7 +790,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var meta: [String: Any]?
         
-        public var modifiedBy: UserSerializer1?
+        public var modifiedBy: RequestUserSerializer?
         
         public var price: PriceMeta
         
@@ -903,7 +903,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(addedOnStore: String? = nil, brand: BrandMeta, company: CompanyMeta, countryOfOrigin: String, createdBy: UserSerializer1? = nil, dimension: DimensionResponse, expirationDate: String? = nil, fragile: Bool, fyndArticleCode: String, fyndItemCode: String, fyndMeta: [String: Any]? = nil, identifier: [String: Any], isActive: Bool? = nil, isSet: Bool? = nil, itemId: Int, manufacturer: ManufacturerResponse, meta: [String: Any]? = nil, modifiedBy: UserSerializer1? = nil, price: PriceMeta, quantities: Quantities? = nil, rawMeta: [String: Any]? = nil, returnConfig: ReturnConfig1? = nil, sellerIdentifier: String, set: InventorySet? = nil, size: String, stage: String? = nil, store: StoreMeta, tags: [String]? = nil, taxIdentifier: [String: Any]? = nil, totalQuantity: Int, traceId: String? = nil, trackInventory: Bool? = nil, trader: [Trader1]? = nil, uid: String, weight: WeightResponse, customJson: [String: Any]? = nil) {
+        public init(addedOnStore: String? = nil, brand: BrandMeta, company: CompanyMeta, countryOfOrigin: String, createdBy: RequestUserSerializer? = nil, dimension: DimensionResponse, expirationDate: String? = nil, fragile: Bool, fyndArticleCode: String, fyndItemCode: String, fyndMeta: [String: Any]? = nil, identifier: [String: Any], isActive: Bool? = nil, isSet: Bool? = nil, itemId: Int, manufacturer: ManufacturerResponse, meta: [String: Any]? = nil, modifiedBy: RequestUserSerializer? = nil, price: PriceMeta, quantities: Quantities? = nil, rawMeta: [String: Any]? = nil, returnConfig: ReturnConfig1? = nil, sellerIdentifier: String, set: InventorySet? = nil, size: String, stage: String? = nil, store: StoreMeta, tags: [String]? = nil, taxIdentifier: [String: Any]? = nil, totalQuantity: Int, traceId: String? = nil, trackInventory: Bool? = nil, trader: [Trader1]? = nil, uid: String, weight: WeightResponse, customJson: [String: Any]? = nil) {
             
             self.customJson = customJson
             
@@ -1023,7 +1023,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserSerializer1.self, forKey: .createdBy)
+                    createdBy = try container.decode(RequestUserSerializer.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1130,7 +1130,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(UserSerializer1.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(RequestUserSerializer.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

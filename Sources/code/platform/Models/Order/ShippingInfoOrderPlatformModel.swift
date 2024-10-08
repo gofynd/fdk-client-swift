@@ -26,7 +26,7 @@ public extension PlatformClient.Order {
         
         public var lastName: String?
         
-        public var geoLocation: [String: Any]?
+        public var geoLocation: GeoLocationSchema?
         
         public var gender: String?
         
@@ -133,7 +133,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, addressType: String? = nil, alternateEmail: String? = nil, alternateMobileNumber: String? = nil, area: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, customerCode: String? = nil, externalCustomerCode: String? = nil, firstName: String? = nil, floorNo: String? = nil, gender: String? = nil, geoLocation: [String: Any]? = nil, houseNo: String? = nil, landmark: String? = nil, lastName: String? = nil, middleName: String? = nil, pincode: String? = nil, primaryEmail: String? = nil, primaryMobileNumber: String? = nil, shippingType: String? = nil, slot: [[String: Any]]? = nil, state: String? = nil, stateCode: String? = nil, title: String? = nil) {
+        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, addressType: String? = nil, alternateEmail: String? = nil, alternateMobileNumber: String? = nil, area: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, customerCode: String? = nil, externalCustomerCode: String? = nil, firstName: String? = nil, floorNo: String? = nil, gender: String? = nil, geoLocation: GeoLocationSchema? = nil, houseNo: String? = nil, landmark: String? = nil, lastName: String? = nil, middleName: String? = nil, pincode: String? = nil, primaryEmail: String? = nil, primaryMobileNumber: String? = nil, shippingType: String? = nil, slot: [[String: Any]]? = nil, state: String? = nil, stateCode: String? = nil, title: String? = nil) {
             
             self.alternateMobileNumber = alternateMobileNumber
             
@@ -284,7 +284,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    geoLocation = try container.decode([String: Any].self, forKey: .geoLocation)
+                    geoLocation = try container.decode(GeoLocationSchema.self, forKey: .geoLocation)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -726,7 +726,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var lastName: String?
         
-        public var geoLocation: [String: Any]?
+        public var geoLocation: GeoLocationSchema?
         
         public var gender: String?
         
@@ -833,7 +833,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, addressType: String? = nil, alternateEmail: String? = nil, alternateMobileNumber: String? = nil, area: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, customerCode: String? = nil, externalCustomerCode: String? = nil, firstName: String? = nil, floorNo: String? = nil, gender: String? = nil, geoLocation: [String: Any]? = nil, houseNo: String? = nil, landmark: String? = nil, lastName: String? = nil, middleName: String? = nil, pincode: String? = nil, primaryEmail: String? = nil, primaryMobileNumber: String? = nil, shippingType: String? = nil, slot: [[String: Any]]? = nil, state: String? = nil, stateCode: String? = nil, title: String? = nil) {
+        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, addressType: String? = nil, alternateEmail: String? = nil, alternateMobileNumber: String? = nil, area: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, customerCode: String? = nil, externalCustomerCode: String? = nil, firstName: String? = nil, floorNo: String? = nil, gender: String? = nil, geoLocation: GeoLocationSchema? = nil, houseNo: String? = nil, landmark: String? = nil, lastName: String? = nil, middleName: String? = nil, pincode: String? = nil, primaryEmail: String? = nil, primaryMobileNumber: String? = nil, shippingType: String? = nil, slot: [[String: Any]]? = nil, state: String? = nil, stateCode: String? = nil, title: String? = nil) {
             
             self.alternateMobileNumber = alternateMobileNumber
             
@@ -984,7 +984,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    geoLocation = try container.decode([String: Any].self, forKey: .geoLocation)
+                    geoLocation = try container.decode(GeoLocationSchema.self, forKey: .geoLocation)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

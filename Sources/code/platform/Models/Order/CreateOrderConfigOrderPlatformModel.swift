@@ -12,7 +12,7 @@ public extension PlatformClient.Order {
     class CreateOrderConfig: Codable {
         
         
-        public var dpConfiguration: DPConfiguration?
+        public var dpConfiguration: DPConfiguration
         
         public var integrationType: String?
         
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(dpConfiguration: DPConfiguration? = nil, integrationType: String? = nil, locationReassignment: Bool? = nil, optimalShipmentCreation: Bool? = nil, payment: PaymentConfig? = nil) {
+        public init(dpConfiguration: DPConfiguration, integrationType: String? = nil, locationReassignment: Bool? = nil, optimalShipmentCreation: Bool? = nil, payment: PaymentConfig? = nil) {
             
             self.dpConfiguration = dpConfiguration
             
@@ -55,16 +55,9 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    dpConfiguration = try container.decode(DPConfiguration.self, forKey: .dpConfiguration)
+                dpConfiguration = try container.decode(DPConfiguration.self, forKey: .dpConfiguration)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -160,7 +153,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class CreateOrderConfig: Codable {
         
         
-        public var dpConfiguration: DPConfiguration?
+        public var dpConfiguration: DPConfiguration
         
         public var integrationType: String?
         
@@ -185,7 +178,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(dpConfiguration: DPConfiguration? = nil, integrationType: String? = nil, locationReassignment: Bool? = nil, optimalShipmentCreation: Bool? = nil, payment: PaymentConfig? = nil) {
+        public init(dpConfiguration: DPConfiguration, integrationType: String? = nil, locationReassignment: Bool? = nil, optimalShipmentCreation: Bool? = nil, payment: PaymentConfig? = nil) {
             
             self.dpConfiguration = dpConfiguration
             
@@ -203,16 +196,9 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    dpConfiguration = try container.decode(DPConfiguration.self, forKey: .dpConfiguration)
+                dpConfiguration = try container.decode(DPConfiguration.self, forKey: .dpConfiguration)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {

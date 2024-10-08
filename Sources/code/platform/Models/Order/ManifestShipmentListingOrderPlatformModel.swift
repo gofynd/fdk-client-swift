@@ -14,15 +14,15 @@ public extension PlatformClient.Order {
         
         public var totalCount: Int
         
-        public var lane: String?
+        public var lane: String
         
         public var page: ManifestPageInfo
         
         public var success: Bool
         
-        public var status: Int
+        public var status: Int?
         
-        public var items: [ManifestItemDetails]?
+        public var items: [ManifestItemDetails]
         
         public var message: String?
         
@@ -45,7 +45,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(items: [ManifestItemDetails]? = nil, lane: String? = nil, message: String? = nil, page: ManifestPageInfo, status: Int, success: Bool, totalCount: Int) {
+        public init(items: [ManifestItemDetails], lane: String, message: String? = nil, page: ManifestPageInfo, status: Int? = nil, success: Bool, totalCount: Int) {
             
             self.totalCount = totalCount
             
@@ -72,16 +72,9 @@ public extension PlatformClient.Order {
             
             
             
-                do {
-                    lane = try container.decode(String.self, forKey: .lane)
+                lane = try container.decode(String.self, forKey: .lane)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 page = try container.decode(ManifestPageInfo.self, forKey: .page)
@@ -94,13 +87,8 @@ public extension PlatformClient.Order {
             
             
             
-                status = try container.decode(Int.self, forKey: .status)
-                
-            
-            
-            
                 do {
-                    items = try container.decode([ManifestItemDetails].self, forKey: .items)
+                    status = try container.decode(Int.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,6 +97,11 @@ public extension PlatformClient.Order {
                     
                 }
                 
+            
+            
+                items = try container.decode([ManifestItemDetails].self, forKey: .items)
+                
+            
             
             
                 do {
@@ -180,15 +173,15 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var totalCount: Int
         
-        public var lane: String?
+        public var lane: String
         
         public var page: ManifestPageInfo
         
         public var success: Bool
         
-        public var status: Int
+        public var status: Int?
         
-        public var items: [ManifestItemDetails]?
+        public var items: [ManifestItemDetails]
         
         public var message: String?
         
@@ -211,7 +204,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(items: [ManifestItemDetails]? = nil, lane: String? = nil, message: String? = nil, page: ManifestPageInfo, status: Int, success: Bool, totalCount: Int) {
+        public init(items: [ManifestItemDetails], lane: String, message: String? = nil, page: ManifestPageInfo, status: Int? = nil, success: Bool, totalCount: Int) {
             
             self.totalCount = totalCount
             
@@ -238,16 +231,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                do {
-                    lane = try container.decode(String.self, forKey: .lane)
+                lane = try container.decode(String.self, forKey: .lane)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 page = try container.decode(ManifestPageInfo.self, forKey: .page)
@@ -260,13 +246,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                status = try container.decode(Int.self, forKey: .status)
-                
-            
-            
-            
                 do {
-                    items = try container.decode([ManifestItemDetails].self, forKey: .items)
+                    status = try container.decode(Int.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -275,6 +256,11 @@ public extension PlatformClient.ApplicationClient.Order {
                     
                 }
                 
+            
+            
+                items = try container.decode([ManifestItemDetails].self, forKey: .items)
+                
+            
             
             
                 do {

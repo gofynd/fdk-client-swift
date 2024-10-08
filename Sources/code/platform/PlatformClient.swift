@@ -4032,7 +4032,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 q: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: BrandListingResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ApplicationBrandListingSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -4072,7 +4072,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(BrandListingResponse.self, from: data)
+                            let response = Utility.decode(ApplicationBrandListingSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4097,9 +4097,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 pageSize: Int?,
                 q: String?,
                 headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<BrandListingResponse> {
+                ) -> Paginator<ApplicationBrandListingSchema> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<BrandListingResponse>(pageSize: pageSize, type: "number")
+                let paginator = Paginator<ApplicationBrandListingSchema>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getApplicationBrandListing(
                         pageNo: paginator.pageNo,
@@ -4109,7 +4109,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                         headers: headers
                     ) { response, error in                    
                         if let response = response {
-                            paginator.hasNext = response.page.hasNext ?? false
+                            paginator.hasNext = response.page?.hasNext ?? false
                             paginator.pageNo = (paginator.pageNo ?? 0) + 1
                         }
                         paginator.onNext?(response, error)
@@ -4127,10 +4127,10 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Modify data associated to the brand for that particular sales channel.
             **/
             public func updateAppBrand(
-                brandUid: String,
+                brandUid: Int,
                 body: ApplicationBrandJson,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -4158,7 +4158,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1.self, from: data)
+                            let response = Utility.decode(SuccessResponseObject.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4175,7 +4175,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             /**
             *
             * Summary: List brands
-            * Description: List all the brands, and have search capabilities on brand uid, name etc
+            * Description: List all the brands.
             **/
             public func getApplicationBrands(
                 department: String?,
@@ -4357,7 +4357,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 q: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: BrandListingResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ApplicationCategoryListingSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -4401,7 +4401,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(BrandListingResponse.self, from: data)
+                            let response = Utility.decode(ApplicationCategoryListingSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4429,9 +4429,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 pageSize: Int?,
                 q: String?,
                 headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<BrandListingResponse> {
+                ) -> Paginator<ApplicationCategoryListingSchema> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<BrandListingResponse>(pageSize: pageSize, type: "number")
+                let paginator = Paginator<ApplicationCategoryListingSchema>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getApplicationCategoryListing(
                         departmentId: departmentId,
@@ -4442,7 +4442,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                         headers: headers
                     ) { response, error in                    
                         if let response = response {
-                            paginator.hasNext = response.page.hasNext ?? false
+                            paginator.hasNext = response.page?.hasNext ?? false
                             paginator.pageNo = (paginator.pageNo ?? 0) + 1
                         }
                         paginator.onNext?(response, error)
@@ -4463,7 +4463,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 categoryUid: String,
                 body: ApplicationCategoryJson,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -4491,7 +4491,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1.self, from: data)
+                            let response = Utility.decode(SuccessResponseObject.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5252,7 +5252,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 departmentUid: String,
                 body: ApplicationDepartmentJson,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -5280,7 +5280,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1.self, from: data)
+                            let response = Utility.decode(SuccessResponseObject.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5911,7 +5911,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 itemId: String,
                 body: ApplicationItemMeta,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -5939,7 +5939,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1.self, from: data)
+                            let response = Utility.decode(SuccessResponseObject.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6497,7 +6497,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func createAppReturnConfiguration(
                 body: CreateUpdateAppReturnConfig,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -6525,7 +6525,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1.self, from: data)
+                            let response = Utility.decode(SuccessResponseObject.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6547,7 +6547,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func updateAppReturnConfiguration(
                 body: CreateUpdateAppReturnConfig,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -6575,7 +6575,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1.self, from: data)
+                            let response = Utility.decode(SuccessResponseObject.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6712,7 +6712,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func createAppCategoryReturnConfiguration(
                 body: BaseAppCategoryReturnConfig,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -6740,7 +6740,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1.self, from: data)
+                            let response = Utility.decode(SuccessResponseObject.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7519,7 +7519,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 storeUid: String,
                 body: ApplicationStoreJson,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7547,7 +7547,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1.self, from: data)
+                            let response = Utility.decode(SuccessResponseObject.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21152,10 +21152,6 @@ Get the saved html template for provided sales channel
                 self.companyId = config.companyId
                 self.applicationId = applicationId
             }
-            
-            
-            
-            
             
             
             

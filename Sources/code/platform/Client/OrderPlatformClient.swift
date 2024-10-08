@@ -117,7 +117,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Update a shipment lock
-        * Description: Modify shipment/bag lock and check status.
+        * Description: Modify shipment/bag lock status and update lock/unlock messages.
         **/
         public func updateShipmentLock(
             body: UpdateShipmentLockPayload,
@@ -329,7 +329,7 @@ extension PlatformClient {
         * Description: Used for updating a shipment and its status. Can also be used for updating bags present in that shipment.
         **/
         public func updateShipmentStatus(
-            body: UpdateShipmentStatusRequest,
+            body: UpdateShipmentStatusRequestSchema,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: UpdateShipmentStatusResponseBody?, _ error: FDKError?) -> Void
         ) {
@@ -541,7 +541,7 @@ extension PlatformClient {
         public func sendSmsNinja(
             body: SendSmsPayload,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: OrderStatusResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BaseResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -569,7 +569,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(OrderStatusResult.self, from: data)
+                        let response = Utility.decode(BaseResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -670,106 +670,6 @@ extension PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CreateOrderResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Get channel configuration
-        * Description: Retrieve configuration settings specific to orders for a channel
-        **/
-        public func getChannelConfig(
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CreateChannelConfigData?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/order-config",
-                query: nil,
-                body: nil,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateChannelConfigData.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Create channel configuration
-        * Description: Set up configuration for a channel specific to orders which has implications over how the order fulfilment happens in a channel
-        **/
-        public func createChannelConfig(
-            body: CreateChannelConfigData,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CreateChannelConfigResponse?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/order-config",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CreateChannelConfigResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -974,56 +874,6 @@ extension PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(RoleBaseStateTransitionMapping.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Get credit balance detail
-        * Description: Retrieve details about credit balance on the basis of customer mobile number
-        **/
-        public func fetchCreditBalanceDetail(
-            body: FetchCreditBalanceRequestPayload,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: FetchCreditBalanceResponsePayload?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/customer-credit-balance",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(FetchCreditBalanceResponsePayload.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1293,7 +1143,7 @@ extension PlatformClient {
         * Description: Performs state transisiton in bulk using the CSV or excel file for the given shipments. The bulk transition CSV or excel template can be downloaded using the seller template download method. Current supported format is excel and CSV.
         **/
         public func bulkStateTransistion(
-            body: BulkStateTransistionRequest,
+            body: BulkStateTransistionRequestSchema,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: BulkStateTransistionResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1676,7 +1526,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifests",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifest/listing",
                 query: xQuery,
                 body: nil,
                 headers: xHeaders,
@@ -1706,13 +1556,13 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Generate manifest
-        * Description: Generate manifest Id and PDF and tags the shipments with that manifest Id
+        * Summary: Process Order Manifest
+        * Description: Endpoint to save and process order manifests.
         **/
-        public func processManifests(
-            body: ProcessManifest,
+        public func generateProcessManifest(
+            body: ProcessManifestRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProcessManifestItemResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ManifestResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1726,7 +1576,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifests",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/process-manifest",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -1740,7 +1590,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProcessManifestItemResponse.self, from: data)
+                        let response = Utility.decode(ManifestResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1761,12 +1611,38 @@ extension PlatformClient {
         **/
         public func getManifestDetails(
             manifestId: String,
+            dpIds: String?,
+            endDate: String?,
+            startDate: String?,
+            pageNo: Int?,
+            pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ManifestDetails?, _ error: FDKError?) -> Void
         ) {
                         
-             
+            var xQuery: [String: Any] = [:] 
+            xQuery["manifest_id"] = manifestId
+            
+            if let value = dpIds {
+                xQuery["dp_ids"] = value
+            }
+            
+            if let value = endDate {
+                xQuery["end_date"] = value
+            }
+            
+            if let value = startDate {
+                xQuery["start_date"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -1777,8 +1653,8 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifests/\(manifestId)",
-                query: nil,
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifest/details",
+                query: xQuery,
                 body: nil,
                 headers: xHeaders,
                 responseType: "application/json",
@@ -1861,8 +1737,7 @@ extension PlatformClient {
         * Description: Uploads the consent signed by courier partner and seller to keep records
         **/
         public func uploadConsents(
-            manifestId: String,
-            body: UploadConsent,
+            body: UploadManifestConsent,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1878,7 +1753,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifest/\(manifestId)/upload-consent",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifest/uploadConsent",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -2210,7 +2085,7 @@ extension PlatformClient {
         **/
         public func generateInvoiceID(
             invoiceType: String,
-            body: GenerateInvoiceIDRequest,
+            body: GenerateInvoiceIDRequestSchema,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GenerateInvoiceIDResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2292,56 +2167,6 @@ extension PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(FailedOrderLogDetails.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Process Order Manifest
-        * Description: Endpoint to save and process order manifests.
-        **/
-        public func generateProcessManifest(
-            body: ProcessManifestRequest,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ManifestResponse?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/process-manifest",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ManifestResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
