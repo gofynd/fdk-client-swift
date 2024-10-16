@@ -123,7 +123,7 @@ extension ApplicationClient {
             refresh: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AggregatorsConfigDetailResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AggregatorsConfigDetail?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -162,7 +162,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AggregatorsConfigDetailResponse.self, from: data)
+                        let response = Utility.decode(AggregatorsConfigDetail.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -181,9 +181,9 @@ extension ApplicationClient {
         * Description: Link payment card to a user account for seamless transactions. Upon successful linking, the card becomes associated with the user's profile, enabling secure and convenient payments.
         **/
         public func attachCardToCustomer(
-            body: AttachCardRequest,
+            body: AttachCard,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AttachCardsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AttachCardsDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -214,7 +214,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AttachCardsResponse.self, from: data)
+                        let response = Utility.decode(AttachCardsDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -236,7 +236,7 @@ extension ApplicationClient {
             refresh: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ActiveCardPaymentGatewayResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ActiveCardPaymentGatewayDetails?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -271,7 +271,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ActiveCardPaymentGatewayResponse.self, from: data)
+                        let response = Utility.decode(ActiveCardPaymentGatewayDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -293,7 +293,7 @@ extension ApplicationClient {
             forceRefresh: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ListCardsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ListCardsDetails?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -328,7 +328,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ListCardsResponse.self, from: data)
+                        let response = Utility.decode(ListCardsDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -347,9 +347,9 @@ extension ApplicationClient {
         * Description: Delete payment card from the user's account.
         **/
         public func deleteUserCard(
-            body: DeletehCardRequest,
+            body: DeleteCard,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: DeleteCardsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: DeleteCardsDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -380,7 +380,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(DeleteCardsResponse.self, from: data)
+                        let response = Utility.decode(DeleteCardsDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -399,9 +399,9 @@ extension ApplicationClient {
         * Description: Verify if the user is eligible for pay-later payment from the payment aggregator side using the customer's phone number.
         **/
         public func verifyCustomerForPayment(
-            body: ValidateCustomerRequest,
+            body: ValidateCustomer,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ValidateCustomerResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ValidateCustomerDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -432,7 +432,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ValidateCustomerResponse.self, from: data)
+                        let response = Utility.decode(ValidateCustomerDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -451,9 +451,9 @@ extension ApplicationClient {
         * Description: Verify the payment status and charge from the customer's BNPL (Buy Now, Pay Later) account after order confirmation.
         **/
         public func verifyAndChargePayment(
-            body: ChargeCustomerRequest,
+            body: ChargeCustomer,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ChargeCustomerResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ChargeCustomerDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -484,7 +484,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ChargeCustomerResponse.self, from: data)
+                        let response = Utility.decode(ChargeCustomerDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -503,9 +503,9 @@ extension ApplicationClient {
         * Description: Initiate the payment procedure for an order. Upon successful initiation, it returns a  details including the success status, aggregator information, payment method, status, merchant order ID aggregator order , polling URL, timeout, virtual ID, Razorpay payment ID, customer ID, and device ID.
         **/
         public func initialisePayment(
-            body: PaymentInitializationRequest,
+            body: PaymentInitialization,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PaymentInitializationResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PaymentInitializationDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -536,7 +536,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PaymentInitializationResponse.self, from: data)
+                        let response = Utility.decode(PaymentInitializationDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -555,9 +555,9 @@ extension ApplicationClient {
         * Description: Polling process to confirm the payment status. It periodically checks and updates the current status of a payment, ensuring timely and accurate confirmation of payment transactions.
         **/
         public func checkAndUpdatePaymentStatus(
-            body: PaymentStatusUpdateRequest,
+            body: PaymentStatusUpdate,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PaymentStatusUpdateResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PaymentStatusUpdateDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -588,7 +588,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PaymentStatusUpdateResponse.self, from: data)
+                        let response = Utility.decode(PaymentStatusUpdateDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -619,7 +619,7 @@ extension ApplicationClient {
             shipmentId: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PaymentModeRouteDetails?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -687,7 +687,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PaymentModeRouteResponse.self, from: data)
+                        let response = Utility.decode(PaymentModeRouteDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -716,7 +716,7 @@ extension ApplicationClient {
             userDetails: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PaymentModeRouteDetails?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -770,7 +770,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PaymentModeRouteResponse.self, from: data)
+                        let response = Utility.decode(PaymentModeRouteDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -947,7 +947,7 @@ extension ApplicationClient {
         public func getRupifiBannerDetails(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: RupifiBannerResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: RupifiBannerDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -978,7 +978,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(RupifiBannerResponse.self, from: data)
+                        let response = Utility.decode(RupifiBannerDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -999,7 +999,7 @@ extension ApplicationClient {
         public func getEpaylaterBannerDetails(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: EpaylaterBannerResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: EpaylaterBannerDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1030,7 +1030,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(EpaylaterBannerResponse.self, from: data)
+                        let response = Utility.decode(EpaylaterBannerDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1049,9 +1049,9 @@ extension ApplicationClient {
         * Description: Resend or cancel payment link that have been initiated but may require modification or cancellation for various reasons, ensuring flexibility and control in payment processing.
         **/
         public func resendOrCancelPayment(
-            body: ResendOrCancelPaymentRequest,
+            body: ResendOrCancelPayment,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ResendOrCancelPaymentResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ResendOrCancelPaymentDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1082,7 +1082,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ResendOrCancelPaymentResponse.self, from: data)
+                        let response = Utility.decode(ResendOrCancelPaymentDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1101,9 +1101,9 @@ extension ApplicationClient {
         * Description: Render HTML for a payment aggregator page.
         **/
         public func renderHTML(
-            body: renderHTMLRequest,
+            body: RenderHTML,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: renderHTMLResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: RenderHTMLDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1134,7 +1134,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(renderHTMLResponse.self, from: data)
+                        let response = Utility.decode(RenderHTMLDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1153,9 +1153,9 @@ extension ApplicationClient {
         * Description: Validate if a Virtual Payment Address (VPA) is valid for processing payments and returns the validation result.is_valid boolean value indicating whether the VPA is valid for payments.
         **/
         public func validateVPA(
-            body: ValidateVPARequest,
+            body: ValidateVPA,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ValidateVPAResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ValidateVPADetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1186,7 +1186,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ValidateVPAResponse.self, from: data)
+                        let response = Utility.decode(ValidateVPADetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1209,7 +1209,7 @@ extension ApplicationClient {
             aggregator: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CardDetailsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CardDetailsFetchedDetails?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1246,7 +1246,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CardDetailsResponse.self, from: data)
+                        let response = Utility.decode(CardDetailsFetchedDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1267,7 +1267,7 @@ extension ApplicationClient {
         public func getActiveRefundTransferModes(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: TransferModeResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: TransferModeFetchDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1298,7 +1298,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(TransferModeResponse.self, from: data)
+                        let response = Utility.decode(TransferModeFetchDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1317,9 +1317,9 @@ extension ApplicationClient {
         * Description: Enable/Disable a particular refund transfer mode based on the request body parameters, indicating whether the mode should be enabled or disabled.
         **/
         public func enableOrDisableRefundTransferMode(
-            body: UpdateRefundTransferModeRequest,
+            body: UpdateRefundTransferMode,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: UpdateRefundTransferModeResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: RefundTransferModeUpdateDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1350,7 +1350,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(UpdateRefundTransferModeResponse.self, from: data)
+                        let response = Utility.decode(RefundTransferModeUpdateDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1372,7 +1372,7 @@ extension ApplicationClient {
             orderId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: OrderBeneficiaryResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OrderBeneficiaryFetchDetails?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1404,7 +1404,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(OrderBeneficiaryResponse.self, from: data)
+                        let response = Utility.decode(OrderBeneficiaryFetchDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1426,7 +1426,7 @@ extension ApplicationClient {
             ifscCode: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: IfscCodeResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: IfscCodeDetails?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1461,7 +1461,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(IfscCodeResponse.self, from: data)
+                        let response = Utility.decode(IfscCodeDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1483,7 +1483,7 @@ extension ApplicationClient {
             orderId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: OrderBeneficiaryResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OrderBeneficiaryFetchDetails?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1515,7 +1515,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(OrderBeneficiaryResponse.self, from: data)
+                        let response = Utility.decode(OrderBeneficiaryFetchDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1534,9 +1534,9 @@ extension ApplicationClient {
         * Description: Verify the OTP provided by the user and adds a bank beneficiary for refund processing.
         **/
         public func verifyOtpAndAddBeneficiaryForBank(
-            body: AddBeneficiaryViaOtpVerificationRequest,
+            body: AddBeneficiaryViaOtpVerification,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: AddBeneficiaryViaOtpVerificationResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AddBeneficiaryViaOtpVerificationDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1567,7 +1567,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(AddBeneficiaryViaOtpVerificationResponse.self, from: data)
+                        let response = Utility.decode(AddBeneficiaryViaOtpVerificationDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1586,9 +1586,9 @@ extension ApplicationClient {
         * Description: Add beneficiary details specifically for refund transactions, including account holder name, account number and bank details.
         **/
         public func addBeneficiaryDetails(
-            body: AddBeneficiaryDetailsRequest,
+            body: AddBeneficiaryDetails,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: RefundAccountDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1619,7 +1619,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(RefundAccountResponse.self, from: data)
+                        let response = Utility.decode(RefundAccountDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1638,9 +1638,9 @@ extension ApplicationClient {
         * Description: Add bank account specifically for refunds, employing OTP verification for security.
         **/
         public func addRefundBankAccountUsingOTP(
-            body: AddBeneficiaryDetailsOTPRequest,
+            body: AddBeneficiaryDetailsOTP,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: RefundAccountDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1671,7 +1671,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(RefundAccountResponse.self, from: data)
+                        let response = Utility.decode(RefundAccountDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1690,9 +1690,9 @@ extension ApplicationClient {
         * Description: Verify OTP provided by the user and adds a wallet beneficiary.
         **/
         public func verifyOtpAndAddBeneficiaryForWallet(
-            body: WalletOtpRequest,
+            body: WalletOtp,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: WalletOtpResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: WalletOtpDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1723,7 +1723,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(WalletOtpResponse.self, from: data)
+                        let response = Utility.decode(WalletOtpDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1742,9 +1742,9 @@ extension ApplicationClient {
         * Description: Update default beneficiary for the order refund of the user.
         **/
         public func updateDefaultBeneficiary(
-            body: SetDefaultBeneficiaryRequest,
+            body: SetDefaultBeneficiary,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SetDefaultBeneficiaryResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SetDefaultBeneficiaryDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1775,7 +1775,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SetDefaultBeneficiaryResponse.self, from: data)
+                        let response = Utility.decode(SetDefaultBeneficiaryDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1797,7 +1797,7 @@ extension ApplicationClient {
             paymentLinkId: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetPaymentLinkResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetPaymentLinkDetails?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1832,7 +1832,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetPaymentLinkResponse.self, from: data)
+                        let response = Utility.decode(GetPaymentLinkDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1851,9 +1851,9 @@ extension ApplicationClient {
         * Description: Create new payment link for transactions.
         **/
         public func createPaymentLink(
-            body: CreatePaymentLinkRequest,
+            body: CreatePaymentLink,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CreatePaymentLinkResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CreatePaymentLinkDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1884,7 +1884,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CreatePaymentLinkResponse.self, from: data)
+                        let response = Utility.decode(CreatePaymentLinkDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1903,9 +1903,9 @@ extension ApplicationClient {
         * Description: Resend an existing payment link to the user to complete the payment.
         **/
         public func resendPaymentLink(
-            body: CancelOrResendPaymentLinkRequest,
+            body: CancelOrResendPaymentLink,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ResendPaymentLinkResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ResendPaymentLinkDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1936,7 +1936,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ResendPaymentLinkResponse.self, from: data)
+                        let response = Utility.decode(ResendPaymentLinkDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1955,9 +1955,9 @@ extension ApplicationClient {
         * Description: Cancel previously generated payment link.
         **/
         public func cancelPaymentLink(
-            body: CancelOrResendPaymentLinkRequest,
+            body: CancelOrResendPaymentLink,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CancelPaymentLinkResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CancelPaymentLinkDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1988,7 +1988,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CancelPaymentLinkResponse.self, from: data)
+                        let response = Utility.decode(CancelPaymentLinkDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2010,7 +2010,7 @@ extension ApplicationClient {
             paymentLinkId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PaymentModeRouteDetails?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2042,7 +2042,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PaymentModeRouteResponse.self, from: data)
+                        let response = Utility.decode(PaymentModeRouteDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2064,7 +2064,7 @@ extension ApplicationClient {
             paymentLinkId: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PollingPaymentLinkResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PollingPaymentLinkDetails?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2099,7 +2099,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PollingPaymentLinkResponse.self, from: data)
+                        let response = Utility.decode(PollingPaymentLinkDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2118,9 +2118,9 @@ extension ApplicationClient {
         * Description: Initiate the creation of an order handler for processing payments through a link.
         **/
         public func createOrderHandlerPaymentLink(
-            body: CreateOrderUserRequest,
+            body: CreateOrderUser,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CreateOrderUserResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CreateOrderUserDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2151,7 +2151,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CreateOrderUserResponse.self, from: data)
+                        let response = Utility.decode(CreateOrderUserDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2170,9 +2170,9 @@ extension ApplicationClient {
         * Description: Begin payment process for an order by initializing it through a payment link.Upon successful initialization, the response includes details about the payment status, aggregator details, order IDs, polling URL for status updates, and other relevant information.
         **/
         public func initialisePaymentPaymentLink(
-            body: PaymentInitializationRequest,
+            body: PaymentInitialization,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PaymentInitializationResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PaymentInitializationDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2203,7 +2203,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PaymentInitializationResponse.self, from: data)
+                        let response = Utility.decode(PaymentInitializationDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2222,9 +2222,9 @@ extension ApplicationClient {
         * Description: Verify and update status of a payment made through a link.Upon successful verification and update, the response includes details about the aggregator name, payment status, and whether retrying the process is required.
         **/
         public func checkAndUpdatePaymentStatusPaymentLink(
-            body: PaymentStatusUpdateRequest,
+            body: PaymentStatusUpdate,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PaymentStatusUpdateResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PaymentStatusUpdateDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2255,7 +2255,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PaymentStatusUpdateResponse.self, from: data)
+                        let response = Utility.decode(PaymentStatusUpdateDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2277,7 +2277,7 @@ extension ApplicationClient {
             aggregator: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CustomerCreditSummaryResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CustomerCreditSummaryDetails?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2312,7 +2312,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CustomerCreditSummaryResponse.self, from: data)
+                        let response = Utility.decode(CustomerCreditSummaryDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2335,7 +2335,7 @@ extension ApplicationClient {
             aggregator: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: RedirectToAggregatorResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: RedirectToAggregatorDetails?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2374,7 +2374,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(RedirectToAggregatorResponse.self, from: data)
+                        let response = Utility.decode(RedirectToAggregatorDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2396,7 +2396,7 @@ extension ApplicationClient {
             aggregator: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CheckCreditResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CheckCreditDetails?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2431,7 +2431,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CheckCreditResponse.self, from: data)
+                        let response = Utility.decode(CheckCreditDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2450,9 +2450,9 @@ extension ApplicationClient {
         * Description: Initiate the onboarding process for payment services, providing personal, business, and device information, along with marketplace details, to enable customer registration and credit availability.
         **/
         public func customerOnboard(
-            body: CustomerOnboardingRequest,
+            body: CustomerOnboarding,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CustomerOnboardingResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CustomerOnboardingDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2483,7 +2483,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CustomerOnboardingResponse.self, from: data)
+                        let response = Utility.decode(CustomerOnboardingDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2505,7 +2505,7 @@ extension ApplicationClient {
             aggregator: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: OutstandingOrderDetailsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OutstandingOrderDetails?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2540,7 +2540,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(OutstandingOrderDetailsResponse.self, from: data)
+                        let response = Utility.decode(OutstandingOrderDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2562,7 +2562,7 @@ extension ApplicationClient {
             aggregator: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PaidOrderDetailsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PaidOrderDetails?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2597,7 +2597,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PaidOrderDetailsResponse.self, from: data)
+                        let response = Utility.decode(PaidOrderDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2616,9 +2616,9 @@ extension ApplicationClient {
         * Description: Create an order and payment on the aggregator side.
         **/
         public func createPaymentOrder(
-            body: PaymentOrderRequest,
+            body: PaymentOrder,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PaymentOrderResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PaymentOrderDetails?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2649,7 +2649,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PaymentOrderResponse.self, from: data)
+                        let response = Utility.decode(PaymentOrderDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

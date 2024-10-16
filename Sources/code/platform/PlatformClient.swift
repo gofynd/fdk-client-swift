@@ -25,8 +25,6 @@ public class PlatformClient {
 
     public let fileStorage: FileStorage
 
-    public let finance: Finance
-
     public let lead: Lead
 
     public let serviceability: Serviceability
@@ -61,8 +59,6 @@ public class PlatformClient {
         discount = Discount(config: config)
         
         fileStorage = FileStorage(config: config)
-        
-        finance = Finance(config: config)
         
         lead = Lead(config: config)
         
@@ -187,7 +183,7 @@ public class PlatformClient {
             public func executeJobForProvidedParametersV2(
                 body: JobExecute,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: JobExecutionResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -215,7 +211,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = data.dictionary
+                            let response = Utility.decode(JobExecutionResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -290,7 +286,7 @@ public class PlatformClient {
                 fileName: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: JobStatus?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -318,7 +314,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = data.dictionary
+                            let response = Utility.decode(JobStatus.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -349,7 +345,7 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: List coupons
+            * Summary: List of coupons
             * Description: Retrieve a list of all created coupons for specific sales channel. It also supports searching based on text search, pagination and other flags to filter coupons.
             **/
             public func getCoupons(
@@ -361,9 +357,16 @@ public class PlatformClient {
                 isDisplay: Bool?,
                 typeSlug: String?,
                 code: String?,
+                createdBy: String?,
+                reviewedBy: String?,
+                approvedStartTime: String?,
+                approvedEndTime: String?,
+                reviewStartTime: String?,
+                reviewEndTime: String?,
+                status: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CouponsResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CouponsResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -400,6 +403,34 @@ public class PlatformClient {
                     xQuery["code"] = value
                 }
                 
+                if let value = createdBy {
+                    xQuery["created_by"] = value
+                }
+                
+                if let value = reviewedBy {
+                    xQuery["reviewed_by"] = value
+                }
+                
+                if let value = approvedStartTime {
+                    xQuery["approved_start_time"] = value
+                }
+                
+                if let value = approvedEndTime {
+                    xQuery["approved_end_time"] = value
+                }
+                
+                if let value = reviewStartTime {
+                    xQuery["review_start_time"] = value
+                }
+                
+                if let value = reviewEndTime {
+                    xQuery["review_end_time"] = value
+                }
+                
+                if let value = status {
+                    xQuery["status"] = value
+                }
+                
                 var xHeaders: [(key: String, value: String)] = []
                 
                 
@@ -423,7 +454,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CouponsResponse.self, from: data)
+                            let response = Utility.decode(CouponsResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -445,7 +476,7 @@ public class PlatformClient {
             public func createCoupon(
                 body: CouponAdd,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CouponCreateResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -473,7 +504,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessMessage.self, from: data)
+                            let response = Utility.decode(CouponCreateResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -547,7 +578,7 @@ public class PlatformClient {
                 id: String,
                 body: CouponUpdate,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CouponCreateResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -575,7 +606,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessMessage.self, from: data)
+                            let response = Utility.decode(CouponCreateResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -642,7 +673,58 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: List promotions
+            * Summary: Delete a coupon which is in draft state
+            * Description: Delete details of a draft coupon by providing its unique identifier to delete information such as coupon type, rules, validity period and other related information.
+            **/
+            public func deleteCoupon(
+                id: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/coupon/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessMessage.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: List of promotions
             * Description: Retrieve a list of all created promotions for specific sales channel. It also supports efficient text search and pagination functionalities, ensuring optimized promotion listing for streamlined navigation and management.
             **/
             public func getPromotions(
@@ -654,9 +736,16 @@ public class PlatformClient {
                 promotionType: String?,
                 fpPanel: String?,
                 promotionId: String?,
+                createdBy: String?,
+                reviewedBy: String?,
+                approvedStartTime: String?,
+                approvedEndTime: String?,
+                reviewStartTime: String?,
+                reviewEndTime: String?,
+                status: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PromotionsResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PromotionsResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -693,6 +782,34 @@ public class PlatformClient {
                     xQuery["promotion_id"] = value
                 }
                 
+                if let value = createdBy {
+                    xQuery["created_by"] = value
+                }
+                
+                if let value = reviewedBy {
+                    xQuery["reviewed_by"] = value
+                }
+                
+                if let value = approvedStartTime {
+                    xQuery["approved_start_time"] = value
+                }
+                
+                if let value = approvedEndTime {
+                    xQuery["approved_end_time"] = value
+                }
+                
+                if let value = reviewStartTime {
+                    xQuery["review_start_time"] = value
+                }
+                
+                if let value = reviewEndTime {
+                    xQuery["review_end_time"] = value
+                }
+                
+                if let value = status {
+                    xQuery["status"] = value
+                }
+                
                 var xHeaders: [(key: String, value: String)] = []
                 
                 
@@ -716,7 +833,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PromotionsResponse.self, from: data)
+                            let response = Utility.decode(PromotionsResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -738,7 +855,7 @@ public class PlatformClient {
             public func createPromotion(
                 body: PromotionAdd,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PromotionAdd?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PromotionAddResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -766,7 +883,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PromotionAdd.self, from: data)
+                            let response = Utility.decode(PromotionAddResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -782,14 +899,14 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Get a promotion
+            * Summary: Get a specific promotion
             * Description: Retrieve details of a specific promotion by providing its unique identifier to obtain information such as promotion type, rules, validity period and other related information.
             **/
             public func getPromotionById(
                 id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PromotionUpdate?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PromotionUpdateResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -817,7 +934,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PromotionUpdate.self, from: data)
+                            let response = Utility.decode(PromotionUpdateResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -840,7 +957,7 @@ public class PlatformClient {
                 id: String,
                 body: PromotionUpdate,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PromotionUpdate?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PromotionUpdateResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -868,7 +985,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PromotionUpdate.self, from: data)
+                            let response = Utility.decode(PromotionUpdateResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -935,6 +1052,57 @@ public class PlatformClient {
             
             /**
             *
+            * Summary: Delete a promotion which is in draft state
+            * Description: Delete details of a draft promotion by providing its unique identifier to delete information such as promotion type, rules, validity period and other related information.
+            **/
+            public func deletePromotion(
+                id: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/promotion/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(SuccessMessage.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
             * Summary: Get promotion and coupon type
             * Description: Retrieve the configuration settings related to promotions and coupons for a specific seller. It provides details of the supported types of coupons and promotions along with their descriptions, examples, and related attributes.
             **/
@@ -943,7 +1111,7 @@ public class PlatformClient {
                 isHidden: Bool?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ActivePromosResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ActivePromosResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -979,7 +1147,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ActivePromosResponse.self, from: data)
+                            let response = Utility.decode(ActivePromosResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -995,7 +1163,7 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: List available promotion offers
+            * Summary: List of all available promotion offers
             * Description: Retrieve a list of all promotional offers available for the items in the cart, including details such as offer text, unique promotion ID, and validity period.
             **/
             public func getPromotionOffers(
@@ -1006,7 +1174,7 @@ public class PlatformClient {
                 cartType: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PromotionOffersResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PromotionOffersDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -1054,7 +1222,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PromotionOffersResponse.self, from: data)
+                            let response = Utility.decode(PromotionOffersDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1078,7 +1246,7 @@ public class PlatformClient {
                 uid: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PromotionPaymentOffersResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PromotionPaymentOffersDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -1114,7 +1282,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PromotionPaymentOffersResponse.self, from: data)
+                            let response = Utility.decode(PromotionPaymentOffersDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1288,7 +1456,7 @@ public class PlatformClient {
                 id: String,
                 body: PriceAdjustmentUpdate,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PriceAdjustmentResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetPriceAdjustmentResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -1316,7 +1484,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PriceAdjustmentResponse.self, from: data)
+                            let response = Utility.decode(GetPriceAdjustmentResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1389,7 +1557,7 @@ public class PlatformClient {
             public func addPriceAdjustment(
                 body: PriceAdjustmentAdd,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PriceAdjustmentResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetPriceAdjustmentResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -1417,7 +1585,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PriceAdjustmentResponse.self, from: data)
+                            let response = Utility.decode(GetPriceAdjustmentResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1440,7 +1608,7 @@ public class PlatformClient {
                 cartId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetPriceAdjustmentResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetPriceAdjustmentResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -1469,7 +1637,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetPriceAdjustmentResponse.self, from: data)
+                            let response = Utility.decode(GetPriceAdjustmentResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1489,9 +1657,9 @@ public class PlatformClient {
             * Description: Retrieve cart details for a provided list of cart items and validate its contents. This ensures accuracy and completeness in cart information, including item quantities, prices, discounts, and applicable taxes.
             **/
             public func fetchAndvalidateCartItems(
-                body: OpenapiCartDetailsRequest,
+                body: OpenapiCartDetailsCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: OpenapiCartDetailsResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: OpenapiCartDetailsResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -1519,7 +1687,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(OpenapiCartDetailsResponse.self, from: data)
+                            let response = Utility.decode(OpenapiCartDetailsResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1539,9 +1707,9 @@ public class PlatformClient {
             * Description: Verify the serviceability of items in the cart at a specific pin code and ensure accurate delivery promises. System checks each item's availability and delivery feasibility, providing real-time information on serviceability and estimated delivery times.
             **/
             public func checkCartServiceability(
-                body: OpenApiCartServiceabilityRequest,
+                body: OpenApiCartServiceabilityCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: OpenApiCartServiceabilityResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: OpenApiCartServiceabilityResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -1569,7 +1737,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(OpenApiCartServiceabilityResponse.self, from: data)
+                            let response = Utility.decode(OpenApiCartServiceabilityResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1591,7 +1759,7 @@ public class PlatformClient {
             public func checkoutCart(
                 body: OpenApiPlatformCheckoutReq,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: OpenApiCheckoutResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: OpenApiCheckoutResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -1619,7 +1787,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(OpenApiCheckoutResponse.self, from: data)
+                            let response = Utility.decode(OpenApiCheckoutResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1648,7 +1816,7 @@ public class PlatformClient {
                 sortOn: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AbandonedCartResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AbandonedCartResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -1704,7 +1872,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AbandonedCartResponse.self, from: data)
+                            let response = Utility.decode(AbandonedCartResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1730,7 +1898,7 @@ public class PlatformClient {
                 c: Bool?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -1774,7 +1942,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartDetailResponse.self, from: data)
+                            let response = Utility.decode(CartDetailResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1796,9 +1964,9 @@ public class PlatformClient {
             public func addItems(
                 cartId: String,
                 b: Bool?,
-                body: AddCartRequest,
+                body: AddCartCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AddCartDetailResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -1830,7 +1998,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AddCartDetailResponse.self, from: data)
+                            let response = Utility.decode(AddCartDetailResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1852,9 +2020,9 @@ public class PlatformClient {
             public func updateCart(
                 cartId: String,
                 b: Bool?,
-                body: UpdateCartRequest,
+                body: UpdateCartCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UpdateCartDetailResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -1886,7 +2054,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UpdateCartDetailResponse.self, from: data)
+                            let response = Utility.decode(UpdateCartDetailResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2068,7 +2236,7 @@ public class PlatformClient {
             public func overrideCart(
                 body: OverrideCheckoutReq,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: OverrideCheckoutResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: OverrideCheckoutResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -2096,7 +2264,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(OverrideCheckoutResponse.self, from: data)
+                            let response = Utility.decode(OverrideCheckoutResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2116,9 +2284,9 @@ public class PlatformClient {
             * Description: Generate a unique shareable link for the customer's cart for a specific sales channel. This link enables easy sharing of the cart contents with other users, facilitating collaborative shopping experiences.
             **/
             public func getCartShareLink(
-                body: GetShareCartLinkRequest,
+                body: GetShareCartLinkCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetShareCartLinkResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetShareCartLinkResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -2146,7 +2314,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetShareCartLinkResponse.self, from: data)
+                            let response = Utility.decode(GetShareCartLinkResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2169,7 +2337,7 @@ public class PlatformClient {
                 token: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SharedCartResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -2197,7 +2365,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SharedCartResponse.self, from: data)
+                            let response = Utility.decode(SharedCartResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2222,7 +2390,7 @@ public class PlatformClient {
                 cartId: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SharedCartResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SharedCartResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -2254,7 +2422,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SharedCartResponse.self, from: data)
+                            let response = Utility.decode(SharedCartResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2270,8 +2438,8 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: List carts
-            * Description: Retrieve the list of active carts associated with a specific customer. 
+            * Summary: List of carts
+            * Description: Retrieve the list of active carts associated with a specific customer.
             **/
             public func getCartList(
                 fromDate: String?,
@@ -2279,7 +2447,7 @@ public class PlatformClient {
                 filterOn: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: MultiCartResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: MultiCartResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -2319,7 +2487,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(MultiCartResponse.self, from: data)
+                            let response = Utility.decode(MultiCartResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2342,7 +2510,7 @@ public class PlatformClient {
                 id: String?,
                 body: UpdateUserCartMapping,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UserCartMappingResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UserCartMappingResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -2374,7 +2542,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UserCartMappingResponse.self, from: data)
+                            let response = Utility.decode(UserCartMappingResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2403,7 +2571,7 @@ public class PlatformClient {
                 buyNow: Bool?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -2459,7 +2627,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartDetailResponse.self, from: data)
+                            let response = Utility.decode(CartDetailResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2484,9 +2652,9 @@ public class PlatformClient {
                 buyNow: Bool?,
                 orderType: String?,
                 id: String?,
-                body: PlatformAddCartRequest,
+                body: PlatformAddCartDetails,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AddCartDetailResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -2534,7 +2702,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AddCartDetailResponse.self, from: data)
+                            let response = Utility.decode(AddCartDetailResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2559,9 +2727,9 @@ public class PlatformClient {
                 orderType: String?,
                 b: Bool?,
                 buyNow: Bool?,
-                body: PlatformUpdateCartRequest,
+                body: PlatformUpdateCartDetails,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UpdateCartDetailResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UpdateCartDetailResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -2609,7 +2777,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UpdateCartDetailResponse.self, from: data)
+                            let response = Utility.decode(UpdateCartDetailResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2630,9 +2798,9 @@ public class PlatformClient {
             **/
             public func deleteCart(
                 id: String?,
-                body: DeleteCartRequest,
+                body: DeleteCartDetails,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DeleteCartDetailResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DeleteCartDetailResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -2664,7 +2832,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DeleteCartDetailResponse.self, from: data)
+                            let response = Utility.decode(DeleteCartDetailResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2688,7 +2856,7 @@ public class PlatformClient {
                 buyNow: Bool?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartItemCountResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartItemCountResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -2724,7 +2892,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartItemCountResponse.self, from: data)
+                            let response = Utility.decode(CartItemCountResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2740,7 +2908,7 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: List coupons
+            * Summary: List of coupons
             * Description: Retrieve a list of all available coupons that customer can apply to their carts. It provides details about each coupon, including its code, discount amount, and applicable conditions.
             **/
             public func getAppCoupons(
@@ -2750,7 +2918,7 @@ public class PlatformClient {
                 storeId: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetCouponResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetCouponResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -2794,7 +2962,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetCouponResponse.self, from: data)
+                            let response = Utility.decode(GetCouponResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2811,8 +2979,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Apply coupon
-            * Description: 
-Apply a coupon code to the customer's cart to trigger discounts on eligible items
+            * Description: Apply a coupon code to the customer's cart to trigger discounts on eligible items
             **/
             public func applyCoupon(
                 i: Bool?,
@@ -2820,9 +2987,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 p: Bool?,
                 id: String?,
                 buyNow: Bool?,
-                body: ApplyCouponRequest,
+                body: ApplyCouponDetails,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -2870,7 +3037,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartDetailResponse.self, from: data)
+                            let response = Utility.decode(CartDetailResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2894,7 +3061,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 buyNow: Bool?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -2930,7 +3097,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartDetailResponse.self, from: data)
+                            let response = Utility.decode(CartDetailResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -2959,7 +3126,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 userId: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PlatformGetAddressesResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PlatformGetAddressesDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3015,7 +3182,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PlatformGetAddressesResponse.self, from: data)
+                            let response = Utility.decode(PlatformGetAddressesDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3037,7 +3204,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func addAddress(
                 body: PlatformAddress,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SaveAddressResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SaveAddressDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -3065,7 +3232,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SaveAddressResponse.self, from: data)
+                            let response = Utility.decode(SaveAddressDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3174,7 +3341,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 id: String,
                 body: PlatformAddress,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UpdateAddressResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UpdateAddressDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -3202,7 +3369,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UpdateAddressResponse.self, from: data)
+                            let response = Utility.decode(UpdateAddressDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3226,7 +3393,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 userId: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DeleteAddressResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DeleteAddressResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3258,7 +3425,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DeleteAddressResponse.self, from: data)
+                            let response = Utility.decode(DeleteAddressResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3282,9 +3449,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 buyNow: Bool?,
                 i: Bool?,
                 b: Bool?,
-                body: PlatformSelectCartAddressRequest,
+                body: PlatformSelectCartAddress,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3328,7 +3495,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartDetailResponse.self, from: data)
+                            let response = Utility.decode(CartDetailResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3358,7 +3525,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 orderType: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PlatformCartShipmentsResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PlatformCartShipmentsResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3418,7 +3585,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PlatformCartShipmentsResponse.self, from: data)
+                            let response = Utility.decode(PlatformCartShipmentsResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3444,9 +3611,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 addressId: String?,
                 areaCode: String?,
                 orderType: String?,
-                body: UpdateCartShipmentRequest,
+                body: UpdateCartShipmentCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PlatformCartShipmentsResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PlatformCartShipmentsResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3498,7 +3665,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PlatformCartShipmentsResponse.self, from: data)
+                            let response = Utility.decode(PlatformCartShipmentsResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3520,9 +3687,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func updateCartMeta(
                 id: String?,
                 buyNow: Bool?,
-                body: PlatformCartMetaRequest,
+                body: PlatformCartMetaCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartMetaResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartMetaDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3558,7 +3725,62 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartMetaResponse.self, from: data)
+                            let response = Utility.decode(CartMetaDetails.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Checkout cart
+            * Description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement.
+            **/
+            public func platformCheckoutCart(
+                id: String?,
+                body: PlatformCartCheckoutDetailCreation,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: CartCheckoutResult?, _ error: FDKError?) -> Void
+            ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = id {
+                    xQuery["id"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/checkout",
+                    query: xQuery,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CartCheckoutResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3582,7 +3804,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 id: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartDeliveryModesResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartDeliveryModesDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3615,7 +3837,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartDeliveryModesResponse.self, from: data)
+                            let response = Utility.decode(CartDeliveryModesDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3638,7 +3860,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 storeUid: Int,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: StoreDetailsResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: StoreDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3667,7 +3889,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(StoreDetailsResponse.self, from: data)
+                            let response = Utility.decode(StoreDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3690,9 +3912,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 id: String?,
                 buyNow: Bool?,
                 orderType: String?,
-                body: UpdateCartPaymentRequest,
+                body: CartPaymentUpdate,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3732,7 +3954,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartDetailResponse.self, from: data)
+                            let response = Utility.decode(CartDetailResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3838,9 +4060,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             **/
             public func platformCheckoutCartV2(
                 id: String?,
-                body: PlatformCartCheckoutDetailV2Request,
+                body: PlatformCartCheckoutDetailV2Creation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartCheckoutDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3872,7 +4094,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartCheckoutResponse.self, from: data)
+                            let response = Utility.decode(CartCheckoutDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3897,7 +4119,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 orderType: String?,
                 body: UpdateCartPaymentRequestV2,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartDetailResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -3937,7 +4159,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CartDetailResponse.self, from: data)
+                            let response = Utility.decode(CartDetailResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -3975,7 +4197,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 brand: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CatalogInsightResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CatalogInsightResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -4007,7 +4229,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CatalogInsightResponse.self, from: data)
+                            let response = Utility.decode(CatalogInsightResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4127,10 +4349,10 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Modify data associated to the brand for that particular sales channel.
             **/
             public func updateAppBrand(
-                brandUid: Int,
+                brandUid: String,
                 body: ApplicationBrandJson,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -4158,7 +4380,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponseObject.self, from: data)
+                            let response = Utility.decode(SuccessResponse1.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4175,7 +4397,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             /**
             *
             * Summary: List brands
-            * Description: List all the brands.
+            * Description: List all the brands, and have search capabilities on brand uid, name etc
             **/
             public func getApplicationBrands(
                 department: String?,
@@ -4185,7 +4407,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 brandId: [Int]?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: BrandListingResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: BrandListingResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -4233,7 +4455,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(BrandListingResponse.self, from: data)
+                            let response = Utility.decode(BrandListingResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4264,9 +4486,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 q: String?,
                 brandId: [Int]?,
                 headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<BrandListingResponse> {
+                ) -> Paginator<BrandListingResponseSchema> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<BrandListingResponse>(pageSize: pageSize, type: "number")
+                let paginator = Paginator<BrandListingResponseSchema>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getApplicationBrands(
                         department: department,
@@ -4299,7 +4521,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 department: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CategoryListingResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CategoryListingResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -4331,7 +4553,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CategoryListingResponse.self, from: data)
+                            let response = Utility.decode(CategoryListingResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4463,7 +4685,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 categoryUid: String,
                 body: ApplicationCategoryJson,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -4491,7 +4713,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponseObject.self, from: data)
+                            let response = Utility.decode(SuccessResponse1.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4520,7 +4742,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetCollectionListingResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetCollectionListingResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -4576,7 +4798,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetCollectionListingResponse.self, from: data)
+                            let response = Utility.decode(GetCollectionListingResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4613,9 +4835,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 isActive: Bool?,
                 pageSize: Int?,
                 headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<GetCollectionListingResponse> {
+                ) -> Paginator<GetCollectionListingResponseSchema> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<GetCollectionListingResponse>(pageSize: pageSize, type: "number")
+                let paginator = Paginator<GetCollectionListingResponseSchema>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getAllCollections(
                         q: q,
@@ -4649,7 +4871,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func createCollection(
                 body: CreateCollection,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CollectionCreateResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CollectionCreateResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -4677,7 +4899,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CollectionCreateResponse.self, from: data)
+                            let response = Utility.decode(CollectionCreateResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4706,7 +4928,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 q: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetQueryFiltersValuesResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetQueryFiltersValuesResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -4754,7 +4976,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetQueryFiltersValuesResponse.self, from: data)
+                            let response = Utility.decode(GetQueryFiltersValuesResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4777,7 +4999,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 c: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetQueryFiltersKeysResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetQueryFiltersKeysResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -4809,7 +5031,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetQueryFiltersKeysResponse.self, from: data)
+                            let response = Utility.decode(GetQueryFiltersKeysResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4831,7 +5053,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func getQueryFilters(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetQueryFiltersResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetQueryFiltersResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -4859,7 +5081,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetQueryFiltersResponse.self, from: data)
+                            let response = Utility.decode(GetQueryFiltersResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4987,7 +5209,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetCollectionItemsResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetCollectionItemsResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -5027,7 +5249,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetCollectionItemsResponse.self, from: data)
+                            let response = Utility.decode(GetCollectionItemsResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5101,7 +5323,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 slug: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetCollectionDetailResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetCollectionDetailResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -5129,7 +5351,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetCollectionDetailResponse.self, from: data)
+                            let response = Utility.decode(GetCollectionDetailResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5154,7 +5376,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 q: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ApplicationDepartmentListingResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ApplicationDepartmentListingResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -5194,7 +5416,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ApplicationDepartmentListingResponse.self, from: data)
+                            let response = Utility.decode(ApplicationDepartmentListingResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5219,9 +5441,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 pageSize: Int?,
                 q: String?,
                 headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<ApplicationDepartmentListingResponse> {
+                ) -> Paginator<ApplicationDepartmentListingResponseSchema> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<ApplicationDepartmentListingResponse>(pageSize: pageSize, type: "number")
+                let paginator = Paginator<ApplicationDepartmentListingResponseSchema>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getApplicationDepartmentListing(
                         pageNo: paginator.pageNo,
@@ -5252,7 +5474,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 departmentUid: String,
                 body: ApplicationDepartmentJson,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -5280,7 +5502,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponseObject.self, from: data)
+                            let response = Utility.decode(SuccessResponse1.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5302,7 +5524,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func getDepartments(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DepartmentResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DepartmentResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -5330,7 +5552,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DepartmentResponse.self, from: data)
+                            let response = Utility.decode(DepartmentResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5364,7 +5586,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 toDate: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: InventoryStockResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: InventoryStockResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -5440,7 +5662,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(InventoryStockResponse.self, from: data)
+                            let response = Utility.decode(InventoryStockResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5470,7 +5692,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 storeTypes: [String]?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: LocationListSerializer?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: LocationListSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -5530,7 +5752,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(LocationListSerializer.self, from: data)
+                            let response = Utility.decode(LocationListSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5570,9 +5792,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 tags: [String]?,
                 storeTypes: [String]?,
                 headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<LocationListSerializer> {
+                ) -> Paginator<LocationListSchema> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<LocationListSerializer>(pageSize: pageSize, type: "number")
+                let paginator = Paginator<LocationListSchema>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getAppLocations(
                         storeType: storeType,
@@ -5860,7 +6082,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 itemId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: OwnerAppItemResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: OwnerAppItemResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -5888,7 +6110,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(OwnerAppItemResponse.self, from: data)
+                            let response = Utility.decode(OwnerAppItemResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5911,7 +6133,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 itemId: String,
                 body: ApplicationItemMeta,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -5939,7 +6161,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponseObject.self, from: data)
+                            let response = Utility.decode(SuccessResponse1.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5958,7 +6180,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Summary: List sales channel products
             * Description: Retrieve products associated with the sales channel. List all the products associated with a brand, collection or category in a requested sort order.
             **/
-            public func getAppicationProducts(
+            public func getApplicationProducts(
                 q: String?,
                 f: String?,
                 c: String?,
@@ -5972,7 +6194,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 itemIds: [Int]?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ApplicationProductListingResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ApplicationProductListingResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -6044,7 +6266,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ApplicationProductListingResponse.self, from: data)
+                            let response = Utility.decode(ApplicationProductListingResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6078,10 +6300,10 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             /**
             *
-            * Summary: get paginator for getAppicationProducts
+            * Summary: get paginator for getApplicationProducts
             * Description: fetch the next page by calling .next(...) function
             **/
-            public func getAppicationProductsPaginator(
+            public func getApplicationProductsPaginator(
                 q: String?,
                 f: String?,
                 c: String?,
@@ -6091,11 +6313,11 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 pageSize: Int?,
                 itemIds: [Int]?,
                 headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<ApplicationProductListingResponse> {
+                ) -> Paginator<ApplicationProductListingResponseSchema> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<ApplicationProductListingResponse>(pageSize: pageSize, type: "cursor")
+                let paginator = Paginator<ApplicationProductListingResponseSchema>(pageSize: pageSize, type: "cursor")
                 paginator.onPage = {
-                    self.getAppicationProducts(
+                    self.getApplicationProducts(
                         q: q,
                         f: f,
                         c: c,
@@ -6310,7 +6532,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 q: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RawProductListingResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RawProductListingResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -6370,7 +6592,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RawProductListingResponse.self, from: data)
+                            let response = Utility.decode(RawProductListingResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6410,9 +6632,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 pageSize: Int?,
                 q: String?,
                 headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<RawProductListingResponse> {
+                ) -> Paginator<RawProductListingResponseSchema> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<RawProductListingResponse>(pageSize: pageSize, type: "number")
+                let paginator = Paginator<RawProductListingResponseSchema>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getAppProducts(
                         brandIds: brandIds,
@@ -6447,7 +6669,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func getAppReturnConfiguration(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AppReturnConfigResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AppReturnConfigResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -6475,7 +6697,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AppReturnConfigResponse.self, from: data)
+                            let response = Utility.decode(AppReturnConfigResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6497,7 +6719,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func createAppReturnConfiguration(
                 body: CreateUpdateAppReturnConfig,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -6525,7 +6747,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponseObject.self, from: data)
+                            let response = Utility.decode(SuccessResponse1.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6547,7 +6769,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func updateAppReturnConfiguration(
                 body: CreateUpdateAppReturnConfig,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -6575,7 +6797,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponseObject.self, from: data)
+                            let response = Utility.decode(SuccessResponse1.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6597,7 +6819,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func deleteAppCategoryReturnConfiguration(
                 body: DeleteAppCategoryReturnConfig,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -6625,7 +6847,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse.self, from: data)
+                            let response = Utility.decode(SuccessResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6650,7 +6872,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: BaseAppCategoryReturnConfigResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: BaseAppCategoryReturnConfigResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -6690,7 +6912,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(BaseAppCategoryReturnConfigResponse.self, from: data)
+                            let response = Utility.decode(BaseAppCategoryReturnConfigResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6712,7 +6934,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func createAppCategoryReturnConfiguration(
                 body: BaseAppCategoryReturnConfig,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -6740,7 +6962,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponseObject.self, from: data)
+                            let response = Utility.decode(SuccessResponse1.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6762,7 +6984,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func updateAppCategoryReturnConfiguration(
                 body: BaseAppCategoryReturnConfig,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -6790,7 +7012,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse.self, from: data)
+                            let response = Utility.decode(SuccessResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6812,7 +7034,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func getAutocompleteConfig(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetAutocompleteWordsResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -6840,7 +7062,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetAutocompleteWordsResponse.self, from: data)
+                            let response = Utility.decode(GetAutocompleteWordsResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6862,7 +7084,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func createCustomAutocompleteRule(
                 body: CreateAutocompleteKeyword,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CreateAutocompleteWordsResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CreateAutocompleteWordsResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -6890,7 +7112,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CreateAutocompleteWordsResponse.self, from: data)
+                            let response = Utility.decode(CreateAutocompleteWordsResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6913,7 +7135,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DeleteResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DeleteResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -6941,7 +7163,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DeleteResponse.self, from: data)
+                            let response = Utility.decode(DeleteResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6964,7 +7186,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetAutocompleteWordsResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -6992,7 +7214,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetAutocompleteWordsResponse.self, from: data)
+                            let response = Utility.decode(GetAutocompleteWordsResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7015,7 +7237,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 id: String,
                 body: CreateAutocompleteKeyword,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetAutocompleteWordsResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7043,7 +7265,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetAutocompleteWordsResponse.self, from: data)
+                            let response = Utility.decode(GetAutocompleteWordsResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7065,7 +7287,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func deleteSearchConfiguration(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DeleteSearchConfigurationResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DeleteSearchConfigurationResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7093,7 +7315,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DeleteSearchConfigurationResponse.self, from: data)
+                            let response = Utility.decode(DeleteSearchConfigurationResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7115,7 +7337,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func getSearchConfiguration(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetSearchConfigurationResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetSearchConfigurationResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7143,7 +7365,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetSearchConfigurationResponse.self, from: data)
+                            let response = Utility.decode(GetSearchConfigurationResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7163,9 +7385,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Create search configuration for the catalog for a specific company and sales channel.
             **/
             public func createSearchConfiguration(
-                body: CreateSearchConfigurationRequest,
+                body: CreateSearchConfigurationRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CreateSearchConfigurationResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CreateSearchConfigurationResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7193,7 +7415,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CreateSearchConfigurationResponse.self, from: data)
+                            let response = Utility.decode(CreateSearchConfigurationResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7213,9 +7435,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Allows you to modify searchable attributes for an sales channel. searchable attributes are the fields on which the products are searched.
             **/
             public func updateSearchConfiguration(
-                body: UpdateSearchConfigurationRequest,
+                body: UpdateSearchConfigurationRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UpdateSearchConfigurationResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UpdateSearchConfigurationResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7243,7 +7465,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UpdateSearchConfigurationResponse.self, from: data)
+                            let response = Utility.decode(UpdateSearchConfigurationResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7265,7 +7487,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func getAllSearchKeyword(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetSearchWordsResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetSearchWordsResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7293,7 +7515,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetSearchWordsResponse.self, from: data)
+                            let response = Utility.decode(GetSearchWordsResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7366,7 +7588,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DeleteResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DeleteResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7394,7 +7616,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DeleteResponse.self, from: data)
+                            let response = Utility.decode(DeleteResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7417,7 +7639,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetSearchWordsDetailResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetSearchWordsDetailResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7445,7 +7667,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetSearchWordsDetailResponse.self, from: data)
+                            let response = Utility.decode(GetSearchWordsDetailResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7519,7 +7741,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 storeUid: String,
                 body: ApplicationStoreJson,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7547,7 +7769,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponseObject.self, from: data)
+                            let response = Utility.decode(SuccessResponse1.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7622,9 +7844,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Modify allow single flag for filters of the sales channel for a company and an sales channel.
             **/
             public func updateAllowSingle(
-                body: AllowSingleRequest,
+                body: AllowSingleRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ConfigSuccessResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ConfigSuccessResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7652,7 +7874,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ConfigSuccessResponse.self, from: data)
+                            let response = Utility.decode(ConfigSuccessResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7672,9 +7894,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Modify the default sort key configuration for a company and an sales channel.
             **/
             public func updateDefaultSort(
-                body: DefaultKeyRequest,
+                body: DefaultKeyRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ConfigSuccessResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ConfigSuccessResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7702,7 +7924,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ConfigSuccessResponse.self, from: data)
+                            let response = Utility.decode(ConfigSuccessResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7728,7 +7950,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 search: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetConfigResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetConfigResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -7768,7 +7990,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetConfigResponse.self, from: data)
+                            let response = Utility.decode(GetConfigResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7846,7 +8068,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 templateSlug: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetConfigResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetConfigResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -7890,7 +8112,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetConfigResponse.self, from: data)
+                            let response = Utility.decode(GetConfigResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7965,7 +8187,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 groupSlug: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ConfigSuccessResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ConfigSuccessResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7993,7 +8215,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ConfigSuccessResponse.self, from: data)
+                            let response = Utility.decode(ConfigSuccessResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -8069,7 +8291,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 configId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ConfigSuccessResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ConfigSuccessResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -8097,7 +8319,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ConfigSuccessResponse.self, from: data)
+                            let response = Utility.decode(ConfigSuccessResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -8176,7 +8398,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 q: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetConfigMetadataResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetConfigMetadataResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -8220,7 +8442,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetConfigMetadataResponse.self, from: data)
+                            let response = Utility.decode(GetConfigMetadataResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -10845,9 +11067,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Sends real-time communications to sellers with immediate delivery.
             **/
             public func sendCommunicationSynchronously(
-                body: EngineRequest,
+                body: EnginePayload,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: EngineResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: EngineResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -10875,7 +11097,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(EngineResponse.self, from: data)
+                            let response = Utility.decode(EngineResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -10895,9 +11117,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Sends communications to sellers with deffered delivery.
             **/
             public func sendCommunicationAsynchronously(
-                body: EngineRequest,
+                body: EnginePayload,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: EngineResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: EngineResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -10925,7 +11147,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(EngineResponse.self, from: data)
+                            let response = Utility.decode(EngineResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -11012,7 +11234,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func createEventSubscriptions(
                 body: SubscriptionsObject,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: EventSubscriptionsBulkUpdateResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: EventSubscriptionsBulkUpdateResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -11040,7 +11262,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(EventSubscriptionsBulkUpdateResponse.self, from: data)
+                            let response = Utility.decode(EventSubscriptionsBulkUpdateResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -11119,7 +11341,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 id: String,
                 body: SubscriptionsObject,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: EventSubscriptionsBulkUpdateResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: EventSubscriptionsBulkUpdateResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -11147,7 +11369,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(EventSubscriptionsBulkUpdateResponse.self, from: data)
+                            let response = Utility.decode(EventSubscriptionsBulkUpdateResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -11218,9 +11440,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Creates a new event subscription in bulk.
             **/
             public func createEventSubscriptionsByBulk(
-                body: EventSubscriptionsBulkUpdateRequest,
+                body: EventSubscriptionsBulkUpdatePayload,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: [EventSubscriptionsBulkUpdateResponse]?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: [EventSubscriptionsBulkUpdateResult]?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -11248,7 +11470,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode([EventSubscriptionsBulkUpdateResponse].self, from: data)
+                            let response = Utility.decode([EventSubscriptionsBulkUpdateResult].self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -11270,7 +11492,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func getGlobalVariables(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GlobalVariablesGetResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetGlobalVariablesResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -11298,7 +11520,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GlobalVariablesGetResponse.self, from: data)
+                            let response = Utility.decode(GetGlobalVariablesResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -11320,7 +11542,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func postGlobalVariables(
                 body: GlobalVariablesReq,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GlobalVariablesPostResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CreateGlobalVariablesResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -11348,7 +11570,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GlobalVariablesPostResponse.self, from: data)
+                            let response = Utility.decode(CreateGlobalVariablesResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -11488,9 +11710,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Initiates a job to execute a communication campaign.
             **/
             public func triggerCampaignJob(
-                body: TriggerJobRequest,
+                body: TriggerJobPayload,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: TriggerJobResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: TriggerJobResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -11518,7 +11740,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(TriggerJobResponse.self, from: data)
+                            let response = Utility.decode(TriggerJobResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -11946,7 +12168,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             **/
             public func updateBuildConfig(
                 platformType: String,
-                body: MobileAppConfigRequest,
+                body: MobileAppConfigRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: MobileAppConfiguration?, _ error: FDKError?) -> Void
             ) {
@@ -12049,7 +12271,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func getAppFeatures(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AppFeatureResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AppFeatureResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -12077,7 +12299,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AppFeatureResponse.self, from: data)
+                            let response = Utility.decode(AppFeatureResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -12097,7 +12319,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Modify the feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
             **/
             public func updateAppFeatures(
-                body: AppFeatureRequest,
+                body: AppFeatureRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AppFeature?, _ error: FDKError?) -> Void
             ) {
@@ -12147,7 +12369,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Modify the feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
             **/
             public func modifyAppFeatures(
-                body: AppFeatureRequest,
+                body: AppFeatureRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AppFeature?, _ error: FDKError?) -> Void
             ) {
@@ -12399,7 +12621,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func getAppApiTokens(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: TokenResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: TokenResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -12427,7 +12649,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(TokenResponse.self, from: data)
+                            let response = Utility.decode(TokenResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -12447,9 +12669,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Add and edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth.
             **/
             public func updateAppApiTokens(
-                body: TokenResponse,
+                body: TokenResponseSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: TokenResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: TokenResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -12477,7 +12699,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(TokenResponse.self, from: data)
+                            let response = Utility.decode(TokenResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -12502,7 +12724,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CompaniesResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CompaniesResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -12542,7 +12764,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CompaniesResponse.self, from: data)
+                            let response = Utility.decode(CompaniesResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -12566,7 +12788,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: StoresResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: StoresResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -12602,7 +12824,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(StoresResponse.self, from: data)
+                            let response = Utility.decode(StoresResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -12874,7 +13096,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func getAppSupportedCurrency(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AppCurrencyResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AppCurrencyResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -12902,7 +13124,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AppCurrencyResponse.self, from: data)
+                            let response = Utility.decode(AppCurrencyResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -12924,7 +13146,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func getOrderingStoresByFilter(
                 pageNo: Int?,
                 pageSize: Int?,
-                body: FilterOrderingStoreRequest,
+                body: FilterOrderingStoreRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OrderingStores?, _ error: FDKError?) -> Void
             ) {
@@ -13087,7 +13309,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 q: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: OrderingStoresResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: OrderingStoresResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -13127,7 +13349,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(OrderingStoresResponse.self, from: data)
+                            let response = Utility.decode(OrderingStoresResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -13147,9 +13369,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart.
             **/
             public func getOrderingStoreCookie(
-                body: OrderingStoreSelectRequest,
+                body: OrderingStoreSelectRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessMessageResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -13177,7 +13399,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessMessageResponse.self, from: data)
+                            let response = Utility.decode(SuccessMessageResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -13199,7 +13421,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func removeOrderingStoreCookie(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessMessageResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -13227,7 +13449,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessMessageResponse.self, from: data)
+                            let response = Utility.decode(SuccessMessageResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -13249,7 +13471,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func getDomains(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DomainsResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DomainsResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -13277,7 +13499,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DomainsResponse.self, from: data)
+                            let response = Utility.decode(DomainsResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -13297,7 +13519,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Creates a domain for an sales channel. Note - Only 15 domains can be added to the sales channel
             **/
             public func addDomain(
-                body: DomainAddRequest,
+                body: DomainAddRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: Domain?, _ error: FDKError?) -> Void
             ) {
@@ -13350,7 +13572,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessMessageResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -13378,7 +13600,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessMessageResponse.self, from: data)
+                            let response = Utility.decode(SuccessMessageResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -13398,9 +13620,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Modify the type of a specific domain. Primary domain is used as the URL of your website. Short link domain is comparatively smaller and used while generating short links.
             **/
             public func changeDomainType(
-                body: UpdateDomainTypeRequest,
+                body: UpdateDomainTypeRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DomainsResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DomainsResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -13428,7 +13650,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DomainsResponse.self, from: data)
+                            let response = Utility.decode(DomainsResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -13448,9 +13670,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Retrieve the status of a specific domain. Shows if the A records and TXT records of the domain correctly points to appropriate IP on Fynd Servers.
             **/
             public func getDomainStatus(
-                body: DomainStatusRequest,
+                body: DomainStatusRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DomainStatusResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DomainStatusResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -13478,7 +13700,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DomainStatusResponse.self, from: data)
+                            let response = Utility.decode(DomainStatusResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -13541,6 +13763,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                         }
                 });
             }
+            
             
             
             
@@ -13887,7 +14110,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Generate and add a new blog.
             **/
             public func createBlog(
-                body: BlogRequest,
+                body: BlogPayload,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
             ) {
@@ -13946,7 +14169,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 status: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: BlogGetResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: BlogGetDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -14002,7 +14225,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(BlogGetResponse.self, from: data)
+                            let response = Utility.decode(BlogGetDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -14023,7 +14246,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             **/
             public func updateBlog(
                 id: String,
-                body: BlogRequest,
+                body: BlogPayload,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
             ) {
@@ -15045,7 +15268,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: LandingPageGetResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: LandingPageGetDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -15081,7 +15304,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(LandingPageGetResponse.self, from: data)
+                            let response = Utility.decode(LandingPageGetDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -15358,7 +15581,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: NavigationGetResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: NavigationGetDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -15395,7 +15618,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(NavigationGetResponse.self, from: data)
+                            let response = Utility.decode(NavigationGetDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -15415,7 +15638,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Generate and add a new navigation element.
             **/
             public func createNavigation(
-                body: NavigationRequest,
+                body: NavigationPayload,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: NavigationSchema?, _ error: FDKError?) -> Void
             ) {
@@ -15467,7 +15690,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func getDefaultNavigations(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DefaultNavigationResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DefaultNavigationDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -15495,7 +15718,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DefaultNavigationResponse.self, from: data)
+                            let response = Utility.decode(DefaultNavigationDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -15516,14 +15739,17 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             **/
             public func getNavigationBySlug(
                 slug: String,
-                devicePlatform: String,
+                devicePlatform: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: NavigationSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
-                xQuery["device_platform"] = devicePlatform
+                
+                if let value = devicePlatform {
+                    xQuery["device_platform"] = value
+                }
                 
                 var xHeaders: [(key: String, value: String)] = []
                 
@@ -15569,7 +15795,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             **/
             public func updateNavigation(
                 id: String,
-                body: NavigationRequest,
+                body: NavigationPayload,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: NavigationSchema?, _ error: FDKError?) -> Void
             ) {
@@ -15770,7 +15996,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Generate and add a new page preview.
             **/
             public func createPagePreview(
-                body: PageRequest,
+                body: PagePayload,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
             ) {
@@ -15821,7 +16047,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             **/
             public func updatePagePreview(
                 slug: String,
-                body: PagePublishRequest,
+                body: PagePublishPayload,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
             ) {
@@ -16618,7 +16844,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SlideshowGetResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SlideshowGetDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -16655,7 +16881,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SlideshowGetResponse.self, from: data)
+                            let response = Utility.decode(SlideshowGetDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -16669,48 +16895,13 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             
             
-            
-            
-            /**
-            *
-            * Summary: get paginator for getSlideshows
-            * Description: fetch the next page by calling .next(...) function
-            **/
-            public func getSlideshowsPaginator(
-                devicePlatform: String,
-                pageSize: Int?,
-                headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<SlideshowGetResponse> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<SlideshowGetResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getSlideshows(
-                        devicePlatform: devicePlatform,
-                        pageNo: paginator.pageNo,
-                        pageSize: paginator.pageSize,
-                        
-                        headers: headers
-                    ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-            
-            
-            
-            
             /**
             *
             * Summary: Create a slideshow
             * Description: Use this API to create a slideshow.
             **/
             public func createSlideshow(
-                body: SlideshowRequest,
+                body: SlideshowPayload,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
             ) {
@@ -16814,7 +17005,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             **/
             public func updateSlideshow(
                 id: String,
-                body: SlideshowRequest,
+                body: SlideshowPayload,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
             ) {
@@ -17172,7 +17363,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func removeInjectableTag(
                 body: RemoveHandpickedSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: TagDeleteSuccessResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: TagDeleteSuccessDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -17200,7 +17391,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(TagDeleteSuccessResponse.self, from: data)
+                            let response = Utility.decode(TagDeleteSuccessDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -17322,7 +17513,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Description: Generate and add a new page to the platform.
             **/
             public func createPage(
-                body: PageRequest,
+                body: PagePayload,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PageSchema?, _ error: FDKError?) -> Void
             ) {
@@ -17376,7 +17567,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 pageSize: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PageGetResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PageGetDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -17412,7 +17603,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PageGetResponse.self, from: data)
+                            let response = Utility.decode(PageGetDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -17552,6 +17743,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             
             
+            
             /**
             *
             * Summary: Get custom field types
@@ -17560,7 +17752,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func getAppCustomFieldTypes(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CustomObjectByIdSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: MetafieldTypesSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -17588,7 +17780,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CustomObjectByIdSchema.self, from: data)
+                            let response = Utility.decode(MetafieldTypesSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -17660,9 +17852,11 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func getAppCustomFieldDefinitions(
                 pageNo: String,
                 pageSize: String,
-                resource: String?,
-                type: String?,
+                resources: String?,
+                types: String?,
                 search: String?,
+                slugs: String?,
+                namespaces: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomFieldDefinitionsSchema?, _ error: FDKError?) -> Void
@@ -17672,16 +17866,24 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 xQuery["page_no"] = pageNo
                 xQuery["page_size"] = pageSize
                 
-                if let value = resource {
-                    xQuery["resource"] = value
+                if let value = resources {
+                    xQuery["resources"] = value
                 }
                 
-                if let value = type {
-                    xQuery["type"] = value
+                if let value = types {
+                    xQuery["types"] = value
                 }
                 
                 if let value = search {
                     xQuery["search"] = value
+                }
+                
+                if let value = slugs {
+                    xQuery["slugs"] = value
+                }
+                
+                if let value = namespaces {
+                    xQuery["namespaces"] = value
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
@@ -17693,7 +17895,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/definitions",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customfields/definition",
                     query: xQuery,
                     body: nil,
                     headers: xHeaders,
@@ -17723,10 +17925,86 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             /**
             *
-            * Summary: Create custom field definition
+            * Summary: Get custom fields definitions for a given resource type
+            * Description: Custom field definitions enable you to include data validation for custom fields, and enable sellers to add custom fields values for resources. With the help of this seller can retrive list of custom field definitions list.
+            **/
+            public func getAppCustomFieldDefinitionByResource(
+                pageNo: String,
+                pageSize: String,
+                resource: String,
+                types: String?,
+                search: String?,
+                slugs: String?,
+                namespaces: String?,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: CustomFieldDefinitionsSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                var xQuery: [String: Any] = [:] 
+                xQuery["page_no"] = pageNo
+                xQuery["page_size"] = pageSize
+                
+                if let value = types {
+                    xQuery["types"] = value
+                }
+                
+                if let value = search {
+                    xQuery["search"] = value
+                }
+                
+                if let value = slugs {
+                    xQuery["slugs"] = value
+                }
+                
+                if let value = namespaces {
+                    xQuery["namespaces"] = value
+                }
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customfields/resource/\(resource)/definition",
+                    query: xQuery,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(CustomFieldDefinitionsSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Create custom field definition for a given resource type
             * Description: You can create custom fields definition to any resource so you can extend property of resource.
             **/
             public func createAppCustomFieldDefinition(
+                resource: String,
                 body: CustomFieldDefinitionRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomFieldDefinitionDetailResSchema?, _ error: FDKError?) -> Void
@@ -17743,7 +18021,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/definitions",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customfields/resource/\(resource)/definition",
                     query: nil,
                     body: body.dictionary,
                     headers: xHeaders,
@@ -17773,14 +18051,16 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             /**
             *
-            * Summary: Get custom fields definition
-            * Description: Custom field definitions can be fetch using definition id.
+            * Summary: Get custom fields definition by resource, slug and namespace
+            * Description: Custom field definitions can be retrived from this using its slug, namespace and resource
             **/
-            public func getAppCustomFieldDefinition(
-                definitionId: String,
+            public func getAppCustomFieldDefinitionBySlug(
+                slug: String,
+                resource: String,
+                namespace: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CustomFieldDefinitionDetailResSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: MetaFieldDefinitionDetailResSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -17794,7 +18074,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/definitions/\(definitionId)",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customfields/resource/\(resource)/namespace/\(namespace)/definition/\(slug)",
                     query: nil,
                     body: nil,
                     headers: xHeaders,
@@ -17808,7 +18088,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CustomFieldDefinitionDetailResSchema.self, from: data)
+                            let response = Utility.decode(MetaFieldDefinitionDetailResSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -17827,8 +18107,10 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Summary: Update custom field definition
             * Description: Custom fields definition can be update using this api, You can update custom field definition name and description.
             **/
-            public func updateAppCustomFieldDefinition(
-                definitionId: String,
+            public func updateAppCustomFieldDefinitionBySlug(
+                slug: String,
+                resource: String,
+                namespace: String,
                 body: CustomFieldDefinitionRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomFieldDefinitionDetailResSchema?, _ error: FDKError?) -> Void
@@ -17845,7 +18127,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/definitions/\(definitionId)",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customfields/resource/\(resource)/namespace/\(namespace)/definition/\(slug)",
                     query: nil,
                     body: body.dictionary,
                     headers: xHeaders,
@@ -17878,8 +18160,10 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Summary: Delete custom fields definition
             * Description: Custom field definition and its assosiated custom fields value can be deleted using this api on the basis of definition id.
             **/
-            public func deleteAppCustomFieldDefinition(
-                definitionId: String,
+            public func deleteAppCustomFieldDefinitionBySlug(
+                slug: String,
+                resource: String,
+                namespace: String,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomDataDeleteSchema?, _ error: FDKError?) -> Void
@@ -17896,7 +18180,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/definitions/\(definitionId)",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customfields/resource/\(resource)/namespace/\(namespace)/definition/\(slug)",
                     query: nil,
                     body: nil,
                     headers: xHeaders,
@@ -17926,63 +18210,12 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             /**
             *
-            * Summary: Get list of custom fields of gives resource
-            * Description: Retrieves a list of custom fields attached to a particular resource by using the resource.
+            * Summary: Get list of custom fields of given resource and resource slug
+            * Description: Retrieves a list of custom fields attached to a particular resource by using the resource and resource slug.
             **/
-            public func getAppCustomFields(
+            public func getAppCustomFieldsByResourceSlug(
                 resource: String,
-                
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CustomFieldsResponseSchema?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "GET",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/\(resource)",
-                    query: nil,
-                    body: nil,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(CustomFieldsResponseSchema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get list of custom fields of given resource and resource id
-            * Description: Retrieves a list of custom fields attached to a particular resource by using the resource and resource id.
-            **/
-            public func getAppCustomFieldsByResourceId(
-                resource: String,
-                resourceId: String,
+                resourceSlug: String,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomFieldsResponseByResourceIdSchema?, _ error: FDKError?) -> Void
@@ -17999,7 +18232,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/\(resource)/\(resourceId)",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customfields/resource/\(resource)/\(resourceSlug)",
                     query: nil,
                     body: nil,
                     headers: xHeaders,
@@ -18029,12 +18262,12 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             /**
             *
-            * Summary: Create custom field entries for gives resource and resource_id
-            * Description: You can add a custom field using this endpoint to any resource by providing the resource ID.
+            * Summary: Create custom field entries for gives resource and resource slug
+            * Description: You can add a custom field using this endpoint to any resource by providing the resource slug.
             **/
-            public func createAppCustomFieldByResourceId(
+            public func updateAppCustomFieldByResourceSlug(
                 resource: String,
-                resourceId: String,
+                resourceSlug: String,
                 body: CustomFieldRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomFieldsResponseByResourceIdSchema?, _ error: FDKError?) -> Void
@@ -18051,7 +18284,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metafields/\(resource)/\(resourceId)",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customfields/resource/\(resource)/\(resourceSlug)",
                     query: nil,
                     body: body.dictionary,
                     headers: xHeaders,
@@ -18087,7 +18320,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             public func createAppCustomObjectDefinition(
                 body: CustomObjectDefinitionRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CustomObjectDefinitionSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CustomObjectDefinitionSlugSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -18101,7 +18334,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/definitions",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition",
                     query: nil,
                     body: body.dictionary,
                     headers: xHeaders,
@@ -18115,7 +18348,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CustomObjectDefinitionSchema.self, from: data)
+                            let response = Utility.decode(CustomObjectDefinitionSlugSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -18160,7 +18393,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/definitions",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition",
                     query: xQuery,
                     body: nil,
                     headers: xHeaders,
@@ -18191,13 +18424,13 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             /**
             *
             * Summary: Get custom object definition
-            * Description: Custom object definitions can be fetched using their definition ID.
+            * Description: Custom object definitions can be fetched using their custom object definition slug.
             **/
-            public func getAppCustomObjectDefinition(
-                definitionId: String,
+            public func getAppCustomObjectDefinitionBySlug(
+                slug: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CustomObjectDefinitionSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CustomObjectDefinitionSlugSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -18211,7 +18444,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/definitions/\(definitionId)",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(slug)",
                     query: nil,
                     body: nil,
                     headers: xHeaders,
@@ -18225,7 +18458,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CustomObjectDefinitionSchema.self, from: data)
+                            let response = Utility.decode(CustomObjectDefinitionSlugSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -18244,11 +18477,11 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Summary: Update custom object definition
             * Description: Custom object definitions can be updated using this endpoint. You can update the name and description of the custom object and add more custom field definitions to the existing custom object.
             **/
-            public func updateAppCustomObjectDefinition(
-                definitionId: String,
+            public func updateAppCustomObjectDefinitionBySlug(
+                slug: String,
                 body: CustomObjectDefinitionUpdateRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CustomObjectDefinitionSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CustomObjectDefinitionSlugSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -18262,7 +18495,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/definitions/\(definitionId)",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(slug)",
                     query: nil,
                     body: body.dictionary,
                     headers: xHeaders,
@@ -18276,7 +18509,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CustomObjectDefinitionSchema.self, from: data)
+                            let response = Utility.decode(CustomObjectDefinitionSlugSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -18295,8 +18528,8 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Summary: Delete custom object definition
             * Description: Custom object definitions can be deleted using this endpoint by providing the definition ID.
             **/
-            public func deleteAppCustomObjectDefinition(
-                definitionId: String,
+            public func deleteAppCustomObjectDefinitionBySlug(
+                slug: String,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomObjectDefinitionDeleteResponseSchema?, _ error: FDKError?) -> Void
@@ -18313,7 +18546,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/definitions/\(definitionId)",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(slug)",
                     query: nil,
                     body: nil,
                     headers: xHeaders,
@@ -18346,20 +18579,16 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Summary: Get list of custom objects
             * Description: Custom object entries can fetch using this endpoint.
             **/
-            public func getAppCustomObjects(
-                definitionId: String?,
+            public func getAppCustomObjectsBySlug(
                 pageNo: String,
                 pageSize: String,
+                definitionSlug: String,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomObjectsSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
-                
-                if let value = definitionId {
-                    xQuery["definition_id"] = value
-                }
                 xQuery["page_no"] = pageNo
                 xQuery["page_size"] = pageSize
                 
@@ -18372,7 +18601,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(definitionSlug)/entries",
                     query: xQuery,
                     body: nil,
                     headers: xHeaders,
@@ -18405,8 +18634,9 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Summary: Create custom object entries
             * Description: Custom object entries against the custom object definition can be added using this API.
             **/
-            public func createAppCustomObject(
-                body: CustomObjectRequestSchema,
+            public func createAppCustomObjectBySlug(
+                definitionSlug: String,
+                body: CustomObjectRequestSchemaWithoutId,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomObjectSchema?, _ error: FDKError?) -> Void
             ) {
@@ -18422,7 +18652,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(definitionSlug)/entries",
                     query: nil,
                     body: body.dictionary,
                     headers: xHeaders,
@@ -18453,13 +18683,14 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             /**
             *
             * Summary: Get custom object details
-            * Description: Details of custom objects, their field details, definitions, and references can be obtained using this endpoint.
+            * Description: Details of a custom object entry can be obtained using this endpoint.
             **/
-            public func getAppCustomObject(
-                metaobjectId: String,
+            public func getAppCustomObjectBySlug(
+                definitionSlug: String,
+                slug: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CustomObjectByIdSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CustomObjectBySlugSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -18473,7 +18704,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/\(metaobjectId)",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(definitionSlug)/entries/\(slug)",
                     query: nil,
                     body: nil,
                     headers: xHeaders,
@@ -18487,7 +18718,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CustomObjectByIdSchema.self, from: data)
+                            let response = Utility.decode(CustomObjectBySlugSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -18504,10 +18735,11 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             /**
             *
             * Summary: Delete custom object
-            * Description: Custom object entries can be deleted by providing the delete ID using this endpoint.
+            * Description: A Custom object entry can be deleted by providing the custom object definition slug and custom object entry slug using this endpoint.
             **/
-            public func deleteAppCustomObject(
-                metaobjectId: String,
+            public func deleteAppCustomObjectBySlug(
+                definitionSlug: String,
+                slug: String,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomDataDeleteSchema?, _ error: FDKError?) -> Void
@@ -18524,7 +18756,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "DELETE",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/\(metaobjectId)",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(definitionSlug)/entries/\(slug)",
                     query: nil,
                     body: nil,
                     headers: xHeaders,
@@ -18557,11 +18789,12 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Summary: Update custom object details
             * Description: Custom object entries can be updated using this endpoint.
             **/
-            public func updateAppCustomObject(
-                metaobjectId: String,
-                body: CustomObjectRequestSchema,
+            public func updateAppCustomObjectBySlug(
+                definitionSlug: String,
+                slug: String,
+                body: CustomObjectRequestSchemaWithoutId,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CustomObjectByIdSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CustomObjectBySlugSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -18575,7 +18808,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "PUT",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/\(metaobjectId)",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(definitionSlug)/entries/\(slug)",
                     query: nil,
                     body: body.dictionary,
                     headers: xHeaders,
@@ -18589,7 +18822,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CustomObjectByIdSchema.self, from: data)
+                            let response = Utility.decode(CustomObjectBySlugSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -18664,11 +18897,11 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Summary: Bulk custom object entries upload
             * Description: Custom object bulk import of bulk entries can be performed using this endpoint.
             **/
-            public func importAppCustomObjectEntries(
-                definitionId: String,
+            public func importAppCustomObjectEntriesBySlug(
+                slug: String,
                 body: CustomObjectBulkSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CustomObjectEntryBulkUploadResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CustomObjectEntryBulkUploadDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -18682,7 +18915,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/bulk/\(definitionId)/upload",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(slug)/bulk/upload",
                     query: nil,
                     body: body.dictionary,
                     headers: xHeaders,
@@ -18696,7 +18929,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CustomObjectEntryBulkUploadResponse.self, from: data)
+                            let response = Utility.decode(CustomObjectEntryBulkUploadDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -18715,8 +18948,8 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Summary: Initiate download for bulk custom object entries
             * Description: Custom object bulk export of bulk entries can be perform using this endpoint.
             **/
-            public func exportAppCustomObjectEntries(
-                definitionId: String,
+            public func exportAppCustomObjectEntriesBySlug(
+                slug: String,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CustomObjectBulkEntryInitiateDownload?, _ error: FDKError?) -> Void
@@ -18733,7 +18966,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/bulk/\(definitionId)/download",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(slug)/bulk/download",
                     query: nil,
                     body: nil,
                     headers: xHeaders,
@@ -18766,8 +18999,8 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             * Summary: Download sample for custom object bulk entry
             * Description: Sample files for custom object bulk import can be obtained from this endpoint.
             **/
-            public func sampleAppCustomObjectBulkEntry(
-                definitionId: String,
+            public func sampleAppCustomObjectBulkEntryBySlug(
+                slug: String,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
@@ -18784,7 +19017,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "GET",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects/bulk/\(definitionId)/sample",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/customobjects/definition/\(slug)/bulk/sample",
                     query: nil,
                     body: nil,
                     headers: xHeaders,
@@ -18831,14 +19064,14 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             /**
             *
-            * Summary: Initiates file upload for Application
-            * Description: Inititates the process of uploading a file to storage location, and returns a storage link in response on platofrm at application level. Please refer group description for more details.
+            * Summary: Application start upload.
+            * Description: Start uploading a file from an application and returns a storage link in response.
             **/
             public func appStartUpload(
                 namespace: String,
-                body: StartRequest,
+                body: FileUploadStart,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: StartResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: FileUpload?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -18852,7 +19085,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/upload/start",
+                    url: "/service/platform/assets/v2.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/upload/start",
                     query: nil,
                     body: body.dictionary,
                     headers: xHeaders,
@@ -18866,7 +19099,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(StartResponse.self, from: data)
+                            let response = Utility.decode(FileUpload.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -18882,14 +19115,14 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             /**
             *
-            * Summary: Complete file upload for Application
-            * Description: Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database on platform at application level
+            * Summary: Application complete upload.
+            * Description: Finish uploading a file from an application.
             **/
             public func appCompleteUpload(
                 namespace: String,
-                body: StartResponse,
+                body: FileUpload,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CompleteResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: FileUploadComplete?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -18903,7 +19136,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 PlatformAPIClient.execute(
                     config: config,
                     method: "POST",
-                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/upload/complete",
+                    url: "/service/platform/assets/v2.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/upload/complete",
                     query: nil,
                     body: body.dictionary,
                     headers: xHeaders,
@@ -18917,7 +19150,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CompleteResponse.self, from: data)
+                            let response = Utility.decode(FileUploadComplete.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -18935,8 +19168,8 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             /**
             *
-            * Summary: Copy files for Application
-            * Description: Handle multiple file uploads, updating progress and providing detailed status reports.
+            * Summary: Application copy files.
+            * Description: Copy files from an application to another location.
             **/
             public func appCopyFiles(
                 sync: Bool?,
@@ -18991,8 +19224,8 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             /**
             *
-            * Summary: Browse files for Application
-            * Description: View and navigate through available files.
+            * Summary: Application browse files.
+            * Description: Browse files within an application.
             **/
             public func appbrowse(
                 namespace: String,
@@ -19057,8 +19290,8 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             /**
             *
-            * Summary: Browse files for Application
-            * Description: View and navigate through available files.
+            * Summary: Browse Files
+            * Description: Browse Files
             **/
             public func browsefiles(
                 namespace: String,
@@ -19121,17 +19354,17 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             
             
-            
             /**
             *
-            * Summary: Get PDF types
-            * Description: Retrieve a list of available invoice types.
+            * Summary: Get all the supported invoice pdf types
+            * Description: Get all the supported invoice pdf types such as Invoice, Label, Delivery challan
             **/
             public func getPdfTypes(
                 countryCode: String?,
+                storeOs: Bool,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: InvoiceTypesResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: InvoiceTypes?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -19139,6 +19372,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                 if let value = countryCode {
                     xQuery["country_code"] = value
                 }
+                xQuery["store_os"] = storeOs
                 
                 var xHeaders: [(key: String, value: String)] = []
                 
@@ -19163,7 +19397,7 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(InvoiceTypesResponse.self, from: data)
+                            let response = Utility.decode(InvoiceTypes.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -19179,15 +19413,66 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             /**
             *
-            * Summary: Get default PDF data
-            * Description: Retrieve default pdf payload data for invoice generation.
+            * Summary: Get the pdf types of by id
+            * Description: Get the pdf types of PDF formats for filter
+            **/
+            public func fetchPdfTypeById(
+                id: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: PdfTypeByIdDetails?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/types/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(PdfTypeByIdDetails.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Get default PDF data.
+            * Description: Retrieve default data for PDF generation.
             **/
             public func getDefaultPdfData(
                 pdfTypeId: Int,
                 countryCode: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DummyTemplateDataItems?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PdfDataItemsDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -19220,7 +19505,109 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DummyTemplateDataItems.self, from: data)
+                            let response = Utility.decode(PdfDataItemsDetails.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Get default PDF data.
+            * Description: Retrieve default data for PDF generation.
+            **/
+            public func getPdfPayloadById(
+                id: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: MapperDetails?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/mapper/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(MapperDetails.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Update html template for invoice or label
+            * Description: Update html template for invoice such as Invoice, Label, Deliver challan
+            **/
+            public func getConfigHtmlTemplateById(
+                id: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/config/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = data.dictionary
                             
                             onResponse(response, nil)
                         } else {
@@ -19287,12 +19674,61 @@ Apply a coupon code to the customer's cart to trigger discounts on eligible item
             
             /**
             *
-            * Summary: Get html template for Application
-            * Description: 
-Get the saved html template for provided sales channel
-
+            * Summary: Delete a PDF generator configuration
+            * Description: Deletes a specific PDF generator configuration based on the provided id.
             **/
-            public func getDefaultHtmlTemplate(
+            public func deletePdfGeneratorConfig(
+                id: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "DELETE",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/config/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = data.dictionary
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Get html template for sales channel
+            * Description: Get default html template for invoice or label
+            **/
+            public func getHtmlTemplateConfig(
                 pdfTypeId: Int,
                 format: String,
                 countryCode: String?,
@@ -19348,8 +19784,8 @@ Get the saved html template for provided sales channel
             
             /**
             *
-            * Summary: Save PDF template
-            * Description: Save html template for provided sales channel
+            * Summary: Save HTML template.
+            * Description: Store an HTML template.
             **/
             public func saveHtmlTemplate(
                 body: PdfConfig,
@@ -19398,8 +19834,8 @@ Get the saved html template for provided sales channel
             
             /**
             *
-            * Summary: Get default PDF template
-            * Description: Retrieve to get the default Invoice template.
+            * Summary: Get default PDF template.
+            * Description: Retrieve the default PDF template.
             **/
             public func getDefaultPdfTemplate(
                 pdfTypeId: Int,
@@ -19457,7 +19893,7 @@ Get the saved html template for provided sales channel
             
             /**
             *
-            * Summary: Generate payment receipt
+            * Summary: Generate payment receipt.
             * Description: Generate Payment Receipt for Jiomart Digital
             **/
             public func generatePaymentReceipt(
@@ -19502,6 +19938,58 @@ Get the saved html template for provided sales channel
                         }
                 });
             }
+            
+            
+            
+            /**
+            *
+            * Summary: get default html template for invoice or label
+            * Description: get default html template for invoice such as Invoice, Label, Deliver challan
+            **/
+            public func fetchPdfDefaultTemplateById(
+                id: String,
+                
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: PdfDefaultTemplateById?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/default-template/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(PdfDefaultTemplateById.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
         }
         
         
@@ -20094,7 +20582,7 @@ Get the saved html template for provided sales channel
             public func updatePincodeMopView(
                 body: PincodeMopData,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PincodeMOPresponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PincodeMOPResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -20122,7 +20610,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PincodeMOPresponse.self, from: data)
+                            let response = Utility.decode(PincodeMOPResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -20144,7 +20632,7 @@ Get the saved html template for provided sales channel
             public func updatePincodeBulkView(
                 body: PincodeMopBulkData,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PincodeBulkViewResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PincodeBulkViewResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -20172,7 +20660,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PincodeBulkViewResponse.self, from: data)
+                            let response = Utility.decode(PincodeBulkViewResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -20192,9 +20680,9 @@ Get the saved html template for provided sales channel
             * Description: Retrieves a list of pincodes along with the count based on whether cash on delivery settings.
             **/
             public func updatePincodeCoDListing(
-                body: PincodeCodStatusListingRequest,
+                body: PincodeCodStatusListingDetails,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PincodeCodStatusListingResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PincodeCodStatusListingResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -20222,7 +20710,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PincodeCodStatusListingResponse.self, from: data)
+                            let response = Utility.decode(PincodeCodStatusListingResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -20242,9 +20730,9 @@ Get the saved html template for provided sales channel
             * Description: Retrieves the history of changes made to cash on delivery settings for pincodes.
             **/
             public func updatePincodeAuditHistory(
-                body: PincodeMopUpdateAuditHistoryRequest,
+                body: PincodeMopUpdateAuditHistoryDetails,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PincodeMopUpdateAuditHistoryResponseData?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PincodeMopUpdateAuditHistoryResultData?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -20272,7 +20760,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PincodeMopUpdateAuditHistoryResponseData.self, from: data)
+                            let response = Utility.decode(PincodeMopUpdateAuditHistoryResultData.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -20299,7 +20787,7 @@ Get the saved html template for provided sales channel
                 ruleId: String,
                 body: CourierPartnerRule,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CourierPartnerRuleResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CourierPartnerRuleResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -20327,7 +20815,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CourierPartnerRuleResponse.self, from: data)
+                            let response = Utility.decode(CourierPartnerRuleResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -20350,7 +20838,7 @@ Get the saved html template for provided sales channel
                 ruleId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CourierPartnerRuleResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CourierPartnerRuleResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -20378,7 +20866,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CourierPartnerRuleResponse.self, from: data)
+                            let response = Utility.decode(CourierPartnerRuleResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -20400,7 +20888,7 @@ Get the saved html template for provided sales channel
             public func createCourierPartnerRule(
                 body: CourierPartnerRule,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CourierPartnerRuleResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CourierPartnerRuleResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -20428,7 +20916,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CourierPartnerRuleResponse.self, from: data)
+                            let response = Utility.decode(CourierPartnerRuleResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -20453,7 +20941,7 @@ Get the saved html template for provided sales channel
                 status: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CourierPartnerRulesListResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CourierPartnerRulesListResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -20493,7 +20981,57 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CourierPartnerRulesListResponse.self, from: data)
+                            let response = Utility.decode(CourierPartnerRulesListResult.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            /**
+            *
+            * Summary: Serviceable Courier Partners.
+            * Description: Get all the serviceable courier partners of a destination and the shipments.
+            **/
+            public func getCourierPartners(
+                body: ShipmentCourierPartnerDetails,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: ShipmentCourierPartnerResult?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/shipment/courier-partners",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(ShipmentCourierPartnerResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -20617,9 +21155,9 @@ Get the saved html template for provided sales channel
             * Description: Updates self ship setup for an existing application
             **/
             public func patchApplicationServiceabilitySelfShipment(
-                body: SelfShipResponse,
+                body: SelfShipResult,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ApplicationSelfShipConfigResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ApplicationSelfShipConfigResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -20647,7 +21185,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ApplicationSelfShipConfigResponse.self, from: data)
+                            let response = Utility.decode(ApplicationSelfShipConfigResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -20669,7 +21207,7 @@ Get the saved html template for provided sales channel
             public func getApplicationServiceabilitySelfShipment(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ApplicationSelfShipConfigResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ApplicationSelfShipConfigResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -20697,7 +21235,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ApplicationSelfShipConfigResponse.self, from: data)
+                            let response = Utility.decode(ApplicationSelfShipConfigResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -20872,7 +21410,7 @@ Get the saved html template for provided sales channel
                 status: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetStoreRulesApiResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetStoreRulesApiResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -20912,7 +21450,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetStoreRulesApiResponse.self, from: data)
+                            let response = Utility.decode(GetStoreRulesApiResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -20932,9 +21470,9 @@ Get the saved html template for provided sales channel
             * Description: Create a rule within the order routing rules
             **/
             public func createStoreRules(
-                body: CreateStoreRuleRequestSchema,
+                body: CreateStoreRuleDetailsSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: StoreRuleResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: StoreRuleResultSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -20962,7 +21500,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(StoreRuleResponseSchema.self, from: data)
+                            let response = Utility.decode(StoreRuleResultSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21034,9 +21572,9 @@ Get the saved html template for provided sales channel
             **/
             public func updateStoreRules(
                 ruleUid: String,
-                body: CreateStoreRuleRequestSchema,
+                body: CreateStoreRuleDetailsSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: StoreRuleUpdateResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: StoreRuleUpdateResultSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -21064,7 +21602,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(StoreRuleUpdateResponseSchema.self, from: data)
+                            let response = Utility.decode(StoreRuleUpdateResultSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21096,9 +21634,9 @@ Get the saved html template for provided sales channel
             * Description: Updates a courier partner rule priority for a single application
             **/
             public func updateCourierPartnerRulePriority(
-                body: RulePriorityRequest,
+                body: RulePriorityDetails,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RulePriorityResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RulePriorityResult?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -21126,7 +21664,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RulePriorityResponse.self, from: data)
+                            let response = Utility.decode(RulePriorityResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21192,6 +21730,61 @@ Get the saved html template for provided sales channel
             
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: List of RMA rules based on the given input conditions.
+            * Description: Retrieves a comprehensive list of RMA (Return Merchandise Authorization) rules associated with  a specific company and application. These rules dictate the processes for handling returns,  including actions, reasons, quality control (QC) types, and associated questions.  The endpoint allows for filtering and pagination based on input conditions, providing a tailored set of rules that match the criteria specified.
+            **/
+            public func getRules(
+                body: RuleListRequestSchema,
+                headers: [(key: String, value: String)]? = nil,
+                onResponse: @escaping (_ response: RuleListResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                                
+                 
+                
+                var xHeaders: [(key: String, value: String)] = []
+                
+                
+                if let headers = headers {
+                    xHeaders.append(contentsOf: headers)
+                }
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/order-manage/v1.0/company/\(companyId)/application/\(applicationId)/rule_list",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: xHeaders,
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(RuleListResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
             
             
             
@@ -21276,7 +21869,7 @@ Get the saved html template for provided sales channel
                 excludeLockedShipments: Bool?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -21364,7 +21957,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ShipmentInternalPlatformViewResponse.self, from: data)
+                            let response = Utility.decode(ShipmentInternalPlatformViewResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21443,7 +22036,7 @@ Get the saved html template for provided sales channel
                 action: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ShipmentReasonsResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ShipmentReasonsResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -21471,7 +22064,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ShipmentReasonsResponse.self, from: data)
+                            let response = Utility.decode(ShipmentReasonsResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21514,7 +22107,7 @@ Get the saved html template for provided sales channel
                 extensionId: String,
                 body: AddProxyReq,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AddProxyResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ExtensionProxyPathCreation?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -21542,7 +22135,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AddProxyResponse.self, from: data)
+                            let response = Utility.decode(ExtensionProxyPathCreation.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21566,7 +22159,7 @@ Get the saved html template for provided sales channel
                 attachedPath: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RemoveProxyResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ExtensionProxyPathDelete?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -21594,7 +22187,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RemoveProxyResponse.self, from: data)
+                            let response = Utility.decode(ExtensionProxyPathDelete.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21633,7 +22226,7 @@ Get the saved html template for provided sales channel
                 configType: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PaymentGatewayConfigResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentGatewayConfigDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -21669,7 +22262,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PaymentGatewayConfigResponse.self, from: data)
+                            let response = Utility.decode(PaymentGatewayConfigDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21689,7 +22282,7 @@ Get the saved html template for provided sales channel
             * Description: Store and update configuration settings for brand payment gateways i.e required for payment for a payment gateway like key, secret, merchant salt.
             **/
             public func saveBrandPaymentGatewayConfig(
-                body: PaymentGatewayConfigRequest,
+                body: PaymentGatewayConfigCreation,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PaymentGatewayToBeReviewed?, _ error: FDKError?) -> Void
             ) {
@@ -21745,7 +22338,7 @@ Get the saved html template for provided sales channel
                 shipmentId: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PaymentOptionsResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentOptionsDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -21783,7 +22376,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PaymentOptionsResponse.self, from: data)
+                            let response = Utility.decode(PaymentOptionsDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21816,7 +22409,7 @@ Get the saved html template for provided sales channel
                 requestHash: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RefundAccountDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -21849,7 +22442,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RefundAccountResponse.self, from: data)
+                            let response = Utility.decode(RefundAccountDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21869,9 +22462,9 @@ Get the saved html template for provided sales channel
             * Description: The addition of a bank account specifically for refunds, employing OTP verification for security
             **/
             public func addRefundBankAccountUsingOTP(
-                body: AddBeneficiaryDetailsOTPRequest,
+                body: AddBeneficiaryDetailsOTPCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RefundAccountResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RefundAccountDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -21899,7 +22492,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RefundAccountResponse.self, from: data)
+                            let response = Utility.decode(RefundAccountDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21923,7 +22516,7 @@ Get the saved html template for provided sales channel
                 orderId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: OrderBeneficiaryResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: OrderBeneficiaryFetchResults?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -21952,7 +22545,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(OrderBeneficiaryResponse.self, from: data)
+                            let response = Utility.decode(OrderBeneficiaryFetchResults.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -21975,7 +22568,7 @@ Get the saved html template for provided sales channel
                 orderId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: OrderBeneficiaryResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: OrderBeneficiaryFetchResults?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -22004,7 +22597,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(OrderBeneficiaryResponse.self, from: data)
+                            let response = Utility.decode(OrderBeneficiaryFetchResults.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22024,9 +22617,9 @@ Get the saved html template for provided sales channel
             * Description: Authentication and confirmation of a payment.It requires details such as the order ID and payment methods in the request body to authenticate and confirm the payment.
             **/
             public func confirmPayment(
-                body: PaymentConfirmationRequest,
+                body: PaymentConfirmationCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PaymentConfirmationResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentConfirmationDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22054,7 +22647,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PaymentConfirmationResponse.self, from: data)
+                            let response = Utility.decode(PaymentConfirmationDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22078,7 +22671,7 @@ Get the saved html template for provided sales channel
                 mobileNo: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetUserCODLimitResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetUserCODLimitDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -22108,7 +22701,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetUserCODLimitResponse.self, from: data)
+                            let response = Utility.decode(GetUserCODLimitDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22128,9 +22721,9 @@ Get the saved html template for provided sales channel
             * Description: This allows access to seller to enable disable cod of specific user
             **/
             public func setUserCODlimitRoutes(
-                body: SetCODForUserRequest,
+                body: SetCODForUserCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SetCODOptionResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SetCODOptionDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22158,7 +22751,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SetCODOptionResponse.self, from: data)
+                            let response = Utility.decode(SetCODOptionDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22180,7 +22773,7 @@ Get the saved html template for provided sales channel
             public func edcAggregatorsAndModelList(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: EdcAggregatorAndModelListResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: EdcAggregatorAndModelListDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22208,7 +22801,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(EdcAggregatorAndModelListResponse.self, from: data)
+                            let response = Utility.decode(EdcAggregatorAndModelListDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22230,7 +22823,7 @@ Get the saved html template for provided sales channel
             public func edcDeviceStats(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: EdcDeviceStatsResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: EdcDeviceStatsDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22258,7 +22851,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(EdcDeviceStatsResponse.self, from: data)
+                            let response = Utility.decode(EdcDeviceStatsDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22278,9 +22871,9 @@ Get the saved html template for provided sales channel
             * Description: Enables the modification of settings and details associated with an Electronic Data Capture (EDC) device linked to a specific application within a company. Upon success, it returns the updated information of the EDC device.
             **/
             public func updateEdcDevice(
-                body: EdcAddRequest,
+                body: EdcAddCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: EdcDeviceAddResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: EdcDeviceAddDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22308,7 +22901,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(EdcDeviceAddResponse.self, from: data)
+                            let response = Utility.decode(EdcDeviceAddDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22331,7 +22924,7 @@ Get the saved html template for provided sales channel
                 terminalUniqueIdentifier: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: EdcDeviceDetailsResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: EdcDeviceDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22359,7 +22952,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(EdcDeviceDetailsResponse.self, from: data)
+                            let response = Utility.decode(EdcDeviceDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22380,9 +22973,9 @@ Get the saved html template for provided sales channel
             **/
             public func addEdcDevice(
                 terminalUniqueIdentifier: String,
-                body: EdcUpdateRequest,
+                body: EdcUpdate,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: EdcDeviceUpdateResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: EdcDeviceUpdateDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22410,7 +23003,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(EdcDeviceUpdateResponse.self, from: data)
+                            let response = Utility.decode(EdcDeviceUpdateDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22437,7 +23030,7 @@ Get the saved html template for provided sales channel
                 deviceTag: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: EdcDeviceListResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: EdcDeviceListDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -22485,7 +23078,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(EdcDeviceListResponse.self, from: data)
+                            let response = Utility.decode(EdcDeviceListDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22519,7 +23112,7 @@ Get the saved html template for provided sales channel
                 shipmentId: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentModeRouteDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -22586,7 +23179,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PaymentModeRouteResponse.self, from: data)
+                            let response = Utility.decode(PaymentModeRouteDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22606,9 +23199,9 @@ Get the saved html template for provided sales channel
             * Description: Initiates the payment procedure for an order.Upon successful initiation, it returns a  details including the success status, aggregator information, payment method, status, merchant order ID aggregator order , polling URL, timeout, virtual ID, Razorpay payment ID, customer ID, and device ID.
             **/
             public func initialisePayment(
-                body: PaymentInitializationRequest,
+                body: PaymentInitializationCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PaymentInitializationResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentInitializationDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22636,7 +23229,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PaymentInitializationResponse.self, from: data)
+                            let response = Utility.decode(PaymentInitializationDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22656,9 +23249,9 @@ Get the saved html template for provided sales channel
             * Description: Polling process to confirm the payment status. It periodically checks and updates the current status of a payment, ensuring timely and accurate confirmation of payment transactions.
             **/
             public func checkAndUpdatePaymentStatus(
-                body: PaymentStatusUpdateRequest,
+                body: PaymentStatusUpdateCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PaymentStatusUpdateResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentStatusUpdateDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22686,7 +23279,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PaymentStatusUpdateResponse.self, from: data)
+                            let response = Utility.decode(PaymentStatusUpdateDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22706,9 +23299,9 @@ Get the saved html template for provided sales channel
             * Description: Enable you to perform actions related to the resending and cancellation of payment links through SMS or EMAIL. resend or cancel payment link that have been initiated but may require modification or cancellation for various reasons, ensuring flexibility and control in payment processing.
             **/
             public func resendOrCancelPayment(
-                body: ResendOrCancelPaymentRequest,
+                body: ResendOrCancelPaymentCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ResendOrCancelPaymentResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ResendOrCancelPaymentDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22736,7 +23329,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ResendOrCancelPaymentResponse.self, from: data)
+                            let response = Utility.decode(ResendOrCancelPaymentDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22756,9 +23349,9 @@ Get the saved html template for provided sales channel
             * Description: Retrieve status of multiple payments in bulk and returns the status of each payment along with associated details such as payment ID, amount, currency, status, payment mode, and payment gateway in the response
             **/
             public func paymentStatusBulk(
-                body: PaymentStatusBulkHandlerRequest,
+                body: PaymentStatusBulkHandlerCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PaymentStatusBulkHandlerResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentStatusBulkHandlerDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22786,7 +23379,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PaymentStatusBulkHandlerResponse.self, from: data)
+                            let response = Utility.decode(PaymentStatusBulkHandlerDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22811,7 +23404,7 @@ Get the saved html template for provided sales channel
                 failureRedirectUrl: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetOauthUrlResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetOauthUrlDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -22847,7 +23440,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetOauthUrlResponse.self, from: data)
+                            let response = Utility.decode(GetOauthUrlDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22920,7 +23513,7 @@ Get the saved html template for provided sales channel
             public func repaymentDetails(
                 body: RepaymentDetailsSerialiserPayAll,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RepaymentResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RepaymentDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22948,7 +23541,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RepaymentResponse.self, from: data)
+                            let response = Utility.decode(RepaymentDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22968,9 +23561,9 @@ Get the saved html template for provided sales channel
             * Description: Initiate the merchant onboarding process for Buy Now Pay Later (BNPL).
             **/
             public func merchantOnBoarding(
-                body: MerchantOnBoardingRequest,
+                body: MerchantOnBoardingCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: MerchantOnBoardingResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: MerchantOnBoardingDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22998,7 +23591,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(MerchantOnBoardingResponse.self, from: data)
+                            let response = Utility.decode(MerchantOnBoardingDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23018,9 +23611,9 @@ Get the saved html template for provided sales channel
             * Description: Verify whether the user is eligible for pay-later payment from the payment aggregator's side using the customer's phone number
             **/
             public func verifyCustomerForPayment(
-                body: ValidateCustomerRequest,
+                body: ValidateCustomerCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ValidateCustomerResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ValidateCustomerDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -23048,7 +23641,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ValidateCustomerResponse.self, from: data)
+                            let response = Utility.decode(ValidateCustomerDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23071,7 +23664,7 @@ Get the saved html template for provided sales channel
                 paymentLinkId: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetPaymentLinkResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetPaymentLinkDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -23103,7 +23696,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetPaymentLinkResponse.self, from: data)
+                            let response = Utility.decode(GetPaymentLinkDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23123,9 +23716,9 @@ Get the saved html template for provided sales channel
             * Description: Generate a payment link for accepting payments.
             **/
             public func createPaymentLink(
-                body: CreatePaymentLinkRequest,
+                body: CreatePaymentLinkCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CreatePaymentLinkResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CreatePaymentLinkDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -23153,7 +23746,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CreatePaymentLinkResponse.self, from: data)
+                            let response = Utility.decode(CreatePaymentLinkDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23176,7 +23769,7 @@ Get the saved html template for provided sales channel
                 paymentLinkId: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PollingPaymentLinkResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PollingPaymentLinkDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -23208,7 +23801,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PollingPaymentLinkResponse.self, from: data)
+                            let response = Utility.decode(PollingPaymentLinkDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23228,9 +23821,9 @@ Get the saved html template for provided sales channel
             * Description: Resends an existing payment link to the user to complete the payment.
             **/
             public func resendPaymentLink(
-                body: CancelOrResendPaymentLinkRequest,
+                body: CancelOrResendPaymentLinkCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ResendPaymentLinkResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ResendPaymentLinkDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -23258,7 +23851,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ResendPaymentLinkResponse.self, from: data)
+                            let response = Utility.decode(ResendPaymentLinkDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23278,9 +23871,9 @@ Get the saved html template for provided sales channel
             * Description: Deactivate and cancel a payment link.
             **/
             public func cancelPaymentLink(
-                body: CancelOrResendPaymentLinkRequest,
+                body: CancelOrResendPaymentLinkCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CancelPaymentLinkResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CancelPaymentLinkDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -23308,7 +23901,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CancelPaymentLinkResponse.self, from: data)
+                            let response = Utility.decode(CancelPaymentLinkDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23331,7 +23924,7 @@ Get the saved html template for provided sales channel
                 mode: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PlatformPaymentModeResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PlatformPaymentModeDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -23359,7 +23952,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PlatformPaymentModeResponse.self, from: data)
+                            let response = Utility.decode(PlatformPaymentModeDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23380,9 +23973,9 @@ Get the saved html template for provided sales channel
             **/
             public func setMerchantModeControlRoutes(
                 mode: String,
-                body: MerchantPaymentModeRequest,
+                body: MerchantPaymentModeCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PlatformPaymentModeResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PlatformPaymentModeDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -23410,7 +24003,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PlatformPaymentModeResponse.self, from: data)
+                            let response = Utility.decode(PlatformPaymentModeDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23534,7 +24127,7 @@ Get the saved html template for provided sales channel
             public func getPaymentCodeOption(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GetPaymentCodeResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: GetPaymentCodeDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -23562,7 +24155,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GetPaymentCodeResponse.self, from: data)
+                            let response = Utility.decode(GetPaymentCodeDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23586,7 +24179,7 @@ Get the saved html template for provided sales channel
                 lineItem: Bool?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PaymentSessionSerializer?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentSessionFetchDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -23618,7 +24211,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PaymentSessionSerializer.self, from: data)
+                            let response = Utility.decode(PaymentSessionFetchDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23639,9 +24232,9 @@ Get the saved html template for provided sales channel
             **/
             public func updatePaymentSession(
                 gid: String,
-                body: PaymentSessionRequestSerializer,
+                body: PaymentSessionCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PaymentSessionResponseSerializer?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentSessionPutDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -23669,7 +24262,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PaymentSessionResponseSerializer.self, from: data)
+                            let response = Utility.decode(PaymentSessionPutDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23691,9 +24284,9 @@ Get the saved html template for provided sales channel
             public func updateRefundSession(
                 gid: String,
                 requestId: String,
-                body: RefundSessionRequestSerializer,
+                body: RefundSessionCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RefundSessionResponseSerializer?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RefundSessionDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -23721,7 +24314,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RefundSessionResponseSerializer.self, from: data)
+                            let response = Utility.decode(RefundSessionDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23743,7 +24336,7 @@ Get the saved html template for provided sales channel
             public func getMerchantPaymentOption(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PlatformPaymentModeResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PlatformPaymentModeDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -23771,7 +24364,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PlatformPaymentModeResponse.self, from: data)
+                            let response = Utility.decode(PlatformPaymentModeDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23791,9 +24384,9 @@ Get the saved html template for provided sales channel
             * Description: Updated online/offline payment as active/inactive like disable offline payment mode will disable offline payment modes on checkout page on merchant's website
             **/
             public func patchMerchantPaymentOption(
-                body: MerchnatPaymentModeRequest,
+                body: MerchnatPaymentModeCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PlatformPaymentModeResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PlatformPaymentModeDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -23821,7 +24414,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PlatformPaymentModeResponse.self, from: data)
+                            let response = Utility.decode(PlatformPaymentModeDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23846,7 +24439,7 @@ Get the saved html template for provided sales channel
                 device: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PlatformPaymentModeResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PlatformPaymentModeDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -23876,7 +24469,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PlatformPaymentModeResponse.self, from: data)
+                            let response = Utility.decode(PlatformPaymentModeDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23897,9 +24490,9 @@ Get the saved html template for provided sales channel
             **/
             public func patchMerchantAggregatorPaymentModeDetails(
                 aggregatorId: Int,
-                body: PlatformPaymentModeResponse,
+                body: PlatformPaymentModeDetails,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PlatformPaymentModeResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PlatformPaymentModeDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -23927,7 +24520,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PlatformPaymentModeResponse.self, from: data)
+                            let response = Utility.decode(PlatformPaymentModeDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -23949,7 +24542,7 @@ Get the saved html template for provided sales channel
             public func getPGConfigAggregators(
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PlatformPaymentModeResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PlatformPaymentModeDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -23977,7 +24570,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PlatformPaymentModeResponse.self, from: data)
+                            let response = Utility.decode(PlatformPaymentModeDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -24000,7 +24593,7 @@ Get the saved html template for provided sales channel
                 configType: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RefundPriorityResponseSerializer?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RefundPriorityDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -24028,7 +24621,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RefundPriorityResponseSerializer.self, from: data)
+                            let response = Utility.decode(RefundPriorityDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -24049,9 +24642,9 @@ Get the saved html template for provided sales channel
             **/
             public func createMerchantRefundPriority(
                 configType: String,
-                body: RefundPriorityRequestSerializer,
+                body: RefundPriorityCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RefundPriorityResponseSerializer?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RefundPriorityDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -24079,7 +24672,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RefundPriorityResponseSerializer.self, from: data)
+                            let response = Utility.decode(RefundPriorityDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -24100,9 +24693,9 @@ Get the saved html template for provided sales channel
             **/
             public func updateMerchantRefundPriority(
                 configType: String,
-                body: RefundPriorityRequestSerializer,
+                body: RefundPriorityCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: RefundPriorityResponseSerializer?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RefundPriorityDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -24130,7 +24723,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(RefundPriorityResponseSerializer.self, from: data)
+                            let response = Utility.decode(RefundPriorityDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -24150,9 +24743,9 @@ Get the saved html template for provided sales channel
             * Description: Create an order and payment on the aggregator side
             **/
             public func createPaymentOrder(
-                body: PaymentOrderRequest,
+                body: PaymentOrderCreation,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PaymentOrderResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentOrderDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -24180,7 +24773,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PaymentOrderResponse.self, from: data)
+                            let response = Utility.decode(PaymentOrderDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -24207,7 +24800,7 @@ Get the saved html template for provided sales channel
                 subPaymentMode: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: AggregatorVersionResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AggregatorVersionDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -24245,7 +24838,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(AggregatorVersionResponse.self, from: data)
+                            let response = Utility.decode(AggregatorVersionDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -24266,9 +24859,9 @@ Get the saved html template for provided sales channel
             **/
             public func patchMerchantPaymentOptionVersion(
                 aggregatorId: Int,
-                body: AggregatorControlRequest,
+                body: PatchAggregatorControl,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PlatformPaymentModeResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PlatformPaymentModeDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -24296,7 +24889,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PlatformPaymentModeResponse.self, from: data)
+                            let response = Utility.decode(PlatformPaymentModeDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -24335,7 +24928,7 @@ Get the saved html template for provided sales channel
                 pageSize: Int,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: GiveawayResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ListGiveaway?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -24365,7 +24958,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(GiveawayResponse.self, from: data)
+                            let response = Utility.decode(ListGiveaway.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -24902,7 +25495,7 @@ Get the saved html template for provided sales channel
             * Description: Configure and modify the settings for the rewards program.
             **/
             public func setRewardsConfiguration(
-                body: ConfigurationRequest,
+                body: SetConfiguration,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: SetConfigurationRes?, _ error: FDKError?) -> Void
             ) {
@@ -25207,7 +25800,7 @@ Get the saved html template for provided sales channel
                 surlId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ClickStatsResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ClickStatsResult?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -25236,7 +25829,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ClickStatsResponse.self, from: data)
+                            let response = Utility.decode(ClickStatsResult.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -25472,13 +26065,13 @@ Get the saved html template for provided sales channel
             
             /**
             *
-            * Summary: Update a page
-            * Description: Modify and update the content of a page.
+            * Summary: Delete a page
+            * Description: Remove a page from a theme of the platform.
             **/
-            public func updatePage(
+            public func deletePage(
                 themeId: String,
                 pageValue: String,
-                body: AvailablePageSchema,
+                
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AvailablePageSchema?, _ error: FDKError?) -> Void
             ) {
@@ -25493,10 +26086,10 @@ Get the saved html template for provided sales channel
                 }
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "PUT",
+                    method: "DELETE",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/\(pageValue)",
                     query: nil,
-                    body: body.dictionary,
+                    body: nil,
                     headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
@@ -25524,13 +26117,14 @@ Get the saved html template for provided sales channel
             
             /**
             *
-            * Summary: Delete a page
-            * Description: Remove a page from a theme of the platform.
+            * Summary: Update a page
+            * Description: Modify and update the content of a page.
             **/
-            public func deletePage(
+            public func updatePage(
                 themeId: String,
                 pageValue: String,
-                
+                socketId: String,
+                body: AvailablePageSchema,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: AvailablePageSchema?, _ error: FDKError?) -> Void
             ) {
@@ -25545,10 +26139,10 @@ Get the saved html template for provided sales channel
                 }
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "DELETE",
-                    url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/\(pageValue)",
+                    method: "PUT",
+                    url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/\(themeId)/\(pageValue)/\(socketId)",
                     query: nil,
-                    body: nil,
+                    body: body.dictionary,
                     headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
@@ -26245,7 +26839,7 @@ Get the saved html template for provided sales channel
                 themeId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: ThemeUpgradableResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ThemeUpgradable?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -26273,7 +26867,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ThemeUpgradableResponse.self, from: data)
+                            let response = Utility.decode(ThemeUpgradable.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -27392,7 +27986,7 @@ Get the saved html template for provided sales channel
             public func createUserAttributeDefinition(
                 body: CreateUserAttributeDefinition,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UserAttributeDefinitionResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UserAttributeDefinitionDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -27420,7 +28014,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UserAttributeDefinitionResponse.self, from: data)
+                            let response = Utility.decode(UserAttributeDefinitionDetails.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -27599,7 +28193,7 @@ Get the saved html template for provided sales channel
                 attributeDefId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -27627,7 +28221,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessMessageResponse.self, from: data)
+                            let response = Utility.decode(SuccessMessage.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -27700,9 +28294,9 @@ Get the saved html template for provided sales channel
             public func updateUserAttribute(
                 attributeDefId: String,
                 userId: String,
-                body: CreateUserAttributeRequest,
+                body: CreateUserAttribute,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UserAttributeResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UserAttribute?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -27730,7 +28324,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UserAttributeResponse.self, from: data)
+                            let response = Utility.decode(UserAttribute.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -27754,7 +28348,7 @@ Get the saved html template for provided sales channel
                 userId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UserAttributeResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UserAttribute?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -27782,7 +28376,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UserAttributeResponse.self, from: data)
+                            let response = Utility.decode(UserAttribute.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -27806,7 +28400,7 @@ Get the saved html template for provided sales channel
                 userId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -27834,7 +28428,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessMessageResponse.self, from: data)
+                            let response = Utility.decode(SuccessMessage.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -27918,7 +28512,7 @@ Get the saved html template for provided sales channel
                 attributeId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: UserAttributeResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: UserAttribute?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -27946,7 +28540,7 @@ Get the saved html template for provided sales channel
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(UserAttributeResponse.self, from: data)
+                            let response = Utility.decode(UserAttribute.self, from: data)
                             
                             onResponse(response, nil)
                         } else {

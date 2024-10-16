@@ -12,7 +12,7 @@ public extension PlatformClient.Catalog {
     class GetDepartment: Codable {
         
         
-        public var createdBy: RequestUserSerializer?
+        public var createdBy: UserSerializer1?
         
         public var createdOn: String?
         
@@ -22,7 +22,7 @@ public extension PlatformClient.Catalog {
         
         public var logo: String?
         
-        public var modifiedBy: RequestUserSerializer?
+        public var modifiedBy: UserSerializer1?
         
         public var modifiedOn: String?
         
@@ -77,7 +77,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(createdBy: RequestUserSerializer? = nil, createdOn: String? = nil, isActive: Bool? = nil, itemType: String? = nil, logo: String? = nil, modifiedBy: RequestUserSerializer? = nil, modifiedOn: String? = nil, name: String? = nil, pageNo: Int? = nil, pageSize: Int? = nil, priorityOrder: Int? = nil, search: String? = nil, slug: String? = nil, synonyms: [String]? = nil, uid: Int? = nil) {
+        public init(createdBy: UserSerializer1? = nil, createdOn: String? = nil, isActive: Bool? = nil, itemType: String? = nil, logo: String? = nil, modifiedBy: UserSerializer1? = nil, modifiedOn: String? = nil, name: String? = nil, pageNo: Int? = nil, pageSize: Int? = nil, priorityOrder: Int? = nil, search: String? = nil, slug: String? = nil, synonyms: [String]? = nil, uid: Int? = nil) {
             
             self.createdBy = createdBy
             
@@ -116,7 +116,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(RequestUserSerializer.self, forKey: .createdBy)
+                    createdBy = try container.decode(UserSerializer1.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -176,7 +176,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(RequestUserSerializer.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(UserSerializer1.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -390,7 +390,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetDepartment: Codable {
         
         
-        public var createdBy: RequestUserSerializer?
+        public var createdBy: UserSerializer1?
         
         public var createdOn: String?
         
@@ -400,7 +400,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var logo: String?
         
-        public var modifiedBy: RequestUserSerializer?
+        public var modifiedBy: UserSerializer1?
         
         public var modifiedOn: String?
         
@@ -455,7 +455,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(createdBy: RequestUserSerializer? = nil, createdOn: String? = nil, isActive: Bool? = nil, itemType: String? = nil, logo: String? = nil, modifiedBy: RequestUserSerializer? = nil, modifiedOn: String? = nil, name: String? = nil, pageNo: Int? = nil, pageSize: Int? = nil, priorityOrder: Int? = nil, search: String? = nil, slug: String? = nil, synonyms: [String]? = nil, uid: Int? = nil) {
+        public init(createdBy: UserSerializer1? = nil, createdOn: String? = nil, isActive: Bool? = nil, itemType: String? = nil, logo: String? = nil, modifiedBy: UserSerializer1? = nil, modifiedOn: String? = nil, name: String? = nil, pageNo: Int? = nil, pageSize: Int? = nil, priorityOrder: Int? = nil, search: String? = nil, slug: String? = nil, synonyms: [String]? = nil, uid: Int? = nil) {
             
             self.createdBy = createdBy
             
@@ -494,7 +494,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(RequestUserSerializer.self, forKey: .createdBy)
+                    createdBy = try container.decode(UserSerializer1.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -554,7 +554,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(RequestUserSerializer.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(UserSerializer1.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

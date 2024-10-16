@@ -20,6 +20,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var query: ActionQuery?
         
+        public var page: ProductActionPage?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -29,15 +31,19 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case query = "query"
             
+            case page = "page"
+            
         }
 
-        public init(query: ActionQuery? = nil, type: String? = nil, url: String? = nil) {
+        public init(page: ProductActionPage? = nil, query: ActionQuery? = nil, type: String? = nil, url: String? = nil) {
             
             self.type = type
             
             self.url = url
             
             self.query = query
+            
+            self.page = page
             
         }
 
@@ -80,6 +86,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    page = try container.decode(ProductActionPage.self, forKey: .page)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -98,6 +116,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(query, forKey: .query)
+            
+            
+            
+            
+            try? container.encodeIfPresent(page, forKey: .page)
             
             
         }

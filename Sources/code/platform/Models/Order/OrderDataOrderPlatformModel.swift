@@ -24,6 +24,10 @@ public extension PlatformClient.Order {
         
         public var prices: Prices?
         
+        public var charges: [PriceAdjustmentCharge]?
+        
+        public var orderingCurrencyPrices: OrderingCurrencyPrices?
+        
         public var paymentMethods: [String: Any]?
         
         public var paymentInfo: [PaymentInfoData]?
@@ -43,13 +47,17 @@ public extension PlatformClient.Order {
             
             case prices = "prices"
             
+            case charges = "charges"
+            
+            case orderingCurrencyPrices = "ordering_currency_prices"
+            
             case paymentMethods = "payment_methods"
             
             case paymentInfo = "payment_info"
             
         }
 
-        public init(createdTs: String? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderDate: String, paymentInfo: [PaymentInfoData]? = nil, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, taxDetails: TaxDetails? = nil) {
+        public init(charges: [PriceAdjustmentCharge]? = nil, createdTs: String? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderDate: String, paymentInfo: [PaymentInfoData]? = nil, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, taxDetails: TaxDetails? = nil) {
             
             self.orderDate = orderDate
             
@@ -62,6 +70,10 @@ public extension PlatformClient.Order {
             self.fyndOrderId = fyndOrderId
             
             self.prices = prices
+            
+            self.charges = charges
+            
+            self.orderingCurrencyPrices = orderingCurrencyPrices
             
             self.paymentMethods = paymentMethods
             
@@ -132,6 +144,30 @@ public extension PlatformClient.Order {
             
             
                 do {
+                    charges = try container.decode([PriceAdjustmentCharge].self, forKey: .charges)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderingCurrencyPrices = try container.decode(OrderingCurrencyPrices.self, forKey: .orderingCurrencyPrices)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     paymentMethods = try container.decode([String: Any].self, forKey: .paymentMethods)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -187,6 +223,16 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(prices, forKey: .prices)
+            
+            
+            
+            
+            try? container.encodeIfPresent(charges, forKey: .charges)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingCurrencyPrices, forKey: .orderingCurrencyPrices)
             
             
             
@@ -227,6 +273,10 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var prices: Prices?
         
+        public var charges: [PriceAdjustmentCharge]?
+        
+        public var orderingCurrencyPrices: OrderingCurrencyPrices?
+        
         public var paymentMethods: [String: Any]?
         
         public var paymentInfo: [PaymentInfoData]?
@@ -246,13 +296,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case prices = "prices"
             
+            case charges = "charges"
+            
+            case orderingCurrencyPrices = "ordering_currency_prices"
+            
             case paymentMethods = "payment_methods"
             
             case paymentInfo = "payment_info"
             
         }
 
-        public init(createdTs: String? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderDate: String, paymentInfo: [PaymentInfoData]? = nil, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, taxDetails: TaxDetails? = nil) {
+        public init(charges: [PriceAdjustmentCharge]? = nil, createdTs: String? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderDate: String, paymentInfo: [PaymentInfoData]? = nil, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, taxDetails: TaxDetails? = nil) {
             
             self.orderDate = orderDate
             
@@ -265,6 +319,10 @@ public extension PlatformClient.ApplicationClient.Order {
             self.fyndOrderId = fyndOrderId
             
             self.prices = prices
+            
+            self.charges = charges
+            
+            self.orderingCurrencyPrices = orderingCurrencyPrices
             
             self.paymentMethods = paymentMethods
             
@@ -335,6 +393,30 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
+                    charges = try container.decode([PriceAdjustmentCharge].self, forKey: .charges)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderingCurrencyPrices = try container.decode(OrderingCurrencyPrices.self, forKey: .orderingCurrencyPrices)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     paymentMethods = try container.decode([String: Any].self, forKey: .paymentMethods)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -390,6 +472,16 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(prices, forKey: .prices)
+            
+            
+            
+            
+            try? container.encodeIfPresent(charges, forKey: .charges)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingCurrencyPrices, forKey: .orderingCurrencyPrices)
             
             
             

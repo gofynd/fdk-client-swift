@@ -12,7 +12,7 @@ public extension PlatformClient.Order {
     class SendUserMobileOTP: Codable {
         
         
-        public var mobile: Double
+        public var mobile: String
         
         public var countryCode: String?
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(countryCode: String? = nil, mobile: Double) {
+        public init(countryCode: String? = nil, mobile: String) {
             
             self.mobile = mobile
             
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                mobile = try container.decode(Double.self, forKey: .mobile)
+                mobile = try container.decode(String.self, forKey: .mobile)
                 
             
             
@@ -84,7 +84,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class SendUserMobileOTP: Codable {
         
         
-        public var mobile: Double
+        public var mobile: String
         
         public var countryCode: String?
         
@@ -97,7 +97,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(countryCode: String? = nil, mobile: Double) {
+        public init(countryCode: String? = nil, mobile: String) {
             
             self.mobile = mobile
             
@@ -109,7 +109,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                mobile = try container.decode(Double.self, forKey: .mobile)
+                mobile = try container.decode(String.self, forKey: .mobile)
                 
             
             

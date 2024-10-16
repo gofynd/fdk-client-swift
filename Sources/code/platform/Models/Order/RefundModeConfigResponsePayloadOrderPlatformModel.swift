@@ -16,10 +16,6 @@ public extension PlatformClient.Order {
         
         public var data: [RefundModeInfo]
         
-        public var status: Int?
-        
-        public var message: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -27,21 +23,13 @@ public extension PlatformClient.Order {
             
             case data = "data"
             
-            case status = "status"
-            
-            case message = "message"
-            
         }
 
-        public init(data: [RefundModeInfo], message: String? = nil, status: Int? = nil, success: Bool) {
+        public init(data: [RefundModeInfo], success: Bool) {
             
             self.success = success
             
             self.data = data
-            
-            self.status = status
-            
-            self.message = message
             
         }
 
@@ -58,30 +46,6 @@ public extension PlatformClient.Order {
                 
             
             
-            
-                do {
-                    status = try container.decode(Int.self, forKey: .status)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    message = try container.decode(String.self, forKey: .message)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -95,16 +59,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(data, forKey: .data)
-            
-            
-            
-            
-            try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            
-            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }
@@ -127,10 +81,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var data: [RefundModeInfo]
         
-        public var status: Int?
-        
-        public var message: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -138,21 +88,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case data = "data"
             
-            case status = "status"
-            
-            case message = "message"
-            
         }
 
-        public init(data: [RefundModeInfo], message: String? = nil, status: Int? = nil, success: Bool) {
+        public init(data: [RefundModeInfo], success: Bool) {
             
             self.success = success
             
             self.data = data
-            
-            self.status = status
-            
-            self.message = message
             
         }
 
@@ -169,30 +111,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-            
-                do {
-                    status = try container.decode(Int.self, forKey: .status)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    message = try container.decode(String.self, forKey: .message)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -206,16 +124,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(data, forKey: .data)
-            
-            
-            
-            
-            try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            
-            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }

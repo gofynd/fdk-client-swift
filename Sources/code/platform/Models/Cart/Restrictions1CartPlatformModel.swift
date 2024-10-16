@@ -14,7 +14,7 @@ public extension PlatformClient.ApplicationClient.Cart {
     class Restrictions1: Codable {
         
         
-        public var payments: [String: PaymentModes]?
+        public var payments: PaymentModes?
         
         public var userRegistered: UserRegistered?
         
@@ -30,7 +30,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var userId: [String]?
         
-        public var uses: UsesRestriction1
+        public var uses: UsesRestriction1?
         
         public var orderingStores: [Int]?
         
@@ -59,7 +59,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(anonymousUsers: Bool? = nil, orderingStores: [Int]? = nil, orderQuantity: Int? = nil, payments: [String: PaymentModes]? = nil, platforms: [String]? = nil, postOrder: PostOrder1? = nil, userGroups: [Int]? = nil, userId: [String]? = nil, userRegistered: UserRegistered? = nil, uses: UsesRestriction1) {
+        public init(anonymousUsers: Bool? = nil, orderingStores: [Int]? = nil, orderQuantity: Int? = nil, payments: PaymentModes? = nil, platforms: [String]? = nil, postOrder: PostOrder1? = nil, userGroups: [Int]? = nil, userId: [String]? = nil, userRegistered: UserRegistered? = nil, uses: UsesRestriction1? = nil) {
             
             self.payments = payments
             
@@ -88,7 +88,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    payments = try container.decode([String: PaymentModes].self, forKey: .payments)
+                    payments = try container.decode(PaymentModes.self, forKey: .payments)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -183,9 +183,16 @@ public extension PlatformClient.ApplicationClient.Cart {
                 
             
             
-                uses = try container.decode(UsesRestriction1.self, forKey: .uses)
+                do {
+                    uses = try container.decode(UsesRestriction1.self, forKey: .uses)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

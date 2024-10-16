@@ -14,11 +14,11 @@ public extension ApplicationClient.Catalog {
         
         public var company: CompanyStore?
         
-        public var manager: StoreManagerSerializer?
+        public var manager: StoreManagerSchema?
         
         public var storeCode: String?
         
-        public var address: StoreAddressSerializer?
+        public var address: StoreAddressSchema?
         
         public var name: String?
         
@@ -45,7 +45,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(address: StoreAddressSerializer? = nil, company: CompanyStore? = nil, contactNumbers: [SellerPhoneNumber]? = nil, departments: [StoreDepartments]? = nil, manager: StoreManagerSerializer? = nil, name: String? = nil, storeCode: String? = nil, uid: Int? = nil) {
+        public init(address: StoreAddressSchema? = nil, company: CompanyStore? = nil, contactNumbers: [SellerPhoneNumber]? = nil, departments: [StoreDepartments]? = nil, manager: StoreManagerSchema? = nil, name: String? = nil, storeCode: String? = nil, uid: Int? = nil) {
             
             self.uid = uid
             
@@ -106,7 +106,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                manager = try container.decode(StoreManagerSerializer.self, forKey: .manager)
+                manager = try container.decode(StoreManagerSchema.self, forKey: .manager)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -130,7 +130,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                address = try container.decode(StoreAddressSerializer.self, forKey: .address)
+                address = try container.decode(StoreAddressSchema.self, forKey: .address)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

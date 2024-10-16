@@ -74,6 +74,8 @@ public extension PlatformClient.Order {
         
         public var prices: Prices?
         
+        public var charges: [PriceAdjustmentCharge]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -139,9 +141,11 @@ public extension PlatformClient.Order {
             
             case prices = "prices"
             
+            case charges = "charges"
+            
         }
 
-        public init(affiliateId: String? = nil, affiliateOrderDate: String? = nil, affiliateOrderId: String? = nil, cashbackApplied: Double? = nil, cashbackValue: Double? = nil, codCharges: Double? = nil, collectBy: String? = nil, couponValue: Double? = nil, createdAt: String? = nil, createdTime: String? = nil, currency: String? = nil, deliveryCharges: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, fyndOrderId: String? = nil, headers: [String: Any]? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, mongoCartId: Double? = nil, orderingChannel: String? = nil, orderingChannelLogo: String? = nil, orderValue: Double? = nil, paymentMethods: [String: Any]? = nil, paymentModeId: Double? = nil, prices: Prices? = nil, promotionEffectiveDiscount: Double? = nil, refundBy: String? = nil, taxDetails: TaxDetails? = nil, totalOrderValue: Double? = nil, transactionId: String? = nil, userId: String? = nil) {
+        public init(affiliateId: String? = nil, affiliateOrderDate: String? = nil, affiliateOrderId: String? = nil, cashbackApplied: Double? = nil, cashbackValue: Double? = nil, charges: [PriceAdjustmentCharge]? = nil, codCharges: Double? = nil, collectBy: String? = nil, couponValue: Double? = nil, createdAt: String? = nil, createdTime: String? = nil, currency: String? = nil, deliveryCharges: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, fyndOrderId: String? = nil, headers: [String: Any]? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, mongoCartId: Double? = nil, orderingChannel: String? = nil, orderingChannelLogo: String? = nil, orderValue: Double? = nil, paymentMethods: [String: Any]? = nil, paymentModeId: Double? = nil, prices: Prices? = nil, promotionEffectiveDiscount: Double? = nil, refundBy: String? = nil, taxDetails: TaxDetails? = nil, totalOrderValue: Double? = nil, transactionId: String? = nil, userId: String? = nil) {
             
             self.fyndOrderId = fyndOrderId
             
@@ -204,6 +208,8 @@ public extension PlatformClient.Order {
             self.orderingChannelLogo = orderingChannelLogo
             
             self.prices = prices
+            
+            self.charges = charges
             
         }
 
@@ -582,6 +588,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    charges = try container.decode([PriceAdjustmentCharge].self, forKey: .charges)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -740,6 +758,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(prices, forKey: .prices)
+            
+            
+            
+            
+            try? container.encodeIfPresent(charges, forKey: .charges)
             
             
         }
@@ -820,6 +843,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var prices: Prices?
         
+        public var charges: [PriceAdjustmentCharge]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -885,9 +910,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case prices = "prices"
             
+            case charges = "charges"
+            
         }
 
-        public init(affiliateId: String? = nil, affiliateOrderDate: String? = nil, affiliateOrderId: String? = nil, cashbackApplied: Double? = nil, cashbackValue: Double? = nil, codCharges: Double? = nil, collectBy: String? = nil, couponValue: Double? = nil, createdAt: String? = nil, createdTime: String? = nil, currency: String? = nil, deliveryCharges: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, fyndOrderId: String? = nil, headers: [String: Any]? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, mongoCartId: Double? = nil, orderingChannel: String? = nil, orderingChannelLogo: String? = nil, orderValue: Double? = nil, paymentMethods: [String: Any]? = nil, paymentModeId: Double? = nil, prices: Prices? = nil, promotionEffectiveDiscount: Double? = nil, refundBy: String? = nil, taxDetails: TaxDetails? = nil, totalOrderValue: Double? = nil, transactionId: String? = nil, userId: String? = nil) {
+        public init(affiliateId: String? = nil, affiliateOrderDate: String? = nil, affiliateOrderId: String? = nil, cashbackApplied: Double? = nil, cashbackValue: Double? = nil, charges: [PriceAdjustmentCharge]? = nil, codCharges: Double? = nil, collectBy: String? = nil, couponValue: Double? = nil, createdAt: String? = nil, createdTime: String? = nil, currency: String? = nil, deliveryCharges: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, fyndOrderId: String? = nil, headers: [String: Any]? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, mongoCartId: Double? = nil, orderingChannel: String? = nil, orderingChannelLogo: String? = nil, orderValue: Double? = nil, paymentMethods: [String: Any]? = nil, paymentModeId: Double? = nil, prices: Prices? = nil, promotionEffectiveDiscount: Double? = nil, refundBy: String? = nil, taxDetails: TaxDetails? = nil, totalOrderValue: Double? = nil, transactionId: String? = nil, userId: String? = nil) {
             
             self.fyndOrderId = fyndOrderId
             
@@ -950,6 +977,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.orderingChannelLogo = orderingChannelLogo
             
             self.prices = prices
+            
+            self.charges = charges
             
         }
 
@@ -1328,6 +1357,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    charges = try container.decode([PriceAdjustmentCharge].self, forKey: .charges)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -1486,6 +1527,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(prices, forKey: .prices)
+            
+            
+            
+            
+            try? container.encodeIfPresent(charges, forKey: .charges)
             
             
         }

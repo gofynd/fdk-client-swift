@@ -24,7 +24,7 @@ public extension ApplicationClient.Catalog {
         
         public var seller: Seller?
         
-        public var identifier: [String: Any]?
+        public var identifier: Identifier?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -49,7 +49,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(company: CompanyDetail? = nil, identifier: [String: Any]? = nil, itemId: Int? = nil, price: ProductStockPrice? = nil, quantity: Int? = nil, seller: Seller? = nil, size: String? = nil, store: StoreDetail? = nil, uid: String? = nil) {
+        public init(company: CompanyDetail? = nil, identifier: Identifier? = nil, itemId: Int? = nil, price: ProductStockPrice? = nil, quantity: Int? = nil, seller: Seller? = nil, size: String? = nil, store: StoreDetail? = nil, uid: String? = nil) {
             
             self.uid = uid
             
@@ -172,7 +172,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                identifier = try container.decode([String: Any].self, forKey: .identifier)
+                identifier = try container.decode(Identifier.self, forKey: .identifier)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

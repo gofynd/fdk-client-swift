@@ -12,6 +12,8 @@ public extension ApplicationClient.Logistic {
         
         public var name: String?
         
+        public var customMeta: [String: Any]?
+        
         public var displayName: String?
         
         public var parentIds: [String]?
@@ -27,6 +29,8 @@ public extension ApplicationClient.Logistic {
             
             case name = "name"
             
+            case customMeta = "custom_meta"
+            
             case displayName = "display_name"
             
             case parentIds = "parent_ids"
@@ -37,11 +41,13 @@ public extension ApplicationClient.Logistic {
             
         }
 
-        public init(displayName: String? = nil, id: String? = nil, localities: [LocalityParent]? = nil, name: String? = nil, parentIds: [String]? = nil, type: String? = nil) {
+        public init(customMeta: [String: Any]? = nil, displayName: String? = nil, id: String? = nil, localities: [LocalityParent]? = nil, name: String? = nil, parentIds: [String]? = nil, type: String? = nil) {
             
             self.id = id
             
             self.name = name
+            
+            self.customMeta = customMeta
             
             self.displayName = displayName
             
@@ -71,6 +77,18 @@ public extension ApplicationClient.Logistic {
             
             do {
                 name = try container.decode(String.self, forKey: .name)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                customMeta = try container.decode([String: Any].self, forKey: .customMeta)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -139,6 +157,10 @@ public extension ApplicationClient.Logistic {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
             
             
             

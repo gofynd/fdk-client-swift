@@ -12,36 +12,60 @@ public extension PlatformClient.Order {
     class CreateOrderErrorReponse: Codable {
         
         
-        public var success: Bool?
+        public var requestId: String?
         
-        public var errors: String?
+        public var status: Int
         
-        public var statusCode: Double?
+        public var info: [String: Any]?
         
-        public var fyndOrderId: String?
+        public var stackTrace: String?
+        
+        public var code: String?
+        
+        public var meta: String?
+        
+        public var message: String
+        
+        public var exception: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
+            case requestId = "request_id"
             
-            case errors = "errors"
+            case status = "status"
             
-            case statusCode = "status_code"
+            case info = "info"
             
-            case fyndOrderId = "fynd_order_id"
+            case stackTrace = "stack_trace"
+            
+            case code = "code"
+            
+            case meta = "meta"
+            
+            case message = "message"
+            
+            case exception = "exception"
             
         }
 
-        public init(errors: String? = nil, fyndOrderId: String? = nil, statusCode: Double? = nil, success: Bool? = nil) {
+        public init(code: String? = nil, exception: String? = nil, info: [String: Any]? = nil, message: String, meta: String? = nil, requestId: String? = nil, stackTrace: String? = nil, status: Int) {
             
-            self.success = success
+            self.requestId = requestId
             
-            self.errors = errors
+            self.status = status
             
-            self.statusCode = statusCode
+            self.info = info
             
-            self.fyndOrderId = fyndOrderId
+            self.stackTrace = stackTrace
+            
+            self.code = code
+            
+            self.meta = meta
+            
+            self.message = message
+            
+            self.exception = exception
             
         }
 
@@ -50,7 +74,24 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    success = try container.decode(Bool.self, forKey: .success)
+                    requestId = try container.decode(String.self, forKey: .requestId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                status = try container.decode(Int.self, forKey: .status)
+                
+            
+            
+            
+                do {
+                    info = try container.decode([String: Any].self, forKey: .info)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +103,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    errors = try container.decode(String.self, forKey: .errors)
+                    stackTrace = try container.decode(String.self, forKey: .stackTrace)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,7 +115,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    statusCode = try container.decode(Double.self, forKey: .statusCode)
+                    code = try container.decode(String.self, forKey: .code)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +127,24 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+                    meta = try container.decode(String.self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                message = try container.decode(String.self, forKey: .message)
+                
+            
+            
+            
+                do {
+                    exception = try container.decode(String.self, forKey: .exception)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,22 +161,42 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
             
             
             
             
-            try? container.encodeIfPresent(errors, forKey: .errors)
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             
             
-            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
+            try? container.encodeIfPresent(info, forKey: .info)
             
             
             
             
-            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+            try? container.encodeIfPresent(stackTrace, forKey: .stackTrace)
+            
+            
+            
+            
+            try? container.encodeIfPresent(code, forKey: .code)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
+            try? container.encodeIfPresent(exception, forKey: .exception)
             
             
         }
@@ -137,36 +215,60 @@ public extension PlatformClient.ApplicationClient.Order {
     class CreateOrderErrorReponse: Codable {
         
         
-        public var success: Bool?
+        public var requestId: String?
         
-        public var errors: String?
+        public var status: Int
         
-        public var statusCode: Double?
+        public var info: [String: Any]?
         
-        public var fyndOrderId: String?
+        public var stackTrace: String?
+        
+        public var code: String?
+        
+        public var meta: String?
+        
+        public var message: String
+        
+        public var exception: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
+            case requestId = "request_id"
             
-            case errors = "errors"
+            case status = "status"
             
-            case statusCode = "status_code"
+            case info = "info"
             
-            case fyndOrderId = "fynd_order_id"
+            case stackTrace = "stack_trace"
+            
+            case code = "code"
+            
+            case meta = "meta"
+            
+            case message = "message"
+            
+            case exception = "exception"
             
         }
 
-        public init(errors: String? = nil, fyndOrderId: String? = nil, statusCode: Double? = nil, success: Bool? = nil) {
+        public init(code: String? = nil, exception: String? = nil, info: [String: Any]? = nil, message: String, meta: String? = nil, requestId: String? = nil, stackTrace: String? = nil, status: Int) {
             
-            self.success = success
+            self.requestId = requestId
             
-            self.errors = errors
+            self.status = status
             
-            self.statusCode = statusCode
+            self.info = info
             
-            self.fyndOrderId = fyndOrderId
+            self.stackTrace = stackTrace
+            
+            self.code = code
+            
+            self.meta = meta
+            
+            self.message = message
+            
+            self.exception = exception
             
         }
 
@@ -175,7 +277,24 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    success = try container.decode(Bool.self, forKey: .success)
+                    requestId = try container.decode(String.self, forKey: .requestId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                status = try container.decode(Int.self, forKey: .status)
+                
+            
+            
+            
+                do {
+                    info = try container.decode([String: Any].self, forKey: .info)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,7 +306,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    errors = try container.decode(String.self, forKey: .errors)
+                    stackTrace = try container.decode(String.self, forKey: .stackTrace)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -199,7 +318,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    statusCode = try container.decode(Double.self, forKey: .statusCode)
+                    code = try container.decode(String.self, forKey: .code)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -211,7 +330,24 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+                    meta = try container.decode(String.self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                message = try container.decode(String.self, forKey: .message)
+                
+            
+            
+            
+                do {
+                    exception = try container.decode(String.self, forKey: .exception)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -228,22 +364,42 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
             
             
             
             
-            try? container.encodeIfPresent(errors, forKey: .errors)
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             
             
-            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
+            try? container.encodeIfPresent(info, forKey: .info)
             
             
             
             
-            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+            try? container.encodeIfPresent(stackTrace, forKey: .stackTrace)
+            
+            
+            
+            
+            try? container.encodeIfPresent(code, forKey: .code)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
+            try? container.encodeIfPresent(exception, forKey: .exception)
             
             
         }

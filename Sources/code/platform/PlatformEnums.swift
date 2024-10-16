@@ -15,6 +15,92 @@ import Foundation
 public extension PlatformClient.Catalog {
     
     
+    /*
+        Enum: order
+        Used By: Catalog
+    */
+    enum order: String, Codable {
+        
+        case browntapeV2 = "browntape_v2"
+        
+        case easyops = "easyops"
+        
+        case holisol = "holisol"
+        
+        case logic = "logic"
+        
+        case tcnss = "tcnss"
+        
+        case increff = "increff"
+        
+        case liberty = "liberty"
+        
+        case browntape = "browntape"
+        
+        case easyecom = "easyecom"
+        
+        case majorBrands = "major_brands"
+        
+        case jiopos = "jiopos"
+        
+        case jockey = "jockey"
+        
+        case omsguru = "omsguru"
+        
+        case pulse = "pulse"
+        
+        case sellerware = "sellerware"
+        
+        case unicommerce = "unicommerce"
+        
+        case ethos = "ethos"
+        
+        case sarasuole = "sarasuole"
+        
+        case vajor = "vajor"
+        
+        case vinculum = "vinculum"
+        
+        case jiomartPos = "jiomart_pos"
+        
+        case rblSap = "rbl_sap"
+        
+        case ginesysPos = "ginesys-pos"
+        
+        case fyndpos = "fyndpos"
+        
+        case jioposOpenapi = "jiopos_openapi"
+        
+        case jioposHamleys = "jiopos_hamleys"
+        
+        case westelm = "westelm"
+        
+        case rblSapFurniture = "rbl_sap_furniture"
+        
+        case vinculumV2 = "vinculum_v2"
+        
+        case wizapp = "wizapp"
+        
+    }
+
+    
+    
+    
+    
+    /*
+        Enum: CurrencyCodeEnum
+        Used By: Catalog
+    */
+    enum CurrencyCodeEnum: String, Codable {
+        
+        case inr = "INR"
+        
+        case usd = "USD"
+        
+        case eur = "EUR"
+        
+    }
+
     
 }
 
@@ -23,6 +109,92 @@ public extension PlatformClient.Catalog {
 public extension PlatformClient.ApplicationClient.Catalog {
     
     
+    /*
+        Enum: order
+        Used By: Catalog
+    */
+    enum order: String, Codable {
+        
+        case browntapeV2 = "browntape_v2"
+        
+        case easyops = "easyops"
+        
+        case holisol = "holisol"
+        
+        case logic = "logic"
+        
+        case tcnss = "tcnss"
+        
+        case increff = "increff"
+        
+        case liberty = "liberty"
+        
+        case browntape = "browntape"
+        
+        case easyecom = "easyecom"
+        
+        case majorBrands = "major_brands"
+        
+        case jiopos = "jiopos"
+        
+        case jockey = "jockey"
+        
+        case omsguru = "omsguru"
+        
+        case pulse = "pulse"
+        
+        case sellerware = "sellerware"
+        
+        case unicommerce = "unicommerce"
+        
+        case ethos = "ethos"
+        
+        case sarasuole = "sarasuole"
+        
+        case vajor = "vajor"
+        
+        case vinculum = "vinculum"
+        
+        case jiomartPos = "jiomart_pos"
+        
+        case rblSap = "rbl_sap"
+        
+        case ginesysPos = "ginesys-pos"
+        
+        case fyndpos = "fyndpos"
+        
+        case jioposOpenapi = "jiopos_openapi"
+        
+        case jioposHamleys = "jiopos_hamleys"
+        
+        case westelm = "westelm"
+        
+        case rblSapFurniture = "rbl_sap_furniture"
+        
+        case vinculumV2 = "vinculum_v2"
+        
+        case wizapp = "wizapp"
+        
+    }
+
+    
+    
+    
+    
+    /*
+        Enum: CurrencyCodeEnum
+        Used By: Catalog
+    */
+    enum CurrencyCodeEnum: String, Codable {
+        
+        case inr = "INR"
+        
+        case usd = "USD"
+        
+        case eur = "EUR"
+        
+    }
+
     
 }
 
@@ -81,8 +253,6 @@ public extension PlatformClient.ApplicationClient.Content {
     
     
 }
-
-
 
 
 
