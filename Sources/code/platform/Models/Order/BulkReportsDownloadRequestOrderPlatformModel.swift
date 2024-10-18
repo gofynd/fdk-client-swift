@@ -16,7 +16,7 @@ public extension PlatformClient.Order {
         
         public var laneType: String?
         
-        public var customHeaders: String?
+        public var customHeaders: [String]?
         
         public var reportType: String?
         
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(customFiltersForLane: [String: Any]? = nil, customHeaders: String? = nil, endDate: String? = nil, entities: [String]? = nil, filterType: String? = nil, isCrossCompanyEnabled: Bool? = nil, laneType: String? = nil, reportType: String? = nil, startDate: String? = nil, storeIds: [String]? = nil) {
+        public init(customFiltersForLane: [String: Any]? = nil, customHeaders: [String]? = nil, endDate: String? = nil, entities: [String]? = nil, filterType: String? = nil, isCrossCompanyEnabled: Bool? = nil, laneType: String? = nil, reportType: String? = nil, startDate: String? = nil, storeIds: [String]? = nil) {
             
             self.storeIds = storeIds
             
@@ -110,7 +110,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    customHeaders = try container.decode(String.self, forKey: .customHeaders)
+                    customHeaders = try container.decode([String].self, forKey: .customHeaders)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -279,7 +279,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var laneType: String?
         
-        public var customHeaders: String?
+        public var customHeaders: [String]?
         
         public var reportType: String?
         
@@ -320,7 +320,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(customFiltersForLane: [String: Any]? = nil, customHeaders: String? = nil, endDate: String? = nil, entities: [String]? = nil, filterType: String? = nil, isCrossCompanyEnabled: Bool? = nil, laneType: String? = nil, reportType: String? = nil, startDate: String? = nil, storeIds: [String]? = nil) {
+        public init(customFiltersForLane: [String: Any]? = nil, customHeaders: [String]? = nil, endDate: String? = nil, entities: [String]? = nil, filterType: String? = nil, isCrossCompanyEnabled: Bool? = nil, laneType: String? = nil, reportType: String? = nil, startDate: String? = nil, storeIds: [String]? = nil) {
             
             self.storeIds = storeIds
             
@@ -373,7 +373,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    customHeaders = try container.decode(String.self, forKey: .customHeaders)
+                    customHeaders = try container.decode([String].self, forKey: .customHeaders)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

@@ -14,7 +14,9 @@ public extension PlatformClient.Order {
         
         public var success: Bool?
         
-        public var message: [String]?
+        public var message: String?
+        
+        public var status: Int?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -23,13 +25,17 @@ public extension PlatformClient.Order {
             
             case message = "message"
             
+            case status = "status"
+            
         }
 
-        public init(message: [String]? = nil, success: Bool? = nil) {
+        public init(message: String? = nil, status: Int? = nil, success: Bool? = nil) {
             
             self.success = success
             
             self.message = message
+            
+            self.status = status
             
         }
 
@@ -50,7 +56,19 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    message = try container.decode([String].self, forKey: .message)
+                    message = try container.decode(String.self, forKey: .message)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    status = try container.decode(Int.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73,6 +91,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
         }
@@ -93,7 +116,9 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var success: Bool?
         
-        public var message: [String]?
+        public var message: String?
+        
+        public var status: Int?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -102,13 +127,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case message = "message"
             
+            case status = "status"
+            
         }
 
-        public init(message: [String]? = nil, success: Bool? = nil) {
+        public init(message: String? = nil, status: Int? = nil, success: Bool? = nil) {
             
             self.success = success
             
             self.message = message
+            
+            self.status = status
             
         }
 
@@ -129,7 +158,19 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    message = try container.decode([String].self, forKey: .message)
+                    message = try container.decode(String.self, forKey: .message)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    status = try container.decode(Int.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -152,6 +193,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
         }

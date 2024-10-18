@@ -18,7 +18,7 @@ public extension PlatformClient.Order {
         
         public var actionType: String
         
-        public var entities: [Entities]
+        public var entities: [LockManagerEntities]
         
         public var resumeTasksAfterUnlock: Bool?
         
@@ -45,7 +45,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(action: String, actionType: String, entities: [Entities], entityType: String, lockAfterTransition: Bool? = nil, resumeTasksAfterUnlock: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
+        public init(action: String, actionType: String, entities: [LockManagerEntities], entityType: String, lockAfterTransition: Bool? = nil, resumeTasksAfterUnlock: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
             
             self.entityType = entityType
             
@@ -82,7 +82,7 @@ public extension PlatformClient.Order {
             
             
             
-                entities = try container.decode([Entities].self, forKey: .entities)
+                entities = try container.decode([LockManagerEntities].self, forKey: .entities)
                 
             
             
@@ -184,7 +184,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var actionType: String
         
-        public var entities: [Entities]
+        public var entities: [LockManagerEntities]
         
         public var resumeTasksAfterUnlock: Bool?
         
@@ -211,7 +211,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(action: String, actionType: String, entities: [Entities], entityType: String, lockAfterTransition: Bool? = nil, resumeTasksAfterUnlock: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
+        public init(action: String, actionType: String, entities: [LockManagerEntities], entityType: String, lockAfterTransition: Bool? = nil, resumeTasksAfterUnlock: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
             
             self.entityType = entityType
             
@@ -248,7 +248,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                entities = try container.decode([Entities].self, forKey: .entities)
+                entities = try container.decode([LockManagerEntities].self, forKey: .entities)
                 
             
             

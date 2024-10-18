@@ -4228,7 +4228,7 @@ extension PlatformClient {
         public func createProduct(
             body: ProductCreateUpdateSchemaV2,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -4256,7 +4256,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessResponse1.self, from: data)
+                        let response = Utility.decode(SuccessResponseObject.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

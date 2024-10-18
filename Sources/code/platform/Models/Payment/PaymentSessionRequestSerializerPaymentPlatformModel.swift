@@ -28,6 +28,8 @@ public extension PlatformClient.Payment {
         
         public var checksum: String
         
+        public var source: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -47,9 +49,11 @@ public extension PlatformClient.Payment {
             
             case checksum = "checksum"
             
+            case source = "source"
+            
         }
 
-        public init(checksum: String, currency: String, gid: String, meta: [String: Any]? = nil, orderDetails: OrderDetail, paymentDetails: [PaymentSessionDetail], status: String, totalAmount: Int) {
+        public init(checksum: String, currency: String, gid: String, meta: [String: Any]? = nil, orderDetails: OrderDetail, paymentDetails: [PaymentSessionDetail], source: String? = nil, status: String, totalAmount: Int) {
             
             self.meta = meta
             
@@ -66,6 +70,8 @@ public extension PlatformClient.Payment {
             self.totalAmount = totalAmount
             
             self.checksum = checksum
+            
+            self.source = source
             
         }
 
@@ -119,6 +125,18 @@ public extension PlatformClient.Payment {
                 
             
             
+            
+                do {
+                    source = try container.decode(String.self, forKey: .source)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -162,6 +180,11 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(checksum, forKey: .checksum)
+            
+            
+            
+            
+            try? container.encodeIfPresent(source, forKey: .source)
             
             
         }
@@ -196,6 +219,8 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var checksum: String
         
+        public var source: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -215,9 +240,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case checksum = "checksum"
             
+            case source = "source"
+            
         }
 
-        public init(checksum: String, currency: String, gid: String, meta: [String: Any]? = nil, orderDetails: OrderDetail, paymentDetails: [PaymentSessionDetail], status: String, totalAmount: Int) {
+        public init(checksum: String, currency: String, gid: String, meta: [String: Any]? = nil, orderDetails: OrderDetail, paymentDetails: [PaymentSessionDetail], source: String? = nil, status: String, totalAmount: Int) {
             
             self.meta = meta
             
@@ -234,6 +261,8 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.totalAmount = totalAmount
             
             self.checksum = checksum
+            
+            self.source = source
             
         }
 
@@ -287,6 +316,18 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
+            
+                do {
+                    source = try container.decode(String.self, forKey: .source)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -330,6 +371,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(checksum, forKey: .checksum)
+            
+            
+            
+            
+            try? container.encodeIfPresent(source, forKey: .source)
             
             
         }
