@@ -32,8 +32,6 @@ public extension PlatformClient.Serviceability {
         
         public var mapping: [ZoneMappingType]
         
-        public var assignmentPreference: String?
-        
         public var storesCount: Int
         
 
@@ -59,13 +57,11 @@ public extension PlatformClient.Serviceability {
             
             case mapping = "mapping"
             
-            case assignmentPreference = "assignment_preference"
-            
             case storesCount = "stores_count"
             
         }
 
-        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int? = nil, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String? = nil, slug: String, storesCount: Int, storeIds: [Int], zoneId: String) {
+        public init(channels: [GetZoneDataViewChannels], companyId: Int? = nil, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String? = nil, slug: String, storesCount: Int, storeIds: [Int], zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -86,8 +82,6 @@ public extension PlatformClient.Serviceability {
             self.regionType = regionType
             
             self.mapping = mapping
-            
-            self.assignmentPreference = assignmentPreference
             
             self.storesCount = storesCount
             
@@ -161,18 +155,6 @@ public extension PlatformClient.Serviceability {
             
             
             
-                do {
-                    assignmentPreference = try container.decode(String.self, forKey: .assignmentPreference)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 storesCount = try container.decode(Int.self, forKey: .storesCount)
                 
             
@@ -230,11 +212,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(mapping, forKey: .mapping)
-            
-            
-            
-            
-            try? container.encodeIfPresent(assignmentPreference, forKey: .assignmentPreference)
             
             
             
@@ -278,8 +255,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var mapping: [ZoneMappingType]
         
-        public var assignmentPreference: String?
-        
         public var storesCount: Int
         
 
@@ -305,13 +280,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case mapping = "mapping"
             
-            case assignmentPreference = "assignment_preference"
-            
             case storesCount = "stores_count"
             
         }
 
-        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int? = nil, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String? = nil, slug: String, storesCount: Int, storeIds: [Int], zoneId: String) {
+        public init(channels: [GetZoneDataViewChannels], companyId: Int? = nil, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String? = nil, slug: String, storesCount: Int, storeIds: [Int], zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -332,8 +305,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.regionType = regionType
             
             self.mapping = mapping
-            
-            self.assignmentPreference = assignmentPreference
             
             self.storesCount = storesCount
             
@@ -407,18 +378,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                do {
-                    assignmentPreference = try container.decode(String.self, forKey: .assignmentPreference)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 storesCount = try container.decode(Int.self, forKey: .storesCount)
                 
             
@@ -476,11 +435,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(mapping, forKey: .mapping)
-            
-            
-            
-            
-            try? container.encodeIfPresent(assignmentPreference, forKey: .assignmentPreference)
             
             
             

@@ -36,6 +36,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var articleIds: [Article]
         
+        public var autoRemove: Bool?
+        
         public var meta: [String: Any]?
         
         public var cartId: String
@@ -65,13 +67,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case articleIds = "article_ids"
             
+            case autoRemove = "auto_remove"
+            
             case meta = "meta"
             
             case cartId = "cart_id"
             
         }
 
-        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, cartId: String, collection: Collection, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, modifiedBy: String? = nil, restrictions: PriceAdjustmentRestrictions? = nil, type: String, value: Double) {
+        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, autoRemove: Bool? = nil, cartId: String, collection: Collection, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, modifiedBy: String? = nil, restrictions: PriceAdjustmentRestrictions? = nil, type: String, value: Double) {
             
             self.modifiedBy = modifiedBy
             
@@ -94,6 +98,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.isAuthenticated = isAuthenticated
             
             self.articleIds = articleIds
+            
+            self.autoRemove = autoRemove
             
             self.meta = meta
             
@@ -189,6 +195,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
+                    autoRemove = try container.decode(Bool.self, forKey: .autoRemove)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     meta = try container.decode([String: Any].self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -262,6 +280,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(articleIds, forKey: .articleIds)
+            
+            
+            
+            
+            try? container.encodeIfPresent(autoRemove, forKey: .autoRemove)
             
             
             

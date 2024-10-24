@@ -26,8 +26,6 @@ public extension PlatformClient.Serviceability {
         
         public var storeIds: [Int]
         
-        public var assignmentPreference: String
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -45,11 +43,9 @@ public extension PlatformClient.Serviceability {
             
             case storeIds = "store_ids"
             
-            case assignmentPreference = "assignment_preference"
-            
         }
 
-        public init(assignmentPreference: String, isActive: Bool, name: String, slug: String, storeIds: [Int], tags: [String], type: String, zoneId: String) {
+        public init(isActive: Bool, name: String, slug: String, storeIds: [Int], tags: [String], type: String, zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -64,8 +60,6 @@ public extension PlatformClient.Serviceability {
             self.isActive = isActive
             
             self.storeIds = storeIds
-            
-            self.assignmentPreference = assignmentPreference
             
         }
 
@@ -107,11 +101,6 @@ public extension PlatformClient.Serviceability {
                 
             
             
-            
-                assignmentPreference = try container.decode(String.self, forKey: .assignmentPreference)
-                
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -150,11 +139,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
-            
-            
-            
-            
-            try? container.encodeIfPresent(assignmentPreference, forKey: .assignmentPreference)
             
             
         }
@@ -187,8 +171,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var storeIds: [Int]
         
-        public var assignmentPreference: String
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -206,11 +188,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case storeIds = "store_ids"
             
-            case assignmentPreference = "assignment_preference"
-            
         }
 
-        public init(assignmentPreference: String, isActive: Bool, name: String, slug: String, storeIds: [Int], tags: [String], type: String, zoneId: String) {
+        public init(isActive: Bool, name: String, slug: String, storeIds: [Int], tags: [String], type: String, zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -225,8 +205,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.isActive = isActive
             
             self.storeIds = storeIds
-            
-            self.assignmentPreference = assignmentPreference
             
         }
 
@@ -268,11 +246,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
-            
-                assignmentPreference = try container.decode(String.self, forKey: .assignmentPreference)
-                
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -311,11 +284,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
-            
-            
-            
-            
-            try? container.encodeIfPresent(assignmentPreference, forKey: .assignmentPreference)
             
             
         }

@@ -30,11 +30,7 @@ public extension PlatformClient.Serviceability {
         
         public var regionType: String
         
-        public var mapping: [ZoneMappingType]
-        
-        public var assignmentPreference: String?
-        
-        public var storesCount: Int
+        public var mapping: [ZoneMappingDetailType]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -59,13 +55,9 @@ public extension PlatformClient.Serviceability {
             
             case mapping = "mapping"
             
-            case assignmentPreference = "assignment_preference"
-            
-            case storesCount = "stores_count"
-            
         }
 
-        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int? = nil, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storesCount: Int, storeIds: [Int], zoneId: String) {
+        public init(channels: [GetZoneDataViewChannels], companyId: Int? = nil, isActive: Bool, mapping: [ZoneMappingDetailType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storeIds: [Int], zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -86,10 +78,6 @@ public extension PlatformClient.Serviceability {
             self.regionType = regionType
             
             self.mapping = mapping
-            
-            self.assignmentPreference = assignmentPreference
-            
-            self.storesCount = storesCount
             
         }
 
@@ -149,24 +137,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-                mapping = try container.decode([ZoneMappingType].self, forKey: .mapping)
-                
-            
-            
-            
-                do {
-                    assignmentPreference = try container.decode(String.self, forKey: .assignmentPreference)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                storesCount = try container.decode(Int.self, forKey: .storesCount)
+                mapping = try container.decode([ZoneMappingDetailType].self, forKey: .mapping)
                 
             
             
@@ -223,16 +194,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(mapping, forKey: .mapping)
-            
-            
-            
-            
-            try? container.encodeIfPresent(assignmentPreference, forKey: .assignmentPreference)
-            
-            
-            
-            
-            try? container.encodeIfPresent(storesCount, forKey: .storesCount)
             
             
         }
@@ -269,11 +230,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var regionType: String
         
-        public var mapping: [ZoneMappingType]
-        
-        public var assignmentPreference: String?
-        
-        public var storesCount: Int
+        public var mapping: [ZoneMappingDetailType]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -298,13 +255,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case mapping = "mapping"
             
-            case assignmentPreference = "assignment_preference"
-            
-            case storesCount = "stores_count"
-            
         }
 
-        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int? = nil, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storesCount: Int, storeIds: [Int], zoneId: String) {
+        public init(channels: [GetZoneDataViewChannels], companyId: Int? = nil, isActive: Bool, mapping: [ZoneMappingDetailType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storeIds: [Int], zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -325,10 +278,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.regionType = regionType
             
             self.mapping = mapping
-            
-            self.assignmentPreference = assignmentPreference
-            
-            self.storesCount = storesCount
             
         }
 
@@ -388,24 +337,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                mapping = try container.decode([ZoneMappingType].self, forKey: .mapping)
-                
-            
-            
-            
-                do {
-                    assignmentPreference = try container.decode(String.self, forKey: .assignmentPreference)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                storesCount = try container.decode(Int.self, forKey: .storesCount)
+                mapping = try container.decode([ZoneMappingDetailType].self, forKey: .mapping)
                 
             
             
@@ -462,16 +394,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(mapping, forKey: .mapping)
-            
-            
-            
-            
-            try? container.encodeIfPresent(assignmentPreference, forKey: .assignmentPreference)
-            
-            
-            
-            
-            try? container.encodeIfPresent(storesCount, forKey: .storesCount)
             
             
         }

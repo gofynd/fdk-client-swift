@@ -5,16 +5,16 @@ import Foundation
 
 public extension PlatformClient.Serviceability {
     /*
-        Model: ZoneMappingType
+        Model: ZoneMappingDetailType
         Used By: Serviceability
     */
 
-    class ZoneMappingType: Codable {
+    class ZoneMappingDetailType: Codable {
         
         
         public var country: String
         
-        public var regions: [String]
+        public var regions: [ZoneMappingRegions]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(country: String, regions: [String]) {
+        public init(country: String, regions: [ZoneMappingRegions]? = nil) {
             
             self.country = country
             
@@ -42,9 +42,16 @@ public extension PlatformClient.Serviceability {
             
             
             
-                regions = try container.decode([String].self, forKey: .regions)
+                do {
+                    regions = try container.decode([ZoneMappingRegions].self, forKey: .regions)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -70,16 +77,16 @@ public extension PlatformClient.Serviceability {
 
 public extension PlatformClient.ApplicationClient.Serviceability {
     /*
-        Model: ZoneMappingType
+        Model: ZoneMappingDetailType
         Used By: Serviceability
     */
 
-    class ZoneMappingType: Codable {
+    class ZoneMappingDetailType: Codable {
         
         
         public var country: String
         
-        public var regions: [String]
+        public var regions: [ZoneMappingRegions]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -90,7 +97,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(country: String, regions: [String]) {
+        public init(country: String, regions: [ZoneMappingRegions]? = nil) {
             
             self.country = country
             
@@ -107,9 +114,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                regions = try container.decode([String].self, forKey: .regions)
+                do {
+                    regions = try container.decode([ZoneMappingRegions].self, forKey: .regions)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         

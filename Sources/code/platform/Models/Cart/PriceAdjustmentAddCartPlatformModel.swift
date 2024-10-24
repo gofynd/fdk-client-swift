@@ -40,6 +40,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var cartId: String
         
+        public var autoRemove: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -69,9 +71,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case cartId = "cart_id"
             
+            case autoRemove = "auto_remove"
+            
         }
 
-        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, cartId: String, collection: Collection, createdBy: String? = nil, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, restrictions: PriceAdjustmentRestrictions? = nil, type: String, value: Double) {
+        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, autoRemove: Bool? = nil, cartId: String, collection: Collection, createdBy: String? = nil, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, restrictions: PriceAdjustmentRestrictions? = nil, type: String, value: Double) {
             
             self.value = value
             
@@ -98,6 +102,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.meta = meta
             
             self.cartId = cartId
+            
+            self.autoRemove = autoRemove
             
         }
 
@@ -204,6 +210,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 
             
             
+            
+                do {
+                    autoRemove = try container.decode(Bool.self, forKey: .autoRemove)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -272,6 +290,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(cartId, forKey: .cartId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(autoRemove, forKey: .autoRemove)
             
             
         }
