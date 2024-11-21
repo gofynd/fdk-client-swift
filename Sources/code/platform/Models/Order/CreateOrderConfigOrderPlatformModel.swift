@@ -14,20 +14,20 @@ public extension PlatformClient.Order {
         
         public var dpConfiguration: DPConfiguration
         
-        public var integrationType: String?
-        
         public var locationReassignment: Bool?
         
         public var payment: PaymentConfig?
         
         public var optimalShipmentCreation: Bool?
         
+        public var lockStateMessages: [LockStateMessage]?
+        
+        public var integrationType: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case dpConfiguration = "dp_configuration"
-            
-            case integrationType = "integration_type"
             
             case locationReassignment = "location_reassignment"
             
@@ -35,19 +35,25 @@ public extension PlatformClient.Order {
             
             case optimalShipmentCreation = "optimal_shipment_creation"
             
+            case lockStateMessages = "lock_state_messages"
+            
+            case integrationType = "integration_type"
+            
         }
 
-        public init(dpConfiguration: DPConfiguration, integrationType: String? = nil, locationReassignment: Bool? = nil, optimalShipmentCreation: Bool? = nil, payment: PaymentConfig? = nil) {
+        public init(dpConfiguration: DPConfiguration, integrationType: String? = nil, locationReassignment: Bool? = nil, lockStateMessages: [LockStateMessage]? = nil, optimalShipmentCreation: Bool? = nil, payment: PaymentConfig? = nil) {
             
             self.dpConfiguration = dpConfiguration
-            
-            self.integrationType = integrationType
             
             self.locationReassignment = locationReassignment
             
             self.payment = payment
             
             self.optimalShipmentCreation = optimalShipmentCreation
+            
+            self.lockStateMessages = lockStateMessages
+            
+            self.integrationType = integrationType
             
         }
 
@@ -58,18 +64,6 @@ public extension PlatformClient.Order {
                 dpConfiguration = try container.decode(DPConfiguration.self, forKey: .dpConfiguration)
                 
             
-            
-            
-                do {
-                    integrationType = try container.decode(String.self, forKey: .integrationType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -107,6 +101,30 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    lockStateMessages = try container.decode([LockStateMessage].self, forKey: .lockStateMessages)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    integrationType = try container.decode(String.self, forKey: .integrationType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -115,11 +133,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
-            
-            
-            
-            
-            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
             
             
             
@@ -135,6 +148,16 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(optimalShipmentCreation, forKey: .optimalShipmentCreation)
+            
+            
+            
+            
+            try? container.encodeIfPresent(lockStateMessages, forKey: .lockStateMessages)
+            
+            
+            
+            
+            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
             
             
         }
@@ -155,20 +178,20 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var dpConfiguration: DPConfiguration
         
-        public var integrationType: String?
-        
         public var locationReassignment: Bool?
         
         public var payment: PaymentConfig?
         
         public var optimalShipmentCreation: Bool?
         
+        public var lockStateMessages: [LockStateMessage]?
+        
+        public var integrationType: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case dpConfiguration = "dp_configuration"
-            
-            case integrationType = "integration_type"
             
             case locationReassignment = "location_reassignment"
             
@@ -176,19 +199,25 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case optimalShipmentCreation = "optimal_shipment_creation"
             
+            case lockStateMessages = "lock_state_messages"
+            
+            case integrationType = "integration_type"
+            
         }
 
-        public init(dpConfiguration: DPConfiguration, integrationType: String? = nil, locationReassignment: Bool? = nil, optimalShipmentCreation: Bool? = nil, payment: PaymentConfig? = nil) {
+        public init(dpConfiguration: DPConfiguration, integrationType: String? = nil, locationReassignment: Bool? = nil, lockStateMessages: [LockStateMessage]? = nil, optimalShipmentCreation: Bool? = nil, payment: PaymentConfig? = nil) {
             
             self.dpConfiguration = dpConfiguration
-            
-            self.integrationType = integrationType
             
             self.locationReassignment = locationReassignment
             
             self.payment = payment
             
             self.optimalShipmentCreation = optimalShipmentCreation
+            
+            self.lockStateMessages = lockStateMessages
+            
+            self.integrationType = integrationType
             
         }
 
@@ -199,18 +228,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 dpConfiguration = try container.decode(DPConfiguration.self, forKey: .dpConfiguration)
                 
             
-            
-            
-                do {
-                    integrationType = try container.decode(String.self, forKey: .integrationType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -248,6 +265,30 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    lockStateMessages = try container.decode([LockStateMessage].self, forKey: .lockStateMessages)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    integrationType = try container.decode(String.self, forKey: .integrationType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -256,11 +297,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
-            
-            
-            
-            
-            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
             
             
             
@@ -276,6 +312,16 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(optimalShipmentCreation, forKey: .optimalShipmentCreation)
+            
+            
+            
+            
+            try? container.encodeIfPresent(lockStateMessages, forKey: .lockStateMessages)
+            
+            
+            
+            
+            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
             
             
         }

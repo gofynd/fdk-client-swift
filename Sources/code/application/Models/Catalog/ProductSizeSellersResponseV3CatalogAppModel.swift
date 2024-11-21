@@ -8,7 +8,7 @@ public extension ApplicationClient.Catalog {
     */
     class ProductSizeSellersResponseV3: Codable {
         
-        public var items: [ProductSizePriceResponseV3]?
+        public var items: [ProductSellersPriceResponseV3]?
         
         public var page: Page
         
@@ -25,7 +25,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(items: [ProductSizePriceResponseV3]? = nil, page: Page, sortOn: [ProductSizeSellerFilterSchemaV3]? = nil) {
+        public init(items: [ProductSellersPriceResponseV3]? = nil, page: Page, sortOn: [ProductSizeSellerFilterSchemaV3]? = nil) {
             
             self.items = items
             
@@ -40,7 +40,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                items = try container.decode([ProductSizePriceResponseV3].self, forKey: .items)
+                items = try container.decode([ProductSellersPriceResponseV3].self, forKey: .items)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

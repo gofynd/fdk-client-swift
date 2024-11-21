@@ -11,9 +11,9 @@ extension ApplicationClient {
             self.config = config;
             var ulrs = [String: String]()
             
-            ulrs["startUpload"] = config.domain.appendAsPath("/service/application/assets/v1.0/namespaces/{namespace}/upload/start") 
+            ulrs["startUpload"] = config.domain.appendAsPath("/service/application/assets/v2.0/namespaces/{namespace}/upload/start") 
             
-            ulrs["completeUpload"] = config.domain.appendAsPath("/service/application/assets/v1.0/namespaces/{namespace}/upload/complete") 
+            ulrs["completeUpload"] = config.domain.appendAsPath("/service/application/assets/v2.0/namespaces/{namespace}/upload/complete") 
             
             ulrs["signUrls"] = config.domain.appendAsPath("/service/application/assets/v1.0/sign-urls") 
             
@@ -34,9 +34,9 @@ extension ApplicationClient {
         **/
         public func startUpload(
             namespace: String,
-            body: StartRequest,
+            body: FileUploadStart,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: StartResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: FileUpload?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -69,7 +69,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(StartResponse.self, from: data)
+                        let response = Utility.decode(FileUpload.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -84,15 +84,15 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Complete file upload
+        * Summary: Finalizes upload process.
         * Description: 
 Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database.
         **/
         public func completeUpload(
             namespace: String,
-            body: StartResponse,
+            body: FileUpload,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CompleteResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: FileUploadComplete?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -125,7 +125,7 @@ Complete the file upload and store the file details such as name, size, content 
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CompleteResponse.self, from: data)
+                        let response = Utility.decode(FileUploadComplete.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -140,13 +140,13 @@ Complete the file upload and store the file details such as name, size, content 
         
         /**
         *
-        * Summary: Get signed URLs
+        * Summary: Signs file URLs.
         * Description: Generates secure, signed URLs that is valid for certain expiry time for accessing stored files.
         **/
         public func signUrls(
-            body: SignUrlRequest,
+            body: SignUrl,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SignUrlResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SignUrlResult?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -177,7 +177,7 @@ Complete the file upload and store the file details such as name, size, content 
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SignUrlResponse.self, from: data)
+                        let response = Utility.decode(SignUrlResult.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

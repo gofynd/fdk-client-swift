@@ -16,6 +16,8 @@ public extension PlatformClient.Webhook {
         
         public var name: String?
         
+        public var type: String?
+        
         public var webhookUrl: String?
         
         public var provider: String
@@ -39,6 +41,8 @@ public extension PlatformClient.Webhook {
             
             case name = "name"
             
+            case type = "type"
+            
             case webhookUrl = "webhook_url"
             
             case provider = "provider"
@@ -57,11 +61,13 @@ public extension PlatformClient.Webhook {
             
         }
 
-        public init(association: Association? = nil, authMeta: AuthMeta? = nil, customHeaders: [String: Any]? = nil, emailId: String? = nil, events: [Events]? = nil, id: Int, name: String? = nil, provider: String, status: SubscriberStatus, webhookUrl: String? = nil) {
+        public init(association: Association? = nil, authMeta: AuthMeta? = nil, customHeaders: [String: Any]? = nil, emailId: String? = nil, events: [Events]? = nil, id: Int, name: String? = nil, provider: String, status: SubscriberStatus, type: String? = nil, webhookUrl: String? = nil) {
             
             self.id = id
             
             self.name = name
+            
+            self.type = type
             
             self.webhookUrl = webhookUrl
             
@@ -92,6 +98,18 @@ public extension PlatformClient.Webhook {
             
                 do {
                     name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -196,6 +214,11 @@ public extension PlatformClient.Webhook {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
             

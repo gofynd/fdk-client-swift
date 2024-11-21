@@ -16,15 +16,13 @@ public extension PlatformClient.Content {
         
         public var namespace: String?
         
-        public var key: String?
+        public var slug: String?
         
         public var resource: String?
         
-        public var creator: String?
-        
         public var value: [CustomFieldValue]?
         
-        public var resourceId: String?
+        public var resourceSlug: String?
         
         public var type: String?
         
@@ -32,13 +30,9 @@ public extension PlatformClient.Content {
         
         public var companyId: String?
         
-        public var definitionId: String?
-        
         public var hasInvalidValues: Bool?
         
         public var invalidValueErrors: [[String: Any]]?
-        
-        public var createdBy: String?
         
         public var isDeleted: Bool?
         
@@ -49,19 +43,17 @@ public extension PlatformClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "_id"
+            case id = "id"
             
             case namespace = "namespace"
             
-            case key = "key"
+            case slug = "slug"
             
             case resource = "resource"
             
-            case creator = "creator"
-            
             case value = "value"
             
-            case resourceId = "resource_id"
+            case resourceSlug = "resource_slug"
             
             case type = "type"
             
@@ -69,13 +61,9 @@ public extension PlatformClient.Content {
             
             case companyId = "company_id"
             
-            case definitionId = "definition_id"
-            
             case hasInvalidValues = "has_invalid_values"
             
             case invalidValueErrors = "invalid_value_errors"
-            
-            case createdBy = "created_by"
             
             case isDeleted = "is_deleted"
             
@@ -85,21 +73,19 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, definitionId: String? = nil, hasInvalidValues: Bool? = nil, invalidValueErrors: [[String: Any]]? = nil, isDeleted: Bool? = nil, key: String? = nil, multiValue: Bool? = nil, namespace: String? = nil, resource: String? = nil, resourceId: String? = nil, type: String? = nil, updatedAt: String? = nil, value: [CustomFieldValue]? = nil, id: String? = nil) {
+        public init(companyId: String? = nil, createdAt: String? = nil, hasInvalidValues: Bool? = nil, id: String? = nil, invalidValueErrors: [[String: Any]]? = nil, isDeleted: Bool? = nil, multiValue: Bool? = nil, namespace: String? = nil, resource: String? = nil, resourceSlug: String? = nil, slug: String? = nil, type: String? = nil, updatedAt: String? = nil, value: [CustomFieldValue]? = nil) {
             
             self.id = id
             
             self.namespace = namespace
             
-            self.key = key
+            self.slug = slug
             
             self.resource = resource
             
-            self.creator = creator
-            
             self.value = value
             
-            self.resourceId = resourceId
+            self.resourceSlug = resourceSlug
             
             self.type = type
             
@@ -107,13 +93,9 @@ public extension PlatformClient.Content {
             
             self.companyId = companyId
             
-            self.definitionId = definitionId
-            
             self.hasInvalidValues = hasInvalidValues
             
             self.invalidValueErrors = invalidValueErrors
-            
-            self.createdBy = createdBy
             
             self.isDeleted = isDeleted
             
@@ -152,7 +134,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    key = try container.decode(String.self, forKey: .key)
+                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -176,18 +158,6 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    creator = try container.decode(String.self, forKey: .creator)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     value = try container.decode([CustomFieldValue].self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -200,7 +170,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    resourceId = try container.decode(String.self, forKey: .resourceId)
+                    resourceSlug = try container.decode(String.self, forKey: .resourceSlug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -248,18 +218,6 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    definitionId = try container.decode(String.self, forKey: .definitionId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     hasInvalidValues = try container.decode(Bool.self, forKey: .hasInvalidValues)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -273,18 +231,6 @@ public extension PlatformClient.Content {
             
                 do {
                     invalidValueErrors = try container.decode([[String: Any]].self, forKey: .invalidValueErrors)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    createdBy = try container.decode(String.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -347,7 +293,7 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
@@ -357,17 +303,12 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(creator, forKey: .creator)
-            
-            
-            
-            
             try? container.encodeIfPresent(value, forKey: .value)
             
             
             
             
-            try? container.encodeIfPresent(resourceId, forKey: .resourceId)
+            try? container.encodeIfPresent(resourceSlug, forKey: .resourceSlug)
             
             
             
@@ -387,22 +328,12 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(definitionId, forKey: .definitionId)
-            
-            
-            
-            
             try? container.encodeIfPresent(hasInvalidValues, forKey: .hasInvalidValues)
             
             
             
             
             try? container.encodeIfPresent(invalidValueErrors, forKey: .invalidValueErrors)
-            
-            
-            
-            
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
             
             
             
@@ -440,15 +371,13 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var namespace: String?
         
-        public var key: String?
+        public var slug: String?
         
         public var resource: String?
         
-        public var creator: String?
-        
         public var value: [CustomFieldValue]?
         
-        public var resourceId: String?
+        public var resourceSlug: String?
         
         public var type: String?
         
@@ -456,13 +385,9 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var companyId: String?
         
-        public var definitionId: String?
-        
         public var hasInvalidValues: Bool?
         
         public var invalidValueErrors: [[String: Any]]?
-        
-        public var createdBy: String?
         
         public var isDeleted: Bool?
         
@@ -473,19 +398,17 @@ public extension PlatformClient.ApplicationClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "_id"
+            case id = "id"
             
             case namespace = "namespace"
             
-            case key = "key"
+            case slug = "slug"
             
             case resource = "resource"
             
-            case creator = "creator"
-            
             case value = "value"
             
-            case resourceId = "resource_id"
+            case resourceSlug = "resource_slug"
             
             case type = "type"
             
@@ -493,13 +416,9 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case companyId = "company_id"
             
-            case definitionId = "definition_id"
-            
             case hasInvalidValues = "has_invalid_values"
             
             case invalidValueErrors = "invalid_value_errors"
-            
-            case createdBy = "created_by"
             
             case isDeleted = "is_deleted"
             
@@ -509,21 +428,19 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, definitionId: String? = nil, hasInvalidValues: Bool? = nil, invalidValueErrors: [[String: Any]]? = nil, isDeleted: Bool? = nil, key: String? = nil, multiValue: Bool? = nil, namespace: String? = nil, resource: String? = nil, resourceId: String? = nil, type: String? = nil, updatedAt: String? = nil, value: [CustomFieldValue]? = nil, id: String? = nil) {
+        public init(companyId: String? = nil, createdAt: String? = nil, hasInvalidValues: Bool? = nil, id: String? = nil, invalidValueErrors: [[String: Any]]? = nil, isDeleted: Bool? = nil, multiValue: Bool? = nil, namespace: String? = nil, resource: String? = nil, resourceSlug: String? = nil, slug: String? = nil, type: String? = nil, updatedAt: String? = nil, value: [CustomFieldValue]? = nil) {
             
             self.id = id
             
             self.namespace = namespace
             
-            self.key = key
+            self.slug = slug
             
             self.resource = resource
             
-            self.creator = creator
-            
             self.value = value
             
-            self.resourceId = resourceId
+            self.resourceSlug = resourceSlug
             
             self.type = type
             
@@ -531,13 +448,9 @@ public extension PlatformClient.ApplicationClient.Content {
             
             self.companyId = companyId
             
-            self.definitionId = definitionId
-            
             self.hasInvalidValues = hasInvalidValues
             
             self.invalidValueErrors = invalidValueErrors
-            
-            self.createdBy = createdBy
             
             self.isDeleted = isDeleted
             
@@ -576,7 +489,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    key = try container.decode(String.self, forKey: .key)
+                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -600,18 +513,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    creator = try container.decode(String.self, forKey: .creator)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     value = try container.decode([CustomFieldValue].self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -624,7 +525,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    resourceId = try container.decode(String.self, forKey: .resourceId)
+                    resourceSlug = try container.decode(String.self, forKey: .resourceSlug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -672,18 +573,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    definitionId = try container.decode(String.self, forKey: .definitionId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     hasInvalidValues = try container.decode(Bool.self, forKey: .hasInvalidValues)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -697,18 +586,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     invalidValueErrors = try container.decode([[String: Any]].self, forKey: .invalidValueErrors)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    createdBy = try container.decode(String.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -771,7 +648,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
@@ -781,17 +658,12 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(creator, forKey: .creator)
-            
-            
-            
-            
             try? container.encodeIfPresent(value, forKey: .value)
             
             
             
             
-            try? container.encodeIfPresent(resourceId, forKey: .resourceId)
+            try? container.encodeIfPresent(resourceSlug, forKey: .resourceSlug)
             
             
             
@@ -811,22 +683,12 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(definitionId, forKey: .definitionId)
-            
-            
-            
-            
             try? container.encodeIfPresent(hasInvalidValues, forKey: .hasInvalidValues)
             
             
             
             
             try? container.encodeIfPresent(invalidValueErrors, forKey: .invalidValueErrors)
-            
-            
-            
-            
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
             
             
             

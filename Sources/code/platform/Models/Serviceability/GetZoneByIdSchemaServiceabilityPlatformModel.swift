@@ -32,6 +32,8 @@ public extension PlatformClient.Serviceability {
         
         public var mapping: [ZoneMappingDetailType]
         
+        public var storesCount: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -55,9 +57,11 @@ public extension PlatformClient.Serviceability {
             
             case mapping = "mapping"
             
+            case storesCount = "stores_count"
+            
         }
 
-        public init(channels: [GetZoneDataViewChannels], companyId: Int? = nil, isActive: Bool, mapping: [ZoneMappingDetailType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storeIds: [Int], zoneId: String) {
+        public init(channels: [GetZoneDataViewChannels], companyId: Int? = nil, isActive: Bool, mapping: [ZoneMappingDetailType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storesCount: Int? = nil, storeIds: [Int], zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -78,6 +82,8 @@ public extension PlatformClient.Serviceability {
             self.regionType = regionType
             
             self.mapping = mapping
+            
+            self.storesCount = storesCount
             
         }
 
@@ -141,6 +147,18 @@ public extension PlatformClient.Serviceability {
                 
             
             
+            
+                do {
+                    storesCount = try container.decode(Int.self, forKey: .storesCount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -194,6 +212,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(mapping, forKey: .mapping)
+            
+            
+            
+            
+            try? container.encodeIfPresent(storesCount, forKey: .storesCount)
             
             
         }
@@ -232,6 +255,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var mapping: [ZoneMappingDetailType]
         
+        public var storesCount: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -255,9 +280,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case mapping = "mapping"
             
+            case storesCount = "stores_count"
+            
         }
 
-        public init(channels: [GetZoneDataViewChannels], companyId: Int? = nil, isActive: Bool, mapping: [ZoneMappingDetailType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storeIds: [Int], zoneId: String) {
+        public init(channels: [GetZoneDataViewChannels], companyId: Int? = nil, isActive: Bool, mapping: [ZoneMappingDetailType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storesCount: Int? = nil, storeIds: [Int], zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -278,6 +305,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.regionType = regionType
             
             self.mapping = mapping
+            
+            self.storesCount = storesCount
             
         }
 
@@ -341,6 +370,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
+            
+                do {
+                    storesCount = try container.decode(Int.self, forKey: .storesCount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -394,6 +435,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(mapping, forKey: .mapping)
+            
+            
+            
+            
+            try? container.encodeIfPresent(storesCount, forKey: .storesCount)
             
             
         }
