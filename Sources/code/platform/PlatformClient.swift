@@ -1172,6 +1172,7 @@ public class PlatformClient {
                 promotionGroup: String?,
                 storeId: Int?,
                 cartType: String?,
+                sortBy: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PromotionOffersDetails?, _ error: FDKError?) -> Void
@@ -1197,6 +1198,10 @@ public class PlatformClient {
                 
                 if let value = cartType {
                     xQuery["cart_type"] = value
+                }
+                
+                if let value = sortBy {
+                    xQuery["sort_by"] = value
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []

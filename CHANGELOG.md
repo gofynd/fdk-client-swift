@@ -89,6 +89,14 @@
 	- [Added] property <code>cart.items[].promotionsApplied[].floatAmount</code> of schema <code>AppliedPromotion</code> in response with status code 200
 
 
+#### getPromotionOffers
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>sortBy</code> (type: <code>string</code>)
+
+	- [Added] property <code>availablePromotions[].isBankOffer</code> of schema <code>PromotionOffer</code> in response with status code 200
+
+
 #### checkoutCartV2
 
 - ##### What's New
@@ -114,6 +122,14 @@
 
 ### Cart
 
+
+
+#### getPromotionOffers
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>sortBy</code> (type: <code>string</code>)
+
+	- [Added] property <code>availablePromotions[].isBankOffer</code> of schema <code>PromotionOffer</code> in response with status code 200
 
 
 #### fetchAndvalidateCartItems

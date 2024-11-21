@@ -1833,6 +1833,7 @@ extension ApplicationClient {
             promotionGroup: String?,
             storeId: Int?,
             cartType: String?,
+            sortBy: String?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PromotionOffersResult?, _ error: FDKError?) -> Void
@@ -1858,6 +1859,10 @@ extension ApplicationClient {
             
             if let value = cartType {
                 xQuery["cart_type"] = value
+            }
+            
+            if let value = sortBy {
+                xQuery["sort_by"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
