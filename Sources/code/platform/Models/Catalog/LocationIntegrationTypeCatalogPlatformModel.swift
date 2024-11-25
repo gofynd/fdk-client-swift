@@ -14,16 +14,22 @@ public extension PlatformClient.Catalog {
         
         public var inventory: String?
         
+        public var order: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case inventory = "inventory"
             
+            case order = "order"
+            
         }
 
-        public init(inventory: String? = nil) {
+        public init(inventory: String? = nil, order: String? = nil) {
             
             self.inventory = inventory
+            
+            self.order = order
             
         }
 
@@ -42,6 +48,18 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    order = try container.decode(String.self, forKey: .order)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -50,6 +68,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(inventory, forKey: .inventory)
+            
+            
+            
+            
+            try? container.encodeIfPresent(order, forKey: .order)
             
             
         }
@@ -70,16 +93,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var inventory: String?
         
+        public var order: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case inventory = "inventory"
             
+            case order = "order"
+            
         }
 
-        public init(inventory: String? = nil) {
+        public init(inventory: String? = nil, order: String? = nil) {
             
             self.inventory = inventory
+            
+            self.order = order
             
         }
 
@@ -98,6 +127,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    order = try container.decode(String.self, forKey: .order)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -106,6 +147,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(inventory, forKey: .inventory)
+            
+            
+            
+            
+            try? container.encodeIfPresent(order, forKey: .order)
             
             
         }

@@ -14,6 +14,8 @@ public extension PlatformClient.Order {
         
         public var success: Bool?
         
+        public var status: Int?
+        
         public var message: String?
         
         public var data: PointBlankOtpData?
@@ -23,15 +25,19 @@ public extension PlatformClient.Order {
             
             case success = "success"
             
+            case status = "status"
+            
             case message = "message"
             
             case data = "data"
             
         }
 
-        public init(data: PointBlankOtpData? = nil, message: String? = nil, success: Bool? = nil) {
+        public init(data: PointBlankOtpData? = nil, message: String? = nil, status: Int? = nil, success: Bool? = nil) {
             
             self.success = success
+            
+            self.status = status
             
             self.message = message
             
@@ -45,6 +51,18 @@ public extension PlatformClient.Order {
             
                 do {
                     success = try container.decode(Bool.self, forKey: .success)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    status = try container.decode(Int.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,6 +104,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(success, forKey: .success)
+            
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             
@@ -116,6 +139,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var success: Bool?
         
+        public var status: Int?
+        
         public var message: String?
         
         public var data: PointBlankOtpData?
@@ -125,15 +150,19 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case success = "success"
             
+            case status = "status"
+            
             case message = "message"
             
             case data = "data"
             
         }
 
-        public init(data: PointBlankOtpData? = nil, message: String? = nil, success: Bool? = nil) {
+        public init(data: PointBlankOtpData? = nil, message: String? = nil, status: Int? = nil, success: Bool? = nil) {
             
             self.success = success
+            
+            self.status = status
             
             self.message = message
             
@@ -147,6 +176,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     success = try container.decode(Bool.self, forKey: .success)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    status = try container.decode(Int.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -188,6 +229,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(success, forKey: .success)
+            
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             

@@ -12,42 +12,30 @@ public extension PlatformClient.Catalog {
     class Identifier: Codable {
         
         
-        public var ean: String?
+        public var primary: Bool?
         
-        public var skuCode: String?
+        public var gtinValue: String?
         
-        public var alu: String?
-        
-        public var upc: String?
-        
-        public var isbn: String?
+        public var gtinType: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case ean = "ean"
+            case primary = "primary"
             
-            case skuCode = "sku_code"
+            case gtinValue = "gtin_value"
             
-            case alu = "alu"
-            
-            case upc = "upc"
-            
-            case isbn = "isbn"
+            case gtinType = "gtin_type"
             
         }
 
-        public init(alu: String? = nil, ean: String? = nil, isbn: String? = nil, skuCode: String? = nil, upc: String? = nil) {
+        public init(gtinType: String? = nil, gtinValue: String? = nil, primary: Bool? = nil) {
             
-            self.ean = ean
+            self.primary = primary
             
-            self.skuCode = skuCode
+            self.gtinValue = gtinValue
             
-            self.alu = alu
-            
-            self.upc = upc
-            
-            self.isbn = isbn
+            self.gtinType = gtinType
             
         }
 
@@ -56,7 +44,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    ean = try container.decode(String.self, forKey: .ean)
+                    primary = try container.decode(Bool.self, forKey: .primary)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +56,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    skuCode = try container.decode(String.self, forKey: .skuCode)
+                    gtinValue = try container.decode(String.self, forKey: .gtinValue)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,31 +68,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    alu = try container.decode(String.self, forKey: .alu)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    upc = try container.decode(String.self, forKey: .upc)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isbn = try container.decode(String.self, forKey: .isbn)
+                    gtinType = try container.decode(String.self, forKey: .gtinType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,27 +85,17 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(ean, forKey: .ean)
+            try? container.encodeIfPresent(primary, forKey: .primary)
             
             
             
             
-            try? container.encodeIfPresent(skuCode, forKey: .skuCode)
+            try? container.encodeIfPresent(gtinValue, forKey: .gtinValue)
             
             
             
             
-            try? container.encodeIfPresent(alu, forKey: .alu)
-            
-            
-            
-            
-            try? container.encodeIfPresent(upc, forKey: .upc)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isbn, forKey: .isbn)
+            try? container.encodeIfPresent(gtinType, forKey: .gtinType)
             
             
         }
@@ -160,42 +114,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class Identifier: Codable {
         
         
-        public var ean: String?
+        public var primary: Bool?
         
-        public var skuCode: String?
+        public var gtinValue: String?
         
-        public var alu: String?
-        
-        public var upc: String?
-        
-        public var isbn: String?
+        public var gtinType: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case ean = "ean"
+            case primary = "primary"
             
-            case skuCode = "sku_code"
+            case gtinValue = "gtin_value"
             
-            case alu = "alu"
-            
-            case upc = "upc"
-            
-            case isbn = "isbn"
+            case gtinType = "gtin_type"
             
         }
 
-        public init(alu: String? = nil, ean: String? = nil, isbn: String? = nil, skuCode: String? = nil, upc: String? = nil) {
+        public init(gtinType: String? = nil, gtinValue: String? = nil, primary: Bool? = nil) {
             
-            self.ean = ean
+            self.primary = primary
             
-            self.skuCode = skuCode
+            self.gtinValue = gtinValue
             
-            self.alu = alu
-            
-            self.upc = upc
-            
-            self.isbn = isbn
+            self.gtinType = gtinType
             
         }
 
@@ -204,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    ean = try container.decode(String.self, forKey: .ean)
+                    primary = try container.decode(Bool.self, forKey: .primary)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -216,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    skuCode = try container.decode(String.self, forKey: .skuCode)
+                    gtinValue = try container.decode(String.self, forKey: .gtinValue)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -228,31 +170,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    alu = try container.decode(String.self, forKey: .alu)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    upc = try container.decode(String.self, forKey: .upc)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isbn = try container.decode(String.self, forKey: .isbn)
+                    gtinType = try container.decode(String.self, forKey: .gtinType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -269,27 +187,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(ean, forKey: .ean)
+            try? container.encodeIfPresent(primary, forKey: .primary)
             
             
             
             
-            try? container.encodeIfPresent(skuCode, forKey: .skuCode)
+            try? container.encodeIfPresent(gtinValue, forKey: .gtinValue)
             
             
             
             
-            try? container.encodeIfPresent(alu, forKey: .alu)
-            
-            
-            
-            
-            try? container.encodeIfPresent(upc, forKey: .upc)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isbn, forKey: .isbn)
+            try? container.encodeIfPresent(gtinType, forKey: .gtinType)
             
             
         }

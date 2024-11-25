@@ -16,13 +16,13 @@ public extension PlatformClient.Catalog {
         
         public var address: GetAddressSchema
         
-        public var code: String
+        public var storeCode: String
         
         public var company: GetCompanySchema?
         
         public var contactNumbers: [SellerPhoneNumber]?
         
-        public var createdBy: UserSerializer3?
+        public var createdBy: UserSchema?
         
         public var createdOn: String?
         
@@ -36,7 +36,7 @@ public extension PlatformClient.Catalog {
         
         public var manager: LocationManagerSchema?
         
-        public var modifiedBy: UserSerializer3?
+        public var modifiedBy: UserSchema?
         
         public var modifiedOn: String?
         
@@ -56,11 +56,13 @@ public extension PlatformClient.Catalog {
         
         public var uid: Int?
         
-        public var verifiedBy: UserSerializer3?
+        public var verifiedBy: UserSchema?
         
         public var verifiedOn: String?
         
         public var warnings: [String: Any]?
+        
+        public var companyId: Int?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -69,7 +71,7 @@ public extension PlatformClient.Catalog {
             
             case address = "address"
             
-            case code = "code"
+            case storeCode = "store_code"
             
             case company = "company"
             
@@ -115,15 +117,17 @@ public extension PlatformClient.Catalog {
             
             case warnings = "warnings"
             
+            case companyId = "company_id"
+            
         }
 
-        public init(address: GetAddressSchema, code: String, company: GetCompanySchema? = nil, contactNumbers: [SellerPhoneNumber]? = nil, createdBy: UserSerializer3? = nil, createdOn: String? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSchema? = nil, integrationType: LocationIntegrationType? = nil, manager: LocationManagerSchema? = nil, modifiedBy: UserSerializer3? = nil, modifiedOn: String? = nil, name: String, notificationEmails: [String]? = nil, phoneNumber: String, productReturnConfig: ProductReturnConfigSchema? = nil, stage: String? = nil, storeType: String? = nil, timing: [LocationDayWiseSchema]? = nil, uid: Int? = nil, verifiedBy: UserSerializer3? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(address: GetAddressSchema, company: GetCompanySchema? = nil, companyId: Int? = nil, contactNumbers: [SellerPhoneNumber]? = nil, createdBy: UserSchema? = nil, createdOn: String? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSchema? = nil, integrationType: LocationIntegrationType? = nil, manager: LocationManagerSchema? = nil, modifiedBy: UserSchema? = nil, modifiedOn: String? = nil, name: String, notificationEmails: [String]? = nil, phoneNumber: String, productReturnConfig: ProductReturnConfigSchema? = nil, stage: String? = nil, storeCode: String, storeType: String? = nil, timing: [LocationDayWiseSchema]? = nil, uid: Int? = nil, verifiedBy: UserSchema? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.customJson = customJson
             
             self.address = address
             
-            self.code = code
+            self.storeCode = storeCode
             
             self.company = company
             
@@ -169,6 +173,8 @@ public extension PlatformClient.Catalog {
             
             self.warnings = warnings
             
+            self.companyId = companyId
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -192,7 +198,7 @@ public extension PlatformClient.Catalog {
             
             
             
-                code = try container.decode(String.self, forKey: .code)
+                storeCode = try container.decode(String.self, forKey: .storeCode)
                 
             
             
@@ -222,7 +228,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserSerializer3.self, forKey: .createdBy)
+                    createdBy = try container.decode(UserSchema.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -299,7 +305,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(UserSerializer3.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(UserSchema.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -405,7 +411,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    verifiedBy = try container.decode(UserSerializer3.self, forKey: .verifiedBy)
+                    verifiedBy = try container.decode(UserSchema.self, forKey: .verifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -439,6 +445,18 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    companyId = try container.decode(Int.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -456,7 +474,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
             
             
             
@@ -567,6 +585,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(warnings, forKey: .warnings)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
         }
@@ -589,13 +612,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var address: GetAddressSchema
         
-        public var code: String
+        public var storeCode: String
         
         public var company: GetCompanySchema?
         
         public var contactNumbers: [SellerPhoneNumber]?
         
-        public var createdBy: UserSerializer3?
+        public var createdBy: UserSchema?
         
         public var createdOn: String?
         
@@ -609,7 +632,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var manager: LocationManagerSchema?
         
-        public var modifiedBy: UserSerializer3?
+        public var modifiedBy: UserSchema?
         
         public var modifiedOn: String?
         
@@ -629,11 +652,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var uid: Int?
         
-        public var verifiedBy: UserSerializer3?
+        public var verifiedBy: UserSchema?
         
         public var verifiedOn: String?
         
         public var warnings: [String: Any]?
+        
+        public var companyId: Int?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -642,7 +667,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case address = "address"
             
-            case code = "code"
+            case storeCode = "store_code"
             
             case company = "company"
             
@@ -688,15 +713,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case warnings = "warnings"
             
+            case companyId = "company_id"
+            
         }
 
-        public init(address: GetAddressSchema, code: String, company: GetCompanySchema? = nil, contactNumbers: [SellerPhoneNumber]? = nil, createdBy: UserSerializer3? = nil, createdOn: String? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSchema? = nil, integrationType: LocationIntegrationType? = nil, manager: LocationManagerSchema? = nil, modifiedBy: UserSerializer3? = nil, modifiedOn: String? = nil, name: String, notificationEmails: [String]? = nil, phoneNumber: String, productReturnConfig: ProductReturnConfigSchema? = nil, stage: String? = nil, storeType: String? = nil, timing: [LocationDayWiseSchema]? = nil, uid: Int? = nil, verifiedBy: UserSerializer3? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(address: GetAddressSchema, company: GetCompanySchema? = nil, companyId: Int? = nil, contactNumbers: [SellerPhoneNumber]? = nil, createdBy: UserSchema? = nil, createdOn: String? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSchema? = nil, integrationType: LocationIntegrationType? = nil, manager: LocationManagerSchema? = nil, modifiedBy: UserSchema? = nil, modifiedOn: String? = nil, name: String, notificationEmails: [String]? = nil, phoneNumber: String, productReturnConfig: ProductReturnConfigSchema? = nil, stage: String? = nil, storeCode: String, storeType: String? = nil, timing: [LocationDayWiseSchema]? = nil, uid: Int? = nil, verifiedBy: UserSchema? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.customJson = customJson
             
             self.address = address
             
-            self.code = code
+            self.storeCode = storeCode
             
             self.company = company
             
@@ -742,6 +769,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.warnings = warnings
             
+            self.companyId = companyId
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -765,7 +794,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-                code = try container.decode(String.self, forKey: .code)
+                storeCode = try container.decode(String.self, forKey: .storeCode)
                 
             
             
@@ -795,7 +824,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserSerializer3.self, forKey: .createdBy)
+                    createdBy = try container.decode(UserSchema.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -872,7 +901,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(UserSerializer3.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(UserSchema.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -978,7 +1007,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    verifiedBy = try container.decode(UserSerializer3.self, forKey: .verifiedBy)
+                    verifiedBy = try container.decode(UserSchema.self, forKey: .verifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1012,6 +1041,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    companyId = try container.decode(Int.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -1029,7 +1070,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
             
             
             
@@ -1140,6 +1181,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(warnings, forKey: .warnings)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
         }

@@ -12,7 +12,7 @@ public extension PlatformClient.Catalog {
     class PageResponseSchema: Codable {
         
         
-        public var current: String?
+        public var current: Int?
         
         public var hasNext: Bool?
         
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(current: String? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil) {
+        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil) {
             
             self.current = current
             
@@ -56,7 +56,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    current = try container.decode(String.self, forKey: .current)
+                    current = try container.decode(Int.self, forKey: .current)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -160,7 +160,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class PageResponseSchema: Codable {
         
         
-        public var current: String?
+        public var current: Int?
         
         public var hasNext: Bool?
         
@@ -185,7 +185,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(current: String? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil) {
+        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil) {
             
             self.current = current
             
@@ -204,7 +204,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    current = try container.decode(String.self, forKey: .current)
+                    current = try container.decode(Int.self, forKey: .current)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

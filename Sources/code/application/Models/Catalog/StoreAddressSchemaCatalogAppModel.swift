@@ -26,6 +26,12 @@ public extension ApplicationClient.Catalog {
         
         public var address2: String?
         
+        public var latLong: LatLong?
+        
+        public var countryCode: String?
+        
+        public var addressMeta: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -47,9 +53,15 @@ public extension ApplicationClient.Catalog {
             
             case address2 = "address2"
             
+            case latLong = "lat_long"
+            
+            case countryCode = "country_code"
+            
+            case addressMeta = "address_meta"
+            
         }
 
-        public init(address1: String? = nil, address2: String? = nil, city: String? = nil, country: String? = nil, landmark: String? = nil, latitude: Double? = nil, longitude: Double? = nil, pincode: Int? = nil, state: String? = nil) {
+        public init(address1: String? = nil, address2: String? = nil, addressMeta: [String: Any]? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, landmark: String? = nil, latitude: Double? = nil, latLong: LatLong? = nil, longitude: Double? = nil, pincode: Int? = nil, state: String? = nil) {
             
             self.latitude = latitude
             
@@ -68,6 +80,12 @@ public extension ApplicationClient.Catalog {
             self.longitude = longitude
             
             self.address2 = address2
+            
+            self.latLong = latLong
+            
+            self.countryCode = countryCode
+            
+            self.addressMeta = addressMeta
             
         }
 
@@ -182,6 +200,42 @@ public extension ApplicationClient.Catalog {
             }
             
             
+            
+            do {
+                latLong = try container.decode(LatLong.self, forKey: .latLong)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                countryCode = try container.decode(String.self, forKey: .countryCode)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                addressMeta = try container.decode([String: Any].self, forKey: .addressMeta)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -221,6 +275,18 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(address2, forKey: .address2)
+            
+            
+            
+            try? container.encodeIfPresent(latLong, forKey: .latLong)
+            
+            
+            
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            
+            
+            
+            try? container.encodeIfPresent(addressMeta, forKey: .addressMeta)
             
             
         }

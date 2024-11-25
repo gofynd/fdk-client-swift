@@ -30,6 +30,8 @@ public extension ApplicationClient.Order {
         
         public var meta: [String: Any]?
         
+        public var currency: CurrencySchema?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -55,9 +57,11 @@ public extension ApplicationClient.Order {
             
             case meta = "meta"
             
+            case currency = "currency"
+            
         }
 
-        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, charges: [PriceAdjustmentCharge]? = nil, gstinCode: String? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
+        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, charges: [PriceAdjustmentCharge]? = nil, currency: CurrencySchema? = nil, gstinCode: String? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
             
             self.totalShipmentsInOrder = totalShipmentsInOrder
             
@@ -80,6 +84,8 @@ public extension ApplicationClient.Order {
             self.charges = charges
             
             self.meta = meta
+            
+            self.currency = currency
             
         }
 
@@ -218,6 +224,18 @@ public extension ApplicationClient.Order {
             }
             
             
+            
+            do {
+                currency = try container.decode(CurrencySchema.self, forKey: .currency)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -265,6 +283,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
         }

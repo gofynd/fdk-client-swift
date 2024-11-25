@@ -492,17 +492,14 @@ extension PlatformClient {
         * Description: Checks the validity of the provided IFSC code and returns bank details if valid.
         **/
         public func verifyIfscCode(
-            ifscCode: String?,
+            ifscCode: String,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: IfscCodeDetails?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
-            
-            if let value = ifscCode {
-                xQuery["ifsc_code"] = value
-            }
+            xQuery["ifsc_code"] = ifscCode
             
             var xHeaders: [(key: String, value: String)] = []
             

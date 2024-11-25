@@ -16,7 +16,7 @@ public extension PlatformClient.Order {
         
         public var shippingInfo: ShippingInfo
         
-        public var billingInfo: BillingInfo
+        public var billingInfo: ShippingInfo
         
         public var currencyInfo: [String: Any]?
         
@@ -30,7 +30,7 @@ public extension PlatformClient.Order {
         
         public var taxInfo: TaxInfo?
         
-        public var config: CreateOrderConfig?
+        public var config: CreateOrderConfig
         
         public var paymentInfo: PaymentInfo
         
@@ -43,6 +43,14 @@ public extension PlatformClient.Order {
         public var status: String?
         
         public var systemMessages: [SystemMessages]?
+        
+        public var orderType: String?
+        
+        public var fyndOrderId: String?
+        
+        public var applicationId: String?
+        
+        public var externalShipmentId: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -79,9 +87,17 @@ public extension PlatformClient.Order {
             
             case systemMessages = "system_messages"
             
+            case orderType = "order_type"
+            
+            case fyndOrderId = "fynd_order_id"
+            
+            case applicationId = "application_id"
+            
+            case externalShipmentId = "external_shipment_id"
+            
         }
 
-        public init(billingInfo: BillingInfo, charges: [Charge]? = nil, config: CreateOrderConfig? = nil, currencyInfo: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, meta: [String: Any]? = nil, orderingStoreId: Int? = nil, orderPlatform: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, status: String? = nil, systemMessages: [SystemMessages]? = nil, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
+        public init(applicationId: String? = nil, billingInfo: ShippingInfo, charges: [Charge]? = nil, config: CreateOrderConfig, currencyInfo: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, externalShipmentId: String? = nil, fyndOrderId: String? = nil, meta: [String: Any]? = nil, orderingStoreId: Int? = nil, orderPlatform: String? = nil, orderType: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, status: String? = nil, systemMessages: [SystemMessages]? = nil, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
             
             self.shipments = shipments
             
@@ -115,6 +131,14 @@ public extension PlatformClient.Order {
             
             self.systemMessages = systemMessages
             
+            self.orderType = orderType
+            
+            self.fyndOrderId = fyndOrderId
+            
+            self.applicationId = applicationId
+            
+            self.externalShipmentId = externalShipmentId
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -131,7 +155,7 @@ public extension PlatformClient.Order {
             
             
             
-                billingInfo = try container.decode(BillingInfo.self, forKey: .billingInfo)
+                billingInfo = try container.decode(ShippingInfo.self, forKey: .billingInfo)
                 
             
             
@@ -208,16 +232,9 @@ public extension PlatformClient.Order {
                 
             
             
-                do {
-                    config = try container.decode(CreateOrderConfig.self, forKey: .config)
+                config = try container.decode(CreateOrderConfig.self, forKey: .config)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 paymentInfo = try container.decode(PaymentInfo.self, forKey: .paymentInfo)
@@ -275,6 +292,54 @@ public extension PlatformClient.Order {
             
                 do {
                     systemMessages = try container.decode([SystemMessages].self, forKey: .systemMessages)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderType = try container.decode(String.self, forKey: .orderType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    applicationId = try container.decode(String.self, forKey: .applicationId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    externalShipmentId = try container.decode(String.self, forKey: .externalShipmentId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -367,6 +432,26 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(systemMessages, forKey: .systemMessages)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderType, forKey: .orderType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(externalShipmentId, forKey: .externalShipmentId)
             
             
         }
@@ -389,7 +474,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var shippingInfo: ShippingInfo
         
-        public var billingInfo: BillingInfo
+        public var billingInfo: ShippingInfo
         
         public var currencyInfo: [String: Any]?
         
@@ -403,7 +488,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var taxInfo: TaxInfo?
         
-        public var config: CreateOrderConfig?
+        public var config: CreateOrderConfig
         
         public var paymentInfo: PaymentInfo
         
@@ -416,6 +501,14 @@ public extension PlatformClient.ApplicationClient.Order {
         public var status: String?
         
         public var systemMessages: [SystemMessages]?
+        
+        public var orderType: String?
+        
+        public var fyndOrderId: String?
+        
+        public var applicationId: String?
+        
+        public var externalShipmentId: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -452,9 +545,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case systemMessages = "system_messages"
             
+            case orderType = "order_type"
+            
+            case fyndOrderId = "fynd_order_id"
+            
+            case applicationId = "application_id"
+            
+            case externalShipmentId = "external_shipment_id"
+            
         }
 
-        public init(billingInfo: BillingInfo, charges: [Charge]? = nil, config: CreateOrderConfig? = nil, currencyInfo: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, meta: [String: Any]? = nil, orderingStoreId: Int? = nil, orderPlatform: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, status: String? = nil, systemMessages: [SystemMessages]? = nil, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
+        public init(applicationId: String? = nil, billingInfo: ShippingInfo, charges: [Charge]? = nil, config: CreateOrderConfig, currencyInfo: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, externalShipmentId: String? = nil, fyndOrderId: String? = nil, meta: [String: Any]? = nil, orderingStoreId: Int? = nil, orderPlatform: String? = nil, orderType: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, status: String? = nil, systemMessages: [SystemMessages]? = nil, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
             
             self.shipments = shipments
             
@@ -488,6 +589,14 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.systemMessages = systemMessages
             
+            self.orderType = orderType
+            
+            self.fyndOrderId = fyndOrderId
+            
+            self.applicationId = applicationId
+            
+            self.externalShipmentId = externalShipmentId
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -504,7 +613,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                billingInfo = try container.decode(BillingInfo.self, forKey: .billingInfo)
+                billingInfo = try container.decode(ShippingInfo.self, forKey: .billingInfo)
                 
             
             
@@ -581,16 +690,9 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-                do {
-                    config = try container.decode(CreateOrderConfig.self, forKey: .config)
+                config = try container.decode(CreateOrderConfig.self, forKey: .config)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 paymentInfo = try container.decode(PaymentInfo.self, forKey: .paymentInfo)
@@ -648,6 +750,54 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     systemMessages = try container.decode([SystemMessages].self, forKey: .systemMessages)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderType = try container.decode(String.self, forKey: .orderType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    applicationId = try container.decode(String.self, forKey: .applicationId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    externalShipmentId = try container.decode(String.self, forKey: .externalShipmentId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -740,6 +890,26 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(systemMessages, forKey: .systemMessages)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderType, forKey: .orderType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(externalShipmentId, forKey: .externalShipmentId)
             
             
         }

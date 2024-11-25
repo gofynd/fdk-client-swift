@@ -12,7 +12,7 @@ public extension PlatformClient.Catalog {
     class GetQueryFiltersValuesResponseSchema: Codable {
         
         
-        public var values: [ProductFiltersValue]
+        public var values: [ProductQueryFiltersValue]
         
         public var page: Page
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(page: Page, values: [ProductFiltersValue]) {
+        public init(page: Page, values: [ProductQueryFiltersValue]) {
             
             self.values = values
             
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                values = try container.decode([ProductFiltersValue].self, forKey: .values)
+                values = try container.decode([ProductQueryFiltersValue].self, forKey: .values)
                 
             
             
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetQueryFiltersValuesResponseSchema: Codable {
         
         
-        public var values: [ProductFiltersValue]
+        public var values: [ProductQueryFiltersValue]
         
         public var page: Page
         
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(page: Page, values: [ProductFiltersValue]) {
+        public init(page: Page, values: [ProductQueryFiltersValue]) {
             
             self.values = values
             
@@ -102,7 +102,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                values = try container.decode([ProductFiltersValue].self, forKey: .values)
+                values = try container.decode([ProductQueryFiltersValue].self, forKey: .values)
                 
             
             

@@ -666,6 +666,7 @@ extension ApplicationClient {
             pageNo: Int?,
             pageSize: Int?,
             q: String?,
+            sector: String?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetLocalities?, _ error: FDKError?) -> Void
@@ -695,6 +696,10 @@ extension ApplicationClient {
             
             if let value = q {
                 xQuery["q"] = value
+            }
+            
+            if let value = sector {
+                xQuery["sector"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []

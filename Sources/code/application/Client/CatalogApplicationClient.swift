@@ -421,7 +421,7 @@ extension ApplicationClient {
         * Description: Get the current stock status for products identified by their IDs, such as SKU, ALU, EAN, etc.
         **/
         public func getProductStockByIds(
-            itemId: String?,
+            itemId: Int?,
             alu: String?,
             skuCode: String?,
             ean: String?,
@@ -1759,7 +1759,7 @@ extension ApplicationClient {
         **/
         public func getFollowerCountById(
             collectionType: String,
-            collectionId: String,
+            collectionId: Int,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: FollowerCountResponseSchema?, _ error: FDKError?) -> Void
@@ -2214,7 +2214,7 @@ extension ApplicationClient {
         **/
         public func getProductBundlesBySlug(
             slug: String?,
-            id: String?,
+            id: Int?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProductBundle?, _ error: FDKError?) -> Void

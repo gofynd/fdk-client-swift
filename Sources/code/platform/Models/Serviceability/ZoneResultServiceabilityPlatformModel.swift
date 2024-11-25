@@ -12,7 +12,7 @@ public extension PlatformClient.Serviceability {
     class ZoneResult: Codable {
         
         
-        public var statusCode: Int
+        public var statusCode: Int?
         
         public var zoneId: String
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(statusCode: Int, success: Bool, zoneId: String) {
+        public init(statusCode: Int? = nil, success: Bool, zoneId: String) {
             
             self.statusCode = statusCode
             
@@ -43,9 +43,16 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                statusCode = try container.decode(Int.self, forKey: .statusCode)
+                do {
+                    statusCode = try container.decode(Int.self, forKey: .statusCode)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 zoneId = try container.decode(String.self, forKey: .zoneId)
@@ -93,7 +100,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ZoneResult: Codable {
         
         
-        public var statusCode: Int
+        public var statusCode: Int?
         
         public var zoneId: String
         
@@ -110,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(statusCode: Int, success: Bool, zoneId: String) {
+        public init(statusCode: Int? = nil, success: Bool, zoneId: String) {
             
             self.statusCode = statusCode
             
@@ -124,9 +131,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                statusCode = try container.decode(Int.self, forKey: .statusCode)
+                do {
+                    statusCode = try container.decode(Int.self, forKey: .statusCode)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 zoneId = try container.decode(String.self, forKey: .zoneId)

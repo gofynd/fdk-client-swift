@@ -12,7 +12,7 @@ public extension PlatformClient.Catalog {
     class ErrorResponseSchema: Codable {
         
         
-        public var code: String?
+        public var code: Double?
         
         public var error: String?
         
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(code: String? = nil, error: String? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
+        public init(code: Double? = nil, error: String? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
             
             self.code = code
             
@@ -56,7 +56,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    code = try container.decode(String.self, forKey: .code)
+                    code = try container.decode(Double.self, forKey: .code)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -160,7 +160,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ErrorResponseSchema: Codable {
         
         
-        public var code: String?
+        public var code: Double?
         
         public var error: String?
         
@@ -185,7 +185,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(code: String? = nil, error: String? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
+        public init(code: Double? = nil, error: String? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
             
             self.code = code
             
@@ -204,7 +204,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    code = try container.decode(String.self, forKey: .code)
+                    code = try container.decode(Double.self, forKey: .code)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

@@ -14,7 +14,7 @@ public extension PlatformClient.Payment {
         
         public var paymentOption: [RootPaymentMode]
         
-        public var paymentFlows: PaymentFlow
+        public var paymentFlows: PaymentFlow?
         
         public var paymentDefaultSelection: PaymentDefaultSelection?
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(paymentDefaultSelection: PaymentDefaultSelection? = nil, paymentFlows: PaymentFlow, paymentOption: [RootPaymentMode]) {
+        public init(paymentDefaultSelection: PaymentDefaultSelection? = nil, paymentFlows: PaymentFlow? = nil, paymentOption: [RootPaymentMode]) {
             
             self.paymentOption = paymentOption
             
@@ -48,9 +48,16 @@ public extension PlatformClient.Payment {
             
             
             
-                paymentFlows = try container.decode(PaymentFlow.self, forKey: .paymentFlows)
+                do {
+                    paymentFlows = try container.decode(PaymentFlow.self, forKey: .paymentFlows)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -102,7 +109,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var paymentOption: [RootPaymentMode]
         
-        public var paymentFlows: PaymentFlow
+        public var paymentFlows: PaymentFlow?
         
         public var paymentDefaultSelection: PaymentDefaultSelection?
         
@@ -117,7 +124,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(paymentDefaultSelection: PaymentDefaultSelection? = nil, paymentFlows: PaymentFlow, paymentOption: [RootPaymentMode]) {
+        public init(paymentDefaultSelection: PaymentDefaultSelection? = nil, paymentFlows: PaymentFlow? = nil, paymentOption: [RootPaymentMode]) {
             
             self.paymentOption = paymentOption
             
@@ -136,9 +143,16 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                paymentFlows = try container.decode(PaymentFlow.self, forKey: .paymentFlows)
+                do {
+                    paymentFlows = try container.decode(PaymentFlow.self, forKey: .paymentFlows)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

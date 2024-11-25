@@ -82,6 +82,12 @@ public extension ApplicationClient.Catalog {
         
         public var teaserTag: String?
         
+        public var promoMeta: [String: Any]?
+        
+        public var noOfBoxes: Int?
+        
+        public var countryOfOrigin: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -159,9 +165,15 @@ public extension ApplicationClient.Catalog {
             
             case teaserTag = "teaser_tag"
             
+            case promoMeta = "promo_meta"
+            
+            case noOfBoxes = "no_of_boxes"
+            
+            case countryOfOrigin = "country_of_origin"
+            
         }
 
-        public init(action: ProductListingAction? = nil, attributes: [String: Any]? = nil, brand: ProductBrand? = nil, categories: [ProductBrand]? = nil, categoryMap: ProductCategoryMap? = nil, color: String? = nil, customOrder: ProductDetailCustomOrder? = nil, department: ProductDepartment? = nil, description: String? = nil, discount: String? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, imageNature: String? = nil, isDependent: Bool? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, moq: ApplicationItemMOQ? = nil, name: String? = nil, netQuantity: NetQuantity? = nil, price: ProductListingPrice? = nil, productGroupTag: [String]? = nil, productOnlineDate: String? = nil, rating: Double? = nil, ratingCount: Int? = nil, seo: ApplicationItemSEO? = nil, shortDescription: String? = nil, similars: [String]? = nil, slug: String, tags: [String]? = nil, teaserTag: String? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil, customMeta: [CustomMetaFields]? = nil) {
+        public init(action: ProductListingAction? = nil, attributes: [String: Any]? = nil, brand: ProductBrand? = nil, categories: [ProductBrand]? = nil, categoryMap: ProductCategoryMap? = nil, color: String? = nil, countryOfOrigin: String? = nil, customOrder: ProductDetailCustomOrder? = nil, department: ProductDepartment? = nil, description: String? = nil, discount: String? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, imageNature: String? = nil, isDependent: Bool? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, moq: ApplicationItemMOQ? = nil, name: String? = nil, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, price: ProductListingPrice? = nil, productGroupTag: [String]? = nil, productOnlineDate: String? = nil, promoMeta: [String: Any]? = nil, rating: Double? = nil, ratingCount: Int? = nil, seo: ApplicationItemSEO? = nil, shortDescription: String? = nil, similars: [String]? = nil, slug: String, tags: [String]? = nil, teaserTag: String? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil, customMeta: [CustomMetaFields]? = nil) {
             
             self.uid = uid
             
@@ -236,6 +248,12 @@ public extension ApplicationClient.Catalog {
             self.department = department
             
             self.teaserTag = teaserTag
+            
+            self.promoMeta = promoMeta
+            
+            self.noOfBoxes = noOfBoxes
+            
+            self.countryOfOrigin = countryOfOrigin
             
         }
 
@@ -679,6 +697,42 @@ public extension ApplicationClient.Catalog {
             }
             
             
+            
+            do {
+                promoMeta = try container.decode([String: Any].self, forKey: .promoMeta)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                noOfBoxes = try container.decode(Int.self, forKey: .noOfBoxes)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                countryOfOrigin = try container.decode(String.self, forKey: .countryOfOrigin)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -830,6 +884,18 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(teaserTag, forKey: .teaserTag)
+            
+            
+            
+            try? container.encodeIfPresent(promoMeta, forKey: .promoMeta)
+            
+            
+            
+            try? container.encodeIfPresent(noOfBoxes, forKey: .noOfBoxes)
+            
+            
+            
+            try? container.encodeIfPresent(countryOfOrigin, forKey: .countryOfOrigin)
             
             
         }

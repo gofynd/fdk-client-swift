@@ -30,7 +30,9 @@ public extension ApplicationClient.Catalog {
         
         public var tags: [String]?
         
-        public var contacts: [StoreContact]?
+        public var managerContact: String?
+        
+        public var contacts: [ContactDetails]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -57,11 +59,13 @@ public extension ApplicationClient.Catalog {
             
             case tags = "tags"
             
+            case managerContact = "manager_contact"
+            
             case contacts = "contacts"
             
         }
 
-        public init(address: String? = nil, city: String? = nil, contacts: [StoreContact]? = nil, country: String? = nil, latLong: LatLong? = nil, name: String? = nil, pincode: Int? = nil, state: String? = nil, storeCode: String? = nil, storeEmail: String? = nil, tags: [String]? = nil, uid: Int? = nil) {
+        public init(address: String? = nil, city: String? = nil, contacts: [ContactDetails]? = nil, country: String? = nil, latLong: LatLong? = nil, managerContact: String? = nil, name: String? = nil, pincode: Int? = nil, state: String? = nil, storeCode: String? = nil, storeEmail: String? = nil, tags: [String]? = nil, uid: Int? = nil) {
             
             self.uid = uid
             
@@ -84,6 +88,8 @@ public extension ApplicationClient.Catalog {
             self.name = name
             
             self.tags = tags
+            
+            self.managerContact = managerContact
             
             self.contacts = contacts
             
@@ -226,7 +232,19 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                contacts = try container.decode([StoreContact].self, forKey: .contacts)
+                managerContact = try container.decode(String.self, forKey: .managerContact)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                contacts = try container.decode([ContactDetails].self, forKey: .contacts)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -283,6 +301,10 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            try? container.encodeIfPresent(managerContact, forKey: .managerContact)
             
             
             

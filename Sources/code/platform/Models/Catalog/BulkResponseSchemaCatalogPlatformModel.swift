@@ -14,13 +14,13 @@ public extension PlatformClient.Catalog {
         
         public var batchId: String
         
-        public var createdBy: UserInfo1?
+        public var createdBy: UserInfo?
         
         public var createdOn: String
         
         public var isActive: Bool?
         
-        public var modifiedBy: UserInfo1?
+        public var modifiedBy: UserInfo?
         
         public var modifiedOn: String?
         
@@ -41,7 +41,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(batchId: String, createdBy: UserInfo1? = nil, createdOn: String, isActive: Bool? = nil, modifiedBy: UserInfo1? = nil, modifiedOn: String? = nil) {
+        public init(batchId: String, createdBy: UserInfo? = nil, createdOn: String, isActive: Bool? = nil, modifiedBy: UserInfo? = nil, modifiedOn: String? = nil) {
             
             self.batchId = batchId
             
@@ -67,7 +67,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserInfo1.self, forKey: .createdBy)
+                    createdBy = try container.decode(UserInfo.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,7 +96,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(UserInfo1.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(UserInfo.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -171,13 +171,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var batchId: String
         
-        public var createdBy: UserInfo1?
+        public var createdBy: UserInfo?
         
         public var createdOn: String
         
         public var isActive: Bool?
         
-        public var modifiedBy: UserInfo1?
+        public var modifiedBy: UserInfo?
         
         public var modifiedOn: String?
         
@@ -198,7 +198,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(batchId: String, createdBy: UserInfo1? = nil, createdOn: String, isActive: Bool? = nil, modifiedBy: UserInfo1? = nil, modifiedOn: String? = nil) {
+        public init(batchId: String, createdBy: UserInfo? = nil, createdOn: String, isActive: Bool? = nil, modifiedBy: UserInfo? = nil, modifiedOn: String? = nil) {
             
             self.batchId = batchId
             
@@ -224,7 +224,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserInfo1.self, forKey: .createdBy)
+                    createdBy = try container.decode(UserInfo.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -253,7 +253,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(UserInfo1.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(UserInfo.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

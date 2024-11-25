@@ -12,11 +12,11 @@ public extension PlatformClient.Serviceability {
     class CourierPartnerRuleCPListResult: Codable {
         
         
-        public var accountId: String?
+        public var accountId: String
         
-        public var extensionId: String?
+        public var extensionId: String
         
-        public var isSelfShip: Bool?
+        public var isSelfShip: Bool
         
         public var schemeRules: [String: Any]?
         
@@ -33,7 +33,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(accountId: String? = nil, extensionId: String? = nil, isSelfShip: Bool? = nil, schemeRules: [String: Any]? = nil) {
+        public init(accountId: String, extensionId: String, isSelfShip: Bool, schemeRules: [String: Any]? = nil) {
             
             self.accountId = accountId
             
@@ -49,40 +49,19 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    accountId = try container.decode(String.self, forKey: .accountId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                accountId = try container.decode(String.self, forKey: .accountId)
                 
             
             
-                do {
-                    extensionId = try container.decode(String.self, forKey: .extensionId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                extensionId = try container.decode(String.self, forKey: .extensionId)
                 
             
             
-                do {
-                    isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
+            
+                isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -137,11 +116,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class CourierPartnerRuleCPListResult: Codable {
         
         
-        public var accountId: String?
+        public var accountId: String
         
-        public var extensionId: String?
+        public var extensionId: String
         
-        public var isSelfShip: Bool?
+        public var isSelfShip: Bool
         
         public var schemeRules: [String: Any]?
         
@@ -158,7 +137,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(accountId: String? = nil, extensionId: String? = nil, isSelfShip: Bool? = nil, schemeRules: [String: Any]? = nil) {
+        public init(accountId: String, extensionId: String, isSelfShip: Bool, schemeRules: [String: Any]? = nil) {
             
             self.accountId = accountId
             
@@ -174,40 +153,19 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    accountId = try container.decode(String.self, forKey: .accountId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                accountId = try container.decode(String.self, forKey: .accountId)
                 
             
             
-                do {
-                    extensionId = try container.decode(String.self, forKey: .extensionId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                extensionId = try container.decode(String.self, forKey: .extensionId)
                 
             
             
-                do {
-                    isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
+            
+                isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {

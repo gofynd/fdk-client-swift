@@ -34,13 +34,11 @@ public extension PlatformClient.Catalog {
         
         public var modifiedOn: String?
         
-        public var name: String?
+        public var name: String
         
         public var rawKey: String?
         
         public var schema: AttributeMaster
-        
-        public var slug: String
         
         public var suggestion: String?
         
@@ -49,6 +47,8 @@ public extension PlatformClient.Catalog {
         public var tags: [String]?
         
         public var unit: String?
+        
+        public var slug: String
         
         public var variant: Bool?
         
@@ -83,8 +83,6 @@ public extension PlatformClient.Catalog {
             
             case schema = "schema"
             
-            case slug = "slug"
-            
             case suggestion = "suggestion"
             
             case synonyms = "synonyms"
@@ -93,11 +91,13 @@ public extension PlatformClient.Catalog {
             
             case unit = "unit"
             
+            case slug = "slug"
+            
             case variant = "variant"
             
         }
 
-        public init(createdBy: [String: Any]? = nil, createdOn: String? = nil, departments: [String], description: String? = nil, details: AttributeMasterDetails, enabledForEndConsumer: Bool? = nil, filters: AttributeMasterFilter, isNested: Bool? = nil, logo: String? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String? = nil, rawKey: String? = nil, schema: AttributeMaster, slug: String, suggestion: String? = nil, synonyms: [String: Any]? = nil, tags: [String]? = nil, unit: String? = nil, variant: Bool? = nil) {
+        public init(createdBy: [String: Any]? = nil, createdOn: String? = nil, departments: [String], description: String? = nil, details: AttributeMasterDetails, enabledForEndConsumer: Bool? = nil, filters: AttributeMasterFilter, isNested: Bool? = nil, logo: String? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, rawKey: String? = nil, schema: AttributeMaster, slug: String, suggestion: String? = nil, synonyms: [String: Any]? = nil, tags: [String]? = nil, unit: String? = nil, variant: Bool? = nil) {
             
             self.createdBy = createdBy
             
@@ -127,8 +127,6 @@ public extension PlatformClient.Catalog {
             
             self.schema = schema
             
-            self.slug = slug
-            
             self.suggestion = suggestion
             
             self.synonyms = synonyms
@@ -136,6 +134,8 @@ public extension PlatformClient.Catalog {
             self.tags = tags
             
             self.unit = unit
+            
+            self.slug = slug
             
             self.variant = variant
             
@@ -256,16 +256,9 @@ public extension PlatformClient.Catalog {
                 
             
             
-                do {
-                    name = try container.decode(String.self, forKey: .name)
+                name = try container.decode(String.self, forKey: .name)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -281,11 +274,6 @@ public extension PlatformClient.Catalog {
             
             
                 schema = try container.decode(AttributeMaster.self, forKey: .schema)
-                
-            
-            
-            
-                slug = try container.decode(String.self, forKey: .slug)
                 
             
             
@@ -336,6 +324,11 @@ public extension PlatformClient.Catalog {
                     
                 }
                 
+            
+            
+                slug = try container.decode(String.self, forKey: .slug)
+                
+            
             
             
                 do {
@@ -426,11 +419,6 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(slug, forKey: .slug)
-            
-            
-            
-            
             try? container.encodeIfPresent(suggestion, forKey: .suggestion)
             
             
@@ -447,6 +435,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(unit, forKey: .unit)
+            
+            
+            
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
@@ -492,13 +485,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var modifiedOn: String?
         
-        public var name: String?
+        public var name: String
         
         public var rawKey: String?
         
         public var schema: AttributeMaster
-        
-        public var slug: String
         
         public var suggestion: String?
         
@@ -507,6 +498,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var tags: [String]?
         
         public var unit: String?
+        
+        public var slug: String
         
         public var variant: Bool?
         
@@ -541,8 +534,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case schema = "schema"
             
-            case slug = "slug"
-            
             case suggestion = "suggestion"
             
             case synonyms = "synonyms"
@@ -551,11 +542,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case unit = "unit"
             
+            case slug = "slug"
+            
             case variant = "variant"
             
         }
 
-        public init(createdBy: [String: Any]? = nil, createdOn: String? = nil, departments: [String], description: String? = nil, details: AttributeMasterDetails, enabledForEndConsumer: Bool? = nil, filters: AttributeMasterFilter, isNested: Bool? = nil, logo: String? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String? = nil, rawKey: String? = nil, schema: AttributeMaster, slug: String, suggestion: String? = nil, synonyms: [String: Any]? = nil, tags: [String]? = nil, unit: String? = nil, variant: Bool? = nil) {
+        public init(createdBy: [String: Any]? = nil, createdOn: String? = nil, departments: [String], description: String? = nil, details: AttributeMasterDetails, enabledForEndConsumer: Bool? = nil, filters: AttributeMasterFilter, isNested: Bool? = nil, logo: String? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, rawKey: String? = nil, schema: AttributeMaster, slug: String, suggestion: String? = nil, synonyms: [String: Any]? = nil, tags: [String]? = nil, unit: String? = nil, variant: Bool? = nil) {
             
             self.createdBy = createdBy
             
@@ -585,8 +578,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.schema = schema
             
-            self.slug = slug
-            
             self.suggestion = suggestion
             
             self.synonyms = synonyms
@@ -594,6 +585,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.tags = tags
             
             self.unit = unit
+            
+            self.slug = slug
             
             self.variant = variant
             
@@ -714,16 +707,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                do {
-                    name = try container.decode(String.self, forKey: .name)
+                name = try container.decode(String.self, forKey: .name)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -739,11 +725,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 schema = try container.decode(AttributeMaster.self, forKey: .schema)
-                
-            
-            
-            
-                slug = try container.decode(String.self, forKey: .slug)
                 
             
             
@@ -794,6 +775,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
                     
                 }
                 
+            
+            
+                slug = try container.decode(String.self, forKey: .slug)
+                
+            
             
             
                 do {
@@ -884,11 +870,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(slug, forKey: .slug)
-            
-            
-            
-            
             try? container.encodeIfPresent(suggestion, forKey: .suggestion)
             
             
@@ -905,6 +886,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(unit, forKey: .unit)
+            
+            
+            
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             

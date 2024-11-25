@@ -4331,7 +4331,7 @@ public class PlatformClient {
                         headers: headers
                     ) { response, error in                    
                         if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
+                            paginator.hasNext = response.page.hasNext ?? false
                             paginator.pageNo = (paginator.pageNo ?? 0) + 1
                         }
                         paginator.onNext?(response, error)
@@ -4349,10 +4349,10 @@ public class PlatformClient {
             * Description: Modify data associated to the brand for that particular sales channel.
             **/
             public func updateAppBrand(
-                brandUid: String,
+                brandUid: Int,
                 body: ApplicationBrandJson,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -4380,7 +4380,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1.self, from: data)
+                            let response = Utility.decode(SuccessResponseObject.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4397,7 +4397,7 @@ public class PlatformClient {
             /**
             *
             * Summary: List brands
-            * Description: List all the brands, and have search capabilities on brand uid, name etc
+            * Description: List all the brands.
             **/
             public func getApplicationBrands(
                 department: String?,
@@ -4685,7 +4685,7 @@ public class PlatformClient {
                 categoryUid: String,
                 body: ApplicationCategoryJson,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -4713,7 +4713,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1.self, from: data)
+                            let response = Utility.decode(SuccessResponseObject.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -4869,12 +4869,47 @@ public class PlatformClient {
             * Description: Create a collection for a sales channel linked to a company.
             **/
             public func createCollection(
+                q: String?,
+                scheduleStatus: String?,
+                type: String?,
+                tags: [String]?,
+                isActive: Bool?,
+                pageNo: Int?,
+                pageSize: Int?,
                 body: CreateCollection,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CollectionCreateResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
-                 
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = q {
+                    xQuery["q"] = value
+                }
+                
+                if let value = scheduleStatus {
+                    xQuery["schedule_status"] = value
+                }
+                
+                if let value = type {
+                    xQuery["type"] = value
+                }
+                
+                if let value = tags {
+                    xQuery["tags"] = value
+                }
+                
+                if let value = isActive {
+                    xQuery["is_active"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
                 
                 var xHeaders: [(key: String, value: String)] = []
                 
@@ -4886,7 +4921,7 @@ public class PlatformClient {
                     config: config,
                     method: "POST",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/",
-                    query: nil,
+                    query: xQuery,
                     body: body.dictionary,
                     headers: xHeaders,
                     responseType: "application/json",
@@ -5207,6 +5242,7 @@ public class PlatformClient {
                 sortOn: String?,
                 pageId: String?,
                 pageSize: Int?,
+                pageNo: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetCollectionItemsResponseSchema?, _ error: FDKError?) -> Void
@@ -5224,6 +5260,10 @@ public class PlatformClient {
                 
                 if let value = pageSize {
                     xQuery["page_size"] = value
+                }
+                
+                if let value = pageNo {
+                    xQuery["page_no"] = value
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
@@ -5471,10 +5511,10 @@ public class PlatformClient {
             * Description: Modify department data associated to the sales channel.
             **/
             public func updateAppDepartment(
-                departmentUid: String,
+                departmentUid: Int,
                 body: ApplicationDepartmentJson,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -5502,7 +5542,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1.self, from: data)
+                            let response = Utility.decode(SuccessResponseObject.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -5569,7 +5609,7 @@ public class PlatformClient {
             /**
             *
             * Summary: List sales channel inventory
-            * Description: Retrieve inventory data related to the sales channel. this can be used  to get the Inventory status of products with the filters of timestamp, store_ids, brand_ids, item_id, Items, Pagination.
+            * Description: Retrieve inventory data related to the sales channel. this can be used  to get the Inventory status of products.
             **/
             public func getAppInventory(
                 itemIds: [Int]?,
@@ -5679,7 +5719,7 @@ public class PlatformClient {
             /**
             *
             * Summary: List sales channels
-            * Description: Retrieve all stores associated with an sales channel, with support for searching by store name and filtering by store type and status (verified/unverified)
+            * Description: Retrieve all stores associated with a sales channel, with support for searching by store name and filtering by store type and status.
             **/
             public func getAppLocations(
                 storeType: String?,
@@ -6127,13 +6167,13 @@ public class PlatformClient {
             /**
             *
             * Summary: Update sales channel product
-            * Description: Allows to update data associated to a item by its item_id for an sales channel.
+            * Description: Allows to update data associated to a item by its item_id for a sales channel.
             **/
             public func updateAppProduct(
-                itemId: String,
+                itemId: Int,
                 body: ApplicationItemMeta,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -6161,7 +6201,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1.self, from: data)
+                            let response = Utility.decode(SuccessResponseObject.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6191,7 +6231,7 @@ public class PlatformClient {
                 pageSize: Int?,
                 pageNo: Int?,
                 pageType: String?,
-                itemIds: [Int]?,
+                itemIds: [String]?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ApplicationProductListingResponseSchema?, _ error: FDKError?) -> Void
@@ -6311,7 +6351,7 @@ public class PlatformClient {
                 isDependent: Bool?,
                 sortOn: String?,
                 pageSize: Int?,
-                itemIds: [Int]?,
+                itemIds: [String]?,
                 headers: [(key: String, value: String)]? = nil
                 ) -> Paginator<ApplicationProductListingResponseSchema> {
                 let pageSize = pageSize ?? 20
@@ -6353,14 +6393,13 @@ public class PlatformClient {
             **/
             public func getDiscountedInventoryBySizeIdentifier(
                 itemId: Int,
-                sizeIdentifier: String,
+                sizeIdentifier: Int,
                 pageNo: Int?,
                 pageSize: Int?,
-                q: String?,
                 locationIds: [Int]?,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: InventorySellerIdentifierResponsePaginated?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: ApplicationInventorySellerIdentifierResponsePaginated?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
@@ -6371,10 +6410,6 @@ public class PlatformClient {
                 
                 if let value = pageSize {
                     xQuery["page_size"] = value
-                }
-                
-                if let value = q {
-                    xQuery["q"] = value
                 }
                 
                 if let value = locationIds {
@@ -6404,7 +6439,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(InventorySellerIdentifierResponsePaginated.self, from: data)
+                            let response = Utility.decode(ApplicationInventorySellerIdentifierResponsePaginated.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6424,8 +6459,6 @@ public class PlatformClient {
             
             
             
-            
-            
             /**
             *
             * Summary: get paginator for getDiscountedInventoryBySizeIdentifier
@@ -6433,21 +6466,19 @@ public class PlatformClient {
             **/
             public func getDiscountedInventoryBySizeIdentifierPaginator(
                 itemId: Int,
-                sizeIdentifier: String,
+                sizeIdentifier: Int,
                 pageSize: Int?,
-                q: String?,
                 locationIds: [Int]?,
                 headers: [(key: String, value: String)]? = nil
-                ) -> Paginator<InventorySellerIdentifierResponsePaginated> {
+                ) -> Paginator<ApplicationInventorySellerIdentifierResponsePaginated> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<InventorySellerIdentifierResponsePaginated>(pageSize: pageSize, type: "number")
+                let paginator = Paginator<ApplicationInventorySellerIdentifierResponsePaginated>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getDiscountedInventoryBySizeIdentifier(
                         itemId: itemId,
                         sizeIdentifier: sizeIdentifier,
                         pageNo: paginator.pageNo,
                         pageSize: paginator.pageSize,
-                        q: q,
                         locationIds: locationIds,
                         
                         headers: headers
@@ -6663,7 +6694,7 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: get product-return configuration
+            * Summary: Get product-return configuration
             * Description: Get Product Return configuration set at an sales channel level
             **/
             public func getAppReturnConfiguration(
@@ -6719,7 +6750,7 @@ public class PlatformClient {
             public func createAppReturnConfiguration(
                 body: CreateUpdateAppReturnConfig,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -6747,7 +6778,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1.self, from: data)
+                            let response = Utility.decode(SuccessResponseObject.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6769,7 +6800,7 @@ public class PlatformClient {
             public func updateAppReturnConfiguration(
                 body: CreateUpdateAppReturnConfig,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -6797,7 +6828,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1.self, from: data)
+                            let response = Utility.decode(SuccessResponseObject.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -6934,7 +6965,7 @@ public class PlatformClient {
             public func createAppCategoryReturnConfiguration(
                 body: BaseAppCategoryReturnConfig,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -6962,7 +6993,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1.self, from: data)
+                            let response = Utility.decode(SuccessResponseObject.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7738,10 +7769,10 @@ public class PlatformClient {
             * Description: Modify location data related to the sales channel.
             **/
             public func updateAppLocation(
-                storeUid: String,
+                storeUid: Int,
                 body: ApplicationStoreJson,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -7769,7 +7800,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SuccessResponse1.self, from: data)
+                            let response = Utility.decode(SuccessResponseObject.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -7780,6 +7811,7 @@ public class PlatformClient {
                         }
                 });
             }
+            
             
             
             
@@ -8453,6 +8485,8 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
             
             
             
@@ -16835,273 +16869,6 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: List Slideshows
-            * Description: Use this API to list all Slideshows
-            **/
-            public func getSlideshows(
-                devicePlatform: String,
-                pageNo: Int?,
-                pageSize: Int?,
-                
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SlideshowGetDetails?, _ error: FDKError?) -> Void
-            ) {
-                                
-                var xQuery: [String: Any] = [:] 
-                xQuery["device_platform"] = devicePlatform
-                
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-                
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "GET",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows",
-                    query: xQuery,
-                    body: nil,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(SlideshowGetDetails.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Create a slideshow
-            * Description: Use this API to create a slideshow.
-            **/
-            public func createSlideshow(
-                body: SlideshowPayload,
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "POST",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(SlideshowSchema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Get Slideshow
-            * Description: Use this API to get the details of a slideshow by its slug.
-            **/
-            public func getSlideshowBySlug(
-                slug: String,
-                devicePlatform: String,
-                
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
-            ) {
-                                
-                var xQuery: [String: Any] = [:] 
-                xQuery["device_platform"] = devicePlatform
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "GET",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows/\(slug)",
-                    query: xQuery,
-                    body: nil,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(SlideshowSchema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Update a slideshow
-            * Description: Use this API to Update Slideshow
-            **/
-            public func updateSlideshow(
-                id: String,
-                body: SlideshowPayload,
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "PUT",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows/\(id)",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(SlideshowSchema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
-            * Summary: Delete a slideshow
-            * Description: Use this API to delete an existing slideshow.
-            **/
-            public func deleteSlideshow(
-                id: String,
-                
-                headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: SlideshowSchema?, _ error: FDKError?) -> Void
-            ) {
-                                
-                 
-                
-                var xHeaders: [(key: String, value: String)] = []
-                
-                
-                if let headers = headers {
-                    xHeaders.append(contentsOf: headers)
-                }
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "DELETE",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/slideshows/\(id)",
-                    query: nil,
-                    body: nil,
-                    headers: xHeaders,
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(SlideshowSchema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            /**
-            *
             * Summary: Get support information
             * Description: Retrieve information related to customer support.
             **/
@@ -20680,12 +20447,22 @@ public class PlatformClient {
             * Description: Retrieves a list of pincodes along with the count based on whether cash on delivery settings.
             **/
             public func updatePincodeCoDListing(
+                pageNumber: Int?,
+                pageSize: Int?,
                 body: PincodeCodStatusListingDetails,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PincodeCodStatusListingResult?, _ error: FDKError?) -> Void
             ) {
                                 
-                 
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = pageNumber {
+                    xQuery["page_number"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
                 
                 var xHeaders: [(key: String, value: String)] = []
                 
@@ -20697,7 +20474,7 @@ public class PlatformClient {
                     config: config,
                     method: "POST",
                     url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/pincode-mop-data",
-                    query: nil,
+                    query: xQuery,
                     body: body.dictionary,
                     headers: xHeaders,
                     responseType: "application/json",
@@ -20730,12 +20507,22 @@ public class PlatformClient {
             * Description: Retrieves the history of changes made to cash on delivery settings for pincodes.
             **/
             public func updatePincodeAuditHistory(
+                pageNumber: Int?,
+                pageSize: Int?,
                 body: PincodeMopUpdateAuditHistoryDetails,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PincodeMopUpdateAuditHistoryResultData?, _ error: FDKError?) -> Void
             ) {
                                 
-                 
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = pageNumber {
+                    xQuery["page_number"] = value
+                }
+                
+                if let value = pageSize {
+                    xQuery["page_size"] = value
+                }
                 
                 var xHeaders: [(key: String, value: String)] = []
                 
@@ -20747,7 +20534,7 @@ public class PlatformClient {
                     config: config,
                     method: "POST",
                     url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/history",
-                    query: nil,
+                    query: xQuery,
                     body: body.dictionary,
                     headers: xHeaders,
                     responseType: "application/json",
@@ -20882,7 +20669,7 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Create rourier rule
+            * Summary: Create courier rule
             * Description: Creates a rule within the delivery configuration.
             **/
             public func createCourierPartnerRule(
@@ -21676,6 +21463,13 @@ public class PlatformClient {
                 });
             }
             
+            
+            
+            
+            
+            
+            
+            
         }
         
         
@@ -21690,8 +21484,6 @@ public class PlatformClient {
                 self.companyId = config.companyId
                 self.applicationId = applicationId
             }
-            
-            
             
             
             
@@ -21791,8 +21583,8 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: List bag cancellation reasons
-            * Description: Get reasons to perform full or partial cancellation of a shipment
+            * Summary: Retrieve Reasons for Cancellation and Return journey
+            * Description: Allows users to retrieve a comprehensive list of reasons for cancellation  or returning a shipment. It provides both cancellation and return reasons, with an emphasis  on Quality Control (QC) evaluations.
             **/
             public func getShipmentBagReasons(
                 shipmentId: String,
@@ -22222,7 +22014,7 @@ public class PlatformClient {
             * Description: Retrieve configuration settings like key, secret, webhook url, merchant salt for brand payment gateways.
             **/
             public func getBrandPaymentGatewayConfig(
-                aggregator: String?,
+                aggregator: String,
                 configType: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
@@ -22230,10 +22022,7 @@ public class PlatformClient {
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
-                
-                if let value = aggregator {
-                    xQuery["aggregator"] = value
-                }
+                xQuery["aggregator"] = aggregator
                 
                 if let value = configType {
                     xQuery["config_type"] = value
@@ -22329,21 +22118,28 @@ public class PlatformClient {
             /**
             *
             * Summary: Get payment modes
-            * Description: Available payment methods on the payment page, specifying the aggregator for each option, such as 'Netbanking powered by Juspay' and 'Card powered by Razorpay'.
+            * Description: Get available payment methods on the payment page, specifying the aggregator for each option, such as 'Netbanking powered by Juspay' and 'Card powered by Razorpay'.
             **/
             public func getPaymentModeRoutes(
-                refresh: Bool,
-                requestType: String,
+                refresh: Bool?,
+                requestType: String?,
                 orderId: String?,
                 shipmentId: String?,
+                amount: Int?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PaymentOptionsDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
-                xQuery["refresh"] = refresh
-                xQuery["request_type"] = requestType
+                
+                if let value = refresh {
+                    xQuery["refresh"] = value
+                }
+                
+                if let value = requestType {
+                    xQuery["request_type"] = value
+                }
                 
                 if let value = orderId {
                     xQuery["order_id"] = value
@@ -22351,6 +22147,10 @@ public class PlatformClient {
                 
                 if let value = shipmentId {
                     xQuery["shipment_id"] = value
+                }
+                
+                if let value = amount {
+                    xQuery["amount"] = value
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
@@ -23661,17 +23461,14 @@ public class PlatformClient {
             * Description: Retrieve a payment link for making payments.
             **/
             public func getPaymentLink(
-                paymentLinkId: String?,
+                paymentLinkId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: GetPaymentLinkDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
-                
-                if let value = paymentLinkId {
-                    xQuery["payment_link_id"] = value
-                }
+                xQuery["payment_link_id"] = paymentLinkId
                 
                 var xHeaders: [(key: String, value: String)] = []
                 
@@ -23766,17 +23563,14 @@ public class PlatformClient {
             * Description: Periodically checks the status of a payment link to monitor for any updates or changes.retrieve real-time information about the payment link's current status, such as whether it has been processed, cancelled, or expired. 
             **/
             public func pollingPaymentLink(
-                paymentLinkId: String?,
+                paymentLinkId: String,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: PollingPaymentLinkDetails?, _ error: FDKError?) -> Void
             ) {
                                 
                 var xQuery: [String: Any] = [:] 
-                
-                if let value = paymentLinkId {
-                    xQuery["payment_link_id"] = value
-                }
+                xQuery["payment_link_id"] = paymentLinkId
                 
                 var xHeaders: [(key: String, value: String)] = []
                 

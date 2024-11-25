@@ -546,7 +546,7 @@ extension ApplicationClient {
         /**
         *
         * Summary: Verifies OTP
-        * Description: Verify OTP sent by customer.
+        * Description: Verify OTP for getting shipment details
         **/
         public func verifyOtpShipmentCustomer(
             orderId: String,
@@ -603,8 +603,8 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: List bag cancellation reasons
-        * Description: Get reasons to perform full or partial cancellation of a bag.
+        * Summary: Retrieve Reasons for Cancellation and Return journey
+        * Description: Allows users to retrieve a comprehensive list of reasons for cancellation  or returning a shipment. It provides both cancellation and return reasons, with an emphasis  on Quality Control (QC) evaluations.
         **/
         public func getShipmentBagReasons(
             shipmentId: String,
@@ -717,7 +717,7 @@ extension ApplicationClient {
         /**
         *
         * Summary: Updates shipment status
-        * Description: Update current status of a specific shipment using its shipment ID. Supports both partial and full transition as per the configured settings.
+        * Description: This operation allows for updating the status and properties of a shipment.  For example, it allows users to initiate a return by providing reasons and  uploading quality check images.
         **/
         public func updateShipmentStatus(
             shipmentId: String,

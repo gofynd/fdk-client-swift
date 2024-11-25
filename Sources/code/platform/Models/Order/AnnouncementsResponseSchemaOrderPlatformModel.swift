@@ -16,6 +16,8 @@ public extension PlatformClient.Order {
         
         public var success: Bool?
         
+        public var status: Int?
+        
         public var message: String?
         
 
@@ -25,15 +27,19 @@ public extension PlatformClient.Order {
             
             case success = "success"
             
+            case status = "status"
+            
             case message = "message"
             
         }
 
-        public init(announcements: [AnnouncementResponseSchema]? = nil, message: String? = nil, success: Bool? = nil) {
+        public init(announcements: [AnnouncementResponseSchema]? = nil, message: String? = nil, status: Int? = nil, success: Bool? = nil) {
             
             self.announcements = announcements
             
             self.success = success
+            
+            self.status = status
             
             self.message = message
             
@@ -68,6 +74,18 @@ public extension PlatformClient.Order {
             
             
                 do {
+                    status = try container.decode(Int.self, forKey: .status)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     message = try container.decode(String.self, forKey: .message)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -91,6 +109,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(success, forKey: .success)
+            
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             
@@ -118,6 +141,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var success: Bool?
         
+        public var status: Int?
+        
         public var message: String?
         
 
@@ -127,15 +152,19 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case success = "success"
             
+            case status = "status"
+            
             case message = "message"
             
         }
 
-        public init(announcements: [AnnouncementResponseSchema]? = nil, message: String? = nil, success: Bool? = nil) {
+        public init(announcements: [AnnouncementResponseSchema]? = nil, message: String? = nil, status: Int? = nil, success: Bool? = nil) {
             
             self.announcements = announcements
             
             self.success = success
+            
+            self.status = status
             
             self.message = message
             
@@ -170,6 +199,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
+                    status = try container.decode(Int.self, forKey: .status)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     message = try container.decode(String.self, forKey: .message)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -193,6 +234,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(success, forKey: .success)
+            
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             

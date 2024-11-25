@@ -16,7 +16,7 @@ public extension ApplicationClient.Payment {
         
         public var aggregator: String
         
-        public var customerId: String
+        public var customerId: String?
         
         public var contact: String
         
@@ -26,7 +26,7 @@ public extension ApplicationClient.Payment {
         
         public var orderId: String
         
-        public var currency: String
+        public var currency: String?
         
         public var timeout: Int?
         
@@ -65,7 +65,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, deviceId: String? = nil, email: String, merchantOrderId: String, method: String, orderId: String, razorpayPaymentId: String? = nil, timeout: Int? = nil, vpa: String? = nil) {
+        public init(aggregator: String, amount: Int, contact: String, currency: String? = nil, customerId: String? = nil, deviceId: String? = nil, email: String, merchantOrderId: String, method: String, orderId: String, razorpayPaymentId: String? = nil, timeout: Int? = nil, vpa: String? = nil) {
             
             self.razorpayPaymentId = razorpayPaymentId
             
@@ -133,8 +133,15 @@ public extension ApplicationClient.Payment {
             
             
             
-            customerId = try container.decode(String.self, forKey: .customerId)
+            do {
+                customerId = try container.decode(String.self, forKey: .customerId)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -165,8 +172,15 @@ public extension ApplicationClient.Payment {
             
             
             
-            currency = try container.decode(String.self, forKey: .currency)
+            do {
+                currency = try container.decode(String.self, forKey: .currency)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             

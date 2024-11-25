@@ -18,13 +18,19 @@ public extension ApplicationClient.Logistic {
         
         public var isActive: Bool?
         
-        public var parentId: String?
+        public var parentId: [String]?
         
         public var subType: String?
         
         public var name: String?
         
         public var uid: String?
+        
+        public var onboardingAllowed: Bool?
+        
+        public var serviceability: [String: Any]?
+        
+        public var latLong: PincodeLatLongData?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -47,9 +53,15 @@ public extension ApplicationClient.Logistic {
             
             case uid = "uid"
             
+            case onboardingAllowed = "onboarding_allowed"
+            
+            case serviceability = "serviceability"
+            
+            case latLong = "lat_long"
+            
         }
 
-        public init(displayName: String? = nil, isActive: Bool? = nil, logistics: LogisticsResult? = nil, meta: CountryMetaResult? = nil, name: String? = nil, parentId: String? = nil, subType: String? = nil, type: String? = nil, uid: String? = nil) {
+        public init(displayName: String? = nil, isActive: Bool? = nil, latLong: PincodeLatLongData? = nil, logistics: LogisticsResult? = nil, meta: CountryMetaResult? = nil, name: String? = nil, onboardingAllowed: Bool? = nil, parentId: [String]? = nil, serviceability: [String: Any]? = nil, subType: String? = nil, type: String? = nil, uid: String? = nil) {
             
             self.meta = meta
             
@@ -68,6 +80,12 @@ public extension ApplicationClient.Logistic {
             self.name = name
             
             self.uid = uid
+            
+            self.onboardingAllowed = onboardingAllowed
+            
+            self.serviceability = serviceability
+            
+            self.latLong = latLong
             
         }
 
@@ -136,7 +154,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                parentId = try container.decode(String.self, forKey: .parentId)
+                parentId = try container.decode([String].self, forKey: .parentId)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -173,6 +191,42 @@ public extension ApplicationClient.Logistic {
             
             do {
                 uid = try container.decode(String.self, forKey: .uid)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                onboardingAllowed = try container.decode(Bool.self, forKey: .onboardingAllowed)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                serviceability = try container.decode([String: Any].self, forKey: .serviceability)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                latLong = try container.decode(PincodeLatLongData.self, forKey: .latLong)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -221,6 +275,18 @@ public extension ApplicationClient.Logistic {
             
             
             try? container.encodeIfPresent(uid, forKey: .uid)
+            
+            
+            
+            try? container.encodeIfPresent(onboardingAllowed, forKey: .onboardingAllowed)
+            
+            
+            
+            try? container.encodeIfPresent(serviceability, forKey: .serviceability)
+            
+            
+            
+            try? container.encodeIfPresent(latLong, forKey: .latLong)
             
             
         }

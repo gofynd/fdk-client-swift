@@ -12,7 +12,7 @@ public extension PlatformClient.Order {
     class CreateOrderConfig: Codable {
         
         
-        public var dpConfiguration: DPConfiguration?
+        public var dpConfiguration: DPConfiguration
         
         public var locationReassignment: Bool?
         
@@ -21,6 +21,8 @@ public extension PlatformClient.Order {
         public var optimalShipmentCreation: Bool?
         
         public var lockStateMessages: [LockStateMessage]?
+        
+        public var integrationType: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -35,9 +37,11 @@ public extension PlatformClient.Order {
             
             case lockStateMessages = "lock_state_messages"
             
+            case integrationType = "integration_type"
+            
         }
 
-        public init(dpConfiguration: DPConfiguration? = nil, locationReassignment: Bool? = nil, lockStateMessages: [LockStateMessage]? = nil, optimalShipmentCreation: Bool? = nil, payment: PaymentConfig? = nil) {
+        public init(dpConfiguration: DPConfiguration, integrationType: String? = nil, locationReassignment: Bool? = nil, lockStateMessages: [LockStateMessage]? = nil, optimalShipmentCreation: Bool? = nil, payment: PaymentConfig? = nil) {
             
             self.dpConfiguration = dpConfiguration
             
@@ -49,22 +53,17 @@ public extension PlatformClient.Order {
             
             self.lockStateMessages = lockStateMessages
             
+            self.integrationType = integrationType
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    dpConfiguration = try container.decode(DPConfiguration.self, forKey: .dpConfiguration)
+                dpConfiguration = try container.decode(DPConfiguration.self, forKey: .dpConfiguration)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -114,6 +113,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    integrationType = try container.decode(String.self, forKey: .integrationType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -142,6 +153,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(lockStateMessages, forKey: .lockStateMessages)
+            
+            
+            
+            
+            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
             
             
         }
@@ -160,7 +176,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class CreateOrderConfig: Codable {
         
         
-        public var dpConfiguration: DPConfiguration?
+        public var dpConfiguration: DPConfiguration
         
         public var locationReassignment: Bool?
         
@@ -169,6 +185,8 @@ public extension PlatformClient.ApplicationClient.Order {
         public var optimalShipmentCreation: Bool?
         
         public var lockStateMessages: [LockStateMessage]?
+        
+        public var integrationType: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -183,9 +201,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case lockStateMessages = "lock_state_messages"
             
+            case integrationType = "integration_type"
+            
         }
 
-        public init(dpConfiguration: DPConfiguration? = nil, locationReassignment: Bool? = nil, lockStateMessages: [LockStateMessage]? = nil, optimalShipmentCreation: Bool? = nil, payment: PaymentConfig? = nil) {
+        public init(dpConfiguration: DPConfiguration, integrationType: String? = nil, locationReassignment: Bool? = nil, lockStateMessages: [LockStateMessage]? = nil, optimalShipmentCreation: Bool? = nil, payment: PaymentConfig? = nil) {
             
             self.dpConfiguration = dpConfiguration
             
@@ -197,22 +217,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.lockStateMessages = lockStateMessages
             
+            self.integrationType = integrationType
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    dpConfiguration = try container.decode(DPConfiguration.self, forKey: .dpConfiguration)
+                dpConfiguration = try container.decode(DPConfiguration.self, forKey: .dpConfiguration)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -262,6 +277,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    integrationType = try container.decode(String.self, forKey: .integrationType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -290,6 +317,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(lockStateMessages, forKey: .lockStateMessages)
+            
+            
+            
+            
+            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
             
             
         }

@@ -14,7 +14,7 @@ public extension PlatformClient.Catalog {
         
         public var filters: [ProductFiltersKeysOnly]?
         
-        public var operators: [String: Any]
+        public var operators: [String: String]
         
         public var sortOn: [ProductSortOn]?
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(filters: [ProductFiltersKeysOnly]? = nil, operators: [String: Any], sortOn: [ProductSortOn]? = nil) {
+        public init(filters: [ProductFiltersKeysOnly]? = nil, operators: [String: String], sortOn: [ProductSortOn]? = nil) {
             
             self.filters = filters
             
@@ -55,7 +55,7 @@ public extension PlatformClient.Catalog {
                 
             
             
-                operators = try container.decode([String: Any].self, forKey: .operators)
+                operators = try container.decode([String: String].self, forKey: .operators)
                 
             
             
@@ -109,7 +109,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var filters: [ProductFiltersKeysOnly]?
         
-        public var operators: [String: Any]
+        public var operators: [String: String]
         
         public var sortOn: [ProductSortOn]?
         
@@ -124,7 +124,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(filters: [ProductFiltersKeysOnly]? = nil, operators: [String: Any], sortOn: [ProductSortOn]? = nil) {
+        public init(filters: [ProductFiltersKeysOnly]? = nil, operators: [String: String], sortOn: [ProductSortOn]? = nil) {
             
             self.filters = filters
             
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                operators = try container.decode([String: Any].self, forKey: .operators)
+                operators = try container.decode([String: String].self, forKey: .operators)
                 
             
             

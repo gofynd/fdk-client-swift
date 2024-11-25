@@ -12,6 +12,8 @@ public extension ApplicationClient.Logistic {
         
         public var internalZoneId: Int?
         
+        public var deliverables: [String]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -19,13 +21,17 @@ public extension ApplicationClient.Logistic {
             
             case internalZoneId = "internal_zone_id"
             
+            case deliverables = "deliverables"
+            
         }
 
-        public init(internalZoneId: Int? = nil, zone: String? = nil) {
+        public init(deliverables: [String]? = nil, internalZoneId: Int? = nil, zone: String? = nil) {
             
             self.zone = zone
             
             self.internalZoneId = internalZoneId
+            
+            self.deliverables = deliverables
             
         }
 
@@ -56,6 +62,18 @@ public extension ApplicationClient.Logistic {
             }
             
             
+            
+            do {
+                deliverables = try container.decode([String].self, forKey: .deliverables)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -67,6 +85,10 @@ public extension ApplicationClient.Logistic {
             
             
             try? container.encodeIfPresent(internalZoneId, forKey: .internalZoneId)
+            
+            
+            
+            try? container.encodeIfPresent(deliverables, forKey: .deliverables)
             
             
         }

@@ -22,6 +22,8 @@ public extension PlatformClient.Serviceability {
         
         public var isFirstMile: Bool
         
+        public var isReversePickup: Bool?
+        
         public var isReturn: Bool
         
         public var isInstallation: Bool
@@ -41,6 +43,8 @@ public extension PlatformClient.Serviceability {
             
             case isFirstMile = "is_first_mile"
             
+            case isReversePickup = "is_reverse_pickup"
+            
             case isReturn = "is_return"
             
             case isInstallation = "is_installation"
@@ -49,7 +53,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(isFirstMile: Bool, isInstallation: Bool, isLastMile: Bool, isQc: Bool, isReturn: Bool, lmCodLimit: Int, pickupCutoff: String? = nil, routeCode: String? = nil) {
+        public init(isFirstMile: Bool, isInstallation: Bool, isLastMile: Bool, isQc: Bool, isReturn: Bool, isReversePickup: Bool? = nil, lmCodLimit: Int, pickupCutoff: String? = nil, routeCode: String? = nil) {
             
             self.lmCodLimit = lmCodLimit
             
@@ -60,6 +64,8 @@ public extension PlatformClient.Serviceability {
             self.routeCode = routeCode
             
             self.isFirstMile = isFirstMile
+            
+            self.isReversePickup = isReversePickup
             
             self.isReturn = isReturn
             
@@ -112,6 +118,18 @@ public extension PlatformClient.Serviceability {
             
             
             
+                do {
+                    isReversePickup = try container.decode(Bool.self, forKey: .isReversePickup)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 isReturn = try container.decode(Bool.self, forKey: .isReturn)
                 
             
@@ -154,6 +172,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(isFirstMile, forKey: .isFirstMile)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isReversePickup, forKey: .isReversePickup)
             
             
             
@@ -197,6 +220,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var isFirstMile: Bool
         
+        public var isReversePickup: Bool?
+        
         public var isReturn: Bool
         
         public var isInstallation: Bool
@@ -216,6 +241,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case isFirstMile = "is_first_mile"
             
+            case isReversePickup = "is_reverse_pickup"
+            
             case isReturn = "is_return"
             
             case isInstallation = "is_installation"
@@ -224,7 +251,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(isFirstMile: Bool, isInstallation: Bool, isLastMile: Bool, isQc: Bool, isReturn: Bool, lmCodLimit: Int, pickupCutoff: String? = nil, routeCode: String? = nil) {
+        public init(isFirstMile: Bool, isInstallation: Bool, isLastMile: Bool, isQc: Bool, isReturn: Bool, isReversePickup: Bool? = nil, lmCodLimit: Int, pickupCutoff: String? = nil, routeCode: String? = nil) {
             
             self.lmCodLimit = lmCodLimit
             
@@ -235,6 +262,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.routeCode = routeCode
             
             self.isFirstMile = isFirstMile
+            
+            self.isReversePickup = isReversePickup
             
             self.isReturn = isReturn
             
@@ -287,6 +316,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
+                do {
+                    isReversePickup = try container.decode(Bool.self, forKey: .isReversePickup)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 isReturn = try container.decode(Bool.self, forKey: .isReturn)
                 
             
@@ -329,6 +370,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(isFirstMile, forKey: .isFirstMile)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isReversePickup, forKey: .isReversePickup)
             
             
             

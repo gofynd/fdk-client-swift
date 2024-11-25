@@ -103,6 +103,8 @@ extension ApplicationClient {
             
             ulrs["createPaymentOrder"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment-orders/") 
             
+            ulrs["validateCustomerAndCreditSummary"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/validate/customer-credits-v2") 
+            
             self.relativeUrls = ulrs
         }
         public func update(updatedUrl : [String: String]){
@@ -608,7 +610,7 @@ extension ApplicationClient {
         **/
         public func getPaymentModeRoutes(
             amount: Int,
-            cartId: String?,
+            cartId: String,
             checkoutMode: String?,
             refresh: Bool?,
             orderId: String?,
@@ -624,10 +626,7 @@ extension ApplicationClient {
                         
             var xQuery: [String: Any] = [:] 
             xQuery["amount"] = amount
-            
-            if let value = cartId {
-                xQuery["cart_id"] = value
-            }
+            xQuery["cart_id"] = cartId
             
             if let value = checkoutMode {
                 xQuery["checkout_mode"] = value
@@ -707,7 +706,7 @@ extension ApplicationClient {
         **/
         public func getPosPaymentModeRoutes(
             amount: Int,
-            cartId: String?,
+            cartId: String,
             pincode: String,
             checkoutMode: String?,
             refresh: Bool?,
@@ -721,10 +720,7 @@ extension ApplicationClient {
                         
             var xQuery: [String: Any] = [:] 
             xQuery["amount"] = amount
-            
-            if let value = cartId {
-                xQuery["cart_id"] = value
-            }
+            xQuery["cart_id"] = cartId
             xQuery["pincode"] = pincode
             
             if let value = checkoutMode {
@@ -2328,11 +2324,11 @@ extension ApplicationClient {
         /**
         *
         * Summary: Redirects users to the payment aggregator's interface
-        * Description: Get details about the active card aggregator used by the user, including the aggregator's name. You can refresh the data by setting the 'refresh' parameter to true if needed.
+        * Description: This endpoint is used to redirect users to the payment aggregator's platform where they can complete the payment process. The request may include necessary details for initiating the payment on the aggregator’s side, and the user is transferred seamlessly to their interface.
         **/
         public func redirectToAggregator(
             source: String?,
-            aggregator: String?,
+            aggregator: String,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: RedirectToAggregatorDetails?, _ error: FDKError?) -> Void
@@ -2343,10 +2339,7 @@ extension ApplicationClient {
             if let value = source {
                 xQuery["source"] = value
             }
-            
-            if let value = aggregator {
-                xQuery["aggregator"] = value
-            }
+            xQuery["aggregator"] = aggregator
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -2650,6 +2643,58 @@ extension ApplicationClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(PaymentOrderDetails.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Verify payment customer and show credit summary
+        * Description: Verify if the user is eligible for payment and also show credit summary if activated.
+        **/
+        public func validateCustomerAndCreditSummary(
+            body: CustomerValidationSchema,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: ValidateCustomerCreditSchema?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            let fullUrl = relativeUrls["validateCustomerAndCreditSummary"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: xHeaders,
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ValidateCustomerCreditSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

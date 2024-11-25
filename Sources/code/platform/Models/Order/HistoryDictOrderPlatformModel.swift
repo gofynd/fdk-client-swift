@@ -22,6 +22,8 @@ public extension PlatformClient.Order {
         
         public var createdat: String
         
+        public var createdTs: String?
+        
         public var ticketId: String?
         
         public var activityType: String
@@ -51,6 +53,8 @@ public extension PlatformClient.Order {
             
             case createdat = "createdat"
             
+            case createdTs = "created_ts"
+            
             case ticketId = "ticket_id"
             
             case activityType = "activity_type"
@@ -69,7 +73,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(activityType: String, assignedAgent: String? = nil, bagId: Int? = nil, createdat: String, displayMessage: String? = nil, l1Detail: String? = nil, l2Detail: String? = nil, l3Detail: String? = nil, message: String, meta: HistoryMeta? = nil, ticketId: String? = nil, ticketUrl: String? = nil, user: String) {
+        public init(activityType: String, assignedAgent: String? = nil, bagId: Int? = nil, createdat: String, createdTs: String? = nil, displayMessage: String? = nil, l1Detail: String? = nil, l2Detail: String? = nil, l3Detail: String? = nil, message: String, meta: HistoryMeta? = nil, ticketId: String? = nil, ticketUrl: String? = nil, user: String) {
             
             self.displayMessage = displayMessage
             
@@ -80,6 +84,8 @@ public extension PlatformClient.Order {
             self.l3Detail = l3Detail
             
             self.createdat = createdat
+            
+            self.createdTs = createdTs
             
             self.ticketId = ticketId
             
@@ -154,6 +160,18 @@ public extension PlatformClient.Order {
                 createdat = try container.decode(String.self, forKey: .createdat)
                 
             
+            
+            
+                do {
+                    createdTs = try container.decode(String.self, forKey: .createdTs)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -258,6 +276,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(createdat, forKey: .createdat)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdTs, forKey: .createdTs)
             
             
             
@@ -326,6 +349,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var createdat: String
         
+        public var createdTs: String?
+        
         public var ticketId: String?
         
         public var activityType: String
@@ -355,6 +380,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case createdat = "createdat"
             
+            case createdTs = "created_ts"
+            
             case ticketId = "ticket_id"
             
             case activityType = "activity_type"
@@ -373,7 +400,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(activityType: String, assignedAgent: String? = nil, bagId: Int? = nil, createdat: String, displayMessage: String? = nil, l1Detail: String? = nil, l2Detail: String? = nil, l3Detail: String? = nil, message: String, meta: HistoryMeta? = nil, ticketId: String? = nil, ticketUrl: String? = nil, user: String) {
+        public init(activityType: String, assignedAgent: String? = nil, bagId: Int? = nil, createdat: String, createdTs: String? = nil, displayMessage: String? = nil, l1Detail: String? = nil, l2Detail: String? = nil, l3Detail: String? = nil, message: String, meta: HistoryMeta? = nil, ticketId: String? = nil, ticketUrl: String? = nil, user: String) {
             
             self.displayMessage = displayMessage
             
@@ -384,6 +411,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.l3Detail = l3Detail
             
             self.createdat = createdat
+            
+            self.createdTs = createdTs
             
             self.ticketId = ticketId
             
@@ -458,6 +487,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 createdat = try container.decode(String.self, forKey: .createdat)
                 
             
+            
+            
+                do {
+                    createdTs = try container.decode(String.self, forKey: .createdTs)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -562,6 +603,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(createdat, forKey: .createdat)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdTs, forKey: .createdTs)
             
             
             

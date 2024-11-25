@@ -20,6 +20,10 @@ public extension ApplicationClient.Catalog {
         
         public var name: String?
         
+        public var slug: String?
+        
+        public var app: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,9 +39,13 @@ public extension ApplicationClient.Catalog {
             
             case name = "name"
             
+            case slug = "slug"
+            
+            case app = "_app"
+            
         }
 
-        public init(banners: ImageUrls? = nil, description: String? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
+        public init(banners: ImageUrls? = nil, description: String? = nil, logo: Media? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, app: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.logo = logo
             
@@ -50,6 +58,10 @@ public extension ApplicationClient.Catalog {
             self.customJson = customJson
             
             self.name = name
+            
+            self.slug = slug
+            
+            self.app = app
             
         }
 
@@ -128,6 +140,30 @@ public extension ApplicationClient.Catalog {
             }
             
             
+            
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                app = try container.decode([String: Any].self, forKey: .app)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -155,6 +191,14 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            try? container.encodeIfPresent(app, forKey: .app)
             
             
         }

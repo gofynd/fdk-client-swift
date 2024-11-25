@@ -34,6 +34,8 @@ public extension PlatformClient.Catalog {
         
         public var status: String?
         
+        public var stats: [String: Any]?
+        
         public var taskId: String
         
         public var type: String?
@@ -65,6 +67,8 @@ public extension PlatformClient.Catalog {
             
             case status = "status"
             
+            case stats = "stats"
+            
             case taskId = "task_id"
             
             case type = "type"
@@ -73,7 +77,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(cancelledBy: UserDetail? = nil, cancelledOn: String? = nil, completedOn: String? = nil, createdBy: UserDetail? = nil, createdOn: String? = nil, filters: InventoryJobFilters, id: String, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int, status: String? = nil, taskId: String, type: String? = nil, url: String) {
+        public init(cancelledBy: UserDetail? = nil, cancelledOn: String? = nil, completedOn: String? = nil, createdBy: UserDetail? = nil, createdOn: String? = nil, filters: InventoryJobFilters, id: String, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int, stats: [String: Any]? = nil, status: String? = nil, taskId: String, type: String? = nil, url: String) {
             
             self.cancelledBy = cancelledBy
             
@@ -96,6 +100,8 @@ public extension PlatformClient.Catalog {
             self.sellerId = sellerId
             
             self.status = status
+            
+            self.stats = stats
             
             self.taskId = taskId
             
@@ -220,6 +226,18 @@ public extension PlatformClient.Catalog {
                 
             
             
+                do {
+                    stats = try container.decode([String: Any].self, forKey: .stats)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 taskId = try container.decode(String.self, forKey: .taskId)
                 
             
@@ -299,6 +317,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(stats, forKey: .stats)
             
             
             
@@ -354,6 +377,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var status: String?
         
+        public var stats: [String: Any]?
+        
         public var taskId: String
         
         public var type: String?
@@ -385,6 +410,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case status = "status"
             
+            case stats = "stats"
+            
             case taskId = "task_id"
             
             case type = "type"
@@ -393,7 +420,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(cancelledBy: UserDetail? = nil, cancelledOn: String? = nil, completedOn: String? = nil, createdBy: UserDetail? = nil, createdOn: String? = nil, filters: InventoryJobFilters, id: String, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int, status: String? = nil, taskId: String, type: String? = nil, url: String) {
+        public init(cancelledBy: UserDetail? = nil, cancelledOn: String? = nil, completedOn: String? = nil, createdBy: UserDetail? = nil, createdOn: String? = nil, filters: InventoryJobFilters, id: String, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int, stats: [String: Any]? = nil, status: String? = nil, taskId: String, type: String? = nil, url: String) {
             
             self.cancelledBy = cancelledBy
             
@@ -416,6 +443,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.sellerId = sellerId
             
             self.status = status
+            
+            self.stats = stats
             
             self.taskId = taskId
             
@@ -540,6 +569,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
+                do {
+                    stats = try container.decode([String: Any].self, forKey: .stats)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 taskId = try container.decode(String.self, forKey: .taskId)
                 
             
@@ -619,6 +660,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(stats, forKey: .stats)
             
             
             

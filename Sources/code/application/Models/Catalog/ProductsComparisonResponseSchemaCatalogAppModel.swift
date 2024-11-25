@@ -8,7 +8,7 @@ public extension ApplicationClient.Catalog {
     */
     class ProductsComparisonResponseSchema: Codable {
         
-        public var items: [ProductDetail]?
+        public var items: [ProductCompareDetail]?
         
         public var attributesMetadata: [AttributeMetadata]?
         
@@ -21,7 +21,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(attributesMetadata: [AttributeMetadata]? = nil, items: [ProductDetail]? = nil) {
+        public init(attributesMetadata: [AttributeMetadata]? = nil, items: [ProductCompareDetail]? = nil) {
             
             self.items = items
             
@@ -34,7 +34,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                items = try container.decode([ProductDetail].self, forKey: .items)
+                items = try container.decode([ProductCompareDetail].self, forKey: .items)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

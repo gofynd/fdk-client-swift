@@ -16,7 +16,7 @@ public extension PlatformClient.Order {
         
         public var phoneNumber: String
         
-        public var amountPaid: Double?
+        public var amountPaid: Int?
         
         public var orderId: String
         
@@ -53,7 +53,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(amountPaid: Double? = nil, brandName: String? = nil, countryCode: String, customerName: String? = nil, message: String, orderId: String, paymentMode: String? = nil, phoneNumber: String, shipmentId: String) {
+        public init(amountPaid: Int? = nil, brandName: String? = nil, countryCode: String, customerName: String? = nil, message: String, orderId: String, paymentMode: String? = nil, phoneNumber: String, shipmentId: String) {
             
             self.shipmentId = shipmentId
             
@@ -90,7 +90,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    amountPaid = try container.decode(Double.self, forKey: .amountPaid)
+                    amountPaid = try container.decode(Int.self, forKey: .amountPaid)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -221,7 +221,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var phoneNumber: String
         
-        public var amountPaid: Double?
+        public var amountPaid: Int?
         
         public var orderId: String
         
@@ -258,7 +258,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(amountPaid: Double? = nil, brandName: String? = nil, countryCode: String, customerName: String? = nil, message: String, orderId: String, paymentMode: String? = nil, phoneNumber: String, shipmentId: String) {
+        public init(amountPaid: Int? = nil, brandName: String? = nil, countryCode: String, customerName: String? = nil, message: String, orderId: String, paymentMode: String? = nil, phoneNumber: String, shipmentId: String) {
             
             self.shipmentId = shipmentId
             
@@ -295,7 +295,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    amountPaid = try container.decode(Double.self, forKey: .amountPaid)
+                    amountPaid = try container.decode(Int.self, forKey: .amountPaid)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

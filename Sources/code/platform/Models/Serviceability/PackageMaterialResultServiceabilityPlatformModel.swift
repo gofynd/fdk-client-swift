@@ -18,6 +18,8 @@ public extension PlatformClient.Serviceability {
         
         public var itemId: Int?
         
+        public var companyId: Int?
+        
         public var width: Double
         
         public var height: Double
@@ -59,6 +61,8 @@ public extension PlatformClient.Serviceability {
             
             case itemId = "item_id"
             
+            case companyId = "company_id"
+            
             case width = "width"
             
             case height = "height"
@@ -93,13 +97,15 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(autoCalculate: Bool? = nil, channels: [Channel], errorRate: Double, height: Double, id: String? = nil, itemId: Int? = nil, length: Double, maxWeight: Double? = nil, media: [String]? = nil, name: String, packageType: String, packageVolWeight: Double? = nil, rules: [PackageMaterialRule]? = nil, size: String, status: String, storeIds: [Int], trackInventory: Bool? = nil, weight: Double, width: Double) {
+        public init(autoCalculate: Bool? = nil, channels: [Channel], companyId: Int? = nil, errorRate: Double, height: Double, id: String? = nil, itemId: Int? = nil, length: Double, maxWeight: Double? = nil, media: [String]? = nil, name: String, packageType: String, packageVolWeight: Double? = nil, rules: [PackageMaterialRule]? = nil, size: String, status: String, storeIds: [Int], trackInventory: Bool? = nil, weight: Double, width: Double) {
             
             self.name = name
             
             self.id = id
             
             self.itemId = itemId
+            
+            self.companyId = companyId
             
             self.width = width
             
@@ -158,6 +164,18 @@ public extension PlatformClient.Serviceability {
             
                 do {
                     itemId = try container.decode(Int.self, forKey: .itemId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    companyId = try container.decode(Int.self, forKey: .companyId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -307,6 +325,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(itemId, forKey: .itemId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
             
@@ -411,6 +434,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var itemId: Int?
         
+        public var companyId: Int?
+        
         public var width: Double
         
         public var height: Double
@@ -452,6 +477,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case itemId = "item_id"
             
+            case companyId = "company_id"
+            
             case width = "width"
             
             case height = "height"
@@ -486,13 +513,15 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(autoCalculate: Bool? = nil, channels: [Channel], errorRate: Double, height: Double, id: String? = nil, itemId: Int? = nil, length: Double, maxWeight: Double? = nil, media: [String]? = nil, name: String, packageType: String, packageVolWeight: Double? = nil, rules: [PackageMaterialRule]? = nil, size: String, status: String, storeIds: [Int], trackInventory: Bool? = nil, weight: Double, width: Double) {
+        public init(autoCalculate: Bool? = nil, channels: [Channel], companyId: Int? = nil, errorRate: Double, height: Double, id: String? = nil, itemId: Int? = nil, length: Double, maxWeight: Double? = nil, media: [String]? = nil, name: String, packageType: String, packageVolWeight: Double? = nil, rules: [PackageMaterialRule]? = nil, size: String, status: String, storeIds: [Int], trackInventory: Bool? = nil, weight: Double, width: Double) {
             
             self.name = name
             
             self.id = id
             
             self.itemId = itemId
+            
+            self.companyId = companyId
             
             self.width = width
             
@@ -551,6 +580,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
                 do {
                     itemId = try container.decode(Int.self, forKey: .itemId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    companyId = try container.decode(Int.self, forKey: .companyId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -700,6 +741,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(itemId, forKey: .itemId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
             

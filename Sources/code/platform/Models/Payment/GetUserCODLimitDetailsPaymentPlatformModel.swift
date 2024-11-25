@@ -12,24 +12,30 @@ public extension PlatformClient.Payment {
     class GetUserCODLimitDetails: Codable {
         
         
-        public var userCodData: CODdata
+        public var items: [GetUserBULimitResponseSchema]
         
         public var success: Bool
+        
+        public var message: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case userCodData = "user_cod_data"
+            case items = "items"
             
             case success = "success"
             
+            case message = "message"
+            
         }
 
-        public init(success: Bool, userCodData: CODdata) {
+        public init(items: [GetUserBULimitResponseSchema], message: String? = nil, success: Bool) {
             
-            self.userCodData = userCodData
+            self.items = items
             
             self.success = success
+            
+            self.message = message
             
         }
 
@@ -37,7 +43,7 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                userCodData = try container.decode(CODdata.self, forKey: .userCodData)
+                items = try container.decode([GetUserBULimitResponseSchema].self, forKey: .items)
                 
             
             
@@ -46,6 +52,18 @@ public extension PlatformClient.Payment {
                 
             
             
+            
+                do {
+                    message = try container.decode(String.self, forKey: .message)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -53,12 +71,17 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(userCodData, forKey: .userCodData)
+            try? container.encodeIfPresent(items, forKey: .items)
             
             
             
             
             try? container.encodeIfPresent(success, forKey: .success)
+            
+            
+            
+            
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }
@@ -77,24 +100,30 @@ public extension PlatformClient.ApplicationClient.Payment {
     class GetUserCODLimitDetails: Codable {
         
         
-        public var userCodData: CODdata
+        public var items: [GetUserBULimitResponseSchema]
         
         public var success: Bool
+        
+        public var message: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case userCodData = "user_cod_data"
+            case items = "items"
             
             case success = "success"
             
+            case message = "message"
+            
         }
 
-        public init(success: Bool, userCodData: CODdata) {
+        public init(items: [GetUserBULimitResponseSchema], message: String? = nil, success: Bool) {
             
-            self.userCodData = userCodData
+            self.items = items
             
             self.success = success
+            
+            self.message = message
             
         }
 
@@ -102,7 +131,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                userCodData = try container.decode(CODdata.self, forKey: .userCodData)
+                items = try container.decode([GetUserBULimitResponseSchema].self, forKey: .items)
                 
             
             
@@ -111,6 +140,18 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
+            
+                do {
+                    message = try container.decode(String.self, forKey: .message)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -118,12 +159,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(userCodData, forKey: .userCodData)
+            try? container.encodeIfPresent(items, forKey: .items)
             
             
             
             
             try? container.encodeIfPresent(success, forKey: .success)
+            
+            
+            
+            
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }

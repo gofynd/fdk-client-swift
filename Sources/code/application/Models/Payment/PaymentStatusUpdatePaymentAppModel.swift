@@ -34,6 +34,10 @@ public extension ApplicationClient.Payment {
         
         public var email: String?
         
+        public var razorpayPaymentId: String?
+        
+        public var merchantUrl: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -63,9 +67,13 @@ public extension ApplicationClient.Payment {
             
             case email = "email"
             
+            case razorpayPaymentId = "razorpay_payment_id"
+            
+            case merchantUrl = "merchant_url"
+            
         }
 
-        public init(aggregator: String, amount: Int? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, deviceId: String? = nil, email: String? = nil, merchantOrderId: String, merchantTransactionId: String? = nil, method: String, orderId: String, status: String, vpa: String? = nil) {
+        public init(aggregator: String, amount: Int? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, deviceId: String? = nil, email: String? = nil, merchantOrderId: String, merchantTransactionId: String? = nil, merchantUrl: String? = nil, method: String, orderId: String, razorpayPaymentId: String? = nil, status: String, vpa: String? = nil) {
             
             self.status = status
             
@@ -92,6 +100,10 @@ public extension ApplicationClient.Payment {
             self.amount = amount
             
             self.email = email
+            
+            self.razorpayPaymentId = razorpayPaymentId
+            
+            self.merchantUrl = merchantUrl
             
         }
 
@@ -219,6 +231,30 @@ public extension ApplicationClient.Payment {
             }
             
             
+            
+            do {
+                razorpayPaymentId = try container.decode(String.self, forKey: .razorpayPaymentId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                merchantUrl = try container.decode(String.self, forKey: .merchantUrl)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -274,6 +310,14 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(email, forKey: .email)
+            
+            
+            
+            try? container.encodeIfPresent(razorpayPaymentId, forKey: .razorpayPaymentId)
+            
+            
+            
+            try? container.encodeIfPresent(merchantUrl, forKey: .merchantUrl)
             
             
         }

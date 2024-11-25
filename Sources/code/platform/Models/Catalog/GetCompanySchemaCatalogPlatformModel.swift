@@ -18,11 +18,11 @@ public extension PlatformClient.Catalog {
         
         public var companyType: String?
         
-        public var createdBy: UserSerializer2?
+        public var createdBy: UserSchema?
         
         public var createdOn: String?
         
-        public var modifiedBy: UserSerializer2?
+        public var modifiedBy: UserSchema?
         
         public var modifiedOn: String?
         
@@ -34,7 +34,7 @@ public extension PlatformClient.Catalog {
         
         public var uid: Int?
         
-        public var verifiedBy: UserSerializer2?
+        public var verifiedBy: UserSchema?
         
         public var verifiedOn: String?
         
@@ -69,7 +69,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(addresses: [GetAddressSchema]? = nil, businessType: String? = nil, companyType: String? = nil, createdBy: UserSerializer2? = nil, createdOn: String? = nil, modifiedBy: UserSerializer2? = nil, modifiedOn: String? = nil, name: String? = nil, rejectReason: String? = nil, stage: String? = nil, uid: Int? = nil, verifiedBy: UserSerializer2? = nil, verifiedOn: String? = nil) {
+        public init(addresses: [GetAddressSchema]? = nil, businessType: String? = nil, companyType: String? = nil, createdBy: UserSchema? = nil, createdOn: String? = nil, modifiedBy: UserSchema? = nil, modifiedOn: String? = nil, name: String? = nil, rejectReason: String? = nil, stage: String? = nil, uid: Int? = nil, verifiedBy: UserSchema? = nil, verifiedOn: String? = nil) {
             
             self.addresses = addresses
             
@@ -140,7 +140,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserSerializer2.self, forKey: .createdBy)
+                    createdBy = try container.decode(UserSchema.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +164,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(UserSerializer2.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(UserSchema.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -236,7 +236,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    verifiedBy = try container.decode(UserSerializer2.self, forKey: .verifiedBy)
+                    verifiedBy = try container.decode(UserSchema.self, forKey: .verifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -350,11 +350,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var companyType: String?
         
-        public var createdBy: UserSerializer2?
+        public var createdBy: UserSchema?
         
         public var createdOn: String?
         
-        public var modifiedBy: UserSerializer2?
+        public var modifiedBy: UserSchema?
         
         public var modifiedOn: String?
         
@@ -366,7 +366,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var uid: Int?
         
-        public var verifiedBy: UserSerializer2?
+        public var verifiedBy: UserSchema?
         
         public var verifiedOn: String?
         
@@ -401,7 +401,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(addresses: [GetAddressSchema]? = nil, businessType: String? = nil, companyType: String? = nil, createdBy: UserSerializer2? = nil, createdOn: String? = nil, modifiedBy: UserSerializer2? = nil, modifiedOn: String? = nil, name: String? = nil, rejectReason: String? = nil, stage: String? = nil, uid: Int? = nil, verifiedBy: UserSerializer2? = nil, verifiedOn: String? = nil) {
+        public init(addresses: [GetAddressSchema]? = nil, businessType: String? = nil, companyType: String? = nil, createdBy: UserSchema? = nil, createdOn: String? = nil, modifiedBy: UserSchema? = nil, modifiedOn: String? = nil, name: String? = nil, rejectReason: String? = nil, stage: String? = nil, uid: Int? = nil, verifiedBy: UserSchema? = nil, verifiedOn: String? = nil) {
             
             self.addresses = addresses
             
@@ -472,7 +472,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserSerializer2.self, forKey: .createdBy)
+                    createdBy = try container.decode(UserSchema.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -496,7 +496,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(UserSerializer2.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(UserSchema.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -568,7 +568,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    verifiedBy = try container.decode(UserSerializer2.self, forKey: .verifiedBy)
+                    verifiedBy = try container.decode(UserSchema.self, forKey: .verifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

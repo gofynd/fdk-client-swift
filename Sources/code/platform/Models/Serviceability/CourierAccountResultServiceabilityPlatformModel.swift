@@ -12,6 +12,10 @@ public extension PlatformClient.Serviceability {
     class CourierAccountResult: Codable {
         
         
+        public var companyId: Int
+        
+        public var extensionId: String?
+        
         public var accountId: String
         
         public var schemeId: String
@@ -22,10 +26,14 @@ public extension PlatformClient.Serviceability {
         
         public var isOwnAccount: Bool
         
-        public var schemeRules: CourierPartnerSchemeModel
+        public var schemeRules: CourierPartnerSchemeModel?
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case companyId = "company_id"
+            
+            case extensionId = "extension_id"
             
             case accountId = "account_id"
             
@@ -41,7 +49,11 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(accountId: String, isOwnAccount: Bool, isSelfShip: Bool, schemeId: String, schemeRules: CourierPartnerSchemeModel, stage: String) {
+        public init(accountId: String, companyId: Int, extensionId: String? = nil, isOwnAccount: Bool, isSelfShip: Bool, schemeId: String, schemeRules: CourierPartnerSchemeModel? = nil, stage: String) {
+            
+            self.companyId = companyId
+            
+            self.extensionId = extensionId
             
             self.accountId = accountId
             
@@ -59,6 +71,23 @@ public extension PlatformClient.Serviceability {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                companyId = try container.decode(Int.self, forKey: .companyId)
+                
+            
+            
+            
+                do {
+                    extensionId = try container.decode(String.self, forKey: .extensionId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 accountId = try container.decode(String.self, forKey: .accountId)
@@ -86,14 +115,31 @@ public extension PlatformClient.Serviceability {
             
             
             
-                schemeRules = try container.decode(CourierPartnerSchemeModel.self, forKey: .schemeRules)
+                do {
+                    schemeRules = try container.decode(CourierPartnerSchemeModel.self, forKey: .schemeRules)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(extensionId, forKey: .extensionId)
+            
             
             
             
@@ -141,6 +187,10 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class CourierAccountResult: Codable {
         
         
+        public var companyId: Int
+        
+        public var extensionId: String?
+        
         public var accountId: String
         
         public var schemeId: String
@@ -151,10 +201,14 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var isOwnAccount: Bool
         
-        public var schemeRules: CourierPartnerSchemeModel
+        public var schemeRules: CourierPartnerSchemeModel?
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case companyId = "company_id"
+            
+            case extensionId = "extension_id"
             
             case accountId = "account_id"
             
@@ -170,7 +224,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(accountId: String, isOwnAccount: Bool, isSelfShip: Bool, schemeId: String, schemeRules: CourierPartnerSchemeModel, stage: String) {
+        public init(accountId: String, companyId: Int, extensionId: String? = nil, isOwnAccount: Bool, isSelfShip: Bool, schemeId: String, schemeRules: CourierPartnerSchemeModel? = nil, stage: String) {
+            
+            self.companyId = companyId
+            
+            self.extensionId = extensionId
             
             self.accountId = accountId
             
@@ -188,6 +246,23 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                companyId = try container.decode(Int.self, forKey: .companyId)
+                
+            
+            
+            
+                do {
+                    extensionId = try container.decode(String.self, forKey: .extensionId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 accountId = try container.decode(String.self, forKey: .accountId)
@@ -215,14 +290,31 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                schemeRules = try container.decode(CourierPartnerSchemeModel.self, forKey: .schemeRules)
+                do {
+                    schemeRules = try container.decode(CourierPartnerSchemeModel.self, forKey: .schemeRules)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(extensionId, forKey: .extensionId)
+            
             
             
             

@@ -452,7 +452,7 @@ extension PlatformClient {
         **/
         public func updateCourierPartnerAccount(
             accountId: String,
-            body: CourierAccount,
+            body: CourierAccountUpdateDetails,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CourierAccountResult?, _ error: FDKError?) -> Void
         ) {
@@ -1550,6 +1550,418 @@ Export locality wise CSV files.
                     } else if let data = responseData {
                         
                         let response = Utility.decode(OptimalLocationsResult.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Create Scheme for courier partner extension
+        * Description: Create Scheme for courier partner extension
+        **/
+        public func createCourierPartnerScheme(
+            body: CourierPartnerSchemeV2DetailsModel,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: CourierPartnerV2SchemeModel?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/logistics/v2.0/company/\(companyId)/courier-partner/scheme",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CourierPartnerV2SchemeModel.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get created Schemes for courier partner
+        * Description: Get created Schemes for courier partner
+        **/
+        public func getCourierPartnerSchemes(
+            schemeType: String?,
+            paymentMode: String?,
+            capabilities: [String]?,
+            schemeIds: [String]?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: courierPartnerSchemeV2List?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = schemeType {
+                xQuery["scheme_type"] = value
+            }
+            
+            if let value = paymentMode {
+                xQuery["payment_mode"] = value
+            }
+            
+            if let value = capabilities {
+                xQuery["capabilities"] = value
+            }
+            
+            if let value = schemeIds {
+                xQuery["scheme_ids"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/logistics/v2.0/company/\(companyId)/courier-partner/scheme",
+                query: xQuery,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(courierPartnerSchemeV2List.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Update Scheme for courier partner extension
+        * Description: Update Scheme for courier partner extension
+        **/
+        public func updateCourierPartnerScheme(
+            schemeId: String,
+            body: CourierPartnerSchemeV2UpdateDetails,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: CourierPartnerV2SchemeModel?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "PUT",
+                url: "/service/platform/logistics/v2.0/company/\(companyId)/courier-partner/scheme/\(schemeId)",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CourierPartnerV2SchemeModel.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get Scheme for courier partner extension by Id
+        * Description: Update Scheme for courier partner extension by Id
+        **/
+        public func getCourierPartnerScheme(
+            schemeId: String,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: CourierPartnerV2SchemeModel?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/logistics/v2.0/company/\(companyId)/courier-partner/scheme/\(schemeId)",
+                query: nil,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CourierPartnerV2SchemeModel.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Sample File Download
+        * Description: Sample File Download
+        **/
+        public func sampleFileServiceability(
+            body: BulkRegionServiceabilityTatDetails,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: BulkRegionServiceabilityTatResultItemData?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/logistics/v1.0/company/\(companyId)/localities/bulk-sample",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(BulkRegionServiceabilityTatResultItemData.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get Serviceability TAT sample files generator status
+        * Description: Get Serviceability TAT sample file generator status
+        **/
+        public func getSampleFileServiceabilityStatus(
+            pageNo: Int?,
+            pageSize: Int?,
+            batchId: String?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: BulkRegionServiceabilityTatResult?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = batchId {
+                xQuery["batch_id"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/logistics/v1.0/company/\(companyId)/localities/bulk-sample",
+                query: xQuery,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(BulkRegionServiceabilityTatResult.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get countries
+        * Description: Retrieve a list of countries for logistical purposes.
+        **/
+        public func getCountries(
+            onboarding: Bool?,
+            pageNo: Int?,
+            pageSize: Int?,
+            q: String?,
+            hierarchy: String?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: GetCountries?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = onboarding {
+                xQuery["onboarding"] = value
+            }
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = q {
+                xQuery["q"] = value
+            }
+            
+            if let value = hierarchy {
+                xQuery["hierarchy"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/logistics/v2.0/company/\(companyId)/countries",
+                query: xQuery,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetCountries.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
