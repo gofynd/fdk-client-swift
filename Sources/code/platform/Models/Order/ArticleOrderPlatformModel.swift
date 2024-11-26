@@ -12,7 +12,7 @@ public extension PlatformClient.Order {
     class Article: Codable {
         
         
-        public var childDetails: [[String: Any]]?
+        public var childDetails: [String: Any]?
         
         public var sellerIdentifier: String
         
@@ -81,7 +81,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(childDetails: [[String: Any]]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, set: [String: Any]? = nil, size: String, tags: [String]? = nil, uid: String, weight: Weight? = nil, id: String) {
+        public init(childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, set: [String: Any]? = nil, size: String, tags: [String]? = nil, uid: String, weight: Weight? = nil, id: String) {
             
             self.childDetails = childDetails
             
@@ -122,7 +122,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    childDetails = try container.decode([[String: Any]].self, forKey: .childDetails)
+                    childDetails = try container.decode([String: Any].self, forKey: .childDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -378,7 +378,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class Article: Codable {
         
         
-        public var childDetails: [[String: Any]]?
+        public var childDetails: [String: Any]?
         
         public var sellerIdentifier: String
         
@@ -447,7 +447,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(childDetails: [[String: Any]]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, set: [String: Any]? = nil, size: String, tags: [String]? = nil, uid: String, weight: Weight? = nil, id: String) {
+        public init(childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, set: [String: Any]? = nil, size: String, tags: [String]? = nil, uid: String, weight: Weight? = nil, id: String) {
             
             self.childDetails = childDetails
             
@@ -488,7 +488,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    childDetails = try container.decode([[String: Any]].self, forKey: .childDetails)
+                    childDetails = try container.decode([String: Any].self, forKey: .childDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
