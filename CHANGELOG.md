@@ -1,3 +1,499 @@
+# CHANGE LOG (1.5.1) - 2.0.0
+
+## Application Client
+
+
+
+### Cart
+
+
+
+#### checkoutCart
+
+- ##### What's New
+	- [Added] property <code>successCallbackUrl</code> of schema <code>CartCheckoutDetailCreation</code> in request body
+	- [Added] property <code>failureCallbackUrl</code> of schema <code>CartCheckoutDetailCreation</code> in request body
+
+
+#### checkoutCartV2
+
+- ##### What's New
+	- [Added] property <code>successCallbackUrl</code> of schema <code>CartCheckoutDetailV2Creation</code> in request body
+	- [Added] property <code>failureCallbackUrl</code> of schema <code>CartCheckoutDetailV2Creation</code> in request body
+
+
+#### updateCartBreakup
+
+- ##### What's New
+	- [Added] method <code>updateCartBreakup</code>
+
+
+
+### Content
+
+
+
+#### getSlideshows
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getSlideshows</code>
+
+
+
+#### getSlideshow
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getSlideshow</code>
+
+
+
+### Logistic
+
+
+
+#### getAllCountries
+
+- ##### What's New
+	- [Added] property <code>results[].parentId[]</code> of schema <code>CountryEntityResult</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>string</code> to <code>array</code> of property <code>results[].parentId</code> of schema <code>CountryEntityResult</code> in response with status code 200
+
+
+#### getLocalities
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>sector</code> (type: <code>string</code>)
+
+
+
+### Payment
+
+
+
+#### getPaymentModeRoutes
+
+- ##### What's New
+	- [Added] property <code>paymentOptions.paymentOption[].list[].partialPaymentAllowed</code> of schema <code>PaymentModeList</code> in response with status code 200
+	- [Added] property <code>advancePayment[].list[].partialPaymentAllowed</code> of schema <code>PaymentModeList</code> in response with status code 200
+
+
+#### getPosPaymentModeRoutes
+
+- ##### What's New
+	- [Added] property <code>paymentOptions.paymentOption[].list[].partialPaymentAllowed</code> of schema <code>PaymentModeList</code> in response with status code 200
+	- [Added] property <code>advancePayment[].list[].partialPaymentAllowed</code> of schema <code>PaymentModeList</code> in response with status code 200
+
+
+#### getPaymentModeRoutesPaymentLink
+
+- ##### What's New
+	- [Added] property <code>paymentOptions.paymentOption[].list[].partialPaymentAllowed</code> of schema <code>PaymentModeList</code> in response with status code 200
+	- [Added] property <code>advancePayment[].list[].partialPaymentAllowed</code> of schema <code>PaymentModeList</code> in response with status code 200
+
+
+#### validateCustomerAndCreditSummary
+
+- ##### What's New
+	- [Added] method <code>validateCustomerAndCreditSummary</code>
+
+
+
+### Share
+
+
+
+#### createShortLink
+
+- ##### What's Changed
+	- [Changed] <code>title</code> made optional in request body
+
+
+## Platform Client
+
+
+
+### Analytics
+
+
+
+#### checkJobStatusByNameV2
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>endDate</code> of schema <code>JobStatus</code> in response with status code 200
+
+
+### AuditTrail
+
+
+
+#### createAuditLog
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Response with status 400
+
+
+### Cart
+
+
+
+#### platformCheckoutCart
+
+- ##### What's New
+	- [Added] property <code>successCallbackUrl</code> of schema <code>PlatformCartCheckoutDetailCreation</code> in request body
+	- [Added] property <code>failureCallbackUrl</code> of schema <code>PlatformCartCheckoutDetailCreation</code> in request body
+
+
+#### platformCheckoutCartV2
+
+- ##### What's New
+	- [Added] property <code>successCallbackUrl</code> of schema <code>PlatformCartCheckoutDetailV2Creation</code> in request body
+	- [Added] property <code>failureCallbackUrl</code> of schema <code>PlatformCartCheckoutDetailV2Creation</code> in request body
+
+
+### Catalog
+
+
+
+#### getAllCollections
+
+- ##### What's New
+	- [Added] properties <code>items[].seo.breadcrumbs[].action.page</code>, <code>items[].seo.breadcrumbs[].action.type</code> in response with status code 200
+	- [Added] <code>items[].seo.breadcrumbs[].action.type</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].seo.breadcrumbs[].action[]</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>items[].seo.breadcrumbs[].action</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+
+
+#### createCollection
+
+- ##### What's New
+	- [Added] properties <code>seo.breadcrumbs[].action.page</code>, <code>seo.breadcrumbs[].action.type</code> in request body
+	- [Added] <code>seo.breadcrumbs[].action.type</code> made required in request body
+	- [Added] properties <code>seo.breadcrumbs[].action.page</code>, <code>seo.breadcrumbs[].action.type</code> in response with status code 200
+	- [Added] <code>seo.breadcrumbs[].action.type</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>seo.breadcrumbs[].action[]</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in request body
+	- [Breaking] [Deleted] property <code>seo.breadcrumbs[].action[]</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>seo.breadcrumbs[].action</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in request body
+	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>seo.breadcrumbs[].action</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+
+
+#### getCollectionItems
+
+- ##### What's New
+	- [Added] properties <code>items[].seo.breadcrumbs[].action.page</code>, <code>items[].seo.breadcrumbs[].action.type</code> in response with status code 200
+	- [Added] <code>items[].seo.breadcrumbs[].action.type</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].seo.breadcrumbs[].action[]</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>items[].seo.breadcrumbs[].action</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+
+
+#### getCollectionDetail
+
+- ##### What's New
+	- [Added] properties <code>seo.breadcrumbs[].action.page</code>, <code>seo.breadcrumbs[].action.type</code> in response with status code 200
+	- [Added] <code>seo.breadcrumbs[].action.type</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>seo.breadcrumbs[].action[]</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>seo.breadcrumbs[].action</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+
+
+#### getApplicationProducts
+
+- ##### What's New
+	- [Added] properties <code>items[].seo.breadcrumbs[].action.page</code>, <code>items[].seo.breadcrumbs[].action.type</code> in response with status code 200
+	- [Added] <code>items[].seo.breadcrumbs[].action.type</code> made required in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>items[].seo.breadcrumbs[].action[]</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>items[].seo.breadcrumbs[].action</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+
+
+#### validateProductGlobalTemplate
+
+- ##### What's New
+	- [Added] method <code>validateProductGlobalTemplate</code>
+
+
+
+#### updateLocationPrice
+
+- ##### What's New
+	- [Added] method <code>updateLocationPrice</code>
+
+
+
+#### updateLocationQuantity
+
+- ##### What's New
+	- [Added] method <code>updateLocationQuantity</code>
+
+
+
+### Content
+
+
+
+#### getSlideshows
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getSlideshows</code>
+
+
+
+#### createSlideshow
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>createSlideshow</code>
+
+
+
+#### getSlideshowBySlug
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>getSlideshowBySlug</code>
+
+
+
+#### updateSlideshow
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>updateSlideshow</code>
+
+
+
+#### deleteSlideshow
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>deleteSlideshow</code>
+
+
+
+### Serviceability
+
+
+
+#### createCourierPartnerAccount
+
+- ##### What's New
+	- [Added] property <code>schemeRules.feature.qcShipmentItemQuantity</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+	- [Added] property <code>schemeRules.feature.nonQcShipmentItemQuantity</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+
+
+#### getCourierPartnerAccounts
+
+- ##### What's New
+	- [Added] property <code>items[].schemeRules.feature.qcShipmentItemQuantity</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+	- [Added] property <code>items[].schemeRules.feature.nonQcShipmentItemQuantity</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+
+
+#### updateCourierPartnerAccount
+
+- ##### What's New
+	- [Added] property <code>schemeRules.feature.qcShipmentItemQuantity</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+	- [Added] property <code>schemeRules.feature.nonQcShipmentItemQuantity</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+
+
+#### getCourierPartnerAccount
+
+- ##### What's New
+	- [Added] property <code>schemeRules.feature.qcShipmentItemQuantity</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+	- [Added] property <code>schemeRules.feature.nonQcShipmentItemQuantity</code> of schema <code>CourierPartnerSchemeFeatures</code> in response with status code 200
+
+
+#### updateCourierRule
+
+- ##### What's New
+	- [Added] property <code>conditions.forward.includes[].parentId[]</code> of schema <code>LocationRuleValues</code> in request body
+	- [Added] property <code>conditions.reverse.includes[].parentId[]</code> of schema <code>LocationRuleValues</code> in request body
+	- [Added] property <code>conditions.forward.includes[].parentId[]</code> of schema <code>LocationRuleValues</code> in response with status code 200
+	- [Added] property <code>conditions.reverse.includes[].parentId[]</code> of schema <code>LocationRuleValues</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>string</code> to <code>array</code> of property <code>conditions.forward.includes[].parentId</code> of schema <code>LocationRuleValues</code> in request body
+	- [Breaking] [Changed] Type from <code>string</code> to <code>array</code> of property <code>conditions.reverse.includes[].parentId</code> of schema <code>LocationRuleValues</code> in request body
+	- [Breaking] [Changed] Type from <code>string</code> to <code>array</code> of property <code>conditions.forward.includes[].parentId</code> of schema <code>LocationRuleValues</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>string</code> to <code>array</code> of property <code>conditions.reverse.includes[].parentId</code> of schema <code>LocationRuleValues</code> in response with status code 200
+
+
+#### getCourierPartnerRule
+
+- ##### What's New
+	- [Added] property <code>conditions.forward.includes[].parentId[]</code> of schema <code>LocationRuleValues</code> in response with status code 200
+	- [Added] property <code>conditions.reverse.includes[].parentId[]</code> of schema <code>LocationRuleValues</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>string</code> to <code>array</code> of property <code>conditions.forward.includes[].parentId</code> of schema <code>LocationRuleValues</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>string</code> to <code>array</code> of property <code>conditions.reverse.includes[].parentId</code> of schema <code>LocationRuleValues</code> in response with status code 200
+
+
+#### createCourierPartnerRule
+
+- ##### What's New
+	- [Added] property <code>conditions.forward.includes[].parentId[]</code> of schema <code>LocationRuleValues</code> in request body
+	- [Added] property <code>conditions.reverse.includes[].parentId[]</code> of schema <code>LocationRuleValues</code> in request body
+	- [Added] property <code>conditions.forward.includes[].parentId[]</code> of schema <code>LocationRuleValues</code> in response with status code 200
+	- [Added] property <code>conditions.reverse.includes[].parentId[]</code> of schema <code>LocationRuleValues</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>string</code> to <code>array</code> of property <code>conditions.forward.includes[].parentId</code> of schema <code>LocationRuleValues</code> in request body
+	- [Breaking] [Changed] Type from <code>string</code> to <code>array</code> of property <code>conditions.reverse.includes[].parentId</code> of schema <code>LocationRuleValues</code> in request body
+	- [Breaking] [Changed] Type from <code>string</code> to <code>array</code> of property <code>conditions.forward.includes[].parentId</code> of schema <code>LocationRuleValues</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>string</code> to <code>array</code> of property <code>conditions.reverse.includes[].parentId</code> of schema <code>LocationRuleValues</code> in response with status code 200
+
+
+#### getCourierPartnerRules
+
+- ##### What's New
+	- [Added] property <code>items[].conditions.forward.includes[].parentId[]</code> of schema <code>LocationRuleValues</code> in response with status code 200
+	- [Added] property <code>items[].conditions.reverse.includes[].parentId[]</code> of schema <code>LocationRuleValues</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>string</code> to <code>array</code> of property <code>items[].conditions.forward.includes[].parentId</code> of schema <code>LocationRuleValues</code> in response with status code 200
+	- [Breaking] [Changed] Type from <code>string</code> to <code>array</code> of property <code>items[].conditions.reverse.includes[].parentId</code> of schema <code>LocationRuleValues</code> in response with status code 200
+
+
+#### getStoreRules
+
+- ##### What's New
+	- [Added] property <code>items[].conditions.toLocation.includes[].parentId[]</code> of schema <code>LocationRuleValues</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>string</code> to <code>array</code> of property <code>items[].conditions.toLocation.includes[].parentId</code> of schema <code>LocationRuleValues</code> in response with status code 200
+
+
+#### createStoreRules
+
+- ##### What's New
+	- [Added] property <code>conditions.toLocation.includes[].parentId[]</code> of schema <code>LocationRuleValues</code> in request body
+	- [Added] property <code>conditions.toLocation.includes[].parentId[]</code> of schema <code>LocationRuleValues</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>string</code> to <code>array</code> of property <code>conditions.toLocation.includes[].parentId</code> of schema <code>LocationRuleValues</code> in request body
+	- [Breaking] [Changed] Type from <code>string</code> to <code>array</code> of property <code>conditions.toLocation.includes[].parentId</code> of schema <code>LocationRuleValues</code> in response with status code 200
+
+
+#### getStoreRule
+
+- ##### What's New
+	- [Added] property <code>conditions.toLocation.includes[].parentId[]</code> of schema <code>LocationRuleValues</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>string</code> to <code>array</code> of property <code>conditions.toLocation.includes[].parentId</code> of schema <code>LocationRuleValues</code> in response with status code 200
+
+
+#### updateStoreRules
+
+- ##### What's New
+	- [Added] property <code>conditions.toLocation.includes[].parentId[]</code> of schema <code>LocationRuleValues</code> in request body
+	- [Added] property <code>conditions.toLocation.includes[].parentId[]</code> of schema <code>LocationRuleValues</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from <code>string</code> to <code>array</code> of property <code>conditions.toLocation.includes[].parentId</code> of schema <code>LocationRuleValues</code> in request body
+	- [Breaking] [Changed] Type from <code>string</code> to <code>array</code> of property <code>conditions.toLocation.includes[].parentId</code> of schema <code>LocationRuleValues</code> in response with status code 200
+
+
+#### getServiceability
+
+- ##### What's New
+	- [Added] property <code>isReversePickup</code> of schema <code>ServiceabilityModel</code> in response with status code 200
+
+
+#### updateServiceability
+
+- ##### What's New
+	- [Added] property <code>isReversePickup</code> of schema <code>ServiceabilityModel</code> in request body
+	- [Added] property <code>isReversePickup</code> of schema <code>ServiceabilityModel</code> in response with status code 200
+
+
+#### createCourierPartnerScheme
+
+- ##### What's New
+	- [Added] method <code>createCourierPartnerScheme</code>
+
+
+
+#### getCourierPartnerSchemes
+
+- ##### What's New
+	- [Added] method <code>getCourierPartnerSchemes</code>
+
+
+
+#### updateCourierPartnerScheme
+
+- ##### What's New
+	- [Added] method <code>updateCourierPartnerScheme</code>
+
+
+
+#### getCourierPartnerScheme
+
+- ##### What's New
+	- [Added] method <code>getCourierPartnerScheme</code>
+
+
+
+#### sampleFileServiceability
+
+- ##### What's New
+	- [Added] method <code>sampleFileServiceability</code>
+
+
+
+#### getSampleFileServiceabilityStatus
+
+- ##### What's New
+	- [Added] method <code>getSampleFileServiceabilityStatus</code>
+
+
+
+#### getCountries
+
+- ##### What's New
+	- [Added] method <code>getCountries</code>
+
+
+
+### Order
+
+
+
+#### downloadLanesReport
+
+- ##### What's New
+	- [Added] property <code>filters</code> of schema <code>BulkReportsDownloadRequestSchema</code> in request body
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>fulfillmentType</code> (type: <code>string</code>)
+
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>fulfillmentType</code> (type: <code>string</code>)
+
+
+
 # CHANGE LOG (1.5.0) - 2.0.0
 
 ## Application Client
