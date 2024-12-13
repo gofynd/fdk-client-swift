@@ -54,16 +54,6 @@ public extension ApplicationClient.Catalog {
         
         public var deliveryPromise: PromiseSchema?
         
-        public var trader: [Trader]?
-        
-        public var customJson: [String: Any]?
-        
-        public var tags: [String]?
-        
-        public var inventoryUpdatedOn: String?
-        
-        public var isServiceable: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -113,19 +103,9 @@ public extension ApplicationClient.Catalog {
             
             case deliveryPromise = "delivery_promise"
             
-            case trader = "trader"
-            
-            case customJson = "_custom_json"
-            
-            case tags = "tags"
-            
-            case inventoryUpdatedOn = "inventory_updated_on"
-            
-            case isServiceable = "is_serviceable"
-            
         }
 
-        public init(articleAssignment: ArticleAssignmentV3? = nil, articleId: String? = nil, deliveryPromise: PromiseSchema? = nil, discount: String? = nil, discountMeta: DiscountMeta? = nil, groupedAttributes: [SellerGroupAttributes]? = nil, inventoryUpdatedOn: String? = nil, isCod: Bool? = nil, isGift: Bool? = nil, isServiceable: Bool? = nil, itemType: String? = nil, longLat: [Double]? = nil, marketplaceAttributes: [MarketPlaceSttributesSchemaV3]? = nil, pincode: Int? = nil, price: ProductStockPriceV3? = nil, pricePerPiece: ProductStockPriceV3? = nil, pricePerUnit: ProductStockUnitPriceV3? = nil, quantity: Int? = nil, returnConfig: ReturnConfigSchemaV3? = nil, seller: SellerV3? = nil, sellerCount: Int? = nil, set: ProductSetV3? = nil, specialBadge: String? = nil, store: StoreV3? = nil, strategyWiseListing: [StrategyWiseListingSchemaV3]? = nil, tags: [String]? = nil, trader: [Trader]? = nil, customJson: [String: Any]? = nil) {
+        public init(articleAssignment: ArticleAssignmentV3? = nil, articleId: String? = nil, deliveryPromise: PromiseSchema? = nil, discount: String? = nil, discountMeta: DiscountMeta? = nil, groupedAttributes: [SellerGroupAttributes]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, itemType: String? = nil, longLat: [Double]? = nil, marketplaceAttributes: [MarketPlaceSttributesSchemaV3]? = nil, pincode: Int? = nil, price: ProductStockPriceV3? = nil, pricePerPiece: ProductStockPriceV3? = nil, pricePerUnit: ProductStockUnitPriceV3? = nil, quantity: Int? = nil, returnConfig: ReturnConfigSchemaV3? = nil, seller: SellerV3? = nil, sellerCount: Int? = nil, set: ProductSetV3? = nil, specialBadge: String? = nil, store: StoreV3? = nil, strategyWiseListing: [StrategyWiseListingSchemaV3]? = nil) {
             
             self.store = store
             
@@ -172,16 +152,6 @@ public extension ApplicationClient.Catalog {
             self.seller = seller
             
             self.deliveryPromise = deliveryPromise
-            
-            self.trader = trader
-            
-            self.customJson = customJson
-            
-            self.tags = tags
-            
-            self.inventoryUpdatedOn = inventoryUpdatedOn
-            
-            self.isServiceable = isServiceable
             
         }
 
@@ -464,66 +434,6 @@ public extension ApplicationClient.Catalog {
             }
             
             
-            
-            do {
-                trader = try container.decode([Trader].self, forKey: .trader)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                tags = try container.decode([String].self, forKey: .tags)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                inventoryUpdatedOn = try container.decode(String.self, forKey: .inventoryUpdatedOn)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                isServiceable = try container.decode(Bool.self, forKey: .isServiceable)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -619,26 +529,6 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(deliveryPromise, forKey: .deliveryPromise)
-            
-            
-            
-            try? container.encodeIfPresent(trader, forKey: .trader)
-            
-            
-            
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-            
-            
-            
-            try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            try? container.encodeIfPresent(inventoryUpdatedOn, forKey: .inventoryUpdatedOn)
-            
-            
-            
-            try? container.encodeIfPresent(isServiceable, forKey: .isServiceable)
             
             
         }

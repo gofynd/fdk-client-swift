@@ -28,8 +28,6 @@ public extension PlatformClient.Order {
         
         public var mrpPromotion: Bool?
         
-        public var appliedFreeArticles: [AppliedFreeArticles]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -49,11 +47,9 @@ public extension PlatformClient.Order {
             
             case mrpPromotion = "mrp_promotion"
             
-            case appliedFreeArticles = "applied_free_articles"
-            
         }
 
-        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, discountRules: [DiscountRules]? = nil, mrpPromotion: Bool? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
+        public init(amount: Double? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, discountRules: [DiscountRules]? = nil, mrpPromotion: Bool? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
             
             self.promotionType = promotionType
             
@@ -70,8 +66,6 @@ public extension PlatformClient.Order {
             self.promoId = promoId
             
             self.mrpPromotion = mrpPromotion
-            
-            self.appliedFreeArticles = appliedFreeArticles
             
         }
 
@@ -174,18 +168,6 @@ public extension PlatformClient.Order {
                 }
                 
             
-            
-                do {
-                    appliedFreeArticles = try container.decode([AppliedFreeArticles].self, forKey: .appliedFreeArticles)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -229,11 +211,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
-            
-            
-            
-            
-            try? container.encodeIfPresent(appliedFreeArticles, forKey: .appliedFreeArticles)
             
             
         }
@@ -268,8 +245,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var mrpPromotion: Bool?
         
-        public var appliedFreeArticles: [AppliedFreeArticles]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -289,11 +264,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case mrpPromotion = "mrp_promotion"
             
-            case appliedFreeArticles = "applied_free_articles"
-            
         }
 
-        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, discountRules: [DiscountRules]? = nil, mrpPromotion: Bool? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
+        public init(amount: Double? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, discountRules: [DiscountRules]? = nil, mrpPromotion: Bool? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
             
             self.promotionType = promotionType
             
@@ -310,8 +283,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.promoId = promoId
             
             self.mrpPromotion = mrpPromotion
-            
-            self.appliedFreeArticles = appliedFreeArticles
             
         }
 
@@ -414,18 +385,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
-            
-                do {
-                    appliedFreeArticles = try container.decode([AppliedFreeArticles].self, forKey: .appliedFreeArticles)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -469,11 +428,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
-            
-            
-            
-            
-            try? container.encodeIfPresent(appliedFreeArticles, forKey: .appliedFreeArticles)
             
             
         }

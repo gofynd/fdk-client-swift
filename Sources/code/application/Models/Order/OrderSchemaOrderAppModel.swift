@@ -26,11 +26,7 @@ public extension ApplicationClient.Order {
         
         public var bagsForReorder: [BagsForReorder]?
         
-        public var charges: [PriceAdjustmentCharge]?
-        
         public var meta: [String: Any]?
-        
-        public var currency: CurrencySchema?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -53,15 +49,11 @@ public extension ApplicationClient.Order {
             
             case bagsForReorder = "bags_for_reorder"
             
-            case charges = "charges"
-            
             case meta = "meta"
-            
-            case currency = "currency"
             
         }
 
-        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, charges: [PriceAdjustmentCharge]? = nil, currency: CurrencySchema? = nil, gstinCode: String? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
+        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, gstinCode: String? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
             
             self.totalShipmentsInOrder = totalShipmentsInOrder
             
@@ -81,11 +73,7 @@ public extension ApplicationClient.Order {
             
             self.bagsForReorder = bagsForReorder
             
-            self.charges = charges
-            
             self.meta = meta
-            
-            self.currency = currency
             
         }
 
@@ -202,31 +190,7 @@ public extension ApplicationClient.Order {
             
             
             do {
-                charges = try container.decode([PriceAdjustmentCharge].self, forKey: .charges)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                currency = try container.decode(CurrencySchema.self, forKey: .currency)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -278,15 +242,7 @@ public extension ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(charges, forKey: .charges)
-            
-            
-            
             try? container.encodeIfPresent(meta, forKey: .meta)
-            
-            
-            
-            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
         }

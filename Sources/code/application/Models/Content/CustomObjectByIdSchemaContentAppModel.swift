@@ -23,7 +23,7 @@ public extension ApplicationClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "id"
+            case id = "_id"
             
             case status = "status"
             
@@ -37,7 +37,7 @@ public extension ApplicationClient.Content {
             
         }
 
-        public init(definition: CustomObjectListItemDefinationSchema? = nil, displayName: String? = nil, fields: [CustomObjectFieldSchema]? = nil, id: String? = nil, references: [[String: Any]]? = nil, status: String? = nil) {
+        public init(definition: CustomObjectListItemDefinationSchema? = nil, displayName: String? = nil, fields: [CustomObjectFieldSchema]? = nil, references: [[String: Any]]? = nil, status: String? = nil, id: String? = nil) {
             
             self.id = id
             

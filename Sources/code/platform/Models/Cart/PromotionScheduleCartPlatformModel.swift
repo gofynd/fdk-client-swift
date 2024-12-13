@@ -14,13 +14,11 @@ public extension PlatformClient.ApplicationClient.Cart {
     class PromotionSchedule: Codable {
         
         
-        public var end: String?
+        public var end: String
         
-        public var start: String?
+        public var start: String
         
-        public var status: String?
-        
-        public var published: Bool?
+        public var published: Bool
         
         public var nextSchedule: [[String: Any]]?
         
@@ -35,8 +33,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case start = "start"
             
-            case status = "status"
-            
             case published = "published"
             
             case nextSchedule = "next_schedule"
@@ -47,13 +43,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [[String: Any]]? = nil, published: Bool? = nil, start: String? = nil, status: String? = nil) {
+        public init(cron: String? = nil, duration: Int? = nil, end: String, nextSchedule: [[String: Any]]? = nil, published: Bool, start: String) {
             
             self.end = end
             
             self.start = start
-            
-            self.status = status
             
             self.published = published
             
@@ -69,52 +63,19 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    end = try container.decode(String.self, forKey: .end)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                end = try container.decode(String.self, forKey: .end)
                 
             
             
-                do {
-                    start = try container.decode(String.self, forKey: .start)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                start = try container.decode(String.self, forKey: .start)
                 
             
             
-                do {
-                    status = try container.decode(String.self, forKey: .status)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                published = try container.decode(Bool.self, forKey: .published)
                 
             
-            
-                do {
-                    published = try container.decode(Bool.self, forKey: .published)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -165,11 +126,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(start, forKey: .start)
-            
-            
-            
-            
-            try? container.encodeIfPresent(status, forKey: .status)
             
             
             

@@ -24,7 +24,7 @@ public extension PlatformClient.Billing {
         
         public var cappedAmount: Double?
         
-        public var trialDays: Double?
+        public var trialDays: Int?
         
         public var isTest: Bool?
         
@@ -53,7 +53,7 @@ public extension PlatformClient.Billing {
             
         }
 
-        public init(cappedAmount: Double? = nil, isTest: Bool? = nil, metadata: [String: Any]? = nil, name: String, price: EntityChargePrice, pricingType: String, recurring: EntityChargeRecurring? = nil, term: String, trialDays: Double? = nil) {
+        public init(cappedAmount: Double? = nil, isTest: Bool? = nil, metadata: [String: Any]? = nil, name: String, price: EntityChargePrice, pricingType: String, recurring: EntityChargeRecurring? = nil, term: String, trialDays: Int? = nil) {
             
             self.name = name
             
@@ -124,7 +124,7 @@ public extension PlatformClient.Billing {
             
             
                 do {
-                    trialDays = try container.decode(Double.self, forKey: .trialDays)
+                    trialDays = try container.decode(Int.self, forKey: .trialDays)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

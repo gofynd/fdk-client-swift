@@ -14,7 +14,7 @@ public extension PlatformClient.ApplicationClient.Cart {
     class PromotionPaymentModes: Codable {
         
         
-        public var type: String?
+        public var type: String
         
         public var uses: PaymentAllowValue1?
         
@@ -31,7 +31,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(codes: [String]? = nil, type: String? = nil, uses: PaymentAllowValue1? = nil) {
+        public init(codes: [String]? = nil, type: String, uses: PaymentAllowValue1? = nil) {
             
             self.type = type
             
@@ -45,16 +45,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    type = try container.decode(String.self, forKey: .type)
+                type = try container.decode(String.self, forKey: .type)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {

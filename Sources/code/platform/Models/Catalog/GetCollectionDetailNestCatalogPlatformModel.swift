@@ -26,8 +26,6 @@ public extension PlatformClient.Catalog {
         
         public var banners: ImageUrls?
         
-        public var cron: [String: Any]?
-        
         public var description: String?
         
         public var isActive: Bool?
@@ -85,8 +83,6 @@ public extension PlatformClient.Catalog {
             
             case banners = "banners"
             
-            case cron = "cron"
-            
             case description = "description"
             
             case isActive = "is_active"
@@ -129,7 +125,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(action: Action? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: CollectionBadge? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, isVisible: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, name: String? = nil, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: SeoDetail? = nil, slug: String? = nil, sortOn: String? = nil, tag: [String]? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, id: String? = nil, localeLanguage: [String: Any]? = nil, schedule: CollectionSchedule? = nil) {
+        public init(action: Action? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: CollectionBadge? = nil, banners: ImageUrls? = nil, description: String? = nil, isActive: Bool? = nil, isVisible: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, name: String? = nil, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: SeoDetail? = nil, slug: String? = nil, sortOn: String? = nil, tag: [String]? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, id: String? = nil, localeLanguage: [String: Any]? = nil, schedule: CollectionSchedule? = nil) {
             
             self.schedule = schedule
             
@@ -144,8 +140,6 @@ public extension PlatformClient.Catalog {
             self.badge = badge
             
             self.banners = banners
-            
-            self.cron = cron
             
             self.description = description
             
@@ -267,18 +261,6 @@ public extension PlatformClient.Catalog {
             
                 do {
                     banners = try container.decode(ImageUrls.self, forKey: .banners)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    cron = try container.decode([String: Any].self, forKey: .cron)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -566,11 +548,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(banners, forKey: .banners)
-            
-            
-            
-            
-            try? container.encodeIfPresent(cron, forKey: .cron)
             
             
             
@@ -703,8 +680,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var banners: ImageUrls?
         
-        public var cron: [String: Any]?
-        
         public var description: String?
         
         public var isActive: Bool?
@@ -762,8 +737,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case banners = "banners"
             
-            case cron = "cron"
-            
             case description = "description"
             
             case isActive = "is_active"
@@ -806,7 +779,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(action: Action? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: CollectionBadge? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, isVisible: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, name: String? = nil, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: SeoDetail? = nil, slug: String? = nil, sortOn: String? = nil, tag: [String]? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, id: String? = nil, localeLanguage: [String: Any]? = nil, schedule: CollectionSchedule? = nil) {
+        public init(action: Action? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: CollectionBadge? = nil, banners: ImageUrls? = nil, description: String? = nil, isActive: Bool? = nil, isVisible: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, name: String? = nil, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: SeoDetail? = nil, slug: String? = nil, sortOn: String? = nil, tag: [String]? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, id: String? = nil, localeLanguage: [String: Any]? = nil, schedule: CollectionSchedule? = nil) {
             
             self.schedule = schedule
             
@@ -821,8 +794,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.badge = badge
             
             self.banners = banners
-            
-            self.cron = cron
             
             self.description = description
             
@@ -944,18 +915,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     banners = try container.decode(ImageUrls.self, forKey: .banners)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    cron = try container.decode([String: Any].self, forKey: .cron)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1243,11 +1202,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(banners, forKey: .banners)
-            
-            
-            
-            
-            try? container.encodeIfPresent(cron, forKey: .cron)
             
             
             

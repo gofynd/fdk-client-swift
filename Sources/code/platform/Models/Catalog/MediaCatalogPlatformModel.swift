@@ -18,10 +18,6 @@ public extension PlatformClient.Catalog {
         
         public var url: String
         
-        public var alt: String?
-        
-        public var thumbnail: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -31,23 +27,15 @@ public extension PlatformClient.Catalog {
             
             case url = "url"
             
-            case alt = "alt"
-            
-            case thumbnail = "thumbnail"
-            
         }
 
-        public init(alt: String? = nil, meta: [String: Any]? = nil, thumbnail: String? = nil, type: String? = nil, url: String) {
+        public init(meta: [String: Any]? = nil, type: String? = nil, url: String) {
             
             self.meta = meta
             
             self.type = type
             
             self.url = url
-            
-            self.alt = alt
-            
-            self.thumbnail = thumbnail
             
         }
 
@@ -83,30 +71,6 @@ public extension PlatformClient.Catalog {
                 
             
             
-            
-                do {
-                    alt = try container.decode(String.self, forKey: .alt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    thumbnail = try container.decode(String.self, forKey: .thumbnail)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -125,16 +89,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(url, forKey: .url)
-            
-            
-            
-            
-            try? container.encodeIfPresent(alt, forKey: .alt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(thumbnail, forKey: .thumbnail)
             
             
         }
@@ -159,10 +113,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var url: String
         
-        public var alt: String?
-        
-        public var thumbnail: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -172,23 +122,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case url = "url"
             
-            case alt = "alt"
-            
-            case thumbnail = "thumbnail"
-            
         }
 
-        public init(alt: String? = nil, meta: [String: Any]? = nil, thumbnail: String? = nil, type: String? = nil, url: String) {
+        public init(meta: [String: Any]? = nil, type: String? = nil, url: String) {
             
             self.meta = meta
             
             self.type = type
             
             self.url = url
-            
-            self.alt = alt
-            
-            self.thumbnail = thumbnail
             
         }
 
@@ -224,30 +166,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-            
-                do {
-                    alt = try container.decode(String.self, forKey: .alt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    thumbnail = try container.decode(String.self, forKey: .thumbnail)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -266,16 +184,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(url, forKey: .url)
-            
-            
-            
-            
-            try? container.encodeIfPresent(alt, forKey: .alt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(thumbnail, forKey: .thumbnail)
             
             
         }

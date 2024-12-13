@@ -36,6 +36,8 @@ public extension PlatformClient.Configuration {
         
         public var companyId: Int?
         
+        public var enableZoneOverlapping: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -63,9 +65,11 @@ public extension PlatformClient.Configuration {
             
             case companyId = "company_id"
             
+            case enableZoneOverlapping = "enable_zone_overlapping"
+            
         }
 
-        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
+        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, enableZoneOverlapping: Bool? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
             
             self.brand = brand
             
@@ -90,6 +94,8 @@ public extension PlatformClient.Configuration {
             self.companyStore = companyStore
             
             self.companyId = companyId
+            
+            self.enableZoneOverlapping = enableZoneOverlapping
             
         }
 
@@ -240,6 +246,18 @@ public extension PlatformClient.Configuration {
                 }
                 
             
+            
+                do {
+                    enableZoneOverlapping = try container.decode(Bool.self, forKey: .enableZoneOverlapping)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -303,6 +321,11 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(enableZoneOverlapping, forKey: .enableZoneOverlapping)
             
             
         }
@@ -345,6 +368,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var companyId: Int?
         
+        public var enableZoneOverlapping: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -372,9 +397,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case companyId = "company_id"
             
+            case enableZoneOverlapping = "enable_zone_overlapping"
+            
         }
 
-        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
+        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, enableZoneOverlapping: Bool? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
             
             self.brand = brand
             
@@ -399,6 +426,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.companyStore = companyStore
             
             self.companyId = companyId
+            
+            self.enableZoneOverlapping = enableZoneOverlapping
             
         }
 
@@ -549,6 +578,18 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
+            
+                do {
+                    enableZoneOverlapping = try container.decode(Bool.self, forKey: .enableZoneOverlapping)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -612,6 +653,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(enableZoneOverlapping, forKey: .enableZoneOverlapping)
             
             
         }
