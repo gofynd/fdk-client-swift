@@ -1,4 +1,4 @@
-# CHANGE LOG (1.4.15-beta.4) - 1.9.4
+# CHANGE LOG (1.4.15-beta.5) - 1.9.4
 
 ## Application Client
 
@@ -1586,6 +1586,7 @@
 - ##### What's Deprecated
 	- [Breaking] [Deleted] <code>query</code> parameter <code>filters</code> (type: <code>boolean</code>)
 
+	- [Breaking] [Deleted] properties <code>config.globalSchema.props[].type</code>, <code>config.globalSchema.props[].category</code>, <code>config.globalSchema.props[].id</code>, <code>config.globalSchema.props[].label</code>, <code>config.globalSchema.props[].info</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>createdAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>updatedAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 
@@ -1595,6 +1596,7 @@
 - ##### What's Deprecated
 	- [Breaking] [Deleted] <code>query</code> parameter <code>filters</code> (type: <code>boolean</code>)
 
+	- [Breaking] [Deleted] properties <code>config.globalSchema.props[].type</code>, <code>config.globalSchema.props[].category</code>, <code>config.globalSchema.props[].id</code>, <code>config.globalSchema.props[].label</code>, <code>config.globalSchema.props[].info</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>createdAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>updatedAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 
@@ -8803,6 +8805,7 @@
 #### getApplicationThemes
 
 - ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>[].config.globalSchema.props[].type</code>, <code>[].config.globalSchema.props[].category</code>, <code>[].config.globalSchema.props[].value</code>, <code>[].config.globalSchema.props[].id</code>, <code>[].config.globalSchema.props[].label</code>, <code>[].config.globalSchema.props[].info</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>[].createdAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>[].updatedAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 
@@ -8810,6 +8813,7 @@
 #### getThemeById
 
 - ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>config.globalSchema.props[].type</code>, <code>config.globalSchema.props[].category</code>, <code>config.globalSchema.props[].value</code>, <code>config.globalSchema.props[].id</code>, <code>config.globalSchema.props[].label</code>, <code>config.globalSchema.props[].info</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>createdAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>updatedAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 
@@ -8817,6 +8821,8 @@
 #### updateTheme
 
 - ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>config.globalSchema.props[].type</code>, <code>config.globalSchema.props[].category</code>, <code>config.globalSchema.props[].value</code>, <code>config.globalSchema.props[].id</code>, <code>config.globalSchema.props[].label</code>, <code>config.globalSchema.props[].info</code> in request body
+	- [Breaking] [Deleted] properties <code>config.globalSchema.props[].type</code>, <code>config.globalSchema.props[].category</code>, <code>config.globalSchema.props[].value</code>, <code>config.globalSchema.props[].id</code>, <code>config.globalSchema.props[].label</code>, <code>config.globalSchema.props[].info</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>createdAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>updatedAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 
@@ -8824,6 +8830,7 @@
 #### deleteTheme
 
 - ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>config.globalSchema.props[].type</code>, <code>config.globalSchema.props[].category</code>, <code>config.globalSchema.props[].value</code>, <code>config.globalSchema.props[].id</code>, <code>config.globalSchema.props[].label</code>, <code>config.globalSchema.props[].info</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>createdAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>updatedAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 
@@ -8831,6 +8838,7 @@
 #### addThemeToApplication
 
 - ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>config.globalSchema.props[].type</code>, <code>config.globalSchema.props[].category</code>, <code>config.globalSchema.props[].value</code>, <code>config.globalSchema.props[].id</code>, <code>config.globalSchema.props[].label</code>, <code>config.globalSchema.props[].info</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>createdAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>updatedAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 
@@ -8838,6 +8846,7 @@
 #### updateThemeName
 
 - ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>config.globalSchema.props[].type</code>, <code>config.globalSchema.props[].category</code>, <code>config.globalSchema.props[].value</code>, <code>config.globalSchema.props[].id</code>, <code>config.globalSchema.props[].label</code>, <code>config.globalSchema.props[].info</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>createdAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>updatedAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 
@@ -8845,6 +8854,7 @@
 #### applyTheme
 
 - ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>config.globalSchema.props[].type</code>, <code>config.globalSchema.props[].category</code>, <code>config.globalSchema.props[].value</code>, <code>config.globalSchema.props[].id</code>, <code>config.globalSchema.props[].label</code>, <code>config.globalSchema.props[].info</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>createdAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>updatedAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 
@@ -8852,6 +8862,7 @@
 #### duplicateTheme
 
 - ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>config.globalSchema.props[].type</code>, <code>config.globalSchema.props[].category</code>, <code>config.globalSchema.props[].value</code>, <code>config.globalSchema.props[].id</code>, <code>config.globalSchema.props[].label</code>, <code>config.globalSchema.props[].info</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>createdAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>updatedAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 
@@ -8859,6 +8870,7 @@
 #### getAppliedTheme
 
 - ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>config.globalSchema.props[].type</code>, <code>config.globalSchema.props[].category</code>, <code>config.globalSchema.props[].value</code>, <code>config.globalSchema.props[].id</code>, <code>config.globalSchema.props[].label</code>, <code>config.globalSchema.props[].info</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>createdAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>updatedAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 
@@ -8866,6 +8878,7 @@
 #### getThemeForPreview
 
 - ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>config.globalSchema.props[].type</code>, <code>config.globalSchema.props[].category</code>, <code>config.globalSchema.props[].value</code>, <code>config.globalSchema.props[].id</code>, <code>config.globalSchema.props[].label</code>, <code>config.globalSchema.props[].info</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>createdAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>updatedAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 
@@ -8873,6 +8886,7 @@
 #### upgradeTheme
 
 - ##### What's Deprecated
+	- [Breaking] [Deleted] properties <code>config.globalSchema.props[].type</code>, <code>config.globalSchema.props[].category</code>, <code>config.globalSchema.props[].value</code>, <code>config.globalSchema.props[].id</code>, <code>config.globalSchema.props[].label</code>, <code>config.globalSchema.props[].info</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>createdAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>updatedAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 
