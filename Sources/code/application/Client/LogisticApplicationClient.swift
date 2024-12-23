@@ -470,6 +470,7 @@ extension ApplicationClient {
             pageSize: Int?,
             q: String?,
             hierarchy: String?,
+            phoneCode: String?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetCountries?, _ error: FDKError?) -> Void
@@ -495,6 +496,10 @@ extension ApplicationClient {
             
             if let value = hierarchy {
                 xQuery["hierarchy"] = value
+            }
+            
+            if let value = phoneCode {
+                xQuery["phone_code"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []

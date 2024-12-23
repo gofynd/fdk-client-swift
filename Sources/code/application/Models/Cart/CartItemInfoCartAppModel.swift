@@ -3,53 +3,47 @@
 import Foundation
 public extension ApplicationClient.Cart {
     /*
-        Model: AddCartDetailResult
+        Model: CartItemInfo
         Used By: Cart
     */
-    class AddCartDetailResult: Codable {
+    class CartItemInfo: Codable {
         
-        public var message: String?
+        public var itemId: Int?
         
-        public var partial: Bool?
+        public var size: String?
         
-        public var cart: CartDetailResult?
+        public var storeId: Int?
         
         public var success: Bool?
         
-        public var result: [String: Any]?
-        
-        public var items: [CartItemInfo]?
+        public var message: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case message = "message"
+            case itemId = "item_id"
             
-            case partial = "partial"
+            case size = "size"
             
-            case cart = "cart"
+            case storeId = "store_id"
             
             case success = "success"
             
-            case result = "result"
-            
-            case items = "items"
+            case message = "message"
             
         }
 
-        public init(cart: CartDetailResult? = nil, items: [CartItemInfo]? = nil, message: String? = nil, partial: Bool? = nil, result: [String: Any]? = nil, success: Bool? = nil) {
+        public init(itemId: Int? = nil, message: String? = nil, size: String? = nil, storeId: Int? = nil, success: Bool? = nil) {
             
-            self.message = message
+            self.itemId = itemId
             
-            self.partial = partial
+            self.size = size
             
-            self.cart = cart
+            self.storeId = storeId
             
             self.success = success
             
-            self.result = result
-            
-            self.items = items
+            self.message = message
             
         }
 
@@ -58,7 +52,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                message = try container.decode(String.self, forKey: .message)
+                itemId = try container.decode(Int.self, forKey: .itemId)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,7 +64,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                partial = try container.decode(Bool.self, forKey: .partial)
+                size = try container.decode(String.self, forKey: .size)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -82,7 +76,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                cart = try container.decode(CartDetailResult.self, forKey: .cart)
+                storeId = try container.decode(Int.self, forKey: .storeId)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,19 +100,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                result = try container.decode([String: Any].self, forKey: .result)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                items = try container.decode([CartItemInfo].self, forKey: .items)
+                message = try container.decode(String.self, forKey: .message)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,15 +116,15 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
             
             
             
-            try? container.encodeIfPresent(partial, forKey: .partial)
+            try? container.encodeIfPresent(size, forKey: .size)
             
             
             
-            try? container.encodeIfPresent(cart, forKey: .cart)
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
             
             
             
@@ -150,11 +132,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(result, forKey: .result)
-            
-            
-            
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }
