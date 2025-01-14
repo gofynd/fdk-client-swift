@@ -1,4 +1,4 @@
-# CHANGE LOG (1.4.15-beta.5) - 1.9.4
+# CHANGE LOG (1.4.15-beta.6) - 1.9.4
 
 ## Application Client
 
@@ -31,6 +31,8 @@
 	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
 	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotionsApplied[].promotionType</code> of schema <code>AppliedPromotion</code> in response with status code 200
 	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.appliedPromoDetails[].promotionType</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>result</code> of schema <code>AddCartDetailResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items</code> of schema <code>AddCartDetailResult</code> in response with status code 200
 
 
 #### updateCart
@@ -44,6 +46,8 @@
 	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
 	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotionsApplied[].promotionType</code> of schema <code>AppliedPromotion</code> in response with status code 200
 	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.appliedPromoDetails[].promotionType</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>result</code> of schema <code>UpdateCartDetailResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items</code> of schema <code>UpdateCartDetailResult</code> in response with status code 200
 
 
 #### updateCartBreakup
@@ -235,6 +239,9 @@
 
 #### getProductDetailBySlug
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>categories[].customJson</code> of schema <code>ProductBrand</code> in response with status code 200
 	- [Breaking] [Deleted] property <code>brand.customJson</code> of schema <code>ProductBrand</code> in response with status code 200
@@ -248,6 +255,9 @@
 
 
 #### getProductSizesBySlug
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>moq</code> of schema <code>ProductSizes</code> in response with status code 200
@@ -263,6 +273,7 @@
 	- [Added] property <code>items[].color</code> of schema <code>ProductDetail</code> in response with status code 200
 	- [Added] property <code>items[].categoryMap</code> of schema <code>ProductDetail</code> in response with status code 200
 	- [Added] property <code>items[].productOnlineDate</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>items[].sellable</code> of schema <code>ProductCompareDetail</code> in response with status code 200
@@ -274,6 +285,9 @@
 
 
 #### getSimilarComparisonProductBySlug
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>items[].categories[].customJson</code> of schema <code>ProductBrand</code> in response with status code 200
@@ -289,6 +303,9 @@
 
 #### getComparedFrequentlyProductBySlug
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>similars.items[].categories[].customJson</code> of schema <code>ProductBrand</code> in response with status code 200
 	- [Breaking] [Deleted] property <code>similars.items[].brand.customJson</code> of schema <code>ProductBrand</code> in response with status code 200
@@ -301,7 +318,16 @@
 	- [Breaking] [Deleted] property <code>similars.items[].countryOfOrigin</code> of schema <code>ProductDetail</code> in response with status code 200
 
 
+#### getProductVariantsBySlug
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
 #### getProductStockByIds
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>items[].identifier.ean</code>, <code>items[].identifier.alu</code>, <code>items[].identifier.upc</code>, <code>items[].identifier.skuCode</code> in response with status code 200
@@ -317,6 +343,9 @@
 
 #### getProductStockForTimeByIds
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>items[].identifier.ean</code>, <code>items[].identifier.alu</code>, <code>items[].identifier.upc</code>, <code>items[].identifier.skuCode</code> in response with status code 200
 	- [Breaking] [Deleted] property <code>items[].brand</code> of schema <code>ProductStockStatusItem</code> in response with status code 200
@@ -331,6 +360,9 @@
 
 #### getProducts
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>items[].categories[].customJson</code> of schema <code>ProductBrand</code> in response with status code 200
 	- [Breaking] [Deleted] property <code>items[].brand.customJson</code> of schema <code>ProductBrand</code> in response with status code 200
@@ -344,7 +376,16 @@
 	- [Breaking] [Deleted] property <code>filters[].values[].logo</code> of schema <code>ProductFiltersValue</code> in response with status code 200
 
 
+#### getBrands
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
 #### getBrandDetailBySlug
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>slug</code> of schema <code>BrandDetailResponseSchema</code> in response with status code 200
@@ -352,6 +393,9 @@
 
 
 #### getCategories
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>data[].items[].childs[].childs[].childs[].priority</code> of schema <code>ThirdLevelChild</code> in response with status code 200
@@ -363,11 +407,17 @@
 
 #### getCategoryDetailBySlug
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>app</code> of schema <code>CategoryMetaResponseSchema</code> in response with status code 200
 
 
 #### getHomeProducts
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>items[].categories[].customJson</code> of schema <code>ProductBrand</code> in response with status code 200
@@ -382,7 +432,22 @@
 	- [Breaking] [Deleted] property <code>sortOn</code> of schema <code>HomeListingResponseSchema</code> in response with status code 200
 
 
+#### getDepartments
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### getSearchResults
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
 #### getCollections
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Type from <code>string</code> from property <code>items[].query[].value[]</code> of schema <code>CollectionQuery</code> in response with status code 200
@@ -395,6 +460,9 @@
 
 
 #### getCollectionItemsBySlug
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>items[].categories[].customJson</code> of schema <code>ProductBrand</code> in response with status code 200
@@ -411,6 +479,9 @@
 
 #### getCollectionDetailBySlug
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Deleted] Type from <code>string</code> from property <code>query[].value[]</code> of schema <code>CollectionQuery</code> in response with status code 200
 	- [Breaking] [Deleted] property <code>uid</code> of schema <code>CollectionDetailResponseSchema</code> in response with status code 200
@@ -425,6 +496,9 @@
 
 #### getFollowedListing
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>items[].categories[].customJson</code> of schema <code>ProductBrand</code> in response with status code 200
 	- [Breaking] [Deleted] property <code>items[].brand.customJson</code> of schema <code>ProductBrand</code> in response with status code 200
@@ -437,7 +511,34 @@
 	- [Breaking] [Deleted] property <code>items[].isTryout</code> of schema <code>ProductListingDetail</code> in response with status code 200
 
 
+#### unfollowById
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### followById
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### getFollowerCountById
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### getFollowIds
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
 #### getStores
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>items[].contacts</code> of schema <code>Store</code> in response with status code 200
@@ -445,6 +546,9 @@
 
 
 #### getInStockLocations
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>filters[].slug</code>, <code>filters[].uid</code>, <code>filters[].name</code>, <code>filters[].logo</code>, <code>filters[].isActive</code>, <code>filters[].priorityOrder</code>, <code>filters[].modifiedBy</code>, <code>filters[].modifiedOn</code> in response with status code 200
@@ -472,6 +576,9 @@
 
 #### getLocationDetailsById
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>address.latLong</code> of schema <code>StoreAddressSchema</code> in response with status code 200
 	- [Breaking] [Deleted] property <code>address.countryCode</code> of schema <code>StoreAddressSchema</code> in response with status code 200
@@ -492,7 +599,16 @@
 	- [Breaking] [Deleted] property <code>autoAssignCourierPartner</code> of schema <code>StoreDetails</code> in response with status code 200
 
 
+#### getProductBundlesBySlug
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
 #### getProductPriceBySlug
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>trader</code> of schema <code>ProductSizePriceResponseV3</code> in response with status code 200
@@ -504,6 +620,9 @@
 
 
 #### getProductSellersBySlug
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>standard,set,composite,digital</code> from property <code>items[].itemType</code> of schema <code>ProductSellersPriceResponseV3</code> in response with status code 200
@@ -617,12 +736,14 @@
 #### getAnnouncements
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getBlog
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -636,6 +757,7 @@
 #### getBlogs
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -650,42 +772,49 @@
 #### getDataLoaders
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getFaqs
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getFaqCategories
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getFaqBySlug
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getFaqCategoryBySlug
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getFaqsByCategorySlug
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getLandingPage
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -696,12 +825,14 @@
 #### getLegalInformation
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getNavigations
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -715,6 +846,7 @@
 #### getSEOConfiguration
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -725,6 +857,7 @@
 #### getSEOMarkupSchemas
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -734,6 +867,7 @@
 #### getSupportInformation
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -744,12 +878,14 @@
 #### getTags
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getPage
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -760,6 +896,7 @@
 #### getPages
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -901,6 +1038,8 @@
 - ##### What's Deprecated
 	- [Breaking] [Deleted] <code>query</code> parameter <code>hierarchy</code> (type: <code>string</code>)
 
+	- [Breaking] [Deleted] <code>query</code> parameter <code>phoneCode</code> (type: <code>string</code>)
+
 	- [Breaking] [Deleted] property <code>items[].hierarchy[].displayName</code> of schema <code>CountryHierarchy</code> in response with status code 200
 
 
@@ -958,6 +1097,10 @@
 
 #### getOrders
 
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
 - ##### What's Deprecated
 	- [Deleted] Value format from <code>date-time</code> from property <code>items[].shipments[].invoice.updatedDate</code> of schema <code>Invoice</code> in response with status code 200
 	- [Breaking] [Deleted] property <code>items[].shipments[].bags[].charges</code> of schema <code>Bags</code> in response with status code 200
@@ -984,6 +1127,10 @@
 
 
 #### getOrderById
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
 	- [Deleted] Value format from <code>date-time</code> from property <code>order.shipments[].invoice.updatedDate</code> of schema <code>Invoice</code> in response with status code 200
@@ -1019,6 +1166,10 @@
 
 #### getShipmentById
 
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
 - ##### What's Deprecated
 	- [Deleted] Value format from <code>date-time</code> from property <code>shipment.invoice.updatedDate</code> of schema <code>Invoice</code> in response with status code 200
 	- [Breaking] [Deleted] property <code>shipment.bags[].charges</code> of schema <code>Bags</code> in response with status code 200
@@ -1044,11 +1195,19 @@
 
 #### getInvoiceByShipmentId
 
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>GET,PUT</code> from property <code>presignedType</code> of schema <code>ResponseGetInvoiceShipment</code> in response with status code 200
 
 
 #### trackShipment
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>results[].meta</code> of schema <code>Track</code> in response with status code 200
@@ -1056,13 +1215,35 @@
 	- [Deleted] Value format from <code>date-time</code> from property <code>results[].updatedAt</code> of schema <code>Track</code> in response with status code 200
 
 
+#### getCustomerDetailsByShipmentId
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
+
+#### sendOtpToShipmentCustomer
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
+
 #### verifyOtpShipmentCustomer
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>message</code> of schema <code>VerifyOtpResponseSchema</code> in response with status code 200
 
 
 #### getShipmentBagReasons
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] Possible nullable value from property <code>reasons</code> of schema <code>ShipmentBagReasons</code> in response with status code 200
@@ -1072,11 +1253,19 @@
 
 #### getShipmentReasons
 
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>bag,order</code> from property <code>reasons[].feedbackType</code> of schema <code>ShipmentReason</code> in response with status code 200
 
 
 #### updateShipmentStatus
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>statuses[].shipments[].dataUpdates.products[].filters[].quantity</code> of schema <code>ProductsDataUpdatesFilters</code> in request body
@@ -1521,12 +1710,31 @@
 
 
 
+#### getProductQRCodeBySlug
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### getCollectionQRCodeBySlug
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### getUrlQRCode
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
 #### createShortLink
 
 - ##### What's New
 	- [Breaking] [Added] <code>url</code> made required in request body
 	- [Breaking] [Added] <code>redirects.expiry</code>, <code>redirects.url</code> made required in request body
 	- [Breaking] [Added] <code>redirects.expiry</code>, <code>redirects.url</code> made required in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Value format from <code>date-time</code> from property <code>expireAt</code> of schema <code>ShortLinkReq</code> in request body
@@ -1539,6 +1747,7 @@
 
 - ##### What's New
 	- [Breaking] [Added] <code>redirects.expiry</code>, <code>redirects.url</code> made required in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Value format from <code>date-time</code> from property <code>expireAt</code> of schema <code>ShortLinkRes</code> in response with status code 200
@@ -1550,6 +1759,7 @@
 
 - ##### What's New
 	- [Breaking] [Added] <code>redirects.expiry</code>, <code>redirects.url</code> made required in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Value format from <code>date-time</code> from property <code>expireAt</code> of schema <code>ShortLinkRes</code> in response with status code 200
@@ -1563,6 +1773,10 @@
 
 #### getAllPages
 
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>pages[].sections[].assets</code> of schema <code>AvailablePageSchemaSections</code> in response with status code 200
 	- [Breaking] [Deleted] properties <code>pages[].sections[].source.id</code>, <code>pages[].sections[].source.type</code>, <code>pages[].sections[].source.bundleName</code> in response with status code 200
@@ -1572,6 +1786,10 @@
 
 
 #### getPage
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>sections[].assets</code> of schema <code>AvailablePageSchemaSections</code> in response with status code 200
@@ -1583,6 +1801,10 @@
 
 #### getAppliedTheme
 
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
 - ##### What's Deprecated
 	- [Breaking] [Deleted] <code>query</code> parameter <code>filters</code> (type: <code>boolean</code>)
 
@@ -1592,6 +1814,10 @@
 
 
 #### getThemeForPreview
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] <code>query</code> parameter <code>filters</code> (type: <code>boolean</code>)
@@ -1827,11 +2053,13 @@
 #### createAuditLog
 
 - ##### What's New
+	- [Breaking] [Added] Required status to Request body content
 	- [Added] Response with status 400
 	- [Added] Response with status 500
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>logMeta.sessions</code> of schema <code>LogMetaObj</code> in request body
+	- [Deleted] Type from <code>object</code> from property <code></code> of schema <code>CreateLogResp</code> in response with status code 200
 
 - ##### What's Changed
 	- [Changed] Path From <code>/service/platform/webhook/v1.0/company/{company_id}/audit/logs/create</code> To <code>/service/platform/audit-trail/v1.0/company/{company_id}/logs</code>
@@ -2499,6 +2727,8 @@
 	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
 	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotionsApplied[].promotionType</code> of schema <code>AppliedPromotion</code> in response with status code 200
 	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.appliedPromoDetails[].promotionType</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>result</code> of schema <code>AddCartDetailResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items</code> of schema <code>AddCartDetailResult</code> in response with status code 200
 
 
 #### updateCart
@@ -2512,6 +2742,8 @@
 	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
 	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotionsApplied[].promotionType</code> of schema <code>AppliedPromotion</code> in response with status code 200
 	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.appliedPromoDetails[].promotionType</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>result</code> of schema <code>UpdateCartDetailResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items</code> of schema <code>UpdateCartDetailResult</code> in response with status code 200
 
 
 #### overrideCart
@@ -2589,6 +2821,8 @@
 	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
 	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotionsApplied[].promotionType</code> of schema <code>AppliedPromotion</code> in response with status code 200
 	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.appliedPromoDetails[].promotionType</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>result</code> of schema <code>AddCartDetailResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items</code> of schema <code>AddCartDetailResult</code> in response with status code 200
 
 
 #### platformUpdateCart
@@ -2602,6 +2836,8 @@
 	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
 	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotionsApplied[].promotionType</code> of schema <code>AppliedPromotion</code> in response with status code 200
 	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.appliedPromoDetails[].promotionType</code> of schema <code>AppliedPromotion</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>result</code> of schema <code>UpdateCartDetailResult</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>items</code> of schema <code>UpdateCartDetailResult</code> in response with status code 200
 
 
 #### getAppCoupons
@@ -2757,58 +2993,61 @@
 
 #### getCatalogInsights
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getApplicationBrandListing
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Type from <code>object</code> from property <code></code> of schema <code>ApplicationBrandListingSchema</code> in response with status code 200
 
 - ##### What's Changed
 	- [Breaking] [Changed] <code>page</code> made optional in response with status code 200
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### updateAppBrand
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getApplicationBrands
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getCategories
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getApplicationCategoryListing
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Type from <code>object</code> from property <code>items[].createdBy</code> of schema <code>CreatedBy</code> in response with status code 200
 	- [Deleted] Type from <code>object</code> from property <code>items[].modifiedBy</code> of schema <code>CreatedBy</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### updateAppCategory
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getAllCollections
 
 - ##### What's New
 	- [Added] property <code>items[].seo.breadcrumbs[].action[]</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>items[].cron</code> of schema <code>GetCollectionDetailNest</code> in response with status code 200
@@ -2820,7 +3059,6 @@
 - ##### What's Changed
 	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>items[].seo.breadcrumbs[].action</code> of schema <code>ApplicationItemSeoAction</code> in response with status code 200
 	- [Breaking] [Changed] <code>items[].seo.breadcrumbs[].action.type</code> made optional in response with status code 200
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### createCollection
@@ -2828,6 +3066,7 @@
 - ##### What's New
 	- [Added] property <code>seo.breadcrumbs[].action[]</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in request body
 	- [Added] property <code>seo.breadcrumbs[].action[]</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] <code>query</code> parameter <code>q</code> (type: <code>string</code>)
@@ -2853,7 +3092,6 @@
 	- [Breaking] [Changed] <code>seo.breadcrumbs[].action.type</code> made optional in request body
 	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>seo.breadcrumbs[].action</code> of schema <code>ApplicationItemSeoAction</code> in response with status code 200
 	- [Breaking] [Changed] <code>seo.breadcrumbs[].action.type</code> made optional in response with status code 200
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### getApplicationFilterValues
@@ -2868,19 +3106,17 @@
 	- [Added] property <code>values[].selectedMax</code> of schema <code>ProductFiltersValue</code> in response with status code 200
 	- [Added] property <code>values[].selectedMin</code> of schema <code>ProductFiltersValue</code> in response with status code 200
 	- [Added] <code>values[].display</code>, <code>values[].is_selected</code>, <code>values[].value</code> made required in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Type from <code>string</code> from property <code>values[].value</code> of schema <code>ProductQueryFiltersValue</code> in response with status code 200
 	- [Breaking] [Deleted] property <code>values[].logo</code> of schema <code>ProductQueryFiltersValue</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### getApplicationFilterKeys
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getQueryFilters
@@ -2894,20 +3130,18 @@
 	- [Added] property <code>filters[].values[].queryFormat</code> of schema <code>ProductFiltersValue</code> in response with status code 200
 	- [Added] property <code>filters[].values[].selectedMax</code> of schema <code>ProductFiltersValue</code> in response with status code 200
 	- [Added] property <code>filters[].values[].selectedMin</code> of schema <code>ProductFiltersValue</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Type from <code>string</code> from property <code>filters[].values[].value</code> of schema <code>CollectionProductFiltersValue</code> in response with status code 200
 	- [Breaking] [Deleted] property <code>filters[].values[].logo</code> of schema <code>CollectionProductFiltersValue</code> in response with status code 200
 	- [Breaking] [Deleted] property <code>sortOn[].logo</code> of schema <code>CollectionProductSortOn</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### deleteCollection
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### updateCollection
@@ -2915,6 +3149,7 @@
 - ##### What's New
 	- [Added] property <code>seo.breadcrumbs[].action[]</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in request body
 	- [Added] property <code>seo.breadcrumbs[].action[]</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>seo.sitemap.priority</code>, <code>seo.sitemap.frequency</code> in request body
@@ -2925,7 +3160,6 @@
 - ##### What's Changed
 	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>seo.breadcrumbs[].action</code> of schema <code>ApplicationCollectionItemSeoAction</code> in request body
 	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>seo.breadcrumbs[].action</code> of schema <code>ApplicationCollectionItemSeoAction</code> in response with status code 200
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### getCollectionItems
@@ -2933,6 +3167,7 @@
 - ##### What's New
 	- [Breaking] [Added] Type <code>object</code> to property <code>items[].price</code> of schema <code>ProductListingPrice</code> in response with status code 200
 	- [Added] property <code>items[].groupedAttributes</code> of schema <code>ProductListingDetail</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] <code>query</code> parameter <code>pageNo</code> (type: <code>integer</code>)
@@ -3003,19 +3238,19 @@
 	- [Breaking] [Changed] <code>items[].is_gift</code> made optional in response with status code 200
 	- [Breaking] [Changed] <code>items[].is_available</code> made optional in response with status code 200
 	- [Breaking] [Changed] <code>items[].l3_categories</code> made optional in response with status code 200
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### addCollectionItems
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getCollectionDetail
 
 - ##### What's New
 	- [Added] property <code>seo.breadcrumbs[].action[]</code> of schema <code>ApplicationItemSeoBreadcrumbs</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>logo.type</code> of schema <code>Media</code> in response with status code 200
@@ -3027,37 +3262,37 @@
 - ##### What's Changed
 	- [Breaking] [Changed] Type from <code>object</code> to <code>array</code> of property <code>seo.breadcrumbs[].action</code> of schema <code>ApplicationItemSeoAction</code> in response with status code 200
 	- [Breaking] [Changed] <code>seo.breadcrumbs[].action.type</code> made optional in response with status code 200
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### getApplicationDepartmentListing
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### updateAppDepartment
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getDepartments
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getAppInventory
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getAppLocations
 
 - ##### What's New
 	- [Added] property <code>items[].code</code> of schema <code>GetLocationSerializer</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>distributor,franchise,mbo,manufacturer-owner</code> from property <code>items[].company.companyType</code> of schema <code>GetCompanySchema</code> in response with status code 200
@@ -3068,53 +3303,53 @@
 	- [Deleted] Possible values from <code>high_street,warehouse,mall</code> from property <code>items[].storeType</code> of schema <code>GetLocationSchema</code> in response with status code 200
 	- [Breaking] [Deleted] property <code>items[].companyId</code> of schema <code>GetLocationSchema</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### getConfigurations
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### createConfigurationProductListing
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getCatalogConfiguration
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getConfigurationByType
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### createConfigurationByType
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getAppProduct
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### updateAppProduct
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getApplicationProducts
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Type from <code>object</code> from property <code>filters[].values[].value</code> of schema <code>ProductFiltersValue</code> in response with status code 200
@@ -3184,7 +3419,6 @@
 	- [Breaking] [Changed] <code>items[].is_gift</code> made optional in response with status code 200
 	- [Breaking] [Changed] <code>items[].is_available</code> made optional in response with status code 200
 	- [Breaking] [Changed] <code>items[].l3_categories</code> made optional in response with status code 200
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### getDiscountedInventoryBySizeIdentifier
@@ -3194,6 +3428,7 @@
 
 	- [Added] <code>items[].trader[].name</code> made required in response with status code 200
 	- [Added] <code>items[].trader[].type</code> made required in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] maxLength validator for items[].trader[].name in response with status code 200
@@ -3202,14 +3437,12 @@
 	- [Deleted] Type from <code>object</code> from property <code>items[].returnConfig</code> of schema <code>InventoryReturnConfig</code> in response with status code 200
 	- [Breaking] [Deleted] properties <code>items[].taxIdentifier.hsnCode</code>, <code>items[].taxIdentifier.hsnCodeId</code>, <code>items[].taxIdentifier.reportingHsn</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### getProductDetailBySlug
 
 - ##### What's New
 	- [Added] property <code>color</code> of schema <code>ProductDetail</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>brand.logo.type</code> of schema <code>Media</code> in response with status code 200
@@ -3225,14 +3458,12 @@
 	- [Breaking] [Deleted] property <code>noOfBoxes</code> of schema <code>ProductDetail</code> in response with status code 200
 	- [Breaking] [Deleted] property <code>customOrder</code> of schema <code>ProductDetail</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### getAppProducts
 
 - ##### What's New
 	- [Added] property <code>items[].color</code> of schema <code>RawProduct</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>items[].media[].type</code> of schema <code>Media</code> in response with status code 200
@@ -3243,14 +3474,11 @@
 	- [Breaking] [Deleted] properties <code>items[].taxIdentifier.hsnCode</code>, <code>items[].taxIdentifier.hsnCodeId</code>, <code>items[].taxIdentifier.reportingHsn</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>items[].verifiedOn</code> of schema <code>RawProduct</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### getAppReturnConfiguration
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### createAppReturnConfiguration
@@ -3260,9 +3488,7 @@
 	- [Added] property <code>companyId</code> of schema <code>CreateUpdateAppReturnConfig</code> in request body
 	- [Breaking] [Added] <code>company_id</code> made required in request body
 	- [Breaking] [Added] <code>return_config_level</code> made required in request body
-
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+	- [Added] Response with status 4XX
 
 
 #### updateAppReturnConfiguration
@@ -3272,9 +3498,7 @@
 	- [Added] property <code>companyId</code> of schema <code>CreateUpdateAppReturnConfig</code> in request body
 	- [Breaking] [Added] <code>company_id</code> made required in request body
 	- [Breaking] [Added] <code>return_config_level</code> made required in request body
-
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+	- [Added] Response with status 4XX
 
 
 #### deleteAppCategoryReturnConfiguration
@@ -3284,16 +3508,16 @@
 	- [Added] property <code>companyId</code> of schema <code>DeleteAppCategoryReturnConfig</code> in request body
 	- [Breaking] [Added] <code>category_ids</code> made required in request body
 	- [Breaking] [Added] <code>company_id</code> made required in request body
-
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+	- [Added] Response with status 4XX
 
 
 #### getAppCategoryReturnConfig
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Changed
 	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>page.current</code> of schema <code>PageResponseSchema</code> in response with status code 200
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### createAppCategoryReturnConfiguration
@@ -3303,9 +3527,7 @@
 	- [Added] property <code>companyId</code> of schema <code>BaseAppCategoryReturnConfig</code> in request body
 	- [Breaking] [Added] <code>company_id</code> made required in request body
 	- [Breaking] [Added] <code>data</code> made required in request body
-
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+	- [Added] Response with status 4XX
 
 
 #### updateAppCategoryReturnConfiguration
@@ -3315,117 +3537,115 @@
 	- [Added] property <code>companyId</code> of schema <code>BaseAppCategoryReturnConfig</code> in request body
 	- [Breaking] [Added] <code>company_id</code> made required in request body
 	- [Breaking] [Added] <code>data</code> made required in request body
-
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+	- [Added] Response with status 4XX
 
 
 #### getAutocompleteConfig
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### createCustomAutocompleteRule
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### deleteAutocompleteKeyword
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getAutocompleteKeywordDetail
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### updateAutocompleteKeyword
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### deleteSearchConfiguration
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getSearchConfiguration
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### createSearchConfiguration
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### updateSearchConfiguration
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getAllSearchKeyword
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### createCustomKeyword
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### deleteSearchKeywords
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getSearchKeywords
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### updateSearchKeywords
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### updateAppLocation
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### listCategories
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getCategoryData
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getSellerInsights
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### listDepartmentsData
@@ -3434,6 +3654,7 @@
 	- [Added] property <code>items[].search</code> of schema <code>GetDepartment</code> in response with status code 200
 	- [Added] property <code>items[].pageNo</code> of schema <code>GetDepartment</code> in response with status code 200
 	- [Added] property <code>items[].pageSize</code> of schema <code>GetDepartment</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>items[].id</code> of schema <code>GetDepartment</code> in response with status code 200
@@ -3446,163 +3667,183 @@
 	- [Added] property <code>items[].search</code> of schema <code>GetDepartment</code> in response with status code 200
 	- [Added] property <code>items[].pageNo</code> of schema <code>GetDepartment</code> in response with status code 200
 	- [Added] property <code>items[].pageSize</code> of schema <code>GetDepartment</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>items[].id</code> of schema <code>GetDepartment</code> in response with status code 200
 	- [Deleted] Possible values from <code>set,standard,composite,digital</code> from property <code>items[].itemType</code> of schema <code>GetDepartment</code> in response with status code 200
 
 
+#### listTemplateBrandTypeValues
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
 #### bulkHsnCode
 
 - ##### What's New
 	- [Breaking] [Added] <code>data[].threshold1</code> made required in request body
-
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+	- [Added] Response with status 4XX
 
 
 #### getHsnCode
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### updateHsnCode
 
 - ##### What's New
 	- [Breaking] [Added] <code>threshold1</code> made required in request body
-
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+	- [Added] Response with status 4XX
 
 
 #### getInventories
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>items[].identifier.primary</code>, <code>items[].identifier.gtinValue</code>, <code>items[].identifier.gtinType</code> in response with status code 200
 	- [Deleted] Possible values from <code>high_street,warehouse,mall</code> from property <code>items[].store.storeType</code> of schema <code>ArticleStoreResponseSchema</code> in response with status code 200
 	- [Breaking] [Deleted] properties <code>items[].taxIdentifier.hsnCode</code>, <code>items[].taxIdentifier.hsnCodeId</code>, <code>items[].taxIdentifier.reportingHsn</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### getInventoryBulkUploadHistory
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Value format from <code>date-time</code> from property <code>items[].createdOn</code> of schema <code>BulkInventoryGetItems</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modifiedOn</code> of schema <code>BulkInventoryGetItems</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### createBulkInventoryJob
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### deleteBulkInventoryJob
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### createBulkInventory
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getInventoryExport
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### createInventoryExportJob
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>filters.brands</code>, <code>filters.quantity</code>, <code>filters.stores</code>, <code>filters.fromDate</code>, <code>filters.toDate</code> in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### exportInventoryConfig
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### downloadInventoryTemplateView
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### validateProductTemplateSchema
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getOptimalLocations
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getMarketplaceOptinDetail
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Value format from <code>date-time</code> from property <code>items[].createdOn</code> of schema <code>CompanyOptIn</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modifiedOn</code> of schema <code>CompanyOptIn</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### getCompanyBrandDetail
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getCompanyDetail
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>distributor,franchise,mbo,manufacturer-owner</code> from property <code>companyType</code> of schema <code>OptinCompanyDetail</code> in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### getCompanyMetrics
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getStoreDetail
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>high_street,warehouse,mall</code> from property <code>items[].storeType</code> of schema <code>StoreDetail</code> in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### getProductAttributes
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Changed
 	- [Breaking] [Changed] <code>items[].name</code> made optional in response with status code 200
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### getAttribute
 
 - ##### What's New
 	- [Added] property <code>departments</code> of schema <code>AttributeDetail</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>id[]</code> of schema <code>AttributeDetail</code> in response with status code 200
 
 - ##### What's Changed
 	- [Breaking] [Changed] Type from <code>array</code> to <code>string</code> of property <code>id</code> of schema <code>AttributeDetail</code> in response with status code 200
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### getProductBundle
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] <code>query</code> parameter <code>pageNo</code> (type: <code>integer</code>)
@@ -3612,18 +3853,15 @@
 	- [Breaking] [Deleted] properties <code>items[].createdBy.username</code>, <code>items[].createdBy.userId</code> in response with status code 200
 	- [Breaking] [Deleted] properties <code>items[].modifiedBy.username</code>, <code>items[].modifiedBy.userId</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### createProductBundle
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>createdBy.username</code>, <code>createdBy.userId</code> in response with status code 200
 	- [Breaking] [Deleted] properties <code>modifiedBy.username</code>, <code>modifiedBy.userId</code> in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### getProductBundleDetail
@@ -3633,12 +3871,10 @@
 	- [Added] property <code>products[].productDetails.shortDescription</code> of schema <code>LimitedProductData</code> in response with status code 200
 	- [Added] property <code>products[].price</code> of schema <code>GetProducts</code> in response with status code 200
 	- [Added] property <code>products[].sizes</code> of schema <code>GetProducts</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>products[].productDetails.price.currency</code>, <code>products[].productDetails.price.maxEffective</code>, <code>products[].productDetails.price.maxMarked</code>, <code>products[].productDetails.price.minEffective</code>, <code>products[].productDetails.price.minMarked</code> in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### updateProductBundle
@@ -3646,29 +3882,27 @@
 - ##### What's New
 	- [Added] property <code>modifiedBy</code> of schema <code>ProductBundleUpdateRequest</code> in request body
 	- [Added] property <code>modifiedOn</code> of schema <code>ProductBundleUpdateRequest</code> in request body
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>createdBy.username</code>, <code>createdBy.userId</code> in response with status code 200
 	- [Breaking] [Deleted] properties <code>modifiedBy.username</code>, <code>modifiedBy.userId</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### getProductAssetsInBulk
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Value format from <code>date-time</code> from property <code>items[].createdOn</code> of schema <code>Items</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>items[].modifiedOn</code> of schema <code>Items</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### createProductAssetsInBulk
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getProductBulkUploadHistory
@@ -3681,44 +3915,51 @@
 	- [Added] Default value <code></code> to property <code>items[].template.departments</code> of schema <code>ProductTemplate</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].template.departments</code> of schema <code>ProductTemplate</code> in response with status code 200
 	- [Breaking] [Added] Type <code>array</code> to property <code>items</code> of schema <code>ProductBulkRequestList</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>items[].template.createdBy.username</code>, <code>items[].template.createdBy.userId</code> in response with status code 200
 	- [Breaking] [Deleted] properties <code>items[].template.modifiedBy.username</code>, <code>items[].template.modifiedBy.userId</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### createBulkProductUploadJob
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### deleteProductBulkJob
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### createProductsInBulk
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### listProductTemplateExportDetails
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>items[].createdBy.email</code>, <code>items[].createdBy.uid</code>, <code>items[].createdBy.username</code>, <code>items[].createdBy.userId</code> in response with status code 200
 	- [Deleted] Type from <code>object</code> from property <code>items[].createdBy</code> of schema <code>UserInfo</code> in response with status code 200
 
 
+#### listHSNCodes
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
 #### getProductTags
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### listProductTemplate
@@ -3726,12 +3967,31 @@
 - ##### What's New
 	- [Added] properties <code>items.attributes</code>, <code>items.categories</code>, <code>items.departments</code>, <code>items.description</code>, <code>items.logo</code>, <code>items.name</code>, <code>items.slug</code>, <code>items.tag</code>, <code>items.createdBy</code>, <code>items.createdOn</code>, <code>items.isActive</code>, <code>items.isArchived</code>, <code>items.isExpirable</code>, <code>items.isPhysical</code>, <code>items.modifiedBy</code>, <code>items.modifiedOn</code> in response with status code 200
 	- [Added] <code>items.is_expirable</code>, <code>items.is_physical</code>, <code>items.slug</code> made required in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>items[]</code> of schema <code>TemplatesResponseSchema</code> in response with status code 200
 
 - ##### What's Changed
 	- [Breaking] [Changed] Type from <code>array</code> to <code>object</code> of property <code>items</code> of schema <code>TemplatesResponseSchema</code> in response with status code 200
+
+
+#### listProductTemplateCategories
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### downloadProductTemplateViews
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### validateProductTemplate
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### validateProductGlobalTemplate
@@ -3743,8 +4003,8 @@
 
 #### getProductValidation
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getInventoryBySizeIdentifier
@@ -3752,6 +4012,7 @@
 - ##### What's New
 	- [Added] <code>items[].trader[].name</code> made required in response with status code 200
 	- [Added] <code>items[].trader[].type</code> made required in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] maxLength validator for items[].trader[].name in response with status code 200
@@ -3760,14 +4021,12 @@
 	- [Deleted] Type from <code>object</code> from property <code>items[].returnConfig</code> of schema <code>InventoryReturnConfig</code> in response with status code 200
 	- [Breaking] [Deleted] properties <code>items[].taxIdentifier.hsnCode</code>, <code>items[].taxIdentifier.hsnCodeId</code>, <code>items[].taxIdentifier.reportingHsn</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### getProductSize
 
 - ##### What's New
 	- [Added] property <code>items[].multiSize</code> of schema <code>Product</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>items[].media[].type</code> of schema <code>Media</code> in response with status code 200
@@ -3777,17 +4036,17 @@
 	- [Breaking] [Deleted] properties <code>items[].taxIdentifier.hsnCode</code>, <code>items[].taxIdentifier.hsnCodeId</code>, <code>items[].taxIdentifier.reportingHsn</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>items[].verifiedOn</code> of schema <code>Product</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### deleteSize
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getInventoryBySize
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>items[].tags</code> of schema <code>InventoryResponseSchema</code> in response with status code 200
@@ -3796,45 +4055,47 @@
 	- [Breaking] [Deleted] property <code>items[].modifiedBy</code> of schema <code>InventoryResponseSchema</code> in response with status code 200
 	- [Breaking] [Deleted] property <code>items[].expirationDate</code> of schema <code>InventoryResponseSchema</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### addInventory
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getVariantsOfProducts
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>variants[].media[].type</code> of schema <code>Media</code> in response with status code 200
 	- [Breaking] [Deleted] property <code>variants[].media[].alt</code> of schema <code>Media</code> in response with status code 200
 	- [Breaking] [Deleted] property <code>variants[].media[].thumbnail</code> of schema <code>Media</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### getSizeGuides
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>items[].active</code>, <code>items[].guide</code>, <code>items[].id</code>, <code>items[].name</code>, <code>items[].subtitle</code>, <code>items[].tag</code>, <code>items[].title</code>, <code>items[].description</code>, <code>items[].image</code>, <code>items[].brandId</code>, <code>items[].companyId</code>, <code>items[].createdBy</code>, <code>items[].createdOn</code>, <code>items[].modifiedBy</code>, <code>items[].modifiedOn</code> in response with status code 200
 	- [Breaking] [Deleted] properties <code>page.current</code>, <code>page.size</code>, <code>page.hasNext</code>, <code>page.hasPrevious</code>, <code>page.itemTotal</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### createSizeGuide
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Changed
 	- [Breaking] [Changed] Type from <code>string</code> to <code>integer</code> of property <code>companyId</code> of schema <code>ValidateSizeGuide</code> in request body
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### getSizeGuide
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>image</code> of schema <code>SizeGuideResponseSchema</code> in response with status code 200
@@ -3846,17 +4107,33 @@
 - ##### What's Changed
 	- [Breaking] [Changed] <code>createdBy.user_id</code>, <code>createdBy.username</code> made optional in response with status code 200
 	- [Breaking] [Changed] <code>modifiedBy.user_id</code>, <code>modifiedBy.username</code> made optional in response with status code 200
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### updateSizeGuide
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Changed
 	- [Breaking] [Changed] Type from <code>string</code> to <code>integer</code> of property <code>companyId</code> of schema <code>ValidateSizeGuide</code> in request body
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+
+
+#### updateAllowSingle
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### updateDefaultSort
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getListingConfigurations
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>data[].attributes</code>, <code>data[].id</code>, <code>data[].name</code>, <code>data[].priority</code>, <code>data[].slug</code>, <code>data[].appId</code>, <code>data[].isActive</code>, <code>data[].isDefault</code>, <code>data[].templateSlugs</code> in response with status code 200
@@ -3864,32 +4141,60 @@
 
 #### createListingConfiguration
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getGroupConfigurations
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>data[].attributes</code>, <code>data[].id</code>, <code>data[].name</code>, <code>data[].priority</code>, <code>data[].slug</code>, <code>data[].appId</code>, <code>data[].isActive</code>, <code>data[].isDefault</code>, <code>data[].templateSlugs</code> in response with status code 200
 
 
+#### createGroupConfiguration
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### deleteGroupConfiguration
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### updateGroupConfiguration
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### deleteListingConfiguration
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
 #### updateListingConfiguration
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getConfigurationMetadata
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getAllProductHsnCodes
 
 - ##### What's New
 	- [Breaking] [Added] Type <code>string</code> to property <code>items[].reportingHsn</code> of schema <code>HSNDataInsertV2</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>items[].id</code> of schema <code>HSNDataInsertV2</code> in response with status code 200
@@ -3900,13 +4205,13 @@
 	- [Breaking] [Changed] <code>items[].createdBy.user_id</code>, <code>items[].createdBy.username</code> made optional in response with status code 200
 	- [Breaking] [Changed] <code>items[].modifiedBy.user_id</code>, <code>items[].modifiedBy.username</code> made optional in response with status code 200
 	- [Breaking] [Changed] Type from <code>integer</code> to <code>string</code> of property <code>page.current</code> of schema <code>PageResponseSchema</code> in response with status code 200
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### getSingleProductHSNCode
 
 - ##### What's New
 	- [Breaking] [Added] Type <code>string</code> to property <code>reportingHsn</code> of schema <code>HSNDataInsertV2</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>id</code> of schema <code>HSNDataInsertV2</code> in response with status code 200
@@ -3916,7 +4221,6 @@
 - ##### What's Changed
 	- [Breaking] [Changed] <code>createdBy.user_id</code>, <code>createdBy.username</code> made optional in response with status code 200
 	- [Breaking] [Changed] <code>modifiedBy.user_id</code>, <code>modifiedBy.username</code> made optional in response with status code 200
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### updateInventories
@@ -3928,23 +4232,24 @@
 
 #### listInventoryExport
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### createInventoryExport
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>filters.brands</code>, <code>filters.quantity</code>, <code>filters.stores</code>, <code>filters.fromDate</code>, <code>filters.toDate</code> in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### getProducts
 
 - ##### What's New
 	- [Added] property <code>items[].createdOn</code> of schema <code>ProductSchemaV2</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>items[].media[].type</code> of schema <code>Media</code> in response with status code 200
@@ -3955,9 +4260,6 @@
 	- [Breaking] [Deleted] properties <code>items[].taxIdentifier.hsnCode</code>, <code>items[].taxIdentifier.hsnCodeId</code>, <code>items[].taxIdentifier.reportingHsn</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>items[].verifiedOn</code> of schema <code>ProductSchemaV2</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### createProduct
 
@@ -3967,6 +4269,7 @@
 	- [Added] Default value to property <code>customOrder.isCustomOrder</code> of schema <code>CustomOrder</code> in request body
 	- [Added] Default value to property <code>customOrder.manufacturingTime</code> of schema <code>CustomOrder</code> in request body
 	- [Breaking] [Added] minimum validator for customOrder.manufacturingTime in request body
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>media[].type</code> of schema <code>Media</code> in request body
@@ -3975,37 +4278,38 @@
 
 - ##### What's Changed
 	- [Changed] <code>customOrder.is_custom_order</code> made optional in request body
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### uploadBulkProducts
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>set,standard,composite,digital</code> from property <code>productType</code> of schema <code>BulkProductJob</code> in request body
 
 - ##### What's Changed
 	- [Breaking] [Changed] Type from <code>string</code> to <code>integer</code> of property <code>companyId</code> of schema <code>BulkProductJob</code> in request body
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### getProductExportJobs
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>items[].createdBy.email</code>, <code>items[].createdBy.uid</code>, <code>items[].createdBy.username</code>, <code>items[].createdBy.userId</code> in response with status code 200
 	- [Deleted] Type from <code>object</code> from property <code>items[].createdBy</code> of schema <code>UserInfo</code> in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### createProductExportJob
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>items[].createdBy.email</code>, <code>items[].createdBy.uid</code>, <code>items[].createdBy.username</code>, <code>items[].createdBy.userId</code> in response with status code 200
 	- [Deleted] Type from <code>object</code> from property <code>items[].createdBy</code> of schema <code>UserInfo</code> in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### deleteProduct
@@ -4022,6 +4326,7 @@
 
 - ##### What's New
 	- [Added] property <code>data.createdOn</code> of schema <code>ProductSchemaV2</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>data.media[].type</code> of schema <code>Media</code> in response with status code 200
@@ -4032,9 +4337,6 @@
 	- [Breaking] [Deleted] properties <code>data.taxIdentifier.hsnCode</code>, <code>data.taxIdentifier.hsnCodeId</code>, <code>data.taxIdentifier.reportingHsn</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>data.verifiedOn</code> of schema <code>ProductSchemaV2</code> in response with status code 200
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
-
 
 #### editProduct
 
@@ -4044,6 +4346,7 @@
 	- [Added] Default value to property <code>customOrder.isCustomOrder</code> of schema <code>CustomOrder</code> in request body
 	- [Added] Default value to property <code>customOrder.manufacturingTime</code> of schema <code>CustomOrder</code> in request body
 	- [Breaking] [Added] minimum validator for customOrder.manufacturingTime in request body
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>image,video,3d_model</code> from property <code>media[].type</code> of schema <code>Media</code> in request body
@@ -4052,13 +4355,12 @@
 
 - ##### What's Changed
 	- [Changed] <code>customOrder.is_custom_order</code> made optional in request body
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 #### allSizes
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### deleteRealtimeInventory
@@ -4091,24 +4393,24 @@
 
 #### getMarketplaces
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### updateMarketplaceOptin
 
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### createMarketplaceOptin
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Deleted] Type from <code>object</code> from property <code>createdBy</code> of schema <code>CreatedBy</code> in response with status code 201
 	- [Deleted] Type from <code>object</code> from property <code>modifiedBy</code> of schema <code>CreatedBy</code> in response with status code 201
-
-- ##### What's Changed
-	- [Breaking] [Changed] Type from <code>number</code> to <code>string</code> of property <code>code</code> of schema <code>ErrorResponseSchema</code> in response with status code 4XX
 
 
 ### Common
@@ -4586,6 +4888,9 @@
 
 #### cbsOnboardGet
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>home,registered,office</code> from property <code>addresses[].addressType</code> of schema <code>GetAddressSchema</code> in response with status code 200
 	- [Deleted] Possible values from <code>distributor,franchise,mbo,manufacturer-owner</code> from property <code>companyType</code> of schema <code>GetCompanyProfileSerializerResponseSchema</code> in response with status code 200
@@ -4593,18 +4898,57 @@
 
 #### updateCompany
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>distributor,franchise,mbo,manufacturer-owner</code> from property <code>companyType</code> of schema <code>UpdateCompany</code> in request body
 
 
+#### getCompanyMetrics
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### getBrand
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### editBrand
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### createBrand
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
 #### getBrands
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>home,registered,office</code> from property <code>items[].company.addresses[].addressType</code> of schema <code>GetAddressSchema</code> in response with status code 200
 	- [Deleted] Possible values from <code>distributor,franchise,mbo,manufacturer-owner</code> from property <code>items[].company.companyType</code> of schema <code>CompanySchema</code> in response with status code 200
 
 
+#### createCompanyBrandMapping
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
 #### getLocations
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>home,registered,office</code> from property <code>items[].company.addresses[].addressType</code> of schema <code>GetAddressSchema</code> in response with status code 200
@@ -4615,11 +4959,17 @@
 
 #### createLocation
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>high_street,warehouse,mall</code> from property <code>storeType</code> of schema <code>LocationSchema</code> in request body
 
 
 #### getLocationDetail
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>home,registered,office</code> from property <code>company.addresses[].addressType</code> of schema <code>GetAddressSchema</code> in response with status code 200
@@ -4630,14 +4980,26 @@
 
 #### updateLocation
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>high_street,warehouse,mall</code> from property <code>storeType</code> of schema <code>LocationSchema</code> in request body
 
 
 #### createLocationBulk
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>high_street,warehouse,mall</code> from property <code>data[].storeType</code> of schema <code>LocationSchema</code> in request body
+
+
+#### getLocationTags
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 ### Configuration
@@ -4871,6 +5233,7 @@
 #### getAnnouncementsList
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -4881,6 +5244,7 @@
 #### createAnnouncement
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -4893,6 +5257,7 @@
 #### getAnnouncementById
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -4903,6 +5268,7 @@
 #### updateAnnouncement
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -4915,6 +5281,7 @@
 #### updateAnnouncementSchedule
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -4925,6 +5292,7 @@
 #### deleteAnnouncement
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -4933,6 +5301,10 @@
 
 
 #### createBlog
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
 	- [Deleted] Value format from <code>date-time</code> from property <code>publishDate</code> of schema <code>BlogSchema</code> in response with status code 200
@@ -4943,6 +5315,7 @@
 #### getBlogs
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -4953,6 +5326,10 @@
 
 #### updateBlog
 
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
 - ##### What's Deprecated
 	- [Deleted] Value format from <code>date-time</code> from property <code>publishDate</code> of schema <code>BlogSchema</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>dateMeta.createdOn</code> of schema <code>DateMeta</code> in response with status code 200
@@ -4962,6 +5339,7 @@
 #### deleteBlog
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -4973,114 +5351,133 @@
 #### addDataLoader
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getDataLoaders
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### deleteDataLoader
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### editDataLoader
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getDataLoadersByService
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### selectDataLoader
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### resetDataLoader
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getFaqCategories
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getFaqCategoryBySlugOrId
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### createFaqCategory
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### updateFaqCategory
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### deleteFaqCategory
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getFaqsByCategoryIdOrSlug
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### addFaq
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### updateFaq
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### deleteFaq
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getFaqByIdOrSlug
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### generateSEOTitle
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getLandingPages
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5091,6 +5488,7 @@
 #### createLandingPage
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5103,6 +5501,7 @@
 #### updateLandingPage
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5115,6 +5514,7 @@
 #### deleteLandingPage
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5125,18 +5525,21 @@
 #### getLegalInformation
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### updateLegalInformation
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getNavigations
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5147,6 +5550,7 @@
 #### createNavigation
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5157,6 +5561,7 @@
 #### getDefaultNavigations
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5167,6 +5572,7 @@
 #### getNavigationBySlug
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5180,6 +5586,7 @@
 #### updateNavigation
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5190,6 +5597,7 @@
 #### deleteNavigation
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5200,6 +5608,7 @@
 #### getPageMeta
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5212,22 +5621,14 @@
 #### getPageSpec
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
-
-
-#### createPagePreview
-
-- ##### What's New
-	- [Added] Response with status 5XX
-
-- ##### What's Deprecated
-	- [Deleted] Value format from <code>date-time</code> from property <code>dateMeta.createdOn</code> of schema <code>DateMeta</code> in response with status code 200
-	- [Deleted] Value format from <code>date-time</code> from property <code>dateMeta.modifiedOn</code> of schema <code>DateMeta</code> in response with status code 200
 
 
 #### updatePagePreview
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5238,6 +5639,7 @@
 #### deletePage
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5248,36 +5650,42 @@
 #### addPathRedirectionRules
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getPathRedirectionRules
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getPathRedirectionRule
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### updatePathRedirectionRules
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### deletePathRedirectionRules
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getSEOConfiguration
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5288,6 +5696,7 @@
 #### updateSEOConfiguration
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5300,6 +5709,7 @@
 #### getDefaultSEOMarkupSchema
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5309,6 +5719,7 @@
 #### getSEOMarkupSchemas
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5318,6 +5729,7 @@
 #### createSEOMarkupSchema
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5328,6 +5740,7 @@
 #### getSEOMarkupSchema
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5337,6 +5750,7 @@
 #### editSEOMarkupSchema
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5356,6 +5770,7 @@
 #### getSupportInformation
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5366,6 +5781,7 @@
 #### updateSupportInformation
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5378,30 +5794,35 @@
 #### updateInjectableTag
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### getInjectableTags
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### addInjectableTag
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### removeInjectableTag
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
 #### editInjectableTag
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5411,6 +5832,7 @@
 #### getBlogBySlug
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5422,6 +5844,7 @@
 #### createPage
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5432,6 +5855,7 @@
 #### getPages
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5442,6 +5866,7 @@
 #### updatePage
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5454,6 +5879,7 @@
 #### getPageBySlug
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
@@ -5479,6 +5905,7 @@
 #### getResources
 
 - ##### What's New
+	- [Added] Response with status 4XX
 	- [Added] Response with status 5XX
 
 
@@ -5923,6 +6350,13 @@
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] method <code>sampleAppCustomObjectBulkEntryBySlug</code>
+
+
+
+#### createPagePreview
+
+- ##### What's New
+	- [Added] method <code>createPagePreview</code>
 
 
 
@@ -6510,6 +6944,13 @@
 
 
 
+#### getZones
+
+- ##### What's New
+	- [Breaking] [Deleted] <code>query</code> parameter <code>channelId</code> (type: <code>string</code>),
+ [Added] <code>query</code> parameter <code>applicationId</code> (type: <code>string</code>)
+
+
 #### createZone
 
 - ##### What's New
@@ -7007,7 +7448,29 @@
 
 
 
+#### invalidateShipmentCache
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
+
+#### reassignLocation
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### updateShipmentLock
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
 #### getAnnouncements
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Value format from <code>date-time</code> from property <code>announcements[].createdAt</code> of schema <code>AnnouncementResponseSchema</code> in response with status code 200
@@ -7039,6 +7502,7 @@
 
 	- [Added] <code>query</code> parameter <code>country</code> (type: <code>string</code>)
 
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] Body content in Request
@@ -7054,15 +7518,27 @@
 
 #### updateShipmentStatus
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>statuses[].shipments[].dataUpdates.products[].filters[].quantity</code> of schema <code>ProductsDataUpdatesFilters</code> in request body
 	- [Breaking] [Deleted] property <code>statuses[].shipments[].dataUpdates.order</code> of schema <code>DataUpdates</code> in request body
+
+
+#### getRoleBasedActions
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 
 #### getShipmentHistory
 
 - ##### What's New
 	- [Added] property <code>activityHistory[].type</code> of schema <code>HistoryDict</code> in response with status code 200
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
 	- [Deleted] Type from <code>object</code> from property <code>activityHistory[].meta</code> of schema <code>HistoryMeta</code> in response with status code 200
@@ -7074,6 +7550,8 @@
 
 - ##### What's New
 	- [Added] property <code>activityHistory[].type</code> of schema <code>HistoryDict</code> in response with status code 200
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
 	- [Deleted] Type from <code>object</code> from property <code>activityHistory[].meta</code> of schema <code>HistoryMeta</code> in response with status code 200
@@ -7081,7 +7559,24 @@
 	- [Breaking] [Deleted] property <code>activityHistory[].activityType</code> of schema <code>HistoryDict</code> in response with status code 200
 
 
+#### sendSmsNinja
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
+
+#### updatePackagingDimensions
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
 #### createOrder
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>shipments[].tags[].slug</code>, <code>shipments[].tags[].displayText</code> in request body
@@ -7160,7 +7655,18 @@
 
 
 
+#### orderUpdate
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
+
 #### checkOrderStatus
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>mobile</code> of schema <code>OrderStatus</code> in request body
@@ -7174,13 +7680,61 @@
 	- [Changed] <code>end_date</code>, <code>mobile</code>, <code>start_date</code> made optional in request body
 
 
+#### getStateTransitionMap
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### getAllowedStateTransition
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### fetchRefundModeConfig
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### attachOrderUser
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### sendUserMobileOTP
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### verifyMobileOTP
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
 #### downloadLanesReport
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>filters</code> of schema <code>BulkReportsDownloadRequestSchema</code> in request body
 
 
+#### bulkStateTransistion
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
 #### bulkListing
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>a4,a6,pos</code> from property <code>data[].lastSelectedInvoiceLabelType</code> of schema <code>BulkActionListingData</code> in response with status code 200
@@ -7189,15 +7743,63 @@
 	- [Breaking] [Changed] Type from <code>string</code> to <code>boolean</code> of property <code>data[].status</code> of schema <code>BulkActionListingData</code> in response with status code 200
 
 
+#### jobDetails
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### getFileByStatus
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### getManifestShipments
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### getManifests
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
+
 #### generateProcessManifest
 
 - ##### What's New
 	- [Added] Response with status 500
 
 - ##### What's Deprecated
-	- [Breaking] [Deleted] Response with status 4XX
-	- [Breaking] [Deleted] Response with status 5XX
 	- [Breaking] [Deleted] Security in Request
+
+
+#### getManifestDetails
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
+
+#### dispatchManifests
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### uploadConsents
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### getManifestfilters
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### eInvoiceRetry
@@ -7215,6 +7817,13 @@
 
 - ##### What's New
 	- [Added] Possible nullable value <code>true</code> to property <code>page.itemTotal</code> of schema <code>PageDetails</code> in response with status code 200
+	- [Added] Response with status 4XX
+
+
+#### updateShipmentTracking
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### failedOrderLogs
@@ -7224,9 +7833,17 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>items.errorMessage</code> of schema <code>FailedOrdersItem</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items.displayMessage</code> of schema <code>FailedOrdersItem</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>page.itemTotal</code> of schema <code>PageDetails</code> in response with status code 200
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
 	- [Deleted] Value format from <code>date-time</code> from property <code>items.createdAt</code> of schema <code>FailedOrdersItem</code> in response with status code 200
+
+
+#### generateInvoiceID
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### failedOrderLogDetails
@@ -7234,6 +7851,20 @@
 - ##### What's New
 	- [Added] Possible nullable value <code>true</code> to property <code>exception</code> of schema <code>FailedOrderLogDetails</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>errorTrace</code> of schema <code>FailedOrderLogDetails</code> in response with status code 200
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
+
+#### addStateManagerConfig
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### getStateManagerConfig
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 #### getRules
@@ -7251,6 +7882,10 @@
 
 
 #### getShipmentBagReasons
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] Possible nullable value from property <code>reasons</code> of schema <code>ShipmentBagReasons</code> in response with status code 200
@@ -7271,6 +7906,7 @@
 	- [Added] property <code>items[].shipmentStatus.shipmentStatusId</code> of schema <code>ShipmentStatus</code> in response with status code 200
 	- [Added] property <code>items[].shipmentStatus.statusCreatedTs</code> of schema <code>ShipmentStatus</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].totalBags</code> of schema <code>ShipmentItem</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] <code>query</code> parameter <code>groupEntity</code> (type: <code>string</code>)
@@ -7351,6 +7987,7 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].affiliateDetails.shipmentMeta.b2BBuyerDetails.address</code> of schema <code>BuyerDetails</code> in response with status code 200
 	- [Added] property <code>shipments[].affiliateDetails.adId</code> of schema <code>AffiliateDetails</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].bagStatusHistory[].stateType</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Deleted] Value format from <code>date-time</code> from property <code>shipments[].invoice.updatedDate</code> of schema <code>InvoiceInfo</code> in response with status code 200
@@ -7451,6 +8088,7 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].affiliateDetails.shipmentMeta.b2BBuyerDetails.address</code> of schema <code>BuyerDetails</code> in response with status code 200
 	- [Added] property <code>shipments[].affiliateDetails.adId</code> of schema <code>AffiliateDetails</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].bagStatusHistory[].stateType</code> of schema <code>BagStatusHistory</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>order.charges</code> of schema <code>OrderData</code> in response with status code 200
@@ -7546,6 +8184,12 @@
 	- [Breaking] [Deleted] property <code>shipments[].logisticsMeta</code> of schema <code>PlatformShipment</code> in response with status code 200
 
 
+#### getLaneConfig
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
 #### getOrders
 
 - ##### What's New
@@ -7561,6 +8205,7 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].shipments[].bagStatusHistory[].stateType</code> of schema <code>BagStatusHistory</code> in response with status code 200
 	- [Added] property <code>items[].userInfo.uid</code> of schema <code>UserDataInfo</code> in response with status code 200
 	- [Added] property <code>items[].userInfo.avisUserId</code> of schema <code>UserDataInfo</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] <code>query</code> parameter <code>groupEntity</code> (type: <code>string</code>)
@@ -7671,6 +8316,7 @@
 	- [Added] property <code>items[].shipmentStatus.shipmentStatusId</code> of schema <code>ShipmentStatus</code> in response with status code 200
 	- [Added] property <code>items[].shipmentStatus.statusCreatedTs</code> of schema <code>ShipmentStatus</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].totalBags</code> of schema <code>ShipmentItem</code> in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>items[].user.id</code> of schema <code>UserDataInfo</code> in response with status code 200
@@ -7736,6 +8382,10 @@
 
 #### trackShipmentPlatform
 
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
 - ##### What's Deprecated
 	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>results[].reason</code> of schema <code>PlatformTrack</code> in response with status code 200
 	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>results[].lastLocationRecievedAt</code> of schema <code>PlatformTrack</code> in response with status code 200
@@ -7746,12 +8396,37 @@
 
 #### getfilters
 
+- ##### What's New
+	- [Added] Response with status 4XX
+
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>advance</code> of schema <code>FiltersResponseSchema</code> in response with status code 200
 	- [Breaking] [Deleted] property <code>global1</code> of schema <code>FiltersResponseSchema</code> in response with status code 200
 
 
+#### getBulkShipmentExcelFile
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### getBulkActionTemplate
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### downloadBulkActionTemplate
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
 #### getShipmentReasons
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>reasons[].reasons</code> of schema <code>Reason</code> in response with status code 200
@@ -7762,6 +8437,13 @@
 
 - ##### What's Changed
 	- [Breaking] [Changed] <code>reasons[].display_name</code>, <code>reasons[].qc_type</code>, <code>reasons[].question_set</code>, <code>reasons[].meta</code>, <code>reasons[].is_active</code> made optional in response with status code 200
+
+
+#### getPlatformShipmentReasons
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 
 #### getBagById
@@ -7780,6 +8462,8 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>data.orderingStore.address1</code> of schema <code>Store</code> in response with status code 200
 	- [Added] property <code>data.orderingStore.meta.documents.gst.dsType</code> of schema <code>Document</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>data.orderingStore.storeAddressJson.phone</code> of schema <code>StoreAddress</code> in response with status code 200
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>data.article.set</code> of schema <code>Article</code> in response with status code 200
@@ -7969,6 +8653,8 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>data.items[].orderingStore.address1</code> of schema <code>Store</code> in response with status code 200
 	- [Added] property <code>data.items[].orderingStore.meta.documents.gst.dsType</code> of schema <code>Document</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>data.items[].orderingStore.storeAddressJson.phone</code> of schema <code>StoreAddress</code> in response with status code 200
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>data.items[].article.set</code> of schema <code>Article</code> in response with status code 200
@@ -8140,6 +8826,24 @@
 
 - ##### What's Changed
 	- [Breaking] [Changed] <code>data.items[].shipmentDetails.affiliate_shipment_id</code>, <code>data.items[].shipmentDetails.articles</code>, <code>data.items[].shipmentDetails.fulfillment_id</code>, <code>data.items[].shipmentDetails.shipments</code> made optional in response with status code 200
+
+
+#### generatePOSReceiptByOrderId
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### getAllowedTemplatesForBulk
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
+#### getTemplate
+
+- ##### What's New
+	- [Added] Response with status 4XX
 
 
 ### Partner
@@ -8540,6 +9244,13 @@
 	- [Added] Response with status 500
 
 
+#### validateCustomerAndCreditSummary
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>validateCustomerAndCreditSummary</code>
+
+
+
 ### Rewards
 
 
@@ -8641,6 +9352,7 @@
 - ##### What's New
 	- [Breaking] [Added] <code>redirects.expiry</code>, <code>redirects.url</code> made required in request body
 	- [Breaking] [Added] <code>redirects.expiry</code>, <code>redirects.url</code> made required in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>meta</code> of schema <code>ShortLinkReq</code> in request body
@@ -8655,6 +9367,7 @@
 
 - ##### What's New
 	- [Breaking] [Added] <code>items[].redirects.expiry</code>, <code>items[].redirects.url</code> made required in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>items[].url.alias</code> of schema <code>UrlInfo</code> in response with status code 200
@@ -8667,6 +9380,7 @@
 
 - ##### What's New
 	- [Breaking] [Added] <code>redirects.expiry</code>, <code>redirects.url</code> made required in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>url.alias</code> of schema <code>UrlInfo</code> in response with status code 200
@@ -8680,6 +9394,7 @@
 - ##### What's New
 	- [Breaking] [Added] <code>redirects.expiry</code>, <code>redirects.url</code> made required in request body
 	- [Breaking] [Added] <code>redirects.expiry</code>, <code>redirects.url</code> made required in response with status code 200
+	- [Added] Response with status 4XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>meta</code> of schema <code>ShortLinkReq</code> in request body
@@ -8690,11 +9405,21 @@
 	- [Deleted] Value format from <code>date-time</code> from property <code>updatedAt</code> of schema <code>ShortLinkRes</code> in response with status code 200
 
 
+#### getShortLinkClickStats
+
+- ##### What's New
+	- [Added] Response with status 4XX
+
+
 ### Theme
 
 
 
 #### getAllPages
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>pages[].sections[].source.id</code>, <code>pages[].sections[].source.type</code>, <code>pages[].sections[].source.bundleName</code> in response with status code 200
@@ -8706,6 +9431,10 @@
 
 
 #### createPage
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>sections[].source.id</code>, <code>sections[].source.type</code>, <code>sections[].source.bundleName</code> in request body
@@ -8722,6 +9451,10 @@
 
 #### updateMultiplePages
 
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>pages[].sections[].source.id</code>, <code>pages[].sections[].source.type</code>, <code>pages[].sections[].source.bundleName</code> in request body
 	- [Deleted] Value format from <code>date-time</code> from property <code>pages[].createdAt</code> of schema <code>AvailablePageSchema</code> in request body
@@ -8737,6 +9470,10 @@
 
 #### getPage
 
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>sections[].source.id</code>, <code>sections[].source.type</code>, <code>sections[].source.bundleName</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>createdAt</code> of schema <code>AvailablePageSchema</code> in response with status code 200
@@ -8748,6 +9485,10 @@
 
 #### deletePage
 
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>sections[].source.id</code>, <code>sections[].source.type</code>, <code>sections[].source.bundleName</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>createdAt</code> of schema <code>AvailablePageSchema</code> in response with status code 200
@@ -8758,6 +9499,10 @@
 
 
 #### updatePage
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] Required <code>path</code> parameter <code>socketId</code> (type: <code>string</code>)
@@ -8773,6 +9518,13 @@
 	- [Breaking] [Changed] Type from <code>object</code> to <code>string</code> of property <code>sections[].source</code> of schema <code>SectionSource</code> in request body
 	- [Breaking] [Changed] Type from <code>object</code> to <code>string</code> of property <code>sections[].source</code> of schema <code>SectionSource</code> in response with status code 200
 	- [Changed] Path From <code>/service/platform/theme/v1.0/company/{company_id}/application/{application_id}/{theme_id}/{page_value}/{socket_id}</code> To <code>/service/platform/theme/v1.0/company/{company_id}/application/{application_id}/{theme_id}/{page_value}</code>
+
+
+#### getFonts
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
 
 
 #### getCompanyLevelThemes
@@ -8837,6 +9589,10 @@
 
 #### addThemeToApplication
 
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
 - ##### What's Deprecated
 	- [Breaking] [Deleted] properties <code>config.globalSchema.props[].type</code>, <code>config.globalSchema.props[].category</code>, <code>config.globalSchema.props[].value</code>, <code>config.globalSchema.props[].id</code>, <code>config.globalSchema.props[].label</code>, <code>config.globalSchema.props[].info</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>createdAt</code> of schema <code>ThemesSchema</code> in response with status code 200
@@ -8883,6 +9639,13 @@
 	- [Deleted] Value format from <code>date-time</code> from property <code>updatedAt</code> of schema <code>ThemesSchema</code> in response with status code 200
 
 
+#### getThemeLastModified
+
+- ##### What's New
+	- [Added] Response with status 4XX
+	- [Added] Response with status 5XX
+
+
 #### upgradeTheme
 
 - ##### What's Deprecated
@@ -8912,6 +9675,9 @@
 
 
 #### createUser
+
+- ##### What's New
+	- [Breaking] [Added] <code>username</code> made required in request body
 
 - ##### What's Deprecated
 	- [Deleted] Possible values from <code>user,programmatic</code> from property <code>user.accountType</code> of schema <code>UserSchema</code> in response with status code 200
@@ -9384,6 +10150,72 @@
 - ##### What's Deprecated
 	- [Deleted] Value format from <code>date-time</code> from property <code>eventConfigs[].createdOn</code> of schema <code>EventConfig</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>eventConfigs[].updatedOn</code> of schema <code>EventConfig</code> in response with status code 200
+
+
+# CHANGE LOG (1.6.0) - 2.1.0
+
+## Application Client
+
+
+
+### Logistic
+
+
+
+#### getCountries
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>phoneCode</code> (type: <code>string</code>)
+
+
+
+## Platform Client
+
+
+
+### AuditTrail
+
+
+
+#### createAuditLog
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>object</code> to property <code></code> of schema <code>CreateLogResp</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Required status to Request body content
+
+
+### Content
+
+
+
+#### createPagePreview
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>createPagePreview</code>
+
+
+
+### Payment
+
+
+
+#### validateCustomerAndCreditSummary
+
+- ##### What's New
+	- [Added] method <code>validateCustomerAndCreditSummary</code>
+
+
+
+### User
+
+
+
+#### createUser
+
+- ##### What's Changed
+	- [Changed] <code>username</code> made optional in request body
 
 
 # CHANGE LOG (1.5.2) - 2.0.0

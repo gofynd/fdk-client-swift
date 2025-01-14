@@ -23,7 +23,7 @@ extension PlatformClient {
             pageNo: Int?,
             pageSize: Int?,
             isActive: Bool?,
-            channelId: String?,
+            applicationId: String?,
             q: String?,
             countryIsoCode: String?,
             state: String?,
@@ -49,8 +49,8 @@ extension PlatformClient {
                 xQuery["is_active"] = value
             }
             
-            if let value = channelId {
-                xQuery["channel_id"] = value
+            if let value = applicationId {
+                xQuery["application_id"] = value
             }
             
             if let value = q {
