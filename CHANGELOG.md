@@ -225,6 +225,7 @@
 	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore</code> from property <code>orderType</code> of schema <code>CartCheckoutDetailV2Creation</code> in request body
 	- [Breaking] [Deleted] property <code>successCallbackUrl</code> of schema <code>CartCheckoutDetailV2Creation</code> in request body
 	- [Breaking] [Deleted] property <code>failureCallbackUrl</code> of schema <code>CartCheckoutDetailV2Creation</code> in request body
+	- [Breaking] [Deleted] property <code>orderTags</code> of schema <code>CartCheckoutDetailV2Creation</code> in request body
 	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
 	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotionsApplied[].promotionType</code> of schema <code>AppliedPromotion</code> in response with status code 200
 
@@ -1047,9 +1048,13 @@
 
 - ##### What's New
 	- [Added] property <code>hierarchy[].name</code> of schema <code>CountryHierarchy</code> in response with status code 200
+	- [Added] <code>fields.address[].slug</code> made required in response with status code 200
 
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>hierarchy[].displayName</code> of schema <code>CountryHierarchy</code> in response with status code 200
+	- [Breaking] [Deleted] property <code>fields.address[].next</code> of schema <code>GetCountryFieldsAddress</code> in response with status code 200
+	- [Breaking] [Deleted] Possible nullable value from <code>true</code> from property <code>fields.address[].input</code> of schema <code>GetCountryFieldsAddress</code> in response with status code 200
+	- [Deleted] Possible values from <code>list,textbox</code> from property <code>fields.address[].input</code> of schema <code>GetCountryFieldsAddress</code> in response with status code 200
 
 
 #### getDeliveryPromise
@@ -2967,6 +2972,7 @@
 	- [Deleted] Possible values from <code>HomeDelivery,PickAtStore,Digital</code> from property <code>orderType</code> of schema <code>PlatformCartCheckoutDetailV2Creation</code> in request body
 	- [Breaking] [Deleted] property <code>successCallbackUrl</code> of schema <code>PlatformCartCheckoutDetailV2Creation</code> in request body
 	- [Breaking] [Deleted] property <code>failureCallbackUrl</code> of schema <code>PlatformCartCheckoutDetailV2Creation</code> in request body
+	- [Breaking] [Deleted] property <code>orderTags</code> of schema <code>PlatformCartCheckoutDetailV2Creation</code> in request body
 	- [Breaking] [Deleted] property <code>cart.items[].product.action.page</code> of schema <code>ProductAction</code> in response with status code 200
 	- [Deleted] Possible values from <code>percentage,amount,fixed_price,bogo,contract_price,shipping_price,ladder_price,bundle_price_percentage,bundle_price_amount,bundle_amount_percentage,custom,free_gift_items,free_non_sellable_items,external_price_adjustment_discount</code> from property <code>cart.items[].promotionsApplied[].promotionType</code> of schema <code>AppliedPromotion</code> in response with status code 200
 
@@ -10150,6 +10156,115 @@
 - ##### What's Deprecated
 	- [Deleted] Value format from <code>date-time</code> from property <code>eventConfigs[].createdOn</code> of schema <code>EventConfig</code> in response with status code 200
 	- [Deleted] Value format from <code>date-time</code> from property <code>eventConfigs[].updatedOn</code> of schema <code>EventConfig</code> in response with status code 200
+
+
+# CHANGE LOG (1.6.1) - 2.1.0
+
+## Application Client
+
+
+
+### Cart
+
+
+
+#### checkoutCart
+
+- ##### What's New
+	- [Added] property <code>orderTags</code> of schema <code>CartCheckoutDetailCreation</code> in request body
+
+
+#### checkoutCartV2
+
+- ##### What's New
+	- [Added] property <code>orderTags</code> of schema <code>CartCheckoutDetailV2Creation</code> in request body
+
+
+### Logistic
+
+
+
+#### getCountries
+
+- ##### What's New
+	- [Added] <code>query</code> parameter <code>phoneCode</code> (type: <code>string</code>)
+
+
+
+#### getCountry
+
+- ##### What's New
+	- [Added] Possible nullable value <code>true</code> to property <code>fields.address[].input</code> of schema <code>GetCountryFieldsAddress</code> in response with status code 200
+	- [Breaking] [Added] Possible values <code>list,textbox</code> to property <code>fields.address[].input</code> of schema <code>GetCountryFieldsAddress</code> in response with status code 200
+	- [Added] property <code>fields.address[].next</code> of schema <code>GetCountryFieldsAddress</code> in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] <code>fields.address[].input</code> made optional in response with status code 200
+
+
+## Platform Client
+
+
+
+### AuditTrail
+
+
+
+#### createAuditLog
+
+- ##### What's New
+	- [Breaking] [Added] Type <code>object</code> to property <code></code> of schema <code>CreateLogResp</code> in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Required status to Request body content
+
+
+### Cart
+
+
+
+#### platformCheckoutCart
+
+- ##### What's New
+	- [Added] property <code>orderTags</code> of schema <code>PlatformCartCheckoutDetailCreation</code> in request body
+
+
+#### platformCheckoutCartV2
+
+- ##### What's New
+	- [Added] property <code>orderTags</code> of schema <code>PlatformCartCheckoutDetailV2Creation</code> in request body
+
+
+### Content
+
+
+
+#### createPagePreview
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method <code>createPagePreview</code>
+
+
+
+### Payment
+
+
+
+#### validateCustomerAndCreditSummary
+
+- ##### What's New
+	- [Added] method <code>validateCustomerAndCreditSummary</code>
+
+
+
+### User
+
+
+
+#### createUser
+
+- ##### What's Changed
+	- [Changed] <code>username</code> made optional in request body
 
 
 # CHANGE LOG (1.6.0) - 2.1.0
