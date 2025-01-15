@@ -22,6 +22,8 @@ public extension PlatformClient.Serviceability {
         
         public var sort: [String]
         
+        public var type: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,9 +37,11 @@ public extension PlatformClient.Serviceability {
             
             case sort = "sort"
             
+            case type = "type"
+            
         }
 
-        public init(conditions: CourierPartnerRuleConditions, cpList: [CourierPartnerList]? = nil, isActive: Bool, name: String, sort: [String]) {
+        public init(conditions: CourierPartnerRuleConditions, cpList: [CourierPartnerList]? = nil, isActive: Bool, name: String, sort: [String], type: String? = nil) {
             
             self.isActive = isActive
             
@@ -48,6 +52,8 @@ public extension PlatformClient.Serviceability {
             self.conditions = conditions
             
             self.sort = sort
+            
+            self.type = type
             
         }
 
@@ -86,6 +92,18 @@ public extension PlatformClient.Serviceability {
                 
             
             
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -114,6 +132,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(sort, forKey: .sort)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
         }
@@ -142,6 +165,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var sort: [String]
         
+        public var type: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -155,9 +180,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case sort = "sort"
             
+            case type = "type"
+            
         }
 
-        public init(conditions: CourierPartnerRuleConditions, cpList: [CourierPartnerList]? = nil, isActive: Bool, name: String, sort: [String]) {
+        public init(conditions: CourierPartnerRuleConditions, cpList: [CourierPartnerList]? = nil, isActive: Bool, name: String, sort: [String], type: String? = nil) {
             
             self.isActive = isActive
             
@@ -168,6 +195,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.conditions = conditions
             
             self.sort = sort
+            
+            self.type = type
             
         }
 
@@ -206,6 +235,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -234,6 +275,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(sort, forKey: .sort)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
         }

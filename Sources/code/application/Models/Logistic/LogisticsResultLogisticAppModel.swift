@@ -1,0 +1,53 @@
+
+
+import Foundation
+public extension ApplicationClient.Logistic {
+    /*
+        Model: LogisticsResult
+        Used By: Logistic
+    */
+    class LogisticsResult: Codable {
+        
+        public var dp: DP?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case dp = "dp"
+            
+        }
+
+        public init(dp: DP? = nil) {
+            
+            self.dp = dp
+            
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+            do {
+                dp = try container.decode(DP.self, forKey: .dp)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            try? container.encodeIfPresent(dp, forKey: .dp)
+            
+            
+        }
+        
+    }
+}

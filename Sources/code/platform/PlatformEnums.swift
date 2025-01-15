@@ -16,6 +16,22 @@ public extension PlatformClient.Catalog {
     
     
     
+    
+    /*
+        Enum: CurrencyCodeEnum
+        Used By: Catalog
+    */
+    enum CurrencyCodeEnum: String, Codable {
+        
+        case inr = "INR"
+        
+        case usd = "USD"
+        
+        case eur = "EUR"
+        
+    }
+
+    
 }
 
 
@@ -23,6 +39,22 @@ public extension PlatformClient.Catalog {
 public extension PlatformClient.ApplicationClient.Catalog {
     
     
+    
+    
+    /*
+        Enum: CurrencyCodeEnum
+        Used By: Catalog
+    */
+    enum CurrencyCodeEnum: String, Codable {
+        
+        case inr = "INR"
+        
+        case usd = "USD"
+        
+        case eur = "EUR"
+        
+    }
+
     
 }
 
@@ -81,8 +113,6 @@ public extension PlatformClient.ApplicationClient.Content {
     
     
 }
-
-
 
 
 
