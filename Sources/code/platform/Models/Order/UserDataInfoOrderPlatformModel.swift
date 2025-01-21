@@ -28,7 +28,7 @@ public extension PlatformClient.Order {
         
         public var email: String?
         
-        public var meta: String?
+        public var meta: [String: Any]?
         
         public var isAnonymousUser: Bool?
         
@@ -69,7 +69,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(countryPhoneCode: String? = nil, email: String? = nil, externalCustomerId: String? = nil, firstName: String? = nil, gender: String? = nil, id: Int? = nil, isAnonymousUser: Bool? = nil, lastName: String? = nil, meta: String? = nil, mobile: String? = nil, mongoUserId: String? = nil, name: String? = nil, userOid: String? = nil) {
+        public init(countryPhoneCode: String? = nil, email: String? = nil, externalCustomerId: String? = nil, firstName: String? = nil, gender: String? = nil, id: Int? = nil, isAnonymousUser: Bool? = nil, lastName: String? = nil, meta: [String: Any]? = nil, mobile: String? = nil, mongoUserId: String? = nil, name: String? = nil, userOid: String? = nil) {
             
             self.id = id
             
@@ -200,7 +200,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    meta = try container.decode(String.self, forKey: .meta)
+                    meta = try container.decode([String: Any].self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -360,7 +360,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var email: String?
         
-        public var meta: String?
+        public var meta: [String: Any]?
         
         public var isAnonymousUser: Bool?
         
@@ -401,7 +401,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(countryPhoneCode: String? = nil, email: String? = nil, externalCustomerId: String? = nil, firstName: String? = nil, gender: String? = nil, id: Int? = nil, isAnonymousUser: Bool? = nil, lastName: String? = nil, meta: String? = nil, mobile: String? = nil, mongoUserId: String? = nil, name: String? = nil, userOid: String? = nil) {
+        public init(countryPhoneCode: String? = nil, email: String? = nil, externalCustomerId: String? = nil, firstName: String? = nil, gender: String? = nil, id: Int? = nil, isAnonymousUser: Bool? = nil, lastName: String? = nil, meta: [String: Any]? = nil, mobile: String? = nil, mongoUserId: String? = nil, name: String? = nil, userOid: String? = nil) {
             
             self.id = id
             
@@ -532,7 +532,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    meta = try container.decode(String.self, forKey: .meta)
+                    meta = try container.decode([String: Any].self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
