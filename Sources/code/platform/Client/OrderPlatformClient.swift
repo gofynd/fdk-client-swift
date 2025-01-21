@@ -2404,6 +2404,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
         public func getShipments(
             lane: String?,
             bagStatus: String?,
+            statusAssigned: String?,
             statusOverrideLane: Bool?,
             timeToDispatch: Int?,
             searchType: String?,
@@ -2412,6 +2413,8 @@ The ESM config stores order processing configuration. Each document in the ESM c
             toDate: String?,
             startDate: String?,
             endDate: String?,
+            statusAssignedStartDate: String?,
+            statusAssignedEndDate: String?,
             dpIds: String?,
             stores: String?,
             salesChannels: String?,
@@ -2451,6 +2454,10 @@ The ESM config stores order processing configuration. Each document in the ESM c
                 xQuery["bag_status"] = value
             }
             
+            if let value = statusAssigned {
+                xQuery["status_assigned"] = value
+            }
+            
             if let value = statusOverrideLane {
                 xQuery["status_override_lane"] = value
             }
@@ -2481,6 +2488,14 @@ The ESM config stores order processing configuration. Each document in the ESM c
             
             if let value = endDate {
                 xQuery["end_date"] = value
+            }
+            
+            if let value = statusAssignedStartDate {
+                xQuery["status_assigned_start_date"] = value
+            }
+            
+            if let value = statusAssignedEndDate {
+                xQuery["status_assigned_end_date"] = value
             }
             
             if let value = dpIds {
