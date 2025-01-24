@@ -26,13 +26,13 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var applyAllDiscount: Bool?
         
-        public var displayMeta: DisplayMeta1?
+        public var displayMeta: DisplayMeta1
         
-        public var ownership: Ownership1?
+        public var ownership: Ownership1
         
         public var promotionType: String
         
-        public var discountRules: [DiscountRule]?
+        public var discountRules: [DiscountRule]
         
         public var restrictions: Restrictions1?
         
@@ -52,7 +52,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var applicationId: String
         
-        public var buyRules: ItemCriteria?
+        public var buyRules: [String: ItemCriteria]
         
         public var customJson: [String: Any]?
         
@@ -111,7 +111,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(applicationId: String, applyAllDiscount: Bool? = nil, applyExclusive: String? = nil, applyPriority: Int? = nil, author: PromotionAuthor? = nil, buyRules: ItemCriteria? = nil, calculateOn: String? = nil, code: String? = nil, currency: String? = nil, dateMeta: PromotionDateMeta? = nil, discountRules: [DiscountRule]? = nil, displayMeta: DisplayMeta1? = nil, mode: String, ownership: Ownership1? = nil, postOrderAction: PromotionAction? = nil, promotionType: String, promoGroup: String, restrictions: Restrictions1? = nil, stackable: Bool? = nil, tags: [String]? = nil, visiblility: Visibility? = nil, customJson: [String: Any]? = nil, schedule: PromotionSchedule? = nil) {
+        public init(applicationId: String, applyAllDiscount: Bool? = nil, applyExclusive: String? = nil, applyPriority: Int? = nil, author: PromotionAuthor? = nil, buyRules: [String: ItemCriteria], calculateOn: String? = nil, code: String? = nil, currency: String? = nil, dateMeta: PromotionDateMeta? = nil, discountRules: [DiscountRule], displayMeta: DisplayMeta1, mode: String, ownership: Ownership1, postOrderAction: PromotionAction? = nil, promotionType: String, promoGroup: String, restrictions: Restrictions1? = nil, stackable: Bool? = nil, tags: [String]? = nil, visiblility: Visibility? = nil, customJson: [String: Any]? = nil, schedule: PromotionSchedule? = nil) {
             
             self.stackable = stackable
             
@@ -223,28 +223,14 @@ public extension PlatformClient.ApplicationClient.Cart {
                 
             
             
-                do {
-                    displayMeta = try container.decode(DisplayMeta1.self, forKey: .displayMeta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                displayMeta = try container.decode(DisplayMeta1.self, forKey: .displayMeta)
                 
             
             
-                do {
-                    ownership = try container.decode(Ownership1.self, forKey: .ownership)
+            
+                ownership = try container.decode(Ownership1.self, forKey: .ownership)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 promotionType = try container.decode(String.self, forKey: .promotionType)
@@ -252,16 +238,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-                do {
-                    discountRules = try container.decode([DiscountRule].self, forKey: .discountRules)
+                discountRules = try container.decode([DiscountRule].self, forKey: .discountRules)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -365,16 +344,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-                do {
-                    buyRules = try container.decode(ItemCriteria.self, forKey: .buyRules)
+                buyRules = try container.decode([String: ItemCriteria].self, forKey: .buyRules)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {

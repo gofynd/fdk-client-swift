@@ -34,8 +34,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var description: String?
         
-        public var isBankOffer: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -59,11 +57,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case description = "description"
             
-            case isBankOffer = "is_bank_offer"
-            
         }
 
-        public init(buyRules: [String: Any]? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, isBankOffer: Bool? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, validTill: String? = nil) {
+        public init(buyRules: [String: Any]? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, validTill: String? = nil) {
             
             self.id = id
             
@@ -84,8 +80,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.freeGiftItems = freeGiftItems
             
             self.description = description
-            
-            self.isBankOffer = isBankOffer
             
         }
 
@@ -212,18 +206,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
-            
-                do {
-                    isBankOffer = try container.decode(Bool.self, forKey: .isBankOffer)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -277,11 +259,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(description, forKey: .description)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isBankOffer, forKey: .isBankOffer)
             
             
         }
