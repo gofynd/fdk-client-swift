@@ -10,22 +10,16 @@ public extension ApplicationClient.Payment {
         
         public var upiVpa: String
         
-        public var aggregator: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case upiVpa = "upi_vpa"
             
-            case aggregator = "aggregator"
-            
         }
 
-        public init(aggregator: String? = nil, upiVpa: String) {
+        public init(upiVpa: String) {
             
             self.upiVpa = upiVpa
-            
-            self.aggregator = aggregator
             
         }
 
@@ -37,18 +31,6 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            do {
-                aggregator = try container.decode(String.self, forKey: .aggregator)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -56,10 +38,6 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(upiVpa, forKey: .upiVpa)
-            
-            
-            
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
             
             
         }

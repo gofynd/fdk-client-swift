@@ -22,7 +22,7 @@ public extension PlatformClient.Content {
         
         public var orientation: String?
         
-        public var content: [[String: Any]]?
+        public var content: [PageContent]?
         
         public var featureImage: Asset?
         
@@ -37,6 +37,14 @@ public extension PlatformClient.Content {
         public var seo: SEO?
         
         public var title: String?
+        
+        public var platform: String?
+        
+        public var type: String?
+        
+        public var description: String?
+        
+        public var visibility: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -67,9 +75,17 @@ public extension PlatformClient.Content {
             
             case title = "title"
             
+            case platform = "platform"
+            
+            case type = "type"
+            
+            case description = "description"
+            
+            case visibility = "visibility"
+            
         }
 
-        public init(application: String? = nil, author: Author? = nil, content: [[String: Any]]? = nil, featureImage: Asset? = nil, orientation: String? = nil, published: Bool? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, schedule: CronSchedule? = nil) {
+        public init(application: String? = nil, author: Author? = nil, content: [PageContent]? = nil, description: String? = nil, featureImage: Asset? = nil, orientation: String? = nil, platform: String? = nil, published: Bool? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, type: String? = nil, visibility: [String: Any]? = nil, customJson: [String: Any]? = nil, schedule: CronSchedule? = nil) {
             
             self.schedule = schedule
             
@@ -96,6 +112,14 @@ public extension PlatformClient.Content {
             self.seo = seo
             
             self.title = title
+            
+            self.platform = platform
+            
+            self.type = type
+            
+            self.description = description
+            
+            self.visibility = visibility
             
         }
 
@@ -164,7 +188,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    content = try container.decode([[String: Any]].self, forKey: .content)
+                    content = try container.decode([PageContent].self, forKey: .content)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -258,6 +282,54 @@ public extension PlatformClient.Content {
                 }
                 
             
+            
+                do {
+                    platform = try container.decode(String.self, forKey: .platform)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    description = try container.decode(String.self, forKey: .description)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    visibility = try container.decode([String: Any].self, forKey: .visibility)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -326,6 +398,26 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(title, forKey: .title)
+            
+            
+            
+            
+            try? container.encodeIfPresent(platform, forKey: .platform)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(visibility, forKey: .visibility)
             
             
         }
@@ -354,7 +446,7 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var orientation: String?
         
-        public var content: [[String: Any]]?
+        public var content: [PageContent]?
         
         public var featureImage: Asset?
         
@@ -369,6 +461,14 @@ public extension PlatformClient.ApplicationClient.Content {
         public var seo: SEO?
         
         public var title: String?
+        
+        public var platform: String?
+        
+        public var type: String?
+        
+        public var description: String?
+        
+        public var visibility: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -399,9 +499,17 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case title = "title"
             
+            case platform = "platform"
+            
+            case type = "type"
+            
+            case description = "description"
+            
+            case visibility = "visibility"
+            
         }
 
-        public init(application: String? = nil, author: Author? = nil, content: [[String: Any]]? = nil, featureImage: Asset? = nil, orientation: String? = nil, published: Bool? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, schedule: CronSchedule? = nil) {
+        public init(application: String? = nil, author: Author? = nil, content: [PageContent]? = nil, description: String? = nil, featureImage: Asset? = nil, orientation: String? = nil, platform: String? = nil, published: Bool? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, type: String? = nil, visibility: [String: Any]? = nil, customJson: [String: Any]? = nil, schedule: CronSchedule? = nil) {
             
             self.schedule = schedule
             
@@ -428,6 +536,14 @@ public extension PlatformClient.ApplicationClient.Content {
             self.seo = seo
             
             self.title = title
+            
+            self.platform = platform
+            
+            self.type = type
+            
+            self.description = description
+            
+            self.visibility = visibility
             
         }
 
@@ -496,7 +612,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    content = try container.decode([[String: Any]].self, forKey: .content)
+                    content = try container.decode([PageContent].self, forKey: .content)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -590,6 +706,54 @@ public extension PlatformClient.ApplicationClient.Content {
                 }
                 
             
+            
+                do {
+                    platform = try container.decode(String.self, forKey: .platform)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    description = try container.decode(String.self, forKey: .description)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    visibility = try container.decode([String: Any].self, forKey: .visibility)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -658,6 +822,26 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(title, forKey: .title)
+            
+            
+            
+            
+            try? container.encodeIfPresent(platform, forKey: .platform)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(visibility, forKey: .visibility)
             
             
         }

@@ -22,7 +22,7 @@ public extension PlatformClient.Lead {
         
         public var headerImage: String?
         
-        public var priority: PriorityEnum
+        public var priority: String
         
         public var shouldNotify: Bool?
         
@@ -53,7 +53,7 @@ public extension PlatformClient.Lead {
             
         }
 
-        public init(description: String? = nil, headerImage: String? = nil, inputs: [[String: Any]], pollForAssignment: PollForAssignment? = nil, priority: PriorityEnum, shouldNotify: Bool? = nil, slug: String, successMessage: String? = nil, title: String) {
+        public init(description: String? = nil, headerImage: String? = nil, inputs: [[String: Any]], pollForAssignment: PollForAssignment? = nil, priority: String, shouldNotify: Bool? = nil, slug: String, successMessage: String? = nil, title: String) {
             
             self.slug = slug
             
@@ -118,7 +118,7 @@ public extension PlatformClient.Lead {
                 
             
             
-                priority = try container.decode(PriorityEnum.self, forKey: .priority)
+                priority = try container.decode(String.self, forKey: .priority)
                 
             
             
@@ -234,7 +234,7 @@ public extension PlatformClient.ApplicationClient.Lead {
         
         public var headerImage: String?
         
-        public var priority: PriorityEnum
+        public var priority: String
         
         public var shouldNotify: Bool?
         
@@ -265,7 +265,7 @@ public extension PlatformClient.ApplicationClient.Lead {
             
         }
 
-        public init(description: String? = nil, headerImage: String? = nil, inputs: [[String: Any]], pollForAssignment: PollForAssignment? = nil, priority: PriorityEnum, shouldNotify: Bool? = nil, slug: String, successMessage: String? = nil, title: String) {
+        public init(description: String? = nil, headerImage: String? = nil, inputs: [[String: Any]], pollForAssignment: PollForAssignment? = nil, priority: String, shouldNotify: Bool? = nil, slug: String, successMessage: String? = nil, title: String) {
             
             self.slug = slug
             
@@ -330,7 +330,7 @@ public extension PlatformClient.ApplicationClient.Lead {
                 
             
             
-                priority = try container.decode(PriorityEnum.self, forKey: .priority)
+                priority = try container.decode(String.self, forKey: .priority)
                 
             
             

@@ -12,7 +12,7 @@ public extension PlatformClient.Serviceability {
     class CourierPartnerRulesListResponse: Codable {
         
         
-        public var items: [CourierPartnerRuleResponse]
+        public var items: [CourierPartnerRuleResponseSchema]
         
         public var page: Page
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(items: [CourierPartnerRuleResponse], page: Page) {
+        public init(items: [CourierPartnerRuleResponseSchema], page: Page) {
             
             self.items = items
             
@@ -37,7 +37,7 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                items = try container.decode([CourierPartnerRuleResponse].self, forKey: .items)
+                items = try container.decode([CourierPartnerRuleResponseSchema].self, forKey: .items)
                 
             
             
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class CourierPartnerRulesListResponse: Codable {
         
         
-        public var items: [CourierPartnerRuleResponse]
+        public var items: [CourierPartnerRuleResponseSchema]
         
         public var page: Page
         
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(items: [CourierPartnerRuleResponse], page: Page) {
+        public init(items: [CourierPartnerRuleResponseSchema], page: Page) {
             
             self.items = items
             
@@ -102,7 +102,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                items = try container.decode([CourierPartnerRuleResponse].self, forKey: .items)
+                items = try container.decode([CourierPartnerRuleResponseSchema].self, forKey: .items)
                 
             
             

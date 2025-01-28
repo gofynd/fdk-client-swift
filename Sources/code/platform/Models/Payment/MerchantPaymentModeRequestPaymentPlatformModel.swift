@@ -12,30 +12,24 @@ public extension PlatformClient.Payment {
     class MerchantPaymentModeRequest: Codable {
         
         
-        public var businessUnit: String
+        public var offline: ModeIsactive?
         
-        public var items: [[String: Any]]
-        
-        public var device: [String: Any]
+        public var online: ModeIsactive?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case businessUnit = "business_unit"
+            case offline = "offline"
             
-            case items = "items"
-            
-            case device = "device"
+            case online = "online"
             
         }
 
-        public init(businessUnit: String, device: [String: Any], items: [[String: Any]]) {
+        public init(offline: ModeIsactive? = nil, online: ModeIsactive? = nil) {
             
-            self.businessUnit = businessUnit
+            self.offline = offline
             
-            self.items = items
-            
-            self.device = device
+            self.online = online
             
         }
 
@@ -43,19 +37,28 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                businessUnit = try container.decode(String.self, forKey: .businessUnit)
+                do {
+                    offline = try container.decode(ModeIsactive.self, forKey: .offline)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                items = try container.decode([[String: Any]].self, forKey: .items)
+                do {
+                    online = try container.decode(ModeIsactive.self, forKey: .online)
                 
-            
-            
-            
-                device = try container.decode([String: Any].self, forKey: .device)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
-            
             
         }
         
@@ -64,17 +67,12 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(businessUnit, forKey: .businessUnit)
+            try? container.encodeIfPresent(offline, forKey: .offline)
             
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
-            
-            
-            
-            
-            try? container.encodeIfPresent(device, forKey: .device)
+            try? container.encodeIfPresent(online, forKey: .online)
             
             
         }
@@ -93,30 +91,24 @@ public extension PlatformClient.ApplicationClient.Payment {
     class MerchantPaymentModeRequest: Codable {
         
         
-        public var businessUnit: String
+        public var offline: ModeIsactive?
         
-        public var items: [[String: Any]]
-        
-        public var device: [String: Any]
+        public var online: ModeIsactive?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case businessUnit = "business_unit"
+            case offline = "offline"
             
-            case items = "items"
-            
-            case device = "device"
+            case online = "online"
             
         }
 
-        public init(businessUnit: String, device: [String: Any], items: [[String: Any]]) {
+        public init(offline: ModeIsactive? = nil, online: ModeIsactive? = nil) {
             
-            self.businessUnit = businessUnit
+            self.offline = offline
             
-            self.items = items
-            
-            self.device = device
+            self.online = online
             
         }
 
@@ -124,19 +116,28 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                businessUnit = try container.decode(String.self, forKey: .businessUnit)
+                do {
+                    offline = try container.decode(ModeIsactive.self, forKey: .offline)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                items = try container.decode([[String: Any]].self, forKey: .items)
+                do {
+                    online = try container.decode(ModeIsactive.self, forKey: .online)
                 
-            
-            
-            
-                device = try container.decode([String: Any].self, forKey: .device)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
-            
             
         }
         
@@ -145,17 +146,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(businessUnit, forKey: .businessUnit)
+            try? container.encodeIfPresent(offline, forKey: .offline)
             
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
-            
-            
-            
-            
-            try? container.encodeIfPresent(device, forKey: .device)
+            try? container.encodeIfPresent(online, forKey: .online)
             
             
         }

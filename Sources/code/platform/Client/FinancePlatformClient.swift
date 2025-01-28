@@ -16,7 +16,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Generate financial report
+        * Summary: Generate financial report.
         * Description: Create a financial report with relevant data.
         **/
         public func generateReport(
@@ -66,7 +66,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Download financial report
+        * Summary: Download financial report.
         * Description: Retrieve and save a financial report.
         **/
         public func downloadReport(
@@ -116,7 +116,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get financial data
+        * Summary: Get financial data.
         * Description: Retrieve financial data for analysis.
         **/
         public func getData(
@@ -166,7 +166,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get transaction reason
+        * Summary: Get transaction reason.
         * Description: Retrieve the reason behind a transaction.
         **/
         public func getReason(
@@ -216,7 +216,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get report list
+        * Summary: Get report list.
         * Description: Retrieve a list of available financial reports.
         **/
         public func getReportList(
@@ -266,7 +266,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get affiliate details
+        * Summary: Get affiliate details.
         * Description: Retrieve information about an affiliate.
         **/
         public func getAffiliate(
@@ -316,7 +316,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Download credit/debit note
+        * Summary: Download credit/debit note.
         * Description: Retrieve and save credit/debit notes.
         **/
         public func downloadCreditDebitNote(
@@ -366,7 +366,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Process payments
+        * Summary: Process payments.
         * Description: Initiate and manage payment processes.
         **/
         public func paymentProcess(
@@ -416,7 +416,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Access credit line data platform
+        * Summary: Access credit line data platform.
         * Description: Connect to the credit line data platform.
         **/
         public func creditlineDataplatform(
@@ -466,7 +466,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Check credit line platform status
+        * Summary: Check credit line platform status.
         * Description: Determine if the credit line platform is operational.
         **/
         public func isCreditlinePlatform(
@@ -516,7 +516,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get invoice types
+        * Summary: Get invoice types.
         * Description: Retrieve a list of available invoice types.
         **/
         public func invoiceType(
@@ -566,8 +566,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: List invoices
-        * Description: Provides list of invoices generated for a company.
+        * Summary: Gives list of invoices.
+        * Description: Gives list of invoices.
         **/
         public func invoiceListing(
             body: InvoiceListingReq,
@@ -616,7 +616,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get invoice PDF
+        * Summary: Get invoice PDF.
         * Description: Retrieve the PDF version of an invoice.
         **/
         public func invoicePDF(
@@ -666,7 +666,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Check refund method
+        * Summary: Check CN refund method.
         * Description: Verify the refund method for credit notes.
         **/
         public func isCnRefundMethod(
@@ -716,7 +716,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Create seller credit note config
+        * Summary: Create seller credit note config.
         * Description: Set up configuration for seller credit notes.
         **/
         public func createSellerCreditNoteConfig(
@@ -766,7 +766,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Deletes credit note config
+        * Summary: Deletes credit note config.
         * Description: Deletes credit note config.
         **/
         public func deleteConfig(
@@ -816,7 +816,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get channel display name
+        * Summary: Get channel display name.
         * Description: Retrieve the display name for a channel.
         **/
         public func channelDisplayName(
@@ -868,7 +868,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get PDF URL view
+        * Summary: Get PDF URL view.
         * Description: Retrieve a URL to view a PDF document.
         **/
         public func getPdfUrlView(
@@ -918,7 +918,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get credit note details
+        * Summary: Get credit note details.
         * Description: Retrieve detailed information about a credit note.
         **/
         public func creditNoteDetails(
@@ -968,7 +968,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get customer credit balance
+        * Summary: Get customer credit balance.
         * Description: Retrieve the credit balance of a customer.
         **/
         public func getCustomerCreditBalance(
@@ -1018,7 +1018,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get credit note configuration
+        * Summary: Get credit note configuration.
         * Description: Retrieve configuration settings for credit notes.
         **/
         public func getCnConfig(
@@ -1068,7 +1068,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Generate customer credit note report
+        * Summary: Generate customer credit note report.
         * Description: Create a report specifically for customer credit notes.
         **/
         public func generateReportCustomerCn(
@@ -1118,7 +1118,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Download customer credit note report
+        * Summary: Download customer credit note report.
         * Description: Retrieve and save a report for customer credit notes.
         **/
         public func downloadReportCustomerCn(
@@ -1168,7 +1168,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get reporting filters
+        * Summary: Get reporting filters.
         * Description: Retrieve available filters for financial reporting.
         **/
         public func getReportingFilters(
@@ -1275,7 +1275,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Display payment details of an invoice
+        * Summary: Display payment details of an invoice.
         * Description: Display payment details of invoice.
         **/
         public func invoicePaymentDetails(
@@ -1326,7 +1326,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Display activity log details of an invoice
+        * Summary: Display activity log details of an invoice.
         * Description: Display activity log details of invoice.
         **/
         public func invoiceActivityLogs(
@@ -1377,7 +1377,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Unlock credit notes
+        * Summary: Unlocks credit notes.
         * Description: Used to unlock all request credit notes.
         **/
         public func unlockCreditNote(

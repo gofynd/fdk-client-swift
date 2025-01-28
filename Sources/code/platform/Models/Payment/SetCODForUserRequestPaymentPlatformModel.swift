@@ -12,36 +12,30 @@ public extension PlatformClient.Payment {
     class SetCODForUserRequest: Codable {
         
         
-        public var businessUnit: String?
-        
-        public var mobileno: String
-        
-        public var isActive: Bool
+        public var mobileNo: String?
         
         public var merchantUserId: String
+        
+        public var items: [SetBUPaymentLimit]
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case businessUnit = "business_unit"
-            
-            case mobileno = "mobileno"
-            
-            case isActive = "is_active"
+            case mobileNo = "mobile_no"
             
             case merchantUserId = "merchant_user_id"
             
+            case items = "items"
+            
         }
 
-        public init(businessUnit: String? = nil, isActive: Bool, merchantUserId: String, mobileno: String) {
+        public init(items: [SetBUPaymentLimit], merchantUserId: String, mobileNo: String? = nil) {
             
-            self.businessUnit = businessUnit
-            
-            self.mobileno = mobileno
-            
-            self.isActive = isActive
+            self.mobileNo = mobileNo
             
             self.merchantUserId = merchantUserId
+            
+            self.items = items
             
         }
 
@@ -50,7 +44,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    businessUnit = try container.decode(String.self, forKey: .businessUnit)
+                    mobileNo = try container.decode(String.self, forKey: .mobileNo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,17 +55,12 @@ public extension PlatformClient.Payment {
                 
             
             
-                mobileno = try container.decode(String.self, forKey: .mobileno)
-                
-            
-            
-            
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-                
-            
-            
-            
                 merchantUserId = try container.decode(String.self, forKey: .merchantUserId)
+                
+            
+            
+            
+                items = try container.decode([SetBUPaymentLimit].self, forKey: .items)
                 
             
             
@@ -82,22 +71,17 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(businessUnit, forKey: .businessUnit)
-            
-            
-            
-            
-            try? container.encodeIfPresent(mobileno, forKey: .mobileno)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(mobileNo, forKey: .mobileNo)
             
             
             
             
             try? container.encodeIfPresent(merchantUserId, forKey: .merchantUserId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(items, forKey: .items)
             
             
         }
@@ -116,36 +100,30 @@ public extension PlatformClient.ApplicationClient.Payment {
     class SetCODForUserRequest: Codable {
         
         
-        public var businessUnit: String?
-        
-        public var mobileno: String
-        
-        public var isActive: Bool
+        public var mobileNo: String?
         
         public var merchantUserId: String
+        
+        public var items: [SetBUPaymentLimit]
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case businessUnit = "business_unit"
-            
-            case mobileno = "mobileno"
-            
-            case isActive = "is_active"
+            case mobileNo = "mobile_no"
             
             case merchantUserId = "merchant_user_id"
             
+            case items = "items"
+            
         }
 
-        public init(businessUnit: String? = nil, isActive: Bool, merchantUserId: String, mobileno: String) {
+        public init(items: [SetBUPaymentLimit], merchantUserId: String, mobileNo: String? = nil) {
             
-            self.businessUnit = businessUnit
-            
-            self.mobileno = mobileno
-            
-            self.isActive = isActive
+            self.mobileNo = mobileNo
             
             self.merchantUserId = merchantUserId
+            
+            self.items = items
             
         }
 
@@ -154,7 +132,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    businessUnit = try container.decode(String.self, forKey: .businessUnit)
+                    mobileNo = try container.decode(String.self, forKey: .mobileNo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,17 +143,12 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
-                mobileno = try container.decode(String.self, forKey: .mobileno)
-                
-            
-            
-            
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-                
-            
-            
-            
                 merchantUserId = try container.decode(String.self, forKey: .merchantUserId)
+                
+            
+            
+            
+                items = try container.decode([SetBUPaymentLimit].self, forKey: .items)
                 
             
             
@@ -186,22 +159,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(businessUnit, forKey: .businessUnit)
-            
-            
-            
-            
-            try? container.encodeIfPresent(mobileno, forKey: .mobileno)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(mobileNo, forKey: .mobileNo)
             
             
             
             
             try? container.encodeIfPresent(merchantUserId, forKey: .merchantUserId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(items, forKey: .items)
             
             
         }

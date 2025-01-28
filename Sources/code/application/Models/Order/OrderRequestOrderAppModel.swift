@@ -10,16 +10,22 @@ public extension ApplicationClient.Order {
         
         public var meta: [String: Any]?
         
+        public var externalOrderId: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case meta = "meta"
             
+            case externalOrderId = "external_order_id"
+            
         }
 
-        public init(meta: [String: Any]? = nil) {
+        public init(externalOrderId: String? = nil, meta: [String: Any]? = nil) {
             
             self.meta = meta
+            
+            self.externalOrderId = externalOrderId
             
         }
 
@@ -38,6 +44,18 @@ public extension ApplicationClient.Order {
             }
             
             
+            
+            do {
+                externalOrderId = try container.decode(String.self, forKey: .externalOrderId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -45,6 +63,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            try? container.encodeIfPresent(externalOrderId, forKey: .externalOrderId)
             
             
         }

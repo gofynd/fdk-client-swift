@@ -17,7 +17,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Get company profile
-        * Description: View the company profile of the seller account.
+        * Description: This API allows to view the company profile of the seller account.
         **/
         public func cbsOnboardGet(
             
@@ -36,7 +36,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)",
                 query: nil,
                 body: nil,
                 headers: xHeaders,
@@ -66,8 +66,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Update company profile
-        * Description: Allows to edit the company profile of the seller account.
+        * Summary: Edit company profile
+        * Description: This API allows to edit the company profile of the seller account.
         **/
         public func updateCompany(
             body: UpdateCompany,
@@ -86,7 +86,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "PATCH",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -117,7 +117,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Get company metrics
-        * Description: Allows viewing company metrics, including brand and store status, as well as the number of verified and unverified products, company documents, and store documents.
+        * Description: This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
         **/
         public func getCompanyMetrics(
             
@@ -136,7 +136,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/metrics",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/metrics",
                 query: nil,
                 body: nil,
                 headers: xHeaders,
@@ -166,11 +166,11 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get a brand
-        * Description: Retrieve detailed information about a specific brand associated to a particular company.
+        * Summary: Get a single company brand.
+        * Description: This API helps to get data associated to a particular company brand.
         **/
         public func getBrand(
-            brandId: String,
+            brandId: Int,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetBrandResponseSerializer?, _ error: FDKError?) -> Void
@@ -187,7 +187,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/brand/\(brandId)",
                 query: nil,
                 body: nil,
                 headers: xHeaders,
@@ -217,12 +217,12 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: update brand 
-        * Description: Modify brand details and meta of a specific brand.
+        * Summary: Edit a brand.
+        * Description: This API allows to edit meta of a brand.
         **/
         public func editBrand(
-            brandId: String,
-            body: UpdateBrandRequestSerializer,
+            brandId: Int,
+            body: CreateUpdateBrandRequestSerializer,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
         ) {
@@ -238,7 +238,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/brand/\(brandId)",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -268,11 +268,11 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Create brand
-        * Description: Allows to create a brand associated to a company.
+        * Summary: Create a Brand.
+        * Description: This API allows to create a brand associated to a company.
         **/
         public func createBrand(
-            body: CreateBrandRequestSerializer,
+            body: CreateUpdateBrandRequestSerializer,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
         ) {
@@ -288,7 +288,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/brand",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -318,8 +318,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: list company brands
-        * Description: Retrieve a list of available brands associated to a company.
+        * Summary: Get brands associated to a company
+        * Description: This API helps to get view brands associated to a particular company.
         **/
         public func getBrands(
             pageNo: Int?,
@@ -353,7 +353,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/company-brand",
                 query: xQuery,
                 body: nil,
                 headers: xHeaders,
@@ -418,8 +418,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Create company-brand mapping
-        * Description: Establish a mapping between a company and a brand.
+        * Summary: Create a company brand mapping.
+        * Description: This API allows to create a company brand mapping, for a already existing brand in the system.
         **/
         public func createCompanyBrandMapping(
             body: CompanyBrandPostRequestSerializer,
@@ -438,7 +438,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/company-brand",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -468,8 +468,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get company specific stores
-        * Description: Retrieve a list of locations associated with the company.
+        * Summary: Get list of locations
+        * Description: This API allows to view all the locations associated to a company.
         **/
         public func getLocations(
             storeType: String?,
@@ -528,7 +528,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/location",
                 query: xQuery,
                 body: nil,
                 headers: xHeaders,
@@ -556,65 +556,10 @@ extension PlatformClient {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
-        * Summary: get paginator for getLocations
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getLocationsPaginator(
-            storeType: String?,
-            q: String?,
-            stage: String?,
-            pageSize: Int?,
-            locationIds: [Int]?,
-            types: [String]?,
-            tags: [String]?,
-            headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<LocationListSerializer> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<LocationListSerializer>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getLocations(
-                    storeType: storeType,
-                    q: q,
-                    stage: stage,
-                    pageNo: paginator.pageNo,
-                    pageSize: paginator.pageSize,
-                    locationIds: locationIds,
-                    types: types,
-                    tags: tags,
-                    
-                    headers: headers
-                ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Create company stores
-        * Description: Create a new location associated to a company.
+        * Summary: Create a location associated to a company.
+        * Description: This API allows to edit a location associated to a company.
         **/
         public func createLocation(
             body: LocationSerializer,
@@ -633,7 +578,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/location",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -663,11 +608,11 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get company stores
-        * Description: Retrive detailed information about a specific location associated to a specific company.
+        * Summary: Get details of a specific location.
+        * Description: This API helps to get data associated to a specific location.
         **/
         public func getLocationDetail(
-            locationId: String,
+            locationId: Int,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: GetLocationSerializer?, _ error: FDKError?) -> Void
@@ -684,7 +629,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/location/\(locationId)",
                 query: nil,
                 body: nil,
                 headers: xHeaders,
@@ -714,11 +659,11 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Update company stores
-        * Description: Allows to edit a location associated to a company.
+        * Summary: Edit a location asscoiated to a company.
+        * Description: This API allows to edit a location associated to a company.
         **/
         public func updateLocation(
-            locationId: String,
+            locationId: Int,
             body: LocationSerializer,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
@@ -735,7 +680,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/location/\(locationId)",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -765,8 +710,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Bulk create company stores
-        * Description: Allows to create locations in bulk at once associated to a company
+        * Summary: Create a location asscoiated to a company in bulk.
+        * Description: This API allows to create a location associated to a company.
         **/
         public func createLocationBulk(
             body: BulkLocationSerializer,
@@ -785,7 +730,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/bulk",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/location/bulk",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -815,8 +760,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get company store tags
-        * Description: Retrieve all the distinct tags associated to a company location.
+        * Summary: Get tags associated with locations for a company.
+        * Description: This API fetches all the tags associated to a company.
         **/
         public func getLocationTags(
             
@@ -835,7 +780,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/tags",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/location/tags",
                 query: nil,
                 body: nil,
                 headers: xHeaders,

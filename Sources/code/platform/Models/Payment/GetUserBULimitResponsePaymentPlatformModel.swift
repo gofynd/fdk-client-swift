@@ -12,16 +12,16 @@ public extension PlatformClient.Payment {
     class GetUserBULimitResponse: Codable {
         
         
-        public var businessUnit: String
+        public var buisnessUnit: String?
         
-        public var displayName: String
+        public var displayName: String?
         
-        public var config: CODPaymentLimitConfig
+        public var config: UserPaymentLimitConfig?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case businessUnit = "business_unit"
+            case buisnessUnit = "buisness_unit"
             
             case displayName = "display_name"
             
@@ -29,9 +29,9 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(businessUnit: String, config: CODPaymentLimitConfig, displayName: String) {
+        public init(buisnessUnit: String? = nil, config: UserPaymentLimitConfig? = nil, displayName: String? = nil) {
             
-            self.businessUnit = businessUnit
+            self.buisnessUnit = buisnessUnit
             
             self.displayName = displayName
             
@@ -43,19 +43,40 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                businessUnit = try container.decode(String.self, forKey: .businessUnit)
+                do {
+                    buisnessUnit = try container.decode(String.self, forKey: .buisnessUnit)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                displayName = try container.decode(String.self, forKey: .displayName)
+                do {
+                    displayName = try container.decode(String.self, forKey: .displayName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                config = try container.decode(CODPaymentLimitConfig.self, forKey: .config)
+                do {
+                    config = try container.decode(UserPaymentLimitConfig.self, forKey: .config)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -64,7 +85,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(businessUnit, forKey: .businessUnit)
+            try? container.encodeIfPresent(buisnessUnit, forKey: .buisnessUnit)
             
             
             
@@ -93,16 +114,16 @@ public extension PlatformClient.ApplicationClient.Payment {
     class GetUserBULimitResponse: Codable {
         
         
-        public var businessUnit: String
+        public var buisnessUnit: String?
         
-        public var displayName: String
+        public var displayName: String?
         
-        public var config: CODPaymentLimitConfig
+        public var config: UserPaymentLimitConfig?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case businessUnit = "business_unit"
+            case buisnessUnit = "buisness_unit"
             
             case displayName = "display_name"
             
@@ -110,9 +131,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(businessUnit: String, config: CODPaymentLimitConfig, displayName: String) {
+        public init(buisnessUnit: String? = nil, config: UserPaymentLimitConfig? = nil, displayName: String? = nil) {
             
-            self.businessUnit = businessUnit
+            self.buisnessUnit = buisnessUnit
             
             self.displayName = displayName
             
@@ -124,19 +145,40 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                businessUnit = try container.decode(String.self, forKey: .businessUnit)
+                do {
+                    buisnessUnit = try container.decode(String.self, forKey: .buisnessUnit)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                displayName = try container.decode(String.self, forKey: .displayName)
+                do {
+                    displayName = try container.decode(String.self, forKey: .displayName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                config = try container.decode(CODPaymentLimitConfig.self, forKey: .config)
+                do {
+                    config = try container.decode(UserPaymentLimitConfig.self, forKey: .config)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -145,7 +187,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(businessUnit, forKey: .businessUnit)
+            try? container.encodeIfPresent(buisnessUnit, forKey: .buisnessUnit)
             
             
             

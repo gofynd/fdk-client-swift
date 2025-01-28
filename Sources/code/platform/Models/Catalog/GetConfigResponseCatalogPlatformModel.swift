@@ -12,7 +12,7 @@ public extension PlatformClient.Catalog {
     class GetConfigResponse: Codable {
         
         
-        public var data: [[String: Any]]
+        public var data: [DataType]
         
         public var page: PageResponseType
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(data: [[String: Any]], page: PageResponseType) {
+        public init(data: [DataType], page: PageResponseType) {
             
             self.data = data
             
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                data = try container.decode([[String: Any]].self, forKey: .data)
+                data = try container.decode([DataType].self, forKey: .data)
                 
             
             
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetConfigResponse: Codable {
         
         
-        public var data: [[String: Any]]
+        public var data: [DataType]
         
         public var page: PageResponseType
         
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(data: [[String: Any]], page: PageResponseType) {
+        public init(data: [DataType], page: PageResponseType) {
             
             self.data = data
             
@@ -102,7 +102,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                data = try container.decode([[String: Any]].self, forKey: .data)
+                data = try container.decode([DataType].self, forKey: .data)
                 
             
             

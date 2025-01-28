@@ -34,6 +34,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var description: String?
         
+        public var tags: [String]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -57,9 +59,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case description = "description"
             
+            case tags = "tags"
+            
         }
 
-        public init(buyRules: [String: Any]? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, validTill: String? = nil) {
+        public init(buyRules: [String: Any]? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, tags: [String]? = nil, validTill: String? = nil) {
             
             self.id = id
             
@@ -80,6 +84,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.freeGiftItems = freeGiftItems
             
             self.description = description
+            
+            self.tags = tags
             
         }
 
@@ -206,6 +212,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    tags = try container.decode([String].self, forKey: .tags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -259,6 +277,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
         }

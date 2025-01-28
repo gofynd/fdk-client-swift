@@ -24,7 +24,7 @@ public extension PlatformClient.Content {
         
         public var description: String?
         
-        public var type: String?
+        public var type: String
         
         public var multiValue: Bool?
         
@@ -45,6 +45,8 @@ public extension PlatformClient.Content {
         public var createdAt: String?
         
         public var updatedAt: String?
+        
+        public var applicationId: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -83,9 +85,11 @@ public extension PlatformClient.Content {
             
             case updatedAt = "updated_at"
             
+            case applicationId = "application_id"
+            
         }
 
-        public init(companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, description: String? = nil, isDeleted: Bool? = nil, key: String? = nil, metaobjectDefinitionId: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, required: Bool? = nil, resource: String? = nil, type: String? = nil, updatedAt: String? = nil, validations: [FieldValidations]? = nil, id: String? = nil) {
+        public init(applicationId: String? = nil, companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, description: String? = nil, isDeleted: Bool? = nil, key: String? = nil, metaobjectDefinitionId: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, required: Bool? = nil, resource: String? = nil, type: String, updatedAt: String? = nil, validations: [FieldValidations]? = nil, id: String? = nil) {
             
             self.creator = creator
             
@@ -120,6 +124,8 @@ public extension PlatformClient.Content {
             self.createdAt = createdAt
             
             self.updatedAt = updatedAt
+            
+            self.applicationId = applicationId
             
         }
 
@@ -199,16 +205,9 @@ public extension PlatformClient.Content {
                 
             
             
-                do {
-                    type = try container.decode(String.self, forKey: .type)
+                type = try container.decode(String.self, forKey: .type)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -330,6 +329,18 @@ public extension PlatformClient.Content {
                 }
                 
             
+            
+                do {
+                    applicationId = try container.decode(String.self, forKey: .applicationId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -418,6 +429,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
             
             
         }
@@ -448,7 +464,7 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var description: String?
         
-        public var type: String?
+        public var type: String
         
         public var multiValue: Bool?
         
@@ -469,6 +485,8 @@ public extension PlatformClient.ApplicationClient.Content {
         public var createdAt: String?
         
         public var updatedAt: String?
+        
+        public var applicationId: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -507,9 +525,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case updatedAt = "updated_at"
             
+            case applicationId = "application_id"
+            
         }
 
-        public init(companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, description: String? = nil, isDeleted: Bool? = nil, key: String? = nil, metaobjectDefinitionId: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, required: Bool? = nil, resource: String? = nil, type: String? = nil, updatedAt: String? = nil, validations: [FieldValidations]? = nil, id: String? = nil) {
+        public init(applicationId: String? = nil, companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, description: String? = nil, isDeleted: Bool? = nil, key: String? = nil, metaobjectDefinitionId: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, required: Bool? = nil, resource: String? = nil, type: String, updatedAt: String? = nil, validations: [FieldValidations]? = nil, id: String? = nil) {
             
             self.creator = creator
             
@@ -544,6 +564,8 @@ public extension PlatformClient.ApplicationClient.Content {
             self.createdAt = createdAt
             
             self.updatedAt = updatedAt
+            
+            self.applicationId = applicationId
             
         }
 
@@ -623,16 +645,9 @@ public extension PlatformClient.ApplicationClient.Content {
                 
             
             
-                do {
-                    type = try container.decode(String.self, forKey: .type)
+                type = try container.decode(String.self, forKey: .type)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -754,6 +769,18 @@ public extension PlatformClient.ApplicationClient.Content {
                 }
                 
             
+            
+                do {
+                    applicationId = try container.decode(String.self, forKey: .applicationId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -842,6 +869,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
             
             
         }

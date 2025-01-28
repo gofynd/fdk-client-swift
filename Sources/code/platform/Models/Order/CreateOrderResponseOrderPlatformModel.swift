@@ -12,7 +12,7 @@ public extension PlatformClient.Order {
     class CreateOrderResponse: Codable {
         
         
-        public var fyndOrderId: String
+        public var fyndOrderId: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(fyndOrderId: String) {
+        public init(fyndOrderId: String? = nil) {
             
             self.fyndOrderId = fyndOrderId
             
@@ -31,9 +31,16 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+                do {
+                    fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -61,7 +68,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class CreateOrderResponse: Codable {
         
         
-        public var fyndOrderId: String
+        public var fyndOrderId: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -70,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(fyndOrderId: String) {
+        public init(fyndOrderId: String? = nil) {
             
             self.fyndOrderId = fyndOrderId
             
@@ -80,9 +87,16 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+                do {
+                    fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         

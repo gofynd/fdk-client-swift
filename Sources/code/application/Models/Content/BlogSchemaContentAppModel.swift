@@ -40,6 +40,8 @@ public extension ApplicationClient.Content {
         
         public var summary: String?
         
+        public var status: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -75,9 +77,11 @@ public extension ApplicationClient.Content {
             
             case summary = "summary"
             
+            case status = "status"
+            
         }
 
-        public init(application: String? = nil, archived: Bool? = nil, author: Author? = nil, content: [ResourceContent]? = nil, dateMeta: DateMeta? = nil, featureImage: Asset? = nil, published: Bool? = nil, publishDate: String? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, summary: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil) {
+        public init(application: String? = nil, archived: Bool? = nil, author: Author? = nil, content: [ResourceContent]? = nil, dateMeta: DateMeta? = nil, featureImage: Asset? = nil, published: Bool? = nil, publishDate: String? = nil, readingTime: String? = nil, seo: SEO? = nil, slug: String? = nil, status: String? = nil, summary: String? = nil, tags: [String]? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -110,6 +114,8 @@ public extension ApplicationClient.Content {
             self.dateMeta = dateMeta
             
             self.summary = summary
+            
+            self.status = status
             
         }
 
@@ -308,6 +314,18 @@ public extension ApplicationClient.Content {
             }
             
             
+            
+            do {
+                status = try container.decode(String.self, forKey: .status)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -375,6 +393,10 @@ public extension ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(summary, forKey: .summary)
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
         }

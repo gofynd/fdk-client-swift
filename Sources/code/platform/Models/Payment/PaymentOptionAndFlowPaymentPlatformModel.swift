@@ -14,9 +14,7 @@ public extension PlatformClient.Payment {
         
         public var paymentOption: [RootPaymentMode]
         
-        public var paymentFlows: PaymentFlow?
-        
-        public var paymentDefaultSelection: PaymentDefaultSelection?
+        public var paymentFlows: PaymentFlow
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,17 +23,13 @@ public extension PlatformClient.Payment {
             
             case paymentFlows = "payment_flows"
             
-            case paymentDefaultSelection = "payment_default_selection"
-            
         }
 
-        public init(paymentDefaultSelection: PaymentDefaultSelection? = nil, paymentFlows: PaymentFlow? = nil, paymentOption: [RootPaymentMode]) {
+        public init(paymentFlows: PaymentFlow, paymentOption: [RootPaymentMode]) {
             
             self.paymentOption = paymentOption
             
             self.paymentFlows = paymentFlows
-            
-            self.paymentDefaultSelection = paymentDefaultSelection
             
         }
 
@@ -48,28 +42,9 @@ public extension PlatformClient.Payment {
             
             
             
-                do {
-                    paymentFlows = try container.decode(PaymentFlow.self, forKey: .paymentFlows)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                paymentFlows = try container.decode(PaymentFlow.self, forKey: .paymentFlows)
                 
             
-            
-                do {
-                    paymentDefaultSelection = try container.decode(PaymentDefaultSelection.self, forKey: .paymentDefaultSelection)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
@@ -84,11 +59,6 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(paymentFlows, forKey: .paymentFlows)
-            
-            
-            
-            
-            try? container.encodeIfPresent(paymentDefaultSelection, forKey: .paymentDefaultSelection)
             
             
         }
@@ -109,9 +79,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var paymentOption: [RootPaymentMode]
         
-        public var paymentFlows: PaymentFlow?
-        
-        public var paymentDefaultSelection: PaymentDefaultSelection?
+        public var paymentFlows: PaymentFlow
         
 
         public enum CodingKeys: String, CodingKey {
@@ -120,17 +88,13 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case paymentFlows = "payment_flows"
             
-            case paymentDefaultSelection = "payment_default_selection"
-            
         }
 
-        public init(paymentDefaultSelection: PaymentDefaultSelection? = nil, paymentFlows: PaymentFlow? = nil, paymentOption: [RootPaymentMode]) {
+        public init(paymentFlows: PaymentFlow, paymentOption: [RootPaymentMode]) {
             
             self.paymentOption = paymentOption
             
             self.paymentFlows = paymentFlows
-            
-            self.paymentDefaultSelection = paymentDefaultSelection
             
         }
 
@@ -143,28 +107,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                do {
-                    paymentFlows = try container.decode(PaymentFlow.self, forKey: .paymentFlows)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                paymentFlows = try container.decode(PaymentFlow.self, forKey: .paymentFlows)
                 
             
-            
-                do {
-                    paymentDefaultSelection = try container.decode(PaymentDefaultSelection.self, forKey: .paymentDefaultSelection)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
@@ -179,11 +124,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(paymentFlows, forKey: .paymentFlows)
-            
-            
-            
-            
-            try? container.encodeIfPresent(paymentDefaultSelection, forKey: .paymentDefaultSelection)
             
             
         }

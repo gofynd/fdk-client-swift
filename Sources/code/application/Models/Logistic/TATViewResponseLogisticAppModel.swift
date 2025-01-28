@@ -34,6 +34,8 @@ public extension ApplicationClient.Logistic {
         
         public var journey: String?
         
+        public var countryIsoCode: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -63,9 +65,11 @@ public extension ApplicationClient.Logistic {
             
             case journey = "journey"
             
+            case countryIsoCode = "country_iso_code"
+            
         }
 
-        public init(action: String? = nil, error: TATErrorSchemaResponse? = nil, identifier: String? = nil, isCodAvailable: Bool? = nil, journey: String? = nil, locationDetails: [TATLocationDetailsResponse]? = nil, paymentMode: String? = nil, requestUuid: String? = nil, source: String? = nil, stormbreakerUuid: String? = nil, success: Bool? = nil, toCity: String? = nil, toPincode: String? = nil) {
+        public init(action: String? = nil, countryIsoCode: String? = nil, error: TATErrorSchemaResponse? = nil, identifier: String? = nil, isCodAvailable: Bool? = nil, journey: String? = nil, locationDetails: [TATLocationDetailsResponse]? = nil, paymentMode: String? = nil, requestUuid: String? = nil, source: String? = nil, stormbreakerUuid: String? = nil, success: Bool? = nil, toCity: String? = nil, toPincode: String? = nil) {
             
             self.toPincode = toPincode
             
@@ -92,6 +96,8 @@ public extension ApplicationClient.Logistic {
             self.locationDetails = locationDetails
             
             self.journey = journey
+            
+            self.countryIsoCode = countryIsoCode
             
         }
 
@@ -254,6 +260,18 @@ public extension ApplicationClient.Logistic {
             }
             
             
+            
+            do {
+                countryIsoCode = try container.decode(String.self, forKey: .countryIsoCode)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -309,6 +327,10 @@ public extension ApplicationClient.Logistic {
             
             
             try? container.encodeIfPresent(journey, forKey: .journey)
+            
+            
+            
+            try? container.encodeIfPresent(countryIsoCode, forKey: .countryIsoCode)
             
             
         }

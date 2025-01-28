@@ -12,24 +12,18 @@ public extension PlatformClient.Order {
     class ManifestFiltersResponse: Codable {
         
         
-        public var advanceFilter: [FiltersInfo]?
-        
-        public var globalFilter: [FiltersInfo]?
+        public var advance: [FiltersInfo]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case advanceFilter = "advance_filter"
-            
-            case globalFilter = "global_filter"
+            case advance = "advance"
             
         }
 
-        public init(advanceFilter: [FiltersInfo]? = nil, globalFilter: [FiltersInfo]? = nil) {
+        public init(advance: [FiltersInfo]? = nil) {
             
-            self.advanceFilter = advanceFilter
-            
-            self.globalFilter = globalFilter
+            self.advance = advance
             
         }
 
@@ -38,19 +32,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    advanceFilter = try container.decode([FiltersInfo].self, forKey: .advanceFilter)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    globalFilter = try container.decode([FiltersInfo].self, forKey: .globalFilter)
+                    advance = try container.decode([FiltersInfo].self, forKey: .advance)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +49,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(advanceFilter, forKey: .advanceFilter)
-            
-            
-            
-            
-            try? container.encodeIfPresent(globalFilter, forKey: .globalFilter)
+            try? container.encodeIfPresent(advance, forKey: .advance)
             
             
         }
@@ -91,24 +68,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class ManifestFiltersResponse: Codable {
         
         
-        public var advanceFilter: [FiltersInfo]?
-        
-        public var globalFilter: [FiltersInfo]?
+        public var advance: [FiltersInfo]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case advanceFilter = "advance_filter"
-            
-            case globalFilter = "global_filter"
+            case advance = "advance"
             
         }
 
-        public init(advanceFilter: [FiltersInfo]? = nil, globalFilter: [FiltersInfo]? = nil) {
+        public init(advance: [FiltersInfo]? = nil) {
             
-            self.advanceFilter = advanceFilter
-            
-            self.globalFilter = globalFilter
+            self.advance = advance
             
         }
 
@@ -117,19 +88,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    advanceFilter = try container.decode([FiltersInfo].self, forKey: .advanceFilter)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    globalFilter = try container.decode([FiltersInfo].self, forKey: .globalFilter)
+                    advance = try container.decode([FiltersInfo].self, forKey: .advance)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +105,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(advanceFilter, forKey: .advanceFilter)
-            
-            
-            
-            
-            try? container.encodeIfPresent(globalFilter, forKey: .globalFilter)
+            try? container.encodeIfPresent(advance, forKey: .advance)
             
             
         }

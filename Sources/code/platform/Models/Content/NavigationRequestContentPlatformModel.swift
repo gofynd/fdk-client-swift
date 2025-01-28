@@ -20,6 +20,8 @@ public extension PlatformClient.Content {
         
         public var orientation: Orientation?
         
+        public var assignments: [NavigationAssignment]?
+        
         public var navigation: [NavigationReference]?
         
 
@@ -33,11 +35,13 @@ public extension PlatformClient.Content {
             
             case orientation = "orientation"
             
+            case assignments = "assignments"
+            
             case navigation = "navigation"
             
         }
 
-        public init(name: String? = nil, navigation: [NavigationReference]? = nil, orientation: Orientation? = nil, platform: [String]? = nil, slug: String? = nil) {
+        public init(assignments: [NavigationAssignment]? = nil, name: String? = nil, navigation: [NavigationReference]? = nil, orientation: Orientation? = nil, platform: [String]? = nil, slug: String? = nil) {
             
             self.name = name
             
@@ -46,6 +50,8 @@ public extension PlatformClient.Content {
             self.platform = platform
             
             self.orientation = orientation
+            
+            self.assignments = assignments
             
             self.navigation = navigation
             
@@ -104,6 +110,18 @@ public extension PlatformClient.Content {
             
             
                 do {
+                    assignments = try container.decode([NavigationAssignment].self, forKey: .assignments)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     navigation = try container.decode([NavigationReference].self, forKey: .navigation)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -137,6 +155,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(orientation, forKey: .orientation)
+            
+            
+            
+            
+            try? container.encodeIfPresent(assignments, forKey: .assignments)
             
             
             
@@ -168,6 +191,8 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var orientation: Orientation?
         
+        public var assignments: [NavigationAssignment]?
+        
         public var navigation: [NavigationReference]?
         
 
@@ -181,11 +206,13 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case orientation = "orientation"
             
+            case assignments = "assignments"
+            
             case navigation = "navigation"
             
         }
 
-        public init(name: String? = nil, navigation: [NavigationReference]? = nil, orientation: Orientation? = nil, platform: [String]? = nil, slug: String? = nil) {
+        public init(assignments: [NavigationAssignment]? = nil, name: String? = nil, navigation: [NavigationReference]? = nil, orientation: Orientation? = nil, platform: [String]? = nil, slug: String? = nil) {
             
             self.name = name
             
@@ -194,6 +221,8 @@ public extension PlatformClient.ApplicationClient.Content {
             self.platform = platform
             
             self.orientation = orientation
+            
+            self.assignments = assignments
             
             self.navigation = navigation
             
@@ -252,6 +281,18 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
+                    assignments = try container.decode([NavigationAssignment].self, forKey: .assignments)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     navigation = try container.decode([NavigationReference].self, forKey: .navigation)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -285,6 +326,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(orientation, forKey: .orientation)
+            
+            
+            
+            
+            try? container.encodeIfPresent(assignments, forKey: .assignments)
             
             
             

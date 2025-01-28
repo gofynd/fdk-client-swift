@@ -14,7 +14,7 @@ public extension PlatformClient.Catalog {
         
         public var choice: String
         
-        public var companyId: Int?
+        public var companyId: String?
         
         public var createdBy: [String: Any]?
         
@@ -39,6 +39,18 @@ public extension PlatformClient.Catalog {
         public var sameStoreAssignment: Bool?
         
         public var slug: String
+        
+        public var autoAddToCart: Bool
+        
+        public var autoSelect: Bool
+        
+        public var allowRemove: Bool
+        
+        public var preferSingleShipment: Bool
+        
+        public var allowIndividualReturn: Bool
+        
+        public var allowIndividualCancel: Bool
         
 
         public enum CodingKeys: String, CodingKey {
@@ -71,9 +83,21 @@ public extension PlatformClient.Catalog {
             
             case slug = "slug"
             
+            case autoAddToCart = "auto_add_to_cart"
+            
+            case autoSelect = "auto_select"
+            
+            case allowRemove = "allow_remove"
+            
+            case preferSingleShipment = "prefer_single_shipment"
+            
+            case allowIndividualReturn = "allow_individual_return"
+            
+            case allowIndividualCancel = "allow_individual_cancel"
+            
         }
 
-        public init(choice: String, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, isActive: Bool, logo: String? = nil, meta: [String: Any]? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, pageVisibility: [String]? = nil, products: [ProductBundleItem], sameStoreAssignment: Bool? = nil, slug: String) {
+        public init(allowIndividualCancel: Bool, allowIndividualReturn: Bool, allowRemove: Bool, autoAddToCart: Bool, autoSelect: Bool, choice: String, companyId: String? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, isActive: Bool, logo: String? = nil, meta: [String: Any]? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, pageVisibility: [String]? = nil, preferSingleShipment: Bool, products: [ProductBundleItem], sameStoreAssignment: Bool? = nil, slug: String) {
             
             self.choice = choice
             
@@ -103,6 +127,18 @@ public extension PlatformClient.Catalog {
             
             self.slug = slug
             
+            self.autoAddToCart = autoAddToCart
+            
+            self.autoSelect = autoSelect
+            
+            self.allowRemove = allowRemove
+            
+            self.preferSingleShipment = preferSingleShipment
+            
+            self.allowIndividualReturn = allowIndividualReturn
+            
+            self.allowIndividualCancel = allowIndividualCancel
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -115,7 +151,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    companyId = try container.decode(Int.self, forKey: .companyId)
+                    companyId = try container.decode(String.self, forKey: .companyId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -241,6 +277,36 @@ public extension PlatformClient.Catalog {
                 
             
             
+            
+                autoAddToCart = try container.decode(Bool.self, forKey: .autoAddToCart)
+                
+            
+            
+            
+                autoSelect = try container.decode(Bool.self, forKey: .autoSelect)
+                
+            
+            
+            
+                allowRemove = try container.decode(Bool.self, forKey: .allowRemove)
+                
+            
+            
+            
+                preferSingleShipment = try container.decode(Bool.self, forKey: .preferSingleShipment)
+                
+            
+            
+            
+                allowIndividualReturn = try container.decode(Bool.self, forKey: .allowIndividualReturn)
+                
+            
+            
+            
+                allowIndividualCancel = try container.decode(Bool.self, forKey: .allowIndividualCancel)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -314,6 +380,36 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            
+            try? container.encodeIfPresent(autoAddToCart, forKey: .autoAddToCart)
+            
+            
+            
+            
+            try? container.encodeIfPresent(autoSelect, forKey: .autoSelect)
+            
+            
+            
+            
+            try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
+            
+            
+            
+            
+            try? container.encodeIfPresent(preferSingleShipment, forKey: .preferSingleShipment)
+            
+            
+            
+            
+            try? container.encodeIfPresent(allowIndividualReturn, forKey: .allowIndividualReturn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(allowIndividualCancel, forKey: .allowIndividualCancel)
             
             
         }
@@ -334,7 +430,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var choice: String
         
-        public var companyId: Int?
+        public var companyId: String?
         
         public var createdBy: [String: Any]?
         
@@ -359,6 +455,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var sameStoreAssignment: Bool?
         
         public var slug: String
+        
+        public var autoAddToCart: Bool
+        
+        public var autoSelect: Bool
+        
+        public var allowRemove: Bool
+        
+        public var preferSingleShipment: Bool
+        
+        public var allowIndividualReturn: Bool
+        
+        public var allowIndividualCancel: Bool
         
 
         public enum CodingKeys: String, CodingKey {
@@ -391,9 +499,21 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case slug = "slug"
             
+            case autoAddToCart = "auto_add_to_cart"
+            
+            case autoSelect = "auto_select"
+            
+            case allowRemove = "allow_remove"
+            
+            case preferSingleShipment = "prefer_single_shipment"
+            
+            case allowIndividualReturn = "allow_individual_return"
+            
+            case allowIndividualCancel = "allow_individual_cancel"
+            
         }
 
-        public init(choice: String, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, isActive: Bool, logo: String? = nil, meta: [String: Any]? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, pageVisibility: [String]? = nil, products: [ProductBundleItem], sameStoreAssignment: Bool? = nil, slug: String) {
+        public init(allowIndividualCancel: Bool, allowIndividualReturn: Bool, allowRemove: Bool, autoAddToCart: Bool, autoSelect: Bool, choice: String, companyId: String? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, isActive: Bool, logo: String? = nil, meta: [String: Any]? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, pageVisibility: [String]? = nil, preferSingleShipment: Bool, products: [ProductBundleItem], sameStoreAssignment: Bool? = nil, slug: String) {
             
             self.choice = choice
             
@@ -423,6 +543,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.slug = slug
             
+            self.autoAddToCart = autoAddToCart
+            
+            self.autoSelect = autoSelect
+            
+            self.allowRemove = allowRemove
+            
+            self.preferSingleShipment = preferSingleShipment
+            
+            self.allowIndividualReturn = allowIndividualReturn
+            
+            self.allowIndividualCancel = allowIndividualCancel
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -435,7 +567,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    companyId = try container.decode(Int.self, forKey: .companyId)
+                    companyId = try container.decode(String.self, forKey: .companyId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -561,6 +693,36 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
+            
+                autoAddToCart = try container.decode(Bool.self, forKey: .autoAddToCart)
+                
+            
+            
+            
+                autoSelect = try container.decode(Bool.self, forKey: .autoSelect)
+                
+            
+            
+            
+                allowRemove = try container.decode(Bool.self, forKey: .allowRemove)
+                
+            
+            
+            
+                preferSingleShipment = try container.decode(Bool.self, forKey: .preferSingleShipment)
+                
+            
+            
+            
+                allowIndividualReturn = try container.decode(Bool.self, forKey: .allowIndividualReturn)
+                
+            
+            
+            
+                allowIndividualCancel = try container.decode(Bool.self, forKey: .allowIndividualCancel)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -634,6 +796,36 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            
+            try? container.encodeIfPresent(autoAddToCart, forKey: .autoAddToCart)
+            
+            
+            
+            
+            try? container.encodeIfPresent(autoSelect, forKey: .autoSelect)
+            
+            
+            
+            
+            try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
+            
+            
+            
+            
+            try? container.encodeIfPresent(preferSingleShipment, forKey: .preferSingleShipment)
+            
+            
+            
+            
+            try? container.encodeIfPresent(allowIndividualReturn, forKey: .allowIndividualReturn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(allowIndividualCancel, forKey: .allowIndividualCancel)
             
             
         }

@@ -24,6 +24,8 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var fileUrl: String?
         
+        public var blacklistedUsers: [String]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -37,9 +39,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             case fileUrl = "file_url"
             
+            case blacklistedUsers = "blacklisted_users"
+            
         }
 
-        public init(conditions: [ConditionsSchema]? = nil, description: String, fileUrl: String? = nil, name: String, type: String? = nil) {
+        public init(blacklistedUsers: [String]? = nil, conditions: [ConditionsSchema]? = nil, description: String, fileUrl: String? = nil, name: String, type: String? = nil) {
             
             self.conditions = conditions
             
@@ -50,6 +54,8 @@ public extension PlatformClient.ApplicationClient.User {
             self.description = description
             
             self.fileUrl = fileUrl
+            
+            self.blacklistedUsers = blacklistedUsers
             
         }
 
@@ -102,6 +108,18 @@ public extension PlatformClient.ApplicationClient.User {
                 }
                 
             
+            
+                do {
+                    blacklistedUsers = try container.decode([String].self, forKey: .blacklistedUsers)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -130,6 +148,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(fileUrl, forKey: .fileUrl)
+            
+            
+            
+            
+            try? container.encodeIfPresent(blacklistedUsers, forKey: .blacklistedUsers)
             
             
         }

@@ -14,7 +14,7 @@ public extension PlatformClient.Content {
         
         public var id: String?
         
-        public var type: String?
+        public var type: String
         
         public var description: String?
         
@@ -33,7 +33,7 @@ public extension PlatformClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "id"
+            case id = "_id"
             
             case type = "type"
             
@@ -53,7 +53,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(action: String? = nil, description: String? = nil, id: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, required: Bool? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
+        public init(action: String? = nil, description: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, required: Bool? = nil, type: String, validations: [FieldValidations]? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -91,16 +91,9 @@ public extension PlatformClient.Content {
                 
             
             
-                do {
-                    type = try container.decode(String.self, forKey: .type)
+                type = try container.decode(String.self, forKey: .type)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -254,7 +247,7 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var id: String?
         
-        public var type: String?
+        public var type: String
         
         public var description: String?
         
@@ -273,7 +266,7 @@ public extension PlatformClient.ApplicationClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "id"
+            case id = "_id"
             
             case type = "type"
             
@@ -293,7 +286,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(action: String? = nil, description: String? = nil, id: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, required: Bool? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
+        public init(action: String? = nil, description: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, required: Bool? = nil, type: String, validations: [FieldValidations]? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -331,16 +324,9 @@ public extension PlatformClient.ApplicationClient.Content {
                 
             
             
-                do {
-                    type = try container.decode(String.self, forKey: .type)
+                type = try container.decode(String.self, forKey: .type)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {

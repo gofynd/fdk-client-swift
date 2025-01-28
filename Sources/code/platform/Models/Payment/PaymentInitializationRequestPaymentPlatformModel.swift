@@ -16,25 +16,27 @@ public extension PlatformClient.Payment {
         
         public var deviceId: String?
         
-        public var email: String
+        public var email: String?
         
         public var customerId: String
         
         public var vpa: String?
         
-        public var aggregator: String
+        public var aggregator: String?
         
-        public var orderId: String
+        public var orderId: String?
         
-        public var currency: String
+        public var currency: String?
         
-        public var amount: Int
+        public var amount: Int?
         
-        public var contact: String
+        public var contact: String?
         
         public var timeout: Int?
         
         public var merchantOrderId: String
+        
+        public var merchantTransactionId: String?
         
         public var method: String
         
@@ -65,11 +67,13 @@ public extension PlatformClient.Payment {
             
             case merchantOrderId = "merchant_order_id"
             
+            case merchantTransactionId = "merchant_transaction_id"
+            
             case method = "method"
             
         }
 
-        public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, deviceId: String? = nil, email: String, merchantOrderId: String, method: String, orderId: String, razorpayPaymentId: String? = nil, timeout: Int? = nil, vpa: String? = nil) {
+        public init(aggregator: String? = nil, amount: Int? = nil, contact: String? = nil, currency: String? = nil, customerId: String, deviceId: String? = nil, email: String? = nil, merchantOrderId: String, merchantTransactionId: String? = nil, method: String, orderId: String? = nil, razorpayPaymentId: String? = nil, timeout: Int? = nil, vpa: String? = nil) {
             
             self.razorpayPaymentId = razorpayPaymentId
             
@@ -94,6 +98,8 @@ public extension PlatformClient.Payment {
             self.timeout = timeout
             
             self.merchantOrderId = merchantOrderId
+            
+            self.merchantTransactionId = merchantTransactionId
             
             self.method = method
             
@@ -127,9 +133,16 @@ public extension PlatformClient.Payment {
                 
             
             
-                email = try container.decode(String.self, forKey: .email)
+                do {
+                    email = try container.decode(String.self, forKey: .email)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 customerId = try container.decode(String.self, forKey: .customerId)
@@ -149,29 +162,64 @@ public extension PlatformClient.Payment {
                 
             
             
-                aggregator = try container.decode(String.self, forKey: .aggregator)
+                do {
+                    aggregator = try container.decode(String.self, forKey: .aggregator)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                orderId = try container.decode(String.self, forKey: .orderId)
+                do {
+                    orderId = try container.decode(String.self, forKey: .orderId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                currency = try container.decode(String.self, forKey: .currency)
+                do {
+                    currency = try container.decode(String.self, forKey: .currency)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                amount = try container.decode(Int.self, forKey: .amount)
+                do {
+                    amount = try container.decode(Int.self, forKey: .amount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                contact = try container.decode(String.self, forKey: .contact)
+                do {
+                    contact = try container.decode(String.self, forKey: .contact)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -189,6 +237,18 @@ public extension PlatformClient.Payment {
                 merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
                 
             
+            
+            
+                do {
+                    merchantTransactionId = try container.decode(String.self, forKey: .merchantTransactionId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 method = try container.decode(String.self, forKey: .method)
@@ -258,6 +318,11 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(merchantTransactionId, forKey: .merchantTransactionId)
             
             
             
@@ -285,25 +350,27 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var deviceId: String?
         
-        public var email: String
+        public var email: String?
         
         public var customerId: String
         
         public var vpa: String?
         
-        public var aggregator: String
+        public var aggregator: String?
         
-        public var orderId: String
+        public var orderId: String?
         
-        public var currency: String
+        public var currency: String?
         
-        public var amount: Int
+        public var amount: Int?
         
-        public var contact: String
+        public var contact: String?
         
         public var timeout: Int?
         
         public var merchantOrderId: String
+        
+        public var merchantTransactionId: String?
         
         public var method: String
         
@@ -334,11 +401,13 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case merchantOrderId = "merchant_order_id"
             
+            case merchantTransactionId = "merchant_transaction_id"
+            
             case method = "method"
             
         }
 
-        public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, deviceId: String? = nil, email: String, merchantOrderId: String, method: String, orderId: String, razorpayPaymentId: String? = nil, timeout: Int? = nil, vpa: String? = nil) {
+        public init(aggregator: String? = nil, amount: Int? = nil, contact: String? = nil, currency: String? = nil, customerId: String, deviceId: String? = nil, email: String? = nil, merchantOrderId: String, merchantTransactionId: String? = nil, method: String, orderId: String? = nil, razorpayPaymentId: String? = nil, timeout: Int? = nil, vpa: String? = nil) {
             
             self.razorpayPaymentId = razorpayPaymentId
             
@@ -363,6 +432,8 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.timeout = timeout
             
             self.merchantOrderId = merchantOrderId
+            
+            self.merchantTransactionId = merchantTransactionId
             
             self.method = method
             
@@ -396,9 +467,16 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
-                email = try container.decode(String.self, forKey: .email)
+                do {
+                    email = try container.decode(String.self, forKey: .email)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 customerId = try container.decode(String.self, forKey: .customerId)
@@ -418,29 +496,64 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
-                aggregator = try container.decode(String.self, forKey: .aggregator)
+                do {
+                    aggregator = try container.decode(String.self, forKey: .aggregator)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                orderId = try container.decode(String.self, forKey: .orderId)
+                do {
+                    orderId = try container.decode(String.self, forKey: .orderId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                currency = try container.decode(String.self, forKey: .currency)
+                do {
+                    currency = try container.decode(String.self, forKey: .currency)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                amount = try container.decode(Int.self, forKey: .amount)
+                do {
+                    amount = try container.decode(Int.self, forKey: .amount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                contact = try container.decode(String.self, forKey: .contact)
+                do {
+                    contact = try container.decode(String.self, forKey: .contact)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -458,6 +571,18 @@ public extension PlatformClient.ApplicationClient.Payment {
                 merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
                 
             
+            
+            
+                do {
+                    merchantTransactionId = try container.decode(String.self, forKey: .merchantTransactionId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 method = try container.decode(String.self, forKey: .method)
@@ -527,6 +652,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(merchantTransactionId, forKey: .merchantTransactionId)
             
             
             

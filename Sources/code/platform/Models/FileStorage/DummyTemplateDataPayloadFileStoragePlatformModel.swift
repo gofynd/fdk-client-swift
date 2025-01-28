@@ -78,10 +78,6 @@ public extension PlatformClient.FileStorage {
         
         public var isSelfPickup: Bool?
         
-        public var shipmentMeta: [String: Any]?
-        
-        public var orderMeta: [String: Any]?
-        
         public var platformName: String?
         
         public var amountToBeCollected: Double?
@@ -175,10 +171,6 @@ public extension PlatformClient.FileStorage {
             
             case isSelfPickup = "is_self_pickup"
             
-            case shipmentMeta = "shipment_meta"
-            
-            case orderMeta = "order_meta"
-            
             case platformName = "platform_name"
             
             case amountToBeCollected = "amount_to_be_collected"
@@ -205,7 +197,7 @@ public extension PlatformClient.FileStorage {
             
         }
 
-        public init(amountPaid: Double? = nil, amountToBeCollected: Double? = nil, appDomainName: String? = nil, awbNumberBarcode: String? = nil, b2BBuyerDetails: [String: Any]? = nil, brandLogo: String? = nil, companyDetail: CompanyDetail? = nil, conversionRate: ConversionRate? = nil, creditNoteId: String? = nil, currencyCode: String? = nil, currentDate: String? = nil, customerBillingDetail: CustomerBillingDetail? = nil, customerShippingDetail: CustomerShippingDetail? = nil, declarationTexts: [String]? = nil, deliveryPartnerDetail: DeliveryPartnerDetail? = nil, digitalsignature: String? = nil, disclaimer: String? = nil, image: Image? = nil, invoiceDetail: InvoiceDetail? = nil, isExport: Bool? = nil, isExportShipment: Bool? = nil, isQwik: [String: Any]? = nil, isSelfPickup: Bool? = nil, isSelfShip: Bool? = nil, meta: Meta? = nil, mode: String? = nil, orderMeta: [String: Any]? = nil, orderType: String? = nil, payments: [PaymentData]? = nil, platformName: String? = nil, poNumber: String? = nil, productTable: ProductTable? = nil, registeredCompanyDetail: RegisteredCompanyDetail? = nil, returnDetail: ReturnDetail? = nil, shipmentId: String? = nil, shipmentIdBarcode: String? = nil, shipmentMeta: [String: Any]? = nil, signedQrcode: String? = nil, storeDetail: StoreDetail? = nil, taxTable: TaxTable? = nil, totalItems: Double? = nil, totalValueOfGoods: Double? = nil, txnId: String? = nil, uid: String? = nil, upiQrcode: String? = nil, utr: String? = nil, waybills: [[String: Any]]? = nil) {
+        public init(amountPaid: Double? = nil, amountToBeCollected: Double? = nil, appDomainName: String? = nil, awbNumberBarcode: String? = nil, b2BBuyerDetails: [String: Any]? = nil, brandLogo: String? = nil, companyDetail: CompanyDetail? = nil, conversionRate: ConversionRate? = nil, creditNoteId: String? = nil, currencyCode: String? = nil, currentDate: String? = nil, customerBillingDetail: CustomerBillingDetail? = nil, customerShippingDetail: CustomerShippingDetail? = nil, declarationTexts: [String]? = nil, deliveryPartnerDetail: DeliveryPartnerDetail? = nil, digitalsignature: String? = nil, disclaimer: String? = nil, image: Image? = nil, invoiceDetail: InvoiceDetail? = nil, isExport: Bool? = nil, isExportShipment: Bool? = nil, isQwik: [String: Any]? = nil, isSelfPickup: Bool? = nil, isSelfShip: Bool? = nil, meta: Meta? = nil, mode: String? = nil, orderType: String? = nil, payments: [PaymentData]? = nil, platformName: String? = nil, poNumber: String? = nil, productTable: ProductTable? = nil, registeredCompanyDetail: RegisteredCompanyDetail? = nil, returnDetail: ReturnDetail? = nil, shipmentId: String? = nil, shipmentIdBarcode: String? = nil, signedQrcode: String? = nil, storeDetail: StoreDetail? = nil, taxTable: TaxTable? = nil, totalItems: Double? = nil, totalValueOfGoods: Double? = nil, txnId: String? = nil, uid: String? = nil, upiQrcode: String? = nil, utr: String? = nil, waybills: [[String: Any]]? = nil) {
             
             self.isExport = isExport
             
@@ -272,10 +264,6 @@ public extension PlatformClient.FileStorage {
             self.mode = mode
             
             self.isSelfPickup = isSelfPickup
-            
-            self.shipmentMeta = shipmentMeta
-            
-            self.orderMeta = orderMeta
             
             self.platformName = platformName
             
@@ -704,30 +692,6 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    shipmentMeta = try container.decode([String: Any].self, forKey: .shipmentMeta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    orderMeta = try container.decode([String: Any].self, forKey: .orderMeta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     platformName = try container.decode(String.self, forKey: .platformName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -1038,16 +1002,6 @@ public extension PlatformClient.FileStorage {
             
             
             try? container.encodeIfPresent(isSelfPickup, forKey: .isSelfPickup)
-            
-            
-            
-            
-            try? container.encodeIfPresent(shipmentMeta, forKey: .shipmentMeta)
-            
-            
-            
-            
-            try? container.encodeIfPresent(orderMeta, forKey: .orderMeta)
             
             
             
@@ -1192,10 +1146,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var isSelfPickup: Bool?
         
-        public var shipmentMeta: [String: Any]?
-        
-        public var orderMeta: [String: Any]?
-        
         public var platformName: String?
         
         public var amountToBeCollected: Double?
@@ -1289,10 +1239,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             case isSelfPickup = "is_self_pickup"
             
-            case shipmentMeta = "shipment_meta"
-            
-            case orderMeta = "order_meta"
-            
             case platformName = "platform_name"
             
             case amountToBeCollected = "amount_to_be_collected"
@@ -1319,7 +1265,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
         }
 
-        public init(amountPaid: Double? = nil, amountToBeCollected: Double? = nil, appDomainName: String? = nil, awbNumberBarcode: String? = nil, b2BBuyerDetails: [String: Any]? = nil, brandLogo: String? = nil, companyDetail: CompanyDetail? = nil, conversionRate: ConversionRate? = nil, creditNoteId: String? = nil, currencyCode: String? = nil, currentDate: String? = nil, customerBillingDetail: CustomerBillingDetail? = nil, customerShippingDetail: CustomerShippingDetail? = nil, declarationTexts: [String]? = nil, deliveryPartnerDetail: DeliveryPartnerDetail? = nil, digitalsignature: String? = nil, disclaimer: String? = nil, image: Image? = nil, invoiceDetail: InvoiceDetail? = nil, isExport: Bool? = nil, isExportShipment: Bool? = nil, isQwik: [String: Any]? = nil, isSelfPickup: Bool? = nil, isSelfShip: Bool? = nil, meta: Meta? = nil, mode: String? = nil, orderMeta: [String: Any]? = nil, orderType: String? = nil, payments: [PaymentData]? = nil, platformName: String? = nil, poNumber: String? = nil, productTable: ProductTable? = nil, registeredCompanyDetail: RegisteredCompanyDetail? = nil, returnDetail: ReturnDetail? = nil, shipmentId: String? = nil, shipmentIdBarcode: String? = nil, shipmentMeta: [String: Any]? = nil, signedQrcode: String? = nil, storeDetail: StoreDetail? = nil, taxTable: TaxTable? = nil, totalItems: Double? = nil, totalValueOfGoods: Double? = nil, txnId: String? = nil, uid: String? = nil, upiQrcode: String? = nil, utr: String? = nil, waybills: [[String: Any]]? = nil) {
+        public init(amountPaid: Double? = nil, amountToBeCollected: Double? = nil, appDomainName: String? = nil, awbNumberBarcode: String? = nil, b2BBuyerDetails: [String: Any]? = nil, brandLogo: String? = nil, companyDetail: CompanyDetail? = nil, conversionRate: ConversionRate? = nil, creditNoteId: String? = nil, currencyCode: String? = nil, currentDate: String? = nil, customerBillingDetail: CustomerBillingDetail? = nil, customerShippingDetail: CustomerShippingDetail? = nil, declarationTexts: [String]? = nil, deliveryPartnerDetail: DeliveryPartnerDetail? = nil, digitalsignature: String? = nil, disclaimer: String? = nil, image: Image? = nil, invoiceDetail: InvoiceDetail? = nil, isExport: Bool? = nil, isExportShipment: Bool? = nil, isQwik: [String: Any]? = nil, isSelfPickup: Bool? = nil, isSelfShip: Bool? = nil, meta: Meta? = nil, mode: String? = nil, orderType: String? = nil, payments: [PaymentData]? = nil, platformName: String? = nil, poNumber: String? = nil, productTable: ProductTable? = nil, registeredCompanyDetail: RegisteredCompanyDetail? = nil, returnDetail: ReturnDetail? = nil, shipmentId: String? = nil, shipmentIdBarcode: String? = nil, signedQrcode: String? = nil, storeDetail: StoreDetail? = nil, taxTable: TaxTable? = nil, totalItems: Double? = nil, totalValueOfGoods: Double? = nil, txnId: String? = nil, uid: String? = nil, upiQrcode: String? = nil, utr: String? = nil, waybills: [[String: Any]]? = nil) {
             
             self.isExport = isExport
             
@@ -1386,10 +1332,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             self.mode = mode
             
             self.isSelfPickup = isSelfPickup
-            
-            self.shipmentMeta = shipmentMeta
-            
-            self.orderMeta = orderMeta
             
             self.platformName = platformName
             
@@ -1818,30 +1760,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    shipmentMeta = try container.decode([String: Any].self, forKey: .shipmentMeta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    orderMeta = try container.decode([String: Any].self, forKey: .orderMeta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     platformName = try container.decode(String.self, forKey: .platformName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -2152,16 +2070,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(isSelfPickup, forKey: .isSelfPickup)
-            
-            
-            
-            
-            try? container.encodeIfPresent(shipmentMeta, forKey: .shipmentMeta)
-            
-            
-            
-            
-            try? container.encodeIfPresent(orderMeta, forKey: .orderMeta)
             
             
             

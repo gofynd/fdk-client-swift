@@ -15,7 +15,7 @@ extension ApplicationClient {
             
             ulrs["createHistory"] = config.domain.appendAsPath("/service/application/lead/v1.0/ticket/{id}/history") 
             
-            ulrs["createTicket"] = config.domain.appendAsPath("/service/application/lead/v1.0/ticket/") 
+            ulrs["createTicket"] = config.domain.appendAsPath("/service/application/lead/v1.0/ticket") 
             
             ulrs["getCustomForm"] = config.domain.appendAsPath("/service/application/lead/v1.0/form/{slug}") 
             
@@ -88,7 +88,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Log ticket history
+        * Summary: Logs ticket history.
         * Description: Create a history entry for a specific support ticket.
         **/
         public func createHistory(

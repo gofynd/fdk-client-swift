@@ -12,6 +12,8 @@ public extension PlatformClient.Catalog {
     class ProductSchemaV2: Codable {
         
         
+        public var category: CategoryProduct?
+        
         public var customJson: [String: Any]?
         
         public var allCompanyIds: [Int]?
@@ -25,8 +27,6 @@ public extension PlatformClient.Catalog {
         public var brand: Brand?
         
         public var brandUid: Int?
-        
-        public var category: [String: Any]?
         
         public var categorySlug: String?
         
@@ -139,6 +139,8 @@ public extension PlatformClient.Catalog {
 
         public enum CodingKeys: String, CodingKey {
             
+            case category = "category"
+            
             case customJson = "_custom_json"
             
             case allCompanyIds = "all_company_ids"
@@ -152,8 +154,6 @@ public extension PlatformClient.Catalog {
             case brand = "brand"
             
             case brandUid = "brand_uid"
-            
-            case category = "category"
             
             case categorySlug = "category_slug"
             
@@ -265,7 +265,9 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(allCompanyIds: [Int]? = nil, allIdentifiers: [String]? = nil, allSizes: [[String: Any]]? = nil, attributes: [String: Any]? = nil, brand: Brand? = nil, brandUid: Int? = nil, category: [String: Any]? = nil, categorySlug: String? = nil, categoryUid: Int? = nil, color: String? = nil, companyId: Int? = nil, countryOfOrigin: String? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, currency: String? = nil, customOrder: [String: Any]? = nil, departments: [Int]? = nil, description: String? = nil, highlights: [String]? = nil, hsnCode: String? = nil, id: String? = nil, images: [Image]? = nil, imageNature: String? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, isExpirable: Bool? = nil, isImageLessProduct: Bool? = nil, isPhysical: Bool? = nil, isSet: Bool? = nil, itemCode: String? = nil, itemType: String? = nil, l3Mapping: [String]? = nil, media: [Media]? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, moq: [String: Any]? = nil, multiSize: Bool? = nil, name: String? = nil, netQuantity: NetQuantityResponse? = nil, noOfBoxes: Int? = nil, pending: String? = nil, primaryColor: String? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish? = nil, returnConfig: ReturnConfigResponse? = nil, shortDescription: String? = nil, sizes: [[String: Any]]? = nil, sizeGuide: String? = nil, slug: String? = nil, stage: String? = nil, tags: [String]? = nil, taxIdentifier: [String: Any]? = nil, teaserTag: [String: Any]? = nil, templateTag: String? = nil, trader: [Trader]? = nil, uid: Int? = nil, variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, verifiedBy: VerifiedBy? = nil, verifiedOn: String? = nil, customJson: [String: Any]? = nil) {
+        public init(allCompanyIds: [Int]? = nil, allIdentifiers: [String]? = nil, allSizes: [[String: Any]]? = nil, attributes: [String: Any]? = nil, brand: Brand? = nil, brandUid: Int? = nil, category: CategoryProduct? = nil, categorySlug: String? = nil, categoryUid: Int? = nil, color: String? = nil, companyId: Int? = nil, countryOfOrigin: String? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, currency: String? = nil, customOrder: [String: Any]? = nil, departments: [Int]? = nil, description: String? = nil, highlights: [String]? = nil, hsnCode: String? = nil, id: String? = nil, images: [Image]? = nil, imageNature: String? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, isExpirable: Bool? = nil, isImageLessProduct: Bool? = nil, isPhysical: Bool? = nil, isSet: Bool? = nil, itemCode: String? = nil, itemType: String? = nil, l3Mapping: [String]? = nil, media: [Media]? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, moq: [String: Any]? = nil, multiSize: Bool? = nil, name: String? = nil, netQuantity: NetQuantityResponse? = nil, noOfBoxes: Int? = nil, pending: String? = nil, primaryColor: String? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish? = nil, returnConfig: ReturnConfigResponse? = nil, shortDescription: String? = nil, sizes: [[String: Any]]? = nil, sizeGuide: String? = nil, slug: String? = nil, stage: String? = nil, tags: [String]? = nil, taxIdentifier: [String: Any]? = nil, teaserTag: [String: Any]? = nil, templateTag: String? = nil, trader: [Trader]? = nil, uid: Int? = nil, variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, verifiedBy: VerifiedBy? = nil, verifiedOn: String? = nil, customJson: [String: Any]? = nil) {
+            
+            self.category = category
             
             self.customJson = customJson
             
@@ -280,8 +282,6 @@ public extension PlatformClient.Catalog {
             self.brand = brand
             
             self.brandUid = brandUid
-            
-            self.category = category
             
             self.categorySlug = categorySlug
             
@@ -398,6 +398,18 @@ public extension PlatformClient.Catalog {
             
             
                 do {
+                    category = try container.decode(CategoryProduct.self, forKey: .category)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     customJson = try container.decode([String: Any].self, forKey: .customJson)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -471,18 +483,6 @@ public extension PlatformClient.Catalog {
             
                 do {
                     brandUid = try container.decode(Int.self, forKey: .brandUid)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    category = try container.decode([String: Any].self, forKey: .category)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1147,6 +1147,11 @@ public extension PlatformClient.Catalog {
             
             
             
+            try? container.encodeIfPresent(category, forKey: .category)
+            
+            
+            
+            
             try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
@@ -1178,11 +1183,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(brandUid, forKey: .brandUid)
-            
-            
-            
-            
-            try? container.encodeIfPresent(category, forKey: .category)
             
             
             
@@ -1471,6 +1471,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ProductSchemaV2: Codable {
         
         
+        public var category: CategoryProduct?
+        
         public var customJson: [String: Any]?
         
         public var allCompanyIds: [Int]?
@@ -1484,8 +1486,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var brand: Brand?
         
         public var brandUid: Int?
-        
-        public var category: [String: Any]?
         
         public var categorySlug: String?
         
@@ -1598,6 +1598,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public enum CodingKeys: String, CodingKey {
             
+            case category = "category"
+            
             case customJson = "_custom_json"
             
             case allCompanyIds = "all_company_ids"
@@ -1611,8 +1613,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case brand = "brand"
             
             case brandUid = "brand_uid"
-            
-            case category = "category"
             
             case categorySlug = "category_slug"
             
@@ -1724,7 +1724,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(allCompanyIds: [Int]? = nil, allIdentifiers: [String]? = nil, allSizes: [[String: Any]]? = nil, attributes: [String: Any]? = nil, brand: Brand? = nil, brandUid: Int? = nil, category: [String: Any]? = nil, categorySlug: String? = nil, categoryUid: Int? = nil, color: String? = nil, companyId: Int? = nil, countryOfOrigin: String? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, currency: String? = nil, customOrder: [String: Any]? = nil, departments: [Int]? = nil, description: String? = nil, highlights: [String]? = nil, hsnCode: String? = nil, id: String? = nil, images: [Image]? = nil, imageNature: String? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, isExpirable: Bool? = nil, isImageLessProduct: Bool? = nil, isPhysical: Bool? = nil, isSet: Bool? = nil, itemCode: String? = nil, itemType: String? = nil, l3Mapping: [String]? = nil, media: [Media]? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, moq: [String: Any]? = nil, multiSize: Bool? = nil, name: String? = nil, netQuantity: NetQuantityResponse? = nil, noOfBoxes: Int? = nil, pending: String? = nil, primaryColor: String? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish? = nil, returnConfig: ReturnConfigResponse? = nil, shortDescription: String? = nil, sizes: [[String: Any]]? = nil, sizeGuide: String? = nil, slug: String? = nil, stage: String? = nil, tags: [String]? = nil, taxIdentifier: [String: Any]? = nil, teaserTag: [String: Any]? = nil, templateTag: String? = nil, trader: [Trader]? = nil, uid: Int? = nil, variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, verifiedBy: VerifiedBy? = nil, verifiedOn: String? = nil, customJson: [String: Any]? = nil) {
+        public init(allCompanyIds: [Int]? = nil, allIdentifiers: [String]? = nil, allSizes: [[String: Any]]? = nil, attributes: [String: Any]? = nil, brand: Brand? = nil, brandUid: Int? = nil, category: CategoryProduct? = nil, categorySlug: String? = nil, categoryUid: Int? = nil, color: String? = nil, companyId: Int? = nil, countryOfOrigin: String? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, currency: String? = nil, customOrder: [String: Any]? = nil, departments: [Int]? = nil, description: String? = nil, highlights: [String]? = nil, hsnCode: String? = nil, id: String? = nil, images: [Image]? = nil, imageNature: String? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, isExpirable: Bool? = nil, isImageLessProduct: Bool? = nil, isPhysical: Bool? = nil, isSet: Bool? = nil, itemCode: String? = nil, itemType: String? = nil, l3Mapping: [String]? = nil, media: [Media]? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, moq: [String: Any]? = nil, multiSize: Bool? = nil, name: String? = nil, netQuantity: NetQuantityResponse? = nil, noOfBoxes: Int? = nil, pending: String? = nil, primaryColor: String? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish? = nil, returnConfig: ReturnConfigResponse? = nil, shortDescription: String? = nil, sizes: [[String: Any]]? = nil, sizeGuide: String? = nil, slug: String? = nil, stage: String? = nil, tags: [String]? = nil, taxIdentifier: [String: Any]? = nil, teaserTag: [String: Any]? = nil, templateTag: String? = nil, trader: [Trader]? = nil, uid: Int? = nil, variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, verifiedBy: VerifiedBy? = nil, verifiedOn: String? = nil, customJson: [String: Any]? = nil) {
+            
+            self.category = category
             
             self.customJson = customJson
             
@@ -1739,8 +1741,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.brand = brand
             
             self.brandUid = brandUid
-            
-            self.category = category
             
             self.categorySlug = categorySlug
             
@@ -1857,6 +1857,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
+                    category = try container.decode(CategoryProduct.self, forKey: .category)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     customJson = try container.decode([String: Any].self, forKey: .customJson)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -1930,18 +1942,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     brandUid = try container.decode(Int.self, forKey: .brandUid)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    category = try container.decode([String: Any].self, forKey: .category)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -2606,6 +2606,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
+            try? container.encodeIfPresent(category, forKey: .category)
+            
+            
+            
+            
             try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
@@ -2637,11 +2642,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(brandUid, forKey: .brandUid)
-            
-            
-            
-            
-            try? container.encodeIfPresent(category, forKey: .category)
             
             
             

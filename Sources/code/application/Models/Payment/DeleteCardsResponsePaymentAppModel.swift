@@ -12,6 +12,8 @@ public extension ApplicationClient.Payment {
         
         public var message: String?
         
+        public var status: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -19,13 +21,17 @@ public extension ApplicationClient.Payment {
             
             case message = "message"
             
+            case status = "status"
+            
         }
 
-        public init(message: String? = nil, success: Bool) {
+        public init(message: String? = nil, status: Int? = nil, success: Bool) {
             
             self.success = success
             
             self.message = message
+            
+            self.status = status
             
         }
 
@@ -49,6 +55,18 @@ public extension ApplicationClient.Payment {
             }
             
             
+            
+            do {
+                status = try container.decode(Int.self, forKey: .status)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -60,6 +78,10 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
         }

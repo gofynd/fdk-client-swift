@@ -28,6 +28,12 @@ public extension ApplicationClient.Cart {
         
         public var fulfillmentId: Int?
         
+        public var meta: ShipmentMeta?
+        
+        public var logisticsMeta: ShipmentLogisticsMeta?
+        
+        public var error: ShipmentError?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -51,9 +57,15 @@ public extension ApplicationClient.Cart {
             
             case fulfillmentId = "fulfillment_id"
             
+            case meta = "meta"
+            
+            case logisticsMeta = "logistics_meta"
+            
+            case error = "error"
+            
         }
 
-        public init(boxType: String? = nil, dpId: String? = nil, dpOptions: [String: Any]? = nil, fulfillmentId: Int? = nil, fulfillmentType: String? = nil, items: [CartProductInfo]? = nil, orderType: String? = nil, promise: ShipmentPromise? = nil, shipments: Int? = nil, shipmentType: String? = nil) {
+        public init(boxType: String? = nil, dpId: String? = nil, dpOptions: [String: Any]? = nil, error: ShipmentError? = nil, fulfillmentId: Int? = nil, fulfillmentType: String? = nil, items: [CartProductInfo]? = nil, logisticsMeta: ShipmentLogisticsMeta? = nil, meta: ShipmentMeta? = nil, orderType: String? = nil, promise: ShipmentPromise? = nil, shipments: Int? = nil, shipmentType: String? = nil) {
             
             self.shipments = shipments
             
@@ -74,6 +86,12 @@ public extension ApplicationClient.Cart {
             self.fulfillmentType = fulfillmentType
             
             self.fulfillmentId = fulfillmentId
+            
+            self.meta = meta
+            
+            self.logisticsMeta = logisticsMeta
+            
+            self.error = error
             
         }
 
@@ -200,6 +218,42 @@ public extension ApplicationClient.Cart {
             }
             
             
+            
+            do {
+                meta = try container.decode(ShipmentMeta.self, forKey: .meta)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                logisticsMeta = try container.decode(ShipmentLogisticsMeta.self, forKey: .logisticsMeta)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                error = try container.decode(ShipmentError.self, forKey: .error)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -243,6 +297,18 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            try? container.encodeIfPresent(logisticsMeta, forKey: .logisticsMeta)
+            
+            
+            
+            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }

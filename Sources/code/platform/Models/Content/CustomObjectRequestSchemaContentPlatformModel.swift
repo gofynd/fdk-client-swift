@@ -14,6 +14,8 @@ public extension PlatformClient.Content {
         
         public var status: String?
         
+        public var slug: String?
+        
         public var definitionId: String?
         
         public var fields: [CustomObjectEntryFieldSchema]?
@@ -23,15 +25,19 @@ public extension PlatformClient.Content {
             
             case status = "status"
             
+            case slug = "slug"
+            
             case definitionId = "definition_id"
             
             case fields = "fields"
             
         }
 
-        public init(definitionId: String? = nil, fields: [CustomObjectEntryFieldSchema]? = nil, status: String? = nil) {
+        public init(definitionId: String? = nil, fields: [CustomObjectEntryFieldSchema]? = nil, slug: String? = nil, status: String? = nil) {
             
             self.status = status
+            
+            self.slug = slug
             
             self.definitionId = definitionId
             
@@ -45,6 +51,18 @@ public extension PlatformClient.Content {
             
                 do {
                     status = try container.decode(String.self, forKey: .status)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,6 +104,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
@@ -116,6 +139,8 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var status: String?
         
+        public var slug: String?
+        
         public var definitionId: String?
         
         public var fields: [CustomObjectEntryFieldSchema]?
@@ -125,15 +150,19 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case status = "status"
             
+            case slug = "slug"
+            
             case definitionId = "definition_id"
             
             case fields = "fields"
             
         }
 
-        public init(definitionId: String? = nil, fields: [CustomObjectEntryFieldSchema]? = nil, status: String? = nil) {
+        public init(definitionId: String? = nil, fields: [CustomObjectEntryFieldSchema]? = nil, slug: String? = nil, status: String? = nil) {
             
             self.status = status
+            
+            self.slug = slug
             
             self.definitionId = definitionId
             
@@ -147,6 +176,18 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     status = try container.decode(String.self, forKey: .status)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -188,6 +229,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             

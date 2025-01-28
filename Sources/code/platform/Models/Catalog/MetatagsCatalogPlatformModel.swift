@@ -14,7 +14,7 @@ public extension PlatformClient.Catalog {
         
         public var title: String?
         
-        public var items: [ApplicationItemSeoMetaTagItem]?
+        public var items: [ApplicationItemSeoMetaTags]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(items: [ApplicationItemSeoMetaTagItem]? = nil, title: String? = nil) {
+        public init(items: [ApplicationItemSeoMetaTags]? = nil, title: String? = nil) {
             
             self.title = title
             
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    items = try container.decode([ApplicationItemSeoMetaTagItem].self, forKey: .items)
+                    items = try container.decode([ApplicationItemSeoMetaTags].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var title: String?
         
-        public var items: [ApplicationItemSeoMetaTagItem]?
+        public var items: [ApplicationItemSeoMetaTags]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(items: [ApplicationItemSeoMetaTagItem]? = nil, title: String? = nil) {
+        public init(items: [ApplicationItemSeoMetaTags]? = nil, title: String? = nil) {
             
             self.title = title
             
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    items = try container.decode([ApplicationItemSeoMetaTagItem].self, forKey: .items)
+                    items = try container.decode([ApplicationItemSeoMetaTags].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

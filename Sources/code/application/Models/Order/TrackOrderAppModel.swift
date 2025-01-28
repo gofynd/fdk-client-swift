@@ -24,6 +24,10 @@ public extension ApplicationClient.Order {
         
         public var awb: String?
         
+        public var rawStatus: String?
+        
+        public var meta: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -43,9 +47,13 @@ public extension ApplicationClient.Order {
             
             case awb = "awb"
             
+            case rawStatus = "raw_status"
+            
+            case meta = "meta"
+            
         }
 
-        public init(accountName: String? = nil, awb: String? = nil, lastLocationRecievedAt: String? = nil, reason: String? = nil, shipmentType: String? = nil, status: String? = nil, updatedAt: String? = nil, updatedTime: String? = nil) {
+        public init(accountName: String? = nil, awb: String? = nil, lastLocationRecievedAt: String? = nil, meta: String? = nil, rawStatus: String? = nil, reason: String? = nil, shipmentType: String? = nil, status: String? = nil, updatedAt: String? = nil, updatedTime: String? = nil) {
             
             self.accountName = accountName
             
@@ -62,6 +70,10 @@ public extension ApplicationClient.Order {
             self.reason = reason
             
             self.awb = awb
+            
+            self.rawStatus = rawStatus
+            
+            self.meta = meta
             
         }
 
@@ -164,6 +176,30 @@ public extension ApplicationClient.Order {
             }
             
             
+            
+            do {
+                rawStatus = try container.decode(String.self, forKey: .rawStatus)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                meta = try container.decode(String.self, forKey: .meta)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -199,6 +235,14 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(awb, forKey: .awb)
+            
+            
+            
+            try? container.encodeIfPresent(rawStatus, forKey: .rawStatus)
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }

@@ -12,22 +12,16 @@ public extension PlatformClient.Content {
     class CustomField: Codable {
         
         
-        public var value: [[String: Any]]?
-        
         public var definitionId: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case value = "value"
-            
             case definitionId = "definition_id"
             
         }
 
-        public init(definitionId: String? = nil, value: [[String: Any]]? = nil) {
-            
-            self.value = value
+        public init(definitionId: String? = nil) {
             
             self.definitionId = definitionId
             
@@ -35,18 +29,6 @@ public extension PlatformClient.Content {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    value = try container.decode([[String: Any]].self, forKey: .value)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -64,11 +46,6 @@ public extension PlatformClient.Content {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(value, forKey: .value)
-            
             
             
             
@@ -91,22 +68,16 @@ public extension PlatformClient.ApplicationClient.Content {
     class CustomField: Codable {
         
         
-        public var value: [[String: Any]]?
-        
         public var definitionId: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case value = "value"
-            
             case definitionId = "definition_id"
             
         }
 
-        public init(definitionId: String? = nil, value: [[String: Any]]? = nil) {
-            
-            self.value = value
+        public init(definitionId: String? = nil) {
             
             self.definitionId = definitionId
             
@@ -114,18 +85,6 @@ public extension PlatformClient.ApplicationClient.Content {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    value = try container.decode([[String: Any]].self, forKey: .value)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -143,11 +102,6 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(value, forKey: .value)
-            
             
             
             

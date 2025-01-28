@@ -18,7 +18,7 @@ public extension PlatformClient.Order {
         
         public var affiliateId: String
         
-        public var customerMobileNumber: Double?
+        public var customerMobileNumber: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,7 +33,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(affiliateId: String, customerMobileNumber: Double? = nil, fyndOrderId: String, sellerId: Int) {
+        public init(affiliateId: String, customerMobileNumber: String? = nil, fyndOrderId: String, sellerId: Int) {
             
             self.fyndOrderId = fyndOrderId
             
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    customerMobileNumber = try container.decode(Double.self, forKey: .customerMobileNumber)
+                    customerMobileNumber = try container.decode(String.self, forKey: .customerMobileNumber)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -122,7 +122,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var affiliateId: String
         
-        public var customerMobileNumber: Double?
+        public var customerMobileNumber: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -137,7 +137,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(affiliateId: String, customerMobileNumber: Double? = nil, fyndOrderId: String, sellerId: Int) {
+        public init(affiliateId: String, customerMobileNumber: String? = nil, fyndOrderId: String, sellerId: Int) {
             
             self.fyndOrderId = fyndOrderId
             
@@ -169,7 +169,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    customerMobileNumber = try container.decode(Double.self, forKey: .customerMobileNumber)
+                    customerMobileNumber = try container.decode(String.self, forKey: .customerMobileNumber)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

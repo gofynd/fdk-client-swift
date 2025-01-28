@@ -32,6 +32,8 @@ public extension ApplicationClient.Catalog {
         
         public var max: Int?
         
+        public var logo: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -59,9 +61,11 @@ public extension ApplicationClient.Catalog {
             
             case max = "max"
             
+            case logo = "logo"
+            
         }
 
-        public init(count: Int? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, display: String, displayFormat: String? = nil, isSelected: Bool, max: Int? = nil, min: Int? = nil, queryFormat: String? = nil, selectedMax: Int? = nil, selectedMin: Int? = nil, value: String? = nil) {
+        public init(count: Int? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, display: String, displayFormat: String? = nil, isSelected: Bool, logo: String? = nil, max: Int? = nil, min: Int? = nil, queryFormat: String? = nil, selectedMax: Int? = nil, selectedMin: Int? = nil, value: String? = nil) {
             
             self.min = min
             
@@ -86,6 +90,8 @@ public extension ApplicationClient.Catalog {
             self.count = count
             
             self.max = max
+            
+            self.logo = logo
             
         }
 
@@ -222,6 +228,18 @@ public extension ApplicationClient.Catalog {
             }
             
             
+            
+            do {
+                logo = try container.decode(String.self, forKey: .logo)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -273,6 +291,10 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(max, forKey: .max)
+            
+            
+            
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
         }

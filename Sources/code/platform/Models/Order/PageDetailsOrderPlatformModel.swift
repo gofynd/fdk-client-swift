@@ -22,6 +22,8 @@ public extension PlatformClient.Order {
         
         public var size: Int?
         
+        public var total: Int?
+        
         public var type: String?
         
 
@@ -37,11 +39,13 @@ public extension PlatformClient.Order {
             
             case size = "size"
             
+            case total = "total"
+            
             case type = "type"
             
         }
 
-        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int, size: Int? = nil, type: String? = nil) {
+        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int, size: Int? = nil, total: Int? = nil, type: String? = nil) {
             
             self.current = current
             
@@ -52,6 +56,8 @@ public extension PlatformClient.Order {
             self.itemTotal = itemTotal
             
             self.size = size
+            
+            self.total = total
             
             self.type = type
             
@@ -115,6 +121,18 @@ public extension PlatformClient.Order {
             
             
                 do {
+                    total = try container.decode(Int.self, forKey: .total)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -153,6 +171,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(size, forKey: .size)
+            
+            
+            
+            
+            try? container.encodeIfPresent(total, forKey: .total)
             
             
             
@@ -186,6 +209,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var size: Int?
         
+        public var total: Int?
+        
         public var type: String?
         
 
@@ -201,11 +226,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case size = "size"
             
+            case total = "total"
+            
             case type = "type"
             
         }
 
-        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int, size: Int? = nil, type: String? = nil) {
+        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int, size: Int? = nil, total: Int? = nil, type: String? = nil) {
             
             self.current = current
             
@@ -216,6 +243,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.itemTotal = itemTotal
             
             self.size = size
+            
+            self.total = total
             
             self.type = type
             
@@ -279,6 +308,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
+                    total = try container.decode(Int.self, forKey: .total)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -317,6 +358,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(size, forKey: .size)
+            
+            
+            
+            
+            try? container.encodeIfPresent(total, forKey: .total)
             
             
             

@@ -11,9 +11,9 @@ extension ApplicationClient {
             self.config = config;
             var ulrs = [String: String]()
             
-            ulrs["startUpload"] = config.domain.appendAsPath("/service/application/assets/v1.0/namespaces/{namespace}/upload/start") 
+            ulrs["startUpload"] = config.domain.appendAsPath("/service/application/assets/v2.0/namespaces/{namespace}/upload/start") 
             
-            ulrs["completeUpload"] = config.domain.appendAsPath("/service/application/assets/v1.0/namespaces/{namespace}/upload/complete") 
+            ulrs["completeUpload"] = config.domain.appendAsPath("/service/application/assets/v2.0/namespaces/{namespace}/upload/complete") 
             
             ulrs["signUrls"] = config.domain.appendAsPath("/service/application/assets/v1.0/sign-urls") 
             
@@ -84,7 +84,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Complete file upload
+        * Summary: Finalizes upload process.
         * Description: 
 Complete the file upload and store the file details such as name, size, content type, and namespace to maintain integrity within the system's database.
         **/
@@ -140,7 +140,7 @@ Complete the file upload and store the file details such as name, size, content 
         
         /**
         *
-        * Summary: Get signed URLs
+        * Summary: Signs file URLs.
         * Description: Generates secure, signed URLs that is valid for certain expiry time for accessing stored files.
         **/
         public func signUrls(

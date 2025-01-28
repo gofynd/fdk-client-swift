@@ -11,19 +11,19 @@ extension ApplicationClient {
             self.config = config;
             var ulrs = [String: String]()
             
-            ulrs["getApplicationQRCode"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/") 
+            ulrs["getApplicationQRCode"] = config.domain.appendAsPath("/service/application/share/v1.0/qr") 
             
-            ulrs["getProductQRCodeBySlug"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/products/{slug}/") 
+            ulrs["getProductQRCodeBySlug"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/products/{slug}") 
             
-            ulrs["getCollectionQRCodeBySlug"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/collection/{slug}/") 
+            ulrs["getCollectionQRCodeBySlug"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/collection/{slug}") 
             
-            ulrs["getUrlQRCode"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/url/") 
+            ulrs["getUrlQRCode"] = config.domain.appendAsPath("/service/application/share/v1.0/qr/url") 
             
-            ulrs["createShortLink"] = config.domain.appendAsPath("/service/application/share/v1.0/links/short-link/") 
+            ulrs["createShortLink"] = config.domain.appendAsPath("/service/application/share/v1.0/links/short-link") 
             
-            ulrs["getShortLinkByHash"] = config.domain.appendAsPath("/service/application/share/v1.0/links/short-link/{hash}/") 
+            ulrs["getShortLinkByHash"] = config.domain.appendAsPath("/service/application/share/v1.0/links/short-link/{hash}") 
             
-            ulrs["getOriginalShortLinkByHash"] = config.domain.appendAsPath("/service/application/share/v1.0/links/short-link/{hash}/original/") 
+            ulrs["getOriginalShortLinkByHash"] = config.domain.appendAsPath("/service/application/share/v1.0/links/short-link/{hash}/original") 
             
             self.relativeUrls = ulrs
         }
@@ -37,7 +37,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: App QR code
+        * Summary: App QR code.
         * Description: Generates a QR code for the application for easy sharing.
         **/
         public func getApplicationQRCode(
@@ -89,7 +89,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Product QR code
+        * Summary: Product QR code.
         * Description: Creates a QR code for a specific product identified by its slug.
         **/
         public func getProductQRCodeBySlug(
@@ -144,7 +144,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Collection QR code
+        * Summary: Collection QR code.
         * Description: Generates a QR code for a specific product collection using its slug.
         **/
         public func getCollectionQRCodeBySlug(
@@ -199,7 +199,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: URL to QR code
+        * Summary: URL to QR code.
         * Description: Converts a given URL into a scannable QR code.
         **/
         public func getUrlQRCode(
@@ -253,7 +253,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Shorten URL
+        * Summary: Shorten URL.
         * Description: Creates a shortened version of a given URL for easier sharing.
         **/
         public func createShortLink(
@@ -305,7 +305,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get short link
+        * Summary: Fetch short link.
         * Description: Retrieves a previously created short link using its hash identifier.
         **/
         public func getShortLinkByHash(
@@ -360,7 +360,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Original URL
+        * Summary: Original URL.
         * Description: Retrieve the original link from a short-link by using a hash value.
         **/
         public func getOriginalShortLinkByHash(

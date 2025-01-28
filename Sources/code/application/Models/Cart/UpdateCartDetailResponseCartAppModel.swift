@@ -10,6 +10,8 @@ public extension ApplicationClient.Cart {
         
         public var message: String?
         
+        public var result: [String: Any]?
+        
         public var cart: CartDetailResponse?
         
         public var success: Bool?
@@ -19,15 +21,19 @@ public extension ApplicationClient.Cart {
             
             case message = "message"
             
+            case result = "result"
+            
             case cart = "cart"
             
             case success = "success"
             
         }
 
-        public init(cart: CartDetailResponse? = nil, message: String? = nil, success: Bool? = nil) {
+        public init(cart: CartDetailResponse? = nil, message: String? = nil, result: [String: Any]? = nil, success: Bool? = nil) {
             
             self.message = message
+            
+            self.result = result
             
             self.cart = cart
             
@@ -41,6 +47,18 @@ public extension ApplicationClient.Cart {
             
             do {
                 message = try container.decode(String.self, forKey: .message)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                result = try container.decode([String: Any].self, forKey: .result)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,6 +99,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            try? container.encodeIfPresent(result, forKey: .result)
             
             
             

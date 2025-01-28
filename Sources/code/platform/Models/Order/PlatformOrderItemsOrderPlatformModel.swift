@@ -38,6 +38,8 @@ public extension PlatformClient.Order {
         
         public var currencyInfo: CurrencyInfo?
         
+        public var affiliateOrderId: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -67,9 +69,11 @@ public extension PlatformClient.Order {
             
             case currencyInfo = "currency_info"
             
+            case affiliateOrderId = "affiliate_order_id"
+            
         }
 
-        public init(breakupValues: [PlatformBreakupValues]? = nil, channel: PlatformChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, orderValue: Double? = nil, paymentMode: String? = nil, shipments: [PlatformShipment]? = nil, totalOrderValue: Double? = nil, userInfo: UserDataInfo? = nil) {
+        public init(affiliateOrderId: String? = nil, breakupValues: [PlatformBreakupValues]? = nil, channel: PlatformChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, orderValue: Double? = nil, paymentMode: String? = nil, shipments: [PlatformShipment]? = nil, totalOrderValue: Double? = nil, userInfo: UserDataInfo? = nil) {
             
             self.breakupValues = breakupValues
             
@@ -96,6 +100,8 @@ public extension PlatformClient.Order {
             self.currency = currency
             
             self.currencyInfo = currencyInfo
+            
+            self.affiliateOrderId = affiliateOrderId
             
         }
 
@@ -258,6 +264,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -326,6 +344,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(currencyInfo, forKey: .currencyInfo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
             
             
         }
@@ -370,6 +393,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var currencyInfo: CurrencyInfo?
         
+        public var affiliateOrderId: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -399,9 +424,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case currencyInfo = "currency_info"
             
+            case affiliateOrderId = "affiliate_order_id"
+            
         }
 
-        public init(breakupValues: [PlatformBreakupValues]? = nil, channel: PlatformChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, orderValue: Double? = nil, paymentMode: String? = nil, shipments: [PlatformShipment]? = nil, totalOrderValue: Double? = nil, userInfo: UserDataInfo? = nil) {
+        public init(affiliateOrderId: String? = nil, breakupValues: [PlatformBreakupValues]? = nil, channel: PlatformChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, orderValue: Double? = nil, paymentMode: String? = nil, shipments: [PlatformShipment]? = nil, totalOrderValue: Double? = nil, userInfo: UserDataInfo? = nil) {
             
             self.breakupValues = breakupValues
             
@@ -428,6 +455,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.currency = currency
             
             self.currencyInfo = currencyInfo
+            
+            self.affiliateOrderId = affiliateOrderId
             
         }
 
@@ -590,6 +619,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -658,6 +699,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(currencyInfo, forKey: .currencyInfo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
             
             
         }

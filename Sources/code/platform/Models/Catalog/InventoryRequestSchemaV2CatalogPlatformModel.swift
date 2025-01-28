@@ -12,8 +12,6 @@ public extension PlatformClient.Catalog {
     class InventoryRequestSchemaV2: Codable {
         
         
-        public var companyId: Int
-        
         public var meta: [String: Any]?
         
         public var payload: [InventoryPayload]?
@@ -21,17 +19,13 @@ public extension PlatformClient.Catalog {
 
         public enum CodingKeys: String, CodingKey {
             
-            case companyId = "company_id"
-            
             case meta = "meta"
             
             case payload = "payload"
             
         }
 
-        public init(companyId: Int, meta: [String: Any]? = nil, payload: [InventoryPayload]? = nil) {
-            
-            self.companyId = companyId
+        public init(meta: [String: Any]? = nil, payload: [InventoryPayload]? = nil) {
             
             self.meta = meta
             
@@ -41,11 +35,6 @@ public extension PlatformClient.Catalog {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                companyId = try container.decode(Int.self, forKey: .companyId)
-                
-            
             
             
                 do {
@@ -75,11 +64,6 @@ public extension PlatformClient.Catalog {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
             
             
             
@@ -107,8 +91,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class InventoryRequestSchemaV2: Codable {
         
         
-        public var companyId: Int
-        
         public var meta: [String: Any]?
         
         public var payload: [InventoryPayload]?
@@ -116,17 +98,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public enum CodingKeys: String, CodingKey {
             
-            case companyId = "company_id"
-            
             case meta = "meta"
             
             case payload = "payload"
             
         }
 
-        public init(companyId: Int, meta: [String: Any]? = nil, payload: [InventoryPayload]? = nil) {
-            
-            self.companyId = companyId
+        public init(meta: [String: Any]? = nil, payload: [InventoryPayload]? = nil) {
             
             self.meta = meta
             
@@ -136,11 +114,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                companyId = try container.decode(Int.self, forKey: .companyId)
-                
-            
             
             
                 do {
@@ -170,11 +143,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
             
             
             

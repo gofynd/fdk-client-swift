@@ -12,35 +12,65 @@ public extension PlatformClient.Payment {
     class PlatformPaymentModeResponse: Codable {
         
         
+        public var success: Bool?
+        
         public var message: String?
         
-        public var items: [[String: Any]]?
+        public var businessUnit: String?
         
-        public var success: Bool
+        public var device: String?
+        
+        public var isActive: Bool?
+        
+        public var items: [PaymentOptionItem]?
         
 
         public enum CodingKeys: String, CodingKey {
             
+            case success = "success"
+            
             case message = "message"
+            
+            case businessUnit = "business_unit"
+            
+            case device = "device"
+            
+            case isActive = "is_active"
             
             case items = "items"
             
-            case success = "success"
-            
         }
 
-        public init(items: [[String: Any]]? = nil, message: String? = nil, success: Bool) {
+        public init(businessUnit: String? = nil, device: String? = nil, isActive: Bool? = nil, items: [PaymentOptionItem]? = nil, message: String? = nil, success: Bool? = nil) {
+            
+            self.success = success
             
             self.message = message
             
-            self.items = items
+            self.businessUnit = businessUnit
             
-            self.success = success
+            self.device = device
+            
+            self.isActive = isActive
+            
+            self.items = items
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    success = try container.decode(Bool.self, forKey: .success)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -56,7 +86,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    items = try container.decode([[String: Any]].self, forKey: .items)
+                    businessUnit = try container.decode(String.self, forKey: .businessUnit)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,9 +97,40 @@ public extension PlatformClient.Payment {
                 
             
             
-                success = try container.decode(Bool.self, forKey: .success)
+                do {
+                    device = try container.decode(String.self, forKey: .device)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
+            
+                do {
+                    isActive = try container.decode(Bool.self, forKey: .isActive)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    items = try container.decode([PaymentOptionItem].self, forKey: .items)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -78,17 +139,32 @@ public extension PlatformClient.Payment {
             
             
             
+            try? container.encodeIfPresent(success, forKey: .success)
+            
+            
+            
+            
             try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
+            try? container.encodeIfPresent(businessUnit, forKey: .businessUnit)
+            
+            
+            
+            
+            try? container.encodeIfPresent(device, forKey: .device)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            
             try? container.encodeIfPresent(items, forKey: .items)
-            
-            
-            
-            
-            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }
@@ -107,35 +183,65 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PlatformPaymentModeResponse: Codable {
         
         
+        public var success: Bool?
+        
         public var message: String?
         
-        public var items: [[String: Any]]?
+        public var businessUnit: String?
         
-        public var success: Bool
+        public var device: String?
+        
+        public var isActive: Bool?
+        
+        public var items: [PaymentOptionItem]?
         
 
         public enum CodingKeys: String, CodingKey {
             
+            case success = "success"
+            
             case message = "message"
+            
+            case businessUnit = "business_unit"
+            
+            case device = "device"
+            
+            case isActive = "is_active"
             
             case items = "items"
             
-            case success = "success"
-            
         }
 
-        public init(items: [[String: Any]]? = nil, message: String? = nil, success: Bool) {
+        public init(businessUnit: String? = nil, device: String? = nil, isActive: Bool? = nil, items: [PaymentOptionItem]? = nil, message: String? = nil, success: Bool? = nil) {
+            
+            self.success = success
             
             self.message = message
             
-            self.items = items
+            self.businessUnit = businessUnit
             
-            self.success = success
+            self.device = device
+            
+            self.isActive = isActive
+            
+            self.items = items
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    success = try container.decode(Bool.self, forKey: .success)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -151,7 +257,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    items = try container.decode([[String: Any]].self, forKey: .items)
+                    businessUnit = try container.decode(String.self, forKey: .businessUnit)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -162,9 +268,40 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
-                success = try container.decode(Bool.self, forKey: .success)
+                do {
+                    device = try container.decode(String.self, forKey: .device)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
+            
+                do {
+                    isActive = try container.decode(Bool.self, forKey: .isActive)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    items = try container.decode([PaymentOptionItem].self, forKey: .items)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -173,17 +310,32 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
+            try? container.encodeIfPresent(success, forKey: .success)
+            
+            
+            
+            
             try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
+            try? container.encodeIfPresent(businessUnit, forKey: .businessUnit)
+            
+            
+            
+            
+            try? container.encodeIfPresent(device, forKey: .device)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            
             try? container.encodeIfPresent(items, forKey: .items)
-            
-            
-            
-            
-            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }

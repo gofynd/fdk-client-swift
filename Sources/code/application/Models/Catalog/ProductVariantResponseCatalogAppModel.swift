@@ -12,13 +12,13 @@ public extension ApplicationClient.Catalog {
         
         public var header: String?
         
+        public var logo: String?
+        
         public var groupId: String?
         
         public var items: [ProductVariantItemResponse]?
         
         public var key: String?
-        
-        public var logo: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -27,13 +27,13 @@ public extension ApplicationClient.Catalog {
             
             case header = "header"
             
+            case logo = "logo"
+            
             case groupId = "group_id"
             
             case items = "items"
             
             case key = "key"
-            
-            case logo = "logo"
             
         }
 
@@ -43,13 +43,13 @@ public extension ApplicationClient.Catalog {
             
             self.header = header
             
+            self.logo = logo
+            
             self.groupId = groupId
             
             self.items = items
             
             self.key = key
-            
-            self.logo = logo
             
         }
 
@@ -71,6 +71,18 @@ public extension ApplicationClient.Catalog {
             
             do {
                 header = try container.decode(String.self, forKey: .header)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                logo = try container.decode(String.self, forKey: .logo)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,18 +128,6 @@ public extension ApplicationClient.Catalog {
             }
             
             
-            
-            do {
-                logo = try container.decode(String.self, forKey: .logo)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -142,6 +142,10 @@ public extension ApplicationClient.Catalog {
             
             
             
+            try? container.encodeIfPresent(logo, forKey: .logo)
+            
+            
+            
             try? container.encodeIfPresent(groupId, forKey: .groupId)
             
             
@@ -151,10 +155,6 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(key, forKey: .key)
-            
-            
-            
-            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
         }

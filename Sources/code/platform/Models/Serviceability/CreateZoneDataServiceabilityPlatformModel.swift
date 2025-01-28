@@ -24,11 +24,11 @@ public extension PlatformClient.Serviceability {
         
         public var storeIds: [Int]
         
-        public var product: ZoneProductTypes
-        
         public var regionType: String
         
         public var mapping: [ZoneMappingType]
+        
+        public var assignmentPreference: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -45,15 +45,15 @@ public extension PlatformClient.Serviceability {
             
             case storeIds = "store_ids"
             
-            case product = "product"
-            
             case regionType = "region_type"
             
             case mapping = "mapping"
             
+            case assignmentPreference = "assignment_preference"
+            
         }
 
-        public init(channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storeIds: [Int]) {
+        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, regionType: String, slug: String, storeIds: [Int]) {
             
             self.name = name
             
@@ -67,11 +67,11 @@ public extension PlatformClient.Serviceability {
             
             self.storeIds = storeIds
             
-            self.product = product
-            
             self.regionType = regionType
             
             self.mapping = mapping
+            
+            self.assignmentPreference = assignmentPreference
             
         }
 
@@ -109,11 +109,6 @@ public extension PlatformClient.Serviceability {
             
             
             
-                product = try container.decode(ZoneProductTypes.self, forKey: .product)
-                
-            
-            
-            
                 regionType = try container.decode(String.self, forKey: .regionType)
                 
             
@@ -122,6 +117,18 @@ public extension PlatformClient.Serviceability {
                 mapping = try container.decode([ZoneMappingType].self, forKey: .mapping)
                 
             
+            
+            
+                do {
+                    assignmentPreference = try container.decode(String.self, forKey: .assignmentPreference)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -160,17 +167,17 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(product, forKey: .product)
-            
-            
-            
-            
             try? container.encodeIfPresent(regionType, forKey: .regionType)
             
             
             
             
             try? container.encodeIfPresent(mapping, forKey: .mapping)
+            
+            
+            
+            
+            try? container.encodeIfPresent(assignmentPreference, forKey: .assignmentPreference)
             
             
         }
@@ -201,11 +208,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var storeIds: [Int]
         
-        public var product: ZoneProductTypes
-        
         public var regionType: String
         
         public var mapping: [ZoneMappingType]
+        
+        public var assignmentPreference: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -222,15 +229,15 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case storeIds = "store_ids"
             
-            case product = "product"
-            
             case regionType = "region_type"
             
             case mapping = "mapping"
             
+            case assignmentPreference = "assignment_preference"
+            
         }
 
-        public init(channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storeIds: [Int]) {
+        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, regionType: String, slug: String, storeIds: [Int]) {
             
             self.name = name
             
@@ -244,11 +251,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             self.storeIds = storeIds
             
-            self.product = product
-            
             self.regionType = regionType
             
             self.mapping = mapping
+            
+            self.assignmentPreference = assignmentPreference
             
         }
 
@@ -286,11 +293,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                product = try container.decode(ZoneProductTypes.self, forKey: .product)
-                
-            
-            
-            
                 regionType = try container.decode(String.self, forKey: .regionType)
                 
             
@@ -299,6 +301,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 mapping = try container.decode([ZoneMappingType].self, forKey: .mapping)
                 
             
+            
+            
+                do {
+                    assignmentPreference = try container.decode(String.self, forKey: .assignmentPreference)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -337,17 +351,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(product, forKey: .product)
-            
-            
-            
-            
             try? container.encodeIfPresent(regionType, forKey: .regionType)
             
             
             
             
             try? container.encodeIfPresent(mapping, forKey: .mapping)
+            
+            
+            
+            
+            try? container.encodeIfPresent(assignmentPreference, forKey: .assignmentPreference)
             
             
         }

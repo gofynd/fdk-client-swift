@@ -20,6 +20,8 @@ public extension ApplicationClient.Payment {
         
         public var email: String
         
+        public var countryPhoneCode: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,9 +37,11 @@ public extension ApplicationClient.Payment {
             
             case email = "email"
             
+            case countryPhoneCode = "country_phone_code"
+            
         }
 
-        public init(amount: Double, description: String? = nil, email: String, externalOrderId: String, meta: CreatePaymentLinkMeta, mobileNumber: String) {
+        public init(amount: Double, countryPhoneCode: String? = nil, description: String? = nil, email: String, externalOrderId: String, meta: CreatePaymentLinkMeta, mobileNumber: String) {
             
             self.description = description
             
@@ -50,6 +54,8 @@ public extension ApplicationClient.Payment {
             self.meta = meta
             
             self.email = email
+            
+            self.countryPhoneCode = countryPhoneCode
             
         }
 
@@ -93,6 +99,18 @@ public extension ApplicationClient.Payment {
             
             
             
+            
+            do {
+                countryPhoneCode = try container.decode(String.self, forKey: .countryPhoneCode)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -120,6 +138,10 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(email, forKey: .email)
+            
+            
+            
+            try? container.encodeIfPresent(countryPhoneCode, forKey: .countryPhoneCode)
             
             
         }

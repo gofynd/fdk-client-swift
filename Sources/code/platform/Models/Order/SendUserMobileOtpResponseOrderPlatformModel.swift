@@ -12,9 +12,9 @@ public extension PlatformClient.Order {
     class SendUserMobileOtpResponse: Codable {
         
         
-        public var success: Bool?
-        
         public var status: Int?
+        
+        public var success: Bool?
         
         public var message: String?
         
@@ -23,9 +23,9 @@ public extension PlatformClient.Order {
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
-            
             case status = "status"
+            
+            case success = "success"
             
             case message = "message"
             
@@ -35,9 +35,9 @@ public extension PlatformClient.Order {
 
         public init(data: PointBlankOtpData? = nil, message: String? = nil, status: Int? = nil, success: Bool? = nil) {
             
-            self.success = success
-            
             self.status = status
+            
+            self.success = success
             
             self.message = message
             
@@ -50,7 +50,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    success = try container.decode(Bool.self, forKey: .success)
+                    status = try container.decode(Int.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    status = try container.decode(Int.self, forKey: .status)
+                    success = try container.decode(Bool.self, forKey: .success)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,12 +103,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
-            
-            
-            
-            
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
             
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Order {
     class SendUserMobileOtpResponse: Codable {
         
         
-        public var success: Bool?
-        
         public var status: Int?
+        
+        public var success: Bool?
         
         public var message: String?
         
@@ -148,9 +148,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
-            
             case status = "status"
+            
+            case success = "success"
             
             case message = "message"
             
@@ -160,9 +160,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public init(data: PointBlankOtpData? = nil, message: String? = nil, status: Int? = nil, success: Bool? = nil) {
             
-            self.success = success
-            
             self.status = status
+            
+            self.success = success
             
             self.message = message
             
@@ -175,7 +175,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    success = try container.decode(Bool.self, forKey: .success)
+                    status = try container.decode(Int.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,7 +187,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    status = try container.decode(Int.self, forKey: .status)
+                    success = try container.decode(Bool.self, forKey: .success)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -228,12 +228,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
-            
-            
-            
-            
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
             

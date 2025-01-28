@@ -22,6 +22,8 @@ public extension ApplicationClient.Catalog {
         
         public var display: String?
         
+        public var set: ProductSetV3?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -39,9 +41,11 @@ public extension ApplicationClient.Catalog {
             
             case display = "display"
             
+            case set = "set"
+            
         }
 
-        public init(dimension: Dimension? = nil, display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, sellerIdentifiers: [String]? = nil, value: String? = nil, weight: Weight? = nil) {
+        public init(dimension: Dimension? = nil, display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, sellerIdentifiers: [String]? = nil, set: ProductSetV3? = nil, value: String? = nil, weight: Weight? = nil) {
             
             self.quantity = quantity
             
@@ -56,6 +60,8 @@ public extension ApplicationClient.Catalog {
             self.value = value
             
             self.display = display
+            
+            self.set = set
             
         }
 
@@ -146,6 +152,18 @@ public extension ApplicationClient.Catalog {
             }
             
             
+            
+            do {
+                set = try container.decode(ProductSetV3.self, forKey: .set)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -177,6 +195,10 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(display, forKey: .display)
+            
+            
+            
+            try? container.encodeIfPresent(set, forKey: .set)
             
             
         }

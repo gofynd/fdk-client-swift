@@ -18,7 +18,7 @@ public extension PlatformClient.Serviceability {
         
         public var brandIds: IntComparisonOperations?
         
-        public var toLocation: LocationRule?
+        public var toLocation: LocationRuleV2?
         
         public var customerRadius: CustomerRadiusSchema?
         
@@ -30,7 +30,7 @@ public extension PlatformClient.Serviceability {
         
         public var storeTags: StringComparisonOperations?
         
-        public var orderPlaceDate: ArithmeticOperations?
+        public var orderPlaceDate: ArithmeticOperationsV2?
         
         public var zoneIds: StringComparisonOperations?
         
@@ -61,7 +61,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(brandIds: IntComparisonOperations? = nil, categoryIds: IntComparisonOperations? = nil, customerRadius: CustomerRadiusSchema? = nil, departmentIds: IntComparisonOperations? = nil, orderPlaceDate: ArithmeticOperations? = nil, productIds: IntComparisonOperations? = nil, productTags: StringComparisonOperations? = nil, storeTags: StringComparisonOperations? = nil, storeType: StringComparisonOperations? = nil, toLocation: LocationRule? = nil, zoneIds: StringComparisonOperations? = nil) {
+        public init(brandIds: IntComparisonOperations? = nil, categoryIds: IntComparisonOperations? = nil, customerRadius: CustomerRadiusSchema? = nil, departmentIds: IntComparisonOperations? = nil, orderPlaceDate: ArithmeticOperationsV2? = nil, productIds: IntComparisonOperations? = nil, productTags: StringComparisonOperations? = nil, storeTags: StringComparisonOperations? = nil, storeType: StringComparisonOperations? = nil, toLocation: LocationRuleV2? = nil, zoneIds: StringComparisonOperations? = nil) {
             
             self.departmentIds = departmentIds
             
@@ -128,7 +128,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    toLocation = try container.decode(LocationRule.self, forKey: .toLocation)
+                    toLocation = try container.decode(LocationRuleV2.self, forKey: .toLocation)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -200,7 +200,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    orderPlaceDate = try container.decode(ArithmeticOperations.self, forKey: .orderPlaceDate)
+                    orderPlaceDate = try container.decode(ArithmeticOperationsV2.self, forKey: .orderPlaceDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -304,7 +304,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var brandIds: IntComparisonOperations?
         
-        public var toLocation: LocationRule?
+        public var toLocation: LocationRuleV2?
         
         public var customerRadius: CustomerRadiusSchema?
         
@@ -316,7 +316,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var storeTags: StringComparisonOperations?
         
-        public var orderPlaceDate: ArithmeticOperations?
+        public var orderPlaceDate: ArithmeticOperationsV2?
         
         public var zoneIds: StringComparisonOperations?
         
@@ -347,7 +347,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(brandIds: IntComparisonOperations? = nil, categoryIds: IntComparisonOperations? = nil, customerRadius: CustomerRadiusSchema? = nil, departmentIds: IntComparisonOperations? = nil, orderPlaceDate: ArithmeticOperations? = nil, productIds: IntComparisonOperations? = nil, productTags: StringComparisonOperations? = nil, storeTags: StringComparisonOperations? = nil, storeType: StringComparisonOperations? = nil, toLocation: LocationRule? = nil, zoneIds: StringComparisonOperations? = nil) {
+        public init(brandIds: IntComparisonOperations? = nil, categoryIds: IntComparisonOperations? = nil, customerRadius: CustomerRadiusSchema? = nil, departmentIds: IntComparisonOperations? = nil, orderPlaceDate: ArithmeticOperationsV2? = nil, productIds: IntComparisonOperations? = nil, productTags: StringComparisonOperations? = nil, storeTags: StringComparisonOperations? = nil, storeType: StringComparisonOperations? = nil, toLocation: LocationRuleV2? = nil, zoneIds: StringComparisonOperations? = nil) {
             
             self.departmentIds = departmentIds
             
@@ -414,7 +414,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    toLocation = try container.decode(LocationRule.self, forKey: .toLocation)
+                    toLocation = try container.decode(LocationRuleV2.self, forKey: .toLocation)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -486,7 +486,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    orderPlaceDate = try container.decode(ArithmeticOperations.self, forKey: .orderPlaceDate)
+                    orderPlaceDate = try container.decode(ArithmeticOperationsV2.self, forKey: .orderPlaceDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

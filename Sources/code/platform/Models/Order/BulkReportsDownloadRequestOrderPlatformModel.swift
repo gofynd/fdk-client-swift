@@ -16,7 +16,7 @@ public extension PlatformClient.Order {
         
         public var laneType: String?
         
-        public var customHeaders: [String]?
+        public var customHeaders: String?
         
         public var reportType: String?
         
@@ -31,6 +31,8 @@ public extension PlatformClient.Order {
         public var isCrossCompanyEnabled: Bool?
         
         public var customFiltersForLane: [String: Any]?
+        
+        public var filters: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -55,9 +57,11 @@ public extension PlatformClient.Order {
             
             case customFiltersForLane = "custom_filters_for_lane"
             
+            case filters = "filters"
+            
         }
 
-        public init(customFiltersForLane: [String: Any]? = nil, customHeaders: [String]? = nil, endDate: String? = nil, entities: [String]? = nil, filterType: String? = nil, isCrossCompanyEnabled: Bool? = nil, laneType: String? = nil, reportType: String? = nil, startDate: String? = nil, storeIds: [String]? = nil) {
+        public init(customFiltersForLane: [String: Any]? = nil, customHeaders: String? = nil, endDate: String? = nil, entities: [String]? = nil, filters: [String: Any]? = nil, filterType: String? = nil, isCrossCompanyEnabled: Bool? = nil, laneType: String? = nil, reportType: String? = nil, startDate: String? = nil, storeIds: [String]? = nil) {
             
             self.storeIds = storeIds
             
@@ -78,6 +82,8 @@ public extension PlatformClient.Order {
             self.isCrossCompanyEnabled = isCrossCompanyEnabled
             
             self.customFiltersForLane = customFiltersForLane
+            
+            self.filters = filters
             
         }
 
@@ -110,7 +116,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    customHeaders = try container.decode([String].self, forKey: .customHeaders)
+                    customHeaders = try container.decode(String.self, forKey: .customHeaders)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -204,6 +210,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    filters = try container.decode([String: Any].self, forKey: .filters)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -257,6 +275,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(customFiltersForLane, forKey: .customFiltersForLane)
+            
+            
+            
+            
+            try? container.encodeIfPresent(filters, forKey: .filters)
             
             
         }
@@ -279,7 +302,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var laneType: String?
         
-        public var customHeaders: [String]?
+        public var customHeaders: String?
         
         public var reportType: String?
         
@@ -294,6 +317,8 @@ public extension PlatformClient.ApplicationClient.Order {
         public var isCrossCompanyEnabled: Bool?
         
         public var customFiltersForLane: [String: Any]?
+        
+        public var filters: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -318,9 +343,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case customFiltersForLane = "custom_filters_for_lane"
             
+            case filters = "filters"
+            
         }
 
-        public init(customFiltersForLane: [String: Any]? = nil, customHeaders: [String]? = nil, endDate: String? = nil, entities: [String]? = nil, filterType: String? = nil, isCrossCompanyEnabled: Bool? = nil, laneType: String? = nil, reportType: String? = nil, startDate: String? = nil, storeIds: [String]? = nil) {
+        public init(customFiltersForLane: [String: Any]? = nil, customHeaders: String? = nil, endDate: String? = nil, entities: [String]? = nil, filters: [String: Any]? = nil, filterType: String? = nil, isCrossCompanyEnabled: Bool? = nil, laneType: String? = nil, reportType: String? = nil, startDate: String? = nil, storeIds: [String]? = nil) {
             
             self.storeIds = storeIds
             
@@ -341,6 +368,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.isCrossCompanyEnabled = isCrossCompanyEnabled
             
             self.customFiltersForLane = customFiltersForLane
+            
+            self.filters = filters
             
         }
 
@@ -373,7 +402,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    customHeaders = try container.decode([String].self, forKey: .customHeaders)
+                    customHeaders = try container.decode(String.self, forKey: .customHeaders)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -467,6 +496,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    filters = try container.decode([String: Any].self, forKey: .filters)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -520,6 +561,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(customFiltersForLane, forKey: .customFiltersForLane)
+            
+            
+            
+            
+            try? container.encodeIfPresent(filters, forKey: .filters)
             
             
         }

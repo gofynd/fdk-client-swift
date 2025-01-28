@@ -12,17 +12,17 @@ public extension PlatformClient.Payment {
     class CODPaymentLimitConfig: Codable {
         
         
-        public var isActive: Bool
+        public var isActive: Bool?
         
-        public var usages: Double
+        public var usages: Double?
         
-        public var userId: Int
+        public var userId: Int?
         
-        public var merchantUserId: String
+        public var merchantUserId: String?
         
-        public var remainingLimit: Int
+        public var remainingLimit: Int?
         
-        public var limit: CODLimitConfig
+        public var limit: CODLimitConfig?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -41,7 +41,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(isActive: Bool, limit: CODLimitConfig, merchantUserId: String, remainingLimit: Int, usages: Double, userId: Int) {
+        public init(isActive: Bool? = nil, limit: CODLimitConfig? = nil, merchantUserId: String? = nil, remainingLimit: Int? = nil, usages: Double? = nil, userId: Int? = nil) {
             
             self.isActive = isActive
             
@@ -61,34 +61,76 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                do {
+                    isActive = try container.decode(Bool.self, forKey: .isActive)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                usages = try container.decode(Double.self, forKey: .usages)
+                do {
+                    usages = try container.decode(Double.self, forKey: .usages)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                userId = try container.decode(Int.self, forKey: .userId)
+                do {
+                    userId = try container.decode(Int.self, forKey: .userId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                merchantUserId = try container.decode(String.self, forKey: .merchantUserId)
+                do {
+                    merchantUserId = try container.decode(String.self, forKey: .merchantUserId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                remainingLimit = try container.decode(Int.self, forKey: .remainingLimit)
+                do {
+                    remainingLimit = try container.decode(Int.self, forKey: .remainingLimit)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                limit = try container.decode(CODLimitConfig.self, forKey: .limit)
+                do {
+                    limit = try container.decode(CODLimitConfig.self, forKey: .limit)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -141,17 +183,17 @@ public extension PlatformClient.ApplicationClient.Payment {
     class CODPaymentLimitConfig: Codable {
         
         
-        public var isActive: Bool
+        public var isActive: Bool?
         
-        public var usages: Double
+        public var usages: Double?
         
-        public var userId: Int
+        public var userId: Int?
         
-        public var merchantUserId: String
+        public var merchantUserId: String?
         
-        public var remainingLimit: Int
+        public var remainingLimit: Int?
         
-        public var limit: CODLimitConfig
+        public var limit: CODLimitConfig?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -170,7 +212,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(isActive: Bool, limit: CODLimitConfig, merchantUserId: String, remainingLimit: Int, usages: Double, userId: Int) {
+        public init(isActive: Bool? = nil, limit: CODLimitConfig? = nil, merchantUserId: String? = nil, remainingLimit: Int? = nil, usages: Double? = nil, userId: Int? = nil) {
             
             self.isActive = isActive
             
@@ -190,34 +232,76 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                do {
+                    isActive = try container.decode(Bool.self, forKey: .isActive)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                usages = try container.decode(Double.self, forKey: .usages)
+                do {
+                    usages = try container.decode(Double.self, forKey: .usages)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                userId = try container.decode(Int.self, forKey: .userId)
+                do {
+                    userId = try container.decode(Int.self, forKey: .userId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                merchantUserId = try container.decode(String.self, forKey: .merchantUserId)
+                do {
+                    merchantUserId = try container.decode(String.self, forKey: .merchantUserId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                remainingLimit = try container.decode(Int.self, forKey: .remainingLimit)
+                do {
+                    remainingLimit = try container.decode(Int.self, forKey: .remainingLimit)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                limit = try container.decode(CODLimitConfig.self, forKey: .limit)
+                do {
+                    limit = try container.decode(CODLimitConfig.self, forKey: .limit)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         

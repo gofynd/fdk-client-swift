@@ -18,9 +18,9 @@ public extension PlatformClient.Payment {
         
         public var cartValue: Double
         
-        public var totalQuantity: Int?
+        public var cartCharges: [CartChargesSerializer]?
         
-        public var customCartMeta: [String: Any]?
+        public var totalQuantity: Int?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -31,13 +31,13 @@ public extension PlatformClient.Payment {
             
             case cartValue = "cart_value"
             
-            case totalQuantity = "total_quantity"
+            case cartCharges = "cart_charges"
             
-            case customCartMeta = "custom_cart_meta"
+            case totalQuantity = "total_quantity"
             
         }
 
-        public init(articles: [[String: Any]], cartValue: Double, customCartMeta: [String: Any]? = nil, items: [String: Any], totalQuantity: Int? = nil) {
+        public init(articles: [[String: Any]], cartCharges: [CartChargesSerializer]? = nil, cartValue: Double, items: [String: Any], totalQuantity: Int? = nil) {
             
             self.items = items
             
@@ -45,9 +45,9 @@ public extension PlatformClient.Payment {
             
             self.cartValue = cartValue
             
-            self.totalQuantity = totalQuantity
+            self.cartCharges = cartCharges
             
-            self.customCartMeta = customCartMeta
+            self.totalQuantity = totalQuantity
             
         }
 
@@ -71,7 +71,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
+                    cartCharges = try container.decode([CartChargesSerializer].self, forKey: .cartCharges)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    customCartMeta = try container.decode([String: Any].self, forKey: .customCartMeta)
+                    totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -115,12 +115,12 @@ public extension PlatformClient.Payment {
             
             
             
+            try? container.encodeIfPresent(cartCharges, forKey: .cartCharges)
+            
+            
+            
+            
             try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
-            
-            
-            
-            
-            try? container.encodeIfPresent(customCartMeta, forKey: .customCartMeta)
             
             
         }
@@ -145,9 +145,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var cartValue: Double
         
-        public var totalQuantity: Int?
+        public var cartCharges: [CartChargesSerializer]?
         
-        public var customCartMeta: [String: Any]?
+        public var totalQuantity: Int?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -158,13 +158,13 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case cartValue = "cart_value"
             
-            case totalQuantity = "total_quantity"
+            case cartCharges = "cart_charges"
             
-            case customCartMeta = "custom_cart_meta"
+            case totalQuantity = "total_quantity"
             
         }
 
-        public init(articles: [[String: Any]], cartValue: Double, customCartMeta: [String: Any]? = nil, items: [String: Any], totalQuantity: Int? = nil) {
+        public init(articles: [[String: Any]], cartCharges: [CartChargesSerializer]? = nil, cartValue: Double, items: [String: Any], totalQuantity: Int? = nil) {
             
             self.items = items
             
@@ -172,9 +172,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             self.cartValue = cartValue
             
-            self.totalQuantity = totalQuantity
+            self.cartCharges = cartCharges
             
-            self.customCartMeta = customCartMeta
+            self.totalQuantity = totalQuantity
             
         }
 
@@ -198,7 +198,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
+                    cartCharges = try container.decode([CartChargesSerializer].self, forKey: .cartCharges)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +210,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    customCartMeta = try container.decode([String: Any].self, forKey: .customCartMeta)
+                    totalQuantity = try container.decode(Int.self, forKey: .totalQuantity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -242,12 +242,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
+            try? container.encodeIfPresent(cartCharges, forKey: .cartCharges)
+            
+            
+            
+            
             try? container.encodeIfPresent(totalQuantity, forKey: .totalQuantity)
-            
-            
-            
-            
-            try? container.encodeIfPresent(customCartMeta, forKey: .customCartMeta)
             
             
         }

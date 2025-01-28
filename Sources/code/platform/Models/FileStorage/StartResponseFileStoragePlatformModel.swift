@@ -28,8 +28,6 @@ public extension PlatformClient.FileStorage {
         
         public var upload: Upload
         
-        public var cdn: CDN
-        
         public var tags: [String]?
         
 
@@ -51,13 +49,11 @@ public extension PlatformClient.FileStorage {
             
             case upload = "upload"
             
-            case cdn = "cdn"
-            
             case tags = "tags"
             
         }
 
-        public init(cdn: CDN, contentType: String, fileName: String, filePath: String, method: String? = nil, namespace: String, operation: String, size: Int, tags: [String]? = nil, upload: Upload) {
+        public init(contentType: String, fileName: String, filePath: String, method: String? = nil, namespace: String, operation: String, size: Int, tags: [String]? = nil, upload: Upload) {
             
             self.fileName = fileName
             
@@ -74,8 +70,6 @@ public extension PlatformClient.FileStorage {
             self.size = size
             
             self.upload = upload
-            
-            self.cdn = cdn
             
             self.tags = tags
             
@@ -128,11 +122,6 @@ public extension PlatformClient.FileStorage {
             
             
                 upload = try container.decode(Upload.self, forKey: .upload)
-                
-            
-            
-            
-                cdn = try container.decode(CDN.self, forKey: .cdn)
                 
             
             
@@ -191,11 +180,6 @@ public extension PlatformClient.FileStorage {
             
             
             try? container.encodeIfPresent(upload, forKey: .upload)
-            
-            
-            
-            
-            try? container.encodeIfPresent(cdn, forKey: .cdn)
             
             
             
@@ -235,8 +219,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var upload: Upload
         
-        public var cdn: CDN
-        
         public var tags: [String]?
         
 
@@ -258,13 +240,11 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             case upload = "upload"
             
-            case cdn = "cdn"
-            
             case tags = "tags"
             
         }
 
-        public init(cdn: CDN, contentType: String, fileName: String, filePath: String, method: String? = nil, namespace: String, operation: String, size: Int, tags: [String]? = nil, upload: Upload) {
+        public init(contentType: String, fileName: String, filePath: String, method: String? = nil, namespace: String, operation: String, size: Int, tags: [String]? = nil, upload: Upload) {
             
             self.fileName = fileName
             
@@ -281,8 +261,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             self.size = size
             
             self.upload = upload
-            
-            self.cdn = cdn
             
             self.tags = tags
             
@@ -335,11 +313,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 upload = try container.decode(Upload.self, forKey: .upload)
-                
-            
-            
-            
-                cdn = try container.decode(CDN.self, forKey: .cdn)
                 
             
             
@@ -398,11 +371,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(upload, forKey: .upload)
-            
-            
-            
-            
-            try? container.encodeIfPresent(cdn, forKey: .cdn)
             
             
             

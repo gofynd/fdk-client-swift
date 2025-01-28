@@ -12,17 +12,17 @@ public extension PlatformClient.Catalog {
     class GetInventories: Codable {
         
         
-        public var brand: InventoryBrandMeta?
+        public var brand: BrandMeta1?
         
-        public var company: InventoryCompanyMeta?
+        public var company: CompanyMeta1?
         
         public var countryOfOrigin: String?
         
-        public var createdBy: RequestUserSerializer?
+        public var createdBy: UserSerializer1?
         
         public var dateMeta: DateMeta?
         
-        public var dimension: InventoryDimensionResponse?
+        public var dimension: DimensionResponse1?
         
         public var expirationDate: String?
         
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
         
         public var itemId: Int?
         
-        public var manufacturer: InventoryManufacturerResponse?
+        public var manufacturer: ManufacturerResponse1?
         
-        public var modifiedBy: RequestUserSerializer?
+        public var modifiedBy: UserSerializer1?
         
         public var platforms: [String: Any]?
         
@@ -46,7 +46,7 @@ public extension PlatformClient.Catalog {
         
         public var quantities: QuantitiesArticle?
         
-        public var returnConfig: ReturnConfig?
+        public var returnConfig: ReturnConfig2?
         
         public var sellerIdentifier: String?
         
@@ -66,11 +66,11 @@ public extension PlatformClient.Catalog {
         
         public var trackInventory: Bool?
         
-        public var trader: [TraderResponse]?
+        public var trader: [Trader2]?
         
         public var uid: String?
         
-        public var weight: InventoryWeightResponse?
+        public var weight: WeightResponse1?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -137,7 +137,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(brand: InventoryBrandMeta? = nil, company: InventoryCompanyMeta? = nil, countryOfOrigin: String? = nil, createdBy: RequestUserSerializer? = nil, dateMeta: DateMeta? = nil, dimension: InventoryDimensionResponse? = nil, expirationDate: String? = nil, id: String? = nil, identifier: [String: Any]? = nil, inventoryUpdatedOn: String? = nil, isSet: Bool? = nil, itemId: Int? = nil, manufacturer: InventoryManufacturerResponse? = nil, modifiedBy: RequestUserSerializer? = nil, platforms: [String: Any]? = nil, price: PriceArticle? = nil, quantities: QuantitiesArticle? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String? = nil, size: String? = nil, stage: String? = nil, store: ArticleStoreResponse? = nil, tags: [String]? = nil, taxIdentifier: [String: Any]? = nil, totalQuantity: Int? = nil, traceId: String? = nil, trackInventory: Bool? = nil, trader: [TraderResponse]? = nil, uid: String? = nil, weight: InventoryWeightResponse? = nil) {
+        public init(brand: BrandMeta1? = nil, company: CompanyMeta1? = nil, countryOfOrigin: String? = nil, createdBy: UserSerializer1? = nil, dateMeta: DateMeta? = nil, dimension: DimensionResponse1? = nil, expirationDate: String? = nil, id: String? = nil, identifier: [String: Any]? = nil, inventoryUpdatedOn: String? = nil, isSet: Bool? = nil, itemId: Int? = nil, manufacturer: ManufacturerResponse1? = nil, modifiedBy: UserSerializer1? = nil, platforms: [String: Any]? = nil, price: PriceArticle? = nil, quantities: QuantitiesArticle? = nil, returnConfig: ReturnConfig2? = nil, sellerIdentifier: String? = nil, size: String? = nil, stage: String? = nil, store: ArticleStoreResponse? = nil, tags: [String]? = nil, taxIdentifier: [String: Any]? = nil, totalQuantity: Int? = nil, traceId: String? = nil, trackInventory: Bool? = nil, trader: [Trader2]? = nil, uid: String? = nil, weight: WeightResponse1? = nil) {
             
             self.brand = brand
             
@@ -206,7 +206,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    brand = try container.decode(InventoryBrandMeta.self, forKey: .brand)
+                    brand = try container.decode(BrandMeta1.self, forKey: .brand)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -218,7 +218,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    company = try container.decode(InventoryCompanyMeta.self, forKey: .company)
+                    company = try container.decode(CompanyMeta1.self, forKey: .company)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -242,7 +242,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(RequestUserSerializer.self, forKey: .createdBy)
+                    createdBy = try container.decode(UserSerializer1.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -266,7 +266,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    dimension = try container.decode(InventoryDimensionResponse.self, forKey: .dimension)
+                    dimension = try container.decode(DimensionResponse1.self, forKey: .dimension)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -350,7 +350,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    manufacturer = try container.decode(InventoryManufacturerResponse.self, forKey: .manufacturer)
+                    manufacturer = try container.decode(ManufacturerResponse1.self, forKey: .manufacturer)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -362,7 +362,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(RequestUserSerializer.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(UserSerializer1.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -410,7 +410,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    returnConfig = try container.decode(ReturnConfig.self, forKey: .returnConfig)
+                    returnConfig = try container.decode(ReturnConfig2.self, forKey: .returnConfig)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -530,7 +530,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    trader = try container.decode([TraderResponse].self, forKey: .trader)
+                    trader = try container.decode([Trader2].self, forKey: .trader)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -554,7 +554,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    weight = try container.decode(InventoryWeightResponse.self, forKey: .weight)
+                    weight = try container.decode(WeightResponse1.self, forKey: .weight)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -735,17 +735,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetInventories: Codable {
         
         
-        public var brand: InventoryBrandMeta?
+        public var brand: BrandMeta1?
         
-        public var company: InventoryCompanyMeta?
+        public var company: CompanyMeta1?
         
         public var countryOfOrigin: String?
         
-        public var createdBy: RequestUserSerializer?
+        public var createdBy: UserSerializer1?
         
         public var dateMeta: DateMeta?
         
-        public var dimension: InventoryDimensionResponse?
+        public var dimension: DimensionResponse1?
         
         public var expirationDate: String?
         
@@ -759,9 +759,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var itemId: Int?
         
-        public var manufacturer: InventoryManufacturerResponse?
+        public var manufacturer: ManufacturerResponse1?
         
-        public var modifiedBy: RequestUserSerializer?
+        public var modifiedBy: UserSerializer1?
         
         public var platforms: [String: Any]?
         
@@ -769,7 +769,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var quantities: QuantitiesArticle?
         
-        public var returnConfig: ReturnConfig?
+        public var returnConfig: ReturnConfig2?
         
         public var sellerIdentifier: String?
         
@@ -789,11 +789,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var trackInventory: Bool?
         
-        public var trader: [TraderResponse]?
+        public var trader: [Trader2]?
         
         public var uid: String?
         
-        public var weight: InventoryWeightResponse?
+        public var weight: WeightResponse1?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -860,7 +860,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(brand: InventoryBrandMeta? = nil, company: InventoryCompanyMeta? = nil, countryOfOrigin: String? = nil, createdBy: RequestUserSerializer? = nil, dateMeta: DateMeta? = nil, dimension: InventoryDimensionResponse? = nil, expirationDate: String? = nil, id: String? = nil, identifier: [String: Any]? = nil, inventoryUpdatedOn: String? = nil, isSet: Bool? = nil, itemId: Int? = nil, manufacturer: InventoryManufacturerResponse? = nil, modifiedBy: RequestUserSerializer? = nil, platforms: [String: Any]? = nil, price: PriceArticle? = nil, quantities: QuantitiesArticle? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String? = nil, size: String? = nil, stage: String? = nil, store: ArticleStoreResponse? = nil, tags: [String]? = nil, taxIdentifier: [String: Any]? = nil, totalQuantity: Int? = nil, traceId: String? = nil, trackInventory: Bool? = nil, trader: [TraderResponse]? = nil, uid: String? = nil, weight: InventoryWeightResponse? = nil) {
+        public init(brand: BrandMeta1? = nil, company: CompanyMeta1? = nil, countryOfOrigin: String? = nil, createdBy: UserSerializer1? = nil, dateMeta: DateMeta? = nil, dimension: DimensionResponse1? = nil, expirationDate: String? = nil, id: String? = nil, identifier: [String: Any]? = nil, inventoryUpdatedOn: String? = nil, isSet: Bool? = nil, itemId: Int? = nil, manufacturer: ManufacturerResponse1? = nil, modifiedBy: UserSerializer1? = nil, platforms: [String: Any]? = nil, price: PriceArticle? = nil, quantities: QuantitiesArticle? = nil, returnConfig: ReturnConfig2? = nil, sellerIdentifier: String? = nil, size: String? = nil, stage: String? = nil, store: ArticleStoreResponse? = nil, tags: [String]? = nil, taxIdentifier: [String: Any]? = nil, totalQuantity: Int? = nil, traceId: String? = nil, trackInventory: Bool? = nil, trader: [Trader2]? = nil, uid: String? = nil, weight: WeightResponse1? = nil) {
             
             self.brand = brand
             
@@ -929,7 +929,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    brand = try container.decode(InventoryBrandMeta.self, forKey: .brand)
+                    brand = try container.decode(BrandMeta1.self, forKey: .brand)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -941,7 +941,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    company = try container.decode(InventoryCompanyMeta.self, forKey: .company)
+                    company = try container.decode(CompanyMeta1.self, forKey: .company)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -965,7 +965,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(RequestUserSerializer.self, forKey: .createdBy)
+                    createdBy = try container.decode(UserSerializer1.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -989,7 +989,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    dimension = try container.decode(InventoryDimensionResponse.self, forKey: .dimension)
+                    dimension = try container.decode(DimensionResponse1.self, forKey: .dimension)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1073,7 +1073,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    manufacturer = try container.decode(InventoryManufacturerResponse.self, forKey: .manufacturer)
+                    manufacturer = try container.decode(ManufacturerResponse1.self, forKey: .manufacturer)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1085,7 +1085,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(RequestUserSerializer.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(UserSerializer1.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1133,7 +1133,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    returnConfig = try container.decode(ReturnConfig.self, forKey: .returnConfig)
+                    returnConfig = try container.decode(ReturnConfig2.self, forKey: .returnConfig)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1253,7 +1253,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    trader = try container.decode([TraderResponse].self, forKey: .trader)
+                    trader = try container.decode([Trader2].self, forKey: .trader)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1277,7 +1277,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    weight = try container.decode(InventoryWeightResponse.self, forKey: .weight)
+                    weight = try container.decode(WeightResponse1.self, forKey: .weight)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

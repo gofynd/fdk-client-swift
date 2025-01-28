@@ -28,6 +28,12 @@ public extension PlatformClient.Payment {
         
         public var name: String
         
+        public var paymentModeId: Int?
+        
+        public var logoUrl: PaymentModeLogo?
+        
+        public var version: Version?
+        
         public var aggregatorName: String?
         
 
@@ -49,11 +55,17 @@ public extension PlatformClient.Payment {
             
             case name = "name"
             
+            case paymentModeId = "payment_mode_id"
+            
+            case logoUrl = "logo_url"
+            
+            case version = "version"
+            
             case aggregatorName = "aggregator_name"
             
         }
 
-        public init(addCardEnabled: Bool? = nil, aggregatorName: String? = nil, anonymousEnable: Bool? = nil, displayName: String, displayPriority: Int, isPayByCardPl: Bool? = nil, list: [PaymentModeList]? = nil, name: String, saveCard: Bool? = nil) {
+        public init(addCardEnabled: Bool? = nil, aggregatorName: String? = nil, anonymousEnable: Bool? = nil, displayName: String, displayPriority: Int, isPayByCardPl: Bool? = nil, list: [PaymentModeList]? = nil, logoUrl: PaymentModeLogo? = nil, name: String, paymentModeId: Int? = nil, saveCard: Bool? = nil, version: Version? = nil) {
             
             self.list = list
             
@@ -70,6 +82,12 @@ public extension PlatformClient.Payment {
             self.anonymousEnable = anonymousEnable
             
             self.name = name
+            
+            self.paymentModeId = paymentModeId
+            
+            self.logoUrl = logoUrl
+            
+            self.version = version
             
             self.aggregatorName = aggregatorName
             
@@ -155,6 +173,42 @@ public extension PlatformClient.Payment {
             
             
                 do {
+                    paymentModeId = try container.decode(Int.self, forKey: .paymentModeId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    logoUrl = try container.decode(PaymentModeLogo.self, forKey: .logoUrl)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    version = try container.decode(Version.self, forKey: .version)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -208,6 +262,21 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentModeId, forKey: .paymentModeId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
+            
+            
+            
+            
+            try? container.encodeIfPresent(version, forKey: .version)
             
             
             
@@ -247,6 +316,12 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var name: String
         
+        public var paymentModeId: Int?
+        
+        public var logoUrl: PaymentModeLogo?
+        
+        public var version: Version?
+        
         public var aggregatorName: String?
         
 
@@ -268,11 +343,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case name = "name"
             
+            case paymentModeId = "payment_mode_id"
+            
+            case logoUrl = "logo_url"
+            
+            case version = "version"
+            
             case aggregatorName = "aggregator_name"
             
         }
 
-        public init(addCardEnabled: Bool? = nil, aggregatorName: String? = nil, anonymousEnable: Bool? = nil, displayName: String, displayPriority: Int, isPayByCardPl: Bool? = nil, list: [PaymentModeList]? = nil, name: String, saveCard: Bool? = nil) {
+        public init(addCardEnabled: Bool? = nil, aggregatorName: String? = nil, anonymousEnable: Bool? = nil, displayName: String, displayPriority: Int, isPayByCardPl: Bool? = nil, list: [PaymentModeList]? = nil, logoUrl: PaymentModeLogo? = nil, name: String, paymentModeId: Int? = nil, saveCard: Bool? = nil, version: Version? = nil) {
             
             self.list = list
             
@@ -289,6 +370,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.anonymousEnable = anonymousEnable
             
             self.name = name
+            
+            self.paymentModeId = paymentModeId
+            
+            self.logoUrl = logoUrl
+            
+            self.version = version
             
             self.aggregatorName = aggregatorName
             
@@ -374,6 +461,42 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
+                    paymentModeId = try container.decode(Int.self, forKey: .paymentModeId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    logoUrl = try container.decode(PaymentModeLogo.self, forKey: .logoUrl)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    version = try container.decode(Version.self, forKey: .version)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -427,6 +550,21 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentModeId, forKey: .paymentModeId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
+            
+            
+            
+            
+            try? container.encodeIfPresent(version, forKey: .version)
             
             
             

@@ -32,10 +32,6 @@ public extension PlatformClient.Discount {
         
         public var progress: Int?
         
-        public var extensionIds: [String]?
-        
-        public var zoneIds: [String]?
-        
         public var createdOn: String?
         
         public var modifiedOn: String?
@@ -65,10 +61,6 @@ public extension PlatformClient.Discount {
             
             case progress = "progress"
             
-            case extensionIds = "extension_ids"
-            
-            case zoneIds = "zone_ids"
-            
             case createdOn = "created_on"
             
             case modifiedOn = "modified_on"
@@ -77,7 +69,7 @@ public extension PlatformClient.Discount {
             
         }
 
-        public init(body: FileJobBody? = nil, companyId: Int, createdBy: UserDetails? = nil, createdOn: String? = nil, extensionIds: [String]? = nil, failed: Int, filePath: String? = nil, fileType: String? = nil, modifiedOn: String? = nil, progress: Int? = nil, stage: String, total: Int, type: String, zoneIds: [String]? = nil, id: String) {
+        public init(body: FileJobBody? = nil, companyId: Int, createdBy: UserDetails? = nil, createdOn: String? = nil, failed: Int, filePath: String? = nil, fileType: String? = nil, modifiedOn: String? = nil, progress: Int? = nil, stage: String, total: Int, type: String, id: String) {
             
             self.stage = stage
             
@@ -98,10 +90,6 @@ public extension PlatformClient.Discount {
             self.filePath = filePath
             
             self.progress = progress
-            
-            self.extensionIds = extensionIds
-            
-            self.zoneIds = zoneIds
             
             self.createdOn = createdOn
             
@@ -183,30 +171,6 @@ public extension PlatformClient.Discount {
             
                 do {
                     progress = try container.decode(Int.self, forKey: .progress)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    extensionIds = try container.decode([String].self, forKey: .extensionIds)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    zoneIds = try container.decode([String].self, forKey: .zoneIds)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -305,16 +269,6 @@ public extension PlatformClient.Discount {
             
             
             try? container.encodeIfPresent(progress, forKey: .progress)
-            
-            
-            
-            
-            try? container.encodeIfPresent(extensionIds, forKey: .extensionIds)
-            
-            
-            
-            
-            try? container.encodeIfPresent(zoneIds, forKey: .zoneIds)
             
             
             

@@ -18,13 +18,11 @@ public extension PlatformClient.Order {
         
         public var actionType: String
         
-        public var entities: [LockManagerEntities]
+        public var userId: String?
+        
+        public var entities: [Entities]
         
         public var resumeTasksAfterUnlock: Bool?
-        
-        public var lockAfterTransition: Bool?
-        
-        public var unlockBeforeTransition: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -35,17 +33,15 @@ public extension PlatformClient.Order {
             
             case actionType = "action_type"
             
+            case userId = "user_id"
+            
             case entities = "entities"
             
             case resumeTasksAfterUnlock = "resume_tasks_after_unlock"
             
-            case lockAfterTransition = "lock_after_transition"
-            
-            case unlockBeforeTransition = "unlock_before_transition"
-            
         }
 
-        public init(action: String, actionType: String, entities: [LockManagerEntities], entityType: String, lockAfterTransition: Bool? = nil, resumeTasksAfterUnlock: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
+        public init(action: String, actionType: String, entities: [Entities], entityType: String, resumeTasksAfterUnlock: Bool? = nil, userId: String? = nil) {
             
             self.entityType = entityType
             
@@ -53,13 +49,11 @@ public extension PlatformClient.Order {
             
             self.actionType = actionType
             
+            self.userId = userId
+            
             self.entities = entities
             
             self.resumeTasksAfterUnlock = resumeTasksAfterUnlock
-            
-            self.lockAfterTransition = lockAfterTransition
-            
-            self.unlockBeforeTransition = unlockBeforeTransition
             
         }
 
@@ -82,37 +76,25 @@ public extension PlatformClient.Order {
             
             
             
-                entities = try container.decode([LockManagerEntities].self, forKey: .entities)
+                do {
+                    userId = try container.decode(String.self, forKey: .userId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                entities = try container.decode([Entities].self, forKey: .entities)
                 
             
             
             
                 do {
                     resumeTasksAfterUnlock = try container.decode(Bool.self, forKey: .resumeTasksAfterUnlock)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    lockAfterTransition = try container.decode(Bool.self, forKey: .lockAfterTransition)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    unlockBeforeTransition = try container.decode(Bool.self, forKey: .unlockBeforeTransition)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -144,22 +126,17 @@ public extension PlatformClient.Order {
             
             
             
+            try? container.encodeIfPresent(userId, forKey: .userId)
+            
+            
+            
+            
             try? container.encodeIfPresent(entities, forKey: .entities)
             
             
             
             
             try? container.encodeIfPresent(resumeTasksAfterUnlock, forKey: .resumeTasksAfterUnlock)
-            
-            
-            
-            
-            try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
-            
-            
-            
-            
-            try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
             
             
         }
@@ -184,13 +161,11 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var actionType: String
         
-        public var entities: [LockManagerEntities]
+        public var userId: String?
+        
+        public var entities: [Entities]
         
         public var resumeTasksAfterUnlock: Bool?
-        
-        public var lockAfterTransition: Bool?
-        
-        public var unlockBeforeTransition: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -201,17 +176,15 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case actionType = "action_type"
             
+            case userId = "user_id"
+            
             case entities = "entities"
             
             case resumeTasksAfterUnlock = "resume_tasks_after_unlock"
             
-            case lockAfterTransition = "lock_after_transition"
-            
-            case unlockBeforeTransition = "unlock_before_transition"
-            
         }
 
-        public init(action: String, actionType: String, entities: [LockManagerEntities], entityType: String, lockAfterTransition: Bool? = nil, resumeTasksAfterUnlock: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
+        public init(action: String, actionType: String, entities: [Entities], entityType: String, resumeTasksAfterUnlock: Bool? = nil, userId: String? = nil) {
             
             self.entityType = entityType
             
@@ -219,13 +192,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.actionType = actionType
             
+            self.userId = userId
+            
             self.entities = entities
             
             self.resumeTasksAfterUnlock = resumeTasksAfterUnlock
-            
-            self.lockAfterTransition = lockAfterTransition
-            
-            self.unlockBeforeTransition = unlockBeforeTransition
             
         }
 
@@ -248,37 +219,25 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                entities = try container.decode([LockManagerEntities].self, forKey: .entities)
+                do {
+                    userId = try container.decode(String.self, forKey: .userId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                entities = try container.decode([Entities].self, forKey: .entities)
                 
             
             
             
                 do {
                     resumeTasksAfterUnlock = try container.decode(Bool.self, forKey: .resumeTasksAfterUnlock)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    lockAfterTransition = try container.decode(Bool.self, forKey: .lockAfterTransition)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    unlockBeforeTransition = try container.decode(Bool.self, forKey: .unlockBeforeTransition)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -310,22 +269,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
+            try? container.encodeIfPresent(userId, forKey: .userId)
+            
+            
+            
+            
             try? container.encodeIfPresent(entities, forKey: .entities)
             
             
             
             
             try? container.encodeIfPresent(resumeTasksAfterUnlock, forKey: .resumeTasksAfterUnlock)
-            
-            
-            
-            
-            try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
-            
-            
-            
-            
-            try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
             
             
         }

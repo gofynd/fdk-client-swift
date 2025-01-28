@@ -16,7 +16,7 @@ public extension PlatformClient.Payment {
         
         public var moreAttributes: PayoutMoreAttributes
         
-        public var isDefault: Bool
+        public var isDefault: Bool?
         
         public var payoutsAggregators: [PayoutAggregator]?
         
@@ -45,7 +45,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(customers: PayoutCustomer, isActive: Bool, isDefault: Bool, moreAttributes: PayoutMoreAttributes, payoutsAggregators: [PayoutAggregator]? = nil, transferType: String, uniqueTransferNo: String) {
+        public init(customers: PayoutCustomer, isActive: Bool, isDefault: Bool? = nil, moreAttributes: PayoutMoreAttributes, payoutsAggregators: [PayoutAggregator]? = nil, transferType: String, uniqueTransferNo: String) {
             
             self.customers = customers
             
@@ -77,9 +77,16 @@ public extension PlatformClient.Payment {
             
             
             
-                isDefault = try container.decode(Bool.self, forKey: .isDefault)
+                do {
+                    isDefault = try container.decode(Bool.self, forKey: .isDefault)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -168,7 +175,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var moreAttributes: PayoutMoreAttributes
         
-        public var isDefault: Bool
+        public var isDefault: Bool?
         
         public var payoutsAggregators: [PayoutAggregator]?
         
@@ -197,7 +204,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(customers: PayoutCustomer, isActive: Bool, isDefault: Bool, moreAttributes: PayoutMoreAttributes, payoutsAggregators: [PayoutAggregator]? = nil, transferType: String, uniqueTransferNo: String) {
+        public init(customers: PayoutCustomer, isActive: Bool, isDefault: Bool? = nil, moreAttributes: PayoutMoreAttributes, payoutsAggregators: [PayoutAggregator]? = nil, transferType: String, uniqueTransferNo: String) {
             
             self.customers = customers
             
@@ -229,9 +236,16 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                isDefault = try container.decode(Bool.self, forKey: .isDefault)
+                do {
+                    isDefault = try container.decode(Bool.self, forKey: .isDefault)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

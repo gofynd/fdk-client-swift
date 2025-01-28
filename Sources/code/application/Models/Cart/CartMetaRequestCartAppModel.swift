@@ -8,52 +8,64 @@ public extension ApplicationClient.Cart {
     */
     class CartMetaRequest: Codable {
         
-        public var deliverySlots: [String: Any]?
-        
-        public var giftDetails: ArticleGiftDetail?
+        public var gstin: String?
         
         public var pickUpCustomerDetails: [String: Any]?
         
         public var checkoutMode: String?
         
+        public var giftDetails: [String: Any]?
+        
+        public var panNo: String?
+        
         public var comment: String?
         
-        public var gstin: String?
+        public var staffUserId: String?
+        
+        public var deliverySlots: [String: Any]?
         
         public var customCartMeta: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case deliverySlots = "delivery_slots"
-            
-            case giftDetails = "gift_details"
+            case gstin = "gstin"
             
             case pickUpCustomerDetails = "pick_up_customer_details"
             
             case checkoutMode = "checkout_mode"
             
+            case giftDetails = "gift_details"
+            
+            case panNo = "pan_no"
+            
             case comment = "comment"
             
-            case gstin = "gstin"
+            case staffUserId = "staff_user_id"
+            
+            case deliverySlots = "delivery_slots"
             
             case customCartMeta = "custom_cart_meta"
             
         }
 
-        public init(checkoutMode: String? = nil, comment: String? = nil, customCartMeta: [String: Any]? = nil, deliverySlots: [String: Any]? = nil, giftDetails: ArticleGiftDetail? = nil, gstin: String? = nil, pickUpCustomerDetails: [String: Any]? = nil) {
+        public init(checkoutMode: String? = nil, comment: String? = nil, customCartMeta: [String: Any]? = nil, deliverySlots: [String: Any]? = nil, giftDetails: [String: Any]? = nil, gstin: String? = nil, panNo: String? = nil, pickUpCustomerDetails: [String: Any]? = nil, staffUserId: String? = nil) {
             
-            self.deliverySlots = deliverySlots
-            
-            self.giftDetails = giftDetails
+            self.gstin = gstin
             
             self.pickUpCustomerDetails = pickUpCustomerDetails
             
             self.checkoutMode = checkoutMode
             
+            self.giftDetails = giftDetails
+            
+            self.panNo = panNo
+            
             self.comment = comment
             
-            self.gstin = gstin
+            self.staffUserId = staffUserId
+            
+            self.deliverySlots = deliverySlots
             
             self.customCartMeta = customCartMeta
             
@@ -64,19 +76,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                deliverySlots = try container.decode([String: Any].self, forKey: .deliverySlots)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                giftDetails = try container.decode(ArticleGiftDetail.self, forKey: .giftDetails)
+                gstin = try container.decode(String.self, forKey: .gstin)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,6 +112,30 @@ public extension ApplicationClient.Cart {
             
             
             do {
+                giftDetails = try container.decode([String: Any].self, forKey: .giftDetails)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                panNo = try container.decode(String.self, forKey: .panNo)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 comment = try container.decode(String.self, forKey: .comment)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -124,7 +148,19 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                gstin = try container.decode(String.self, forKey: .gstin)
+                staffUserId = try container.decode(String.self, forKey: .staffUserId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                deliverySlots = try container.decode([String: Any].self, forKey: .deliverySlots)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -152,11 +188,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(deliverySlots, forKey: .deliverySlots)
-            
-            
-            
-            try? container.encodeIfPresent(giftDetails, forKey: .giftDetails)
+            try? container.encodeIfPresent(gstin, forKey: .gstin)
             
             
             
@@ -168,11 +200,23 @@ public extension ApplicationClient.Cart {
             
             
             
+            try? container.encodeIfPresent(giftDetails, forKey: .giftDetails)
+            
+            
+            
+            try? container.encodeIfPresent(panNo, forKey: .panNo)
+            
+            
+            
             try? container.encodeIfPresent(comment, forKey: .comment)
             
             
             
-            try? container.encodeIfPresent(gstin, forKey: .gstin)
+            try? container.encodeIfPresent(staffUserId, forKey: .staffUserId)
+            
+            
+            
+            try? container.encodeIfPresent(deliverySlots, forKey: .deliverySlots)
             
             
             

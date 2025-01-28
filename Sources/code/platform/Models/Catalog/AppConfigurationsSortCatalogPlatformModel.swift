@@ -14,7 +14,7 @@ public extension PlatformClient.Catalog {
         
         public var appId: String
         
-        public var defaultKey: String
+        public var defaultKey: String?
         
         public var isActive: Bool
         
@@ -49,7 +49,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(appId: String, defaultKey: String, isActive: Bool, isDefault: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
+        public init(appId: String, defaultKey: String? = nil, isActive: Bool, isDefault: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
             
             self.appId = appId
             
@@ -78,9 +78,16 @@ public extension PlatformClient.Catalog {
             
             
             
-                defaultKey = try container.decode(String.self, forKey: .defaultKey)
+                do {
+                    defaultKey = try container.decode(String.self, forKey: .defaultKey)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -189,7 +196,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var appId: String
         
-        public var defaultKey: String
+        public var defaultKey: String?
         
         public var isActive: Bool
         
@@ -224,7 +231,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(appId: String, defaultKey: String, isActive: Bool, isDefault: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
+        public init(appId: String, defaultKey: String? = nil, isActive: Bool, isDefault: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
             
             self.appId = appId
             
@@ -253,9 +260,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-                defaultKey = try container.decode(String.self, forKey: .defaultKey)
+                do {
+                    defaultKey = try container.decode(String.self, forKey: .defaultKey)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)

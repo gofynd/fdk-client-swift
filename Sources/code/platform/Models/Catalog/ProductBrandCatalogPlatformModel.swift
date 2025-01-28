@@ -12,36 +12,48 @@ public extension PlatformClient.Catalog {
     class ProductBrand: Codable {
         
         
-        public var action: Action?
+        public var type: String?
         
-        public var logo: Media?
+        public var uid: Int?
         
         public var name: String?
         
-        public var uid: Int?
+        public var logo: [String: Any]?
+        
+        public var action: PageAction?
+        
+        public var customJson: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case action = "action"
-            
-            case logo = "logo"
-            
-            case name = "name"
+            case type = "type"
             
             case uid = "uid"
             
+            case name = "name"
+            
+            case logo = "logo"
+            
+            case action = "action"
+            
+            case customJson = "_custom_json"
+            
         }
 
-        public init(action: Action? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
+        public init(action: PageAction? = nil, logo: [String: Any]? = nil, name: String? = nil, type: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             
-            self.action = action
+            self.type = type
             
-            self.logo = logo
+            self.uid = uid
             
             self.name = name
             
-            self.uid = uid
+            self.logo = logo
+            
+            self.action = action
+            
+            self.customJson = customJson
             
         }
 
@@ -50,7 +62,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    action = try container.decode(Action.self, forKey: .action)
+                    type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +74,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    logo = try container.decode(Media.self, forKey: .logo)
+                    uid = try container.decode(Int.self, forKey: .uid)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +98,31 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    uid = try container.decode(Int.self, forKey: .uid)
+                    logo = try container.decode([String: Any].self, forKey: .logo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    action = try container.decode(PageAction.self, forKey: .action)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    customJson = try container.decode([String: Any].self, forKey: .customJson)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,12 +139,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
             
             
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(uid, forKey: .uid)
             
             
             
@@ -118,7 +154,17 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(logo, forKey: .logo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(action, forKey: .action)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
         }
@@ -137,36 +183,48 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ProductBrand: Codable {
         
         
-        public var action: Action?
+        public var type: String?
         
-        public var logo: Media?
+        public var uid: Int?
         
         public var name: String?
         
-        public var uid: Int?
+        public var logo: [String: Any]?
+        
+        public var action: PageAction?
+        
+        public var customJson: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case action = "action"
-            
-            case logo = "logo"
-            
-            case name = "name"
+            case type = "type"
             
             case uid = "uid"
             
+            case name = "name"
+            
+            case logo = "logo"
+            
+            case action = "action"
+            
+            case customJson = "_custom_json"
+            
         }
 
-        public init(action: Action? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
+        public init(action: PageAction? = nil, logo: [String: Any]? = nil, name: String? = nil, type: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             
-            self.action = action
+            self.type = type
             
-            self.logo = logo
+            self.uid = uid
             
             self.name = name
             
-            self.uid = uid
+            self.logo = logo
+            
+            self.action = action
+            
+            self.customJson = customJson
             
         }
 
@@ -175,7 +233,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    action = try container.decode(Action.self, forKey: .action)
+                    type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,7 +245,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    logo = try container.decode(Media.self, forKey: .logo)
+                    uid = try container.decode(Int.self, forKey: .uid)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -211,7 +269,31 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    uid = try container.decode(Int.self, forKey: .uid)
+                    logo = try container.decode([String: Any].self, forKey: .logo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    action = try container.decode(PageAction.self, forKey: .action)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    customJson = try container.decode([String: Any].self, forKey: .customJson)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -228,12 +310,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
             
             
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(uid, forKey: .uid)
             
             
             
@@ -243,7 +325,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(logo, forKey: .logo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(action, forKey: .action)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
         }

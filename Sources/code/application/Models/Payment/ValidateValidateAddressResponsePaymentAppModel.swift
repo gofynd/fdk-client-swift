@@ -14,6 +14,8 @@ public extension ApplicationClient.Payment {
         
         public var ifsc: [String: Any]?
         
+        public var vpa: VPADetails?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,15 +25,19 @@ public extension ApplicationClient.Payment {
             
             case ifsc = "ifsc"
             
+            case vpa = "vpa"
+            
         }
 
-        public init(ifsc: [String: Any]? = nil, success: Bool, upi: VPADetails? = nil) {
+        public init(ifsc: [String: Any]? = nil, success: Bool, upi: VPADetails? = nil, vpa: VPADetails? = nil) {
             
             self.upi = upi
             
             self.success = success
             
             self.ifsc = ifsc
+            
+            self.vpa = vpa
             
         }
 
@@ -67,6 +73,18 @@ public extension ApplicationClient.Payment {
             }
             
             
+            
+            do {
+                vpa = try container.decode(VPADetails.self, forKey: .vpa)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -82,6 +100,10 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(ifsc, forKey: .ifsc)
+            
+            
+            
+            try? container.encodeIfPresent(vpa, forKey: .vpa)
             
             
         }

@@ -12,9 +12,9 @@ public extension PlatformClient.Catalog {
     class ConfigurationListing: Codable {
         
         
-        public var filter: ConfigurationListingFilter
+        public var filter: ConfigurationListingFilter?
         
-        public var sort: ConfigurationListingSort
+        public var sort: ConfigurationListingSort?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(filter: ConfigurationListingFilter, sort: ConfigurationListingSort) {
+        public init(filter: ConfigurationListingFilter? = nil, sort: ConfigurationListingSort? = nil) {
             
             self.filter = filter
             
@@ -37,14 +37,28 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                filter = try container.decode(ConfigurationListingFilter.self, forKey: .filter)
+                do {
+                    filter = try container.decode(ConfigurationListingFilter.self, forKey: .filter)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                sort = try container.decode(ConfigurationListingSort.self, forKey: .sort)
+                do {
+                    sort = try container.decode(ConfigurationListingSort.self, forKey: .sort)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -77,9 +91,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ConfigurationListing: Codable {
         
         
-        public var filter: ConfigurationListingFilter
+        public var filter: ConfigurationListingFilter?
         
-        public var sort: ConfigurationListingSort
+        public var sort: ConfigurationListingSort?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -90,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(filter: ConfigurationListingFilter, sort: ConfigurationListingSort) {
+        public init(filter: ConfigurationListingFilter? = nil, sort: ConfigurationListingSort? = nil) {
             
             self.filter = filter
             
@@ -102,14 +116,28 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                filter = try container.decode(ConfigurationListingFilter.self, forKey: .filter)
+                do {
+                    filter = try container.decode(ConfigurationListingFilter.self, forKey: .filter)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                sort = try container.decode(ConfigurationListingSort.self, forKey: .sort)
+                do {
+                    sort = try container.decode(ConfigurationListingSort.self, forKey: .sort)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
