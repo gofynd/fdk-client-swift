@@ -16,8 +16,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Invalidate shipment cache.
-        * Description: Invalidate shipment Cache.
+        * Summary: Invalidate shipment cache
+        * Description: Clear the existing shipment cache data stored in Redis  and serialize the updated data for subsequent use.
         **/
         public func invalidateShipmentCache(
             body: InvalidateShipmentCachePayload,
@@ -170,7 +170,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Refund State Configuration
+        * Summary: Refund State Configurationb
         * Description: refund configuration.
         **/
         public func getRefundEnableStateList(
@@ -451,7 +451,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Get announcements.
-        * Description: Retrieve announcements related to orders or shipments.
+        * Description: Retrieve announcements related to orders fulfilment configured by platform or company admin
         **/
         public func getAnnouncements(
             date: String?,
@@ -732,7 +732,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Send SMS via Ninja.
-        * Description: Send SMS Ninja Panel.
+        * Description: Send SMS to customer based on the template that is selected
         **/
         public func sendSmsNinja(
             body: SendSmsPayload,
@@ -831,8 +831,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Order update.
-        * Description: Modify the details and status of an order. 
+        * Summary: Update an order
+        * Description: Used to update an order's meta information. These meta information can be accessed via order or shipment details API.
         **/
         public func orderUpdate(
             body: PlatformOrderUpdate,
@@ -882,7 +882,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Get state transition map.
-        * Description: Retrieve a map of state transitions for orders.
+        * Description: Retrieve a map of state transitions for orders
         **/
         public func getStateTransitionMap(
             
@@ -986,7 +986,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Fetch credit balance detail.
-        * Description: Retrieve details about credit balance.
+        * Description: Retrieve details about credit balance on the basis of customer mobile number
         **/
         public func fetchCreditBalanceDetail(
             body: FetchCreditBalanceRequestPayload,
@@ -1036,7 +1036,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Fetch refund mode config.
-        * Description: Retrieve configuration for refund modes.
+        * Description: Get list of refund modes to trigger refunds
         **/
         public func fetchRefundModeConfig(
             body: RefundModeConfigRequestPayload,
@@ -1236,7 +1236,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Downloads lanes shipment/orders.
-        * Description: Downloads lanes shipment/orders.
+        * Description: Downloads shipments/orders present in the provided lane
         **/
         public func downloadLanesReport(
             body: BulkReportsDownloadRequest,
@@ -1466,8 +1466,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get the file URL consisting Records of the provided status.
-        * Description: Get the file URL consisting Records of the provided status.
+        * Summary: Get the file download URL used for performing bulk operation
+        * Description: Get the file download URL used for performing bulk operation
         **/
         public func getFileByStatus(
             batchId: String,
@@ -1879,7 +1879,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Get role-based actions.
-        * Description: Retrieve role based actions.
+        * Description: Retrieve permissible actions based on user roles such as company_admin,  company_operation, customer_care, and read_only.
         **/
         public func getRoleBasedActions(
             
@@ -3501,7 +3501,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Get filters.
-        * Description: Retrieve listing filters.
+        * Description: Get supported filters for various listing operations
         **/
         public func getfilters(
             view: String,
@@ -3558,7 +3558,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Get bulk shipment Excel file.
-        * Description: Generate Bulk Shipment Excel Report.
+        * Description: Generates the report which can be filled and uploaded to perform the bulk operation based on the filters provided
         **/
         public func getBulkShipmentExcelFile(
             salesChannels: String?,
@@ -3668,7 +3668,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Get bulk action template.
-        * Description: Get Bulk Action seller templates.
+        * Description: Get list of templates so that users can download the required template
         **/
         public func getBulkActionTemplate(
             
@@ -3718,7 +3718,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Download bulk action template.
-        * Description: Download bulk actions seller templates.
+        * Description: Download bulk seller templates which can be used to perform operations in bulk
         **/
         public func downloadBulkActionTemplate(
             templateSlug: String?,
@@ -3987,7 +3987,7 @@ extension PlatformClient {
         /**
         *
         * Summary: Generate POS receipt by order ID.
-        * Description: Generate POS recipt by order id.
+        * Description: Create a point-of-sale (POS) receipt for a specific order by order Id.
         **/
         public func generatePOSReceiptByOrderId(
             orderId: String,
@@ -4097,8 +4097,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get the Excel file URL for the Template.
-        * Description: Get the Excel file URL for the Template.
+        * Summary: Get the Excel or CSV file URL for the Template.
+        * Description: Get the Excel or CSV file URL for the Template.
         **/
         public func getTemplate(
             templateName: String,

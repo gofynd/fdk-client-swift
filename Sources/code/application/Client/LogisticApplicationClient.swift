@@ -23,6 +23,8 @@ extension ApplicationClient {
             
             ulrs["getCountry"] = config.domain.appendAsPath("/service/application/logistics/v1.0/countries/{country_iso_code}") 
             
+            ulrs["getLocalitiesByPrefix"] = config.domain.appendAsPath("/service/application/logistics/v1.0/localities") 
+            
             ulrs["getLocalities"] = config.domain.appendAsPath("/service/application/logistics/v1.0/localities/{locality_type}") 
             
             ulrs["getLocality"] = config.domain.appendAsPath("/service/application/logistics/v1.0/localities/{locality_type}/{locality_value}") 
@@ -30,6 +32,8 @@ extension ApplicationClient {
             ulrs["validateAddress"] = config.domain.appendAsPath("/service/application/logistics/v1.0/country/{country_iso_code}/address/templates/{template_name}/validate") 
             
             ulrs["createShipments"] = config.domain.appendAsPath("/service/application/logistics/v1.0/company/{company_id}/application/{application_id}/shipments") 
+            
+            ulrs["getDeliveryPromise"] = config.domain.appendAsPath("/service/application/logistics/v1.0/delivery-promise") 
             
             self.relativeUrls = ulrs
         }
@@ -546,6 +550,115 @@ extension ApplicationClient {
         
         /**
         *
+        * Summary: Get Localities by Name Prefix
+        * Description: Get localities that start with a specified prefix.
+        **/
+        public func getLocalitiesByPrefix(
+            companyId: Int,
+            pageNo: Int?,
+            pageSize: Int?,
+            q: String?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: GetLocalities?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = q {
+                xQuery["q"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            var fullUrl = relativeUrls["getLocalitiesByPrefix"] ?? ""
+            
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "company_id" + "}", with: "\(companyId)")
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: xHeaders,
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetLocalities.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getLocalitiesByPrefix
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getLocalitiesByPrefixPaginator(
+            companyId: Int,
+            pageSize: Int?,
+            q: String?,
+            headers: [(key: String, value: String)]? = nil
+            ) -> Paginator<GetLocalities> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<GetLocalities>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getLocalitiesByPrefix(
+                    companyId: companyId,
+                    pageNo: paginator.pageNo,
+                    pageSize: paginator.pageSize,
+                    q: q,
+                    
+                    headers: headers
+                ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        /**
+        *
         * Summary: Get Localities
         * Description: Get geographical data for a specific type of locality based on the provided filters. For instance, obtain a list of cities for a given country and state.
         **/
@@ -866,6 +979,68 @@ extension ApplicationClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(GenerateShipmentsAndCourierPartnerResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get delivery promise
+        * Description: Get delivery promises for both global and store levels based on a specific locality type.
+        **/
+        public func getDeliveryPromise(
+            pageNo: Int?,
+            pageSize: Int?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: GetPromiseDetails?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            let fullUrl = relativeUrls["getDeliveryPromise"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: xHeaders,
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetPromiseDetails.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

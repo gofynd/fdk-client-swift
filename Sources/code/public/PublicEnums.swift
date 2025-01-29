@@ -1,10 +1,6 @@
 
 import Foundation
 
-public extension PublicClient.Billing {
-    
-}
-
 public extension PublicClient.Configuration {
     
 }

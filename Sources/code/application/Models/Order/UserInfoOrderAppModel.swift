@@ -20,6 +20,8 @@ public extension ApplicationClient.Order {
         
         public var email: String?
         
+        public var userId: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,9 +37,11 @@ public extension ApplicationClient.Order {
             
             case email = "email"
             
+            case userId = "user_id"
+            
         }
 
-        public init(email: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, mobile: String? = nil, name: String? = nil) {
+        public init(email: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, mobile: String? = nil, name: String? = nil, userId: String? = nil) {
             
             self.firstName = firstName
             
@@ -50,6 +54,8 @@ public extension ApplicationClient.Order {
             self.mobile = mobile
             
             self.email = email
+            
+            self.userId = userId
             
         }
 
@@ -128,6 +134,18 @@ public extension ApplicationClient.Order {
             }
             
             
+            
+            do {
+                userId = try container.decode(String.self, forKey: .userId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -155,6 +173,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(email, forKey: .email)
+            
+            
+            
+            try? container.encodeIfPresent(userId, forKey: .userId)
             
             
         }

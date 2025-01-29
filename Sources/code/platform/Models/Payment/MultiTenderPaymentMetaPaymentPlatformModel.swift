@@ -24,6 +24,8 @@ public extension PlatformClient.Payment {
         
         public var key: String?
         
+        public var paymentGatewaySlug: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -39,9 +41,11 @@ public extension PlatformClient.Payment {
             
             case key = "key"
             
+            case paymentGatewaySlug = "payment_gateway_slug"
+            
         }
 
-        public init(currentStatus: String? = nil, extraMeta: [String: Any]? = nil, key: String? = nil, orderId: String? = nil, paymentGateway: String? = nil, paymentId: String? = nil) {
+        public init(currentStatus: String? = nil, extraMeta: [String: Any]? = nil, key: String? = nil, orderId: String? = nil, paymentGateway: String? = nil, paymentGatewaySlug: String? = nil, paymentId: String? = nil) {
             
             self.extraMeta = extraMeta
             
@@ -54,6 +58,8 @@ public extension PlatformClient.Payment {
             self.paymentGateway = paymentGateway
             
             self.key = key
+            
+            self.paymentGatewaySlug = paymentGatewaySlug
             
         }
 
@@ -132,6 +138,18 @@ public extension PlatformClient.Payment {
                 }
                 
             
+            
+                do {
+                    paymentGatewaySlug = try container.decode(String.self, forKey: .paymentGatewaySlug)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -165,6 +183,11 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(key, forKey: .key)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentGatewaySlug, forKey: .paymentGatewaySlug)
             
             
         }
@@ -195,6 +218,8 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var key: String?
         
+        public var paymentGatewaySlug: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -210,9 +235,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case key = "key"
             
+            case paymentGatewaySlug = "payment_gateway_slug"
+            
         }
 
-        public init(currentStatus: String? = nil, extraMeta: [String: Any]? = nil, key: String? = nil, orderId: String? = nil, paymentGateway: String? = nil, paymentId: String? = nil) {
+        public init(currentStatus: String? = nil, extraMeta: [String: Any]? = nil, key: String? = nil, orderId: String? = nil, paymentGateway: String? = nil, paymentGatewaySlug: String? = nil, paymentId: String? = nil) {
             
             self.extraMeta = extraMeta
             
@@ -225,6 +252,8 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.paymentGateway = paymentGateway
             
             self.key = key
+            
+            self.paymentGatewaySlug = paymentGatewaySlug
             
         }
 
@@ -303,6 +332,18 @@ public extension PlatformClient.ApplicationClient.Payment {
                 }
                 
             
+            
+                do {
+                    paymentGatewaySlug = try container.decode(String.self, forKey: .paymentGatewaySlug)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -336,6 +377,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(key, forKey: .key)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentGatewaySlug, forKey: .paymentGatewaySlug)
             
             
         }

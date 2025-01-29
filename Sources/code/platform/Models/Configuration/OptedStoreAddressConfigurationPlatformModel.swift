@@ -32,6 +32,8 @@ public extension PlatformClient.Configuration {
         
         public var stateCode: String?
         
+        public var landmark: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -55,9 +57,11 @@ public extension PlatformClient.Configuration {
             
             case stateCode = "state_code"
             
+            case landmark = "landmark"
+            
         }
 
-        public init(address1: String? = nil, address2: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, latLong: StoreLatLong? = nil, pincode: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil) {
+        public init(address1: String? = nil, address2: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, landmark: String? = nil, latLong: StoreLatLong? = nil, pincode: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil) {
             
             self.state = state
             
@@ -78,6 +82,8 @@ public extension PlatformClient.Configuration {
             self.countryCode = countryCode
             
             self.stateCode = stateCode
+            
+            self.landmark = landmark
             
         }
 
@@ -204,6 +210,18 @@ public extension PlatformClient.Configuration {
                 }
                 
             
+            
+                do {
+                    landmark = try container.decode(String.self, forKey: .landmark)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -257,6 +275,11 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(stateCode, forKey: .stateCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(landmark, forKey: .landmark)
             
             
         }
@@ -295,6 +318,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var stateCode: String?
         
+        public var landmark: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -318,9 +343,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case stateCode = "state_code"
             
+            case landmark = "landmark"
+            
         }
 
-        public init(address1: String? = nil, address2: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, latLong: StoreLatLong? = nil, pincode: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil) {
+        public init(address1: String? = nil, address2: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, landmark: String? = nil, latLong: StoreLatLong? = nil, pincode: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil) {
             
             self.state = state
             
@@ -341,6 +368,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.countryCode = countryCode
             
             self.stateCode = stateCode
+            
+            self.landmark = landmark
             
         }
 
@@ -467,6 +496,18 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
+            
+                do {
+                    landmark = try container.decode(String.self, forKey: .landmark)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -520,6 +561,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(stateCode, forKey: .stateCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(landmark, forKey: .landmark)
             
             
         }

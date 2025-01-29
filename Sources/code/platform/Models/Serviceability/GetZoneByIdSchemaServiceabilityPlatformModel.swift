@@ -20,9 +20,11 @@ public extension PlatformClient.Serviceability {
         
         public var isActive: Bool
         
-        public var product: ProductSchema
+        public var isOpted: Bool?
         
-        public var stores: StoresSchema
+        public var product: ProductSchema?
+        
+        public var stores: StoresSchema?
         
         public var createdBy: String?
         
@@ -53,6 +55,8 @@ public extension PlatformClient.Serviceability {
             
             case isActive = "is_active"
             
+            case isOpted = "is_opted"
+            
             case product = "product"
             
             case stores = "stores"
@@ -77,7 +81,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(createdBy: String? = nil, createdOn: String? = nil, geoAreas: [String], isActive: Bool, modifiedBy: String? = nil, modifiedOn: String? = nil, name: String, overlappingFileUrl: String? = nil, overlappingZoneNames: [String]? = nil, product: ProductSchema, slug: String, stage: String? = nil, stores: StoresSchema, type: String, zoneId: String) {
+        public init(createdBy: String? = nil, createdOn: String? = nil, geoAreas: [String], isActive: Bool, isOpted: Bool? = nil, modifiedBy: String? = nil, modifiedOn: String? = nil, name: String, overlappingFileUrl: String? = nil, overlappingZoneNames: [String]? = nil, product: ProductSchema? = nil, slug: String, stage: String? = nil, stores: StoresSchema? = nil, type: String, zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -86,6 +90,8 @@ public extension PlatformClient.Serviceability {
             self.slug = slug
             
             self.isActive = isActive
+            
+            self.isOpted = isOpted
             
             self.product = product
             
@@ -135,14 +141,40 @@ public extension PlatformClient.Serviceability {
             
             
             
-                product = try container.decode(ProductSchema.self, forKey: .product)
+                do {
+                    isOpted = try container.decode(Bool.self, forKey: .isOpted)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                stores = try container.decode(StoresSchema.self, forKey: .stores)
+                do {
+                    product = try container.decode(ProductSchema.self, forKey: .product)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
+            
+                do {
+                    stores = try container.decode(StoresSchema.self, forKey: .stores)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -261,6 +293,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isOpted, forKey: .isOpted)
             
             
             
@@ -342,9 +379,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var isActive: Bool
         
-        public var product: ProductSchema
+        public var isOpted: Bool?
         
-        public var stores: StoresSchema
+        public var product: ProductSchema?
+        
+        public var stores: StoresSchema?
         
         public var createdBy: String?
         
@@ -375,6 +414,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case isActive = "is_active"
             
+            case isOpted = "is_opted"
+            
             case product = "product"
             
             case stores = "stores"
@@ -399,7 +440,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(createdBy: String? = nil, createdOn: String? = nil, geoAreas: [String], isActive: Bool, modifiedBy: String? = nil, modifiedOn: String? = nil, name: String, overlappingFileUrl: String? = nil, overlappingZoneNames: [String]? = nil, product: ProductSchema, slug: String, stage: String? = nil, stores: StoresSchema, type: String, zoneId: String) {
+        public init(createdBy: String? = nil, createdOn: String? = nil, geoAreas: [String], isActive: Bool, isOpted: Bool? = nil, modifiedBy: String? = nil, modifiedOn: String? = nil, name: String, overlappingFileUrl: String? = nil, overlappingZoneNames: [String]? = nil, product: ProductSchema? = nil, slug: String, stage: String? = nil, stores: StoresSchema? = nil, type: String, zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -408,6 +449,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.slug = slug
             
             self.isActive = isActive
+            
+            self.isOpted = isOpted
             
             self.product = product
             
@@ -457,14 +500,40 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                product = try container.decode(ProductSchema.self, forKey: .product)
+                do {
+                    isOpted = try container.decode(Bool.self, forKey: .isOpted)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                stores = try container.decode(StoresSchema.self, forKey: .stores)
+                do {
+                    product = try container.decode(ProductSchema.self, forKey: .product)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
+            
+                do {
+                    stores = try container.decode(StoresSchema.self, forKey: .stores)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -583,6 +652,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isOpted, forKey: .isOpted)
             
             
             
