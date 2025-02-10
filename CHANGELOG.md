@@ -1,4 +1,4 @@
-# CHANGE LOG (3.1.0-beta.1) - 1.10.2
+# CHANGE LOG (3.1.0-beta.2) - 1.10.2
 
 ## Application Client
 
@@ -33,6 +33,10 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.type</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.attributes</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.teaserTag</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l1Categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2Categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3Categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].deliveryPromise.formatted.max</code> of schema <code>PromiseFormatted</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].deliveryPromise.formatted.min</code> of schema <code>PromiseFormatted</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].deliveryPromise.timestamp.max</code> of schema <code>PromiseTimestamp</code> in response with status code 200
@@ -146,6 +150,10 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.type</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.attributes</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.teaserTag</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l1Categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2Categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3Categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].deliveryPromise.formatted.max</code> of schema <code>PromiseFormatted</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].deliveryPromise.formatted.min</code> of schema <code>PromiseFormatted</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].deliveryPromise.timestamp.max</code> of schema <code>PromiseTimestamp</code> in response with status code 200
@@ -258,6 +266,10 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.type</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.attributes</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.teaserTag</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l1Categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2Categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3Categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].deliveryPromise.formatted.max</code> of schema <code>PromiseFormatted</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].deliveryPromise.formatted.min</code> of schema <code>PromiseFormatted</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].deliveryPromise.timestamp.max</code> of schema <code>PromiseTimestamp</code> in response with status code 200
@@ -410,6 +422,10 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.type</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.attributes</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.teaserTag</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l1Categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2Categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3Categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].deliveryPromise.formatted.max</code> of schema <code>PromiseFormatted</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].deliveryPromise.formatted.min</code> of schema <code>PromiseFormatted</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].deliveryPromise.timestamp.max</code> of schema <code>PromiseTimestamp</code> in response with status code 200
@@ -530,6 +546,10 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.type</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.attributes</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.teaserTag</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l1Categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2Categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3Categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].deliveryPromise.formatted.max</code> of schema <code>PromiseFormatted</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].deliveryPromise.formatted.min</code> of schema <code>PromiseFormatted</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].deliveryPromise.timestamp.max</code> of schema <code>PromiseTimestamp</code> in response with status code 200
@@ -732,6 +752,10 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.type</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.attributes</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].product.teaserTag</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l1Categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l2Categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>items[].product.l3Categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].deliveryPromise.formatted.max</code> of schema <code>PromiseFormatted</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].deliveryPromise.formatted.min</code> of schema <code>PromiseFormatted</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>items[].deliveryPromise.timestamp.max</code> of schema <code>PromiseTimestamp</code> in response with status code 200
@@ -860,6 +884,10 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].items[].product.type</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].items[].product.attributes</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].items[].product.teaserTag</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l1Categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l2Categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>shipments[].items[].product.l3Categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].items[].deliveryPromise.formatted.max</code> of schema <code>PromiseFormatted</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].items[].deliveryPromise.formatted.min</code> of schema <code>PromiseFormatted</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>shipments[].items[].deliveryPromise.timestamp.max</code> of schema <code>PromiseTimestamp</code> in response with status code 200
@@ -982,6 +1010,10 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.type</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.attributes</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.teaserTag</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l1Categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2Categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3Categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].deliveryPromise.formatted.max</code> of schema <code>PromiseFormatted</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].deliveryPromise.formatted.min</code> of schema <code>PromiseFormatted</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].deliveryPromise.timestamp.max</code> of schema <code>PromiseTimestamp</code> in response with status code 200
@@ -1062,6 +1094,10 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.type</code> of schema <code>CartProduct</code> in response with status code 404
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.attributes</code> of schema <code>CartProduct</code> in response with status code 404
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.teaserTag</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l1Categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l2Categories</code> of schema <code>CartProduct</code> in response with status code 404
+	- [Added] property <code>cart.items[].product.l3Categories</code> of schema <code>CartProduct</code> in response with status code 404
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].deliveryPromise.formatted.max</code> of schema <code>PromiseFormatted</code> in response with status code 404
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].deliveryPromise.formatted.min</code> of schema <code>PromiseFormatted</code> in response with status code 404
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].deliveryPromise.timestamp.max</code> of schema <code>PromiseTimestamp</code> in response with status code 404
@@ -1169,6 +1205,10 @@
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.type</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.attributes</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].product.teaserTag</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.departments</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l1Categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l2Categories</code> of schema <code>CartProduct</code> in response with status code 200
+	- [Added] property <code>cart.items[].product.l3Categories</code> of schema <code>CartProduct</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].deliveryPromise.formatted.max</code> of schema <code>PromiseFormatted</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].deliveryPromise.formatted.min</code> of schema <code>PromiseFormatted</code> in response with status code 200
 	- [Added] Possible nullable value <code>true</code> to property <code>cart.items[].deliveryPromise.timestamp.max</code> of schema <code>PromiseTimestamp</code> in response with status code 200
