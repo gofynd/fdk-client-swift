@@ -822,7 +822,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: List bulk discounts
+        * Summary: Bulk discounts.
         * Description: List offer discounts with information about quantity and seller. One offer is marked with a "best" flag, indicating it as the best offer among the list.
         **/
         public func getBulkDiscountOffers(
@@ -976,7 +976,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get a list of addresses for a customer
+        * Summary: Get saved addresses.
         * Description: List all addresses saved by the customer, simplifying the checkout process by offering pre-saved address options for delivery.
         **/
         public func getAddresses(
@@ -1063,7 +1063,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Creates a new address for a customer
+        * Summary: Create a new address
         * Description: Add a new address to their cart to save details such as name, email, contact information, and address.
         **/
         public func addAddress(
@@ -1115,7 +1115,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get details for a single customer address
+        * Summary: Fetch address.
         * Description: Get a specific customer address stored in the system by providing its unique identifier. This API provides detailed information about the address, including the recipient's name, address, city, postal code, and other relevant details.
         **/
         public func getAddressById(
@@ -1205,7 +1205,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Updates an existing customer address
+        * Summary: Update address.
         * Description: Customer can modify the details of a previously saved addresses.
         **/
         public func updateAddress(
@@ -1260,7 +1260,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Removes an address from a customer's address list
+        * Summary: Delete a address
         * Description: Delete an existing customer address from the system.
         **/
         public func removeAddress(
@@ -1315,7 +1315,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Select customer address for order processing
+        * Summary: Select a delivery address
         * Description: Select an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address.
         **/
         public func selectAddress(
@@ -1387,7 +1387,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Select payment mode
+        * Summary: Pick payment method.
         * Description: Select a preferred payment mode from available options during the cart checkout process to securely and efficiently complete their transaction.
         **/
         public func selectPaymentMode(
@@ -1454,7 +1454,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Validate applied coupon
+        * Summary: Validate coupon.
         * Description: Validate the applicability of a coupon code for the selected payment mode for the existing cart. This ensures the coupon's validity before proceeding with the payment process, enhancing user experience and preventing potential errors during transactions.
         **/
         public func validateCouponForPayment(
@@ -1628,7 +1628,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Create share cart link
+        * Summary: Share cart link.
         * Description: Generate a unique shareable link for the customer's cart for a specific sales channel. This link enables easy sharing of the cart contents with other users, facilitating collaborative shopping experiences.
         **/
         public func getCartShareLink(
@@ -1680,7 +1680,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: List shared cart items
+        * Summary: Shared cart items.
         * Description: Get cart items from the shared cart link based on unique token.
         **/
         public func getCartSharedItems(
@@ -1735,7 +1735,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Update with shared items
+        * Summary: Merge or replace existing cart
         * Description: Merge or replace shared cart items with existing cart.
         **/
         public func updateCartWithSharedItems(
@@ -1798,7 +1798,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: List available promotion offers
+        * Summary: Retrieves promotional offers
         * Description: List all promotional offers available for the items in the cart, including details such as offer text, unique promotion ID, and validity period.
         **/
         public func getPromotionOffers(
@@ -1870,7 +1870,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: List ladder offers
+        * Summary: Fetches ladder offers.
         * Description: Get ladder offers associated for the items in the cart. Ladder offers provide discounts or special pricing based on item quantity, allowing users to benefit from bulk purchases or promotional deals.
         **/
         public func getLadderOffers(

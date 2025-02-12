@@ -18,8 +18,6 @@ public extension PlatformClient.Serviceability {
         
         public var type: String?
         
-        public var accessLevel: String?
-        
         public var slug: String?
         
         public var geoAreas: [String]?
@@ -29,8 +27,6 @@ public extension PlatformClient.Serviceability {
         public var applicationId: String?
         
         public var isActive: Bool?
-        
-        public var isOpted: Bool?
         
         public var product: ProductSchema?
         
@@ -45,8 +41,6 @@ public extension PlatformClient.Serviceability {
             
             case type = "type"
             
-            case accessLevel = "access_level"
-            
             case slug = "slug"
             
             case geoAreas = "geo_areas"
@@ -57,23 +51,19 @@ public extension PlatformClient.Serviceability {
             
             case isActive = "is_active"
             
-            case isOpted = "is_opted"
-            
             case product = "product"
             
             case stores = "stores"
             
         }
 
-        public init(accessLevel: String? = nil, applicationId: String? = nil, companyId: Int? = nil, geoAreas: [String]? = nil, isActive: Bool? = nil, isOpted: Bool? = nil, name: String? = nil, product: ProductSchema? = nil, slug: String? = nil, stores: StoresSchema? = nil, type: String? = nil, zoneId: String? = nil) {
+        public init(applicationId: String? = nil, companyId: Int? = nil, geoAreas: [String]? = nil, isActive: Bool? = nil, name: String? = nil, product: ProductSchema? = nil, slug: String? = nil, stores: StoresSchema? = nil, type: String? = nil, zoneId: String? = nil) {
             
             self.zoneId = zoneId
             
             self.name = name
             
             self.type = type
-            
-            self.accessLevel = accessLevel
             
             self.slug = slug
             
@@ -84,8 +74,6 @@ public extension PlatformClient.Serviceability {
             self.applicationId = applicationId
             
             self.isActive = isActive
-            
-            self.isOpted = isOpted
             
             self.product = product
             
@@ -123,18 +111,6 @@ public extension PlatformClient.Serviceability {
             
                 do {
                     type = try container.decode(String.self, forKey: .type)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    accessLevel = try container.decode(String.self, forKey: .accessLevel)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -206,18 +182,6 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    isOpted = try container.decode(Bool.self, forKey: .isOpted)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     product = try container.decode(ProductSchema.self, forKey: .product)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -262,11 +226,6 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(accessLevel, forKey: .accessLevel)
-            
-            
-            
-            
             try? container.encodeIfPresent(slug, forKey: .slug)
             
             
@@ -288,11 +247,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isOpted, forKey: .isOpted)
             
             
             
@@ -327,8 +281,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var type: String?
         
-        public var accessLevel: String?
-        
         public var slug: String?
         
         public var geoAreas: [String]?
@@ -338,8 +290,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         public var applicationId: String?
         
         public var isActive: Bool?
-        
-        public var isOpted: Bool?
         
         public var product: ProductSchema?
         
@@ -354,8 +304,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case type = "type"
             
-            case accessLevel = "access_level"
-            
             case slug = "slug"
             
             case geoAreas = "geo_areas"
@@ -366,23 +314,19 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case isActive = "is_active"
             
-            case isOpted = "is_opted"
-            
             case product = "product"
             
             case stores = "stores"
             
         }
 
-        public init(accessLevel: String? = nil, applicationId: String? = nil, companyId: Int? = nil, geoAreas: [String]? = nil, isActive: Bool? = nil, isOpted: Bool? = nil, name: String? = nil, product: ProductSchema? = nil, slug: String? = nil, stores: StoresSchema? = nil, type: String? = nil, zoneId: String? = nil) {
+        public init(applicationId: String? = nil, companyId: Int? = nil, geoAreas: [String]? = nil, isActive: Bool? = nil, name: String? = nil, product: ProductSchema? = nil, slug: String? = nil, stores: StoresSchema? = nil, type: String? = nil, zoneId: String? = nil) {
             
             self.zoneId = zoneId
             
             self.name = name
             
             self.type = type
-            
-            self.accessLevel = accessLevel
             
             self.slug = slug
             
@@ -393,8 +337,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.applicationId = applicationId
             
             self.isActive = isActive
-            
-            self.isOpted = isOpted
             
             self.product = product
             
@@ -432,18 +374,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
                 do {
                     type = try container.decode(String.self, forKey: .type)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    accessLevel = try container.decode(String.self, forKey: .accessLevel)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -515,18 +445,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    isOpted = try container.decode(Bool.self, forKey: .isOpted)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     product = try container.decode(ProductSchema.self, forKey: .product)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -571,11 +489,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(accessLevel, forKey: .accessLevel)
-            
-            
-            
-            
             try? container.encodeIfPresent(slug, forKey: .slug)
             
             
@@ -597,11 +510,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isOpted, forKey: .isOpted)
             
             
             

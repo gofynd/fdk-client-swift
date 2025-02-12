@@ -20,13 +20,9 @@ public extension PlatformClient.Serviceability {
         
         public var type: String
         
-        public var accessLevel: String
-        
         public var applicationId: String
         
         public var isActive: Bool
-        
-        public var isOpted: Bool
         
         public var geoAreas: [String]
         
@@ -44,10 +40,6 @@ public extension PlatformClient.Serviceability {
         
         public var modifiedOn: String
         
-        public var stage: String?
-        
-        public var summary: Summary?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -59,13 +51,9 @@ public extension PlatformClient.Serviceability {
             
             case type = "type"
             
-            case accessLevel = "access_level"
-            
             case applicationId = "application_id"
             
             case isActive = "is_active"
-            
-            case isOpted = "is_opted"
             
             case geoAreas = "geo_areas"
             
@@ -83,13 +71,9 @@ public extension PlatformClient.Serviceability {
             
             case modifiedOn = "modified_on"
             
-            case stage = "stage"
-            
-            case summary = "summary"
-            
         }
 
-        public init(accessLevel: String, applicationId: String, companyId: Int, createdBy: String, createdOn: String, geoAreas: [String], isActive: Bool, isOpted: Bool, modifiedBy: String, modifiedOn: String, name: String, product: ProductSchema, slug: String, stage: String? = nil, stores: StoresSchema, summary: Summary? = nil, type: String, zoneId: String) {
+        public init(applicationId: String, companyId: Int, createdBy: String, createdOn: String, geoAreas: [String], isActive: Bool, modifiedBy: String, modifiedOn: String, name: String, product: ProductSchema, slug: String, stores: StoresSchema, type: String, zoneId: String) {
             
             self.name = name
             
@@ -99,13 +83,9 @@ public extension PlatformClient.Serviceability {
             
             self.type = type
             
-            self.accessLevel = accessLevel
-            
             self.applicationId = applicationId
             
             self.isActive = isActive
-            
-            self.isOpted = isOpted
             
             self.geoAreas = geoAreas
             
@@ -122,10 +102,6 @@ public extension PlatformClient.Serviceability {
             self.modifiedBy = modifiedBy
             
             self.modifiedOn = modifiedOn
-            
-            self.stage = stage
-            
-            self.summary = summary
             
         }
 
@@ -153,22 +129,12 @@ public extension PlatformClient.Serviceability {
             
             
             
-                accessLevel = try container.decode(String.self, forKey: .accessLevel)
-                
-            
-            
-            
                 applicationId = try container.decode(String.self, forKey: .applicationId)
                 
             
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)
-                
-            
-            
-            
-                isOpted = try container.decode(Bool.self, forKey: .isOpted)
                 
             
             
@@ -212,30 +178,6 @@ public extension PlatformClient.Serviceability {
                 
             
             
-            
-                do {
-                    stage = try container.decode(String.self, forKey: .stage)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    summary = try container.decode(Summary.self, forKey: .summary)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -263,22 +205,12 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(accessLevel, forKey: .accessLevel)
-            
-            
-            
-            
             try? container.encodeIfPresent(applicationId, forKey: .applicationId)
             
             
             
             
             try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isOpted, forKey: .isOpted)
             
             
             
@@ -319,16 +251,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-            
-            
-            
-            
-            try? container.encodeIfPresent(stage, forKey: .stage)
-            
-            
-            
-            
-            try? container.encodeIfPresent(summary, forKey: .summary)
             
             
         }
@@ -355,13 +277,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var type: String
         
-        public var accessLevel: String
-        
         public var applicationId: String
         
         public var isActive: Bool
-        
-        public var isOpted: Bool
         
         public var geoAreas: [String]
         
@@ -379,10 +297,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var modifiedOn: String
         
-        public var stage: String?
-        
-        public var summary: Summary?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -394,13 +308,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case type = "type"
             
-            case accessLevel = "access_level"
-            
             case applicationId = "application_id"
             
             case isActive = "is_active"
-            
-            case isOpted = "is_opted"
             
             case geoAreas = "geo_areas"
             
@@ -418,13 +328,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case modifiedOn = "modified_on"
             
-            case stage = "stage"
-            
-            case summary = "summary"
-            
         }
 
-        public init(accessLevel: String, applicationId: String, companyId: Int, createdBy: String, createdOn: String, geoAreas: [String], isActive: Bool, isOpted: Bool, modifiedBy: String, modifiedOn: String, name: String, product: ProductSchema, slug: String, stage: String? = nil, stores: StoresSchema, summary: Summary? = nil, type: String, zoneId: String) {
+        public init(applicationId: String, companyId: Int, createdBy: String, createdOn: String, geoAreas: [String], isActive: Bool, modifiedBy: String, modifiedOn: String, name: String, product: ProductSchema, slug: String, stores: StoresSchema, type: String, zoneId: String) {
             
             self.name = name
             
@@ -434,13 +340,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             self.type = type
             
-            self.accessLevel = accessLevel
-            
             self.applicationId = applicationId
             
             self.isActive = isActive
-            
-            self.isOpted = isOpted
             
             self.geoAreas = geoAreas
             
@@ -457,10 +359,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.modifiedBy = modifiedBy
             
             self.modifiedOn = modifiedOn
-            
-            self.stage = stage
-            
-            self.summary = summary
             
         }
 
@@ -488,22 +386,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                accessLevel = try container.decode(String.self, forKey: .accessLevel)
-                
-            
-            
-            
                 applicationId = try container.decode(String.self, forKey: .applicationId)
                 
             
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)
-                
-            
-            
-            
-                isOpted = try container.decode(Bool.self, forKey: .isOpted)
                 
             
             
@@ -547,30 +435,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
-            
-                do {
-                    stage = try container.decode(String.self, forKey: .stage)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    summary = try container.decode(Summary.self, forKey: .summary)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -598,22 +462,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(accessLevel, forKey: .accessLevel)
-            
-            
-            
-            
             try? container.encodeIfPresent(applicationId, forKey: .applicationId)
             
             
             
             
             try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isOpted, forKey: .isOpted)
             
             
             
@@ -654,16 +508,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-            
-            
-            
-            
-            try? container.encodeIfPresent(stage, forKey: .stage)
-            
-            
-            
-            
-            try? container.encodeIfPresent(summary, forKey: .summary)
             
             
         }

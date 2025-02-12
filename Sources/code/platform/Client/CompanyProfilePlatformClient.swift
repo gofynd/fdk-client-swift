@@ -473,7 +473,6 @@ extension PlatformClient {
         **/
         public func getLocations(
             storeType: String?,
-            storeCodes: [String]?,
             q: String?,
             stage: String?,
             pageNo: Int?,
@@ -490,10 +489,6 @@ extension PlatformClient {
             
             if let value = storeType {
                 xQuery["store_type"] = value
-            }
-            
-            if let value = storeCodes {
-                xQuery["store_codes"] = value
             }
             
             if let value = q {
@@ -558,65 +553,6 @@ extension PlatformClient {
                     }
             });
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: get paginator for getLocations
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getLocationsPaginator(
-            storeType: String?,
-            storeCodes: [String]?,
-            q: String?,
-            stage: String?,
-            pageSize: Int?,
-            locationIds: [Int]?,
-            types: [String]?,
-            tags: [String]?,
-            headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<LocationListSerializer> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<LocationListSerializer>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getLocations(
-                    storeType: storeType,
-                    storeCodes: storeCodes,
-                    q: q,
-                    stage: stage,
-                    pageNo: paginator.pageNo,
-                    pageSize: paginator.pageSize,
-                    locationIds: locationIds,
-                    types: types,
-                    tags: tags,
-                    
-                    headers: headers
-                ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
         
         
         

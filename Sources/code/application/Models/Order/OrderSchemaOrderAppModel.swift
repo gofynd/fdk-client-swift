@@ -42,8 +42,6 @@ public extension ApplicationClient.Order {
         
         public var externalOrderId: String?
         
-        public var paymentInfo: [PaymentInfo]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -81,11 +79,9 @@ public extension ApplicationClient.Order {
             
             case externalOrderId = "external_order_id"
             
-            case paymentInfo = "payment_info"
-            
         }
 
-        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, charges: [PriceAdjustmentCharge]? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customCartMeta: [String: Any]? = nil, customMeta: [[String: Any]]? = nil, externalOrderId: String? = nil, gstinCode: String? = nil, isValidated: Bool? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, paymentInfo: [PaymentInfo]? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
+        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, charges: [PriceAdjustmentCharge]? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customCartMeta: [String: Any]? = nil, customMeta: [[String: Any]]? = nil, externalOrderId: String? = nil, gstinCode: String? = nil, isValidated: Bool? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
             
             self.totalShipmentsInOrder = totalShipmentsInOrder
             
@@ -120,8 +116,6 @@ public extension ApplicationClient.Order {
             self.meta = meta
             
             self.externalOrderId = externalOrderId
-            
-            self.paymentInfo = paymentInfo
             
         }
 
@@ -332,18 +326,6 @@ public extension ApplicationClient.Order {
             }
             
             
-            
-            do {
-                paymentInfo = try container.decode([PaymentInfo].self, forKey: .paymentInfo)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -415,10 +397,6 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(externalOrderId, forKey: .externalOrderId)
-            
-            
-            
-            try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
             
             
         }

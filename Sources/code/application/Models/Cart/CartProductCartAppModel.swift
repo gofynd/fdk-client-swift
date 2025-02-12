@@ -34,14 +34,6 @@ public extension ApplicationClient.Cart {
         
         public var attributes: [String: Any]?
         
-        public var l1Categories: [Double]?
-        
-        public var l2Categories: [Double]?
-        
-        public var l3Categories: [Double]?
-        
-        public var departments: [Double]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -71,17 +63,9 @@ public extension ApplicationClient.Cart {
             
             case attributes = "attributes"
             
-            case l1Categories = "l1_categories"
-            
-            case l2Categories = "l2_categories"
-            
-            case l3Categories = "l3_categories"
-            
-            case departments = "departments"
-            
         }
 
-        public init(action: ProductAction? = nil, attributes: [String: Any]? = nil, brand: BaseInfo? = nil, categories: [CategoryInfo]? = nil, departments: [Double]? = nil, images: [ProductImage]? = nil, itemCode: String? = nil, l1Categories: [Double]? = nil, l2Categories: [Double]? = nil, l3Categories: [Double]? = nil, name: String? = nil, slug: String? = nil, tags: [String]? = nil, teaserTag: [String: Any]? = nil, type: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
+        public init(action: ProductAction? = nil, attributes: [String: Any]? = nil, brand: BaseInfo? = nil, categories: [CategoryInfo]? = nil, images: [ProductImage]? = nil, itemCode: String? = nil, name: String? = nil, slug: String? = nil, tags: [String]? = nil, teaserTag: [String: Any]? = nil, type: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             
             self.slug = slug
             
@@ -108,14 +92,6 @@ public extension ApplicationClient.Cart {
             self.categories = categories
             
             self.attributes = attributes
-            
-            self.l1Categories = l1Categories
-            
-            self.l2Categories = l2Categories
-            
-            self.l3Categories = l3Categories
-            
-            self.departments = departments
             
         }
 
@@ -278,54 +254,6 @@ public extension ApplicationClient.Cart {
             }
             
             
-            
-            do {
-                l1Categories = try container.decode([Double].self, forKey: .l1Categories)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                l2Categories = try container.decode([Double].self, forKey: .l2Categories)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                l3Categories = try container.decode([Double].self, forKey: .l3Categories)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                departments = try container.decode([Double].self, forKey: .departments)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -381,22 +309,6 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(attributes, forKey: .attributes)
-            
-            
-            
-            try? container.encodeIfPresent(l1Categories, forKey: .l1Categories)
-            
-            
-            
-            try? container.encodeIfPresent(l2Categories, forKey: .l2Categories)
-            
-            
-            
-            try? container.encodeIfPresent(l3Categories, forKey: .l3Categories)
-            
-            
-            
-            try? container.encodeIfPresent(departments, forKey: .departments)
             
             
         }

@@ -400,7 +400,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Retrieve available coupons.
-            * Description: Retrieve a list of all created coupons for specific sales channel. It also supports searching based on text search, pagination and other flags to filter coupons.
+            * Description: Retrieve a list of available coupons for use in the shopping cart.
             **/
             public func getCoupons(
                 pageNo: Int?,
@@ -948,7 +948,7 @@ public class PlatformClient {
             public func createPromotion(
                 body: PromotionAdd,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PromotionAddResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PromotionAdd?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -976,7 +976,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PromotionAddResult.self, from: data)
+                            let response = Utility.decode(PromotionAdd.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -999,7 +999,7 @@ public class PlatformClient {
                 id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PromotionUpdateResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PromotionUpdate?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -1027,7 +1027,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PromotionUpdateResult.self, from: data)
+                            let response = Utility.decode(PromotionUpdate.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1050,7 +1050,7 @@ public class PlatformClient {
                 id: String,
                 body: PromotionUpdate,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: PromotionUpdateResult?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PromotionUpdate?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -1078,7 +1078,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(PromotionUpdateResult.self, from: data)
+                            let response = Utility.decode(PromotionUpdate.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -1095,7 +1095,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Partially update a promotion.
-            * Description: Seller can make partial adjustments of an existing promotion by specifying its unique identifier. It enables businesses to modify specific attributes of the promotion while preserving other details intact.
+            * Description: Make partial modifications to the settings of an existing promotion in the cart system.
             **/
             public func updatePromotionPartially(
                 id: String,
@@ -2019,7 +2019,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Add items to abandoned cart
-            * Description: Add product items to the customer's existing shopping cart. If there is no existing cart associated with the customer, it creates a new one and adds the items to it.
+            * Description: Use this API to add items to the abandoned cart.
             **/
             public func addItems(
                 cartId: String,
@@ -2130,8 +2130,8 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Get coupon option values
-            * Description: Retrieves the available values for coupon options used to create and update coupons.
+            * Summary: Get coupon options enums with display values
+            * Description: Get coupon enum values for fields in valid coupon object. Used for front end to create, update and filter coupon lists via fields
             **/
             public func getCouponOptionValues(
                 
@@ -2181,7 +2181,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Check if coupon is already created with coupon code
-            * Description: Validates the presence of a coupon code for the specified sales channel to verify whether the provided code already exists or not.
+            * Description: Check if sent coupon code is already existing coupon code. As coupon code is to be unique.
             **/
             public func getCouponCodeExists(
                 code: String?,
@@ -2236,7 +2236,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Check if promotion is already created with promotion code
-            * Description: Validates the presence of a promotion code for the specified sales channel to verify whether the provided code already exists or not.
+            * Description: Check if sent promotion code is already existing promotion code. As promotion code is to be unique.
             **/
             public func getPromotionCodeExists(
                 code: String?,
@@ -2291,7 +2291,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Create Fynd order with overriding cart details
-            * Description: Overrides the cart's checkout process with a new provided cart items. It provides flexibility in customizing checkout flows to meet specific business requirements, enhancing the user experience and optimizing order processing workflows.
+            * Description: Generate Fynd order while overriding cart details sent with provided `cart_items`
             **/
             public func overrideCart(
                 body: OverrideCheckoutReq,
@@ -2441,8 +2441,8 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Update shared cart items
-            * Description: Customer can either merge or replace shared cart items with existing cart.
+            * Summary: Merge or replace existing cart
+            * Description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace.
             **/
             public func updateCartWithSharedItems(
                 token: String,
@@ -2499,7 +2499,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Get cart list for store os user
-            * Description: Retrieve the list of active carts associated with a specific customer
+            * Description: Get all carts for the store os user which is created for customer
             **/
             public func getCartList(
                 fromDate: String?,
@@ -2564,7 +2564,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Update cart user details.
-            * Description: Modify the cart user to a new valid customer for the provided customer ID.
+            * Description: Modify user-related details for a shopping cart.
             **/
             public func updateCartUser(
                 id: String?,
@@ -2923,8 +2923,8 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Delete a cart
-            * Description: Delete all items from the user's cart and resets it to its initial state, providing a clean slate for new selections.
+            * Summary: Delete cart once user made successful checkout
+            * Description: Use this API to delete the cart.
             **/
             public func deleteCart(
                 id: String?,
@@ -3054,7 +3054,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Apply a coupon to the cart.
-            * Description: Apply a coupon code to the customer's cart to trigger discounts on eligible items
+            * Description: Apply a selected coupon to the items in the shopping cart.
             **/
             public func applyCoupon(
                 i: Bool?,
@@ -3129,7 +3129,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Remove Applied Coupon for platform pos user
-            * Description: Remove an applied coupon from the customer's cart, thereby removing the associated discount from the cart total.
+            * Description: Remove Coupon applied on the cart by passing uid in request body.
             **/
             public func removeCoupon(
                 uid: String?,
@@ -3243,8 +3243,8 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Get a list of addresses for a customer
-            * Description: Retrieves a list of all addresses saved by the customer, simplifying the checkout process by offering pre-saved address options for delivery.
+            * Summary: Fetch address
+            * Description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional uid address_id mobile_no checkout_mode tags default
             **/
             public func getAddresses(
                 cartId: String?,
@@ -3328,8 +3328,8 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Get details for a single customer address
-            * Description: Retrieve a specific customer address stored in the system by providing its unique identifier. This API provides detailed information about the address, including the recipient's name, address, city, postal code, and other relevant details.
+            * Summary: Fetch a single address by its ID
+            * Description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `PlatformAddress`. Attibutes listed below are optional mobile_no checkout_mode tags default
             **/
             public func getAddressById(
                 id: String,
@@ -3414,8 +3414,8 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Updates an existing customer address
-            * Description: Update the user address
+            * Summary: Update address added to an account
+            * Description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in Address can be updated. These attributes are:is_default_address landmark area pincode email address_type name address_id address
             **/
             public func updateAddress(
                 id: String,
@@ -3465,8 +3465,8 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Removes an address from a customer's address list
-            * Description: Remove an existing customer address from the system.
+            * Summary: Remove address associated with an account
+            * Description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
             **/
             public func removeAddress(
                 id: String,
@@ -3521,8 +3521,8 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Select customer address for order processing
-            * Description: Select an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address.
+            * Summary: Select an address from available addresses
+            * Description: Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `PlatformSelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. address_id billing_address_id uid
             **/
             public func selectAddress(
                 cartId: String?,
@@ -4171,7 +4171,7 @@ public class PlatformClient {
             /**
             *
             * Summary: Cart checkout (latest)
-            * Description: The checkout cart initiates the order creation process based on the items in the user’s cart,  their selected address, and chosen payment methods. It also supports multiple payment method  options and revalidates the cart details to ensure a secure and seamless order placement.
+            * Description: Checkout process that supports multiple MOP(mode of payment).
             **/
             public func platformCheckoutCartV2(
                 id: String?,
@@ -6374,7 +6374,7 @@ public class PlatformClient {
             * Summary: Get application products.
             * Description: Retrieve products associated with the application. List all the products associated with a brand, collection or category in a requested sort order.
             **/
-            public func getApplicationProducts(
+            public func getAppicationProducts(
                 q: String?,
                 f: String?,
                 c: String?,
@@ -6494,10 +6494,10 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: get paginator for getApplicationProducts
+            * Summary: get paginator for getAppicationProducts
             * Description: fetch the next page by calling .next(...) function
             **/
-            public func getApplicationProductsPaginator(
+            public func getAppicationProductsPaginator(
                 q: String?,
                 f: String?,
                 c: String?,
@@ -6511,7 +6511,7 @@ public class PlatformClient {
                 let pageSize = pageSize ?? 20
                 let paginator = Paginator<ApplicationProductListingResponse>(pageSize: pageSize, type: "cursor")
                 paginator.onPage = {
-                    self.getApplicationProducts(
+                    self.getAppicationProducts(
                         q: q,
                         f: f,
                         c: c,
@@ -8160,6 +8160,10 @@ public class PlatformClient {
                         }
                 });
             }
+            
+            
+            
+            
             
             
             
@@ -10727,42 +10731,12 @@ public class PlatformClient {
             **/
             public func pollPriceFactoryJobs(
                 id: String,
-                startDate: String?,
-                endDate: String?,
-                stage: [String]?,
-                isActive: Bool?,
-                q: String?,
-                type: [String]?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: CreateAppPriceFactoryProductExportJobPollResponse?, _ error: FDKError?) -> Void
             ) {
                                 
-                var xQuery: [String: Any] = [:] 
-                
-                if let value = startDate {
-                    xQuery["start_date"] = value
-                }
-                
-                if let value = endDate {
-                    xQuery["end_date"] = value
-                }
-                
-                if let value = stage {
-                    xQuery["stage"] = value
-                }
-                
-                if let value = isActive {
-                    xQuery["is_active"] = value
-                }
-                
-                if let value = q {
-                    xQuery["q"] = value
-                }
-                
-                if let value = type {
-                    xQuery["type"] = value
-                }
+                 
                 
                 var xHeaders: [(key: String, value: String)] = []
                 
@@ -10774,7 +10748,7 @@ public class PlatformClient {
                     config: config,
                     method: "GET",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/owner-application/\(applicationId)/price-factory/\(id)/poll",
-                    query: xQuery,
+                    query: nil,
                     body: nil,
                     headers: xHeaders,
                     responseType: "application/json",
@@ -11736,7 +11710,7 @@ public class PlatformClient {
             public func createEventSubscriptions(
                 body: SubscriptionsObject,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: EventSubscription?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: EventSubscriptionsBulkUpdateResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -11764,7 +11738,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(EventSubscription.self, from: data)
+                            let response = Utility.decode(EventSubscriptionsBulkUpdateResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -11893,7 +11867,7 @@ public class PlatformClient {
                 id: String,
                 body: SubscriptionsObjectRequest,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: EventSubscription?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: EventSubscriptionsBulkUpdateResponse?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -11921,7 +11895,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(EventSubscription.self, from: data)
+                            let response = Utility.decode(EventSubscriptionsBulkUpdateResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22736,7 +22710,7 @@ public class PlatformClient {
             public func createAppCustomObject(
                 body: CustomObjectRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CustomObjectApplicationSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CustomObjectSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22764,7 +22738,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CustomObjectApplicationSchema.self, from: data)
+                            let response = Utility.decode(CustomObjectSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -22838,7 +22812,7 @@ public class PlatformClient {
                 id: String,
                 body: CustomObjectRequestSchema,
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: CustomObjectApplicationSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CustomObjectSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -22866,7 +22840,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(CustomObjectApplicationSchema.self, from: data)
+                            let response = Utility.decode(CustomObjectSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -24720,8 +24694,6 @@ public class PlatformClient {
             public func getZones(
                 stage: String?,
                 type: String?,
-                accessLevel: String?,
-                status: String?,
                 pageSize: Int?,
                 pageNo: Int?,
                 isActive: Bool?,
@@ -24744,14 +24716,6 @@ public class PlatformClient {
                 
                 if let value = type {
                     xQuery["type"] = value
-                }
-                
-                if let value = accessLevel {
-                    xQuery["access_level"] = value
-                }
-                
-                if let value = status {
-                    xQuery["status"] = value
                 }
                 
                 if let value = pageSize {
@@ -26786,7 +26750,6 @@ public class PlatformClient {
                         }
                 });
             }
-            
             
             
             
@@ -33376,11 +33339,11 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Get Create theme
-            * Description: Creating a new theme.
+            * Summary: Get applied theme
+            * Description: Retrieve the currently applied theme of a sales channel using application Id.
             **/
-            public func createTheme(
-                body: CompanyThemeReqSchema,
+            public func getAppliedTheme(
+                
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
@@ -33395,10 +33358,10 @@ public class PlatformClient {
                 }
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "POST",
+                    method: "GET",
                     url: "/service/platform/theme/v2.0/company/\(companyId)/application/\(applicationId)",
                     query: nil,
-                    body: body.dictionary,
+                    body: nil,
                     headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in
@@ -33426,11 +33389,11 @@ public class PlatformClient {
             
             /**
             *
-            * Summary: Get applied theme
-            * Description: Retrieve the currently applied theme of a sales channel using application Id.
+            * Summary: Create theme in sales channel
+            * Description: Include a theme in an application drafts from theme collection.
             **/
-            public func getAppliedTheme(
-                
+            public func addThemeToApplication(
+                body: ThemesSchema,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
@@ -33445,10 +33408,10 @@ public class PlatformClient {
                 }
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "GET",
+                    method: "POST",
                     url: "/service/platform/theme/v2.0/company/\(companyId)/application/\(applicationId)",
                     query: nil,
-                    body: nil,
+                    body: body.dictionary,
                     headers: xHeaders,
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in

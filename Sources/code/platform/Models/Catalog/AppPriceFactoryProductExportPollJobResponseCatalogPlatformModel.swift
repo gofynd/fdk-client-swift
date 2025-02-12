@@ -26,8 +26,6 @@ public extension PlatformClient.Catalog {
         
         public var failedRecords: Int?
         
-        public var jobType: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -45,11 +43,9 @@ public extension PlatformClient.Catalog {
             
             case failedRecords = "failed_records"
             
-            case jobType = "job_type"
-            
         }
 
-        public init(createdOn: String? = nil, failedRecords: Int? = nil, id: String? = nil, isActive: Bool? = nil, jobType: String? = nil, stage: String? = nil, successRecords: Int? = nil, totalRecords: Int? = nil) {
+        public init(createdOn: String? = nil, failedRecords: Int? = nil, id: String? = nil, isActive: Bool? = nil, stage: String? = nil, successRecords: Int? = nil, totalRecords: Int? = nil) {
             
             self.id = id
             
@@ -64,8 +60,6 @@ public extension PlatformClient.Catalog {
             self.successRecords = successRecords
             
             self.failedRecords = failedRecords
-            
-            self.jobType = jobType
             
         }
 
@@ -156,18 +150,6 @@ public extension PlatformClient.Catalog {
                 }
                 
             
-            
-                do {
-                    jobType = try container.decode(String.self, forKey: .jobType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -206,11 +188,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(failedRecords, forKey: .failedRecords)
-            
-            
-            
-            
-            try? container.encodeIfPresent(jobType, forKey: .jobType)
             
             
         }
@@ -243,8 +220,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var failedRecords: Int?
         
-        public var jobType: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -262,11 +237,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case failedRecords = "failed_records"
             
-            case jobType = "job_type"
-            
         }
 
-        public init(createdOn: String? = nil, failedRecords: Int? = nil, id: String? = nil, isActive: Bool? = nil, jobType: String? = nil, stage: String? = nil, successRecords: Int? = nil, totalRecords: Int? = nil) {
+        public init(createdOn: String? = nil, failedRecords: Int? = nil, id: String? = nil, isActive: Bool? = nil, stage: String? = nil, successRecords: Int? = nil, totalRecords: Int? = nil) {
             
             self.id = id
             
@@ -281,8 +254,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.successRecords = successRecords
             
             self.failedRecords = failedRecords
-            
-            self.jobType = jobType
             
         }
 
@@ -373,18 +344,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
-            
-                do {
-                    jobType = try container.decode(String.self, forKey: .jobType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -423,11 +382,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(failedRecords, forKey: .failedRecords)
-            
-            
-            
-            
-            try? container.encodeIfPresent(jobType, forKey: .jobType)
             
             
         }

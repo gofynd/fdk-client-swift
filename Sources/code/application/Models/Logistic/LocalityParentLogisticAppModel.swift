@@ -24,22 +24,6 @@ public extension ApplicationClient.Logistic {
         
         public var parentUid: String?
         
-        public var code: String?
-        
-        public var iso2: String?
-        
-        public var iso3: String?
-        
-        public var currency: [String: Any]?
-        
-        public var phoneCode: String?
-        
-        public var hierarchy: [String: Any]?
-        
-        public var latitude: String?
-        
-        public var longitude: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -59,25 +43,9 @@ public extension ApplicationClient.Logistic {
             
             case parentUid = "parent_uid"
             
-            case code = "code"
-            
-            case iso2 = "iso2"
-            
-            case iso3 = "iso3"
-            
-            case currency = "currency"
-            
-            case phoneCode = "phone_code"
-            
-            case hierarchy = "hierarchy"
-            
-            case latitude = "latitude"
-            
-            case longitude = "longitude"
-            
         }
 
-        public init(code: String? = nil, currency: [String: Any]? = nil, displayName: String? = nil, hierarchy: [String: Any]? = nil, id: String? = nil, iso2: String? = nil, iso3: String? = nil, latitude: String? = nil, longitude: String? = nil, meta: [String: Any]? = nil, name: String? = nil, parentIds: [String]? = nil, parentUid: String? = nil, phoneCode: String? = nil, serviceability: [String: Any]? = nil, type: String? = nil) {
+        public init(displayName: String? = nil, id: String? = nil, meta: [String: Any]? = nil, name: String? = nil, parentIds: [String]? = nil, parentUid: String? = nil, serviceability: [String: Any]? = nil, type: String? = nil) {
             
             self.id = id
             
@@ -94,22 +62,6 @@ public extension ApplicationClient.Logistic {
             self.serviceability = serviceability
             
             self.parentUid = parentUid
-            
-            self.code = code
-            
-            self.iso2 = iso2
-            
-            self.iso3 = iso3
-            
-            self.currency = currency
-            
-            self.phoneCode = phoneCode
-            
-            self.hierarchy = hierarchy
-            
-            self.latitude = latitude
-            
-            self.longitude = longitude
             
         }
 
@@ -212,102 +164,6 @@ public extension ApplicationClient.Logistic {
             }
             
             
-            
-            do {
-                code = try container.decode(String.self, forKey: .code)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                iso2 = try container.decode(String.self, forKey: .iso2)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                iso3 = try container.decode(String.self, forKey: .iso3)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                currency = try container.decode([String: Any].self, forKey: .currency)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                phoneCode = try container.decode(String.self, forKey: .phoneCode)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                hierarchy = try container.decode([String: Any].self, forKey: .hierarchy)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                latitude = try container.decode(String.self, forKey: .latitude)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                longitude = try container.decode(String.self, forKey: .longitude)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -343,38 +199,6 @@ public extension ApplicationClient.Logistic {
             
             
             try? container.encodeIfPresent(parentUid, forKey: .parentUid)
-            
-            
-            
-            try? container.encodeIfPresent(code, forKey: .code)
-            
-            
-            
-            try? container.encodeIfPresent(iso2, forKey: .iso2)
-            
-            
-            
-            try? container.encodeIfPresent(iso3, forKey: .iso3)
-            
-            
-            
-            try? container.encodeIfPresent(currency, forKey: .currency)
-            
-            
-            
-            try? container.encodeIfPresent(phoneCode, forKey: .phoneCode)
-            
-            
-            
-            try? container.encodeIfPresent(hierarchy, forKey: .hierarchy)
-            
-            
-            
-            try? container.encodeIfPresent(latitude, forKey: .latitude)
-            
-            
-            
-            try? container.encodeIfPresent(longitude, forKey: .longitude)
             
             
         }

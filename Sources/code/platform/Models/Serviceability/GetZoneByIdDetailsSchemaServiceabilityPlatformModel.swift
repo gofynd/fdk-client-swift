@@ -20,11 +20,9 @@ public extension PlatformClient.Serviceability {
         
         public var isActive: Bool
         
-        public var isOpted: Bool?
+        public var product: ProductDetailsSchema
         
-        public var product: ProductDetailsSchema?
-        
-        public var stores: StoresDetailsSchema?
+        public var stores: StoresDetailsSchema
         
         public var stage: String?
         
@@ -33,8 +31,6 @@ public extension PlatformClient.Serviceability {
         public var geoAreas: [GeoAreaDetailsSchema]
         
         public var type: String
-        
-        public var accessLevel: String?
         
         public var overlappingZoneNames: [String]?
         
@@ -49,8 +45,6 @@ public extension PlatformClient.Serviceability {
             
             case isActive = "is_active"
             
-            case isOpted = "is_opted"
-            
             case product = "product"
             
             case stores = "stores"
@@ -63,13 +57,11 @@ public extension PlatformClient.Serviceability {
             
             case type = "type"
             
-            case accessLevel = "access_level"
-            
             case overlappingZoneNames = "overlapping_zone_names"
             
         }
 
-        public init(accessLevel: String? = nil, geoAreas: [GeoAreaDetailsSchema], isActive: Bool, isOpted: Bool? = nil, name: String, overlappingFileUrl: String? = nil, overlappingZoneNames: [String]? = nil, product: ProductDetailsSchema? = nil, slug: String, stage: String? = nil, stores: StoresDetailsSchema? = nil, type: String, zoneId: String) {
+        public init(geoAreas: [GeoAreaDetailsSchema], isActive: Bool, name: String, overlappingFileUrl: String? = nil, overlappingZoneNames: [String]? = nil, product: ProductDetailsSchema, slug: String, stage: String? = nil, stores: StoresDetailsSchema, type: String, zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -78,8 +70,6 @@ public extension PlatformClient.Serviceability {
             self.slug = slug
             
             self.isActive = isActive
-            
-            self.isOpted = isOpted
             
             self.product = product
             
@@ -92,8 +82,6 @@ public extension PlatformClient.Serviceability {
             self.geoAreas = geoAreas
             
             self.type = type
-            
-            self.accessLevel = accessLevel
             
             self.overlappingZoneNames = overlappingZoneNames
             
@@ -123,40 +111,14 @@ public extension PlatformClient.Serviceability {
             
             
             
-                do {
-                    isOpted = try container.decode(Bool.self, forKey: .isOpted)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                product = try container.decode(ProductDetailsSchema.self, forKey: .product)
                 
             
             
-                do {
-                    product = try container.decode(ProductDetailsSchema.self, forKey: .product)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                stores = try container.decode(StoresDetailsSchema.self, forKey: .stores)
                 
             
-            
-                do {
-                    stores = try container.decode(StoresDetailsSchema.self, forKey: .stores)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -191,18 +153,6 @@ public extension PlatformClient.Serviceability {
                 type = try container.decode(String.self, forKey: .type)
                 
             
-            
-            
-                do {
-                    accessLevel = try container.decode(String.self, forKey: .accessLevel)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -243,11 +193,6 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(isOpted, forKey: .isOpted)
-            
-            
-            
-            
             try? container.encodeIfPresent(product, forKey: .product)
             
             
@@ -274,11 +219,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(accessLevel, forKey: .accessLevel)
             
             
             
@@ -310,11 +250,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var isActive: Bool
         
-        public var isOpted: Bool?
+        public var product: ProductDetailsSchema
         
-        public var product: ProductDetailsSchema?
-        
-        public var stores: StoresDetailsSchema?
+        public var stores: StoresDetailsSchema
         
         public var stage: String?
         
@@ -323,8 +261,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         public var geoAreas: [GeoAreaDetailsSchema]
         
         public var type: String
-        
-        public var accessLevel: String?
         
         public var overlappingZoneNames: [String]?
         
@@ -339,8 +275,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case isActive = "is_active"
             
-            case isOpted = "is_opted"
-            
             case product = "product"
             
             case stores = "stores"
@@ -353,13 +287,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case type = "type"
             
-            case accessLevel = "access_level"
-            
             case overlappingZoneNames = "overlapping_zone_names"
             
         }
 
-        public init(accessLevel: String? = nil, geoAreas: [GeoAreaDetailsSchema], isActive: Bool, isOpted: Bool? = nil, name: String, overlappingFileUrl: String? = nil, overlappingZoneNames: [String]? = nil, product: ProductDetailsSchema? = nil, slug: String, stage: String? = nil, stores: StoresDetailsSchema? = nil, type: String, zoneId: String) {
+        public init(geoAreas: [GeoAreaDetailsSchema], isActive: Bool, name: String, overlappingFileUrl: String? = nil, overlappingZoneNames: [String]? = nil, product: ProductDetailsSchema, slug: String, stage: String? = nil, stores: StoresDetailsSchema, type: String, zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -368,8 +300,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.slug = slug
             
             self.isActive = isActive
-            
-            self.isOpted = isOpted
             
             self.product = product
             
@@ -382,8 +312,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.geoAreas = geoAreas
             
             self.type = type
-            
-            self.accessLevel = accessLevel
             
             self.overlappingZoneNames = overlappingZoneNames
             
@@ -413,40 +341,14 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                do {
-                    isOpted = try container.decode(Bool.self, forKey: .isOpted)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                product = try container.decode(ProductDetailsSchema.self, forKey: .product)
                 
             
             
-                do {
-                    product = try container.decode(ProductDetailsSchema.self, forKey: .product)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                stores = try container.decode(StoresDetailsSchema.self, forKey: .stores)
                 
             
-            
-                do {
-                    stores = try container.decode(StoresDetailsSchema.self, forKey: .stores)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -481,18 +383,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 type = try container.decode(String.self, forKey: .type)
                 
             
-            
-            
-                do {
-                    accessLevel = try container.decode(String.self, forKey: .accessLevel)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -533,11 +423,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(isOpted, forKey: .isOpted)
-            
-            
-            
-            
             try? container.encodeIfPresent(product, forKey: .product)
             
             
@@ -564,11 +449,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(accessLevel, forKey: .accessLevel)
             
             
             

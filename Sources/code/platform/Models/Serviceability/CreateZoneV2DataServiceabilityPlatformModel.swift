@@ -18,8 +18,6 @@ public extension PlatformClient.Serviceability {
         
         public var type: String
         
-        public var accessLevel: String
-        
         public var name: String
         
         public var companyId: Int
@@ -28,9 +26,9 @@ public extension PlatformClient.Serviceability {
         
         public var geoAreas: [String]
         
-        public var stores: ZoneStores?
+        public var stores: ZoneStores
         
-        public var product: ZoneProduct?
+        public var product: ZoneProduct
         
 
         public enum CodingKeys: String, CodingKey {
@@ -40,8 +38,6 @@ public extension PlatformClient.Serviceability {
             case slug = "slug"
             
             case type = "type"
-            
-            case accessLevel = "access_level"
             
             case name = "name"
             
@@ -57,15 +53,13 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(accessLevel: String, applicationId: String, companyId: Int, geoAreas: [String], isActive: Bool, name: String, product: ZoneProduct? = nil, slug: String, stores: ZoneStores? = nil, type: String) {
+        public init(applicationId: String, companyId: Int, geoAreas: [String], isActive: Bool, name: String, product: ZoneProduct, slug: String, stores: ZoneStores, type: String) {
             
             self.isActive = isActive
             
             self.slug = slug
             
             self.type = type
-            
-            self.accessLevel = accessLevel
             
             self.name = name
             
@@ -100,11 +94,6 @@ public extension PlatformClient.Serviceability {
             
             
             
-                accessLevel = try container.decode(String.self, forKey: .accessLevel)
-                
-            
-            
-            
                 name = try container.decode(String.self, forKey: .name)
                 
             
@@ -125,28 +114,14 @@ public extension PlatformClient.Serviceability {
             
             
             
-                do {
-                    stores = try container.decode(ZoneStores.self, forKey: .stores)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                stores = try container.decode(ZoneStores.self, forKey: .stores)
                 
             
             
-                do {
-                    product = try container.decode(ZoneProduct.self, forKey: .product)
+            
+                product = try container.decode(ZoneProduct.self, forKey: .product)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -166,11 +141,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(accessLevel, forKey: .accessLevel)
             
             
             
@@ -225,8 +195,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var type: String
         
-        public var accessLevel: String
-        
         public var name: String
         
         public var companyId: Int
@@ -235,9 +203,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var geoAreas: [String]
         
-        public var stores: ZoneStores?
+        public var stores: ZoneStores
         
-        public var product: ZoneProduct?
+        public var product: ZoneProduct
         
 
         public enum CodingKeys: String, CodingKey {
@@ -247,8 +215,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             case slug = "slug"
             
             case type = "type"
-            
-            case accessLevel = "access_level"
             
             case name = "name"
             
@@ -264,15 +230,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(accessLevel: String, applicationId: String, companyId: Int, geoAreas: [String], isActive: Bool, name: String, product: ZoneProduct? = nil, slug: String, stores: ZoneStores? = nil, type: String) {
+        public init(applicationId: String, companyId: Int, geoAreas: [String], isActive: Bool, name: String, product: ZoneProduct, slug: String, stores: ZoneStores, type: String) {
             
             self.isActive = isActive
             
             self.slug = slug
             
             self.type = type
-            
-            self.accessLevel = accessLevel
             
             self.name = name
             
@@ -307,11 +271,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                accessLevel = try container.decode(String.self, forKey: .accessLevel)
-                
-            
-            
-            
                 name = try container.decode(String.self, forKey: .name)
                 
             
@@ -332,28 +291,14 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                do {
-                    stores = try container.decode(ZoneStores.self, forKey: .stores)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                stores = try container.decode(ZoneStores.self, forKey: .stores)
                 
             
             
-                do {
-                    product = try container.decode(ZoneProduct.self, forKey: .product)
+            
+                product = try container.decode(ZoneProduct.self, forKey: .product)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -373,11 +318,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(accessLevel, forKey: .accessLevel)
             
             
             

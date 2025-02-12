@@ -12,8 +12,6 @@ public extension ApplicationClient.Cart {
         
         public var address: [Address]?
         
-        public var validationConfig: ValidationConfig?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -21,17 +19,13 @@ public extension ApplicationClient.Cart {
             
             case address = "address"
             
-            case validationConfig = "validation_config"
-            
         }
 
-        public init(address: [Address]? = nil, piiMasking: Bool? = nil, validationConfig: ValidationConfig? = nil) {
+        public init(address: [Address]? = nil, piiMasking: Bool? = nil) {
             
             self.piiMasking = piiMasking
             
             self.address = address
-            
-            self.validationConfig = validationConfig
             
         }
 
@@ -62,18 +56,6 @@ public extension ApplicationClient.Cart {
             }
             
             
-            
-            do {
-                validationConfig = try container.decode(ValidationConfig.self, forKey: .validationConfig)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -85,10 +67,6 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(address, forKey: .address)
-            
-            
-            
-            try? container.encodeIfPresent(validationConfig, forKey: .validationConfig)
             
             
         }

@@ -16,7 +16,7 @@ public extension ApplicationClient.Cart {
         
         public var itemSize: String?
         
-        public var itemIndex: Int
+        public var itemIndex: Int?
         
         public var identifiers: CartProductIdentifer
         
@@ -57,7 +57,7 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(articleId: String? = nil, extraMeta: [String: Any]? = nil, identifiers: CartProductIdentifer, itemId: Int? = nil, itemIndex: Int, itemSize: String? = nil, meta: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, priceFactoryTypeId: String? = nil, quantity: Int? = nil, customJson: [String: Any]? = nil) {
+        public init(articleId: String? = nil, extraMeta: [String: Any]? = nil, identifiers: CartProductIdentifer, itemId: Int? = nil, itemIndex: Int? = nil, itemSize: String? = nil, meta: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, priceFactoryTypeId: String? = nil, quantity: Int? = nil, customJson: [String: Any]? = nil) {
             
             self.extraMeta = extraMeta
             
@@ -135,8 +135,15 @@ public extension ApplicationClient.Cart {
             
             
             
-            itemIndex = try container.decode(Int.self, forKey: .itemIndex)
+            do {
+                itemIndex = try container.decode(Int.self, forKey: .itemIndex)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
