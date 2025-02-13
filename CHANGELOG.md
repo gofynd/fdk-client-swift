@@ -1,4 +1,4 @@
-# CHANGE LOG (v3.1.0-beta.7) - 1.10.2
+# CHANGE LOG (v3.1.0-beta.8) - 1.10.2
 
 ## Application Client
 
@@ -8980,6 +8980,12 @@
 	- [Breaking] [Changed] Type from <code>object</code> to <code>integer</code> of property <code>inventory.excludeCategory[]</code> of schema <code>AppInventoryConfig</code> in response with status code 200
 
 
+#### getDomains
+
+- ##### What's New
+	- [Added] Security in Request
+
+
 #### getCurrencies
 
 - ##### What's New
@@ -9176,13 +9182,6 @@
 
 - ##### What's New
 	- [Added] method <code>getOrderingStores</code>
-
-
-
-#### getDomains
-
-- ##### What's New
-	- [Added] method <code>getDomains</code>
 
 
 
@@ -14093,41 +14092,6 @@
 - ##### What's Deprecated
 	- [Breaking] [Deleted] property <code>customerOverridden</code> of schema <code>UserAttribute</code> in response with status code 200
 	- [Breaking] [Deleted] Response with status 400
-
-
-#### bulkImportStoreFrontUsers
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] method <code>bulkImportStoreFrontUsers</code>
-
-
-
-#### getBulkImportUsersList
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] method <code>getBulkImportUsersList</code>
-
-
-
-#### createBulkExportUsers
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] method <code>createBulkExportUsers</code>
-
-
-
-#### getBulkExportUsersList
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] method <code>getBulkExportUsersList</code>
-
-
-
-#### getUsersJobByJobId
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] method <code>getUsersJobByJobId</code>
-
 
 
 #### getUsersByByGroupId
