@@ -14,9 +14,9 @@ public extension PlatformClient.Communication {
         
         public var id: String?
         
-        public var imported: [String: Any]?
+        public var imported: StatsImported?
         
-        public var processed: [String: Any]?
+        public var processed: StatsProcessed?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,7 +29,7 @@ public extension PlatformClient.Communication {
             
         }
 
-        public init(imported: [String: Any]? = nil, processed: [String: Any]? = nil, id: String? = nil) {
+        public init(imported: StatsImported? = nil, processed: StatsProcessed? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -56,7 +56,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    imported = try container.decode([String: Any].self, forKey: .imported)
+                    imported = try container.decode(StatsImported.self, forKey: .imported)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    processed = try container.decode([String: Any].self, forKey: .processed)
+                    processed = try container.decode(StatsProcessed.self, forKey: .processed)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,9 +116,9 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var id: String?
         
-        public var imported: [String: Any]?
+        public var imported: StatsImported?
         
-        public var processed: [String: Any]?
+        public var processed: StatsProcessed?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -131,7 +131,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
         }
 
-        public init(imported: [String: Any]? = nil, processed: [String: Any]? = nil, id: String? = nil) {
+        public init(imported: StatsImported? = nil, processed: StatsProcessed? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    imported = try container.decode([String: Any].self, forKey: .imported)
+                    imported = try container.decode(StatsImported.self, forKey: .imported)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -170,7 +170,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    processed = try container.decode([String: Any].self, forKey: .processed)
+                    processed = try container.decode(StatsProcessed.self, forKey: .processed)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

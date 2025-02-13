@@ -40,7 +40,7 @@ public extension PlatformClient.Order {
         
         public var paymentInfo: [BagPaymentMethods]?
         
-        public var quantity: Int?
+        public var quantity: Double?
         
         public var identifier: String?
         
@@ -133,7 +133,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: Address? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: GSTDetailsData? = nil, identifier: String? = nil, isParent: Bool? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, parentPromoBags: [String: Any]? = nil, paymentInfo: [BagPaymentMethods]? = nil, paymentMethods: [BagPaymentMethods]? = nil, prices: Prices? = nil, quantity: Int? = nil, sellerIdentifier: String? = nil, variants: [String: Any]? = nil) {
+        public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: Address? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: GSTDetailsData? = nil, identifier: String? = nil, isParent: Bool? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, parentPromoBags: [String: Any]? = nil, paymentInfo: [BagPaymentMethods]? = nil, paymentMethods: [BagPaymentMethods]? = nil, prices: Prices? = nil, quantity: Double? = nil, sellerIdentifier: String? = nil, variants: [String: Any]? = nil) {
             
             self.gstDetails = gstDetails
             
@@ -368,7 +368,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    quantity = try container.decode(Int.self, forKey: .quantity)
+                    quantity = try container.decode(Double.self, forKey: .quantity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -733,7 +733,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var paymentInfo: [BagPaymentMethods]?
         
-        public var quantity: Int?
+        public var quantity: Double?
         
         public var identifier: String?
         
@@ -826,7 +826,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: Address? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: GSTDetailsData? = nil, identifier: String? = nil, isParent: Bool? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, parentPromoBags: [String: Any]? = nil, paymentInfo: [BagPaymentMethods]? = nil, paymentMethods: [BagPaymentMethods]? = nil, prices: Prices? = nil, quantity: Int? = nil, sellerIdentifier: String? = nil, variants: [String: Any]? = nil) {
+        public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: Address? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: GSTDetailsData? = nil, identifier: String? = nil, isParent: Bool? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, parentPromoBags: [String: Any]? = nil, paymentInfo: [BagPaymentMethods]? = nil, paymentMethods: [BagPaymentMethods]? = nil, prices: Prices? = nil, quantity: Double? = nil, sellerIdentifier: String? = nil, variants: [String: Any]? = nil) {
             
             self.gstDetails = gstDetails
             
@@ -1061,7 +1061,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    quantity = try container.decode(Int.self, forKey: .quantity)
+                    quantity = try container.decode(Double.self, forKey: .quantity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

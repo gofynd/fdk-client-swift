@@ -36,6 +36,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var id: String?
         
+        public var isProcessed: Bool?
+        
         public var code: String?
         
         public var tags: [String]?
@@ -65,13 +67,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case id = "_id"
             
+            case isProcessed = "is_processed"
+            
             case code = "code"
             
             case tags = "tags"
             
         }
 
-        public init(applyExclusive: String? = nil, author: PromotionAuthor? = nil, calculateOn: String? = nil, code: String? = nil, dateMeta: PromotionDateMeta, displayMeta: DisplayMeta1, mode: String? = nil, ownership: Ownership? = nil, promoGroup: String, stackable: Bool? = nil, tags: [String]? = nil, id: String? = nil, schedule: PromotionSchedule? = nil) {
+        public init(applyExclusive: String? = nil, author: PromotionAuthor? = nil, calculateOn: String? = nil, code: String? = nil, dateMeta: PromotionDateMeta, displayMeta: DisplayMeta1, isProcessed: Bool? = nil, mode: String? = nil, ownership: Ownership? = nil, promoGroup: String, stackable: Bool? = nil, tags: [String]? = nil, id: String? = nil, schedule: PromotionSchedule? = nil) {
             
             self.stackable = stackable
             
@@ -94,6 +98,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.dateMeta = dateMeta
             
             self.id = id
+            
+            self.isProcessed = isProcessed
             
             self.code = code
             
@@ -217,6 +223,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
+                    isProcessed = try container.decode(Bool.self, forKey: .isProcessed)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     code = try container.decode(String.self, forKey: .code)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -297,6 +315,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isProcessed, forKey: .isProcessed)
             
             
             

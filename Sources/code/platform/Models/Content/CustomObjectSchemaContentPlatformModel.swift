@@ -14,11 +14,11 @@ public extension PlatformClient.Content {
         
         public var id: String?
         
+        public var name: String?
+        
         public var creator: String?
         
         public var companyId: String?
-        
-        public var applicationId: String?
         
         public var createdBy: String?
         
@@ -47,11 +47,11 @@ public extension PlatformClient.Content {
             
             case id = "_id"
             
+            case name = "name"
+            
             case creator = "creator"
             
             case companyId = "company_id"
-            
-            case applicationId = "application_id"
             
             case createdBy = "created_by"
             
@@ -77,15 +77,15 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(applicationId: String? = nil, companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, definitionId: String? = nil, displayName: String? = nil, fields: [CustomFieldSchema]? = nil, isDeleted: Bool? = nil, slug: String? = nil, status: String? = nil, type: String? = nil, updatedAt: String? = nil, updatedBy: String? = nil, id: String? = nil) {
+        public init(companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, definitionId: String? = nil, displayName: String? = nil, fields: [CustomFieldSchema]? = nil, isDeleted: Bool? = nil, name: String? = nil, slug: String? = nil, status: String? = nil, type: String? = nil, updatedAt: String? = nil, updatedBy: String? = nil, id: String? = nil) {
             
             self.id = id
+            
+            self.name = name
             
             self.creator = creator
             
             self.companyId = companyId
-            
-            self.applicationId = applicationId
             
             self.createdBy = createdBy
             
@@ -128,6 +128,18 @@ public extension PlatformClient.Content {
             
             
                 do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     creator = try container.decode(String.self, forKey: .creator)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -141,18 +153,6 @@ public extension PlatformClient.Content {
             
                 do {
                     companyId = try container.decode(String.self, forKey: .companyId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    applicationId = try container.decode(String.self, forKey: .applicationId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -306,17 +306,17 @@ public extension PlatformClient.Content {
             
             
             
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
             try? container.encodeIfPresent(creator, forKey: .creator)
             
             
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
             
             
             
@@ -392,11 +392,11 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var id: String?
         
+        public var name: String?
+        
         public var creator: String?
         
         public var companyId: String?
-        
-        public var applicationId: String?
         
         public var createdBy: String?
         
@@ -425,11 +425,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case id = "_id"
             
+            case name = "name"
+            
             case creator = "creator"
             
             case companyId = "company_id"
-            
-            case applicationId = "application_id"
             
             case createdBy = "created_by"
             
@@ -455,15 +455,15 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(applicationId: String? = nil, companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, definitionId: String? = nil, displayName: String? = nil, fields: [CustomFieldSchema]? = nil, isDeleted: Bool? = nil, slug: String? = nil, status: String? = nil, type: String? = nil, updatedAt: String? = nil, updatedBy: String? = nil, id: String? = nil) {
+        public init(companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, definitionId: String? = nil, displayName: String? = nil, fields: [CustomFieldSchema]? = nil, isDeleted: Bool? = nil, name: String? = nil, slug: String? = nil, status: String? = nil, type: String? = nil, updatedAt: String? = nil, updatedBy: String? = nil, id: String? = nil) {
             
             self.id = id
+            
+            self.name = name
             
             self.creator = creator
             
             self.companyId = companyId
-            
-            self.applicationId = applicationId
             
             self.createdBy = createdBy
             
@@ -506,6 +506,18 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     creator = try container.decode(String.self, forKey: .creator)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -519,18 +531,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     companyId = try container.decode(String.self, forKey: .companyId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    applicationId = try container.decode(String.self, forKey: .applicationId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -684,17 +684,17 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
             try? container.encodeIfPresent(creator, forKey: .creator)
             
             
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
             
             
             

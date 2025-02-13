@@ -26,6 +26,8 @@ public extension PlatformClient.Serviceability {
         
         public var type: String?
         
+        public var code: String?
+        
         public var localities: [LocalityParent]?
         
 
@@ -45,11 +47,13 @@ public extension PlatformClient.Serviceability {
             
             case type = "type"
             
+            case code = "code"
+            
             case localities = "localities"
             
         }
 
-        public init(displayName: String? = nil, id: String? = nil, localities: [LocalityParent]? = nil, meta: [String: Any]? = nil, name: String? = nil, parentIds: [String]? = nil, parentUid: String? = nil, type: String? = nil) {
+        public init(code: String? = nil, displayName: String? = nil, id: String? = nil, localities: [LocalityParent]? = nil, meta: [String: Any]? = nil, name: String? = nil, parentIds: [String]? = nil, parentUid: String? = nil, type: String? = nil) {
             
             self.id = id
             
@@ -64,6 +68,8 @@ public extension PlatformClient.Serviceability {
             self.parentUid = parentUid
             
             self.type = type
+            
+            self.code = code
             
             self.localities = localities
             
@@ -158,6 +164,18 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
+                    code = try container.decode(String.self, forKey: .code)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     localities = try container.decode([LocalityParent].self, forKey: .localities)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -206,6 +224,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             
@@ -243,6 +266,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var type: String?
         
+        public var code: String?
+        
         public var localities: [LocalityParent]?
         
 
@@ -262,11 +287,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case type = "type"
             
+            case code = "code"
+            
             case localities = "localities"
             
         }
 
-        public init(displayName: String? = nil, id: String? = nil, localities: [LocalityParent]? = nil, meta: [String: Any]? = nil, name: String? = nil, parentIds: [String]? = nil, parentUid: String? = nil, type: String? = nil) {
+        public init(code: String? = nil, displayName: String? = nil, id: String? = nil, localities: [LocalityParent]? = nil, meta: [String: Any]? = nil, name: String? = nil, parentIds: [String]? = nil, parentUid: String? = nil, type: String? = nil) {
             
             self.id = id
             
@@ -281,6 +308,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.parentUid = parentUid
             
             self.type = type
+            
+            self.code = code
             
             self.localities = localities
             
@@ -375,6 +404,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
+                    code = try container.decode(String.self, forKey: .code)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     localities = try container.decode([LocalityParent].self, forKey: .localities)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -423,6 +464,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(code, forKey: .code)
             
             
             

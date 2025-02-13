@@ -18,6 +18,14 @@ public extension PlatformClient.Order {
         
         public var shipmentDetails: [ShipmentDetail]?
         
+        public var text: String?
+        
+        public var value: String?
+        
+        public var colorCode: String?
+        
+        public var expectedDeliveryDate: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -27,15 +35,31 @@ public extension PlatformClient.Order {
             
             case shipmentDetails = "shipment_details"
             
+            case text = "text"
+            
+            case value = "value"
+            
+            case colorCode = "color_code"
+            
+            case expectedDeliveryDate = "expected_delivery_date"
+            
         }
 
-        public init(errors: [String]? = nil, orderDetails: OrderDetails, shipmentDetails: [ShipmentDetail]? = nil) {
+        public init(colorCode: String? = nil, errors: [String]? = nil, expectedDeliveryDate: String? = nil, orderDetails: OrderDetails, shipmentDetails: [ShipmentDetail]? = nil, text: String? = nil, value: String? = nil) {
             
             self.orderDetails = orderDetails
             
             self.errors = errors
             
             self.shipmentDetails = shipmentDetails
+            
+            self.text = text
+            
+            self.value = value
+            
+            self.colorCode = colorCode
+            
+            self.expectedDeliveryDate = expectedDeliveryDate
             
         }
 
@@ -71,6 +95,54 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    text = try container.decode(String.self, forKey: .text)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    value = try container.decode(String.self, forKey: .value)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    colorCode = try container.decode(String.self, forKey: .colorCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    expectedDeliveryDate = try container.decode(String.self, forKey: .expectedDeliveryDate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -89,6 +161,26 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(shipmentDetails, forKey: .shipmentDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(text, forKey: .text)
+            
+            
+            
+            
+            try? container.encodeIfPresent(value, forKey: .value)
+            
+            
+            
+            
+            try? container.encodeIfPresent(colorCode, forKey: .colorCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(expectedDeliveryDate, forKey: .expectedDeliveryDate)
             
             
         }
@@ -113,6 +205,14 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var shipmentDetails: [ShipmentDetail]?
         
+        public var text: String?
+        
+        public var value: String?
+        
+        public var colorCode: String?
+        
+        public var expectedDeliveryDate: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -122,15 +222,31 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case shipmentDetails = "shipment_details"
             
+            case text = "text"
+            
+            case value = "value"
+            
+            case colorCode = "color_code"
+            
+            case expectedDeliveryDate = "expected_delivery_date"
+            
         }
 
-        public init(errors: [String]? = nil, orderDetails: OrderDetails, shipmentDetails: [ShipmentDetail]? = nil) {
+        public init(colorCode: String? = nil, errors: [String]? = nil, expectedDeliveryDate: String? = nil, orderDetails: OrderDetails, shipmentDetails: [ShipmentDetail]? = nil, text: String? = nil, value: String? = nil) {
             
             self.orderDetails = orderDetails
             
             self.errors = errors
             
             self.shipmentDetails = shipmentDetails
+            
+            self.text = text
+            
+            self.value = value
+            
+            self.colorCode = colorCode
+            
+            self.expectedDeliveryDate = expectedDeliveryDate
             
         }
 
@@ -166,6 +282,54 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    text = try container.decode(String.self, forKey: .text)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    value = try container.decode(String.self, forKey: .value)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    colorCode = try container.decode(String.self, forKey: .colorCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    expectedDeliveryDate = try container.decode(String.self, forKey: .expectedDeliveryDate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -184,6 +348,26 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(shipmentDetails, forKey: .shipmentDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(text, forKey: .text)
+            
+            
+            
+            
+            try? container.encodeIfPresent(value, forKey: .value)
+            
+            
+            
+            
+            try? container.encodeIfPresent(colorCode, forKey: .colorCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(expectedDeliveryDate, forKey: .expectedDeliveryDate)
             
             
         }

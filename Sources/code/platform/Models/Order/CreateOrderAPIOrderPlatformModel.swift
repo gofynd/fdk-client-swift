@@ -14,8 +14,6 @@ public extension PlatformClient.Order {
         
         public var shipments: [Shipment]
         
-        public var shipmentRequestData: ShipmentRequestData?
-        
         public var shippingInfo: [String: Any]
         
         public var billingInfo: [String: Any]
@@ -36,7 +34,7 @@ public extension PlatformClient.Order {
         
         public var taxInfo: TaxInfo?
         
-        public var config: Config?
+        public var config: CreateOrderConfig?
         
         public var paymentInfo: PaymentInfo
         
@@ -46,12 +44,12 @@ public extension PlatformClient.Order {
         
         public var lockAfterTransition: Bool?
         
+        public var dynamicCharges: [DynamicChargeSchema]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case shipments = "shipments"
-            
-            case shipmentRequestData = "shipment_request_data"
             
             case shippingInfo = "shipping_info"
             
@@ -83,13 +81,13 @@ public extension PlatformClient.Order {
             
             case lockAfterTransition = "lock_after_transition"
             
+            case dynamicCharges = "dynamic_charges"
+            
         }
 
-        public init(billingInfo: [String: Any], charges: [Charge]? = nil, config: Config? = nil, currencyInfo: CurrencyInfo? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, externalShipmentId: String? = nil, lockAfterTransition: Bool? = nil, meta: [String: Any]? = nil, orderType: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shipmentRequestData: ShipmentRequestData? = nil, shippingInfo: [String: Any], taxInfo: TaxInfo? = nil, unlockBeforeTransition: Bool? = nil, userInfo: UserInfo? = nil) {
+        public init(billingInfo: [String: Any], charges: [Charge]? = nil, config: CreateOrderConfig? = nil, currencyInfo: CurrencyInfo? = nil, dynamicCharges: [DynamicChargeSchema]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, externalShipmentId: String? = nil, lockAfterTransition: Bool? = nil, meta: [String: Any]? = nil, orderType: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: [String: Any], taxInfo: TaxInfo? = nil, unlockBeforeTransition: Bool? = nil, userInfo: UserInfo? = nil) {
             
             self.shipments = shipments
-            
-            self.shipmentRequestData = shipmentRequestData
             
             self.shippingInfo = shippingInfo
             
@@ -121,6 +119,8 @@ public extension PlatformClient.Order {
             
             self.lockAfterTransition = lockAfterTransition
             
+            self.dynamicCharges = dynamicCharges
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -130,18 +130,6 @@ public extension PlatformClient.Order {
                 shipments = try container.decode([Shipment].self, forKey: .shipments)
                 
             
-            
-            
-                do {
-                    shipmentRequestData = try container.decode(ShipmentRequestData.self, forKey: .shipmentRequestData)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 shippingInfo = try container.decode([String: Any].self, forKey: .shippingInfo)
@@ -251,7 +239,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    config = try container.decode(Config.self, forKey: .config)
+                    config = try container.decode(CreateOrderConfig.self, forKey: .config)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -302,6 +290,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    dynamicCharges = try container.decode([DynamicChargeSchema].self, forKey: .dynamicCharges)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -310,11 +310,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(shipments, forKey: .shipments)
-            
-            
-            
-            
-            try? container.encodeIfPresent(shipmentRequestData, forKey: .shipmentRequestData)
             
             
             
@@ -390,6 +385,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
+            
+            
+            
+            
+            try? container.encodeIfPresent(dynamicCharges, forKey: .dynamicCharges)
             
             
         }
@@ -410,8 +410,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var shipments: [Shipment]
         
-        public var shipmentRequestData: ShipmentRequestData?
-        
         public var shippingInfo: [String: Any]
         
         public var billingInfo: [String: Any]
@@ -432,7 +430,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var taxInfo: TaxInfo?
         
-        public var config: Config?
+        public var config: CreateOrderConfig?
         
         public var paymentInfo: PaymentInfo
         
@@ -442,12 +440,12 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var lockAfterTransition: Bool?
         
+        public var dynamicCharges: [DynamicChargeSchema]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case shipments = "shipments"
-            
-            case shipmentRequestData = "shipment_request_data"
             
             case shippingInfo = "shipping_info"
             
@@ -479,13 +477,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case lockAfterTransition = "lock_after_transition"
             
+            case dynamicCharges = "dynamic_charges"
+            
         }
 
-        public init(billingInfo: [String: Any], charges: [Charge]? = nil, config: Config? = nil, currencyInfo: CurrencyInfo? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, externalShipmentId: String? = nil, lockAfterTransition: Bool? = nil, meta: [String: Any]? = nil, orderType: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shipmentRequestData: ShipmentRequestData? = nil, shippingInfo: [String: Any], taxInfo: TaxInfo? = nil, unlockBeforeTransition: Bool? = nil, userInfo: UserInfo? = nil) {
+        public init(billingInfo: [String: Any], charges: [Charge]? = nil, config: CreateOrderConfig? = nil, currencyInfo: CurrencyInfo? = nil, dynamicCharges: [DynamicChargeSchema]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, externalShipmentId: String? = nil, lockAfterTransition: Bool? = nil, meta: [String: Any]? = nil, orderType: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: [String: Any], taxInfo: TaxInfo? = nil, unlockBeforeTransition: Bool? = nil, userInfo: UserInfo? = nil) {
             
             self.shipments = shipments
-            
-            self.shipmentRequestData = shipmentRequestData
             
             self.shippingInfo = shippingInfo
             
@@ -517,6 +515,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.lockAfterTransition = lockAfterTransition
             
+            self.dynamicCharges = dynamicCharges
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -526,18 +526,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 shipments = try container.decode([Shipment].self, forKey: .shipments)
                 
             
-            
-            
-                do {
-                    shipmentRequestData = try container.decode(ShipmentRequestData.self, forKey: .shipmentRequestData)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 shippingInfo = try container.decode([String: Any].self, forKey: .shippingInfo)
@@ -647,7 +635,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    config = try container.decode(Config.self, forKey: .config)
+                    config = try container.decode(CreateOrderConfig.self, forKey: .config)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -698,6 +686,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    dynamicCharges = try container.decode([DynamicChargeSchema].self, forKey: .dynamicCharges)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -706,11 +706,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(shipments, forKey: .shipments)
-            
-            
-            
-            
-            try? container.encodeIfPresent(shipmentRequestData, forKey: .shipmentRequestData)
             
             
             
@@ -786,6 +781,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
+            
+            
+            
+            
+            try? container.encodeIfPresent(dynamicCharges, forKey: .dynamicCharges)
             
             
         }

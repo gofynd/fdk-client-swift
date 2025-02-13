@@ -78,56 +78,6 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Create categories.
-        * Description: Lets user create product categories on for the seller on the platform.
-        **/
-        public func createCategories(
-            body: CategoryRequestBody,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CategoryCreateResponse?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/category",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CategoryCreateResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
         * Summary: List categories.
         * Description: Retrieve a list of meta associated available product categories in the catalog.
         **/
@@ -259,57 +209,6 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Update category data.
-        * Description: Modify data for an existing category in the catalog.
-        **/
-        public func updateCategory(
-            uid: String,
-            body: CategoryRequestBody,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CategoryUpdateResponse?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "PUT",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/category/\(uid)",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CategoryUpdateResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
         * Summary: Get seller insights.
         * Description: Retrieve insights and analytics related to sellers within the catalog.
         **/
@@ -346,56 +245,6 @@ extension PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CrossSellingResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Create departments.
-        * Description: Create departments with this resource.
-        **/
-        public func createDepartments(
-            body: DepartmentCreateUpdate,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: DepartmentCreateResponse?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/departments",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(DepartmentCreateResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -532,57 +381,6 @@ extension PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(DepartmentsResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Update department data.
-        * Description: Modify the department by their uid using this API.
-        **/
-        public func updateDepartment(
-            uid: String,
-            body: DepartmentCreateUpdate,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: DepartmentModel?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "PUT",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/departments/\(uid)",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(DepartmentModel.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1812,14 +1610,14 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get gender attribute.
-        * Description: Retrieve the gender attribute for catalog listings.
+        * Summary: Get attribute detail by slug
+        * Description: Retrieve the attribute detail for catalog listings by attribute slug passed for a specific company.
         **/
-        public func getGenderAttribute(
+        public func getAttribute(
             attributeSlug: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GenderDetail?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: AttributeDetail?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1847,7 +1645,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GenderDetail.self, from: data)
+                        let response = Utility.decode(AttributeDetail.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

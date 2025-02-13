@@ -20,15 +20,21 @@ public extension PlatformClient.Serviceability {
         
         public var type: String
         
+        public var accessLevel: String
+        
         public var applicationId: String
         
         public var isActive: Bool
         
+        public var isPublicOpted: Bool?
+        
+        public var isOpted: Bool?
+        
         public var geoAreas: [String]
         
-        public var stores: ListViewProductV2
+        public var stores: ListViewProductV2?
         
-        public var product: ListViewProductV2
+        public var product: ListViewProductV2?
         
         public var createdBy: String
         
@@ -38,9 +44,11 @@ public extension PlatformClient.Serviceability {
         
         public var modifiedOn: String
         
-        public var stage: String
+        public var stage: String?
         
         public var zoneId: String
+        
+        public var summary: SummaryRegions?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -53,9 +61,15 @@ public extension PlatformClient.Serviceability {
             
             case type = "type"
             
+            case accessLevel = "access_level"
+            
             case applicationId = "application_id"
             
             case isActive = "is_active"
+            
+            case isPublicOpted = "is_public_opted"
+            
+            case isOpted = "is_opted"
             
             case geoAreas = "geo_areas"
             
@@ -75,9 +89,11 @@ public extension PlatformClient.Serviceability {
             
             case zoneId = "zone_id"
             
+            case summary = "summary"
+            
         }
 
-        public init(applicationId: String, companyId: Int, createdBy: String, createdOn: String, geoAreas: [String], isActive: Bool, modifiedBy: String, modifiedOn: String, name: String, product: ListViewProductV2, slug: String, stage: String, stores: ListViewProductV2, type: String, zoneId: String) {
+        public init(accessLevel: String, applicationId: String, companyId: Int, createdBy: String, createdOn: String, geoAreas: [String], isActive: Bool, isOpted: Bool? = nil, isPublicOpted: Bool? = nil, modifiedBy: String, modifiedOn: String, name: String, product: ListViewProductV2? = nil, slug: String, stage: String? = nil, stores: ListViewProductV2? = nil, summary: SummaryRegions? = nil, type: String, zoneId: String) {
             
             self.name = name
             
@@ -87,9 +103,15 @@ public extension PlatformClient.Serviceability {
             
             self.type = type
             
+            self.accessLevel = accessLevel
+            
             self.applicationId = applicationId
             
             self.isActive = isActive
+            
+            self.isPublicOpted = isPublicOpted
+            
+            self.isOpted = isOpted
             
             self.geoAreas = geoAreas
             
@@ -108,6 +130,8 @@ public extension PlatformClient.Serviceability {
             self.stage = stage
             
             self.zoneId = zoneId
+            
+            self.summary = summary
             
         }
 
@@ -135,6 +159,11 @@ public extension PlatformClient.Serviceability {
             
             
             
+                accessLevel = try container.decode(String.self, forKey: .accessLevel)
+                
+            
+            
+            
                 applicationId = try container.decode(String.self, forKey: .applicationId)
                 
             
@@ -145,19 +174,57 @@ public extension PlatformClient.Serviceability {
             
             
             
+                do {
+                    isPublicOpted = try container.decode(Bool.self, forKey: .isPublicOpted)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isOpted = try container.decode(Bool.self, forKey: .isOpted)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 geoAreas = try container.decode([String].self, forKey: .geoAreas)
                 
             
             
             
-                stores = try container.decode(ListViewProductV2.self, forKey: .stores)
+                do {
+                    stores = try container.decode(ListViewProductV2.self, forKey: .stores)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                product = try container.decode(ListViewProductV2.self, forKey: .product)
+                do {
+                    product = try container.decode(ListViewProductV2.self, forKey: .product)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 createdBy = try container.decode(String.self, forKey: .createdBy)
@@ -180,14 +247,33 @@ public extension PlatformClient.Serviceability {
             
             
             
-                stage = try container.decode(String.self, forKey: .stage)
+                do {
+                    stage = try container.decode(String.self, forKey: .stage)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 zoneId = try container.decode(String.self, forKey: .zoneId)
                 
             
+            
+            
+                do {
+                    summary = try container.decode(SummaryRegions.self, forKey: .summary)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -216,12 +302,27 @@ public extension PlatformClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(accessLevel, forKey: .accessLevel)
+            
+            
+            
+            
             try? container.encodeIfPresent(applicationId, forKey: .applicationId)
             
             
             
             
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isPublicOpted, forKey: .isPublicOpted)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isOpted, forKey: .isOpted)
             
             
             
@@ -267,6 +368,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(zoneId, forKey: .zoneId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(summary, forKey: .summary)
             
             
         }
@@ -293,15 +399,21 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var type: String
         
+        public var accessLevel: String
+        
         public var applicationId: String
         
         public var isActive: Bool
         
+        public var isPublicOpted: Bool?
+        
+        public var isOpted: Bool?
+        
         public var geoAreas: [String]
         
-        public var stores: ListViewProductV2
+        public var stores: ListViewProductV2?
         
-        public var product: ListViewProductV2
+        public var product: ListViewProductV2?
         
         public var createdBy: String
         
@@ -311,9 +423,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var modifiedOn: String
         
-        public var stage: String
+        public var stage: String?
         
         public var zoneId: String
+        
+        public var summary: SummaryRegions?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -326,9 +440,15 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case type = "type"
             
+            case accessLevel = "access_level"
+            
             case applicationId = "application_id"
             
             case isActive = "is_active"
+            
+            case isPublicOpted = "is_public_opted"
+            
+            case isOpted = "is_opted"
             
             case geoAreas = "geo_areas"
             
@@ -348,9 +468,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case zoneId = "zone_id"
             
+            case summary = "summary"
+            
         }
 
-        public init(applicationId: String, companyId: Int, createdBy: String, createdOn: String, geoAreas: [String], isActive: Bool, modifiedBy: String, modifiedOn: String, name: String, product: ListViewProductV2, slug: String, stage: String, stores: ListViewProductV2, type: String, zoneId: String) {
+        public init(accessLevel: String, applicationId: String, companyId: Int, createdBy: String, createdOn: String, geoAreas: [String], isActive: Bool, isOpted: Bool? = nil, isPublicOpted: Bool? = nil, modifiedBy: String, modifiedOn: String, name: String, product: ListViewProductV2? = nil, slug: String, stage: String? = nil, stores: ListViewProductV2? = nil, summary: SummaryRegions? = nil, type: String, zoneId: String) {
             
             self.name = name
             
@@ -360,9 +482,15 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             self.type = type
             
+            self.accessLevel = accessLevel
+            
             self.applicationId = applicationId
             
             self.isActive = isActive
+            
+            self.isPublicOpted = isPublicOpted
+            
+            self.isOpted = isOpted
             
             self.geoAreas = geoAreas
             
@@ -381,6 +509,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.stage = stage
             
             self.zoneId = zoneId
+            
+            self.summary = summary
             
         }
 
@@ -408,6 +538,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
+                accessLevel = try container.decode(String.self, forKey: .accessLevel)
+                
+            
+            
+            
                 applicationId = try container.decode(String.self, forKey: .applicationId)
                 
             
@@ -418,19 +553,57 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
+                do {
+                    isPublicOpted = try container.decode(Bool.self, forKey: .isPublicOpted)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isOpted = try container.decode(Bool.self, forKey: .isOpted)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 geoAreas = try container.decode([String].self, forKey: .geoAreas)
                 
             
             
             
-                stores = try container.decode(ListViewProductV2.self, forKey: .stores)
+                do {
+                    stores = try container.decode(ListViewProductV2.self, forKey: .stores)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                product = try container.decode(ListViewProductV2.self, forKey: .product)
+                do {
+                    product = try container.decode(ListViewProductV2.self, forKey: .product)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 createdBy = try container.decode(String.self, forKey: .createdBy)
@@ -453,14 +626,33 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                stage = try container.decode(String.self, forKey: .stage)
+                do {
+                    stage = try container.decode(String.self, forKey: .stage)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 zoneId = try container.decode(String.self, forKey: .zoneId)
                 
             
+            
+            
+                do {
+                    summary = try container.decode(SummaryRegions.self, forKey: .summary)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -489,12 +681,27 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(accessLevel, forKey: .accessLevel)
+            
+            
+            
+            
             try? container.encodeIfPresent(applicationId, forKey: .applicationId)
             
             
             
             
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isPublicOpted, forKey: .isPublicOpted)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isOpted, forKey: .isOpted)
             
             
             
@@ -540,6 +747,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(zoneId, forKey: .zoneId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(summary, forKey: .summary)
             
             
         }
