@@ -18,7 +18,7 @@ public extension ApplicationClient.Order {
         
         public var appliedPromos: [AppliedPromos]?
         
-        public var quantity: Double?
+        public var quantity: Int?
         
         public var prices: Prices?
         
@@ -89,7 +89,7 @@ public extension ApplicationClient.Order {
             
         }
 
-        public init(appliedPromos: [AppliedPromos]? = nil, article: Article? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, currentStatus: CurrentStatus? = nil, deliveryDate: String? = nil, financialBreakup: [FinancialBreakup]? = nil, id: Int? = nil, item: Item? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, parentPromoBags: [String: Any]? = nil, prices: Prices? = nil, quantity: Double? = nil, returnableDate: String? = nil, sellerIdentifier: String? = nil) {
+        public init(appliedPromos: [AppliedPromos]? = nil, article: Article? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, currentStatus: CurrentStatus? = nil, deliveryDate: String? = nil, financialBreakup: [FinancialBreakup]? = nil, id: Int? = nil, item: Item? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, parentPromoBags: [String: Any]? = nil, prices: Prices? = nil, quantity: Int? = nil, returnableDate: String? = nil, sellerIdentifier: String? = nil) {
             
             self.deliveryDate = deliveryDate
             
@@ -196,7 +196,7 @@ public extension ApplicationClient.Order {
             
             
             do {
-                quantity = try container.decode(Double.self, forKey: .quantity)
+                quantity = try container.decode(Int.self, forKey: .quantity)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

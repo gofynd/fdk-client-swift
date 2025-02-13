@@ -32,9 +32,9 @@ public extension ApplicationClient.Catalog {
         
         public var customOrder: [String: Any]?
         
-        public var productName: String?
-        
         public var noOfBoxes: Int?
+        
+        public var teaserTag: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -63,13 +63,13 @@ public extension ApplicationClient.Catalog {
             
             case customOrder = "custom_order"
             
-            case productName = "product_name"
-            
             case noOfBoxes = "no_of_boxes"
+            
+            case teaserTag = "teaser_tag"
             
         }
 
-        public init(customOrder: [String: Any]? = nil, discount: String? = nil, discountMeta: DiscountMeta? = nil, moq: MOQ? = nil, multiSize: Bool? = nil, noOfBoxes: Int? = nil, price: ProductSizesPrice? = nil, pricePerPiece: ProductSizesPrice? = nil, productName: String? = nil, sellable: Bool? = nil, sizes: [ProductSize]? = nil, sizeChart: SizeChart? = nil, stores: ProductSizeStores? = nil, tags: [String]? = nil) {
+        public init(customOrder: [String: Any]? = nil, discount: String? = nil, discountMeta: DiscountMeta? = nil, moq: MOQ? = nil, multiSize: Bool? = nil, noOfBoxes: Int? = nil, price: ProductSizesPrice? = nil, pricePerPiece: ProductSizesPrice? = nil, sellable: Bool? = nil, sizes: [ProductSize]? = nil, sizeChart: SizeChart? = nil, stores: ProductSizeStores? = nil, tags: [String]? = nil, teaserTag: [String: Any]? = nil) {
             
             self.sizes = sizes
             
@@ -95,9 +95,9 @@ public extension ApplicationClient.Catalog {
             
             self.customOrder = customOrder
             
-            self.productName = productName
-            
             self.noOfBoxes = noOfBoxes
+            
+            self.teaserTag = teaserTag
             
         }
 
@@ -250,7 +250,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                productName = try container.decode(String.self, forKey: .productName)
+                noOfBoxes = try container.decode(Int.self, forKey: .noOfBoxes)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -262,7 +262,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                noOfBoxes = try container.decode(Int.self, forKey: .noOfBoxes)
+                teaserTag = try container.decode([String: Any].self, forKey: .teaserTag)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -326,11 +326,11 @@ public extension ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(productName, forKey: .productName)
-            
-            
-            
             try? container.encodeIfPresent(noOfBoxes, forKey: .noOfBoxes)
+            
+            
+            
+            try? container.encodeIfPresent(teaserTag, forKey: .teaserTag)
             
             
         }

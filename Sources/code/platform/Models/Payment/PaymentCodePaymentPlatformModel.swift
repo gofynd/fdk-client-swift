@@ -12,34 +12,34 @@ public extension PlatformClient.Payment {
     class PaymentCode: Codable {
         
         
-        public var codes: [Code]
+        public var networks: String
+        
+        public var codes: Code
         
         public var name: String
         
-        public var networks: [String]
-        
-        public var types: [String]
+        public var types: String
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case networks = "networks"
             
             case codes = "codes"
             
             case name = "name"
             
-            case networks = "networks"
-            
             case types = "types"
             
         }
 
-        public init(codes: [Code], name: String, networks: [String], types: [String]) {
+        public init(codes: Code, name: String, networks: String, types: String) {
+            
+            self.networks = networks
             
             self.codes = codes
             
             self.name = name
-            
-            self.networks = networks
             
             self.types = types
             
@@ -49,7 +49,12 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                codes = try container.decode([Code].self, forKey: .codes)
+                networks = try container.decode(String.self, forKey: .networks)
+                
+            
+            
+            
+                codes = try container.decode(Code.self, forKey: .codes)
                 
             
             
@@ -59,12 +64,7 @@ public extension PlatformClient.Payment {
             
             
             
-                networks = try container.decode([String].self, forKey: .networks)
-                
-            
-            
-            
-                types = try container.decode([String].self, forKey: .types)
+                types = try container.decode(String.self, forKey: .types)
                 
             
             
@@ -75,17 +75,17 @@ public extension PlatformClient.Payment {
             
             
             
+            try? container.encodeIfPresent(networks, forKey: .networks)
+            
+            
+            
+            
             try? container.encodeIfPresent(codes, forKey: .codes)
             
             
             
             
             try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(networks, forKey: .networks)
             
             
             
@@ -109,34 +109,34 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PaymentCode: Codable {
         
         
-        public var codes: [Code]
+        public var networks: String
+        
+        public var codes: Code
         
         public var name: String
         
-        public var networks: [String]
-        
-        public var types: [String]
+        public var types: String
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case networks = "networks"
             
             case codes = "codes"
             
             case name = "name"
             
-            case networks = "networks"
-            
             case types = "types"
             
         }
 
-        public init(codes: [Code], name: String, networks: [String], types: [String]) {
+        public init(codes: Code, name: String, networks: String, types: String) {
+            
+            self.networks = networks
             
             self.codes = codes
             
             self.name = name
-            
-            self.networks = networks
             
             self.types = types
             
@@ -146,7 +146,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                codes = try container.decode([Code].self, forKey: .codes)
+                networks = try container.decode(String.self, forKey: .networks)
+                
+            
+            
+            
+                codes = try container.decode(Code.self, forKey: .codes)
                 
             
             
@@ -156,12 +161,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                networks = try container.decode([String].self, forKey: .networks)
-                
-            
-            
-            
-                types = try container.decode([String].self, forKey: .types)
+                types = try container.decode(String.self, forKey: .types)
                 
             
             
@@ -172,17 +172,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
+            try? container.encodeIfPresent(networks, forKey: .networks)
+            
+            
+            
+            
             try? container.encodeIfPresent(codes, forKey: .codes)
             
             
             
             
             try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(networks, forKey: .networks)
             
             
             

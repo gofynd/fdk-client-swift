@@ -12,7 +12,7 @@ public extension PlatformClient.Order {
     class CreateChannelConfig: Codable {
         
         
-        public var dpConfiguration: DpConfiguration?
+        public var dpConfiguration: DPConfiguration?
         
         public var shipmentAssignment: String?
         
@@ -41,7 +41,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(dpConfiguration: DpConfiguration? = nil, locationReassignment: Bool? = nil, lockStates: [String]? = nil, logoUrl: [String: Any]? = nil, paymentInfo: CreateChannelPaymentInfo? = nil, shipmentAssignment: String? = nil) {
+        public init(dpConfiguration: DPConfiguration? = nil, locationReassignment: Bool? = nil, lockStates: [String]? = nil, logoUrl: [String: Any]? = nil, paymentInfo: CreateChannelPaymentInfo? = nil, shipmentAssignment: String? = nil) {
             
             self.dpConfiguration = dpConfiguration
             
@@ -62,7 +62,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    dpConfiguration = try container.decode(DpConfiguration.self, forKey: .dpConfiguration)
+                    dpConfiguration = try container.decode(DPConfiguration.self, forKey: .dpConfiguration)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -183,7 +183,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class CreateChannelConfig: Codable {
         
         
-        public var dpConfiguration: DpConfiguration?
+        public var dpConfiguration: DPConfiguration?
         
         public var shipmentAssignment: String?
         
@@ -212,7 +212,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(dpConfiguration: DpConfiguration? = nil, locationReassignment: Bool? = nil, lockStates: [String]? = nil, logoUrl: [String: Any]? = nil, paymentInfo: CreateChannelPaymentInfo? = nil, shipmentAssignment: String? = nil) {
+        public init(dpConfiguration: DPConfiguration? = nil, locationReassignment: Bool? = nil, lockStates: [String]? = nil, logoUrl: [String: Any]? = nil, paymentInfo: CreateChannelPaymentInfo? = nil, shipmentAssignment: String? = nil) {
             
             self.dpConfiguration = dpConfiguration
             
@@ -233,7 +233,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    dpConfiguration = try container.decode(DpConfiguration.self, forKey: .dpConfiguration)
+                    dpConfiguration = try container.decode(DPConfiguration.self, forKey: .dpConfiguration)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

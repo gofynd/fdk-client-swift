@@ -42,8 +42,6 @@ public extension PlatformClient.Theme {
         
         public var updatedAt: String?
         
-        public var globalSections: [[String: Any]]?
-        
         public var assets: Assets?
         
         public var availableSections: [SectionItem]?
@@ -87,8 +85,6 @@ public extension PlatformClient.Theme {
             
             case updatedAt = "updated_at"
             
-            case globalSections = "global_sections"
-            
             case assets = "assets"
             
             case availableSections = "available_sections"
@@ -101,7 +97,7 @@ public extension PlatformClient.Theme {
             
         }
 
-        public init(applicationId: String? = nil, applied: Bool? = nil, assets: Assets? = nil, availableSections: [SectionItem]? = nil, companyId: Double? = nil, config: Config? = nil, createdAt: String? = nil, font: Font? = nil, globalSections: [[String: Any]]? = nil, isPrivate: Bool? = nil, marketplaceThemeId: String? = nil, meta: ThemeMeta? = nil, name: String? = nil, src: String? = nil, styles: [String: Any]? = nil, tags: [String]? = nil, templateThemeId: String? = nil, themeType: String? = nil, updatedAt: String? = nil, version: String? = nil, id: String? = nil) {
+        public init(applicationId: String? = nil, applied: Bool? = nil, assets: Assets? = nil, availableSections: [SectionItem]? = nil, companyId: Double? = nil, config: Config? = nil, createdAt: String? = nil, font: Font? = nil, isPrivate: Bool? = nil, marketplaceThemeId: String? = nil, meta: ThemeMeta? = nil, name: String? = nil, src: String? = nil, styles: [String: Any]? = nil, tags: [String]? = nil, templateThemeId: String? = nil, themeType: String? = nil, updatedAt: String? = nil, version: String? = nil, id: String? = nil) {
             
             self.font = font
             
@@ -132,8 +128,6 @@ public extension PlatformClient.Theme {
             self.createdAt = createdAt
             
             self.updatedAt = updatedAt
-            
-            self.globalSections = globalSections
             
             self.assets = assets
             
@@ -332,18 +326,6 @@ public extension PlatformClient.Theme {
             
             
                 do {
-                    globalSections = try container.decode([[String: Any]].self, forKey: .globalSections)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     assets = try container.decode(Assets.self, forKey: .assets)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -480,11 +462,6 @@ public extension PlatformClient.Theme {
             
             
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(globalSections, forKey: .globalSections)
             
             
             
@@ -558,8 +535,6 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public var updatedAt: String?
         
-        public var globalSections: [[String: Any]]?
-        
         public var assets: Assets?
         
         public var availableSections: [SectionItem]?
@@ -603,8 +578,6 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             case updatedAt = "updated_at"
             
-            case globalSections = "global_sections"
-            
             case assets = "assets"
             
             case availableSections = "available_sections"
@@ -617,7 +590,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
         }
 
-        public init(applicationId: String? = nil, applied: Bool? = nil, assets: Assets? = nil, availableSections: [SectionItem]? = nil, companyId: Double? = nil, config: Config? = nil, createdAt: String? = nil, font: Font? = nil, globalSections: [[String: Any]]? = nil, isPrivate: Bool? = nil, marketplaceThemeId: String? = nil, meta: ThemeMeta? = nil, name: String? = nil, src: String? = nil, styles: [String: Any]? = nil, tags: [String]? = nil, templateThemeId: String? = nil, themeType: String? = nil, updatedAt: String? = nil, version: String? = nil, id: String? = nil) {
+        public init(applicationId: String? = nil, applied: Bool? = nil, assets: Assets? = nil, availableSections: [SectionItem]? = nil, companyId: Double? = nil, config: Config? = nil, createdAt: String? = nil, font: Font? = nil, isPrivate: Bool? = nil, marketplaceThemeId: String? = nil, meta: ThemeMeta? = nil, name: String? = nil, src: String? = nil, styles: [String: Any]? = nil, tags: [String]? = nil, templateThemeId: String? = nil, themeType: String? = nil, updatedAt: String? = nil, version: String? = nil, id: String? = nil) {
             
             self.font = font
             
@@ -648,8 +621,6 @@ public extension PlatformClient.ApplicationClient.Theme {
             self.createdAt = createdAt
             
             self.updatedAt = updatedAt
-            
-            self.globalSections = globalSections
             
             self.assets = assets
             
@@ -848,18 +819,6 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
-                    globalSections = try container.decode([[String: Any]].self, forKey: .globalSections)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     assets = try container.decode(Assets.self, forKey: .assets)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -996,11 +955,6 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(globalSections, forKey: .globalSections)
             
             
             

@@ -45,16 +45,15 @@ extension PlatformClient {
         
         
         
-        
         /**
         *
-        * Summary: Create application.
-        * Description: Generate and add a new application. Applications are sales channel websites which can be configured, personalized and customized. Use this API to create a new application in the current company.
+        * Summary: Create sales channel
+        * Description: Generate and add a new sales channel. sales channels are sales channel websites which can be configured, personalized and customized. Use this API to create a new sales channel in the current company.
         **/
         public func createApplication(
-            body: CreateApplicationRequest,
+            body: CreateApplicationRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CreateAppResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CreateAppResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -82,7 +81,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CreateAppResponse.self, from: data)
+                        let response = Utility.decode(CreateAppResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -98,8 +97,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get applications.
-        * Description: Retrieve a list of available applications. Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company.
+        * Summary: List sales channel stores
+        * Description: Retrieve a list of available sales channels. sales channels are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of sales channels created within a company.
         **/
         public func getApplications(
             pageNo: Int?,
@@ -107,7 +106,7 @@ extension PlatformClient {
             q: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ApplicationsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ApplicationsResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -147,7 +146,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ApplicationsResponse.self, from: data)
+                        let response = Utility.decode(ApplicationsResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -162,51 +161,15 @@ extension PlatformClient {
         
         
         
-        
         /**
         *
-        * Summary: get paginator for getApplications
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getApplicationsPaginator(
-            pageSize: Int?,
-            q: String?,
-            headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<ApplicationsResponse> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<ApplicationsResponse>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getApplications(
-                    pageNo: paginator.pageNo,
-                    pageSize: paginator.pageSize,
-                    q: q,
-                    
-                    headers: headers
-                ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get currencies.
-        * Description: Retrieve a list of available currencies. Use this API to get a list of currencies allowed in the company. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+        * Summary: List currencies
+        * Description: Retrieve a list of available currencies.
         **/
         public func getCurrencies(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CurrenciesResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CurrenciesResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -234,7 +197,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CurrenciesResponse.self, from: data)
+                        let response = Utility.decode(CurrenciesResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -250,165 +213,13 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get currencies.
-        * Description: Retrieve a list of available currencies. Use this API to get a list of currencies allowed in the company. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
-        **/
-        public func createCurrency(
-            body: Currency,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: Currency?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/configuration/v1.0/company/\(companyId)/currencies",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(Currency.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Get currencies.
-        * Description: Retrieve a list of available currencies. Use this API to get a list of currencies allowed in the company. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
-        **/
-        public func getCurrency(
-            id: String,
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: Currency?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/configuration/v1.0/company/\(companyId)/currencies/\(id)",
-                query: nil,
-                body: nil,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(Currency.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Get currencies.
-        * Description: Retrieve a list of available currencies. Use this API to get a list of currencies allowed in the company. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
-        **/
-        public func updateCurrency(
-            id: String,
-            body: Currency,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: Currency?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "PUT",
-                url: "/service/platform/configuration/v1.0/company/\(companyId)/currencies/\(id)",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(Currency.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Get domain availability.
-        * Description: Check the availability of a specific domain. Use this API to check the domain availability before linking it to application. Also sends domain suggestions that are similar to the queried domain. Note - Custom domain search is currently powered by GoDaddy provider.
+        * Summary: List suggestion domain
+        * Description: Check the availability of a specific domain. Use this API to check the domain availability before linking it to sales channel. Also sends domain suggestions that are similar to the queried domain. Note - Custom domain search is currently powered by GoDaddy provider.
         **/
         public func getDomainAvailibility(
-            body: DomainSuggestionsRequest,
+            body: DomainSuggestionsRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: DomainSuggestionsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: DomainSuggestionsResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -436,7 +247,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(DomainSuggestionsResponse.self, from: data)
+                        let response = Utility.decode(DomainSuggestionsResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -450,17 +261,16 @@ extension PlatformClient {
         
         
         
-        
         /**
         *
-        * Summary: Get brands by company.
-        * Description: Retrieve all the brands added in a company. Get all the brand names, along with URLs of their logo, banner, and portrait image.
+        * Summary: List brands by company
+        * Description: Retrieve all the brands added in a company. Get all the brand names, along with URLs of their logo, banner, and portrait image. can be searched on brand_name.
         **/
         public func getBrandsByCompany(
             q: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: BrandsByCompanyResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: BrandsByCompanyResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -492,7 +302,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BrandsByCompanyResponse.self, from: data)
+                        let response = Utility.decode(BrandsByCompanyResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -508,15 +318,15 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get company by brands.
-        * Description: Retrieve companies associated with specific brands. Retrieve a list of companies by the brands they deal.
+        * Summary: List companies by brand
+        * Description: Retrieve a paginated list of companies associated with specific brands. Can be searched using the brand ID and company name
         **/
         public func getCompanyByBrands(
             pageNo: Int?,
             pageSize: Int?,
-            body: CompanyByBrandsRequest,
+            body: CompanyByBrandsRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CompanyByBrandsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CompanyByBrandsResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -552,7 +362,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CompanyByBrandsResponse.self, from: data)
+                        let response = Utility.decode(CompanyByBrandsResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -568,46 +378,15 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: get paginator for getCompanyByBrands
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getCompanyByBrandsPaginator(
-            pageSize: Int?,
-            headers: [(key: String, value: String)]? = nil,
-            body: CompanyByBrandsRequest) -> Paginator<CompanyByBrandsResponse> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<CompanyByBrandsResponse>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getCompanyByBrands(
-                    pageNo: paginator.pageNo,
-                    pageSize: paginator.pageSize,
-                    body: body,
-                    headers: headers
-                ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get stores by brand uids for the current company
-        * Description: Use this API to get a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail.
+        * Summary: Get store by brands
+        * Description: Retrieve stores associated with specific brands. Retrieve a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail. filtering can be done on brand id and brand names
         **/
         public func getStoreByBrands(
             pageNo: Int?,
             pageSize: Int?,
-            body: StoreByBrandsRequest,
+            body: StoreByBrandsRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: StoreByBrandsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: StoreByBrandsResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -629,7 +408,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/configuration/v2.0/company/\(companyId)/inventory/stores-by-brands",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/inventory/stores-by-brands",
                 query: xQuery,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -643,7 +422,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(StoreByBrandsResponse.self, from: data)
+                        let response = Utility.decode(StoreByBrandsResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -659,39 +438,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: get paginator for getStoreByBrands
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getStoreByBrandsPaginator(
-            pageSize: Int?,
-            headers: [(key: String, value: String)]? = nil,
-            body: StoreByBrandsRequest) -> Paginator<StoreByBrandsResponse> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<StoreByBrandsResponse>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getStoreByBrands(
-                    pageNo: paginator.pageNo,
-                    pageSize: paginator.pageSize,
-                    body: body,
-                    headers: headers
-                ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get other seller applications.
-        * Description: Retrieve applications from other sellers. Retrieve all other seller applications that were not created within the current company. but have opted for the current company's inventory.
+        * Summary: Get other sales channel
+        * Description: Retrieve sales channels of  other sellers. Retrieve all other seller sales channels that were not created within the current company. but have opted for the current company's inventory.
         **/
         public func getOtherSellerApplications(
             pageNo: Int?,
@@ -750,45 +498,14 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: get paginator for getOtherSellerApplications
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getOtherSellerApplicationsPaginator(
-            pageSize: Int?,
-            headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<OtherSellerApplications> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<OtherSellerApplications>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getOtherSellerApplications(
-                    pageNo: paginator.pageNo,
-                    pageSize: paginator.pageSize,
-                    
-                    headers: headers
-                ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get other seller application by ID.
-        * Description: Retrieve details of a seller application that was not created within the current company. but has opted for the current company's inventory
+        * Summary: Get others sales. channel
+        * Description: Retrieve details of a seller sales channel that was not created within the current company but has opted for the current company's inventory and searched via the sales channel ID of another sales channel
         **/
         public func getOtherSellerApplicationById(
-            appId: String,
+            id: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: OptedApplicationResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OptedApplicationResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -802,7 +519,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/configuration/v1.0/company/\(companyId)/other-seller-applications/\(appId)",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/other-seller-applications/\(id)",
                 query: nil,
                 body: nil,
                 headers: xHeaders,
@@ -816,7 +533,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(OptedApplicationResponse.self, from: data)
+                        let response = Utility.decode(OptedApplicationResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -832,14 +549,14 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Opt out from an application.
-        * Description: Choose to opt-out your company or store from other seller application. The specific seller application will no longer fetch inventory from your company or store.
+        * Summary: opt out of marketplaces
+        * Description: This API allows businesses to opt out of sharing their inventory with external seller sales channels. By using this API, companies or stores can prevent specific seller sales channels from fetching their inventory data. This feature is useful for businesses that want to control who  can access their product listings and other inventory information. It helps maintain privacy and control over data distribution, ensuring that sensitive information is only shared with authorized partners.
         **/
         public func optOutFromApplication(
-            appId: String,
+            id: String,
             body: OptOutInventory,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: SuccessMessageResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessMessageResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -853,7 +570,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
-                url: "/service/platform/configuration/v1.0/company/\(companyId)/other-seller-applications/\(appId)/opt_out",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/other-seller-applications/\(id)/opt_out",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -867,7 +584,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessMessageResponse.self, from: data)
+                        let response = Utility.decode(SuccessMessageResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -881,30 +598,32 @@ extension PlatformClient {
         
         
         
-        
-        
-        
         /**
         *
-        * Summary: Get countries, states, cities
-        * Description: Get Location configuration
+        * Summary: Get currency exchange rates
+        * Description: Retrieve a list of currency exchange rates, relative to a provided currency.
         **/
-        public func getLocations(
-            locationType: String?,
-            id: String?,
+        public func getCurrencyExchangeRates(
+            currencyCode: String?,
+            exchangeCurrencyCode: String?,
+            exchangeCountryCode: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: Locations?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CurrencyExchangeResponseV2?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
             
-            if let value = locationType {
-                xQuery["location_type"] = value
+            if let value = currencyCode {
+                xQuery["currency_code"] = value
             }
             
-            if let value = id {
-                xQuery["id"] = value
+            if let value = exchangeCurrencyCode {
+                xQuery["exchange_currency_code"] = value
+            }
+            
+            if let value = exchangeCountryCode {
+                xQuery["exchange_country_code"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -916,7 +635,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/configuration/v2.0/company/\(companyId)/locations",
+                url: "/service/platform/configuration/v2.0/company/\(companyId)/currency-exchange",
                 query: xQuery,
                 body: nil,
                 headers: xHeaders,
@@ -930,113 +649,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(Locations.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get stores by company
-        * Description: Retrieves All the stores that belong to a particular company with desired pagination
-        **/
-        public func getStoresForACompany(
-            company: Int,
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ListStoreResponse?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/configuration/v1.0/company/\(companyId)/inventory/company/\(company)",
-                query: nil,
-                body: nil,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ListStoreResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Get domain options
-        * Description: Fetches the list of available domain types and network information
-        **/
-        public func getDomainOptions(
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: DomainOptionsResponse?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/configuration/v2.0/company/\(companyId)/domain/options",
-                query: nil,
-                body: nil,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(DomainOptionsResponse.self, from: data)
+                        let response = Utility.decode(CurrencyExchangeResponseV2.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

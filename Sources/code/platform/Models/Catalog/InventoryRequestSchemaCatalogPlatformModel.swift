@@ -14,28 +14,28 @@ public extension PlatformClient.Catalog {
         
         public var companyId: Int
         
-        public var sizes: [InvSizeSchema]
+        public var item: ItemQuery
         
-        public var item: ItemQuerySchema
+        public var sizes: [InvSize]
         
 
         public enum CodingKeys: String, CodingKey {
             
             case companyId = "company_id"
             
-            case sizes = "sizes"
-            
             case item = "item"
+            
+            case sizes = "sizes"
             
         }
 
-        public init(companyId: Int, item: ItemQuerySchema, sizes: [InvSizeSchema]) {
+        public init(companyId: Int, item: ItemQuery, sizes: [InvSize]) {
             
             self.companyId = companyId
             
-            self.sizes = sizes
-            
             self.item = item
+            
+            self.sizes = sizes
             
         }
 
@@ -48,12 +48,12 @@ public extension PlatformClient.Catalog {
             
             
             
-                sizes = try container.decode([InvSizeSchema].self, forKey: .sizes)
+                item = try container.decode(ItemQuery.self, forKey: .item)
                 
             
             
             
-                item = try container.decode(ItemQuerySchema.self, forKey: .item)
+                sizes = try container.decode([InvSize].self, forKey: .sizes)
                 
             
             
@@ -69,12 +69,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
-            
-            
-            
-            
             try? container.encodeIfPresent(item, forKey: .item)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
             
             
         }
@@ -95,28 +95,28 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var companyId: Int
         
-        public var sizes: [InvSizeSchema]
+        public var item: ItemQuery
         
-        public var item: ItemQuerySchema
+        public var sizes: [InvSize]
         
 
         public enum CodingKeys: String, CodingKey {
             
             case companyId = "company_id"
             
-            case sizes = "sizes"
-            
             case item = "item"
+            
+            case sizes = "sizes"
             
         }
 
-        public init(companyId: Int, item: ItemQuerySchema, sizes: [InvSizeSchema]) {
+        public init(companyId: Int, item: ItemQuery, sizes: [InvSize]) {
             
             self.companyId = companyId
             
-            self.sizes = sizes
-            
             self.item = item
+            
+            self.sizes = sizes
             
         }
 
@@ -129,12 +129,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-                sizes = try container.decode([InvSizeSchema].self, forKey: .sizes)
+                item = try container.decode(ItemQuery.self, forKey: .item)
                 
             
             
             
-                item = try container.decode(ItemQuerySchema.self, forKey: .item)
+                sizes = try container.decode([InvSize].self, forKey: .sizes)
                 
             
             
@@ -150,12 +150,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
-            
-            
-            
-            
             try? container.encodeIfPresent(item, forKey: .item)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
             
             
         }

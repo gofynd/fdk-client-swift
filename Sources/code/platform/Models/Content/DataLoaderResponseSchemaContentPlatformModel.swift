@@ -30,14 +30,6 @@ public extension PlatformClient.Content {
         
         public var content: String?
         
-        public var createdAt: String?
-        
-        public var modifiedAt: String?
-        
-        public var v: Double?
-        
-        public var isSelected: Bool?
-        
         public var source: DataLoaderSourceSchema?
         
 
@@ -61,19 +53,11 @@ public extension PlatformClient.Content {
             
             case content = "content"
             
-            case createdAt = "created_at"
-            
-            case modifiedAt = "modified_at"
-            
-            case v = "__v"
-            
-            case isSelected = "is_selected"
-            
             case source = "__source"
             
         }
 
-        public init(application: String? = nil, company: String? = nil, content: String? = nil, createdAt: String? = nil, isSelected: Bool? = nil, modifiedAt: String? = nil, name: String? = nil, operationId: String? = nil, service: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: DataLoaderSourceSchema? = nil, v: Double? = nil) {
+        public init(application: String? = nil, company: String? = nil, content: String? = nil, name: String? = nil, operationId: String? = nil, service: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: DataLoaderSourceSchema? = nil) {
             
             self.application = application
             
@@ -92,14 +76,6 @@ public extension PlatformClient.Content {
             self.url = url
             
             self.content = content
-            
-            self.createdAt = createdAt
-            
-            self.modifiedAt = modifiedAt
-            
-            self.v = v
-            
-            self.isSelected = isSelected
             
             self.source = source
             
@@ -218,54 +194,6 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    createdAt = try container.decode(String.self, forKey: .createdAt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    v = try container.decode(Double.self, forKey: .v)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isSelected = try container.decode(Bool.self, forKey: .isSelected)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     source = try container.decode(DataLoaderSourceSchema.self, forKey: .source)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -324,26 +252,6 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(content, forKey: .content)
-            
-            
-            
-            
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
             
             
             
@@ -385,14 +293,6 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var content: String?
         
-        public var createdAt: String?
-        
-        public var modifiedAt: String?
-        
-        public var v: Double?
-        
-        public var isSelected: Bool?
-        
         public var source: DataLoaderSourceSchema?
         
 
@@ -416,19 +316,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case content = "content"
             
-            case createdAt = "created_at"
-            
-            case modifiedAt = "modified_at"
-            
-            case v = "__v"
-            
-            case isSelected = "is_selected"
-            
             case source = "__source"
             
         }
 
-        public init(application: String? = nil, company: String? = nil, content: String? = nil, createdAt: String? = nil, isSelected: Bool? = nil, modifiedAt: String? = nil, name: String? = nil, operationId: String? = nil, service: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: DataLoaderSourceSchema? = nil, v: Double? = nil) {
+        public init(application: String? = nil, company: String? = nil, content: String? = nil, name: String? = nil, operationId: String? = nil, service: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil, source: DataLoaderSourceSchema? = nil) {
             
             self.application = application
             
@@ -447,14 +339,6 @@ public extension PlatformClient.ApplicationClient.Content {
             self.url = url
             
             self.content = content
-            
-            self.createdAt = createdAt
-            
-            self.modifiedAt = modifiedAt
-            
-            self.v = v
-            
-            self.isSelected = isSelected
             
             self.source = source
             
@@ -573,54 +457,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    createdAt = try container.decode(String.self, forKey: .createdAt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    v = try container.decode(Double.self, forKey: .v)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isSelected = try container.decode(Bool.self, forKey: .isSelected)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     source = try container.decode(DataLoaderSourceSchema.self, forKey: .source)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -679,26 +515,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(content, forKey: .content)
-            
-            
-            
-            
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
             
             
             

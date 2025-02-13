@@ -26,8 +26,6 @@ public extension PlatformClient.Serviceability {
         
         public var size: Int?
         
-        public var total: Int?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -45,11 +43,9 @@ public extension PlatformClient.Serviceability {
             
             case size = "size"
             
-            case total = "total"
-            
         }
 
-        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, size: Int? = nil, total: Int? = nil, type: String) {
+        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, size: Int? = nil, type: String) {
             
             self.itemTotal = itemTotal
             
@@ -64,8 +60,6 @@ public extension PlatformClient.Serviceability {
             self.type = type
             
             self.size = size
-            
-            self.total = total
             
         }
 
@@ -149,18 +143,6 @@ public extension PlatformClient.Serviceability {
                 }
                 
             
-            
-                do {
-                    total = try container.decode(Int.self, forKey: .total)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -199,11 +181,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(size, forKey: .size)
-            
-            
-            
-            
-            try? container.encodeIfPresent(total, forKey: .total)
             
             
         }
@@ -236,8 +213,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var size: Int?
         
-        public var total: Int?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -255,11 +230,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case size = "size"
             
-            case total = "total"
-            
         }
 
-        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, size: Int? = nil, total: Int? = nil, type: String) {
+        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, size: Int? = nil, type: String) {
             
             self.itemTotal = itemTotal
             
@@ -274,8 +247,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.type = type
             
             self.size = size
-            
-            self.total = total
             
         }
 
@@ -359,18 +330,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 }
                 
             
-            
-                do {
-                    total = try container.decode(Int.self, forKey: .total)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -409,11 +368,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(size, forKey: .size)
-            
-            
-            
-            
-            try? container.encodeIfPresent(total, forKey: .total)
             
             
         }

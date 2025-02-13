@@ -8,7 +8,7 @@ public extension ApplicationClient.Payment {
     */
     class WalletVerifyRequestSchema: Codable {
         
-        public var aggregator: String?
+        public var aggregator: String
         
         public var linkToken: String
         
@@ -25,7 +25,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(aggregator: String? = nil, linkToken: String, otp: Int) {
+        public init(aggregator: String, linkToken: String, otp: Int) {
             
             self.aggregator = aggregator
             
@@ -39,15 +39,8 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            do {
-                aggregator = try container.decode(String.self, forKey: .aggregator)
+            aggregator = try container.decode(String.self, forKey: .aggregator)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
             

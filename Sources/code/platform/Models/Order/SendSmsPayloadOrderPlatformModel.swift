@@ -12,7 +12,7 @@ public extension PlatformClient.Order {
     class SendSmsPayload: Codable {
         
         
-        public var bagId: String
+        public var bagId: Int
         
         public var data: SmsDataPayload?
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(bagId: String, data: SmsDataPayload? = nil, slug: String) {
+        public init(bagId: Int, data: SmsDataPayload? = nil, slug: String) {
             
             self.bagId = bagId
             
@@ -43,7 +43,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                bagId = try container.decode(String.self, forKey: .bagId)
+                bagId = try container.decode(Int.self, forKey: .bagId)
                 
             
             
@@ -100,7 +100,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class SendSmsPayload: Codable {
         
         
-        public var bagId: String
+        public var bagId: Int
         
         public var data: SmsDataPayload?
         
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(bagId: String, data: SmsDataPayload? = nil, slug: String) {
+        public init(bagId: Int, data: SmsDataPayload? = nil, slug: String) {
             
             self.bagId = bagId
             
@@ -131,7 +131,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                bagId = try container.decode(String.self, forKey: .bagId)
+                bagId = try container.decode(Int.self, forKey: .bagId)
                 
             
             

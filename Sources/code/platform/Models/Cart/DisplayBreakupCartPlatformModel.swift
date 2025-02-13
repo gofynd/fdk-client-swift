@@ -26,12 +26,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var message: [String]?
         
-        public var original: Double?
-        
-        public var attr: String?
-        
-        public var meta: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -47,15 +41,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case message = "message"
             
-            case original = "original"
-            
-            case attr = "attr"
-            
-            case meta = "meta"
-            
         }
 
-        public init(attr: String? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, display: String? = nil, key: String? = nil, message: [String]? = nil, meta: [String: Any]? = nil, original: Double? = nil, value: Double? = nil) {
+        public init(currencyCode: String? = nil, currencySymbol: String? = nil, display: String? = nil, key: String? = nil, message: [String]? = nil, value: Double? = nil) {
             
             self.key = key
             
@@ -68,12 +56,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.display = display
             
             self.message = message
-            
-            self.original = original
-            
-            self.attr = attr
-            
-            self.meta = meta
             
         }
 
@@ -152,42 +134,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
-            
-                do {
-                    original = try container.decode(Double.self, forKey: .original)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    attr = try container.decode(String.self, forKey: .attr)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -221,21 +167,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            
-            try? container.encodeIfPresent(original, forKey: .original)
-            
-            
-            
-            
-            try? container.encodeIfPresent(attr, forKey: .attr)
-            
-            
-            
-            
-            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }

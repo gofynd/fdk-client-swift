@@ -5,7 +5,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FDKClient'
-  s.version          = 'v3.1.0-beta.8'
+  s.version          = '1.4.16-beta.2'
   s.summary          = 'FDK Client SDK for Swift language'
 
   s.description      = 'FDK Client SDK for Swift language that can be used to make Apps or extensions.'

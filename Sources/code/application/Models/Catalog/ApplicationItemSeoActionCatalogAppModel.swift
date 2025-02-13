@@ -10,7 +10,7 @@ public extension ApplicationClient.Catalog {
         
         public var page: [String: Any]?
         
-        public var type: String?
+        public var type: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(page: [String: Any]? = nil, type: String? = nil) {
+        public init(page: [String: Any]? = nil, type: String) {
             
             self.page = page
             
@@ -45,15 +45,8 @@ public extension ApplicationClient.Catalog {
             
             
             
-            do {
-                type = try container.decode(String.self, forKey: .type)
+            type = try container.decode(String.self, forKey: .type)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
         }
