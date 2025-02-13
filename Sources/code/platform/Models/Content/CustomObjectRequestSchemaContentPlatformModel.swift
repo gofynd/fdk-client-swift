@@ -16,6 +16,8 @@ public extension PlatformClient.Content {
         
         public var slug: String?
         
+        public var definitionId: String?
+        
         public var fields: [CustomObjectEntryFieldSchema]?
         
 
@@ -25,15 +27,19 @@ public extension PlatformClient.Content {
             
             case slug = "slug"
             
+            case definitionId = "definition_id"
+            
             case fields = "fields"
             
         }
 
-        public init(fields: [CustomObjectEntryFieldSchema]? = nil, slug: String? = nil, status: String? = nil) {
+        public init(definitionId: String? = nil, fields: [CustomObjectEntryFieldSchema]? = nil, slug: String? = nil, status: String? = nil) {
             
             self.status = status
             
             self.slug = slug
+            
+            self.definitionId = definitionId
             
             self.fields = fields
             
@@ -68,6 +74,18 @@ public extension PlatformClient.Content {
             
             
                 do {
+                    definitionId = try container.decode(String.self, forKey: .definitionId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     fields = try container.decode([CustomObjectEntryFieldSchema].self, forKey: .fields)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -91,6 +109,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            
+            try? container.encodeIfPresent(definitionId, forKey: .definitionId)
             
             
             
@@ -118,6 +141,8 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var slug: String?
         
+        public var definitionId: String?
+        
         public var fields: [CustomObjectEntryFieldSchema]?
         
 
@@ -127,15 +152,19 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case slug = "slug"
             
+            case definitionId = "definition_id"
+            
             case fields = "fields"
             
         }
 
-        public init(fields: [CustomObjectEntryFieldSchema]? = nil, slug: String? = nil, status: String? = nil) {
+        public init(definitionId: String? = nil, fields: [CustomObjectEntryFieldSchema]? = nil, slug: String? = nil, status: String? = nil) {
             
             self.status = status
             
             self.slug = slug
+            
+            self.definitionId = definitionId
             
             self.fields = fields
             
@@ -170,6 +199,18 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
+                    definitionId = try container.decode(String.self, forKey: .definitionId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     fields = try container.decode([CustomObjectEntryFieldSchema].self, forKey: .fields)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -193,6 +234,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            
+            try? container.encodeIfPresent(definitionId, forKey: .definitionId)
             
             
             

@@ -22,6 +22,8 @@ public extension PlatformClient.Order {
         
         public var tags: [String]?
         
+        public var variants: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -35,9 +37,11 @@ public extension PlatformClient.Order {
             
             case tags = "tags"
             
+            case variants = "variants"
+            
         }
 
-        public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig? = nil, size: String? = nil, tags: [String]? = nil, uid: String? = nil) {
+        public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig? = nil, size: String? = nil, tags: [String]? = nil, uid: String? = nil, variants: [String: Any]? = nil) {
             
             self.identifiers = identifiers
             
@@ -48,6 +52,8 @@ public extension PlatformClient.Order {
             self.size = size
             
             self.tags = tags
+            
+            self.variants = variants
             
         }
 
@@ -114,6 +120,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    variants = try container.decode([String: Any].self, forKey: .variants)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -142,6 +160,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(variants, forKey: .variants)
             
             
         }
@@ -170,6 +193,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var tags: [String]?
         
+        public var variants: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -183,9 +208,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case tags = "tags"
             
+            case variants = "variants"
+            
         }
 
-        public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig? = nil, size: String? = nil, tags: [String]? = nil, uid: String? = nil) {
+        public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig? = nil, size: String? = nil, tags: [String]? = nil, uid: String? = nil, variants: [String: Any]? = nil) {
             
             self.identifiers = identifiers
             
@@ -196,6 +223,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.size = size
             
             self.tags = tags
+            
+            self.variants = variants
             
         }
 
@@ -262,6 +291,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    variants = try container.decode([String: Any].self, forKey: .variants)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -290,6 +331,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(variants, forKey: .variants)
             
             
         }

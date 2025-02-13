@@ -24,7 +24,7 @@ public extension PlatformClient.Content {
         
         public var createdAt: String?
         
-        public var source: PathSourceSchema?
+        public var v: Double?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -41,11 +41,11 @@ public extension PlatformClient.Content {
             
             case createdAt = "created_at"
             
-            case source = "__source"
+            case v = "__v"
             
         }
 
-        public init(application: String? = nil, createdAt: String? = nil, redirectFrom: String? = nil, redirectTo: String? = nil, updatedAt: String? = nil, id: String? = nil, source: PathSourceSchema? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, redirectFrom: String? = nil, redirectTo: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Double? = nil) {
             
             self.application = application
             
@@ -59,7 +59,7 @@ public extension PlatformClient.Content {
             
             self.createdAt = createdAt
             
-            self.source = source
+            self.v = v
             
         }
 
@@ -140,7 +140,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    source = try container.decode(PathSourceSchema.self, forKey: .source)
+                    v = try container.decode(Double.self, forKey: .v)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,7 +187,7 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(source, forKey: .source)
+            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }
@@ -218,7 +218,7 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var createdAt: String?
         
-        public var source: PathSourceSchema?
+        public var v: Double?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -235,11 +235,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case createdAt = "created_at"
             
-            case source = "__source"
+            case v = "__v"
             
         }
 
-        public init(application: String? = nil, createdAt: String? = nil, redirectFrom: String? = nil, redirectTo: String? = nil, updatedAt: String? = nil, id: String? = nil, source: PathSourceSchema? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, redirectFrom: String? = nil, redirectTo: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Double? = nil) {
             
             self.application = application
             
@@ -253,7 +253,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             self.createdAt = createdAt
             
-            self.source = source
+            self.v = v
             
         }
 
@@ -334,7 +334,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    source = try container.decode(PathSourceSchema.self, forKey: .source)
+                    v = try container.decode(Double.self, forKey: .v)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -381,7 +381,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(source, forKey: .source)
+            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

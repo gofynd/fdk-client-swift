@@ -14,76 +14,88 @@ public extension PlatformClient.Communication {
         
         public var email: LogEmail?
         
-        public var pushnotification: LogPushnotification?
+        public var sms: LogSms?
         
-        public var meta: LogMeta?
+        public var pushnotification: LogPushnotification?
         
         public var id: String?
         
-        public var application: String?
+        public var pod: String?
         
         public var service: String?
         
         public var step: String?
         
-        public var status: String?
+        public var source: String?
         
-        public var data: [String: Any]?
+        public var status: String?
         
         public var expireAt: String?
         
         public var createdAt: String?
+        
+        public var meta: LogMeta?
+        
+        public var application: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case email = "email"
             
-            case pushnotification = "pushnotification"
+            case sms = "sms"
             
-            case meta = "meta"
+            case pushnotification = "pushnotification"
             
             case id = "_id"
             
-            case application = "application"
+            case pod = "pod"
             
             case service = "service"
             
             case step = "step"
             
-            case status = "status"
+            case source = "source"
             
-            case data = "data"
+            case status = "status"
             
             case expireAt = "expire_at"
             
             case createdAt = "created_at"
             
+            case meta = "meta"
+            
+            case application = "application"
+            
         }
 
-        public init(application: String? = nil, createdAt: String? = nil, data: [String: Any]? = nil, email: LogEmail? = nil, expireAt: String? = nil, meta: LogMeta? = nil, pushnotification: LogPushnotification? = nil, service: String? = nil, status: String? = nil, step: String? = nil, id: String? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, email: LogEmail? = nil, expireAt: String? = nil, meta: LogMeta? = nil, pod: String? = nil, pushnotification: LogPushnotification? = nil, service: String? = nil, sms: LogSms? = nil, source: String? = nil, status: String? = nil, step: String? = nil, id: String? = nil) {
             
             self.email = email
             
-            self.pushnotification = pushnotification
+            self.sms = sms
             
-            self.meta = meta
+            self.pushnotification = pushnotification
             
             self.id = id
             
-            self.application = application
+            self.pod = pod
             
             self.service = service
             
             self.step = step
             
-            self.status = status
+            self.source = source
             
-            self.data = data
+            self.status = status
             
             self.expireAt = expireAt
             
             self.createdAt = createdAt
+            
+            self.meta = meta
+            
+            self.application = application
             
         }
 
@@ -93,6 +105,18 @@ public extension PlatformClient.Communication {
             
                 do {
                     email = try container.decode(LogEmail.self, forKey: .email)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    sms = try container.decode(LogSms.self, forKey: .sms)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,18 +140,6 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    meta = try container.decode(LogMeta.self, forKey: .meta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -140,7 +152,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    application = try container.decode(String.self, forKey: .application)
+                    pod = try container.decode(String.self, forKey: .pod)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -176,7 +188,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    status = try container.decode(String.self, forKey: .status)
+                    source = try container.decode(String.self, forKey: .source)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -188,7 +200,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    data = try container.decode([String: Any].self, forKey: .data)
+                    status = try container.decode(String.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -222,6 +234,30 @@ public extension PlatformClient.Communication {
                 }
                 
             
+            
+                do {
+                    meta = try container.decode(LogMeta.self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    application = try container.decode(String.self, forKey: .application)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -234,12 +270,12 @@ public extension PlatformClient.Communication {
             
             
             
+            try? container.encodeIfPresent(sms, forKey: .sms)
+            
+            
+            
+            
             try? container.encodeIfPresent(pushnotification, forKey: .pushnotification)
-            
-            
-            
-            
-            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
@@ -249,7 +285,7 @@ public extension PlatformClient.Communication {
             
             
             
-            try? container.encodeIfPresent(application, forKey: .application)
+            try? container.encodeIfPresent(pod, forKey: .pod)
             
             
             
@@ -264,12 +300,12 @@ public extension PlatformClient.Communication {
             
             
             
+            try? container.encodeIfPresent(source, forKey: .source)
+            
+            
+            
+            
             try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            
-            try? container.encodeIfPresent(data, forKey: .data)
             
             
             
@@ -280,6 +316,16 @@ public extension PlatformClient.Communication {
             
             
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(application, forKey: .application)
             
             
         }
@@ -300,76 +346,88 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var email: LogEmail?
         
-        public var pushnotification: LogPushnotification?
+        public var sms: LogSms?
         
-        public var meta: LogMeta?
+        public var pushnotification: LogPushnotification?
         
         public var id: String?
         
-        public var application: String?
+        public var pod: String?
         
         public var service: String?
         
         public var step: String?
         
-        public var status: String?
+        public var source: String?
         
-        public var data: [String: Any]?
+        public var status: String?
         
         public var expireAt: String?
         
         public var createdAt: String?
+        
+        public var meta: LogMeta?
+        
+        public var application: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case email = "email"
             
-            case pushnotification = "pushnotification"
+            case sms = "sms"
             
-            case meta = "meta"
+            case pushnotification = "pushnotification"
             
             case id = "_id"
             
-            case application = "application"
+            case pod = "pod"
             
             case service = "service"
             
             case step = "step"
             
-            case status = "status"
+            case source = "source"
             
-            case data = "data"
+            case status = "status"
             
             case expireAt = "expire_at"
             
             case createdAt = "created_at"
             
+            case meta = "meta"
+            
+            case application = "application"
+            
         }
 
-        public init(application: String? = nil, createdAt: String? = nil, data: [String: Any]? = nil, email: LogEmail? = nil, expireAt: String? = nil, meta: LogMeta? = nil, pushnotification: LogPushnotification? = nil, service: String? = nil, status: String? = nil, step: String? = nil, id: String? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, email: LogEmail? = nil, expireAt: String? = nil, meta: LogMeta? = nil, pod: String? = nil, pushnotification: LogPushnotification? = nil, service: String? = nil, sms: LogSms? = nil, source: String? = nil, status: String? = nil, step: String? = nil, id: String? = nil) {
             
             self.email = email
             
-            self.pushnotification = pushnotification
+            self.sms = sms
             
-            self.meta = meta
+            self.pushnotification = pushnotification
             
             self.id = id
             
-            self.application = application
+            self.pod = pod
             
             self.service = service
             
             self.step = step
             
-            self.status = status
+            self.source = source
             
-            self.data = data
+            self.status = status
             
             self.expireAt = expireAt
             
             self.createdAt = createdAt
+            
+            self.meta = meta
+            
+            self.application = application
             
         }
 
@@ -379,6 +437,18 @@ public extension PlatformClient.ApplicationClient.Communication {
             
                 do {
                     email = try container.decode(LogEmail.self, forKey: .email)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    sms = try container.decode(LogSms.self, forKey: .sms)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -402,18 +472,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    meta = try container.decode(LogMeta.self, forKey: .meta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -426,7 +484,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    application = try container.decode(String.self, forKey: .application)
+                    pod = try container.decode(String.self, forKey: .pod)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -462,7 +520,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    status = try container.decode(String.self, forKey: .status)
+                    source = try container.decode(String.self, forKey: .source)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -474,7 +532,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    data = try container.decode([String: Any].self, forKey: .data)
+                    status = try container.decode(String.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -508,6 +566,30 @@ public extension PlatformClient.ApplicationClient.Communication {
                 }
                 
             
+            
+                do {
+                    meta = try container.decode(LogMeta.self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    application = try container.decode(String.self, forKey: .application)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -520,12 +602,12 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
+            try? container.encodeIfPresent(sms, forKey: .sms)
+            
+            
+            
+            
             try? container.encodeIfPresent(pushnotification, forKey: .pushnotification)
-            
-            
-            
-            
-            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
             
@@ -535,7 +617,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
-            try? container.encodeIfPresent(application, forKey: .application)
+            try? container.encodeIfPresent(pod, forKey: .pod)
             
             
             
@@ -550,12 +632,12 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
+            try? container.encodeIfPresent(source, forKey: .source)
+            
+            
+            
+            
             try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            
-            try? container.encodeIfPresent(data, forKey: .data)
             
             
             
@@ -566,6 +648,16 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(application, forKey: .application)
             
             
         }

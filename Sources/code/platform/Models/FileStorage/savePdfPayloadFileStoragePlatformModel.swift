@@ -14,7 +14,7 @@ public extension PlatformClient.FileStorage {
         
         public var pdfTypeId: Double?
         
-        public var payload: PdfPayloadDetails?
+        public var payload: DummyTemplateDataPayload?
         
         public var countryCode: String?
         
@@ -29,7 +29,7 @@ public extension PlatformClient.FileStorage {
             
         }
 
-        public init(countryCode: String? = nil, payload: PdfPayloadDetails? = nil, pdfTypeId: Double? = nil) {
+        public init(countryCode: String? = nil, payload: DummyTemplateDataPayload? = nil, pdfTypeId: Double? = nil) {
             
             self.pdfTypeId = pdfTypeId
             
@@ -56,7 +56,7 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    payload = try container.decode(PdfPayloadDetails.self, forKey: .payload)
+                    payload = try container.decode(DummyTemplateDataPayload.self, forKey: .payload)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,7 +116,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var pdfTypeId: Double?
         
-        public var payload: PdfPayloadDetails?
+        public var payload: DummyTemplateDataPayload?
         
         public var countryCode: String?
         
@@ -131,7 +131,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
         }
 
-        public init(countryCode: String? = nil, payload: PdfPayloadDetails? = nil, pdfTypeId: Double? = nil) {
+        public init(countryCode: String? = nil, payload: DummyTemplateDataPayload? = nil, pdfTypeId: Double? = nil) {
             
             self.pdfTypeId = pdfTypeId
             
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    payload = try container.decode(PdfPayloadDetails.self, forKey: .payload)
+                    payload = try container.decode(DummyTemplateDataPayload.self, forKey: .payload)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

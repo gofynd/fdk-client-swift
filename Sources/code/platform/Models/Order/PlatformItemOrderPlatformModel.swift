@@ -54,6 +54,8 @@ public extension PlatformClient.Order {
         
         public var images: [String]?
         
+        public var variants: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -99,9 +101,11 @@ public extension PlatformClient.Order {
             
             case images = "images"
             
+            case variants = "variants"
+            
         }
 
-        public init(attributes: PlatformArticleAttributes? = nil, branchUrl: String? = nil, brand: String? = nil, brandId: Int? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, code: String? = nil, color: String? = nil, departmentId: Int? = nil, id: Int? = nil, image: [String]? = nil, images: [String]? = nil, l1Category: [String]? = nil, l2Category: [String]? = nil, l3Category: Int? = nil, l3CategoryName: String? = nil, lastUpdatedAt: String? = nil, meta: [String: Any]? = nil, name: String? = nil, size: String? = nil, slugKey: String? = nil) {
+        public init(attributes: PlatformArticleAttributes? = nil, branchUrl: String? = nil, brand: String? = nil, brandId: Int? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, code: String? = nil, color: String? = nil, departmentId: Int? = nil, id: Int? = nil, image: [String]? = nil, images: [String]? = nil, l1Category: [String]? = nil, l2Category: [String]? = nil, l3Category: Int? = nil, l3CategoryName: String? = nil, lastUpdatedAt: String? = nil, meta: [String: Any]? = nil, name: String? = nil, size: String? = nil, slugKey: String? = nil, variants: [String: Any]? = nil) {
             
             self.id = id
             
@@ -144,6 +148,8 @@ public extension PlatformClient.Order {
             self.departmentId = departmentId
             
             self.images = images
+            
+            self.variants = variants
             
         }
 
@@ -402,6 +408,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    variants = try container.decode([String: Any].self, forKey: .variants)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -510,6 +528,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(images, forKey: .images)
+            
+            
+            
+            
+            try? container.encodeIfPresent(variants, forKey: .variants)
             
             
         }
@@ -570,6 +593,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var images: [String]?
         
+        public var variants: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -615,9 +640,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case images = "images"
             
+            case variants = "variants"
+            
         }
 
-        public init(attributes: PlatformArticleAttributes? = nil, branchUrl: String? = nil, brand: String? = nil, brandId: Int? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, code: String? = nil, color: String? = nil, departmentId: Int? = nil, id: Int? = nil, image: [String]? = nil, images: [String]? = nil, l1Category: [String]? = nil, l2Category: [String]? = nil, l3Category: Int? = nil, l3CategoryName: String? = nil, lastUpdatedAt: String? = nil, meta: [String: Any]? = nil, name: String? = nil, size: String? = nil, slugKey: String? = nil) {
+        public init(attributes: PlatformArticleAttributes? = nil, branchUrl: String? = nil, brand: String? = nil, brandId: Int? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, code: String? = nil, color: String? = nil, departmentId: Int? = nil, id: Int? = nil, image: [String]? = nil, images: [String]? = nil, l1Category: [String]? = nil, l2Category: [String]? = nil, l3Category: Int? = nil, l3CategoryName: String? = nil, lastUpdatedAt: String? = nil, meta: [String: Any]? = nil, name: String? = nil, size: String? = nil, slugKey: String? = nil, variants: [String: Any]? = nil) {
             
             self.id = id
             
@@ -660,6 +687,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.departmentId = departmentId
             
             self.images = images
+            
+            self.variants = variants
             
         }
 
@@ -918,6 +947,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    variants = try container.decode([String: Any].self, forKey: .variants)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -1026,6 +1067,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(images, forKey: .images)
+            
+            
+            
+            
+            try? container.encodeIfPresent(variants, forKey: .variants)
             
             
         }

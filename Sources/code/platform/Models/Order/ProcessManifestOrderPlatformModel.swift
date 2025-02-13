@@ -12,7 +12,7 @@ public extension PlatformClient.Order {
     class ProcessManifest: Codable {
         
         
-        public var filters: FiltersRequestSchema
+        public var filters: FiltersRequest
         
         public var action: String
         
@@ -33,7 +33,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(action: String, filters: FiltersRequestSchema, manifestId: String? = nil, uniqueId: String) {
+        public init(action: String, filters: FiltersRequest, manifestId: String? = nil, uniqueId: String) {
             
             self.filters = filters
             
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                filters = try container.decode(FiltersRequestSchema.self, forKey: .filters)
+                filters = try container.decode(FiltersRequest.self, forKey: .filters)
                 
             
             
@@ -116,7 +116,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class ProcessManifest: Codable {
         
         
-        public var filters: FiltersRequestSchema
+        public var filters: FiltersRequest
         
         public var action: String
         
@@ -137,7 +137,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(action: String, filters: FiltersRequestSchema, manifestId: String? = nil, uniqueId: String) {
+        public init(action: String, filters: FiltersRequest, manifestId: String? = nil, uniqueId: String) {
             
             self.filters = filters
             
@@ -153,7 +153,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                filters = try container.decode(FiltersRequestSchema.self, forKey: .filters)
+                filters = try container.decode(FiltersRequest.self, forKey: .filters)
                 
             
             

@@ -28,6 +28,8 @@ public extension ApplicationClient.Cart {
         
         public var promotionName: String?
         
+        public var validTill: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -51,9 +53,11 @@ public extension ApplicationClient.Cart {
             
             case promotionName = "promotion_name"
             
+            case validTill = "valid_till"
+            
         }
 
-        public init(applicationId: String? = nil, buyRules: [[String: Any]]? = nil, calculateOn: String? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil) {
+        public init(applicationId: String? = nil, buyRules: [[String: Any]]? = nil, calculateOn: String? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, validTill: String? = nil) {
             
             self.applicationId = applicationId
             
@@ -74,6 +78,8 @@ public extension ApplicationClient.Cart {
             self.promotionType = promotionType
             
             self.promotionName = promotionName
+            
+            self.validTill = validTill
             
         }
 
@@ -200,6 +206,18 @@ public extension ApplicationClient.Cart {
             }
             
             
+            
+            do {
+                validTill = try container.decode(String.self, forKey: .validTill)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -243,6 +261,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(promotionName, forKey: .promotionName)
+            
+            
+            
+            try? container.encodeIfPresent(validTill, forKey: .validTill)
             
             
         }

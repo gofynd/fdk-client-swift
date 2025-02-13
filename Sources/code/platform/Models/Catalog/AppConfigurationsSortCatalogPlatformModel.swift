@@ -14,7 +14,7 @@ public extension PlatformClient.Catalog {
         
         public var appId: String
         
-        public var defaultKey: String
+        public var defaultKey: String?
         
         public var isActive: Bool
         
@@ -27,8 +27,6 @@ public extension PlatformClient.Catalog {
         public var name: String?
         
         public var priority: Int
-        
-        public var seo: ApplicationItemSEO?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -49,11 +47,9 @@ public extension PlatformClient.Catalog {
             
             case priority = "priority"
             
-            case seo = "seo"
-            
         }
 
-        public init(appId: String, defaultKey: String, isActive: Bool, isDefault: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int, seo: ApplicationItemSEO? = nil) {
+        public init(appId: String, defaultKey: String? = nil, isActive: Bool, isDefault: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
             
             self.appId = appId
             
@@ -71,8 +67,6 @@ public extension PlatformClient.Catalog {
             
             self.priority = priority
             
-            self.seo = seo
-            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -84,9 +78,16 @@ public extension PlatformClient.Catalog {
             
             
             
-                defaultKey = try container.decode(String.self, forKey: .defaultKey)
+                do {
+                    defaultKey = try container.decode(String.self, forKey: .defaultKey)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -132,18 +133,6 @@ public extension PlatformClient.Catalog {
                 
             
             
-            
-                do {
-                    seo = try container.decode(ApplicationItemSEO.self, forKey: .seo)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -187,11 +176,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(priority, forKey: .priority)
-            
-            
-            
-            
-            try? container.encodeIfPresent(seo, forKey: .seo)
             
             
         }
@@ -212,7 +196,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var appId: String
         
-        public var defaultKey: String
+        public var defaultKey: String?
         
         public var isActive: Bool
         
@@ -225,8 +209,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var name: String?
         
         public var priority: Int
-        
-        public var seo: ApplicationItemSEO?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -247,11 +229,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case priority = "priority"
             
-            case seo = "seo"
-            
         }
 
-        public init(appId: String, defaultKey: String, isActive: Bool, isDefault: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int, seo: ApplicationItemSEO? = nil) {
+        public init(appId: String, defaultKey: String? = nil, isActive: Bool, isDefault: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
             
             self.appId = appId
             
@@ -269,8 +249,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.priority = priority
             
-            self.seo = seo
-            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -282,9 +260,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-                defaultKey = try container.decode(String.self, forKey: .defaultKey)
+                do {
+                    defaultKey = try container.decode(String.self, forKey: .defaultKey)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -330,18 +315,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-            
-                do {
-                    seo = try container.decode(ApplicationItemSEO.self, forKey: .seo)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -385,11 +358,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(priority, forKey: .priority)
-            
-            
-            
-            
-            try? container.encodeIfPresent(seo, forKey: .seo)
             
             
         }

@@ -12,42 +12,54 @@ public extension PlatformClient.Order {
     class Config: Codable {
         
         
-        public var fromState: String?
+        public var lockStates: [String]?
         
-        public var toState: String?
+        public var payment: ConfigPayment
         
-        public var preHooks: [PreHook]?
+        public var dpConfiguration: ConfigDpConfiguration?
         
-        public var postHooks: [PostHook]?
+        public var locationReassignment: Bool?
         
-        public var flags: Flags?
+        public var application: ConfigApplication?
+        
+        public var orderingChannelLogo: String?
+        
+        public var integrationType: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case fromState = "from_state"
+            case lockStates = "lock_states"
             
-            case toState = "to_state"
+            case payment = "payment"
             
-            case preHooks = "pre_hooks"
+            case dpConfiguration = "dp_configuration"
             
-            case postHooks = "post_hooks"
+            case locationReassignment = "location_reassignment"
             
-            case flags = "flags"
+            case application = "application"
+            
+            case orderingChannelLogo = "ordering_channel_logo"
+            
+            case integrationType = "integration_type"
             
         }
 
-        public init(flags: Flags? = nil, fromState: String? = nil, postHooks: [PostHook]? = nil, preHooks: [PreHook]? = nil, toState: String? = nil) {
+        public init(application: ConfigApplication? = nil, dpConfiguration: ConfigDpConfiguration? = nil, integrationType: String? = nil, locationReassignment: Bool? = nil, lockStates: [String]? = nil, orderingChannelLogo: String? = nil, payment: ConfigPayment) {
             
-            self.fromState = fromState
+            self.lockStates = lockStates
             
-            self.toState = toState
+            self.payment = payment
             
-            self.preHooks = preHooks
+            self.dpConfiguration = dpConfiguration
             
-            self.postHooks = postHooks
+            self.locationReassignment = locationReassignment
             
-            self.flags = flags
+            self.application = application
+            
+            self.orderingChannelLogo = orderingChannelLogo
+            
+            self.integrationType = integrationType
             
         }
 
@@ -56,7 +68,24 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    fromState = try container.decode(String.self, forKey: .fromState)
+                    lockStates = try container.decode([String].self, forKey: .lockStates)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                payment = try container.decode(ConfigPayment.self, forKey: .payment)
+                
+            
+            
+            
+                do {
+                    dpConfiguration = try container.decode(ConfigDpConfiguration.self, forKey: .dpConfiguration)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +97,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    toState = try container.decode(String.self, forKey: .toState)
+                    locationReassignment = try container.decode(Bool.self, forKey: .locationReassignment)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,7 +109,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    preHooks = try container.decode([PreHook].self, forKey: .preHooks)
+                    application = try container.decode(ConfigApplication.self, forKey: .application)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,7 +121,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    postHooks = try container.decode([PostHook].self, forKey: .postHooks)
+                    orderingChannelLogo = try container.decode(String.self, forKey: .orderingChannelLogo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +133,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    flags = try container.decode(Flags.self, forKey: .flags)
+                    integrationType = try container.decode(String.self, forKey: .integrationType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,27 +150,37 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(fromState, forKey: .fromState)
+            try? container.encodeIfPresent(lockStates, forKey: .lockStates)
             
             
             
             
-            try? container.encodeIfPresent(toState, forKey: .toState)
+            try? container.encodeIfPresent(payment, forKey: .payment)
             
             
             
             
-            try? container.encodeIfPresent(preHooks, forKey: .preHooks)
+            try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
             
             
             
             
-            try? container.encodeIfPresent(postHooks, forKey: .postHooks)
+            try? container.encodeIfPresent(locationReassignment, forKey: .locationReassignment)
             
             
             
             
-            try? container.encodeIfPresent(flags, forKey: .flags)
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingChannelLogo, forKey: .orderingChannelLogo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
             
             
         }
@@ -160,42 +199,54 @@ public extension PlatformClient.ApplicationClient.Order {
     class Config: Codable {
         
         
-        public var fromState: String?
+        public var lockStates: [String]?
         
-        public var toState: String?
+        public var payment: ConfigPayment
         
-        public var preHooks: [PreHook]?
+        public var dpConfiguration: ConfigDpConfiguration?
         
-        public var postHooks: [PostHook]?
+        public var locationReassignment: Bool?
         
-        public var flags: Flags?
+        public var application: ConfigApplication?
+        
+        public var orderingChannelLogo: String?
+        
+        public var integrationType: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case fromState = "from_state"
+            case lockStates = "lock_states"
             
-            case toState = "to_state"
+            case payment = "payment"
             
-            case preHooks = "pre_hooks"
+            case dpConfiguration = "dp_configuration"
             
-            case postHooks = "post_hooks"
+            case locationReassignment = "location_reassignment"
             
-            case flags = "flags"
+            case application = "application"
+            
+            case orderingChannelLogo = "ordering_channel_logo"
+            
+            case integrationType = "integration_type"
             
         }
 
-        public init(flags: Flags? = nil, fromState: String? = nil, postHooks: [PostHook]? = nil, preHooks: [PreHook]? = nil, toState: String? = nil) {
+        public init(application: ConfigApplication? = nil, dpConfiguration: ConfigDpConfiguration? = nil, integrationType: String? = nil, locationReassignment: Bool? = nil, lockStates: [String]? = nil, orderingChannelLogo: String? = nil, payment: ConfigPayment) {
             
-            self.fromState = fromState
+            self.lockStates = lockStates
             
-            self.toState = toState
+            self.payment = payment
             
-            self.preHooks = preHooks
+            self.dpConfiguration = dpConfiguration
             
-            self.postHooks = postHooks
+            self.locationReassignment = locationReassignment
             
-            self.flags = flags
+            self.application = application
+            
+            self.orderingChannelLogo = orderingChannelLogo
+            
+            self.integrationType = integrationType
             
         }
 
@@ -204,7 +255,24 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    fromState = try container.decode(String.self, forKey: .fromState)
+                    lockStates = try container.decode([String].self, forKey: .lockStates)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                payment = try container.decode(ConfigPayment.self, forKey: .payment)
+                
+            
+            
+            
+                do {
+                    dpConfiguration = try container.decode(ConfigDpConfiguration.self, forKey: .dpConfiguration)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -216,7 +284,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    toState = try container.decode(String.self, forKey: .toState)
+                    locationReassignment = try container.decode(Bool.self, forKey: .locationReassignment)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -228,7 +296,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    preHooks = try container.decode([PreHook].self, forKey: .preHooks)
+                    application = try container.decode(ConfigApplication.self, forKey: .application)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -240,7 +308,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    postHooks = try container.decode([PostHook].self, forKey: .postHooks)
+                    orderingChannelLogo = try container.decode(String.self, forKey: .orderingChannelLogo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -252,7 +320,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    flags = try container.decode(Flags.self, forKey: .flags)
+                    integrationType = try container.decode(String.self, forKey: .integrationType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -269,27 +337,37 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(fromState, forKey: .fromState)
+            try? container.encodeIfPresent(lockStates, forKey: .lockStates)
             
             
             
             
-            try? container.encodeIfPresent(toState, forKey: .toState)
+            try? container.encodeIfPresent(payment, forKey: .payment)
             
             
             
             
-            try? container.encodeIfPresent(preHooks, forKey: .preHooks)
+            try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
             
             
             
             
-            try? container.encodeIfPresent(postHooks, forKey: .postHooks)
+            try? container.encodeIfPresent(locationReassignment, forKey: .locationReassignment)
             
             
             
             
-            try? container.encodeIfPresent(flags, forKey: .flags)
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingChannelLogo, forKey: .orderingChannelLogo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
             
             
         }

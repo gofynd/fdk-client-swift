@@ -28,7 +28,7 @@ public extension PlatformClient.Serviceability {
         
         public var mapping: [ZoneMappingType]
         
-        public var product: ZoneProductTypes?
+        public var assignmentPreference: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -49,11 +49,11 @@ public extension PlatformClient.Serviceability {
             
             case mapping = "mapping"
             
-            case product = "product"
+            case assignmentPreference = "assignment_preference"
             
         }
 
-        public init(channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes? = nil, regionType: String, slug: String, storeIds: [Int]) {
+        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, regionType: String, slug: String, storeIds: [Int]) {
             
             self.name = name
             
@@ -71,7 +71,7 @@ public extension PlatformClient.Serviceability {
             
             self.mapping = mapping
             
-            self.product = product
+            self.assignmentPreference = assignmentPreference
             
         }
 
@@ -120,7 +120,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    product = try container.decode(ZoneProductTypes.self, forKey: .product)
+                    assignmentPreference = try container.decode(String.self, forKey: .assignmentPreference)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -177,7 +177,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(product, forKey: .product)
+            try? container.encodeIfPresent(assignmentPreference, forKey: .assignmentPreference)
             
             
         }
@@ -212,7 +212,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var mapping: [ZoneMappingType]
         
-        public var product: ZoneProductTypes?
+        public var assignmentPreference: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -233,11 +233,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case mapping = "mapping"
             
-            case product = "product"
+            case assignmentPreference = "assignment_preference"
             
         }
 
-        public init(channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes? = nil, regionType: String, slug: String, storeIds: [Int]) {
+        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, regionType: String, slug: String, storeIds: [Int]) {
             
             self.name = name
             
@@ -255,7 +255,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             self.mapping = mapping
             
-            self.product = product
+            self.assignmentPreference = assignmentPreference
             
         }
 
@@ -304,7 +304,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    product = try container.decode(ZoneProductTypes.self, forKey: .product)
+                    assignmentPreference = try container.decode(String.self, forKey: .assignmentPreference)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -361,7 +361,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(product, forKey: .product)
+            try? container.encodeIfPresent(assignmentPreference, forKey: .assignmentPreference)
             
             
         }

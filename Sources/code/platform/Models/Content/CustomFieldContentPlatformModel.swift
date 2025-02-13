@@ -12,30 +12,18 @@ public extension PlatformClient.Content {
     class CustomField: Codable {
         
         
-        public var value: [[String: Any]]?
-        
-        public var namespace: String?
-        
-        public var slug: String?
+        public var definitionId: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case value = "value"
-            
-            case namespace = "namespace"
-            
-            case slug = "slug"
+            case definitionId = "definition_id"
             
         }
 
-        public init(namespace: String? = nil, slug: String? = nil, value: [[String: Any]]? = nil) {
+        public init(definitionId: String? = nil) {
             
-            self.value = value
-            
-            self.namespace = namespace
-            
-            self.slug = slug
+            self.definitionId = definitionId
             
         }
 
@@ -44,31 +32,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    value = try container.decode([[String: Any]].self, forKey: .value)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    namespace = try container.decode(String.self, forKey: .namespace)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    slug = try container.decode(String.self, forKey: .slug)
+                    definitionId = try container.decode(String.self, forKey: .definitionId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,17 +49,7 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(value, forKey: .value)
-            
-            
-            
-            
-            try? container.encodeIfPresent(namespace, forKey: .namespace)
-            
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(definitionId, forKey: .definitionId)
             
             
         }
@@ -114,30 +68,18 @@ public extension PlatformClient.ApplicationClient.Content {
     class CustomField: Codable {
         
         
-        public var value: [[String: Any]]?
-        
-        public var namespace: String?
-        
-        public var slug: String?
+        public var definitionId: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case value = "value"
-            
-            case namespace = "namespace"
-            
-            case slug = "slug"
+            case definitionId = "definition_id"
             
         }
 
-        public init(namespace: String? = nil, slug: String? = nil, value: [[String: Any]]? = nil) {
+        public init(definitionId: String? = nil) {
             
-            self.value = value
-            
-            self.namespace = namespace
-            
-            self.slug = slug
+            self.definitionId = definitionId
             
         }
 
@@ -146,31 +88,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    value = try container.decode([[String: Any]].self, forKey: .value)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    namespace = try container.decode(String.self, forKey: .namespace)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    slug = try container.decode(String.self, forKey: .slug)
+                    definitionId = try container.decode(String.self, forKey: .definitionId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,17 +105,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(value, forKey: .value)
-            
-            
-            
-            
-            try? container.encodeIfPresent(namespace, forKey: .namespace)
-            
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(definitionId, forKey: .definitionId)
             
             
         }

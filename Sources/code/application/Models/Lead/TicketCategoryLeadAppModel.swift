@@ -12,7 +12,7 @@ public extension ApplicationClient.Lead {
         
         public var key: String
         
-        public var subCategories: TicketCategory?
+        public var subCategories: [TicketCategory]?
         
         public var groupId: Double?
         
@@ -33,7 +33,7 @@ public extension ApplicationClient.Lead {
             
         }
 
-        public init(display: String, feedbackForm: FeedbackForm? = nil, groupId: Double? = nil, key: String, subCategories: TicketCategory? = nil) {
+        public init(display: String, feedbackForm: FeedbackForm? = nil, groupId: Double? = nil, key: String, subCategories: [TicketCategory]? = nil) {
             
             self.display = display
             
@@ -62,7 +62,7 @@ public extension ApplicationClient.Lead {
             
             
             do {
-                subCategories = try container.decode(TicketCategory.self, forKey: .subCategories)
+                subCategories = try container.decode([TicketCategory].self, forKey: .subCategories)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

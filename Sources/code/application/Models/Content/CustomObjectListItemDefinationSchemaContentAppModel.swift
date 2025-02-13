@@ -14,6 +14,8 @@ public extension ApplicationClient.Content {
         
         public var type: String?
         
+        public var displayNameKey: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,15 +25,19 @@ public extension ApplicationClient.Content {
             
             case type = "type"
             
+            case displayNameKey = "display_name_key"
+            
         }
 
-        public init(name: String? = nil, type: String? = nil, id: String? = nil) {
+        public init(displayNameKey: String? = nil, name: String? = nil, type: String? = nil, id: String? = nil) {
             
             self.id = id
             
             self.name = name
             
             self.type = type
+            
+            self.displayNameKey = displayNameKey
             
         }
 
@@ -74,6 +80,18 @@ public extension ApplicationClient.Content {
             }
             
             
+            
+            do {
+                displayNameKey = try container.decode(String.self, forKey: .displayNameKey)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -89,6 +107,10 @@ public extension ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            try? container.encodeIfPresent(displayNameKey, forKey: .displayNameKey)
             
             
         }

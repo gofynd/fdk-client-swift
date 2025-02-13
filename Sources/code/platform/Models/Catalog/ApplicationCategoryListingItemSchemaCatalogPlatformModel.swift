@@ -32,7 +32,7 @@ public extension PlatformClient.Catalog {
         
         public var createdOn: String?
         
-        public var modifiedBy: CreatedBy?
+        public var modifiedBy: ModifiedBy?
         
         public var modifiedOn: String?
         
@@ -77,7 +77,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(appId: String? = nil, attrName: String? = nil, createdBy: CreatedBy? = nil, createdOn: String? = nil, departments: [Int]? = nil, isActive: Bool? = nil, landscapeUrl: String? = nil, logo: String? = nil, modifiedBy: CreatedBy? = nil, modifiedOn: String? = nil, name: String? = nil, portraitUrl: String? = nil, priority: Int? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
+        public init(appId: String? = nil, attrName: String? = nil, createdBy: CreatedBy? = nil, createdOn: String? = nil, departments: [Int]? = nil, isActive: Bool? = nil, landscapeUrl: String? = nil, logo: String? = nil, modifiedBy: ModifiedBy? = nil, modifiedOn: String? = nil, name: String? = nil, portraitUrl: String? = nil, priority: Int? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             
             self.name = name
             
@@ -236,7 +236,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(CreatedBy.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(ModifiedBy.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -410,7 +410,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var createdOn: String?
         
-        public var modifiedBy: CreatedBy?
+        public var modifiedBy: ModifiedBy?
         
         public var modifiedOn: String?
         
@@ -455,7 +455,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(appId: String? = nil, attrName: String? = nil, createdBy: CreatedBy? = nil, createdOn: String? = nil, departments: [Int]? = nil, isActive: Bool? = nil, landscapeUrl: String? = nil, logo: String? = nil, modifiedBy: CreatedBy? = nil, modifiedOn: String? = nil, name: String? = nil, portraitUrl: String? = nil, priority: Int? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
+        public init(appId: String? = nil, attrName: String? = nil, createdBy: CreatedBy? = nil, createdOn: String? = nil, departments: [Int]? = nil, isActive: Bool? = nil, landscapeUrl: String? = nil, logo: String? = nil, modifiedBy: ModifiedBy? = nil, modifiedOn: String? = nil, name: String? = nil, portraitUrl: String? = nil, priority: Int? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             
             self.name = name
             
@@ -614,7 +614,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(CreatedBy.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(ModifiedBy.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

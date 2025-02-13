@@ -12,6 +12,8 @@ public extension ApplicationClient.User {
         
         public var resendEmailToken: String?
         
+        public var emailOtp: EmailOtp?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -19,13 +21,17 @@ public extension ApplicationClient.User {
             
             case resendEmailToken = "resend_email_token"
             
+            case emailOtp = "email_otp"
+            
         }
 
-        public init(resendEmailToken: String? = nil, success: Bool? = nil) {
+        public init(emailOtp: EmailOtp? = nil, resendEmailToken: String? = nil, success: Bool? = nil) {
             
             self.success = success
             
             self.resendEmailToken = resendEmailToken
+            
+            self.emailOtp = emailOtp
             
         }
 
@@ -56,6 +62,18 @@ public extension ApplicationClient.User {
             }
             
             
+            
+            do {
+                emailOtp = try container.decode(EmailOtp.self, forKey: .emailOtp)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -67,6 +85,10 @@ public extension ApplicationClient.User {
             
             
             try? container.encodeIfPresent(resendEmailToken, forKey: .resendEmailToken)
+            
+            
+            
+            try? container.encodeIfPresent(emailOtp, forKey: .emailOtp)
             
             
         }

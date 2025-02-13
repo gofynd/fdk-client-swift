@@ -12,9 +12,9 @@ public extension PlatformClient.Content {
     class PageMetaSchema: Codable {
         
         
-        public var systemPages: [NavigationSchema]?
+        public var systemPages: [SystemPages]?
         
-        public var customPages: [PageSchema]?
+        public var customPages: [CustomePages]?
         
         public var applicationId: String?
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(applicationId: String? = nil, customPages: [PageSchema]? = nil, systemPages: [NavigationSchema]? = nil) {
+        public init(applicationId: String? = nil, customPages: [CustomePages]? = nil, systemPages: [SystemPages]? = nil) {
             
             self.systemPages = systemPages
             
@@ -44,7 +44,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    systemPages = try container.decode([NavigationSchema].self, forKey: .systemPages)
+                    systemPages = try container.decode([SystemPages].self, forKey: .systemPages)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    customPages = try container.decode([PageSchema].self, forKey: .customPages)
+                    customPages = try container.decode([CustomePages].self, forKey: .customPages)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Content {
     class PageMetaSchema: Codable {
         
         
-        public var systemPages: [NavigationSchema]?
+        public var systemPages: [SystemPages]?
         
-        public var customPages: [PageSchema]?
+        public var customPages: [CustomePages]?
         
         public var applicationId: String?
         
@@ -131,7 +131,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(applicationId: String? = nil, customPages: [PageSchema]? = nil, systemPages: [NavigationSchema]? = nil) {
+        public init(applicationId: String? = nil, customPages: [CustomePages]? = nil, systemPages: [SystemPages]? = nil) {
             
             self.systemPages = systemPages
             
@@ -146,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    systemPages = try container.decode([NavigationSchema].self, forKey: .systemPages)
+                    systemPages = try container.decode([SystemPages].self, forKey: .systemPages)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    customPages = try container.decode([PageSchema].self, forKey: .customPages)
+                    customPages = try container.decode([CustomePages].self, forKey: .customPages)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

@@ -8,24 +8,24 @@ public extension ApplicationClient.Logistic {
     */
     class Promise: Codable {
         
-        public var min: String?
+        public var customerPromise: PromiseDetails?
         
-        public var max: String?
+        public var meta: PromiseMeta?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case min = "min"
+            case customerPromise = "customer_promise"
             
-            case max = "max"
+            case meta = "meta"
             
         }
 
-        public init(max: String? = nil, min: String? = nil) {
+        public init(customerPromise: PromiseDetails? = nil, meta: PromiseMeta? = nil) {
             
-            self.min = min
+            self.customerPromise = customerPromise
             
-            self.max = max
+            self.meta = meta
             
         }
 
@@ -34,7 +34,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                min = try container.decode(String.self, forKey: .min)
+                customerPromise = try container.decode(PromiseDetails.self, forKey: .customerPromise)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,7 +46,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                max = try container.decode(String.self, forKey: .max)
+                meta = try container.decode(PromiseMeta.self, forKey: .meta)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,11 +62,11 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(min, forKey: .min)
+            try? container.encodeIfPresent(customerPromise, forKey: .customerPromise)
             
             
             
-            try? container.encodeIfPresent(max, forKey: .max)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }

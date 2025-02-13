@@ -12,6 +12,8 @@ public extension ApplicationClient.Cart {
         
         public var currency: CurrencyInfo?
         
+        public var storeId: [Double]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -19,13 +21,17 @@ public extension ApplicationClient.Cart {
             
             case currency = "currency"
             
+            case storeId = "store_id"
+            
         }
 
-        public init(availableOffers: [LadderPriceOffer]? = nil, currency: CurrencyInfo? = nil) {
+        public init(availableOffers: [LadderPriceOffer]? = nil, currency: CurrencyInfo? = nil, storeId: [Double]? = nil) {
             
             self.availableOffers = availableOffers
             
             self.currency = currency
+            
+            self.storeId = storeId
             
         }
 
@@ -56,6 +62,18 @@ public extension ApplicationClient.Cart {
             }
             
             
+            
+            do {
+                storeId = try container.decode([Double].self, forKey: .storeId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -67,6 +85,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
             
             
         }
