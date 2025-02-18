@@ -16,7 +16,7 @@ public extension ApplicationClient.Payment {
         
         public var availableBalance: UserCreditSchema?
         
-        public var amountOnHold: UserCreditSchema?
+        public var amountOnHold: [UserCreditSchema]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,7 +33,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(accountId: String, amountOnHold: UserCreditSchema? = nil, availableBalance: UserCreditSchema? = nil, redeemableBalance: UserCreditSchema? = nil, status: String) {
+        public init(accountId: String, amountOnHold: [UserCreditSchema]? = nil, availableBalance: UserCreditSchema? = nil, redeemableBalance: UserCreditSchema? = nil, status: String) {
             
             self.accountId = accountId
             
@@ -86,7 +86,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                amountOnHold = try container.decode(UserCreditSchema.self, forKey: .amountOnHold)
+                amountOnHold = try container.decode([UserCreditSchema].self, forKey: .amountOnHold)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

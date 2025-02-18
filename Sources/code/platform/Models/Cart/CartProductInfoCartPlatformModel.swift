@@ -50,6 +50,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var moq: [String: Any]?
         
+        public var maxQuantity: ProductMaxQuantityInfo?
+        
         public var pricePerUnit: ProductPriceInfo?
         
         public var promoMeta: PromoMeta?
@@ -95,6 +97,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case moq = "moq"
             
+            case maxQuantity = "max_quantity"
+            
             case pricePerUnit = "price_per_unit"
             
             case promoMeta = "promo_meta"
@@ -103,7 +107,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(article: ProductArticle? = nil, availability: ProductAvailability? = nil, bulkOffer: [String: Any]? = nil, coupon: CouponDetails? = nil, couponMessage: String? = nil, customOrder: [String: Any]? = nil, deliveryPromise: ShipmentPromise? = nil, discount: String? = nil, identifiers: CartProductIdentifer, isSet: Bool? = nil, key: String? = nil, message: String? = nil, moq: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ProductPriceInfo? = nil, pricePerUnit: ProductPriceInfo? = nil, product: CartProduct? = nil, productEanId: String? = nil, promotionsApplied: [AppliedPromotion]? = nil, promoMeta: PromoMeta? = nil, quantity: Int? = nil) {
+        public init(article: ProductArticle? = nil, availability: ProductAvailability? = nil, bulkOffer: [String: Any]? = nil, coupon: CouponDetails? = nil, couponMessage: String? = nil, customOrder: [String: Any]? = nil, deliveryPromise: ShipmentPromise? = nil, discount: String? = nil, identifiers: CartProductIdentifer, isSet: Bool? = nil, key: String? = nil, maxQuantity: ProductMaxQuantityInfo? = nil, message: String? = nil, moq: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ProductPriceInfo? = nil, pricePerUnit: ProductPriceInfo? = nil, product: CartProduct? = nil, productEanId: String? = nil, promotionsApplied: [AppliedPromotion]? = nil, promoMeta: PromoMeta? = nil, quantity: Int? = nil) {
             
             self.quantity = quantity
             
@@ -140,6 +144,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.availability = availability
             
             self.moq = moq
+            
+            self.maxQuantity = maxQuantity
             
             self.pricePerUnit = pricePerUnit
             
@@ -363,6 +369,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
+                    maxQuantity = try container.decode(ProductMaxQuantityInfo.self, forKey: .maxQuantity)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     pricePerUnit = try container.decode(ProductPriceInfo.self, forKey: .pricePerUnit)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -490,6 +508,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(moq, forKey: .moq)
+            
+            
+            
+            
+            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
             
             
             

@@ -1641,7 +1641,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/company-details/",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/marketplaces/company-details/",
                 query: nil,
                 body: nil,
                 headers: xHeaders,
@@ -1756,7 +1756,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/location-details/",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/marketplaces/location-details/",
                 query: xQuery,
                 body: nil,
                 headers: xHeaders,
@@ -3311,7 +3311,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/sizes/\(size)",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/sizes/\(size)",
                 query: xQuery,
                 body: nil,
                 headers: xHeaders,
@@ -3410,7 +3410,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/sizes/\(size)",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/sizes/\(size)",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,

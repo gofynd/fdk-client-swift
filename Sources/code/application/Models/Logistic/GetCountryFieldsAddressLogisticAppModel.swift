@@ -10,15 +10,13 @@ public extension ApplicationClient.Logistic {
         
         public var displayName: String
         
-        public var next: String?
-        
         public var slug: String
         
         public var required: Bool
         
         public var edit: Bool?
         
-        public var input: String?
+        public var input: String
         
         public var validation: FieldValidation?
         
@@ -30,8 +28,6 @@ public extension ApplicationClient.Logistic {
         public enum CodingKeys: String, CodingKey {
             
             case displayName = "display_name"
-            
-            case next = "next"
             
             case slug = "slug"
             
@@ -49,11 +45,9 @@ public extension ApplicationClient.Logistic {
             
         }
 
-        public init(displayName: String, edit: Bool? = nil, errorText: String? = nil, input: String? = nil, next: String? = nil, required: Bool, slug: String, validation: FieldValidation? = nil, values: GetCountryFieldsAddressValues? = nil) {
+        public init(displayName: String, edit: Bool? = nil, errorText: String? = nil, input: String, required: Bool, slug: String, validation: FieldValidation? = nil, values: GetCountryFieldsAddressValues? = nil) {
             
             self.displayName = displayName
-            
-            self.next = next
             
             self.slug = slug
             
@@ -80,18 +74,6 @@ public extension ApplicationClient.Logistic {
             
             
             
-            do {
-                next = try container.decode(String.self, forKey: .next)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
             slug = try container.decode(String.self, forKey: .slug)
             
             
@@ -114,15 +96,8 @@ public extension ApplicationClient.Logistic {
             
             
             
-            do {
-                input = try container.decode(String.self, forKey: .input)
+            input = try container.decode(String.self, forKey: .input)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
             
@@ -168,10 +143,6 @@ public extension ApplicationClient.Logistic {
             
             
             try? container.encodeIfPresent(displayName, forKey: .displayName)
-            
-            
-            
-            try? container.encodeIfPresent(next, forKey: .next)
             
             
             

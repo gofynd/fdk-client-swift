@@ -12,7 +12,7 @@ public extension PlatformClient.Serviceability {
     class BulkRegionResultItemData: Codable {
         
         
-        public var filePath: String?
+        public var filePath: String
         
         public var failed: Int?
         
@@ -61,7 +61,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(action: String, batchId: String, country: String, errorFilePath: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String? = nil, region: String, status: String, success: Int? = nil, total: Int? = nil) {
+        public init(action: String, batchId: String, country: String, errorFilePath: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String, region: String, status: String, success: Int? = nil, total: Int? = nil) {
             
             self.filePath = filePath
             
@@ -91,16 +91,9 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    filePath = try container.decode(String.self, forKey: .filePath)
+                filePath = try container.decode(String.self, forKey: .filePath)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -263,7 +256,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class BulkRegionResultItemData: Codable {
         
         
-        public var filePath: String?
+        public var filePath: String
         
         public var failed: Int?
         
@@ -312,7 +305,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(action: String, batchId: String, country: String, errorFilePath: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String? = nil, region: String, status: String, success: Int? = nil, total: Int? = nil) {
+        public init(action: String, batchId: String, country: String, errorFilePath: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String, region: String, status: String, success: Int? = nil, total: Int? = nil) {
             
             self.filePath = filePath
             
@@ -342,16 +335,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    filePath = try container.decode(String.self, forKey: .filePath)
+                filePath = try container.decode(String.self, forKey: .filePath)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {

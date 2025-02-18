@@ -51,6 +51,14 @@ extension ApplicationClient {
             
             ulrs["getCustomFieldsByResourceId"] = config.domain.appendAsPath("/service/application/content/v2.0/customfields/resource/{resource}/{resource_slug}") 
             
+            ulrs["getTranslateUILabels"] = config.domain.appendAsPath("/service/application/content/v1.0/translate-ui-labels") 
+            
+            ulrs["fetchResourceTranslations"] = config.domain.appendAsPath("/service/application/content/v1.0/resource/translations/{type}/{locale}") 
+            
+            ulrs["fetchResourceTranslationsWithPayload"] = config.domain.appendAsPath("/service/application/content/v1.0/resource/translations/{type}/{locale}") 
+            
+            ulrs["getSupportedLanguages"] = config.domain.appendAsPath("/service/application/content/v1.0/languages") 
+            
             self.relativeUrls = ulrs
         }
         public func update(updatedUrl : [String: String]){
@@ -1181,6 +1189,255 @@ extension ApplicationClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(CustomFieldsResponseByResourceIdSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get Translate Ui Labels
+        * Description: Retrieve Translate Ui Labels with filtering options for type, template, and locale settings.
+        **/
+        public func getTranslateUILabels(
+            template: Bool?,
+            templateThemeId: String?,
+            themeId: String?,
+            locale: String?,
+            type: String?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: TranslateUiLabelsPage?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = template {
+                xQuery["template"] = value
+            }
+            
+            if let value = templateThemeId {
+                xQuery["template_theme_id"] = value
+            }
+            
+            if let value = themeId {
+                xQuery["theme_id"] = value
+            }
+            
+            if let value = locale {
+                xQuery["locale"] = value
+            }
+            
+            if let value = type {
+                xQuery["type"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            let fullUrl = relativeUrls["getTranslateUILabels"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: xHeaders,
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(TranslateUiLabelsPage.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Get Resource Translations
+        * Description: Fetch translations for specific resource IDs based on type and locale settings.
+        **/
+        public func fetchResourceTranslations(
+            type: String,
+            locale: String,
+            resourceId: String,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: ResourceTranslations?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["resource_id"] = resourceId
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            var fullUrl = relativeUrls["fetchResourceTranslations"] ?? ""
+            
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "type" + "}", with: "\(type)")
+            
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "locale" + "}", with: "\(locale)")
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: xHeaders,
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ResourceTranslations.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: Post Resource Translations
+        * Description: Submit and retrieve translations for resources using payload data and locale settings.
+        **/
+        public func fetchResourceTranslationsWithPayload(
+            type: String,
+            locale: String,
+            resourceId: String,
+            body: ResourcePayload,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: ResourceTranslations?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            xQuery["resource_id"] = resourceId
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            var fullUrl = relativeUrls["fetchResourceTranslationsWithPayload"] ?? ""
+            
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "type" + "}", with: "\(type)")
+            
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "locale" + "}", with: "\(locale)")
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: xHeaders,
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ResourceTranslations.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        /**
+        *
+        * Summary: List App Languages
+        * Description: Retrieve available languages and their configurations for the specified application.
+        **/
+        public func getSupportedLanguages(
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            
+            let fullUrl = relativeUrls["getSupportedLanguages"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: xHeaders,
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = data.dictionary
                         
                         onResponse(response, nil)
                     } else {

@@ -12,6 +12,8 @@ public extension PlatformClient.Serviceability {
     class HierarchyItems: Codable {
         
         
+        public var name: String?
+        
         public var displayName: String?
         
         public var slug: String?
@@ -19,13 +21,17 @@ public extension PlatformClient.Serviceability {
 
         public enum CodingKeys: String, CodingKey {
             
+            case name = "name"
+            
             case displayName = "display_name"
             
             case slug = "slug"
             
         }
 
-        public init(displayName: String? = nil, slug: String? = nil) {
+        public init(displayName: String? = nil, name: String? = nil, slug: String? = nil) {
+            
+            self.name = name
             
             self.displayName = displayName
             
@@ -35,6 +41,18 @@ public extension PlatformClient.Serviceability {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -64,6 +82,11 @@ public extension PlatformClient.Serviceability {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
             
             
             
@@ -91,6 +114,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class HierarchyItems: Codable {
         
         
+        public var name: String?
+        
         public var displayName: String?
         
         public var slug: String?
@@ -98,13 +123,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         public enum CodingKeys: String, CodingKey {
             
+            case name = "name"
+            
             case displayName = "display_name"
             
             case slug = "slug"
             
         }
 
-        public init(displayName: String? = nil, slug: String? = nil) {
+        public init(displayName: String? = nil, name: String? = nil, slug: String? = nil) {
+            
+            self.name = name
             
             self.displayName = displayName
             
@@ -114,6 +143,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -143,6 +184,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
             
             
             

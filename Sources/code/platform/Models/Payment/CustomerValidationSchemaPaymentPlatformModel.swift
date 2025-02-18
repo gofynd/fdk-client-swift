@@ -18,6 +18,8 @@ public extension PlatformClient.Payment {
         
         public var cartId: String?
         
+        public var userId: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -27,15 +29,19 @@ public extension PlatformClient.Payment {
             
             case cartId = "cart_id"
             
+            case userId = "user_id"
+            
         }
 
-        public init(aggregator: String, cartId: String? = nil, transactionAmount: Double) {
+        public init(aggregator: String, cartId: String? = nil, transactionAmount: Double, userId: String? = nil) {
             
             self.aggregator = aggregator
             
             self.transactionAmount = transactionAmount
             
             self.cartId = cartId
+            
+            self.userId = userId
             
         }
 
@@ -64,6 +70,18 @@ public extension PlatformClient.Payment {
                 }
                 
             
+            
+                do {
+                    userId = try container.decode(String.self, forKey: .userId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -82,6 +100,11 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(cartId, forKey: .cartId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(userId, forKey: .userId)
             
             
         }
@@ -106,6 +129,8 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var cartId: String?
         
+        public var userId: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -115,15 +140,19 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case cartId = "cart_id"
             
+            case userId = "user_id"
+            
         }
 
-        public init(aggregator: String, cartId: String? = nil, transactionAmount: Double) {
+        public init(aggregator: String, cartId: String? = nil, transactionAmount: Double, userId: String? = nil) {
             
             self.aggregator = aggregator
             
             self.transactionAmount = transactionAmount
             
             self.cartId = cartId
+            
+            self.userId = userId
             
         }
 
@@ -152,6 +181,18 @@ public extension PlatformClient.ApplicationClient.Payment {
                 }
                 
             
+            
+                do {
+                    userId = try container.decode(String.self, forKey: .userId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -170,6 +211,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(cartId, forKey: .cartId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(userId, forKey: .userId)
             
             
         }

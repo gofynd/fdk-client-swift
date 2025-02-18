@@ -12,30 +12,24 @@ public extension PlatformClient.Serviceability {
     class ErrorResult: Codable {
         
         
-        public var value: String
+        public var success: Bool?
         
-        public var message: String
-        
-        public var type: String
+        public var error: Error?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case value = "value"
+            case success = "success"
             
-            case message = "message"
-            
-            case type = "type"
+            case error = "error"
             
         }
 
-        public init(message: String, type: String, value: String) {
+        public init(error: Error? = nil, success: Bool? = nil) {
             
-            self.value = value
+            self.success = success
             
-            self.message = message
-            
-            self.type = type
+            self.error = error
             
         }
 
@@ -43,19 +37,28 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                value = try container.decode(String.self, forKey: .value)
+                do {
+                    success = try container.decode(Bool.self, forKey: .success)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                message = try container.decode(String.self, forKey: .message)
+                do {
+                    error = try container.decode(Error.self, forKey: .error)
                 
-            
-            
-            
-                type = try container.decode(String.self, forKey: .type)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
-            
             
         }
         
@@ -64,17 +67,12 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }
@@ -93,30 +91,24 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ErrorResult: Codable {
         
         
-        public var value: String
+        public var success: Bool?
         
-        public var message: String
-        
-        public var type: String
+        public var error: Error?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case value = "value"
+            case success = "success"
             
-            case message = "message"
-            
-            case type = "type"
+            case error = "error"
             
         }
 
-        public init(message: String, type: String, value: String) {
+        public init(error: Error? = nil, success: Bool? = nil) {
             
-            self.value = value
+            self.success = success
             
-            self.message = message
-            
-            self.type = type
+            self.error = error
             
         }
 
@@ -124,19 +116,28 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                value = try container.decode(String.self, forKey: .value)
+                do {
+                    success = try container.decode(Bool.self, forKey: .success)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                message = try container.decode(String.self, forKey: .message)
+                do {
+                    error = try container.decode(Error.self, forKey: .error)
                 
-            
-            
-            
-                type = try container.decode(String.self, forKey: .type)
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
-            
             
         }
         
@@ -145,17 +146,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }

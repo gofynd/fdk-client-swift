@@ -12,15 +12,15 @@ public extension PlatformClient.Serviceability {
     class CourierPartnerSchemeModel: Codable {
         
         
-        public var name: String?
-        
         public var extensionId: String
         
         public var schemeId: String
         
-        public var volumetricWeight: ArithmeticOperations?
+        public var name: String
         
         public var weight: ArithmeticOperations
+        
+        public var volumetricWeight: ArithmeticOperations?
         
         public var transportType: String
         
@@ -37,15 +37,15 @@ public extension PlatformClient.Serviceability {
 
         public enum CodingKeys: String, CodingKey {
             
-            case name = "name"
-            
             case extensionId = "extension_id"
             
             case schemeId = "scheme_id"
             
-            case volumetricWeight = "volumetric_weight"
+            case name = "name"
             
             case weight = "weight"
+            
+            case volumetricWeight = "volumetric_weight"
             
             case transportType = "transport_type"
             
@@ -61,17 +61,17 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(deliveryType: String, extensionId: String, feature: CourierPartnerSchemeFeatures, name: String? = nil, paymentMode: [String], region: String, schemeId: String, stage: String, transportType: String, volumetricWeight: ArithmeticOperations? = nil, weight: ArithmeticOperations) {
-            
-            self.name = name
+        public init(deliveryType: String, extensionId: String, feature: CourierPartnerSchemeFeatures, name: String, paymentMode: [String], region: String, schemeId: String, stage: String, transportType: String, volumetricWeight: ArithmeticOperations? = nil, weight: ArithmeticOperations) {
             
             self.extensionId = extensionId
             
             self.schemeId = schemeId
             
-            self.volumetricWeight = volumetricWeight
+            self.name = name
             
             self.weight = weight
+            
+            self.volumetricWeight = volumetricWeight
             
             self.transportType = transportType
             
@@ -91,24 +91,22 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 extensionId = try container.decode(String.self, forKey: .extensionId)
                 
             
             
             
                 schemeId = try container.decode(String.self, forKey: .schemeId)
+                
+            
+            
+            
+                name = try container.decode(String.self, forKey: .name)
+                
+            
+            
+            
+                weight = try container.decode(ArithmeticOperations.self, forKey: .weight)
                 
             
             
@@ -123,11 +121,6 @@ public extension PlatformClient.Serviceability {
                     
                 }
                 
-            
-            
-                weight = try container.decode(ArithmeticOperations.self, forKey: .weight)
-                
-            
             
             
                 transportType = try container.decode(String.self, forKey: .transportType)
@@ -166,11 +159,6 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
             try? container.encodeIfPresent(extensionId, forKey: .extensionId)
             
             
@@ -181,12 +169,17 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(volumetricWeight, forKey: .volumetricWeight)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
             try? container.encodeIfPresent(weight, forKey: .weight)
+            
+            
+            
+            
+            try? container.encodeIfPresent(volumetricWeight, forKey: .volumetricWeight)
             
             
             
@@ -235,15 +228,15 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class CourierPartnerSchemeModel: Codable {
         
         
-        public var name: String?
-        
         public var extensionId: String
         
         public var schemeId: String
         
-        public var volumetricWeight: ArithmeticOperations?
+        public var name: String
         
         public var weight: ArithmeticOperations
+        
+        public var volumetricWeight: ArithmeticOperations?
         
         public var transportType: String
         
@@ -260,15 +253,15 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         public enum CodingKeys: String, CodingKey {
             
-            case name = "name"
-            
             case extensionId = "extension_id"
             
             case schemeId = "scheme_id"
             
-            case volumetricWeight = "volumetric_weight"
+            case name = "name"
             
             case weight = "weight"
+            
+            case volumetricWeight = "volumetric_weight"
             
             case transportType = "transport_type"
             
@@ -284,17 +277,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(deliveryType: String, extensionId: String, feature: CourierPartnerSchemeFeatures, name: String? = nil, paymentMode: [String], region: String, schemeId: String, stage: String, transportType: String, volumetricWeight: ArithmeticOperations? = nil, weight: ArithmeticOperations) {
-            
-            self.name = name
+        public init(deliveryType: String, extensionId: String, feature: CourierPartnerSchemeFeatures, name: String, paymentMode: [String], region: String, schemeId: String, stage: String, transportType: String, volumetricWeight: ArithmeticOperations? = nil, weight: ArithmeticOperations) {
             
             self.extensionId = extensionId
             
             self.schemeId = schemeId
             
-            self.volumetricWeight = volumetricWeight
+            self.name = name
             
             self.weight = weight
+            
+            self.volumetricWeight = volumetricWeight
             
             self.transportType = transportType
             
@@ -314,24 +307,22 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 extensionId = try container.decode(String.self, forKey: .extensionId)
                 
             
             
             
                 schemeId = try container.decode(String.self, forKey: .schemeId)
+                
+            
+            
+            
+                name = try container.decode(String.self, forKey: .name)
+                
+            
+            
+            
+                weight = try container.decode(ArithmeticOperations.self, forKey: .weight)
                 
             
             
@@ -346,11 +337,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                     
                 }
                 
-            
-            
-                weight = try container.decode(ArithmeticOperations.self, forKey: .weight)
-                
-            
             
             
                 transportType = try container.decode(String.self, forKey: .transportType)
@@ -389,11 +375,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
             try? container.encodeIfPresent(extensionId, forKey: .extensionId)
             
             
@@ -404,12 +385,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(volumetricWeight, forKey: .volumetricWeight)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
             try? container.encodeIfPresent(weight, forKey: .weight)
+            
+            
+            
+            
+            try? container.encodeIfPresent(volumetricWeight, forKey: .volumetricWeight)
             
             
             

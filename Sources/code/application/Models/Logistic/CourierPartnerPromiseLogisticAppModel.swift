@@ -12,6 +12,8 @@ public extension ApplicationClient.Logistic {
         
         public var max: String
         
+        public var attributes: CourierPartnerAttributes?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -19,13 +21,17 @@ public extension ApplicationClient.Logistic {
             
             case max = "max"
             
+            case attributes = "attributes"
+            
         }
 
-        public init(max: String, min: String) {
+        public init(attributes: CourierPartnerAttributes? = nil, max: String, min: String) {
             
             self.min = min
             
             self.max = max
+            
+            self.attributes = attributes
             
         }
 
@@ -42,6 +48,18 @@ public extension ApplicationClient.Logistic {
             
             
             
+            
+            do {
+                attributes = try container.decode(CourierPartnerAttributes.self, forKey: .attributes)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -53,6 +71,10 @@ public extension ApplicationClient.Logistic {
             
             
             try? container.encodeIfPresent(max, forKey: .max)
+            
+            
+            
+            try? container.encodeIfPresent(attributes, forKey: .attributes)
             
             
         }

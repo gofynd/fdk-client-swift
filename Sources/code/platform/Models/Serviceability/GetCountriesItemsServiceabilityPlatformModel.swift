@@ -14,6 +14,10 @@ public extension PlatformClient.Serviceability {
         
         public var id: String?
         
+        public var subType: String?
+        
+        public var uid: String?
+        
         public var name: String?
         
         public var iso2: String?
@@ -26,7 +30,7 @@ public extension PlatformClient.Serviceability {
         
         public var phoneCode: String?
         
-        public var currency: String?
+        public var currency: CurrencyObject?
         
         public var type: String?
         
@@ -42,6 +46,10 @@ public extension PlatformClient.Serviceability {
         public enum CodingKeys: String, CodingKey {
             
             case id = "id"
+            
+            case subType = "sub_type"
+            
+            case uid = "uid"
             
             case name = "name"
             
@@ -69,9 +77,13 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(currency: String? = nil, displayName: String? = nil, hasNextHierarchy: Bool? = nil, hierarchy: [HierarchyItems]? = nil, id: String? = nil, iso2: String? = nil, iso3: String? = nil, latitude: String? = nil, longitude: String? = nil, name: String? = nil, phoneCode: String? = nil, timezones: [String]? = nil, type: String? = nil) {
+        public init(currency: CurrencyObject? = nil, displayName: String? = nil, hasNextHierarchy: Bool? = nil, hierarchy: [HierarchyItems]? = nil, id: String? = nil, iso2: String? = nil, iso3: String? = nil, latitude: String? = nil, longitude: String? = nil, name: String? = nil, phoneCode: String? = nil, subType: String? = nil, timezones: [String]? = nil, type: String? = nil, uid: String? = nil) {
             
             self.id = id
+            
+            self.subType = subType
+            
+            self.uid = uid
             
             self.name = name
             
@@ -105,6 +117,30 @@ public extension PlatformClient.Serviceability {
             
                 do {
                     id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    subType = try container.decode(String.self, forKey: .subType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    uid = try container.decode(String.self, forKey: .uid)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -188,7 +224,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    currency = try container.decode(String.self, forKey: .currency)
+                    currency = try container.decode(CurrencyObject.self, forKey: .currency)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -266,6 +302,16 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(subType, forKey: .subType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(uid, forKey: .uid)
             
             
             
@@ -346,6 +392,10 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var id: String?
         
+        public var subType: String?
+        
+        public var uid: String?
+        
         public var name: String?
         
         public var iso2: String?
@@ -358,7 +408,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var phoneCode: String?
         
-        public var currency: String?
+        public var currency: CurrencyObject?
         
         public var type: String?
         
@@ -374,6 +424,10 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         public enum CodingKeys: String, CodingKey {
             
             case id = "id"
+            
+            case subType = "sub_type"
+            
+            case uid = "uid"
             
             case name = "name"
             
@@ -401,9 +455,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(currency: String? = nil, displayName: String? = nil, hasNextHierarchy: Bool? = nil, hierarchy: [HierarchyItems]? = nil, id: String? = nil, iso2: String? = nil, iso3: String? = nil, latitude: String? = nil, longitude: String? = nil, name: String? = nil, phoneCode: String? = nil, timezones: [String]? = nil, type: String? = nil) {
+        public init(currency: CurrencyObject? = nil, displayName: String? = nil, hasNextHierarchy: Bool? = nil, hierarchy: [HierarchyItems]? = nil, id: String? = nil, iso2: String? = nil, iso3: String? = nil, latitude: String? = nil, longitude: String? = nil, name: String? = nil, phoneCode: String? = nil, subType: String? = nil, timezones: [String]? = nil, type: String? = nil, uid: String? = nil) {
             
             self.id = id
+            
+            self.subType = subType
+            
+            self.uid = uid
             
             self.name = name
             
@@ -437,6 +495,30 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
                 do {
                     id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    subType = try container.decode(String.self, forKey: .subType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    uid = try container.decode(String.self, forKey: .uid)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -520,7 +602,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    currency = try container.decode(String.self, forKey: .currency)
+                    currency = try container.decode(CurrencyObject.self, forKey: .currency)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -598,6 +680,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(subType, forKey: .subType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(uid, forKey: .uid)
             
             
             

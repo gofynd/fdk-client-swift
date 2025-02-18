@@ -58,7 +58,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var callbackUrl: String?
         
-        public var userId: String
+        public var userId: String?
         
         public var extraMeta: [String: Any]?
         
@@ -155,7 +155,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(addressId: String? = nil, aggregator: String? = nil, billingAddress: [String: Any]? = nil, billingAddressId: String? = nil, callbackUrl: String? = nil, cardId: String? = nil, checkoutMode: String? = nil, customerDetails: CustomerDetails? = nil, customMeta: [CartCheckoutCustomMeta]? = nil, deliveryAddress: [String: Any]? = nil, deviceId: String? = nil, employeeCode: String? = nil, extraMeta: [String: Any]? = nil, failureCallbackUrl: String? = nil, files: [Files]? = nil, id: String, iin: String? = nil, merchantCode: String? = nil, meta: [String: Any]? = nil, network: String? = nil, orderingStore: Int? = nil, orderTags: [OrderTag]? = nil, orderType: String, paymentAutoConfirm: Bool? = nil, paymentIdentifier: String? = nil, paymentMethods: [PaymentMethod], paymentMode: String? = nil, paymentParams: [String: Any]? = nil, pickAtStoreUid: Int? = nil, pos: Bool? = nil, staff: StaffCheckout? = nil, successCallbackUrl: String? = nil, type: String? = nil, userId: String) {
+        public init(addressId: String? = nil, aggregator: String? = nil, billingAddress: [String: Any]? = nil, billingAddressId: String? = nil, callbackUrl: String? = nil, cardId: String? = nil, checkoutMode: String? = nil, customerDetails: CustomerDetails? = nil, customMeta: [CartCheckoutCustomMeta]? = nil, deliveryAddress: [String: Any]? = nil, deviceId: String? = nil, employeeCode: String? = nil, extraMeta: [String: Any]? = nil, failureCallbackUrl: String? = nil, files: [Files]? = nil, id: String, iin: String? = nil, merchantCode: String? = nil, meta: [String: Any]? = nil, network: String? = nil, orderingStore: Int? = nil, orderTags: [OrderTag]? = nil, orderType: String, paymentAutoConfirm: Bool? = nil, paymentIdentifier: String? = nil, paymentMethods: [PaymentMethod], paymentMode: String? = nil, paymentParams: [String: Any]? = nil, pickAtStoreUid: Int? = nil, pos: Bool? = nil, staff: StaffCheckout? = nil, successCallbackUrl: String? = nil, type: String? = nil, userId: String? = nil) {
             
             self.addressId = addressId
             
@@ -481,9 +481,16 @@ public extension PlatformClient.ApplicationClient.Cart {
                 
             
             
-                userId = try container.decode(String.self, forKey: .userId)
+                do {
+                    userId = try container.decode(String.self, forKey: .userId)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

@@ -14,13 +14,13 @@ public extension PlatformClient.Serviceability {
         
         public var country: String
         
-        public var data: [PincodeCodStatusListingResult]
+        public var data: [PincodeCodStatusItem]
         
         public var success: Bool
         
         public var errors: [Error]?
         
-        public var page: PincodeCodStatusListingPage
+        public var page: Page
         
         public var summary: PincodeCodStatusListingSummary
         
@@ -41,7 +41,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(country: String, data: [PincodeCodStatusListingResult], errors: [Error]? = nil, page: PincodeCodStatusListingPage, success: Bool, summary: PincodeCodStatusListingSummary) {
+        public init(country: String, data: [PincodeCodStatusItem], errors: [Error]? = nil, page: Page, success: Bool, summary: PincodeCodStatusListingSummary) {
             
             self.country = country
             
@@ -66,7 +66,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-                data = try container.decode([PincodeCodStatusListingResult].self, forKey: .data)
+                data = try container.decode([PincodeCodStatusItem].self, forKey: .data)
                 
             
             
@@ -88,7 +88,7 @@ public extension PlatformClient.Serviceability {
                 
             
             
-                page = try container.decode(PincodeCodStatusListingPage.self, forKey: .page)
+                page = try container.decode(Page.self, forKey: .page)
                 
             
             
@@ -150,13 +150,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var country: String
         
-        public var data: [PincodeCodStatusListingResult]
+        public var data: [PincodeCodStatusItem]
         
         public var success: Bool
         
         public var errors: [Error]?
         
-        public var page: PincodeCodStatusListingPage
+        public var page: Page
         
         public var summary: PincodeCodStatusListingSummary
         
@@ -177,7 +177,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(country: String, data: [PincodeCodStatusListingResult], errors: [Error]? = nil, page: PincodeCodStatusListingPage, success: Bool, summary: PincodeCodStatusListingSummary) {
+        public init(country: String, data: [PincodeCodStatusItem], errors: [Error]? = nil, page: Page, success: Bool, summary: PincodeCodStatusListingSummary) {
             
             self.country = country
             
@@ -202,7 +202,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                data = try container.decode([PincodeCodStatusListingResult].self, forKey: .data)
+                data = try container.decode([PincodeCodStatusItem].self, forKey: .data)
                 
             
             
@@ -224,7 +224,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
-                page = try container.decode(PincodeCodStatusListingPage.self, forKey: .page)
+                page = try container.decode(Page.self, forKey: .page)
                 
             
             

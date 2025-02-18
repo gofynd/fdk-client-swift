@@ -14,305 +14,19 @@ extension PlatformClient {
         
         
         
-        /**
-        *
-        * Summary: Get zones
-        * Description: Retrieves a list of delivery zones.
-        **/
-        public func getZones(
-            pageNo: Int?,
-            pageSize: Int?,
-            isActive: Bool?,
-            channelId: String?,
-            q: String?,
-            countryIsoCode: String?,
-            state: String?,
-            city: String?,
-            pincode: String?,
-            sector: String?,
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ListViewResult?, _ error: FDKError?) -> Void
-        ) {
-                        
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-            if let value = isActive {
-                xQuery["is_active"] = value
-            }
-            
-            if let value = channelId {
-                xQuery["channel_id"] = value
-            }
-            
-            if let value = q {
-                xQuery["q"] = value
-            }
-            
-            if let value = countryIsoCode {
-                xQuery["country_iso_code"] = value
-            }
-            
-            if let value = state {
-                xQuery["state"] = value
-            }
-            
-            if let value = city {
-                xQuery["city"] = value
-            }
-            
-            if let value = pincode {
-                xQuery["pincode"] = value
-            }
-            
-            if let value = sector {
-                xQuery["sector"] = value
-            }
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/logistics/v2.0/company/\(companyId)/zones",
-                query: xQuery,
-                body: nil,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ListViewResult.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
         
         
         
-        /**
-        *
-        * Summary: Create zone
-        * Description: Creates a delivery zone.
-        **/
-        public func createZone(
-            body: CreateZoneData,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ZoneResult?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/logistics/v2.0/company/\(companyId)/zones",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ZoneResult.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
         
         
         
-        /**
-        *
-        * Summary: Update a zone
-        * Description: Update an existing delivery zone .
-        **/
-        public func updateZoneById(
-            zoneId: String,
-            body: UpdateZoneData,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ZoneSuccessResult?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "PUT",
-                url: "/service/platform/logistics/v2.0/company/\(companyId)/zones/\(zoneId)",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ZoneSuccessResult.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
         
         
         
-        /**
-        *
-        * Summary: Get zone details
-        * Description: Retrieves a single delivery zone.
-        **/
-        public func getZoneById(
-            zoneId: String,
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetZoneByIdSchema?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/logistics/v2.0/company/\(companyId)/zones/\(zoneId)",
-                query: nil,
-                body: nil,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetZoneByIdSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
         
         
         
-        /**
-        *
-        * Summary: Get all stores
-        * Description: Retrieves a list of locations.
-        **/
-        public func getAllStores(
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetStoresViewResult?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/logistics/v1.0/company/\(companyId)/logistics/stores",
-                query: nil,
-                body: nil,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(GetStoresViewResult.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
+        
         
         
         
@@ -323,12 +37,12 @@ extension PlatformClient {
         /**
         *
         * Summary: Create courier account
-        * Description: Creates a courier partner account.
+        * Description: Retrieves a list of courier partner accounts.
         **/
         public func createCourierPartnerAccount(
             body: CourierAccountDetailsBody,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CourierAccount?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CourierAccountDetailsBody?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -356,7 +70,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CourierAccount.self, from: data)
+                        let response = Utility.decode(CourierAccountDetailsBody.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -381,6 +95,10 @@ extension PlatformClient {
             stage: String?,
             paymentMode: String?,
             transportType: String?,
+            accountIds: [String]?,
+            selfShip: Bool?,
+            ownAccount: Bool?,
+            q: String?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CompanyCourierPartnerAccountListResult?, _ error: FDKError?) -> Void
@@ -406,6 +124,22 @@ extension PlatformClient {
             
             if let value = transportType {
                 xQuery["transport_type"] = value
+            }
+            
+            if let value = accountIds {
+                xQuery["account_ids"] = value
+            }
+            
+            if let value = selfShip {
+                xQuery["self_ship"] = value
+            }
+            
+            if let value = ownAccount {
+                xQuery["own_account"] = value
+            }
+            
+            if let value = q {
+                xQuery["q"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
@@ -452,9 +186,9 @@ extension PlatformClient {
         **/
         public func updateCourierPartnerAccount(
             accountId: String,
-            body: CourierAccountUpdateDetails,
+            body: CourierAccountDetailsBody,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CourierAccountResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CourierAccountDetailsBody?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -482,7 +216,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CourierAccountResult.self, from: data)
+                        let response = Utility.decode(CourierAccountDetailsBody.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -558,7 +292,7 @@ extension PlatformClient {
         * Description: Updates an existing delivery setup for a company, including the ability to adjust self-shipping preferences.
         **/
         public func updateCompanyConfiguration(
-            body: CompanyConfig,
+            body: CompanyConfigurationSchema,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CompanyConfig?, _ error: FDKError?) -> Void
         ) {
@@ -654,6 +388,7 @@ extension PlatformClient {
         
         
         
+        
         /**
         *
         * Summary: Locality TAT import or export
@@ -679,7 +414,7 @@ Export locality wise CSV files.
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/logistics/v1.0/company/\(companyId)/courier-partner/\(extensionId)/scheme/\(schemeId)/tat",
+                url: "/service/platform/logistics/v2.0/company/\(companyId)/courier-partner/\(extensionId)/scheme/\(schemeId)/tat",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -776,7 +511,7 @@ Export locality wise CSV files.
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/logistics/v1.0/company/\(companyId)/courier-partner/\(extensionId)/scheme/\(schemeId)/tat",
+                url: "/service/platform/logistics/v2.0/company/\(companyId)/courier-partner/\(extensionId)/scheme/\(schemeId)/tat",
                 query: xQuery,
                 body: nil,
                 headers: xHeaders,
@@ -811,8 +546,6 @@ Export locality wise CSV files.
         
         
         
-        
-        
         /**
         *
         * Summary: Bulk update serviceability of localities
@@ -837,7 +570,7 @@ Export locality wise CSV files.
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/logistics/v1.0/company/\(companyId)/courier-partner/\(extensionId)/scheme/\(schemeId)/serviceability/bulk",
+                url: "/service/platform/logistics/v2.0/company/\(companyId)/courier-partner/\(extensionId)/scheme/\(schemeId)/serviceability/bulk",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -934,7 +667,7 @@ Export locality wise CSV files.
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/logistics/v1.0/company/\(companyId)/courier-partner/\(extensionId)/scheme/\(schemeId)/serviceability/bulk",
+                url: "/service/platform/logistics/v2.0/company/\(companyId)/courier-partner/\(extensionId)/scheme/\(schemeId)/serviceability/bulk",
                 query: xQuery,
                 body: nil,
                 headers: xHeaders,
@@ -964,122 +697,21 @@ Export locality wise CSV files.
         
         /**
         *
-        * Summary: Get serviceability of a locality
-        * Description: Rerieves serviceability settings of a single courier scheme for a given locality
-        **/
-        public func getServiceability(
-            extensionId: String,
-            schemeId: String,
-            regionId: String,
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ServiceabilityModel?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/logistics/v1.0/company/\(companyId)/courier-partner/\(extensionId)/scheme/\(schemeId)/serviceability/region/\(regionId)",
-                query: nil,
-                body: nil,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ServiceabilityModel.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Update Serviceability of a locality
-        * Description: Updates serviceability settings of a single courier scheme for a given locality
-        **/
-        public func updateServiceability(
-            extensionId: String,
-            schemeId: String,
-            regionId: String,
-            body: ServiceabilityModel,
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ServiceabilityModel?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "PUT",
-                url: "/service/platform/logistics/v1.0/company/\(companyId)/courier-partner/\(extensionId)/scheme/\(schemeId)/serviceability/region/\(regionId)",
-                query: nil,
-                body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(ServiceabilityModel.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
         * Summary: Create packaging material
         * Description: Creates a packaging material
         **/
         public func createPackageMaterial(
+            pageNo: Int?,
             body: PackageMaterial,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: PackageMaterialResult?, _ error: FDKError?) -> Void
         ) {
                         
-             
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -1091,7 +723,7 @@ Export locality wise CSV files.
                 config: config,
                 method: "POST",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/packaging-materials",
-                query: nil,
+                query: xQuery,
                 body: body.dictionary,
                 headers: xHeaders,
                 responseType: "application/json",
@@ -1131,7 +763,7 @@ Export locality wise CSV files.
             packageType: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PackageMaterialList?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PackagesListResult?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1179,7 +811,7 @@ Export locality wise CSV files.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PackageMaterialList.self, from: data)
+                        let response = Utility.decode(PackagesListResult.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1245,31 +877,17 @@ Export locality wise CSV files.
         
         /**
         *
-        * Summary: Get packaging rules
-        * Description: Retrieve packaging rules
+        * Summary: Get packaging material rule
+        * Description: Retrieve packaging rule details.
         **/
-        public func getPackageMaterialRules(
-            pageNo: Int?,
-            pageSize: Int?,
-            isActive: String?,
+        public func getPackageMaterialRule(
+            ruleId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PackageMaterialRuleList?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PackageRuleResult?, _ error: FDKError?) -> Void
         ) {
                         
-            var xQuery: [String: Any] = [:] 
-            
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-            
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-            
-            if let value = isActive {
-                xQuery["is_active"] = value
-            }
+             
             
             var xHeaders: [(key: String, value: String)] = []
             
@@ -1280,8 +898,8 @@ Export locality wise CSV files.
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/logistics/v1.0/company/\(companyId)/packaging-material/rules",
-                query: xQuery,
+                url: "/service/platform/logistics/v1.0/company/\(companyId)/packaging-material/rules/\(ruleId)",
+                query: nil,
                 body: nil,
                 headers: xHeaders,
                 responseType: "application/json",
@@ -1294,7 +912,7 @@ Export locality wise CSV files.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PackageMaterialRuleList.self, from: data)
+                        let response = Utility.decode(PackageRuleResult.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1334,57 +952,6 @@ Export locality wise CSV files.
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/packaging-material/rules/\(ruleId)",
                 query: nil,
                 body: body.dictionary,
-                headers: xHeaders,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(PackageRuleResult.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Get packaging material rule
-        * Description: Retrieve packaging rule details.
-        **/
-        public func getPackageMaterialRule(
-            ruleId: String,
-            
-            headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PackageRuleResult?, _ error: FDKError?) -> Void
-        ) {
-                        
-             
-            
-            var xHeaders: [(key: String, value: String)] = []
-            
-            
-            if let headers = headers {
-                xHeaders.append(contentsOf: headers)
-            }
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/logistics/v1.0/company/\(companyId)/packaging-material/rules/\(ruleId)",
-                query: nil,
-                body: nil,
                 headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -1470,7 +1037,7 @@ Export locality wise CSV files.
             packageMaterialId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PackageMaterialResult?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PackageItem?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1498,7 +1065,7 @@ Export locality wise CSV files.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PackageMaterialResult.self, from: data)
+                        let response = Utility.decode(PackageItem.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1513,13 +1080,14 @@ Export locality wise CSV files.
         
         
         
+        
         /**
         *
         * Summary: Get selling locations
         * Description: Retrieves a list selling locations which are best suited to fullfil an order for a customer.
         **/
         public func getOptimalLocations(
-            body: OptimlLocationsDetailsSchema,
+            body: OptimlLocationsRequestSchema,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: OptimalLocationsResult?, _ error: FDKError?) -> Void
         ) {
@@ -1569,9 +1137,9 @@ Export locality wise CSV files.
         * Description: Create Scheme for courier partner extension
         **/
         public func createCourierPartnerScheme(
-            body: CourierPartnerSchemeV2DetailsModel,
+            body: CourierPartnerSchemeDetailsModel,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CourierPartnerV2SchemeModel?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CourierPartnerSchemeModelSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1599,7 +1167,7 @@ Export locality wise CSV files.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CourierPartnerV2SchemeModel.self, from: data)
+                        let response = Utility.decode(CourierPartnerSchemeModelSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1625,7 +1193,7 @@ Export locality wise CSV files.
             schemeIds: [String]?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: courierPartnerSchemeV2List?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CourierPartnerSchemeList?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -1669,7 +1237,7 @@ Export locality wise CSV files.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(courierPartnerSchemeV2List.self, from: data)
+                        let response = Utility.decode(CourierPartnerSchemeList.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1690,9 +1258,9 @@ Export locality wise CSV files.
         **/
         public func updateCourierPartnerScheme(
             schemeId: String,
-            body: CourierPartnerSchemeV2UpdateDetails,
+            body: CourierPartnerSchemeUpdateDetailsSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CourierPartnerV2SchemeModel?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CourierPartnerSchemeModelSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1720,7 +1288,7 @@ Export locality wise CSV files.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CourierPartnerV2SchemeModel.self, from: data)
+                        let response = Utility.decode(CourierPartnerSchemeModelSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1743,7 +1311,7 @@ Export locality wise CSV files.
             schemeId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CourierPartnerV2SchemeModel?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CourierPartnerSchemeModelSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1771,7 +1339,7 @@ Export locality wise CSV files.
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CourierPartnerV2SchemeModel.self, from: data)
+                        let response = Utility.decode(CourierPartnerSchemeModelSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1807,7 +1375,7 @@ Export locality wise CSV files.
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/logistics/v1.0/company/\(companyId)/localities/bulk-sample",
+                url: "/service/platform/logistics/v2.0/company/\(companyId)/localities/bulk-sample",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -1872,7 +1440,7 @@ Export locality wise CSV files.
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/logistics/v1.0/company/\(companyId)/localities/bulk-sample",
+                url: "/service/platform/logistics/v2.0/company/\(companyId)/localities/bulk-sample",
                 query: xQuery,
                 body: nil,
                 headers: xHeaders,
@@ -1902,11 +1470,11 @@ Export locality wise CSV files.
         
         /**
         *
-        * Summary: Get countries
+        * Summary: Get all countries and associated data
         * Description: Retrieve a list of countries for logistical purposes.
         **/
         public func getCountries(
-            onboarding: Bool?,
+            onboard: Bool?,
             pageNo: Int?,
             pageSize: Int?,
             q: String?,
@@ -1918,8 +1486,8 @@ Export locality wise CSV files.
                         
             var xQuery: [String: Any] = [:] 
             
-            if let value = onboarding {
-                xQuery["onboarding"] = value
+            if let value = onboard {
+                xQuery["onboard"] = value
             }
             
             if let value = pageNo {
@@ -1972,5 +1540,171 @@ Export locality wise CSV files.
                     }
             });
         }
+        
+        
+        
+        /**
+        *
+        * Summary: Fetching of Package Material Rules from database.
+        * Description: This API returns response of Package Materials Rules from mongo database.
+        **/
+        public func getInstalledCourierPartnerExtensions(
+            pageNo: Int?,
+            pageSize: Int?,
+            isInstalled: String?,
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: InstallCourierPartnerResponseSchema?, _ error: FDKError?) -> Void
+        ) {
+                        
+            var xQuery: [String: Any] = [:] 
+            
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+            
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+            
+            if let value = isInstalled {
+                xQuery["is_installed"] = value
+            }
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/logistics/v1.0/company/\(companyId)/courier-partner/list",
+                query: xQuery,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(InstallCourierPartnerResponseSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Get self-ship details
+        * Description: Get the self-ship details such as TAT, activation status, and unit for a specified company.
+        **/
+        public func getSelfShipDetails(
+            
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: SelfshipSchema?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/logistics/v1.0/company/\(companyId)/selfship",
+                query: nil,
+                body: nil,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SelfshipSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        /**
+        *
+        * Summary: Update self-ship details
+        * Description: Updates the self-ship details such as TAT, activation status, and unit for a specified company.
+        **/
+        public func updateSelfShipDetails(
+            body: SelfshipSchema,
+            headers: [(key: String, value: String)]? = nil,
+            onResponse: @escaping (_ response: SelfshipSchema?, _ error: FDKError?) -> Void
+        ) {
+                        
+             
+            
+            var xHeaders: [(key: String, value: String)] = []
+            
+            
+            if let headers = headers {
+                xHeaders.append(contentsOf: headers)
+            }
+            PlatformAPIClient.execute(
+                config: config,
+                method: "PATCH",
+                url: "/service/platform/logistics/v1.0/company/\(companyId)/selfship",
+                query: nil,
+                body: body.dictionary,
+                headers: xHeaders,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SelfshipSchema.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
     }
 }

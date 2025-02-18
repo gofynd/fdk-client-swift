@@ -12,13 +12,13 @@ public extension PlatformClient.Serviceability {
     class CourierAccountResult: Codable {
         
         
-        public var companyId: Int
-        
-        public var extensionId: String?
-        
         public var accountId: String
         
+        public var companyId: Int?
+        
         public var schemeId: String
+        
+        public var extensionId: String?
         
         public var isSelfShip: Bool
         
@@ -26,18 +26,18 @@ public extension PlatformClient.Serviceability {
         
         public var isOwnAccount: Bool
         
-        public var schemeRules: CourierPartnerSchemeModel?
+        public var schemeRules: CourierPartnerSchemeModel
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case companyId = "company_id"
-            
-            case extensionId = "extension_id"
-            
             case accountId = "account_id"
             
+            case companyId = "company_id"
+            
             case schemeId = "scheme_id"
+            
+            case extensionId = "extension_id"
             
             case isSelfShip = "is_self_ship"
             
@@ -49,15 +49,15 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(accountId: String, companyId: Int, extensionId: String? = nil, isOwnAccount: Bool, isSelfShip: Bool, schemeId: String, schemeRules: CourierPartnerSchemeModel? = nil, stage: String) {
-            
-            self.companyId = companyId
-            
-            self.extensionId = extensionId
+        public init(accountId: String, companyId: Int? = nil, extensionId: String? = nil, isOwnAccount: Bool, isSelfShip: Bool, schemeId: String, schemeRules: CourierPartnerSchemeModel, stage: String) {
             
             self.accountId = accountId
             
+            self.companyId = companyId
+            
             self.schemeId = schemeId
+            
+            self.extensionId = extensionId
             
             self.isSelfShip = isSelfShip
             
@@ -73,7 +73,24 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                accountId = try container.decode(String.self, forKey: .accountId)
+                
+            
+            
+            
+                do {
+                    companyId = try container.decode(Int.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                schemeId = try container.decode(String.self, forKey: .schemeId)
                 
             
             
@@ -88,16 +105,6 @@ public extension PlatformClient.Serviceability {
                     
                 }
                 
-            
-            
-                accountId = try container.decode(String.self, forKey: .accountId)
-                
-            
-            
-            
-                schemeId = try container.decode(String.self, forKey: .schemeId)
-                
-            
             
             
                 isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
@@ -115,16 +122,9 @@ public extension PlatformClient.Serviceability {
             
             
             
-                do {
-                    schemeRules = try container.decode(CourierPartnerSchemeModel.self, forKey: .schemeRules)
+                schemeRules = try container.decode(CourierPartnerSchemeModel.self, forKey: .schemeRules)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -133,22 +133,22 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(extensionId, forKey: .extensionId)
-            
-            
-            
-            
             try? container.encodeIfPresent(accountId, forKey: .accountId)
             
             
             
             
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
             try? container.encodeIfPresent(schemeId, forKey: .schemeId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(extensionId, forKey: .extensionId)
             
             
             
@@ -187,13 +187,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class CourierAccountResult: Codable {
         
         
-        public var companyId: Int
-        
-        public var extensionId: String?
-        
         public var accountId: String
         
+        public var companyId: Int?
+        
         public var schemeId: String
+        
+        public var extensionId: String?
         
         public var isSelfShip: Bool
         
@@ -201,18 +201,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var isOwnAccount: Bool
         
-        public var schemeRules: CourierPartnerSchemeModel?
+        public var schemeRules: CourierPartnerSchemeModel
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case companyId = "company_id"
-            
-            case extensionId = "extension_id"
-            
             case accountId = "account_id"
             
+            case companyId = "company_id"
+            
             case schemeId = "scheme_id"
+            
+            case extensionId = "extension_id"
             
             case isSelfShip = "is_self_ship"
             
@@ -224,15 +224,15 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(accountId: String, companyId: Int, extensionId: String? = nil, isOwnAccount: Bool, isSelfShip: Bool, schemeId: String, schemeRules: CourierPartnerSchemeModel? = nil, stage: String) {
-            
-            self.companyId = companyId
-            
-            self.extensionId = extensionId
+        public init(accountId: String, companyId: Int? = nil, extensionId: String? = nil, isOwnAccount: Bool, isSelfShip: Bool, schemeId: String, schemeRules: CourierPartnerSchemeModel, stage: String) {
             
             self.accountId = accountId
             
+            self.companyId = companyId
+            
             self.schemeId = schemeId
+            
+            self.extensionId = extensionId
             
             self.isSelfShip = isSelfShip
             
@@ -248,7 +248,24 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                accountId = try container.decode(String.self, forKey: .accountId)
+                
+            
+            
+            
+                do {
+                    companyId = try container.decode(Int.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                schemeId = try container.decode(String.self, forKey: .schemeId)
                 
             
             
@@ -263,16 +280,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                     
                 }
                 
-            
-            
-                accountId = try container.decode(String.self, forKey: .accountId)
-                
-            
-            
-            
-                schemeId = try container.decode(String.self, forKey: .schemeId)
-                
-            
             
             
                 isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
@@ -290,16 +297,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                do {
-                    schemeRules = try container.decode(CourierPartnerSchemeModel.self, forKey: .schemeRules)
+                schemeRules = try container.decode(CourierPartnerSchemeModel.self, forKey: .schemeRules)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -308,22 +308,22 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(extensionId, forKey: .extensionId)
-            
-            
-            
-            
             try? container.encodeIfPresent(accountId, forKey: .accountId)
             
             
             
             
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
             try? container.encodeIfPresent(schemeId, forKey: .schemeId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(extensionId, forKey: .extensionId)
             
             
             

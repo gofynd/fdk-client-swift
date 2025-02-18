@@ -18,7 +18,7 @@ public extension PlatformClient.Communication {
         
         public var apiKey: String?
         
-        public var expiryDate: Int?
+        public var expiryDate: Int64?
         
         public var rpt: Int?
         
@@ -89,7 +89,7 @@ public extension PlatformClient.Communication {
             
         }
 
-        public init(apiKey: String? = nil, application: String? = nil, authkey: String? = nil, createdAt: String? = nil, description: String? = nil, expiryDate: Int? = nil, name: String? = nil, provider: String? = nil, rpt: Int? = nil, sender: String? = nil, senderId: String? = nil, slug: String? = nil, token: String? = nil, type: String? = nil, updatedAt: String? = nil, username: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(apiKey: String? = nil, application: String? = nil, authkey: String? = nil, createdAt: String? = nil, description: String? = nil, expiryDate: Int64? = nil, name: String? = nil, provider: String? = nil, rpt: Int? = nil, sender: String? = nil, senderId: String? = nil, slug: String? = nil, token: String? = nil, type: String? = nil, updatedAt: String? = nil, username: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.token = token
             
@@ -170,7 +170,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    expiryDate = try container.decode(Int.self, forKey: .expiryDate)
+                    expiryDate = try container.decode(Int64.self, forKey: .expiryDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -465,7 +465,7 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var apiKey: String?
         
-        public var expiryDate: Int?
+        public var expiryDate: Int64?
         
         public var rpt: Int?
         
@@ -536,7 +536,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
         }
 
-        public init(apiKey: String? = nil, application: String? = nil, authkey: String? = nil, createdAt: String? = nil, description: String? = nil, expiryDate: Int? = nil, name: String? = nil, provider: String? = nil, rpt: Int? = nil, sender: String? = nil, senderId: String? = nil, slug: String? = nil, token: String? = nil, type: String? = nil, updatedAt: String? = nil, username: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(apiKey: String? = nil, application: String? = nil, authkey: String? = nil, createdAt: String? = nil, description: String? = nil, expiryDate: Int64? = nil, name: String? = nil, provider: String? = nil, rpt: Int? = nil, sender: String? = nil, senderId: String? = nil, slug: String? = nil, token: String? = nil, type: String? = nil, updatedAt: String? = nil, username: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.token = token
             
@@ -617,7 +617,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    expiryDate = try container.decode(Int.self, forKey: .expiryDate)
+                    expiryDate = try container.decode(Int64.self, forKey: .expiryDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

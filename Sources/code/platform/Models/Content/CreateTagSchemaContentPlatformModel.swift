@@ -26,6 +26,8 @@ public extension PlatformClient.Content {
         
         public var attributes: [String: Any]?
         
+        public var compatibleEngines: [String]?
+        
         public var pages: [[String: Any]]?
         
         public var content: String?
@@ -47,13 +49,15 @@ public extension PlatformClient.Content {
             
             case attributes = "attributes"
             
+            case compatibleEngines = "compatible_engines"
+            
             case pages = "pages"
             
             case content = "content"
             
         }
 
-        public init(attributes: [String: Any]? = nil, content: String? = nil, name: String? = nil, pages: [[String: Any]]? = nil, position: String? = nil, subType: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil) {
+        public init(attributes: [String: Any]? = nil, compatibleEngines: [String]? = nil, content: String? = nil, name: String? = nil, pages: [[String: Any]]? = nil, position: String? = nil, subType: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil) {
             
             self.name = name
             
@@ -68,6 +72,8 @@ public extension PlatformClient.Content {
             self.position = position
             
             self.attributes = attributes
+            
+            self.compatibleEngines = compatibleEngines
             
             self.pages = pages
             
@@ -164,6 +170,18 @@ public extension PlatformClient.Content {
             
             
                 do {
+                    compatibleEngines = try container.decode([String].self, forKey: .compatibleEngines)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     pages = try container.decode([[String: Any]].self, forKey: .pages)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -224,6 +242,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(attributes, forKey: .attributes)
+            
+            
+            
+            
+            try? container.encodeIfPresent(compatibleEngines, forKey: .compatibleEngines)
             
             
             
@@ -266,6 +289,8 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var attributes: [String: Any]?
         
+        public var compatibleEngines: [String]?
+        
         public var pages: [[String: Any]]?
         
         public var content: String?
@@ -287,13 +312,15 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case attributes = "attributes"
             
+            case compatibleEngines = "compatible_engines"
+            
             case pages = "pages"
             
             case content = "content"
             
         }
 
-        public init(attributes: [String: Any]? = nil, content: String? = nil, name: String? = nil, pages: [[String: Any]]? = nil, position: String? = nil, subType: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil) {
+        public init(attributes: [String: Any]? = nil, compatibleEngines: [String]? = nil, content: String? = nil, name: String? = nil, pages: [[String: Any]]? = nil, position: String? = nil, subType: String? = nil, type: String? = nil, url: String? = nil, id: String? = nil) {
             
             self.name = name
             
@@ -308,6 +335,8 @@ public extension PlatformClient.ApplicationClient.Content {
             self.position = position
             
             self.attributes = attributes
+            
+            self.compatibleEngines = compatibleEngines
             
             self.pages = pages
             
@@ -404,6 +433,18 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
+                    compatibleEngines = try container.decode([String].self, forKey: .compatibleEngines)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     pages = try container.decode([[String: Any]].self, forKey: .pages)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -464,6 +505,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(attributes, forKey: .attributes)
+            
+            
+            
+            
+            try? container.encodeIfPresent(compatibleEngines, forKey: .compatibleEngines)
             
             
             

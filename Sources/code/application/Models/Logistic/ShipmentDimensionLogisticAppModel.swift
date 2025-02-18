@@ -14,6 +14,10 @@ public extension ApplicationClient.Logistic {
         
         public var width: Double
         
+        public var isDefault: Bool?
+        
+        public var unit: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,15 +27,23 @@ public extension ApplicationClient.Logistic {
             
             case width = "width"
             
+            case isDefault = "is_default"
+            
+            case unit = "unit"
+            
         }
 
-        public init(height: Double, length: Double, width: Double) {
+        public init(height: Double, isDefault: Bool? = nil, length: Double, unit: String? = nil, width: Double) {
             
             self.height = height
             
             self.length = length
             
             self.width = width
+            
+            self.isDefault = isDefault
+            
+            self.unit = unit
             
         }
 
@@ -53,6 +65,30 @@ public extension ApplicationClient.Logistic {
             
             
             
+            
+            do {
+                isDefault = try container.decode(Bool.self, forKey: .isDefault)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                unit = try container.decode(String.self, forKey: .unit)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -68,6 +104,14 @@ public extension ApplicationClient.Logistic {
             
             
             try? container.encodeIfPresent(width, forKey: .width)
+            
+            
+            
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+            
+            
+            
+            try? container.encodeIfPresent(unit, forKey: .unit)
             
             
         }

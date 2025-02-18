@@ -18,7 +18,9 @@ public extension PlatformClient.Serviceability {
         
         public var isSelfShip: Bool
         
-        public var schemeRules: [String: Any]?
+        public var schemeRules: CourierPartnerSchemeDetailsModel?
+        
+        public var stage: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -31,9 +33,11 @@ public extension PlatformClient.Serviceability {
             
             case schemeRules = "scheme_rules"
             
+            case stage = "stage"
+            
         }
 
-        public init(accountId: String, extensionId: String, isSelfShip: Bool, schemeRules: [String: Any]? = nil) {
+        public init(accountId: String, extensionId: String, isSelfShip: Bool, schemeRules: CourierPartnerSchemeDetailsModel? = nil, stage: String? = nil) {
             
             self.accountId = accountId
             
@@ -42,6 +46,8 @@ public extension PlatformClient.Serviceability {
             self.isSelfShip = isSelfShip
             
             self.schemeRules = schemeRules
+            
+            self.stage = stage
             
         }
 
@@ -65,7 +71,19 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    schemeRules = try container.decode([String: Any].self, forKey: .schemeRules)
+                    schemeRules = try container.decode(CourierPartnerSchemeDetailsModel.self, forKey: .schemeRules)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    stage = try container.decode(String.self, forKey: .stage)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,6 +116,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(schemeRules, forKey: .schemeRules)
+            
+            
+            
+            
+            try? container.encodeIfPresent(stage, forKey: .stage)
             
             
         }
@@ -122,7 +145,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var isSelfShip: Bool
         
-        public var schemeRules: [String: Any]?
+        public var schemeRules: CourierPartnerSchemeDetailsModel?
+        
+        public var stage: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -135,9 +160,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case schemeRules = "scheme_rules"
             
+            case stage = "stage"
+            
         }
 
-        public init(accountId: String, extensionId: String, isSelfShip: Bool, schemeRules: [String: Any]? = nil) {
+        public init(accountId: String, extensionId: String, isSelfShip: Bool, schemeRules: CourierPartnerSchemeDetailsModel? = nil, stage: String? = nil) {
             
             self.accountId = accountId
             
@@ -146,6 +173,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.isSelfShip = isSelfShip
             
             self.schemeRules = schemeRules
+            
+            self.stage = stage
             
         }
 
@@ -169,7 +198,19 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    schemeRules = try container.decode([String: Any].self, forKey: .schemeRules)
+                    schemeRules = try container.decode(CourierPartnerSchemeDetailsModel.self, forKey: .schemeRules)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    stage = try container.decode(String.self, forKey: .stage)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -202,6 +243,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(schemeRules, forKey: .schemeRules)
+            
+            
+            
+            
+            try? container.encodeIfPresent(stage, forKey: .stage)
             
             
         }

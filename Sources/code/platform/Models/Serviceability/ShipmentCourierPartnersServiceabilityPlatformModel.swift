@@ -16,6 +16,8 @@ public extension PlatformClient.Serviceability {
         
         public var courierPartners: [CourierPartners]?
         
+        public var deliveryPromise: CourierPartnerPromise?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,13 +25,17 @@ public extension PlatformClient.Serviceability {
             
             case courierPartners = "courier_partners"
             
+            case deliveryPromise = "delivery_promise"
+            
         }
 
-        public init(courierPartners: [CourierPartners]? = nil, id: String? = nil) {
+        public init(courierPartners: [CourierPartners]? = nil, deliveryPromise: CourierPartnerPromise? = nil, id: String? = nil) {
             
             self.id = id
             
             self.courierPartners = courierPartners
+            
+            self.deliveryPromise = deliveryPromise
             
         }
 
@@ -60,6 +66,18 @@ public extension PlatformClient.Serviceability {
                 }
                 
             
+            
+                do {
+                    deliveryPromise = try container.decode(CourierPartnerPromise.self, forKey: .deliveryPromise)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -73,6 +91,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(courierPartners, forKey: .courierPartners)
+            
+            
+            
+            
+            try? container.encodeIfPresent(deliveryPromise, forKey: .deliveryPromise)
             
             
         }
@@ -95,6 +118,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var courierPartners: [CourierPartners]?
         
+        public var deliveryPromise: CourierPartnerPromise?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -102,13 +127,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case courierPartners = "courier_partners"
             
+            case deliveryPromise = "delivery_promise"
+            
         }
 
-        public init(courierPartners: [CourierPartners]? = nil, id: String? = nil) {
+        public init(courierPartners: [CourierPartners]? = nil, deliveryPromise: CourierPartnerPromise? = nil, id: String? = nil) {
             
             self.id = id
             
             self.courierPartners = courierPartners
+            
+            self.deliveryPromise = deliveryPromise
             
         }
 
@@ -139,6 +168,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 }
                 
             
+            
+                do {
+                    deliveryPromise = try container.decode(CourierPartnerPromise.self, forKey: .deliveryPromise)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -152,6 +193,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(courierPartners, forKey: .courierPartners)
+            
+            
+            
+            
+            try? container.encodeIfPresent(deliveryPromise, forKey: .deliveryPromise)
             
             
         }

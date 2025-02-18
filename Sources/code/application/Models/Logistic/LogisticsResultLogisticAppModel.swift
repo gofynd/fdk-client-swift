@@ -8,7 +8,7 @@ public extension ApplicationClient.Logistic {
     */
     class LogisticsResult: Codable {
         
-        public var dp: DP?
+        public var dp: [String: DP]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -17,7 +17,7 @@ public extension ApplicationClient.Logistic {
             
         }
 
-        public init(dp: DP? = nil) {
+        public init(dp: [String: DP]? = nil) {
             
             self.dp = dp
             
@@ -28,7 +28,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                dp = try container.decode(DP.self, forKey: .dp)
+                dp = try container.decode([String: DP].self, forKey: .dp)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

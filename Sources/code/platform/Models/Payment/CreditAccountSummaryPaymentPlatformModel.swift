@@ -20,7 +20,7 @@ public extension PlatformClient.Payment {
         
         public var availableBalance: UserCreditSchema?
         
-        public var amountOnHold: UserCreditSchema?
+        public var amountOnHold: [UserCreditSchema]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -37,7 +37,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(accountId: String, amountOnHold: UserCreditSchema? = nil, availableBalance: UserCreditSchema? = nil, redeemableBalance: UserCreditSchema? = nil, status: String) {
+        public init(accountId: String, amountOnHold: [UserCreditSchema]? = nil, availableBalance: UserCreditSchema? = nil, redeemableBalance: UserCreditSchema? = nil, status: String) {
             
             self.accountId = accountId
             
@@ -90,7 +90,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    amountOnHold = try container.decode(UserCreditSchema.self, forKey: .amountOnHold)
+                    amountOnHold = try container.decode([UserCreditSchema].self, forKey: .amountOnHold)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -154,7 +154,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var availableBalance: UserCreditSchema?
         
-        public var amountOnHold: UserCreditSchema?
+        public var amountOnHold: [UserCreditSchema]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -171,7 +171,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(accountId: String, amountOnHold: UserCreditSchema? = nil, availableBalance: UserCreditSchema? = nil, redeemableBalance: UserCreditSchema? = nil, status: String) {
+        public init(accountId: String, amountOnHold: [UserCreditSchema]? = nil, availableBalance: UserCreditSchema? = nil, redeemableBalance: UserCreditSchema? = nil, status: String) {
             
             self.accountId = accountId
             
@@ -224,7 +224,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    amountOnHold = try container.decode(UserCreditSchema.self, forKey: .amountOnHold)
+                    amountOnHold = try container.decode([UserCreditSchema].self, forKey: .amountOnHold)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

@@ -2631,6 +2631,177 @@ The ESM config stores order processing configuration. Each document in the ESM c
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getShipments
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getShipmentsPaginator(
+            lane: String?,
+            bagStatus: String?,
+            statusAssigned: String?,
+            statusOverrideLane: Bool?,
+            timeToDispatch: Int?,
+            searchType: String?,
+            searchValue: String?,
+            fromDate: String?,
+            toDate: String?,
+            startDate: String?,
+            endDate: String?,
+            statusAssignedStartDate: String?,
+            statusAssignedEndDate: String?,
+            dpIds: String?,
+            stores: String?,
+            salesChannels: String?,
+            pageSize: Int?,
+            fetchActiveShipment: Bool?,
+            allowInactive: Bool?,
+            excludeLockedShipments: Bool?,
+            paymentMethods: String?,
+            channelShipmentId: String?,
+            channelOrderId: String?,
+            customMeta: String?,
+            orderingChannel: String?,
+            companyAffiliateTag: String?,
+            myOrders: Bool?,
+            platformUserId: String?,
+            sortType: String?,
+            showCrossCompanyData: Bool?,
+            tags: String?,
+            customerId: String?,
+            orderType: String?,
+            groupEntity: String?,
+            enforceDateFilter: Bool?,
+            fulfillmentType: String?,
+            headers: [(key: String, value: String)]? = nil
+            ) -> Paginator<ShipmentInternalPlatformViewResponseSchema> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ShipmentInternalPlatformViewResponseSchema>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getShipments(
+                    lane: lane,
+                    bagStatus: bagStatus,
+                    statusAssigned: statusAssigned,
+                    statusOverrideLane: statusOverrideLane,
+                    timeToDispatch: timeToDispatch,
+                    searchType: searchType,
+                    searchValue: searchValue,
+                    fromDate: fromDate,
+                    toDate: toDate,
+                    startDate: startDate,
+                    endDate: endDate,
+                    statusAssignedStartDate: statusAssignedStartDate,
+                    statusAssignedEndDate: statusAssignedEndDate,
+                    dpIds: dpIds,
+                    stores: stores,
+                    salesChannels: salesChannels,
+                    pageNo: paginator.pageNo,
+                    pageSize: paginator.pageSize,
+                    fetchActiveShipment: fetchActiveShipment,
+                    allowInactive: allowInactive,
+                    excludeLockedShipments: excludeLockedShipments,
+                    paymentMethods: paymentMethods,
+                    channelShipmentId: channelShipmentId,
+                    channelOrderId: channelOrderId,
+                    customMeta: customMeta,
+                    orderingChannel: orderingChannel,
+                    companyAffiliateTag: companyAffiliateTag,
+                    myOrders: myOrders,
+                    platformUserId: platformUserId,
+                    sortType: sortType,
+                    showCrossCompanyData: showCrossCompanyData,
+                    tags: tags,
+                    customerId: customerId,
+                    orderType: orderType,
+                    groupEntity: groupEntity,
+                    enforceDateFilter: enforceDateFilter,
+                    fulfillmentType: fulfillmentType,
+                    
+                    headers: headers
+                ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
         /**
         *
         * Summary: Get shipment details
@@ -3085,6 +3256,133 @@ The ESM config stores order processing configuration. Each document in the ESM c
                     }
             });
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getOrders
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getOrdersPaginator(
+            lane: String?,
+            searchType: String?,
+            bagStatus: String?,
+            timeToDispatch: Int?,
+            paymentMethods: String?,
+            tags: String?,
+            searchValue: String?,
+            fromDate: String?,
+            toDate: String?,
+            startDate: String?,
+            endDate: String?,
+            dpIds: String?,
+            stores: String?,
+            salesChannels: String?,
+            pageSize: Int?,
+            isPrioritySort: Bool?,
+            customMeta: String?,
+            myOrders: Bool?,
+            showCrossCompanyData: Bool?,
+            customerId: String?,
+            orderType: String?,
+            allowInactive: Bool?,
+            groupEntity: String?,
+            enforceDateFilter: Bool?,
+            fulfillmentType: String?,
+            headers: [(key: String, value: String)]? = nil
+            ) -> Paginator<OrderListingResponseSchema> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<OrderListingResponseSchema>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getOrders(
+                    lane: lane,
+                    searchType: searchType,
+                    bagStatus: bagStatus,
+                    timeToDispatch: timeToDispatch,
+                    paymentMethods: paymentMethods,
+                    tags: tags,
+                    searchValue: searchValue,
+                    fromDate: fromDate,
+                    toDate: toDate,
+                    startDate: startDate,
+                    endDate: endDate,
+                    dpIds: dpIds,
+                    stores: stores,
+                    salesChannels: salesChannels,
+                    pageNo: paginator.pageNo,
+                    pageSize: paginator.pageSize,
+                    isPrioritySort: isPrioritySort,
+                    customMeta: customMeta,
+                    myOrders: myOrders,
+                    showCrossCompanyData: showCrossCompanyData,
+                    customerId: customerId,
+                    orderType: orderType,
+                    allowInactive: allowInactive,
+                    groupEntity: groupEntity,
+                    enforceDateFilter: enforceDateFilter,
+                    fulfillmentType: fulfillmentType,
+                    
+                    headers: headers
+                ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
         
         
         

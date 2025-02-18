@@ -36,7 +36,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)",
+                url: "/service/platform/company-profile/v2.0/company/\(companyId)",
                 query: nil,
                 body: nil,
                 headers: xHeaders,
@@ -86,7 +86,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "PATCH",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)",
+                url: "/service/platform/company-profile/v2.0/company/\(companyId)",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -217,7 +217,7 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: update brand 
+        * Summary: update brand
         * Description: Modify brand details and meta of a specific brand.
         **/
         public func editBrand(
@@ -353,7 +353,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
+                url: "/service/platform/company-profile/v2.0/company/\(companyId)/company-brand",
                 query: xQuery,
                 body: nil,
                 headers: xHeaders,
@@ -438,7 +438,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
+                url: "/service/platform/company-profile/v2.0/company/\(companyId)/company-brand",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -528,7 +528,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
+                url: "/service/platform/company-profile/v2.0/company/\(companyId)/location",
                 query: xQuery,
                 body: nil,
                 headers: xHeaders,
@@ -556,61 +556,6 @@ extension PlatformClient {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: get paginator for getLocations
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getLocationsPaginator(
-            storeType: String?,
-            q: String?,
-            stage: String?,
-            pageSize: Int?,
-            locationIds: [Int]?,
-            types: [String]?,
-            tags: [String]?,
-            headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<LocationListSchema> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<LocationListSchema>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getLocations(
-                    storeType: storeType,
-                    q: q,
-                    stage: stage,
-                    pageNo: paginator.pageNo,
-                    pageSize: paginator.pageSize,
-                    locationIds: locationIds,
-                    types: types,
-                    tags: tags,
-                    
-                    headers: headers
-                ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
         /**
         *
         * Summary: Create company stores
@@ -633,7 +578,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "POST",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
+                url: "/service/platform/company-profile/v2.0/company/\(companyId)/location",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -684,7 +629,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
+                url: "/service/platform/company-profile/v2.0/company/\(companyId)/location/\(locationId)",
                 query: nil,
                 body: nil,
                 headers: xHeaders,
@@ -735,7 +680,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
-                url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
+                url: "/service/platform/company-profile/v2.0/company/\(companyId)/location/\(locationId)",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,

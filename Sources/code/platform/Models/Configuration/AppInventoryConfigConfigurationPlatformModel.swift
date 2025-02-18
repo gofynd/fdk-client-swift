@@ -12,6 +12,8 @@ public extension PlatformClient.Configuration {
     class AppInventoryConfig: Codable {
         
         
+        public var deliveryStrategy: DeliveryStrategy?
+        
         public var brand: InventoryBrand?
         
         public var store: InventoryStore?
@@ -39,6 +41,8 @@ public extension PlatformClient.Configuration {
 
         public enum CodingKeys: String, CodingKey {
             
+            case deliveryStrategy = "delivery_strategy"
+            
             case brand = "brand"
             
             case store = "store"
@@ -65,7 +69,9 @@ public extension PlatformClient.Configuration {
             
         }
 
-        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
+        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, deliveryStrategy: DeliveryStrategy? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
+            
+            self.deliveryStrategy = deliveryStrategy
             
             self.brand = brand
             
@@ -95,6 +101,18 @@ public extension PlatformClient.Configuration {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    deliveryStrategy = try container.decode(DeliveryStrategy.self, forKey: .deliveryStrategy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -244,6 +262,11 @@ public extension PlatformClient.Configuration {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(deliveryStrategy, forKey: .deliveryStrategy)
+            
             
             
             
@@ -321,6 +344,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
     class AppInventoryConfig: Codable {
         
         
+        public var deliveryStrategy: DeliveryStrategy?
+        
         public var brand: InventoryBrand?
         
         public var store: InventoryStore?
@@ -348,6 +373,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
 
         public enum CodingKeys: String, CodingKey {
             
+            case deliveryStrategy = "delivery_strategy"
+            
             case brand = "brand"
             
             case store = "store"
@@ -374,7 +401,9 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
         }
 
-        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
+        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, deliveryStrategy: DeliveryStrategy? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
+            
+            self.deliveryStrategy = deliveryStrategy
             
             self.brand = brand
             
@@ -404,6 +433,18 @@ public extension PlatformClient.ApplicationClient.Configuration {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    deliveryStrategy = try container.decode(DeliveryStrategy.self, forKey: .deliveryStrategy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -553,6 +594,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(deliveryStrategy, forKey: .deliveryStrategy)
+            
             
             
             

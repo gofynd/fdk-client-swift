@@ -59,17 +59,17 @@ extension ApplicationClient {
             
             ulrs["getFollowIds"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/ids/") 
             
-            ulrs["getStores"] = config.domain.appendAsPath("/service/application/catalog/v1.0/locations/") 
+            ulrs["getStores"] = config.domain.appendAsPath("/service/application/catalog/v2.0/locations/") 
             
-            ulrs["getInStockLocations"] = config.domain.appendAsPath("/service/application/catalog/v1.0/in-stock/locations/") 
+            ulrs["getInStockLocations"] = config.domain.appendAsPath("/service/application/catalog/v2.0/in-stock/locations/") 
             
-            ulrs["getLocationDetailsById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/locations/{location_id}/") 
+            ulrs["getLocationDetailsById"] = config.domain.appendAsPath("/service/application/catalog/v2.0/locations/{location_id}/") 
             
             ulrs["getProductBundlesBySlug"] = config.domain.appendAsPath("/service/application/catalog/v1.0/product-grouping/") 
             
-            ulrs["getProductPriceBySlug"] = config.domain.appendAsPath("/service/application/catalog/v3.0/products/{slug}/sizes/{size}/price/") 
+            ulrs["getProductPriceBySlug"] = config.domain.appendAsPath("/service/application/catalog/v4.0/products/{slug}/sizes/{size}/price/") 
             
-            ulrs["getProductSellersBySlug"] = config.domain.appendAsPath("/service/application/catalog/v3.0/products/{slug}/sizes/{size}/sellers/") 
+            ulrs["getProductSellersBySlug"] = config.domain.appendAsPath("/service/application/catalog/v4.0/products/{slug}/sizes/{size}/sellers/") 
             
             self.relativeUrls = ulrs
         }
@@ -2281,7 +2281,7 @@ extension ApplicationClient {
             moq: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProductSizePriceResponseV3?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductSizePriceResponseV4?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2324,7 +2324,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductSizePriceResponseV3.self, from: data)
+                        let response = Utility.decode(ProductSizePriceResponseV4.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2350,7 +2350,7 @@ extension ApplicationClient {
             pageSize: Int?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProductSizeSellersResponseV3?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProductSizeSellersResponseV4?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -2397,7 +2397,7 @@ extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProductSizeSellersResponseV3.self, from: data)
+                        let response = Utility.decode(ProductSizeSellersResponseV4.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2428,9 +2428,9 @@ extension ApplicationClient {
             strategy: String?,
             pageSize: Int?,
             headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<ProductSizeSellersResponseV3> {
+            ) -> Paginator<ProductSizeSellersResponseV4> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<ProductSizeSellersResponseV3>(pageSize: pageSize, type: "number")
+            let paginator = Paginator<ProductSizeSellersResponseV4>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getProductSellersBySlug(
                     slug: slug,

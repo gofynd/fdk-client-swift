@@ -16,7 +16,7 @@ public extension PlatformClient.Serviceability {
         
         public var toLocation: ShipmentsCourierPartnersServiceability
         
-        public var shipments: [Shipments]?
+        public var shipments: [CPShipments]?
         
         public var journey: String?
         
@@ -37,7 +37,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(fromLocation: ShipmentsCourierPartnersServiceability, journey: String? = nil, paymentMode: String? = nil, shipments: [Shipments]? = nil, toLocation: ShipmentsCourierPartnersServiceability) {
+        public init(fromLocation: ShipmentsCourierPartnersServiceability, journey: String? = nil, paymentMode: String? = nil, shipments: [CPShipments]? = nil, toLocation: ShipmentsCourierPartnersServiceability) {
             
             self.fromLocation = fromLocation
             
@@ -66,7 +66,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    shipments = try container.decode([Shipments].self, forKey: .shipments)
+                    shipments = try container.decode([CPShipments].self, forKey: .shipments)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var toLocation: ShipmentsCourierPartnersServiceability
         
-        public var shipments: [Shipments]?
+        public var shipments: [CPShipments]?
         
         public var journey: String?
         
@@ -171,7 +171,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(fromLocation: ShipmentsCourierPartnersServiceability, journey: String? = nil, paymentMode: String? = nil, shipments: [Shipments]? = nil, toLocation: ShipmentsCourierPartnersServiceability) {
+        public init(fromLocation: ShipmentsCourierPartnersServiceability, journey: String? = nil, paymentMode: String? = nil, shipments: [CPShipments]? = nil, toLocation: ShipmentsCourierPartnersServiceability) {
             
             self.fromLocation = fromLocation
             
@@ -200,7 +200,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    shipments = try container.decode([Shipments].self, forKey: .shipments)
+                    shipments = try container.decode([CPShipments].self, forKey: .shipments)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

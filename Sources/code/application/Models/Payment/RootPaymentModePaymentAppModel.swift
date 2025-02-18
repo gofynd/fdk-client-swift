@@ -26,6 +26,14 @@ public extension ApplicationClient.Payment {
         
         public var anonymousEnable: Bool?
         
+        public var supportedMethods: [SupportedMethodDetails]?
+        
+        public var storedPaymentDetails: [StoredPaymentDetails]?
+        
+        public var suggestedList: [String]?
+        
+        public var flow: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -47,9 +55,17 @@ public extension ApplicationClient.Payment {
             
             case anonymousEnable = "anonymous_enable"
             
+            case supportedMethods = "supported_methods"
+            
+            case storedPaymentDetails = "stored_payment_details"
+            
+            case suggestedList = "suggested_list"
+            
+            case flow = "flow"
+            
         }
 
-        public init(addCardEnabled: Bool? = nil, aggregatorName: String? = nil, anonymousEnable: Bool? = nil, displayName: String, displayPriority: Int, isPayByCardPl: Bool? = nil, list: [PaymentModeList]? = nil, name: String, saveCard: Bool? = nil) {
+        public init(addCardEnabled: Bool? = nil, aggregatorName: String? = nil, anonymousEnable: Bool? = nil, displayName: String, displayPriority: Int, flow: String? = nil, isPayByCardPl: Bool? = nil, list: [PaymentModeList]? = nil, name: String, saveCard: Bool? = nil, storedPaymentDetails: [StoredPaymentDetails]? = nil, suggestedList: [String]? = nil, supportedMethods: [SupportedMethodDetails]? = nil) {
             
             self.isPayByCardPl = isPayByCardPl
             
@@ -68,6 +84,14 @@ public extension ApplicationClient.Payment {
             self.name = name
             
             self.anonymousEnable = anonymousEnable
+            
+            self.supportedMethods = supportedMethods
+            
+            self.storedPaymentDetails = storedPaymentDetails
+            
+            self.suggestedList = suggestedList
+            
+            self.flow = flow
             
         }
 
@@ -161,6 +185,54 @@ public extension ApplicationClient.Payment {
             }
             
             
+            
+            do {
+                supportedMethods = try container.decode([SupportedMethodDetails].self, forKey: .supportedMethods)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                storedPaymentDetails = try container.decode([StoredPaymentDetails].self, forKey: .storedPaymentDetails)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                suggestedList = try container.decode([String].self, forKey: .suggestedList)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                flow = try container.decode(String.self, forKey: .flow)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -200,6 +272,22 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(anonymousEnable, forKey: .anonymousEnable)
+            
+            
+            
+            try? container.encodeIfPresent(supportedMethods, forKey: .supportedMethods)
+            
+            
+            
+            try? container.encodeIfPresent(storedPaymentDetails, forKey: .storedPaymentDetails)
+            
+            
+            
+            try? container.encodeIfPresent(suggestedList, forKey: .suggestedList)
+            
+            
+            
+            try? container.encodeIfPresent(flow, forKey: .flow)
             
             
         }
