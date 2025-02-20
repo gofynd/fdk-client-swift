@@ -16,8 +16,6 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var conditions: [Conditions]?
         
-        public var blacklistedUsers: [String]?
-        
         public var error: UserResponseErrorSchema?
         
         public var name: String?
@@ -49,8 +47,6 @@ public extension PlatformClient.ApplicationClient.User {
             
             case conditions = "conditions"
             
-            case blacklistedUsers = "blacklisted_users"
-            
             case error = "error"
             
             case name = "name"
@@ -79,11 +75,9 @@ public extension PlatformClient.ApplicationClient.User {
             
         }
 
-        public init(applicationId: String? = nil, blacklistedUsers: [String]? = nil, conditions: [Conditions]? = nil, createdAt: String? = nil, description: String? = nil, error: UserResponseErrorSchema? = nil, fileUrl: String? = nil, isActive: Bool? = nil, modifiedAt: String? = nil, name: String? = nil, status: String? = nil, type: String? = nil, uid: Int? = nil, id: String? = nil, v: Int? = nil) {
+        public init(applicationId: String? = nil, conditions: [Conditions]? = nil, createdAt: String? = nil, description: String? = nil, error: UserResponseErrorSchema? = nil, fileUrl: String? = nil, isActive: Bool? = nil, modifiedAt: String? = nil, name: String? = nil, status: String? = nil, type: String? = nil, uid: Int? = nil, id: String? = nil, v: Int? = nil) {
             
             self.conditions = conditions
-            
-            self.blacklistedUsers = blacklistedUsers
             
             self.error = error
             
@@ -119,18 +113,6 @@ public extension PlatformClient.ApplicationClient.User {
             
                 do {
                     conditions = try container.decode([Conditions].self, forKey: .conditions)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    blacklistedUsers = try container.decode([String].self, forKey: .blacklistedUsers)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -304,11 +286,6 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(conditions, forKey: .conditions)
-            
-            
-            
-            
-            try? container.encodeIfPresent(blacklistedUsers, forKey: .blacklistedUsers)
             
             
             

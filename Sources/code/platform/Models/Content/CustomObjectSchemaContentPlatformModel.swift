@@ -14,98 +14,56 @@ public extension PlatformClient.Content {
         
         public var id: String?
         
-        public var creator: String?
-        
         public var companyId: String?
         
         public var applicationId: String?
         
-        public var createdBy: String?
-        
-        public var updatedBy: String?
-        
         public var status: String?
-        
-        public var slug: String?
         
         public var type: String?
         
+        public var definitionSlug: String?
+        
         public var displayName: String?
-        
-        public var definitionId: String?
-        
-        public var isDeleted: Bool?
-        
-        public var createdAt: String?
-        
-        public var updatedAt: String?
         
         public var fields: [CustomFieldSchema]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "_id"
-            
-            case creator = "creator"
+            case id = "id"
             
             case companyId = "company_id"
             
             case applicationId = "application_id"
             
-            case createdBy = "created_by"
-            
-            case updatedBy = "updated_by"
-            
             case status = "status"
-            
-            case slug = "slug"
             
             case type = "type"
             
+            case definitionSlug = "definition_slug"
+            
             case displayName = "display_name"
-            
-            case definitionId = "definition_id"
-            
-            case isDeleted = "is_deleted"
-            
-            case createdAt = "created_at"
-            
-            case updatedAt = "updated_at"
             
             case fields = "fields"
             
         }
 
-        public init(applicationId: String? = nil, companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, definitionId: String? = nil, displayName: String? = nil, fields: [CustomFieldSchema]? = nil, isDeleted: Bool? = nil, slug: String? = nil, status: String? = nil, type: String? = nil, updatedAt: String? = nil, updatedBy: String? = nil, id: String? = nil) {
+        public init(applicationId: String? = nil, companyId: String? = nil, definitionSlug: String? = nil, displayName: String? = nil, fields: [CustomFieldSchema]? = nil, id: String? = nil, status: String? = nil, type: String? = nil) {
             
             self.id = id
-            
-            self.creator = creator
             
             self.companyId = companyId
             
             self.applicationId = applicationId
             
-            self.createdBy = createdBy
-            
-            self.updatedBy = updatedBy
-            
             self.status = status
-            
-            self.slug = slug
             
             self.type = type
             
+            self.definitionSlug = definitionSlug
+            
             self.displayName = displayName
-            
-            self.definitionId = definitionId
-            
-            self.isDeleted = isDeleted
-            
-            self.createdAt = createdAt
-            
-            self.updatedAt = updatedAt
             
             self.fields = fields
             
@@ -117,18 +75,6 @@ public extension PlatformClient.Content {
             
                 do {
                     id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    creator = try container.decode(String.self, forKey: .creator)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,43 +110,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    createdBy = try container.decode(String.self, forKey: .createdBy)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    updatedBy = try container.decode(String.self, forKey: .updatedBy)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     status = try container.decode(String.self, forKey: .status)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -224,55 +134,19 @@ public extension PlatformClient.Content {
             
             
                 do {
+                    definitionSlug = try container.decode(String.self, forKey: .definitionSlug)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     displayName = try container.decode(String.self, forKey: .displayName)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    definitionId = try container.decode(String.self, forKey: .definitionId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isDeleted = try container.decode(Bool.self, forKey: .isDeleted)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    createdAt = try container.decode(String.self, forKey: .createdAt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -306,11 +180,6 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(creator, forKey: .creator)
-            
-            
-            
-            
             try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
@@ -321,22 +190,7 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-            
-            
-            
-            
-            try? container.encodeIfPresent(updatedBy, forKey: .updatedBy)
-            
-            
-            
-            
             try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
@@ -346,27 +200,12 @@ public extension PlatformClient.Content {
             
             
             
+            try? container.encodeIfPresent(definitionSlug, forKey: .definitionSlug)
+            
+            
+            
+            
             try? container.encodeIfPresent(displayName, forKey: .displayName)
-            
-            
-            
-            
-            try? container.encodeIfPresent(definitionId, forKey: .definitionId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isDeleted, forKey: .isDeleted)
-            
-            
-            
-            
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
             
@@ -392,98 +231,56 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var id: String?
         
-        public var creator: String?
-        
         public var companyId: String?
         
         public var applicationId: String?
         
-        public var createdBy: String?
-        
-        public var updatedBy: String?
-        
         public var status: String?
-        
-        public var slug: String?
         
         public var type: String?
         
+        public var definitionSlug: String?
+        
         public var displayName: String?
-        
-        public var definitionId: String?
-        
-        public var isDeleted: Bool?
-        
-        public var createdAt: String?
-        
-        public var updatedAt: String?
         
         public var fields: [CustomFieldSchema]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "_id"
-            
-            case creator = "creator"
+            case id = "id"
             
             case companyId = "company_id"
             
             case applicationId = "application_id"
             
-            case createdBy = "created_by"
-            
-            case updatedBy = "updated_by"
-            
             case status = "status"
-            
-            case slug = "slug"
             
             case type = "type"
             
+            case definitionSlug = "definition_slug"
+            
             case displayName = "display_name"
-            
-            case definitionId = "definition_id"
-            
-            case isDeleted = "is_deleted"
-            
-            case createdAt = "created_at"
-            
-            case updatedAt = "updated_at"
             
             case fields = "fields"
             
         }
 
-        public init(applicationId: String? = nil, companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, definitionId: String? = nil, displayName: String? = nil, fields: [CustomFieldSchema]? = nil, isDeleted: Bool? = nil, slug: String? = nil, status: String? = nil, type: String? = nil, updatedAt: String? = nil, updatedBy: String? = nil, id: String? = nil) {
+        public init(applicationId: String? = nil, companyId: String? = nil, definitionSlug: String? = nil, displayName: String? = nil, fields: [CustomFieldSchema]? = nil, id: String? = nil, status: String? = nil, type: String? = nil) {
             
             self.id = id
-            
-            self.creator = creator
             
             self.companyId = companyId
             
             self.applicationId = applicationId
             
-            self.createdBy = createdBy
-            
-            self.updatedBy = updatedBy
-            
             self.status = status
-            
-            self.slug = slug
             
             self.type = type
             
+            self.definitionSlug = definitionSlug
+            
             self.displayName = displayName
-            
-            self.definitionId = definitionId
-            
-            self.isDeleted = isDeleted
-            
-            self.createdAt = createdAt
-            
-            self.updatedAt = updatedAt
             
             self.fields = fields
             
@@ -495,18 +292,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    creator = try container.decode(String.self, forKey: .creator)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -542,43 +327,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    createdBy = try container.decode(String.self, forKey: .createdBy)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    updatedBy = try container.decode(String.self, forKey: .updatedBy)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     status = try container.decode(String.self, forKey: .status)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -602,55 +351,19 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
+                    definitionSlug = try container.decode(String.self, forKey: .definitionSlug)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     displayName = try container.decode(String.self, forKey: .displayName)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    definitionId = try container.decode(String.self, forKey: .definitionId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isDeleted = try container.decode(Bool.self, forKey: .isDeleted)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    createdAt = try container.decode(String.self, forKey: .createdAt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -684,11 +397,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(creator, forKey: .creator)
-            
-            
-            
-            
             try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
@@ -699,22 +407,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-            
-            
-            
-            
-            try? container.encodeIfPresent(updatedBy, forKey: .updatedBy)
-            
-            
-            
-            
             try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
@@ -724,27 +417,12 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
+            try? container.encodeIfPresent(definitionSlug, forKey: .definitionSlug)
+            
+            
+            
+            
             try? container.encodeIfPresent(displayName, forKey: .displayName)
-            
-            
-            
-            
-            try? container.encodeIfPresent(definitionId, forKey: .definitionId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isDeleted, forKey: .isDeleted)
-            
-            
-            
-            
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
             

@@ -12,11 +12,11 @@ public extension PlatformClient.Serviceability {
     class CommonError: Codable {
         
         
-        public var statusCode: Int?
+        public var statusCode: String?
         
-        public var error: [ErrorResponse]?
+        public var error: [String: Any]?
         
-        public var success: Bool?
+        public var success: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,7 +29,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(error: [ErrorResponse]? = nil, statusCode: Int? = nil, success: Bool? = nil) {
+        public init(error: [String: Any]? = nil, statusCode: String? = nil, success: String? = nil) {
             
             self.statusCode = statusCode
             
@@ -44,7 +44,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    statusCode = try container.decode(Int.self, forKey: .statusCode)
+                    statusCode = try container.decode(String.self, forKey: .statusCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    error = try container.decode([ErrorResponse].self, forKey: .error)
+                    error = try container.decode([String: Any].self, forKey: .error)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    success = try container.decode(Bool.self, forKey: .success)
+                    success = try container.decode(String.self, forKey: .success)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -114,11 +114,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class CommonError: Codable {
         
         
-        public var statusCode: Int?
+        public var statusCode: String?
         
-        public var error: [ErrorResponse]?
+        public var error: [String: Any]?
         
-        public var success: Bool?
+        public var success: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -131,7 +131,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(error: [ErrorResponse]? = nil, statusCode: Int? = nil, success: Bool? = nil) {
+        public init(error: [String: Any]? = nil, statusCode: String? = nil, success: String? = nil) {
             
             self.statusCode = statusCode
             
@@ -146,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    statusCode = try container.decode(Int.self, forKey: .statusCode)
+                    statusCode = try container.decode(String.self, forKey: .statusCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    error = try container.decode([ErrorResponse].self, forKey: .error)
+                    error = try container.decode([String: Any].self, forKey: .error)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -170,7 +170,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    success = try container.decode(Bool.self, forKey: .success)
+                    success = try container.decode(String.self, forKey: .success)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

@@ -18,6 +18,8 @@ public class ApplicationClient {
 
     public let fileStorage: FileStorage
 
+    public let finance: Finance
+
     public let lead: Lead
 
     public let logistic: Logistic
@@ -53,6 +55,8 @@ public class ApplicationClient {
         content = Content(config: config)
         
         fileStorage = FileStorage(config: config)
+        
+        finance = Finance(config: config)
         
         lead = Lead(config: config)
         

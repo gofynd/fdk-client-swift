@@ -8,42 +8,36 @@ public extension ApplicationClient.Cart {
     */
     class LoyaltyPoints: Codable {
         
-        public var isApplied: Bool?
-        
         public var total: Double?
-        
-        public var applicable: Double?
         
         public var description: String?
         
-        public var message: String?
+        public var applicable: Double?
+        
+        public var isApplied: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case isApplied = "is_applied"
-            
             case total = "total"
-            
-            case applicable = "applicable"
             
             case description = "description"
             
-            case message = "message"
+            case applicable = "applicable"
+            
+            case isApplied = "is_applied"
             
         }
 
-        public init(applicable: Double? = nil, description: String? = nil, isApplied: Bool? = nil, message: String? = nil, total: Double? = nil) {
-            
-            self.isApplied = isApplied
+        public init(applicable: Double? = nil, description: String? = nil, isApplied: Bool? = nil, total: Double? = nil) {
             
             self.total = total
             
-            self.applicable = applicable
-            
             self.description = description
             
-            self.message = message
+            self.applicable = applicable
+            
+            self.isApplied = isApplied
             
         }
 
@@ -52,31 +46,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                isApplied = try container.decode(Bool.self, forKey: .isApplied)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 total = try container.decode(Double.self, forKey: .total)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                applicable = try container.decode(Double.self, forKey: .applicable)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -100,7 +70,19 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                message = try container.decode(String.self, forKey: .message)
+                applicable = try container.decode(Double.self, forKey: .applicable)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                isApplied = try container.decode(Bool.self, forKey: .isApplied)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,15 +98,7 @@ public extension ApplicationClient.Cart {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(isApplied, forKey: .isApplied)
-            
-            
-            
             try? container.encodeIfPresent(total, forKey: .total)
-            
-            
-            
-            try? container.encodeIfPresent(applicable, forKey: .applicable)
             
             
             
@@ -132,7 +106,11 @@ public extension ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(applicable, forKey: .applicable)
+            
+            
+            
+            try? container.encodeIfPresent(isApplied, forKey: .isApplied)
             
             
         }

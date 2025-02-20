@@ -28,7 +28,7 @@ public extension ApplicationClient.Cart {
         
         public var description: String?
         
-        public var tags: [String]?
+        public var isBankOffer: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -53,11 +53,11 @@ public extension ApplicationClient.Cart {
             
             case description = "description"
             
-            case tags = "tags"
+            case isBankOffer = "is_bank_offer"
             
         }
 
-        public init(buyRules: [String: Any]? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, tags: [String]? = nil, validTill: String? = nil) {
+        public init(buyRules: [String: Any]? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, isBankOffer: Bool? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, validTill: String? = nil) {
             
             self.id = id
             
@@ -79,7 +79,7 @@ public extension ApplicationClient.Cart {
             
             self.description = description
             
-            self.tags = tags
+            self.isBankOffer = isBankOffer
             
         }
 
@@ -208,7 +208,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                tags = try container.decode([String].self, forKey: .tags)
+                isBankOffer = try container.decode(Bool.self, forKey: .isBankOffer)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -264,7 +264,7 @@ public extension ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(tags, forKey: .tags)
+            try? container.encodeIfPresent(isBankOffer, forKey: .isBankOffer)
             
             
         }

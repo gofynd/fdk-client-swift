@@ -18,7 +18,7 @@ public extension PlatformClient.Communication {
         
         public var description: String?
         
-        public var tags: [String]?
+        public var tags: [[String: Any]]?
         
         public var isActive: Bool?
         
@@ -73,7 +73,7 @@ public extension PlatformClient.Communication {
             
         }
 
-        public init(application: String? = nil, createdAt: String? = nil, datasource: String? = nil, description: String? = nil, email: CampaignEmail? = nil, isActive: Bool? = nil, name: String? = nil, recipientHeaders: RecipientHeaders? = nil, slug: String? = nil, tags: [String]? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, datasource: String? = nil, description: String? = nil, email: CampaignEmail? = nil, isActive: Bool? = nil, name: String? = nil, recipientHeaders: RecipientHeaders? = nil, slug: String? = nil, tags: [[String: Any]]? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.recipientHeaders = recipientHeaders
             
@@ -146,7 +146,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    tags = try container.decode([String].self, forKey: .tags)
+                    tags = try container.decode([[String: Any]].self, forKey: .tags)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -373,7 +373,7 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var description: String?
         
-        public var tags: [String]?
+        public var tags: [[String: Any]]?
         
         public var isActive: Bool?
         
@@ -428,7 +428,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
         }
 
-        public init(application: String? = nil, createdAt: String? = nil, datasource: String? = nil, description: String? = nil, email: CampaignEmail? = nil, isActive: Bool? = nil, name: String? = nil, recipientHeaders: RecipientHeaders? = nil, slug: String? = nil, tags: [String]? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, datasource: String? = nil, description: String? = nil, email: CampaignEmail? = nil, isActive: Bool? = nil, name: String? = nil, recipientHeaders: RecipientHeaders? = nil, slug: String? = nil, tags: [[String: Any]]? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.recipientHeaders = recipientHeaders
             
@@ -501,7 +501,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    tags = try container.decode([String].self, forKey: .tags)
+                    tags = try container.decode([[String: Any]].self, forKey: .tags)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

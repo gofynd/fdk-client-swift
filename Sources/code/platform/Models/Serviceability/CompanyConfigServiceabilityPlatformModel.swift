@@ -12,30 +12,42 @@ public extension PlatformClient.Serviceability {
     class CompanyConfig: Codable {
         
         
-        public var companyId: Int?
+        public var ruleIds: [String]
         
-        public var sort: [String]?
+        public var sort: [String]
         
         public var logisticsAsActual: String?
+        
+        public var companyId: Int
+        
+        public var applicationId: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case companyId = "company_id"
+            case ruleIds = "rule_ids"
             
             case sort = "sort"
             
             case logisticsAsActual = "logistics_as_actual"
             
+            case companyId = "company_id"
+            
+            case applicationId = "application_id"
+            
         }
 
-        public init(companyId: Int? = nil, logisticsAsActual: String? = nil, sort: [String]? = nil) {
+        public init(applicationId: String? = nil, companyId: Int, logisticsAsActual: String? = nil, ruleIds: [String], sort: [String]) {
             
-            self.companyId = companyId
+            self.ruleIds = ruleIds
             
             self.sort = sort
             
             self.logisticsAsActual = logisticsAsActual
+            
+            self.companyId = companyId
+            
+            self.applicationId = applicationId
             
         }
 
@@ -43,32 +55,35 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    companyId = try container.decode(Int.self, forKey: .companyId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                ruleIds = try container.decode([String].self, forKey: .ruleIds)
                 
             
             
-                do {
-                    sort = try container.decode([String].self, forKey: .sort)
+            
+                sort = try container.decode([String].self, forKey: .sort)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
                     logisticsAsActual = try container.decode(String.self, forKey: .logisticsAsActual)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                companyId = try container.decode(Int.self, forKey: .companyId)
+                
+            
+            
+            
+                do {
+                    applicationId = try container.decode(String.self, forKey: .applicationId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +100,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(ruleIds, forKey: .ruleIds)
             
             
             
@@ -96,6 +111,16 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(logisticsAsActual, forKey: .logisticsAsActual)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
             
             
         }
@@ -114,30 +139,42 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class CompanyConfig: Codable {
         
         
-        public var companyId: Int?
+        public var ruleIds: [String]
         
-        public var sort: [String]?
+        public var sort: [String]
         
         public var logisticsAsActual: String?
+        
+        public var companyId: Int
+        
+        public var applicationId: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case companyId = "company_id"
+            case ruleIds = "rule_ids"
             
             case sort = "sort"
             
             case logisticsAsActual = "logistics_as_actual"
             
+            case companyId = "company_id"
+            
+            case applicationId = "application_id"
+            
         }
 
-        public init(companyId: Int? = nil, logisticsAsActual: String? = nil, sort: [String]? = nil) {
+        public init(applicationId: String? = nil, companyId: Int, logisticsAsActual: String? = nil, ruleIds: [String], sort: [String]) {
             
-            self.companyId = companyId
+            self.ruleIds = ruleIds
             
             self.sort = sort
             
             self.logisticsAsActual = logisticsAsActual
+            
+            self.companyId = companyId
+            
+            self.applicationId = applicationId
             
         }
 
@@ -145,32 +182,35 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    companyId = try container.decode(Int.self, forKey: .companyId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                ruleIds = try container.decode([String].self, forKey: .ruleIds)
                 
             
             
-                do {
-                    sort = try container.decode([String].self, forKey: .sort)
+            
+                sort = try container.decode([String].self, forKey: .sort)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
                     logisticsAsActual = try container.decode(String.self, forKey: .logisticsAsActual)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                companyId = try container.decode(Int.self, forKey: .companyId)
+                
+            
+            
+            
+                do {
+                    applicationId = try container.decode(String.self, forKey: .applicationId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,7 +227,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(ruleIds, forKey: .ruleIds)
             
             
             
@@ -198,6 +238,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(logisticsAsActual, forKey: .logisticsAsActual)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
             
             
         }

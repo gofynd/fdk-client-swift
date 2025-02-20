@@ -14,16 +14,22 @@ public extension PlatformClient.Catalog {
         
         public var count: Int?
         
+        public var updatedAt: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case count = "count"
             
+            case updatedAt = "updated_at"
+            
         }
 
-        public init(count: Int? = nil) {
+        public init(count: Int? = nil, updatedAt: String? = nil) {
             
             self.count = count
+            
+            self.updatedAt = updatedAt
             
         }
 
@@ -42,6 +48,18 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -50,6 +68,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(count, forKey: .count)
+            
+            
+            
+            
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
         }
@@ -70,16 +93,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var count: Int?
         
+        public var updatedAt: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case count = "count"
             
+            case updatedAt = "updated_at"
+            
         }
 
-        public init(count: Int? = nil) {
+        public init(count: Int? = nil, updatedAt: String? = nil) {
             
             self.count = count
+            
+            self.updatedAt = updatedAt
             
         }
 
@@ -98,6 +127,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -106,6 +147,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(count, forKey: .count)
+            
+            
+            
+            
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
         }

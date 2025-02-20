@@ -14,7 +14,7 @@ public extension PlatformClient.Configuration {
         
         public var criteria: String?
         
-        public var stores: [Int]?
+        public var stores: [[String: Any]]?
         
         public var rules: [AppStoreRules]?
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Configuration {
             
         }
 
-        public init(criteria: String? = nil, rules: [AppStoreRules]? = nil, stores: [Int]? = nil) {
+        public init(criteria: String? = nil, rules: [AppStoreRules]? = nil, stores: [[String: Any]]? = nil) {
             
             self.criteria = criteria
             
@@ -56,7 +56,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    stores = try container.decode([Int].self, forKey: .stores)
+                    stores = try container.decode([[String: Any]].self, forKey: .stores)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,7 +116,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var criteria: String?
         
-        public var stores: [Int]?
+        public var stores: [[String: Any]]?
         
         public var rules: [AppStoreRules]?
         
@@ -131,7 +131,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
         }
 
-        public init(criteria: String? = nil, rules: [AppStoreRules]? = nil, stores: [Int]? = nil) {
+        public init(criteria: String? = nil, rules: [AppStoreRules]? = nil, stores: [[String: Any]]? = nil) {
             
             self.criteria = criteria
             
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    stores = try container.decode([Int].self, forKey: .stores)
+                    stores = try container.decode([[String: Any]].self, forKey: .stores)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

@@ -30,6 +30,8 @@ public extension PlatformClient.ApplicationClient.Share {
         
         public var total: Int?
         
+        public var page: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -49,9 +51,11 @@ public extension PlatformClient.ApplicationClient.Share {
             
             case total = "total"
             
+            case page = "page"
+            
         }
 
-        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, size: Int? = nil, total: Int? = nil, type: String) {
+        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, page: Int? = nil, size: Int? = nil, total: Int? = nil, type: String) {
             
             self.itemTotal = itemTotal
             
@@ -68,6 +72,8 @@ public extension PlatformClient.ApplicationClient.Share {
             self.size = size
             
             self.total = total
+            
+            self.page = page
             
         }
 
@@ -163,6 +169,18 @@ public extension PlatformClient.ApplicationClient.Share {
                 }
                 
             
+            
+                do {
+                    page = try container.decode(Int.self, forKey: .page)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -206,6 +224,11 @@ public extension PlatformClient.ApplicationClient.Share {
             
             
             try? container.encodeIfPresent(total, forKey: .total)
+            
+            
+            
+            
+            try? container.encodeIfPresent(page, forKey: .page)
             
             
         }

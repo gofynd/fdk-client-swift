@@ -12,13 +12,11 @@ public extension PlatformClient.Catalog {
     class HSNDataInsertV2: Codable {
         
         
-        public var id: String?
-        
         public var countryCode: String
         
-        public var createdBy: CreatedBy?
+        public var createdBy: CreatedBySchema?
         
-        public var modifiedBy: CreatedBy?
+        public var modifiedBy: ModifiedBySchema?
         
         public var createdOn: String?
         
@@ -30,7 +28,9 @@ public extension PlatformClient.Catalog {
         
         public var modifiedOn: String?
         
-        public var reportingHsn: String
+        public var reportingHsn: [String: Any]
+        
+        public var id: String?
         
         public var taxes: [TaxSlab]
         
@@ -38,8 +38,6 @@ public extension PlatformClient.Catalog {
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case id = "id"
             
             case countryCode = "country_code"
             
@@ -59,15 +57,15 @@ public extension PlatformClient.Catalog {
             
             case reportingHsn = "reporting_hsn"
             
+            case id = "id"
+            
             case taxes = "taxes"
             
             case type = "type"
             
         }
 
-        public init(countryCode: String, createdBy: CreatedBy? = nil, createdOn: String? = nil, description: String, hsnCode: String, hsnCodeId: String? = nil, id: String? = nil, modifiedBy: CreatedBy? = nil, modifiedOn: String? = nil, reportingHsn: String, taxes: [TaxSlab], type: String) {
-            
-            self.id = id
+        public init(countryCode: String, createdBy: CreatedBySchema? = nil, createdOn: String? = nil, description: String, hsnCode: String, hsnCodeId: String? = nil, id: String? = nil, modifiedBy: ModifiedBySchema? = nil, modifiedOn: String? = nil, reportingHsn: [String: Any], taxes: [TaxSlab], type: String) {
             
             self.countryCode = countryCode
             
@@ -87,6 +85,8 @@ public extension PlatformClient.Catalog {
             
             self.reportingHsn = reportingHsn
             
+            self.id = id
+            
             self.taxes = taxes
             
             self.type = type
@@ -97,25 +97,13 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 countryCode = try container.decode(String.self, forKey: .countryCode)
                 
             
             
             
                 do {
-                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+                    createdBy = try container.decode(CreatedBySchema.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -127,7 +115,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(CreatedBy.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(ModifiedBySchema.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -184,9 +172,21 @@ public extension PlatformClient.Catalog {
                 
             
             
-                reportingHsn = try container.decode(String.self, forKey: .reportingHsn)
+                reportingHsn = try container.decode([String: Any].self, forKey: .reportingHsn)
                 
             
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 taxes = try container.decode([TaxSlab].self, forKey: .taxes)
@@ -202,11 +202,6 @@ public extension PlatformClient.Catalog {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -251,6 +246,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(reportingHsn, forKey: .reportingHsn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
@@ -279,13 +279,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class HSNDataInsertV2: Codable {
         
         
-        public var id: String?
-        
         public var countryCode: String
         
-        public var createdBy: CreatedBy?
+        public var createdBy: CreatedBySchema?
         
-        public var modifiedBy: CreatedBy?
+        public var modifiedBy: ModifiedBySchema?
         
         public var createdOn: String?
         
@@ -297,7 +295,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var modifiedOn: String?
         
-        public var reportingHsn: String
+        public var reportingHsn: [String: Any]
+        
+        public var id: String?
         
         public var taxes: [TaxSlab]
         
@@ -305,8 +305,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case id = "id"
             
             case countryCode = "country_code"
             
@@ -326,15 +324,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case reportingHsn = "reporting_hsn"
             
+            case id = "id"
+            
             case taxes = "taxes"
             
             case type = "type"
             
         }
 
-        public init(countryCode: String, createdBy: CreatedBy? = nil, createdOn: String? = nil, description: String, hsnCode: String, hsnCodeId: String? = nil, id: String? = nil, modifiedBy: CreatedBy? = nil, modifiedOn: String? = nil, reportingHsn: String, taxes: [TaxSlab], type: String) {
-            
-            self.id = id
+        public init(countryCode: String, createdBy: CreatedBySchema? = nil, createdOn: String? = nil, description: String, hsnCode: String, hsnCodeId: String? = nil, id: String? = nil, modifiedBy: ModifiedBySchema? = nil, modifiedOn: String? = nil, reportingHsn: [String: Any], taxes: [TaxSlab], type: String) {
             
             self.countryCode = countryCode
             
@@ -354,6 +352,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.reportingHsn = reportingHsn
             
+            self.id = id
+            
             self.taxes = taxes
             
             self.type = type
@@ -364,25 +364,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 countryCode = try container.decode(String.self, forKey: .countryCode)
                 
             
             
             
                 do {
-                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+                    createdBy = try container.decode(CreatedBySchema.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -394,7 +382,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(CreatedBy.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(ModifiedBySchema.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -451,9 +439,21 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                reportingHsn = try container.decode(String.self, forKey: .reportingHsn)
+                reportingHsn = try container.decode([String: Any].self, forKey: .reportingHsn)
                 
             
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 taxes = try container.decode([TaxSlab].self, forKey: .taxes)
@@ -469,11 +469,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -518,6 +513,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(reportingHsn, forKey: .reportingHsn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             

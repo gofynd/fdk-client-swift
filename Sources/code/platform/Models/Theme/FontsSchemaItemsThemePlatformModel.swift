@@ -28,8 +28,6 @@ public extension PlatformClient.Theme {
         
         public var kind: String?
         
-        public var menu: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -49,11 +47,9 @@ public extension PlatformClient.Theme {
             
             case kind = "kind"
             
-            case menu = "menu"
-            
         }
 
-        public init(category: String? = nil, family: String? = nil, files: FontsSchemaItemsFiles? = nil, kind: String? = nil, lastModified: String? = nil, menu: String? = nil, subsets: [String]? = nil, variants: [String]? = nil, version: String? = nil) {
+        public init(category: String? = nil, family: String? = nil, files: FontsSchemaItemsFiles? = nil, kind: String? = nil, lastModified: String? = nil, subsets: [String]? = nil, variants: [String]? = nil, version: String? = nil) {
             
             self.family = family
             
@@ -70,8 +66,6 @@ public extension PlatformClient.Theme {
             self.category = category
             
             self.kind = kind
-            
-            self.menu = menu
             
         }
 
@@ -174,18 +168,6 @@ public extension PlatformClient.Theme {
                 }
                 
             
-            
-                do {
-                    menu = try container.decode(String.self, forKey: .menu)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -229,11 +211,6 @@ public extension PlatformClient.Theme {
             
             
             try? container.encodeIfPresent(kind, forKey: .kind)
-            
-            
-            
-            
-            try? container.encodeIfPresent(menu, forKey: .menu)
             
             
         }
@@ -268,8 +245,6 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public var kind: String?
         
-        public var menu: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -289,11 +264,9 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             case kind = "kind"
             
-            case menu = "menu"
-            
         }
 
-        public init(category: String? = nil, family: String? = nil, files: FontsSchemaItemsFiles? = nil, kind: String? = nil, lastModified: String? = nil, menu: String? = nil, subsets: [String]? = nil, variants: [String]? = nil, version: String? = nil) {
+        public init(category: String? = nil, family: String? = nil, files: FontsSchemaItemsFiles? = nil, kind: String? = nil, lastModified: String? = nil, subsets: [String]? = nil, variants: [String]? = nil, version: String? = nil) {
             
             self.family = family
             
@@ -310,8 +283,6 @@ public extension PlatformClient.ApplicationClient.Theme {
             self.category = category
             
             self.kind = kind
-            
-            self.menu = menu
             
         }
 
@@ -414,18 +385,6 @@ public extension PlatformClient.ApplicationClient.Theme {
                 }
                 
             
-            
-                do {
-                    menu = try container.decode(String.self, forKey: .menu)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -469,11 +428,6 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(kind, forKey: .kind)
-            
-            
-            
-            
-            try? container.encodeIfPresent(menu, forKey: .menu)
             
             
         }

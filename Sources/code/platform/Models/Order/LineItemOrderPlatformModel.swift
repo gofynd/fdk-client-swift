@@ -12,7 +12,7 @@ public extension PlatformClient.Order {
     class LineItem: Codable {
         
         
-        public var charges: [Charge]
+        public var charges: [Charge]?
         
         public var meta: [String: Any]?
         
@@ -41,7 +41,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(charges: [Charge], customMessage: String? = nil, externalLineId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, sellerIdentifier: String) {
+        public init(charges: [Charge]? = nil, customMessage: String? = nil, externalLineId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, sellerIdentifier: String) {
             
             self.charges = charges
             
@@ -61,9 +61,16 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                charges = try container.decode([Charge].self, forKey: .charges)
+                do {
+                    charges = try container.decode([Charge].self, forKey: .charges)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -169,7 +176,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class LineItem: Codable {
         
         
-        public var charges: [Charge]
+        public var charges: [Charge]?
         
         public var meta: [String: Any]?
         
@@ -198,7 +205,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(charges: [Charge], customMessage: String? = nil, externalLineId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, sellerIdentifier: String) {
+        public init(charges: [Charge]? = nil, customMessage: String? = nil, externalLineId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, sellerIdentifier: String) {
             
             self.charges = charges
             
@@ -218,9 +225,16 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                charges = try container.decode([Charge].self, forKey: .charges)
+                do {
+                    charges = try container.decode([Charge].self, forKey: .charges)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

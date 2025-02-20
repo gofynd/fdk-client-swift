@@ -16,6 +16,8 @@ public extension PlatformClient.Order {
         
         public var errors: String?
         
+        public var statusCode: Double?
+        
         public var fyndOrderId: String?
         
 
@@ -25,15 +27,19 @@ public extension PlatformClient.Order {
             
             case errors = "errors"
             
+            case statusCode = "status_code"
+            
             case fyndOrderId = "fynd_order_id"
             
         }
 
-        public init(errors: String? = nil, fyndOrderId: String? = nil, success: Bool? = nil) {
+        public init(errors: String? = nil, fyndOrderId: String? = nil, statusCode: Double? = nil, success: Bool? = nil) {
             
             self.success = success
             
             self.errors = errors
+            
+            self.statusCode = statusCode
             
             self.fyndOrderId = fyndOrderId
             
@@ -68,6 +74,18 @@ public extension PlatformClient.Order {
             
             
                 do {
+                    statusCode = try container.decode(Double.self, forKey: .statusCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -91,6 +109,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(errors, forKey: .errors)
+            
+            
+            
+            
+            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
             
             
             
@@ -118,6 +141,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var errors: String?
         
+        public var statusCode: Double?
+        
         public var fyndOrderId: String?
         
 
@@ -127,15 +152,19 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case errors = "errors"
             
+            case statusCode = "status_code"
+            
             case fyndOrderId = "fynd_order_id"
             
         }
 
-        public init(errors: String? = nil, fyndOrderId: String? = nil, success: Bool? = nil) {
+        public init(errors: String? = nil, fyndOrderId: String? = nil, statusCode: Double? = nil, success: Bool? = nil) {
             
             self.success = success
             
             self.errors = errors
+            
+            self.statusCode = statusCode
             
             self.fyndOrderId = fyndOrderId
             
@@ -170,6 +199,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
+                    statusCode = try container.decode(Double.self, forKey: .statusCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -193,6 +234,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(errors, forKey: .errors)
+            
+            
+            
+            
+            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
             
             
             

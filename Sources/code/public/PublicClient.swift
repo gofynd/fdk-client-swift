@@ -3,8 +3,6 @@ import Foundation
 
 public class PublicClient {
 
-    public let billing: Billing
-
     public let configuration: Configuration
 
     public let content: Content
@@ -14,8 +12,6 @@ public class PublicClient {
     public let webhook: Webhook
 
     public init(config: PublicConfig) {
-        
-        billing = Billing(config: config)
         
         configuration = Configuration(config: config)
         

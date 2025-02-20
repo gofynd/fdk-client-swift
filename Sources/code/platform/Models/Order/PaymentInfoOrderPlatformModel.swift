@@ -14,6 +14,8 @@ public extension PlatformClient.Order {
         
         public var primaryMode: String
         
+        public var paymentMode: String?
+        
         public var paymentMethods: [PaymentMethod]?
         
 
@@ -21,13 +23,17 @@ public extension PlatformClient.Order {
             
             case primaryMode = "primary_mode"
             
+            case paymentMode = "payment_mode"
+            
             case paymentMethods = "payment_methods"
             
         }
 
-        public init(paymentMethods: [PaymentMethod]? = nil, primaryMode: String) {
+        public init(paymentMethods: [PaymentMethod]? = nil, paymentMode: String? = nil, primaryMode: String) {
             
             self.primaryMode = primaryMode
+            
+            self.paymentMode = paymentMode
             
             self.paymentMethods = paymentMethods
             
@@ -40,6 +46,18 @@ public extension PlatformClient.Order {
                 primaryMode = try container.decode(String.self, forKey: .primaryMode)
                 
             
+            
+            
+                do {
+                    paymentMode = try container.decode(String.self, forKey: .paymentMode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -61,6 +79,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(primaryMode, forKey: .primaryMode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
             
             
             
@@ -86,6 +109,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var primaryMode: String
         
+        public var paymentMode: String?
+        
         public var paymentMethods: [PaymentMethod]?
         
 
@@ -93,13 +118,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case primaryMode = "primary_mode"
             
+            case paymentMode = "payment_mode"
+            
             case paymentMethods = "payment_methods"
             
         }
 
-        public init(paymentMethods: [PaymentMethod]? = nil, primaryMode: String) {
+        public init(paymentMethods: [PaymentMethod]? = nil, paymentMode: String? = nil, primaryMode: String) {
             
             self.primaryMode = primaryMode
+            
+            self.paymentMode = paymentMode
             
             self.paymentMethods = paymentMethods
             
@@ -112,6 +141,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 primaryMode = try container.decode(String.self, forKey: .primaryMode)
                 
             
+            
+            
+                do {
+                    paymentMode = try container.decode(String.self, forKey: .paymentMode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -133,6 +174,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(primaryMode, forKey: .primaryMode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
             
             
             

@@ -12,17 +12,13 @@ public extension PlatformClient.Order {
     class SmsDataPayload: Codable {
         
         
-        public var days: Int
-        
-        public var reason: String
-        
-        public var shipmentId: String?
+        public var shipmentId: String
         
         public var phoneNumber: String
         
-        public var amountPaid: Double?
+        public var amountPaid: Int?
         
-        public var orderId: String?
+        public var orderId: String
         
         public var paymentMode: String?
         
@@ -36,10 +32,6 @@ public extension PlatformClient.Order {
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case days = "days"
-            
-            case reason = "reason"
             
             case shipmentId = "shipment_id"
             
@@ -61,11 +53,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(amountPaid: Double? = nil, brandName: String? = nil, countryCode: String, customerName: String? = nil, days: Int, message: String, orderId: String? = nil, paymentMode: String? = nil, phoneNumber: String, reason: String, shipmentId: String? = nil) {
-            
-            self.days = days
-            
-            self.reason = reason
+        public init(amountPaid: Int? = nil, brandName: String? = nil, countryCode: String, customerName: String? = nil, message: String, orderId: String, paymentMode: String? = nil, phoneNumber: String, shipmentId: String) {
             
             self.shipmentId = shipmentId
             
@@ -91,26 +79,9 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                days = try container.decode(Int.self, forKey: .days)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
                 
             
-            
-            
-                reason = try container.decode(String.self, forKey: .reason)
-                
-            
-            
-            
-                do {
-                    shipmentId = try container.decode(String.self, forKey: .shipmentId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
@@ -119,7 +90,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    amountPaid = try container.decode(Double.self, forKey: .amountPaid)
+                    amountPaid = try container.decode(Int.self, forKey: .amountPaid)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -130,16 +101,9 @@ public extension PlatformClient.Order {
                 
             
             
-                do {
-                    orderId = try container.decode(String.self, forKey: .orderId)
+                orderId = try container.decode(String.self, forKey: .orderId)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -191,16 +155,6 @@ public extension PlatformClient.Order {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(days, forKey: .days)
-            
-            
-            
-            
-            try? container.encodeIfPresent(reason, forKey: .reason)
-            
             
             
             
@@ -263,17 +217,13 @@ public extension PlatformClient.ApplicationClient.Order {
     class SmsDataPayload: Codable {
         
         
-        public var days: Int
-        
-        public var reason: String
-        
-        public var shipmentId: String?
+        public var shipmentId: String
         
         public var phoneNumber: String
         
-        public var amountPaid: Double?
+        public var amountPaid: Int?
         
-        public var orderId: String?
+        public var orderId: String
         
         public var paymentMode: String?
         
@@ -287,10 +237,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case days = "days"
-            
-            case reason = "reason"
             
             case shipmentId = "shipment_id"
             
@@ -312,11 +258,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(amountPaid: Double? = nil, brandName: String? = nil, countryCode: String, customerName: String? = nil, days: Int, message: String, orderId: String? = nil, paymentMode: String? = nil, phoneNumber: String, reason: String, shipmentId: String? = nil) {
-            
-            self.days = days
-            
-            self.reason = reason
+        public init(amountPaid: Int? = nil, brandName: String? = nil, countryCode: String, customerName: String? = nil, message: String, orderId: String, paymentMode: String? = nil, phoneNumber: String, shipmentId: String) {
             
             self.shipmentId = shipmentId
             
@@ -342,26 +284,9 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                days = try container.decode(Int.self, forKey: .days)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
                 
             
-            
-            
-                reason = try container.decode(String.self, forKey: .reason)
-                
-            
-            
-            
-                do {
-                    shipmentId = try container.decode(String.self, forKey: .shipmentId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
@@ -370,7 +295,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    amountPaid = try container.decode(Double.self, forKey: .amountPaid)
+                    amountPaid = try container.decode(Int.self, forKey: .amountPaid)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -381,16 +306,9 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-                do {
-                    orderId = try container.decode(String.self, forKey: .orderId)
+                orderId = try container.decode(String.self, forKey: .orderId)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -442,16 +360,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(days, forKey: .days)
-            
-            
-            
-            
-            try? container.encodeIfPresent(reason, forKey: .reason)
-            
             
             
             

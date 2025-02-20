@@ -18,7 +18,7 @@ public extension PlatformClient.Order {
         
         public var uid: String
         
-        public var aSet: [String: Any]?
+        public var set: [String: Any]?
         
         public var dimensions: Dimensions?
         
@@ -44,8 +44,6 @@ public extension PlatformClient.Order {
         
         public var tags: [String]?
         
-        public var variants: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -55,7 +53,7 @@ public extension PlatformClient.Order {
             
             case uid = "uid"
             
-            case aSet = "a_set"
+            case set = "set"
             
             case dimensions = "dimensions"
             
@@ -81,11 +79,9 @@ public extension PlatformClient.Order {
             
             case tags = "tags"
             
-            case variants = "variants"
-            
         }
 
-        public init(aSet: [String: Any]? = nil, childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, size: String, tags: [String]? = nil, uid: String, variants: [String: Any]? = nil, weight: Weight? = nil, id: String) {
+        public init(childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, set: [String: Any]? = nil, size: String, tags: [String]? = nil, uid: String, weight: Weight? = nil, id: String) {
             
             self.childDetails = childDetails
             
@@ -93,7 +89,7 @@ public extension PlatformClient.Order {
             
             self.uid = uid
             
-            self.aSet = aSet
+            self.set = set
             
             self.dimensions = dimensions
             
@@ -118,8 +114,6 @@ public extension PlatformClient.Order {
             self.isSet = isSet
             
             self.tags = tags
-            
-            self.variants = variants
             
         }
 
@@ -150,7 +144,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    aSet = try container.decode([String: Any].self, forKey: .aSet)
+                    set = try container.decode([String: Any].self, forKey: .set)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -283,18 +277,6 @@ public extension PlatformClient.Order {
                 }
                 
             
-            
-                do {
-                    variants = try container.decode([String: Any].self, forKey: .variants)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -317,7 +299,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(aSet, forKey: .aSet)
+            try? container.encodeIfPresent(set, forKey: .set)
             
             
             
@@ -378,11 +360,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(variants, forKey: .variants)
             
             
         }
@@ -407,7 +384,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var uid: String
         
-        public var aSet: [String: Any]?
+        public var set: [String: Any]?
         
         public var dimensions: Dimensions?
         
@@ -433,8 +410,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var tags: [String]?
         
-        public var variants: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -444,7 +419,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case uid = "uid"
             
-            case aSet = "a_set"
+            case set = "set"
             
             case dimensions = "dimensions"
             
@@ -470,11 +445,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case tags = "tags"
             
-            case variants = "variants"
-            
         }
 
-        public init(aSet: [String: Any]? = nil, childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, size: String, tags: [String]? = nil, uid: String, variants: [String: Any]? = nil, weight: Weight? = nil, id: String) {
+        public init(childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, set: [String: Any]? = nil, size: String, tags: [String]? = nil, uid: String, weight: Weight? = nil, id: String) {
             
             self.childDetails = childDetails
             
@@ -482,7 +455,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.uid = uid
             
-            self.aSet = aSet
+            self.set = set
             
             self.dimensions = dimensions
             
@@ -507,8 +480,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.isSet = isSet
             
             self.tags = tags
-            
-            self.variants = variants
             
         }
 
@@ -539,7 +510,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    aSet = try container.decode([String: Any].self, forKey: .aSet)
+                    set = try container.decode([String: Any].self, forKey: .set)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -672,18 +643,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
-            
-                do {
-                    variants = try container.decode([String: Any].self, forKey: .variants)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -706,7 +665,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(aSet, forKey: .aSet)
+            try? container.encodeIfPresent(set, forKey: .set)
             
             
             
@@ -767,11 +726,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(variants, forKey: .variants)
             
             
         }
