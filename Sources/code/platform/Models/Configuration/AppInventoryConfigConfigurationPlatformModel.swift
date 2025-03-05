@@ -38,6 +38,8 @@ public extension PlatformClient.Configuration {
         
         public var enableZoneOverlapping: Bool?
         
+        public var sortPopularFirst: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -67,9 +69,11 @@ public extension PlatformClient.Configuration {
             
             case enableZoneOverlapping = "enable_zone_overlapping"
             
+            case sortPopularFirst = "sort_popular_first"
+            
         }
 
-        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, enableZoneOverlapping: Bool? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
+        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, enableZoneOverlapping: Bool? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, sortPopularFirst: Bool? = nil, store: InventoryStore? = nil) {
             
             self.brand = brand
             
@@ -96,6 +100,8 @@ public extension PlatformClient.Configuration {
             self.companyId = companyId
             
             self.enableZoneOverlapping = enableZoneOverlapping
+            
+            self.sortPopularFirst = sortPopularFirst
             
         }
 
@@ -258,6 +264,18 @@ public extension PlatformClient.Configuration {
                 }
                 
             
+            
+                do {
+                    sortPopularFirst = try container.decode(Bool.self, forKey: .sortPopularFirst)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -326,6 +344,11 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(enableZoneOverlapping, forKey: .enableZoneOverlapping)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sortPopularFirst, forKey: .sortPopularFirst)
             
             
         }
@@ -370,6 +393,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var enableZoneOverlapping: Bool?
         
+        public var sortPopularFirst: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -399,9 +424,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case enableZoneOverlapping = "enable_zone_overlapping"
             
+            case sortPopularFirst = "sort_popular_first"
+            
         }
 
-        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, enableZoneOverlapping: Bool? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
+        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, enableZoneOverlapping: Bool? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, sortPopularFirst: Bool? = nil, store: InventoryStore? = nil) {
             
             self.brand = brand
             
@@ -428,6 +455,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.companyId = companyId
             
             self.enableZoneOverlapping = enableZoneOverlapping
+            
+            self.sortPopularFirst = sortPopularFirst
             
         }
 
@@ -590,6 +619,18 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
+            
+                do {
+                    sortPopularFirst = try container.decode(Bool.self, forKey: .sortPopularFirst)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -658,6 +699,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(enableZoneOverlapping, forKey: .enableZoneOverlapping)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sortPopularFirst, forKey: .sortPopularFirst)
             
             
         }

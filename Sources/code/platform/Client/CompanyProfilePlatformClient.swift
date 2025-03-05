@@ -22,7 +22,7 @@ extension PlatformClient {
         public func cbsOnboardGet(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetCompanyProfileSerializerResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetCompanyProfileSerializerResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -50,7 +50,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetCompanyProfileSerializerResponseSchema.self, from: data)
+                        let response = Utility.decode(GetCompanyProfileSerializerResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -72,7 +72,7 @@ extension PlatformClient {
         public func updateCompany(
             body: UpdateCompany,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProfileSuccessResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -100,7 +100,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProfileSuccessResponseSchema.self, from: data)
+                        let response = Utility.decode(ProfileSuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -122,7 +122,7 @@ extension PlatformClient {
         public func getCompanyMetrics(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: MetricsSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: MetricsSerializer?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -150,7 +150,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(MetricsSchema.self, from: data)
+                        let response = Utility.decode(MetricsSerializer.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -173,7 +173,7 @@ extension PlatformClient {
             brandId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetBrandResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetBrandResponseSerializer?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -201,7 +201,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetBrandResponseSchema.self, from: data)
+                        let response = Utility.decode(GetBrandResponseSerializer.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -222,9 +222,9 @@ extension PlatformClient {
         **/
         public func editBrand(
             brandId: String,
-            body: UpdateBrandRequestSchema,
+            body: UpdateBrandRequestSerializer,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProfileSuccessResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -252,7 +252,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProfileSuccessResponseSchema.self, from: data)
+                        let response = Utility.decode(ProfileSuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -272,9 +272,9 @@ extension PlatformClient {
         * Description: Allows to create a brand associated to a company.
         **/
         public func createBrand(
-            body: CreateBrandRequestSchema,
+            body: CreateBrandRequestSerializer,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProfileSuccessResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -302,7 +302,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProfileSuccessResponseSchema.self, from: data)
+                        let response = Utility.decode(ProfileSuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -327,7 +327,7 @@ extension PlatformClient {
             q: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CompanyBrandListSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CompanyBrandListSerializer?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -367,7 +367,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CompanyBrandListSchema.self, from: data)
+                        let response = Utility.decode(CompanyBrandListSerializer.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -392,9 +392,9 @@ extension PlatformClient {
             pageSize: Int?,
             q: String?,
             headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<CompanyBrandListSchema> {
+            ) -> Paginator<CompanyBrandListSerializer> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<CompanyBrandListSchema>(pageSize: pageSize, type: "number")
+            let paginator = Paginator<CompanyBrandListSerializer>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getBrands(
                     pageNo: paginator.pageNo,
@@ -422,9 +422,9 @@ extension PlatformClient {
         * Description: Establish a mapping between a company and a brand.
         **/
         public func createCompanyBrandMapping(
-            body: CompanyBrandPostRequestSchema,
+            body: CompanyBrandPostRequestSerializer,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProfileSuccessResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -452,7 +452,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProfileSuccessResponseSchema.self, from: data)
+                        let response = Utility.decode(ProfileSuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -482,7 +482,7 @@ extension PlatformClient {
             tags: [String]?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: LocationListSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: LocationListSerializer?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -542,7 +542,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(LocationListSchema.self, from: data)
+                        let response = Utility.decode(LocationListSerializer.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -582,9 +582,9 @@ extension PlatformClient {
             types: [String]?,
             tags: [String]?,
             headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<LocationListSchema> {
+            ) -> Paginator<LocationListSerializer> {
             let pageSize = pageSize ?? 20
-            let paginator = Paginator<LocationListSchema>(pageSize: pageSize, type: "number")
+            let paginator = Paginator<LocationListSerializer>(pageSize: pageSize, type: "number")
             paginator.onPage = {
                 self.getLocations(
                     storeType: storeType,
@@ -617,9 +617,9 @@ extension PlatformClient {
         * Description: Create a new location associated to a company.
         **/
         public func createLocation(
-            body: LocationSchema,
+            body: LocationSerializer,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProfileSuccessResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -647,7 +647,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProfileSuccessResponseSchema.self, from: data)
+                        let response = Utility.decode(ProfileSuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -670,7 +670,7 @@ extension PlatformClient {
             locationId: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: GetLocationSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: GetLocationSerializer?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -698,7 +698,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(GetLocationSchema.self, from: data)
+                        let response = Utility.decode(GetLocationSerializer.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -719,9 +719,9 @@ extension PlatformClient {
         **/
         public func updateLocation(
             locationId: String,
-            body: LocationSchema,
+            body: LocationSerializer,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProfileSuccessResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -749,7 +749,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProfileSuccessResponseSchema.self, from: data)
+                        let response = Utility.decode(ProfileSuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -769,9 +769,9 @@ extension PlatformClient {
         * Description: Allows to create locations in bulk at once associated to a company
         **/
         public func createLocationBulk(
-            body: BulkLocationSchema,
+            body: BulkLocationSerializer,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ProfileSuccessResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ProfileSuccessResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -799,7 +799,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ProfileSuccessResponseSchema.self, from: data)
+                        let response = Utility.decode(ProfileSuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

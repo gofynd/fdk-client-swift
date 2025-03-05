@@ -27,7 +27,7 @@ public extension PlatformClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "id"
+            case id = "_id"
             
             case name = "name"
             
@@ -41,7 +41,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(entriesCount: Int? = nil, fieldsCount: Int? = nil, id: String? = nil, name: String? = nil, type: String? = nil, updatedAt: String? = nil) {
+        public init(entriesCount: Int? = nil, fieldsCount: Int? = nil, name: String? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -198,7 +198,7 @@ public extension PlatformClient.ApplicationClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "id"
+            case id = "_id"
             
             case name = "name"
             
@@ -212,7 +212,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(entriesCount: Int? = nil, fieldsCount: Int? = nil, id: String? = nil, name: String? = nil, type: String? = nil, updatedAt: String? = nil) {
+        public init(entriesCount: Int? = nil, fieldsCount: Int? = nil, name: String? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             
             self.id = id
             

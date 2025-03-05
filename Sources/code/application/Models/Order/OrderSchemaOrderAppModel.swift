@@ -8,8 +8,6 @@ public extension ApplicationClient.Order {
     */
     class OrderSchema: Codable {
         
-        public var couponDetails: [CouponDetails]?
-        
         public var totalShipmentsInOrder: Int?
         
         public var gstinCode: String?
@@ -28,16 +26,10 @@ public extension ApplicationClient.Order {
         
         public var bagsForReorder: [BagsForReorder]?
         
-        public var charges: [PriceAdjustmentCharge]?
-        
         public var meta: [String: Any]?
-        
-        public var currency: CurrencySchema?
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case couponDetails = "coupon_details"
             
             case totalShipmentsInOrder = "total_shipments_in_order"
             
@@ -57,17 +49,11 @@ public extension ApplicationClient.Order {
             
             case bagsForReorder = "bags_for_reorder"
             
-            case charges = "charges"
-            
             case meta = "meta"
-            
-            case currency = "currency"
             
         }
 
-        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, charges: [PriceAdjustmentCharge]? = nil, couponDetails: [CouponDetails]? = nil, currency: CurrencySchema? = nil, gstinCode: String? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
-            
-            self.couponDetails = couponDetails
+        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, gstinCode: String? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
             
             self.totalShipmentsInOrder = totalShipmentsInOrder
             
@@ -87,28 +73,12 @@ public extension ApplicationClient.Order {
             
             self.bagsForReorder = bagsForReorder
             
-            self.charges = charges
-            
             self.meta = meta
-            
-            self.currency = currency
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-            do {
-                couponDetails = try container.decode([CouponDetails].self, forKey: .couponDetails)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
             
             
             do {
@@ -220,31 +190,7 @@ public extension ApplicationClient.Order {
             
             
             do {
-                charges = try container.decode([PriceAdjustmentCharge].self, forKey: .charges)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                currency = try container.decode(CurrencySchema.self, forKey: .currency)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -258,10 +204,6 @@ public extension ApplicationClient.Order {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            try? container.encodeIfPresent(couponDetails, forKey: .couponDetails)
-            
             
             
             try? container.encodeIfPresent(totalShipmentsInOrder, forKey: .totalShipmentsInOrder)
@@ -300,15 +242,7 @@ public extension ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(charges, forKey: .charges)
-            
-            
-            
             try? container.encodeIfPresent(meta, forKey: .meta)
-            
-            
-            
-            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
         }

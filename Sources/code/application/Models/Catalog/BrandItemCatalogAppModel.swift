@@ -12,8 +12,6 @@ public extension ApplicationClient.Catalog {
         
         public var logo: Media?
         
-        public var seo: ApplicationItemSEO?
-        
         public var description: String?
         
         public var banners: ImageUrls?
@@ -35,8 +33,6 @@ public extension ApplicationClient.Catalog {
             
             case logo = "logo"
             
-            case seo = "seo"
-            
             case description = "description"
             
             case banners = "banners"
@@ -53,13 +49,11 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, departments: [String]? = nil, description: String? = nil, discount: String? = nil, logo: Media? = nil, name: String? = nil, seo: ApplicationItemSEO? = nil, slug: String? = nil, uid: Int? = nil) {
+        public init(action: ProductListingAction? = nil, banners: ImageUrls? = nil, departments: [String]? = nil, description: String? = nil, discount: String? = nil, logo: Media? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil) {
             
             self.uid = uid
             
             self.logo = logo
-            
-            self.seo = seo
             
             self.description = description
             
@@ -95,18 +89,6 @@ public extension ApplicationClient.Catalog {
             
             do {
                 logo = try container.decode(Media.self, forKey: .logo)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                seo = try container.decode(ApplicationItemSEO.self, forKey: .seo)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -211,10 +193,6 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(logo, forKey: .logo)
-            
-            
-            
-            try? container.encodeIfPresent(seo, forKey: .seo)
             
             
             

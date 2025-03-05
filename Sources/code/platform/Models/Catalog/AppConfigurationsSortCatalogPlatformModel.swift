@@ -28,8 +28,6 @@ public extension PlatformClient.Catalog {
         
         public var priority: Int
         
-        public var seo: ApplicationItemSEO?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -49,11 +47,9 @@ public extension PlatformClient.Catalog {
             
             case priority = "priority"
             
-            case seo = "seo"
-            
         }
 
-        public init(appId: String, defaultKey: String, isActive: Bool, isDefault: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int, seo: ApplicationItemSEO? = nil) {
+        public init(appId: String, defaultKey: String, isActive: Bool, isDefault: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
             
             self.appId = appId
             
@@ -70,8 +66,6 @@ public extension PlatformClient.Catalog {
             self.name = name
             
             self.priority = priority
-            
-            self.seo = seo
             
         }
 
@@ -132,18 +126,6 @@ public extension PlatformClient.Catalog {
                 
             
             
-            
-                do {
-                    seo = try container.decode(ApplicationItemSEO.self, forKey: .seo)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -187,11 +169,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(priority, forKey: .priority)
-            
-            
-            
-            
-            try? container.encodeIfPresent(seo, forKey: .seo)
             
             
         }
@@ -226,8 +203,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var priority: Int
         
-        public var seo: ApplicationItemSEO?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -247,11 +222,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case priority = "priority"
             
-            case seo = "seo"
-            
         }
 
-        public init(appId: String, defaultKey: String, isActive: Bool, isDefault: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int, seo: ApplicationItemSEO? = nil) {
+        public init(appId: String, defaultKey: String, isActive: Bool, isDefault: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
             
             self.appId = appId
             
@@ -268,8 +241,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.name = name
             
             self.priority = priority
-            
-            self.seo = seo
             
         }
 
@@ -330,18 +301,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-            
-                do {
-                    seo = try container.decode(ApplicationItemSEO.self, forKey: .seo)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -385,11 +344,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(priority, forKey: .priority)
-            
-            
-            
-            
-            try? container.encodeIfPresent(seo, forKey: .seo)
             
             
         }

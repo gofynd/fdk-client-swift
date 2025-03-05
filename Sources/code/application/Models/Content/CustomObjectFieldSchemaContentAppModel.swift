@@ -10,7 +10,7 @@ public extension ApplicationClient.Content {
         
         public var id: String?
         
-        public var slug: String?
+        public var key: String?
         
         public var value: [CustomObjectFieldValue]?
         
@@ -23,7 +23,7 @@ public extension ApplicationClient.Content {
             
             case id = "_id"
             
-            case slug = "slug"
+            case key = "key"
             
             case value = "value"
             
@@ -33,11 +33,11 @@ public extension ApplicationClient.Content {
             
         }
 
-        public init(definitionId: String? = nil, slug: String? = nil, type: String? = nil, value: [CustomObjectFieldValue]? = nil, id: String? = nil) {
+        public init(definitionId: String? = nil, key: String? = nil, type: String? = nil, value: [CustomObjectFieldValue]? = nil, id: String? = nil) {
             
             self.id = id
             
-            self.slug = slug
+            self.key = key
             
             self.value = value
             
@@ -64,7 +64,7 @@ public extension ApplicationClient.Content {
             
             
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                key = try container.decode(String.self, forKey: .key)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(key, forKey: .key)
             
             
             
