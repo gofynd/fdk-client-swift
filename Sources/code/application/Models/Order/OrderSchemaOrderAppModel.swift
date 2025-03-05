@@ -8,6 +8,8 @@ public extension ApplicationClient.Order {
     */
     class OrderSchema: Codable {
         
+        public var couponDetails: [CouponDetails]?
+        
         public var totalShipmentsInOrder: Int?
         
         public var gstinCode: String?
@@ -35,6 +37,8 @@ public extension ApplicationClient.Order {
 
         public enum CodingKeys: String, CodingKey {
             
+            case couponDetails = "coupon_details"
+            
             case totalShipmentsInOrder = "total_shipments_in_order"
             
             case gstinCode = "gstin_code"
@@ -61,7 +65,9 @@ public extension ApplicationClient.Order {
             
         }
 
-        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, charges: [PriceAdjustmentCharge]? = nil, currency: CurrencySchema? = nil, gstinCode: String? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
+        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, charges: [PriceAdjustmentCharge]? = nil, couponDetails: [CouponDetails]? = nil, currency: CurrencySchema? = nil, gstinCode: String? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
+            
+            self.couponDetails = couponDetails
             
             self.totalShipmentsInOrder = totalShipmentsInOrder
             
@@ -91,6 +97,18 @@ public extension ApplicationClient.Order {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+            do {
+                couponDetails = try container.decode([CouponDetails].self, forKey: .couponDetails)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
             
             
             do {
@@ -240,6 +258,10 @@ public extension ApplicationClient.Order {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            try? container.encodeIfPresent(couponDetails, forKey: .couponDetails)
+            
             
             
             try? container.encodeIfPresent(totalShipmentsInOrder, forKey: .totalShipmentsInOrder)

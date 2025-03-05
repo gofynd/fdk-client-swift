@@ -20,6 +20,8 @@ public extension ApplicationClient.Catalog {
         
         public var schedule: [String: Any]?
         
+        public var modifiedOn: String?
+        
         public var query: [CollectionQuery]?
         
         public var description: String?
@@ -79,6 +81,8 @@ public extension ApplicationClient.Catalog {
             
             case schedule = "_schedule"
             
+            case modifiedOn = "modified_on"
+            
             case query = "query"
             
             case description = "description"
@@ -125,7 +129,7 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(action: ProductListingAction? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: [String: Any]? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, isVisible: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, name: String? = nil, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: CollectionItemSEO? = nil, slug: String? = nil, sortOn: String? = nil, tag: [String]? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, id: String? = nil, localeLanguage: [String: Any]? = nil, schedule: [String: Any]? = nil) {
+        public init(action: ProductListingAction? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: [String: Any]? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, isVisible: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, modifiedOn: String? = nil, name: String? = nil, priority: Int? = nil, published: Bool? = nil, query: [CollectionQuery]? = nil, seo: CollectionItemSEO? = nil, slug: String? = nil, sortOn: String? = nil, tag: [String]? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, id: String? = nil, localeLanguage: [String: Any]? = nil, schedule: [String: Any]? = nil) {
             
             self.isActive = isActive
             
@@ -138,6 +142,8 @@ public extension ApplicationClient.Catalog {
             self.cron = cron
             
             self.schedule = schedule
+            
+            self.modifiedOn = modifiedOn
             
             self.query = query
             
@@ -251,6 +257,18 @@ public extension ApplicationClient.Catalog {
             
             do {
                 schedule = try container.decode([String: Any].self, forKey: .schedule)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -551,6 +569,10 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(schedule, forKey: .schedule)
+            
+            
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
             

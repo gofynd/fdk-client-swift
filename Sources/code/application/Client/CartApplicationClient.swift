@@ -2108,6 +2108,7 @@ extension ApplicationClient {
             pageSize: Int?,
             pageNo: Int?,
             promotionType: String?,
+            isBankOffer: Bool?,
             
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: Promotions?, _ error: FDKError?) -> Void
@@ -2125,6 +2126,10 @@ extension ApplicationClient {
             
             if let value = promotionType {
                 xQuery["promotion_type"] = value
+            }
+            
+            if let value = isBankOffer {
+                xQuery["is_bank_offer"] = value
             }
             
             var xHeaders: [(key: String, value: String)] = []
