@@ -48,6 +48,8 @@ public extension PlatformClient.Order {
         
         public var externalShipmentId: String?
         
+        public var customJson: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -87,9 +89,11 @@ public extension PlatformClient.Order {
             
             case externalShipmentId = "external_shipment_id"
             
+            case customJson = "custom_json"
+            
         }
 
-        public init(applicationId: String? = nil, billingInfo: ShippingInfo, charges: [Charge]? = nil, config: CreateOrderConfig, currencyInfo: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, externalShipmentId: String? = nil, fyndOrderId: String? = nil, meta: [String: Any]? = nil, orderingStoreId: Int? = nil, orderPlatform: String? = nil, orderType: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
+        public init(applicationId: String? = nil, billingInfo: ShippingInfo, charges: [Charge]? = nil, config: CreateOrderConfig, currencyInfo: [String: Any]? = nil, customJson: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, externalShipmentId: String? = nil, fyndOrderId: String? = nil, meta: [String: Any]? = nil, orderingStoreId: Int? = nil, orderPlatform: String? = nil, orderType: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
             
             self.shipments = shipments
             
@@ -126,6 +130,8 @@ public extension PlatformClient.Order {
             self.applicationId = applicationId
             
             self.externalShipmentId = externalShipmentId
+            
+            self.customJson = customJson
             
         }
 
@@ -313,6 +319,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    customJson = try container.decode([String: Any].self, forKey: .customJson)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -406,6 +424,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(externalShipmentId, forKey: .externalShipmentId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
         }
@@ -460,6 +483,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var externalShipmentId: String?
         
+        public var customJson: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -499,9 +524,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case externalShipmentId = "external_shipment_id"
             
+            case customJson = "custom_json"
+            
         }
 
-        public init(applicationId: String? = nil, billingInfo: ShippingInfo, charges: [Charge]? = nil, config: CreateOrderConfig, currencyInfo: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, externalShipmentId: String? = nil, fyndOrderId: String? = nil, meta: [String: Any]? = nil, orderingStoreId: Int? = nil, orderPlatform: String? = nil, orderType: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
+        public init(applicationId: String? = nil, billingInfo: ShippingInfo, charges: [Charge]? = nil, config: CreateOrderConfig, currencyInfo: [String: Any]? = nil, customJson: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, externalShipmentId: String? = nil, fyndOrderId: String? = nil, meta: [String: Any]? = nil, orderingStoreId: Int? = nil, orderPlatform: String? = nil, orderType: String? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil, userInfo: UserInfo? = nil) {
             
             self.shipments = shipments
             
@@ -538,6 +565,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.applicationId = applicationId
             
             self.externalShipmentId = externalShipmentId
+            
+            self.customJson = customJson
             
         }
 
@@ -725,6 +754,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    customJson = try container.decode([String: Any].self, forKey: .customJson)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -818,6 +859,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(externalShipmentId, forKey: .externalShipmentId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
         }

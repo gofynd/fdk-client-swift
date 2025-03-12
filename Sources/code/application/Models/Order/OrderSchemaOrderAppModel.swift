@@ -28,6 +28,8 @@ public extension ApplicationClient.Order {
         
         public var meta: [String: Any]?
         
+        public var customJson: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -51,9 +53,11 @@ public extension ApplicationClient.Order {
             
             case meta = "meta"
             
+            case customJson = "custom_json"
+            
         }
 
-        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, gstinCode: String? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
+        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, customJson: [String: Any]? = nil, gstinCode: String? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
             
             self.totalShipmentsInOrder = totalShipmentsInOrder
             
@@ -74,6 +78,8 @@ public extension ApplicationClient.Order {
             self.bagsForReorder = bagsForReorder
             
             self.meta = meta
+            
+            self.customJson = customJson
             
         }
 
@@ -200,6 +206,18 @@ public extension ApplicationClient.Order {
             }
             
             
+            
+            do {
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -243,6 +261,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
         }
