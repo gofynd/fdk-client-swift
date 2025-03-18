@@ -12,7 +12,7 @@ public extension PlatformClient.Webhook {
     class SubscriberConfigList: Codable {
         
         
-        public var items: [SubscriberResponse]?
+        public var items: [SubscriberDetails]?
         
         public var page: Page?
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Webhook {
             
         }
 
-        public init(items: [SubscriberResponse]? = nil, page: Page? = nil) {
+        public init(items: [SubscriberDetails]? = nil, page: Page? = nil) {
             
             self.items = items
             
@@ -38,7 +38,7 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    items = try container.decode([SubscriberResponse].self, forKey: .items)
+                    items = try container.decode([SubscriberDetails].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

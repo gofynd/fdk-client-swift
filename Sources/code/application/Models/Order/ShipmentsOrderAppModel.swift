@@ -8,6 +8,10 @@ public extension ApplicationClient.Order {
     */
     class Shipments: Codable {
         
+        public var couponDetails: [CouponDetails]?
+        
+        public var meta: [String: Any]?
+        
         public var payment: ShipmentPayment?
         
         public var paymentInfo: [ShipmentPaymentInfo]?
@@ -88,10 +92,16 @@ public extension ApplicationClient.Order {
         
         public var deliveryDate: String?
         
-        public var order: OrderRequest?
+        public var order: OrderRequestSchema?
+        
+        public var charges: [PriceAdjustmentCharge]?
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case couponDetails = "coupon_details"
+            
+            case meta = "meta"
             
             case payment = "payment"
             
@@ -175,9 +185,15 @@ public extension ApplicationClient.Order {
             
             case order = "order"
             
+            case charges = "charges"
+            
         }
 
-        public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, billingAddress: Address? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, comment: String? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: Address? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, gstinCode: String? = nil, invoice: Invoice? = nil, needHelpUrl: String? = nil, order: OrderRequest? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, paymentInfo: [ShipmentPaymentInfo]? = nil, prices: Prices? = nil, promise: Promise? = nil, refundDetails: [String: Any]? = nil, returnableDate: String? = nil, returnMeta: [String: Any]? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
+        public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, billingAddress: Address? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, charges: [PriceAdjustmentCharge]? = nil, comment: String? = nil, couponDetails: [CouponDetails]? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: Address? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, gstinCode: String? = nil, invoice: Invoice? = nil, meta: [String: Any]? = nil, needHelpUrl: String? = nil, order: OrderRequestSchema? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, paymentInfo: [ShipmentPaymentInfo]? = nil, prices: Prices? = nil, promise: Promise? = nil, refundDetails: [String: Any]? = nil, returnableDate: String? = nil, returnMeta: [String: Any]? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
+            
+            self.couponDetails = couponDetails
+            
+            self.meta = meta
             
             self.payment = payment
             
@@ -261,10 +277,36 @@ public extension ApplicationClient.Order {
             
             self.order = order
             
+            self.charges = charges
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+            do {
+                couponDetails = try container.decode([CouponDetails].self, forKey: .couponDetails)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
             
             
             do {
@@ -748,7 +790,19 @@ public extension ApplicationClient.Order {
             
             
             do {
-                order = try container.decode(OrderRequest.self, forKey: .order)
+                order = try container.decode(OrderRequestSchema.self, forKey: .order)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                charges = try container.decode([PriceAdjustmentCharge].self, forKey: .charges)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -762,6 +816,14 @@ public extension ApplicationClient.Order {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            try? container.encodeIfPresent(couponDetails, forKey: .couponDetails)
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
             
             
             try? container.encodeIfPresent(payment, forKey: .payment)
@@ -925,6 +987,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(order, forKey: .order)
+            
+            
+            
+            try? container.encodeIfPresent(charges, forKey: .charges)
             
             
         }

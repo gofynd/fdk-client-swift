@@ -8,6 +8,8 @@ public extension ApplicationClient.Theme {
     */
     class SEOSitemap: Codable {
         
+        public var modifiedOn: String?
+        
         public var priority: Double?
         
         public var frequency: String?
@@ -15,13 +17,17 @@ public extension ApplicationClient.Theme {
 
         public enum CodingKeys: String, CodingKey {
             
+            case modifiedOn = "modified_on"
+            
             case priority = "priority"
             
             case frequency = "frequency"
             
         }
 
-        public init(frequency: String? = nil, priority: Double? = nil) {
+        public init(frequency: String? = nil, modifiedOn: String? = nil, priority: Double? = nil) {
+            
+            self.modifiedOn = modifiedOn
             
             self.priority = priority
             
@@ -31,6 +37,18 @@ public extension ApplicationClient.Theme {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+            do {
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
             
             
             do {
@@ -60,6 +78,10 @@ public extension ApplicationClient.Theme {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            
             
             
             try? container.encodeIfPresent(priority, forKey: .priority)

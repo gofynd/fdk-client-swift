@@ -18,10 +18,6 @@ public extension PlatformClient.Content {
         
         public var robotsTxt: String?
         
-        public var sitemapEnabled: Bool?
-        
-        public var additionalSitemap: String?
-        
         public var cannonicalEnabled: Bool?
         
         public var customMetaTags: [CustomMetaTag]?
@@ -41,10 +37,6 @@ public extension PlatformClient.Content {
             
             case robotsTxt = "robots_txt"
             
-            case sitemapEnabled = "sitemap_enabled"
-            
-            case additionalSitemap = "additional_sitemap"
-            
             case cannonicalEnabled = "cannonical_enabled"
             
             case customMetaTags = "custom_meta_tags"
@@ -57,17 +49,13 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(additionalSitemap: String? = nil, app: String? = nil, cannonicalEnabled: Bool? = nil, createdAt: String? = nil, customMetaTags: [CustomMetaTag]? = nil, details: Detail? = nil, robotsTxt: String? = nil, sitemapEnabled: Bool? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(app: String? = nil, cannonicalEnabled: Bool? = nil, createdAt: String? = nil, customMetaTags: [CustomMetaTag]? = nil, details: Detail? = nil, robotsTxt: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             
             self.app = app
             
             self.id = id
             
             self.robotsTxt = robotsTxt
-            
-            self.sitemapEnabled = sitemapEnabled
-            
-            self.additionalSitemap = additionalSitemap
             
             self.cannonicalEnabled = cannonicalEnabled
             
@@ -111,30 +99,6 @@ public extension PlatformClient.Content {
             
                 do {
                     robotsTxt = try container.decode(String.self, forKey: .robotsTxt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    sitemapEnabled = try container.decode(Bool.self, forKey: .sitemapEnabled)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    additionalSitemap = try container.decode(String.self, forKey: .additionalSitemap)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -222,16 +186,6 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(robotsTxt, forKey: .robotsTxt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(sitemapEnabled, forKey: .sitemapEnabled)
-            
-            
-            
-            
-            try? container.encodeIfPresent(additionalSitemap, forKey: .additionalSitemap)
             
             
             
@@ -281,10 +235,6 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var robotsTxt: String?
         
-        public var sitemapEnabled: Bool?
-        
-        public var additionalSitemap: String?
-        
         public var cannonicalEnabled: Bool?
         
         public var customMetaTags: [CustomMetaTag]?
@@ -304,10 +254,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case robotsTxt = "robots_txt"
             
-            case sitemapEnabled = "sitemap_enabled"
-            
-            case additionalSitemap = "additional_sitemap"
-            
             case cannonicalEnabled = "cannonical_enabled"
             
             case customMetaTags = "custom_meta_tags"
@@ -320,17 +266,13 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(additionalSitemap: String? = nil, app: String? = nil, cannonicalEnabled: Bool? = nil, createdAt: String? = nil, customMetaTags: [CustomMetaTag]? = nil, details: Detail? = nil, robotsTxt: String? = nil, sitemapEnabled: Bool? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(app: String? = nil, cannonicalEnabled: Bool? = nil, createdAt: String? = nil, customMetaTags: [CustomMetaTag]? = nil, details: Detail? = nil, robotsTxt: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             
             self.app = app
             
             self.id = id
             
             self.robotsTxt = robotsTxt
-            
-            self.sitemapEnabled = sitemapEnabled
-            
-            self.additionalSitemap = additionalSitemap
             
             self.cannonicalEnabled = cannonicalEnabled
             
@@ -374,30 +316,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     robotsTxt = try container.decode(String.self, forKey: .robotsTxt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    sitemapEnabled = try container.decode(Bool.self, forKey: .sitemapEnabled)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    additionalSitemap = try container.decode(String.self, forKey: .additionalSitemap)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -485,16 +403,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(robotsTxt, forKey: .robotsTxt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(sitemapEnabled, forKey: .sitemapEnabled)
-            
-            
-            
-            
-            try? container.encodeIfPresent(additionalSitemap, forKey: .additionalSitemap)
             
             
             
