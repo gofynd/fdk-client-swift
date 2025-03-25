@@ -4296,7 +4296,7 @@ extension PlatformClient {
         * Description: Users can create a product using this API, associating it with the provided company ID
         **/
         public func createProduct(
-            body: ProductCreateUpdateSchemaV2,
+            body: ProductCreateSchemaV2,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SuccessResponseObject?, _ error: FDKError?) -> Void
         ) {
@@ -4531,7 +4531,7 @@ extension PlatformClient {
         **/
         public func deleteProduct(
             itemId: Int,
-            body: DeleteProductRequestBody,
+            
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
         ) {
@@ -4549,7 +4549,7 @@ extension PlatformClient {
                 method: "DELETE",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
                 query: nil,
-                body: body.dictionary,
+                body: nil,
                 headers: xHeaders,
                 responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
@@ -4643,7 +4643,7 @@ extension PlatformClient {
         **/
         public func editProduct(
             itemId: Int,
-            body: ProductCreateUpdateSchemaV2,
+            body: ProductUpdateSchemaV2,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: SuccessResponseSchema?, _ error: FDKError?) -> Void
         ) {

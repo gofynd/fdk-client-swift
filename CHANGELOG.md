@@ -1,3 +1,25 @@
+# CHANGE LOG (3.0.0) - 2.4.0
+
+## Platform Client
+
+
+
+### Catalog
+
+
+
+#### createProduct
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property <code>uid</code> of schema <code>ProductCreateUpdateSchemaV2</code> in request body
+
+
+#### deleteProduct
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Body content in Request
+
+
 # CHANGE LOG (v2.0.2) - 2.3.0
 
 ## Application Client

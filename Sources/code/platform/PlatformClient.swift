@@ -19198,7 +19198,7 @@ public class PlatformClient {
                 locale: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: OperationResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -19226,7 +19226,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = data.dictionary
+                            let response = Utility.decode(OperationResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -19467,7 +19467,7 @@ public class PlatformClient {
                 id: String,
                 
                 headers: [(key: String, value: String)]? = nil,
-                onResponse: @escaping (_ response: DeletedResource?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: OperationResponseSchema?, _ error: FDKError?) -> Void
             ) {
                                 
                  
@@ -19495,7 +19495,7 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(DeletedResource.self, from: data)
+                            let response = Utility.decode(OperationResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {

@@ -1546,7 +1546,7 @@ Export locality wise CSV files.
         /**
         *
         * Summary: Fetching of Package Material Rules from database.
-        * Description: This API returns response of Package Materials Rules from mongo database.
+        * Description: This API returns response of Package Materials Rules.
         **/
         public func getInstalledCourierPartnerExtensions(
             pageNo: Int?,

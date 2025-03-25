@@ -1572,6 +1572,7 @@ extension PlatformClient {
         * Description: Update default language settings for the company.
         **/
         public func updateCompanyLanguageDefault(
+            locale: String,
             body: CompanyLanguageUpdate,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CompanyLanguage?, _ error: FDKError?) -> Void
@@ -1588,7 +1589,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
-                url: "/service/platform/content/v1.0/company/\(companyId)/languages",
+                url: "/service/platform/content/v1.0/company/\(companyId)/languages/\(locale)",
                 query: nil,
                 body: body.dictionary,
                 headers: xHeaders,
@@ -1625,7 +1626,7 @@ extension PlatformClient {
             locale: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OperationResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -1653,7 +1654,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = data.dictionary
+                        let response = Utility.decode(OperationResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -1952,7 +1953,7 @@ extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/content/v1.0/company/\(companyId)/translatable/sections/\(id)",
+                url: "/service/platform/content/v1.0/company/\(companyId)/translatable/section/\(id)",
                 query: nil,
                 body: nil,
                 headers: xHeaders,
@@ -2197,7 +2198,7 @@ extension PlatformClient {
             id: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: DeletedResource?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OperationResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -2225,7 +2226,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(DeletedResource.self, from: data)
+                        let response = Utility.decode(OperationResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

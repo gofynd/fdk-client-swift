@@ -5,11 +5,11 @@ import Foundation
 
 public extension PlatformClient.Catalog {
     /*
-        Model: ProductCreateUpdateSchemaV2
+        Model: ProductUpdateSchemaV2
         Used By: Catalog
     */
 
-    class ProductCreateUpdateSchemaV2: Codable {
+    class ProductUpdateSchemaV2: Codable {
         
         
         public var customJson: [String: Any]?
@@ -899,11 +899,11 @@ public extension PlatformClient.Catalog {
 
 public extension PlatformClient.ApplicationClient.Catalog {
     /*
-        Model: ProductCreateUpdateSchemaV2
+        Model: ProductUpdateSchemaV2
         Used By: Catalog
     */
 
-    class ProductCreateUpdateSchemaV2: Codable {
+    class ProductUpdateSchemaV2: Codable {
         
         
         public var customJson: [String: Any]?
