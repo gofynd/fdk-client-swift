@@ -1657,6 +1657,7 @@ public class PlatformClient {
             * Description: Retrieve cart details for a provided list of cart items and validate its contents. This ensures accuracy and completeness in cart information, including item quantities, prices, discounts, and applicable taxes.
             **/
             public func fetchAndvalidateCartItems(
+                xOrderingSource: OrderingSource?,
                 body: OpenapiCartDetailsCreation,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OpenapiCartDetailsResult?, _ error: FDKError?) -> Void
@@ -1665,6 +1666,10 @@ public class PlatformClient {
                  
                 
                 var xHeaders: [(key: String, value: String)] = []
+                
+                if let value = xOrderingSource {
+                    xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                }
                 
                 
                 if let headers = headers {
@@ -1707,6 +1712,7 @@ public class PlatformClient {
             * Description: Verify the serviceability of items in the cart at a specific pin code and ensure accurate delivery promises. System checks each item's availability and delivery feasibility, providing real-time information on serviceability and estimated delivery times.
             **/
             public func checkCartServiceability(
+                xOrderingSource: OrderingSource?,
                 body: OpenApiCartServiceabilityCreation,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OpenApiCartServiceabilityResult?, _ error: FDKError?) -> Void
@@ -1715,6 +1721,10 @@ public class PlatformClient {
                  
                 
                 var xHeaders: [(key: String, value: String)] = []
+                
+                if let value = xOrderingSource {
+                    xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                }
                 
                 
                 if let headers = headers {
@@ -1757,6 +1767,7 @@ public class PlatformClient {
             * Description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement.
             **/
             public func checkoutCart(
+                xOrderingSource: OrderingSource?,
                 body: OpenApiPlatformCheckoutReq,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OpenApiCheckoutResult?, _ error: FDKError?) -> Void
@@ -1765,6 +1776,10 @@ public class PlatformClient {
                  
                 
                 var xHeaders: [(key: String, value: String)] = []
+                
+                if let value = xOrderingSource {
+                    xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                }
                 
                 
                 if let headers = headers {
@@ -2234,6 +2249,7 @@ public class PlatformClient {
             * Description: Overrides the cart's checkout process with a new provided cart items. It provides flexibility in customizing checkout flows to meet specific business requirements, enhancing the user experience and optimizing order processing workflows.
             **/
             public func overrideCart(
+                xOrderingSource: OrderingSource?,
                 body: OverrideCheckoutReq,
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: OverrideCheckoutResult?, _ error: FDKError?) -> Void
@@ -2242,6 +2258,10 @@ public class PlatformClient {
                  
                 
                 var xHeaders: [(key: String, value: String)] = []
+                
+                if let value = xOrderingSource {
+                    xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                }
                 
                 
                 if let headers = headers {
@@ -2562,6 +2582,7 @@ public class PlatformClient {
             * Description: Retrieve details of a cart linked to a specific customer using either the customer's ID or a unique cart ID. It offers an overview of the items, quantities, prices, and other relevant information associated with the cart.
             **/
             public func getCart(
+                xOrderingSource: OrderingSource?,
                 id: String?,
                 userId: String?,
                 orderType: String?,
@@ -2606,6 +2627,10 @@ public class PlatformClient {
                 
                 var xHeaders: [(key: String, value: String)] = []
                 
+                if let value = xOrderingSource {
+                    xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                }
+                
                 
                 if let headers = headers {
                     xHeaders.append(contentsOf: headers)
@@ -2647,6 +2672,7 @@ public class PlatformClient {
             * Description: Add product items to the customer's existing shopping cart. If there is no existing cart associated with the customer, it creates a new one and adds the items to it.
             **/
             public func platformAddItems(
+                xOrderingSource: OrderingSource?,
                 i: Bool?,
                 b: Bool?,
                 buyNow: Bool?,
@@ -2680,6 +2706,10 @@ public class PlatformClient {
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
+                
+                if let value = xOrderingSource {
+                    xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                }
                 
                 
                 if let headers = headers {
@@ -2722,6 +2752,7 @@ public class PlatformClient {
             * Description: Customers can modify added product attributes such as quantity and size, as well as remove items from the cart.
             **/
             public func platformUpdateCart(
+                xOrderingSource: OrderingSource?,
                 id: String?,
                 i: Bool?,
                 orderType: String?,
@@ -2755,6 +2786,10 @@ public class PlatformClient {
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
+                
+                if let value = xOrderingSource {
+                    xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                }
                 
                 
                 if let headers = headers {
@@ -2982,6 +3017,7 @@ public class PlatformClient {
             * Description: Apply a coupon code to the customer's cart to trigger discounts on eligible items
             **/
             public func applyCoupon(
+                xOrderingSource: OrderingSource?,
                 i: Bool?,
                 b: Bool?,
                 p: Bool?,
@@ -3015,6 +3051,10 @@ public class PlatformClient {
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
+                
+                if let value = xOrderingSource {
+                    xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                }
                 
                 
                 if let headers = headers {
@@ -3057,6 +3097,7 @@ public class PlatformClient {
             * Description: Remove an applied coupon from the customer's cart, thereby removing the associated discount from the cart total.
             **/
             public func removeCoupon(
+                xOrderingSource: OrderingSource?,
                 uid: String?,
                 buyNow: Bool?,
                 
@@ -3075,6 +3116,10 @@ public class PlatformClient {
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
+                
+                if let value = xOrderingSource {
+                    xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                }
                 
                 
                 if let headers = headers {
@@ -3445,6 +3490,7 @@ public class PlatformClient {
             * Description: Select an address from the saved customer addresses and validates the availability of items in the cart. Additionally, it verifies and updates the delivery promise based on the selected address.
             **/
             public func selectAddress(
+                xOrderingSource: OrderingSource?,
                 cartId: String?,
                 buyNow: Bool?,
                 i: Bool?,
@@ -3473,6 +3519,10 @@ public class PlatformClient {
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
+                
+                if let value = xOrderingSource {
+                    xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                }
                 
                 
                 if let headers = headers {
@@ -3745,6 +3795,7 @@ public class PlatformClient {
             * Description: The checkout cart initiates the order creation process based on the selected address and payment method. It revalidates the cart details to ensure safe and seamless order placement.
             **/
             public func platformCheckoutCart(
+                xOrderingSource: OrderingSource?,
                 id: String?,
                 body: PlatformCartCheckoutDetailCreation,
                 headers: [(key: String, value: String)]? = nil,
@@ -3758,6 +3809,10 @@ public class PlatformClient {
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
+                
+                if let value = xOrderingSource {
+                    xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                }
                 
                 
                 if let headers = headers {
@@ -3909,6 +3964,7 @@ public class PlatformClient {
             * Description: Customers can select a preferred payment mode from available options during the cart checkout process to securely and efficiently complete their transaction.
             **/
             public func selectPaymentMode(
+                xOrderingSource: OrderingSource?,
                 id: String?,
                 buyNow: Bool?,
                 orderType: String?,
@@ -3932,6 +3988,10 @@ public class PlatformClient {
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
+                
+                if let value = xOrderingSource {
+                    xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                }
                 
                 
                 if let headers = headers {
@@ -3974,6 +4034,7 @@ public class PlatformClient {
             * Description: Validates the applicability of a coupon code for the selected payment mode for the existing cart. This ensures the coupon's validity before proceeding with the payment process, enhancing user experience and preventing potential errors during transactions.
             **/
             public func validateCouponForPayment(
+                xOrderingSource: OrderingSource?,
                 id: String?,
                 buyNow: Bool?,
                 addressId: String?,
@@ -4018,6 +4079,10 @@ public class PlatformClient {
                 
                 var xHeaders: [(key: String, value: String)] = []
                 
+                if let value = xOrderingSource {
+                    xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                }
+                
                 
                 if let headers = headers {
                     xHeaders.append(contentsOf: headers)
@@ -4059,6 +4124,7 @@ public class PlatformClient {
             * Description: The checkout cart initiates the order creation process based on the items in the user’s cart,  their selected address, and chosen payment methods. It also supports multiple payment method  options and revalidates the cart details to ensure a secure and seamless order placement.
             **/
             public func platformCheckoutCartV2(
+                xOrderingSource: OrderingSource?,
                 id: String?,
                 body: PlatformCartCheckoutDetailV2Creation,
                 headers: [(key: String, value: String)]? = nil,
@@ -4072,6 +4138,10 @@ public class PlatformClient {
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
+                
+                if let value = xOrderingSource {
+                    xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                }
                 
                 
                 if let headers = headers {
@@ -4114,6 +4184,7 @@ public class PlatformClient {
             * Description: Selection of payment mode that supports multiple MOP(mode of payment).
             **/
             public func selectPaymentModeV2(
+                xOrderingSource: OrderingSource?,
                 id: String?,
                 buyNow: Bool?,
                 orderType: String?,
@@ -4137,6 +4208,10 @@ public class PlatformClient {
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
+                
+                if let value = xOrderingSource {
+                    xHeaders.append((key: "x-ordering-source", value: "\(value.rawValue)"))
+                }
                 
                 
                 if let headers = headers {
@@ -23857,6 +23932,7 @@ public class PlatformClient {
             * Description: Available payment methods on the payment page for POS, specifying the aggregator for each option, such as 'CARD powered by Juspay' and 'QR powered by Razorpay'.
             **/
             public func getPosPaymentModeRoutes(
+                xOrderingSource: String?,
                 amount: Int,
                 cartId: String?,
                 pincode: String,
@@ -23916,6 +23992,10 @@ public class PlatformClient {
                 }
                 
                 var xHeaders: [(key: String, value: String)] = []
+                
+                if let value = xOrderingSource {
+                    xHeaders.append((key: "x-ordering-source", value: value))
+                }
                 
                 
                 if let headers = headers {
@@ -26977,12 +27057,17 @@ public class PlatformClient {
             * Description: Retrieve a list of available fonts that can be used by themes in the platform.
             **/
             public func getFonts(
+                capability: String?,
                 
                 headers: [(key: String, value: String)]? = nil,
                 onResponse: @escaping (_ response: FontsSchema?, _ error: FDKError?) -> Void
             ) {
                                 
-                 
+                var xQuery: [String: Any] = [:] 
+                
+                if let value = capability {
+                    xQuery["capability"] = value
+                }
                 
                 var xHeaders: [(key: String, value: String)] = []
                 
@@ -26994,7 +27079,7 @@ public class PlatformClient {
                     config: config,
                     method: "GET",
                     url: "/service/platform/theme/v1.0/company/\(companyId)/application/\(applicationId)/fonts",
-                    query: nil,
+                    query: xQuery,
                     body: nil,
                     headers: xHeaders,
                     responseType: "application/json",

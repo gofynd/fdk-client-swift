@@ -14,6 +14,8 @@ public extension PlatformClient.Order {
         
         public var orderingChannel: String?
         
+        public var orderingSource: String?
+        
         public var orderDate: String
         
         public var createdTs: String?
@@ -47,6 +49,8 @@ public extension PlatformClient.Order {
             
             case orderingChannel = "ordering_channel"
             
+            case orderingSource = "ordering_source"
+            
             case orderDate = "order_date"
             
             case createdTs = "created_ts"
@@ -77,9 +81,11 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(affiliateId: String? = nil, affiliateOrderId: String? = nil, charges: [PriceAdjustmentCharge]? = nil, createdTs: String? = nil, currency: CurrencySchema? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderDate: String, paymentInfo: [PaymentInfoData]? = nil, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, source: String? = nil, taxDetails: TaxDetails? = nil) {
+        public init(affiliateId: String? = nil, affiliateOrderId: String? = nil, charges: [PriceAdjustmentCharge]? = nil, createdTs: String? = nil, currency: CurrencySchema? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderingSource: String? = nil, orderDate: String, paymentInfo: [PaymentInfoData]? = nil, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, source: String? = nil, taxDetails: TaxDetails? = nil) {
             
             self.orderingChannel = orderingChannel
+            
+            self.orderingSource = orderingSource
             
             self.orderDate = orderDate
             
@@ -117,6 +123,18 @@ public extension PlatformClient.Order {
             
                 do {
                     orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderingSource = try container.decode(String.self, forKey: .orderingSource)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -288,6 +306,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingSource, forKey: .orderingSource)
             
             
             
@@ -378,6 +401,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var orderingChannel: String?
         
+        public var orderingSource: String?
+        
         public var orderDate: String
         
         public var createdTs: String?
@@ -411,6 +436,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case orderingChannel = "ordering_channel"
             
+            case orderingSource = "ordering_source"
+            
             case orderDate = "order_date"
             
             case createdTs = "created_ts"
@@ -441,9 +468,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(affiliateId: String? = nil, affiliateOrderId: String? = nil, charges: [PriceAdjustmentCharge]? = nil, createdTs: String? = nil, currency: CurrencySchema? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderDate: String, paymentInfo: [PaymentInfoData]? = nil, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, source: String? = nil, taxDetails: TaxDetails? = nil) {
+        public init(affiliateId: String? = nil, affiliateOrderId: String? = nil, charges: [PriceAdjustmentCharge]? = nil, createdTs: String? = nil, currency: CurrencySchema? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderingSource: String? = nil, orderDate: String, paymentInfo: [PaymentInfoData]? = nil, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, source: String? = nil, taxDetails: TaxDetails? = nil) {
             
             self.orderingChannel = orderingChannel
+            
+            self.orderingSource = orderingSource
             
             self.orderDate = orderDate
             
@@ -481,6 +510,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderingSource = try container.decode(String.self, forKey: .orderingSource)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -652,6 +693,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingSource, forKey: .orderingSource)
             
             
             

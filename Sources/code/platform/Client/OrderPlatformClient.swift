@@ -586,6 +586,7 @@ extension PlatformClient {
         * Description: Creates an order
         **/
         public func createOrder(
+            xOrderingSource: String?,
             body: CreateOrderAPI,
             headers: [(key: String, value: String)]? = nil,
             onResponse: @escaping (_ response: CreateOrderResponseSchema?, _ error: FDKError?) -> Void
@@ -594,6 +595,10 @@ extension PlatformClient {
              
             
             var xHeaders: [(key: String, value: String)] = []
+            
+            if let value = xOrderingSource {
+                xHeaders.append((key: "x-ordering-source", value: value))
+            }
             
             
             if let headers = headers {
@@ -886,7 +891,8 @@ extension PlatformClient {
         * Description: Retrieve next possible states based on logged in user's role
         **/
         public func getAllowedStateTransition(
-            orderingChannel: String,
+            orderingChannel: String?,
+            orderingSource: String?,
             status: String,
             
             headers: [(key: String, value: String)]? = nil,
@@ -894,7 +900,14 @@ extension PlatformClient {
         ) {
                         
             var xQuery: [String: Any] = [:] 
-            xQuery["ordering_channel"] = orderingChannel
+            
+            if let value = orderingChannel {
+                xQuery["ordering_channel"] = value
+            }
+            
+            if let value = orderingSource {
+                xQuery["ordering_source"] = value
+            }
             xQuery["status"] = status
             
             var xHeaders: [(key: String, value: String)] = []
@@ -2287,6 +2300,7 @@ The ESM config stores order processing configuration. Each document in the ESM c
         public func getStateManagerConfig(
             appId: String?,
             orderingChannel: String?,
+            orderingSource: String?,
             entity: String?,
             
             headers: [(key: String, value: String)]? = nil,
@@ -2301,6 +2315,10 @@ The ESM config stores order processing configuration. Each document in the ESM c
             
             if let value = orderingChannel {
                 xQuery["ordering_channel"] = value
+            }
+            
+            if let value = orderingSource {
+                xQuery["ordering_source"] = value
             }
             
             if let value = entity {

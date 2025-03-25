@@ -12,22 +12,30 @@ import Foundation
 
 
 
-public extension PlatformClient.Catalog {
-    
-    
+public extension PlatformClient.ApplicationClient.Cart {
     
     
     /*
-        Enum: CurrencyCodeEnum
-        Used By: Catalog
+        Enum: OrderingSource
+        Used By: Cart
     */
-    enum CurrencyCodeEnum: String, Codable {
+    enum OrderingSource: String, Codable {
         
-        case inr = "INR"
+        case storefront = "storefront"
         
-        case usd = "USD"
+        case storeOsPos = "store_os_pos"
         
-        case eur = "EUR"
+        case kiosk = "kiosk"
+        
+        case scanGo = "scan_go"
+        
+        case smartTrolley = "smart_trolley"
+        
+        case marketplace = "marketplace"
+        
+        case socialCommerce = "social_commerce"
+        
+        case ondc = "ondc"
         
     }
 
@@ -36,25 +44,21 @@ public extension PlatformClient.Catalog {
 
 
 
+
+
+
+
+public extension PlatformClient.Catalog {
+    
+    
+    
+}
+
+
+
 public extension PlatformClient.ApplicationClient.Catalog {
     
     
-    
-    
-    /*
-        Enum: CurrencyCodeEnum
-        Used By: Catalog
-    */
-    enum CurrencyCodeEnum: String, Codable {
-        
-        case inr = "INR"
-        
-        case usd = "USD"
-        
-        case eur = "EUR"
-        
-    }
-
     
 }
 

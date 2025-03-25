@@ -42,6 +42,8 @@ public extension PlatformClient.Order {
         
         public var orderingChannel: String?
         
+        public var orderingSource: String?
+        
         public var meta: [String: Any]?
         
         public var codCharges: Double?
@@ -109,6 +111,8 @@ public extension PlatformClient.Order {
             
             case orderingChannel = "ordering_channel"
             
+            case orderingSource = "ordering_source"
+            
             case meta = "meta"
             
             case codCharges = "cod_charges"
@@ -145,7 +149,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(affiliateId: String? = nil, affiliateOrderDate: String? = nil, affiliateOrderId: String? = nil, cashbackApplied: Double? = nil, cashbackValue: Double? = nil, charges: [PriceAdjustmentCharge]? = nil, codCharges: Double? = nil, collectBy: String? = nil, couponValue: Double? = nil, createdAt: String? = nil, createdTime: String? = nil, currency: String? = nil, deliveryCharges: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, fyndOrderId: String? = nil, headers: [String: Any]? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, mongoCartId: Double? = nil, orderingChannel: String? = nil, orderingChannelLogo: String? = nil, orderValue: Double? = nil, paymentMethods: [String: Any]? = nil, paymentModeId: Double? = nil, prices: Prices? = nil, promotionEffectiveDiscount: Double? = nil, refundBy: String? = nil, taxDetails: TaxDetails? = nil, totalOrderValue: Double? = nil, transactionId: String? = nil, userId: String? = nil) {
+        public init(affiliateId: String? = nil, affiliateOrderDate: String? = nil, affiliateOrderId: String? = nil, cashbackApplied: Double? = nil, cashbackValue: Double? = nil, charges: [PriceAdjustmentCharge]? = nil, codCharges: Double? = nil, collectBy: String? = nil, couponValue: Double? = nil, createdAt: String? = nil, createdTime: String? = nil, currency: String? = nil, deliveryCharges: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, fyndOrderId: String? = nil, headers: [String: Any]? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, mongoCartId: Double? = nil, orderingChannel: String? = nil, orderingChannelLogo: String? = nil, orderingSource: String? = nil, orderValue: Double? = nil, paymentMethods: [String: Any]? = nil, paymentModeId: Double? = nil, prices: Prices? = nil, promotionEffectiveDiscount: Double? = nil, refundBy: String? = nil, taxDetails: TaxDetails? = nil, totalOrderValue: Double? = nil, transactionId: String? = nil, userId: String? = nil) {
             
             self.fyndOrderId = fyndOrderId
             
@@ -176,6 +180,8 @@ public extension PlatformClient.Order {
             self.totalOrderValue = totalOrderValue
             
             self.orderingChannel = orderingChannel
+            
+            self.orderingSource = orderingSource
             
             self.meta = meta
             
@@ -387,6 +393,18 @@ public extension PlatformClient.Order {
             
                 do {
                     orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderingSource = try container.decode(String.self, forKey: .orderingSource)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -678,6 +696,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingSource, forKey: .orderingSource)
             
             
             
@@ -811,6 +834,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var orderingChannel: String?
         
+        public var orderingSource: String?
+        
         public var meta: [String: Any]?
         
         public var codCharges: Double?
@@ -878,6 +903,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case orderingChannel = "ordering_channel"
             
+            case orderingSource = "ordering_source"
+            
             case meta = "meta"
             
             case codCharges = "cod_charges"
@@ -914,7 +941,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(affiliateId: String? = nil, affiliateOrderDate: String? = nil, affiliateOrderId: String? = nil, cashbackApplied: Double? = nil, cashbackValue: Double? = nil, charges: [PriceAdjustmentCharge]? = nil, codCharges: Double? = nil, collectBy: String? = nil, couponValue: Double? = nil, createdAt: String? = nil, createdTime: String? = nil, currency: String? = nil, deliveryCharges: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, fyndOrderId: String? = nil, headers: [String: Any]? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, mongoCartId: Double? = nil, orderingChannel: String? = nil, orderingChannelLogo: String? = nil, orderValue: Double? = nil, paymentMethods: [String: Any]? = nil, paymentModeId: Double? = nil, prices: Prices? = nil, promotionEffectiveDiscount: Double? = nil, refundBy: String? = nil, taxDetails: TaxDetails? = nil, totalOrderValue: Double? = nil, transactionId: String? = nil, userId: String? = nil) {
+        public init(affiliateId: String? = nil, affiliateOrderDate: String? = nil, affiliateOrderId: String? = nil, cashbackApplied: Double? = nil, cashbackValue: Double? = nil, charges: [PriceAdjustmentCharge]? = nil, codCharges: Double? = nil, collectBy: String? = nil, couponValue: Double? = nil, createdAt: String? = nil, createdTime: String? = nil, currency: String? = nil, deliveryCharges: Double? = nil, discount: Double? = nil, fyndCredits: Double? = nil, fyndOrderId: String? = nil, headers: [String: Any]? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, mongoCartId: Double? = nil, orderingChannel: String? = nil, orderingChannelLogo: String? = nil, orderingSource: String? = nil, orderValue: Double? = nil, paymentMethods: [String: Any]? = nil, paymentModeId: Double? = nil, prices: Prices? = nil, promotionEffectiveDiscount: Double? = nil, refundBy: String? = nil, taxDetails: TaxDetails? = nil, totalOrderValue: Double? = nil, transactionId: String? = nil, userId: String? = nil) {
             
             self.fyndOrderId = fyndOrderId
             
@@ -945,6 +972,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.totalOrderValue = totalOrderValue
             
             self.orderingChannel = orderingChannel
+            
+            self.orderingSource = orderingSource
             
             self.meta = meta
             
@@ -1156,6 +1185,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderingSource = try container.decode(String.self, forKey: .orderingSource)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1447,6 +1488,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderingSource, forKey: .orderingSource)
             
             
             
