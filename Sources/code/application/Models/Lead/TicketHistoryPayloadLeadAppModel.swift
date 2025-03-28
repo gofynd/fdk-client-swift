@@ -10,7 +10,7 @@ public extension ApplicationClient.Lead {
         
         public var value: [String: Any]
         
-        public var type: HistoryTypeEnum
+        public var type: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension ApplicationClient.Lead {
             
         }
 
-        public init(type: HistoryTypeEnum, value: [String: Any]) {
+        public init(type: String, value: [String: Any]) {
             
             self.value = value
             
@@ -38,7 +38,7 @@ public extension ApplicationClient.Lead {
             
             
             
-            type = try container.decode(HistoryTypeEnum.self, forKey: .type)
+            type = try container.decode(String.self, forKey: .type)
             
             
             

@@ -14,6 +14,8 @@ public extension PlatformClient.CompanyProfile {
         
         public var stage: String?
         
+        public var customJson: [String: Any]?
+        
         public var verifiedOn: String?
         
         public var verifiedBy: UserSchema?
@@ -43,6 +45,8 @@ public extension PlatformClient.CompanyProfile {
             
             case stage = "stage"
             
+            case customJson = "_custom_json"
+            
             case verifiedOn = "verified_on"
             
             case verifiedBy = "verified_by"
@@ -69,9 +73,11 @@ public extension PlatformClient.CompanyProfile {
             
         }
 
-        public init(addresses: [GetAddressSchema]? = nil, businessType: String? = nil, companyType: String? = nil, createdBy: UserSchema? = nil, createdOn: String? = nil, modifiedBy: UserSchema? = nil, modifiedOn: String? = nil, name: String? = nil, rejectReason: String? = nil, stage: String? = nil, uid: Int? = nil, verifiedBy: UserSchema? = nil, verifiedOn: String? = nil) {
+        public init(addresses: [GetAddressSchema]? = nil, businessType: String? = nil, companyType: String? = nil, createdBy: UserSchema? = nil, createdOn: String? = nil, modifiedBy: UserSchema? = nil, modifiedOn: String? = nil, name: String? = nil, rejectReason: String? = nil, stage: String? = nil, uid: Int? = nil, verifiedBy: UserSchema? = nil, verifiedOn: String? = nil, customJson: [String: Any]? = nil) {
             
             self.stage = stage
+            
+            self.customJson = customJson
             
             self.verifiedOn = verifiedOn
             
@@ -105,6 +111,18 @@ public extension PlatformClient.CompanyProfile {
             
                 do {
                     stage = try container.decode(String.self, forKey: .stage)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    customJson = try container.decode([String: Any].self, forKey: .customJson)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -266,6 +284,11 @@ public extension PlatformClient.CompanyProfile {
             
             
             try? container.encodeIfPresent(stage, forKey: .stage)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
             

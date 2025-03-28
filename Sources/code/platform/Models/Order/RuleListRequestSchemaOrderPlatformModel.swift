@@ -12,47 +12,53 @@ public extension PlatformClient.Order {
     class RuleListRequestSchema: Codable {
         
         
+        public var pageSize: Int?
+        
         public var pageNo: Int?
         
-        public var channel: [String]?
+        public var flowType: String?
         
-        public var department: [String]?
-        
-        public var id: [String]?
-        
-        public var isActive: Bool?
+        public var laneType: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
+            case pageSize = "page_size"
+            
             case pageNo = "page_no"
             
-            case channel = "channel"
+            case flowType = "flow_type"
             
-            case department = "department"
-            
-            case id = "id"
-            
-            case isActive = "is_active"
+            case laneType = "lane_type"
             
         }
 
-        public init(channel: [String]? = nil, department: [String]? = nil, id: [String]? = nil, isActive: Bool? = nil, pageNo: Int? = nil) {
+        public init(flowType: String? = nil, laneType: String? = nil, pageNo: Int? = nil, pageSize: Int? = nil) {
+            
+            self.pageSize = pageSize
             
             self.pageNo = pageNo
             
-            self.channel = channel
+            self.flowType = flowType
             
-            self.department = department
-            
-            self.id = id
-            
-            self.isActive = isActive
+            self.laneType = laneType
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    pageSize = try container.decode(Int.self, forKey: .pageSize)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -68,7 +74,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    channel = try container.decode([String].self, forKey: .channel)
+                    flowType = try container.decode(String.self, forKey: .flowType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,31 +86,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    department = try container.decode([String].self, forKey: .department)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    id = try container.decode([String].self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isActive = try container.decode(Bool.self, forKey: .isActive)
+                    laneType = try container.decode(String.self, forKey: .laneType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,27 +103,22 @@ public extension PlatformClient.Order {
             
             
             
+            try? container.encodeIfPresent(pageSize, forKey: .pageSize)
+            
+            
+            
+            
             try? container.encodeIfPresent(pageNo, forKey: .pageNo)
             
             
             
             
-            try? container.encodeIfPresent(channel, forKey: .channel)
+            try? container.encodeIfPresent(flowType, forKey: .flowType)
             
             
             
             
-            try? container.encodeIfPresent(department, forKey: .department)
-            
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(laneType, forKey: .laneType)
             
             
         }
@@ -160,47 +137,53 @@ public extension PlatformClient.ApplicationClient.Order {
     class RuleListRequestSchema: Codable {
         
         
+        public var pageSize: Int?
+        
         public var pageNo: Int?
         
-        public var channel: [String]?
+        public var flowType: String?
         
-        public var department: [String]?
-        
-        public var id: [String]?
-        
-        public var isActive: Bool?
+        public var laneType: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
+            case pageSize = "page_size"
+            
             case pageNo = "page_no"
             
-            case channel = "channel"
+            case flowType = "flow_type"
             
-            case department = "department"
-            
-            case id = "id"
-            
-            case isActive = "is_active"
+            case laneType = "lane_type"
             
         }
 
-        public init(channel: [String]? = nil, department: [String]? = nil, id: [String]? = nil, isActive: Bool? = nil, pageNo: Int? = nil) {
+        public init(flowType: String? = nil, laneType: String? = nil, pageNo: Int? = nil, pageSize: Int? = nil) {
+            
+            self.pageSize = pageSize
             
             self.pageNo = pageNo
             
-            self.channel = channel
+            self.flowType = flowType
             
-            self.department = department
-            
-            self.id = id
-            
-            self.isActive = isActive
+            self.laneType = laneType
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    pageSize = try container.decode(Int.self, forKey: .pageSize)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -216,7 +199,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    channel = try container.decode([String].self, forKey: .channel)
+                    flowType = try container.decode(String.self, forKey: .flowType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -228,31 +211,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    department = try container.decode([String].self, forKey: .department)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    id = try container.decode([String].self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isActive = try container.decode(Bool.self, forKey: .isActive)
+                    laneType = try container.decode(String.self, forKey: .laneType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -269,27 +228,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
+            try? container.encodeIfPresent(pageSize, forKey: .pageSize)
+            
+            
+            
+            
             try? container.encodeIfPresent(pageNo, forKey: .pageNo)
             
             
             
             
-            try? container.encodeIfPresent(channel, forKey: .channel)
+            try? container.encodeIfPresent(flowType, forKey: .flowType)
             
             
             
             
-            try? container.encodeIfPresent(department, forKey: .department)
-            
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(laneType, forKey: .laneType)
             
             
         }

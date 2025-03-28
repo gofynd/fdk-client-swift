@@ -8,7 +8,7 @@ public extension ApplicationClient.Payment {
     */
     class BeneficiaryRefundOptions: Codable {
         
-        public var bank: OrderBeneficiaryDetails?
+        public var bank: [OrderBeneficiaryDetails]?
         
         public var wallet: WalletBeneficiaryDetails?
         
@@ -25,7 +25,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(bank: OrderBeneficiaryDetails? = nil, upi: UpiBeneficiaryDetails? = nil, wallet: WalletBeneficiaryDetails? = nil) {
+        public init(bank: [OrderBeneficiaryDetails]? = nil, upi: UpiBeneficiaryDetails? = nil, wallet: WalletBeneficiaryDetails? = nil) {
             
             self.bank = bank
             
@@ -40,7 +40,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                bank = try container.decode(OrderBeneficiaryDetails.self, forKey: .bank)
+                bank = try container.decode([OrderBeneficiaryDetails].self, forKey: .bank)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

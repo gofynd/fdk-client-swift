@@ -14,8 +14,6 @@ public extension PlatformClient.Communication {
         
         public var name: String?
         
-        public var token: String?
-        
         public var description: String?
         
         public var sender: String?
@@ -52,16 +50,10 @@ public extension PlatformClient.Communication {
         
         public var apiKey: String?
         
-        public var tenantName1: String?
-        
-        public var tenantName2: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case name = "name"
-            
-            case token = "token"
             
             case description = "description"
             
@@ -99,17 +91,11 @@ public extension PlatformClient.Communication {
             
             case apiKey = "api_key"
             
-            case tenantName1 = "tenant_name_1"
-            
-            case tenantName2 = "tenant_name_2"
-            
         }
 
-        public init(apikey: String? = nil, apiKey: String? = nil, authkey: String? = nil, description: String? = nil, entityid: String? = nil, entityId: String? = nil, feedid: String? = nil, host: String? = nil, name: String? = nil, overrideDnd: Bool? = nil, password: String? = nil, port: Int? = nil, provider: String? = nil, sender: String? = nil, senderid: String? = nil, senderId: String? = nil, tenantName1: String? = nil, tenantName2: String? = nil, token: String? = nil, type: String? = nil, username: String? = nil, versionId: Int? = nil) {
+        public init(apikey: String? = nil, apiKey: String? = nil, authkey: String? = nil, description: String? = nil, entityid: String? = nil, entityId: String? = nil, feedid: String? = nil, host: String? = nil, name: String? = nil, overrideDnd: Bool? = nil, password: String? = nil, port: Int? = nil, provider: String? = nil, sender: String? = nil, senderid: String? = nil, senderId: String? = nil, type: String? = nil, username: String? = nil, versionId: Int? = nil) {
             
             self.name = name
-            
-            self.token = token
             
             self.description = description
             
@@ -147,10 +133,6 @@ public extension PlatformClient.Communication {
             
             self.apiKey = apiKey
             
-            self.tenantName1 = tenantName1
-            
-            self.tenantName2 = tenantName2
-            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -159,18 +141,6 @@ public extension PlatformClient.Communication {
             
                 do {
                     name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    token = try container.decode(String.self, forKey: .token)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -396,30 +366,6 @@ public extension PlatformClient.Communication {
                 }
                 
             
-            
-                do {
-                    tenantName1 = try container.decode(String.self, forKey: .tenantName1)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    tenantName2 = try container.decode(String.self, forKey: .tenantName2)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -428,11 +374,6 @@ public extension PlatformClient.Communication {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(token, forKey: .token)
             
             
             
@@ -523,16 +464,6 @@ public extension PlatformClient.Communication {
             
             
             try? container.encodeIfPresent(apiKey, forKey: .apiKey)
-            
-            
-            
-            
-            try? container.encodeIfPresent(tenantName1, forKey: .tenantName1)
-            
-            
-            
-            
-            try? container.encodeIfPresent(tenantName2, forKey: .tenantName2)
             
             
         }
@@ -553,8 +484,6 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var name: String?
         
-        public var token: String?
-        
         public var description: String?
         
         public var sender: String?
@@ -591,16 +520,10 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var apiKey: String?
         
-        public var tenantName1: String?
-        
-        public var tenantName2: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case name = "name"
-            
-            case token = "token"
             
             case description = "description"
             
@@ -638,17 +561,11 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             case apiKey = "api_key"
             
-            case tenantName1 = "tenant_name_1"
-            
-            case tenantName2 = "tenant_name_2"
-            
         }
 
-        public init(apikey: String? = nil, apiKey: String? = nil, authkey: String? = nil, description: String? = nil, entityid: String? = nil, entityId: String? = nil, feedid: String? = nil, host: String? = nil, name: String? = nil, overrideDnd: Bool? = nil, password: String? = nil, port: Int? = nil, provider: String? = nil, sender: String? = nil, senderid: String? = nil, senderId: String? = nil, tenantName1: String? = nil, tenantName2: String? = nil, token: String? = nil, type: String? = nil, username: String? = nil, versionId: Int? = nil) {
+        public init(apikey: String? = nil, apiKey: String? = nil, authkey: String? = nil, description: String? = nil, entityid: String? = nil, entityId: String? = nil, feedid: String? = nil, host: String? = nil, name: String? = nil, overrideDnd: Bool? = nil, password: String? = nil, port: Int? = nil, provider: String? = nil, sender: String? = nil, senderid: String? = nil, senderId: String? = nil, type: String? = nil, username: String? = nil, versionId: Int? = nil) {
             
             self.name = name
-            
-            self.token = token
             
             self.description = description
             
@@ -686,10 +603,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             self.apiKey = apiKey
             
-            self.tenantName1 = tenantName1
-            
-            self.tenantName2 = tenantName2
-            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -698,18 +611,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
                 do {
                     name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    token = try container.decode(String.self, forKey: .token)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -935,30 +836,6 @@ public extension PlatformClient.ApplicationClient.Communication {
                 }
                 
             
-            
-                do {
-                    tenantName1 = try container.decode(String.self, forKey: .tenantName1)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    tenantName2 = try container.decode(String.self, forKey: .tenantName2)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -967,11 +844,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(token, forKey: .token)
             
             
             
@@ -1062,16 +934,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             try? container.encodeIfPresent(apiKey, forKey: .apiKey)
-            
-            
-            
-            
-            try? container.encodeIfPresent(tenantName1, forKey: .tenantName1)
-            
-            
-            
-            
-            try? container.encodeIfPresent(tenantName2, forKey: .tenantName2)
             
             
         }

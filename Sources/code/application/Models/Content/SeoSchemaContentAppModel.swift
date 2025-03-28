@@ -14,6 +14,12 @@ public extension ApplicationClient.Content {
         
         public var robotsTxt: String?
         
+        public var sitemapEnabled: Bool?
+        
+        public var additionalSitemap: String?
+        
+        public var sitemap: SEOSitemap?
+        
         public var cannonicalEnabled: Bool?
         
         public var customMetaTags: [CustomMetaTag]?
@@ -24,6 +30,8 @@ public extension ApplicationClient.Content {
         
         public var updatedAt: String?
         
+        public var v: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -32,6 +40,12 @@ public extension ApplicationClient.Content {
             case id = "_id"
             
             case robotsTxt = "robots_txt"
+            
+            case sitemapEnabled = "sitemap_enabled"
+            
+            case additionalSitemap = "additional_sitemap"
+            
+            case sitemap = "sitemap"
             
             case cannonicalEnabled = "cannonical_enabled"
             
@@ -43,15 +57,23 @@ public extension ApplicationClient.Content {
             
             case updatedAt = "updated_at"
             
+            case v = "__v"
+            
         }
 
-        public init(app: String? = nil, cannonicalEnabled: Bool? = nil, createdAt: String? = nil, customMetaTags: [CustomMetaTag]? = nil, details: Detail? = nil, robotsTxt: String? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(additionalSitemap: String? = nil, app: String? = nil, cannonicalEnabled: Bool? = nil, createdAt: String? = nil, customMetaTags: [CustomMetaTag]? = nil, details: Detail? = nil, robotsTxt: String? = nil, sitemap: SEOSitemap? = nil, sitemapEnabled: Bool? = nil, updatedAt: String? = nil, id: String? = nil, v: Double? = nil) {
             
             self.app = app
             
             self.id = id
             
             self.robotsTxt = robotsTxt
+            
+            self.sitemapEnabled = sitemapEnabled
+            
+            self.additionalSitemap = additionalSitemap
+            
+            self.sitemap = sitemap
             
             self.cannonicalEnabled = cannonicalEnabled
             
@@ -62,6 +84,8 @@ public extension ApplicationClient.Content {
             self.createdAt = createdAt
             
             self.updatedAt = updatedAt
+            
+            self.v = v
             
         }
 
@@ -95,6 +119,42 @@ public extension ApplicationClient.Content {
             
             do {
                 robotsTxt = try container.decode(String.self, forKey: .robotsTxt)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                sitemapEnabled = try container.decode(Bool.self, forKey: .sitemapEnabled)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                additionalSitemap = try container.decode(String.self, forKey: .additionalSitemap)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                sitemap = try container.decode(SEOSitemap.self, forKey: .sitemap)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,6 +224,18 @@ public extension ApplicationClient.Content {
             }
             
             
+            
+            do {
+                v = try container.decode(Double.self, forKey: .v)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -179,6 +251,18 @@ public extension ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(robotsTxt, forKey: .robotsTxt)
+            
+            
+            
+            try? container.encodeIfPresent(sitemapEnabled, forKey: .sitemapEnabled)
+            
+            
+            
+            try? container.encodeIfPresent(additionalSitemap, forKey: .additionalSitemap)
+            
+            
+            
+            try? container.encodeIfPresent(sitemap, forKey: .sitemap)
             
             
             
@@ -199,6 +283,10 @@ public extension ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
+            
+            
+            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

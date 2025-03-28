@@ -22,6 +22,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var message: String?
         
+        public var result: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -33,9 +35,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case message = "message"
             
+            case result = "result"
+            
         }
 
-        public init(cart: CartDetailResult? = nil, message: String? = nil, partial: Bool? = nil, success: Bool? = nil) {
+        public init(cart: CartDetailResult? = nil, message: String? = nil, partial: Bool? = nil, result: [String: Any]? = nil, success: Bool? = nil) {
             
             self.success = success
             
@@ -44,6 +48,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.partial = partial
             
             self.message = message
+            
+            self.result = result
             
         }
 
@@ -98,6 +104,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    result = try container.decode([String: Any].self, forKey: .result)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -121,6 +139,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
+            try? container.encodeIfPresent(result, forKey: .result)
             
             
         }

@@ -14,6 +14,8 @@ public extension PlatformClient.ApplicationClient.Cart {
     class OverrideCartItemPromo: Codable {
         
         
+        public var restrictions: [String: Any]?
+        
         public var promoId: String
         
         public var promoAmount: String
@@ -29,6 +31,8 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public enum CodingKeys: String, CodingKey {
             
+            case restrictions = "restrictions"
+            
             case promoId = "promo_id"
             
             case promoAmount = "promo_amount"
@@ -43,7 +47,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(itemList: [[String: Any]]? = nil, parentPromoId: String? = nil, promoAmount: String, promoDesc: String? = nil, promoId: String, rwrdTndr: String? = nil) {
+        public init(itemList: [[String: Any]]? = nil, parentPromoId: String? = nil, promoAmount: String, promoDesc: String? = nil, promoId: String, restrictions: [String: Any]? = nil, rwrdTndr: String? = nil) {
+            
+            self.restrictions = restrictions
             
             self.promoId = promoId
             
@@ -61,6 +67,18 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    restrictions = try container.decode([String: Any].self, forKey: .restrictions)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 promoId = try container.decode(String.self, forKey: .promoId)
@@ -124,6 +142,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(restrictions, forKey: .restrictions)
+            
             
             
             

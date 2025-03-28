@@ -16,6 +16,12 @@ public extension PlatformClient.Order {
         
         public var amount: Double?
         
+        public var refundBy: String?
+        
+        public var collectBy: String?
+        
+        public var displayName: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,13 +29,25 @@ public extension PlatformClient.Order {
             
             case amount = "amount"
             
+            case refundBy = "refund_by"
+            
+            case collectBy = "collect_by"
+            
+            case displayName = "display_name"
+            
         }
 
-        public init(amount: Double? = nil, mode: String? = nil) {
+        public init(amount: Double? = nil, collectBy: String? = nil, displayName: String? = nil, mode: String? = nil, refundBy: String? = nil) {
             
             self.mode = mode
             
             self.amount = amount
+            
+            self.refundBy = refundBy
+            
+            self.collectBy = collectBy
+            
+            self.displayName = displayName
             
         }
 
@@ -60,6 +78,42 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    refundBy = try container.decode(String.self, forKey: .refundBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    collectBy = try container.decode(String.self, forKey: .collectBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    displayName = try container.decode(String.self, forKey: .displayName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -73,6 +127,21 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(amount, forKey: .amount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(refundBy, forKey: .refundBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(collectBy, forKey: .collectBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
         }
@@ -95,6 +164,12 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var amount: Double?
         
+        public var refundBy: String?
+        
+        public var collectBy: String?
+        
+        public var displayName: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -102,13 +177,25 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case amount = "amount"
             
+            case refundBy = "refund_by"
+            
+            case collectBy = "collect_by"
+            
+            case displayName = "display_name"
+            
         }
 
-        public init(amount: Double? = nil, mode: String? = nil) {
+        public init(amount: Double? = nil, collectBy: String? = nil, displayName: String? = nil, mode: String? = nil, refundBy: String? = nil) {
             
             self.mode = mode
             
             self.amount = amount
+            
+            self.refundBy = refundBy
+            
+            self.collectBy = collectBy
+            
+            self.displayName = displayName
             
         }
 
@@ -139,6 +226,42 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    refundBy = try container.decode(String.self, forKey: .refundBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    collectBy = try container.decode(String.self, forKey: .collectBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    displayName = try container.decode(String.self, forKey: .displayName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -152,6 +275,21 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(amount, forKey: .amount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(refundBy, forKey: .refundBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(collectBy, forKey: .collectBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
         }

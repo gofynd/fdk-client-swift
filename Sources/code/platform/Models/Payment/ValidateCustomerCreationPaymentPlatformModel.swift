@@ -18,15 +18,15 @@ public extension PlatformClient.Payment {
         
         public var payload: String?
         
-        public var deliveryAddress: [String: Any]?
+        public var deliveryAddress: AddressDetail?
         
         public var transactionAmountInPaise: Int
         
-        public var orderItems: [[String: Any]]?
+        public var orderItems: [OrderItems]?
         
-        public var merchantParams: [String: Any]?
+        public var merchantParams: MerchantParams?
         
-        public var billingAddress: [String: Any]?
+        public var billingAddress: AddressDetail?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -49,7 +49,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(aggregator: String, billingAddress: [String: Any]? = nil, deliveryAddress: [String: Any]? = nil, merchantParams: [String: Any]? = nil, orderItems: [[String: Any]]? = nil, payload: String? = nil, phoneNumber: String, transactionAmountInPaise: Int) {
+        public init(aggregator: String, billingAddress: AddressDetail? = nil, deliveryAddress: AddressDetail? = nil, merchantParams: MerchantParams? = nil, orderItems: [OrderItems]? = nil, payload: String? = nil, phoneNumber: String, transactionAmountInPaise: Int) {
             
             self.phoneNumber = phoneNumber
             
@@ -96,7 +96,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    deliveryAddress = try container.decode([String: Any].self, forKey: .deliveryAddress)
+                    deliveryAddress = try container.decode(AddressDetail.self, forKey: .deliveryAddress)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -113,7 +113,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    orderItems = try container.decode([[String: Any]].self, forKey: .orderItems)
+                    orderItems = try container.decode([OrderItems].self, forKey: .orderItems)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -125,7 +125,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
+                    merchantParams = try container.decode(MerchantParams.self, forKey: .merchantParams)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -137,7 +137,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    billingAddress = try container.decode([String: Any].self, forKey: .billingAddress)
+                    billingAddress = try container.decode(AddressDetail.self, forKey: .billingAddress)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -214,15 +214,15 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var payload: String?
         
-        public var deliveryAddress: [String: Any]?
+        public var deliveryAddress: AddressDetail?
         
         public var transactionAmountInPaise: Int
         
-        public var orderItems: [[String: Any]]?
+        public var orderItems: [OrderItems]?
         
-        public var merchantParams: [String: Any]?
+        public var merchantParams: MerchantParams?
         
-        public var billingAddress: [String: Any]?
+        public var billingAddress: AddressDetail?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -245,7 +245,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(aggregator: String, billingAddress: [String: Any]? = nil, deliveryAddress: [String: Any]? = nil, merchantParams: [String: Any]? = nil, orderItems: [[String: Any]]? = nil, payload: String? = nil, phoneNumber: String, transactionAmountInPaise: Int) {
+        public init(aggregator: String, billingAddress: AddressDetail? = nil, deliveryAddress: AddressDetail? = nil, merchantParams: MerchantParams? = nil, orderItems: [OrderItems]? = nil, payload: String? = nil, phoneNumber: String, transactionAmountInPaise: Int) {
             
             self.phoneNumber = phoneNumber
             
@@ -292,7 +292,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    deliveryAddress = try container.decode([String: Any].self, forKey: .deliveryAddress)
+                    deliveryAddress = try container.decode(AddressDetail.self, forKey: .deliveryAddress)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -309,7 +309,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    orderItems = try container.decode([[String: Any]].self, forKey: .orderItems)
+                    orderItems = try container.decode([OrderItems].self, forKey: .orderItems)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -321,7 +321,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
+                    merchantParams = try container.decode(MerchantParams.self, forKey: .merchantParams)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -333,7 +333,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    billingAddress = try container.decode([String: Any].self, forKey: .billingAddress)
+                    billingAddress = try container.decode(AddressDetail.self, forKey: .billingAddress)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

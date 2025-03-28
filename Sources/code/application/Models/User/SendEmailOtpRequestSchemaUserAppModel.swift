@@ -8,9 +8,9 @@ public extension ApplicationClient.User {
     */
     class SendEmailOtpRequestSchema: Codable {
         
-        public var email: String?
+        public var email: String
         
-        public var action: String?
+        public var action: String
         
         public var token: String?
         
@@ -29,7 +29,7 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(action: String? = nil, email: String? = nil, registerToken: String? = nil, token: String? = nil) {
+        public init(action: String, email: String, registerToken: String? = nil, token: String? = nil) {
             
             self.email = email
             
@@ -45,27 +45,13 @@ public extension ApplicationClient.User {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            do {
-                email = try container.decode(String.self, forKey: .email)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
+            email = try container.decode(String.self, forKey: .email)
             
             
             
-            do {
-                action = try container.decode(String.self, forKey: .action)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
+            action = try container.decode(String.self, forKey: .action)
+            
             
             
             

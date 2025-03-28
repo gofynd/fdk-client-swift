@@ -28,6 +28,10 @@ public extension ApplicationClient.Cart {
         
         public var description: String?
         
+        public var tags: [String]?
+        
+        public var medias: [Media]?
+        
         public var isBankOffer: Bool?
         
 
@@ -53,11 +57,15 @@ public extension ApplicationClient.Cart {
             
             case description = "description"
             
+            case tags = "tags"
+            
+            case medias = "medias"
+            
             case isBankOffer = "is_bank_offer"
             
         }
 
-        public init(buyRules: [String: Any]? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, isBankOffer: Bool? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, validTill: String? = nil) {
+        public init(buyRules: [String: Any]? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, isBankOffer: Bool? = nil, medias: [Media]? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, tags: [String]? = nil, validTill: String? = nil) {
             
             self.id = id
             
@@ -78,6 +86,10 @@ public extension ApplicationClient.Cart {
             self.freeGiftItems = freeGiftItems
             
             self.description = description
+            
+            self.tags = tags
+            
+            self.medias = medias
             
             self.isBankOffer = isBankOffer
             
@@ -208,6 +220,30 @@ public extension ApplicationClient.Cart {
             
             
             do {
+                tags = try container.decode([String].self, forKey: .tags)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                medias = try container.decode([Media].self, forKey: .medias)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 isBankOffer = try container.decode(Bool.self, forKey: .isBankOffer)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -261,6 +297,14 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            try? container.encodeIfPresent(medias, forKey: .medias)
             
             
             

@@ -34,6 +34,8 @@ public extension PlatformClient.Order {
         
         public var deselectedShipments: String?
         
+        public var type: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -59,9 +61,11 @@ public extension PlatformClient.Order {
             
             case deselectedShipments = "deselected_shipments"
             
+            case type = "type"
+            
         }
 
-        public init(dateRange: DateRange? = nil, deselectedShipments: String? = nil, dpIds: String? = nil, dpName: String? = nil, fromDate: String? = nil, lane: String? = nil, logo: String? = nil, selectedShipments: String? = nil, stores: Int? = nil, storeName: String? = nil, toDate: String? = nil) {
+        public init(dateRange: DateRange? = nil, deselectedShipments: String? = nil, dpIds: String? = nil, dpName: String? = nil, fromDate: String? = nil, lane: String? = nil, logo: String? = nil, selectedShipments: String? = nil, stores: Int? = nil, storeName: String? = nil, toDate: String? = nil, type: String? = nil) {
             
             self.dateRange = dateRange
             
@@ -84,6 +88,8 @@ public extension PlatformClient.Order {
             self.storeName = storeName
             
             self.deselectedShipments = deselectedShipments
+            
+            self.type = type
             
         }
 
@@ -222,6 +228,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -280,6 +298,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(deselectedShipments, forKey: .deselectedShipments)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
         }
@@ -320,6 +343,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var deselectedShipments: String?
         
+        public var type: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -345,9 +370,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case deselectedShipments = "deselected_shipments"
             
+            case type = "type"
+            
         }
 
-        public init(dateRange: DateRange? = nil, deselectedShipments: String? = nil, dpIds: String? = nil, dpName: String? = nil, fromDate: String? = nil, lane: String? = nil, logo: String? = nil, selectedShipments: String? = nil, stores: Int? = nil, storeName: String? = nil, toDate: String? = nil) {
+        public init(dateRange: DateRange? = nil, deselectedShipments: String? = nil, dpIds: String? = nil, dpName: String? = nil, fromDate: String? = nil, lane: String? = nil, logo: String? = nil, selectedShipments: String? = nil, stores: Int? = nil, storeName: String? = nil, toDate: String? = nil, type: String? = nil) {
             
             self.dateRange = dateRange
             
@@ -370,6 +397,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.storeName = storeName
             
             self.deselectedShipments = deselectedShipments
+            
+            self.type = type
             
         }
 
@@ -508,6 +537,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -566,6 +607,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(deselectedShipments, forKey: .deselectedShipments)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
         }

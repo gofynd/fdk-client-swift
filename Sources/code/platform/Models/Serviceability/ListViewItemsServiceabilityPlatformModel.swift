@@ -26,8 +26,6 @@ public extension PlatformClient.Serviceability {
         
         public var companyId: Int
         
-        public var storeIds: [Int]?
-        
         public var channels: [ListViewChannels]
         
 
@@ -47,13 +45,11 @@ public extension PlatformClient.Serviceability {
             
             case companyId = "company_id"
             
-            case storeIds = "store_ids"
-            
             case channels = "channels"
             
         }
 
-        public init(channels: [ListViewChannels], companyId: Int, isActive: Bool, name: String, regionsCount: Int, slug: String, storesCount: Int, storeIds: [Int]? = nil, zoneId: String) {
+        public init(channels: [ListViewChannels], companyId: Int, isActive: Bool, name: String, regionsCount: Int, slug: String, storesCount: Int, zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -68,8 +64,6 @@ public extension PlatformClient.Serviceability {
             self.regionsCount = regionsCount
             
             self.companyId = companyId
-            
-            self.storeIds = storeIds
             
             self.channels = channels
             
@@ -114,18 +108,6 @@ public extension PlatformClient.Serviceability {
             
             
             
-                do {
-                    storeIds = try container.decode([Int].self, forKey: .storeIds)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 channels = try container.decode([ListViewChannels].self, forKey: .channels)
                 
             
@@ -168,11 +150,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
             
             
             
@@ -210,8 +187,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var companyId: Int
         
-        public var storeIds: [Int]?
-        
         public var channels: [ListViewChannels]
         
 
@@ -231,13 +206,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case companyId = "company_id"
             
-            case storeIds = "store_ids"
-            
             case channels = "channels"
             
         }
 
-        public init(channels: [ListViewChannels], companyId: Int, isActive: Bool, name: String, regionsCount: Int, slug: String, storesCount: Int, storeIds: [Int]? = nil, zoneId: String) {
+        public init(channels: [ListViewChannels], companyId: Int, isActive: Bool, name: String, regionsCount: Int, slug: String, storesCount: Int, zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -252,8 +225,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.regionsCount = regionsCount
             
             self.companyId = companyId
-            
-            self.storeIds = storeIds
             
             self.channels = channels
             
@@ -298,18 +269,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                do {
-                    storeIds = try container.decode([Int].self, forKey: .storeIds)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 channels = try container.decode([ListViewChannels].self, forKey: .channels)
                 
             
@@ -352,11 +311,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
             
             
             

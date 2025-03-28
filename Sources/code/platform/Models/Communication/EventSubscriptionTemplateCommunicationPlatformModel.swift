@@ -16,6 +16,8 @@ public extension PlatformClient.Communication {
         
         public var email: EventSubscriptionTemplateEmail?
         
+        public var pushnotification: EventSubscriptionTemplatePushnotification?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,13 +25,17 @@ public extension PlatformClient.Communication {
             
             case email = "email"
             
+            case pushnotification = "pushnotification"
+            
         }
 
-        public init(email: EventSubscriptionTemplateEmail? = nil, sms: EventSubscriptionTemplateSms? = nil) {
+        public init(email: EventSubscriptionTemplateEmail? = nil, pushnotification: EventSubscriptionTemplatePushnotification? = nil, sms: EventSubscriptionTemplateSms? = nil) {
             
             self.sms = sms
             
             self.email = email
+            
+            self.pushnotification = pushnotification
             
         }
 
@@ -60,6 +66,18 @@ public extension PlatformClient.Communication {
                 }
                 
             
+            
+                do {
+                    pushnotification = try container.decode(EventSubscriptionTemplatePushnotification.self, forKey: .pushnotification)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -73,6 +91,11 @@ public extension PlatformClient.Communication {
             
             
             try? container.encodeIfPresent(email, forKey: .email)
+            
+            
+            
+            
+            try? container.encodeIfPresent(pushnotification, forKey: .pushnotification)
             
             
         }
@@ -95,6 +118,8 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var email: EventSubscriptionTemplateEmail?
         
+        public var pushnotification: EventSubscriptionTemplatePushnotification?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -102,13 +127,17 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             case email = "email"
             
+            case pushnotification = "pushnotification"
+            
         }
 
-        public init(email: EventSubscriptionTemplateEmail? = nil, sms: EventSubscriptionTemplateSms? = nil) {
+        public init(email: EventSubscriptionTemplateEmail? = nil, pushnotification: EventSubscriptionTemplatePushnotification? = nil, sms: EventSubscriptionTemplateSms? = nil) {
             
             self.sms = sms
             
             self.email = email
+            
+            self.pushnotification = pushnotification
             
         }
 
@@ -139,6 +168,18 @@ public extension PlatformClient.ApplicationClient.Communication {
                 }
                 
             
+            
+                do {
+                    pushnotification = try container.decode(EventSubscriptionTemplatePushnotification.self, forKey: .pushnotification)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -152,6 +193,11 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             try? container.encodeIfPresent(email, forKey: .email)
+            
+            
+            
+            
+            try? container.encodeIfPresent(pushnotification, forKey: .pushnotification)
             
             
         }

@@ -14,6 +14,8 @@ public extension PlatformClient.Order {
         
         public var mobile: String?
         
+        public var email: String?
+        
         public var message: String?
         
         public var fyndOrderId: String?
@@ -25,6 +27,8 @@ public extension PlatformClient.Order {
             
             case mobile = "mobile"
             
+            case email = "email"
+            
             case message = "message"
             
             case fyndOrderId = "fynd_order_id"
@@ -33,9 +37,11 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(countryCode: String? = nil, fyndOrderId: String? = nil, message: String? = nil, mobile: String? = nil) {
+        public init(countryCode: String? = nil, email: String? = nil, fyndOrderId: String? = nil, message: String? = nil, mobile: String? = nil) {
             
             self.mobile = mobile
+            
+            self.email = email
             
             self.message = message
             
@@ -51,6 +57,18 @@ public extension PlatformClient.Order {
             
                 do {
                     mobile = try container.decode(String.self, forKey: .mobile)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    email = try container.decode(String.self, forKey: .email)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,6 +122,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(mobile, forKey: .mobile)
+            
+            
+            
+            
+            try? container.encodeIfPresent(email, forKey: .email)
             
             
             
@@ -139,6 +162,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var mobile: String?
         
+        public var email: String?
+        
         public var message: String?
         
         public var fyndOrderId: String?
@@ -150,6 +175,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case mobile = "mobile"
             
+            case email = "email"
+            
             case message = "message"
             
             case fyndOrderId = "fynd_order_id"
@@ -158,9 +185,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(countryCode: String? = nil, fyndOrderId: String? = nil, message: String? = nil, mobile: String? = nil) {
+        public init(countryCode: String? = nil, email: String? = nil, fyndOrderId: String? = nil, message: String? = nil, mobile: String? = nil) {
             
             self.mobile = mobile
+            
+            self.email = email
             
             self.message = message
             
@@ -176,6 +205,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     mobile = try container.decode(String.self, forKey: .mobile)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    email = try container.decode(String.self, forKey: .email)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -229,6 +270,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(mobile, forKey: .mobile)
+            
+            
+            
+            
+            try? container.encodeIfPresent(email, forKey: .email)
             
             
             

@@ -14,7 +14,7 @@ public extension PlatformClient.Payment {
         
         public var success: Bool
         
-        public var message: String
+        public var message: String?
         
         public var items: [PaymentModeCustomConfigSchema]
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(items: [PaymentModeCustomConfigSchema], message: String, success: Bool) {
+        public init(items: [PaymentModeCustomConfigSchema], message: String? = nil, success: Bool) {
             
             self.success = success
             
@@ -48,9 +48,16 @@ public extension PlatformClient.Payment {
             
             
             
-                message = try container.decode(String.self, forKey: .message)
+                do {
+                    message = try container.decode(String.self, forKey: .message)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 items = try container.decode([PaymentModeCustomConfigSchema].self, forKey: .items)
@@ -95,7 +102,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var success: Bool
         
-        public var message: String
+        public var message: String?
         
         public var items: [PaymentModeCustomConfigSchema]
         
@@ -110,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(items: [PaymentModeCustomConfigSchema], message: String, success: Bool) {
+        public init(items: [PaymentModeCustomConfigSchema], message: String? = nil, success: Bool) {
             
             self.success = success
             
@@ -129,9 +136,16 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                message = try container.decode(String.self, forKey: .message)
+                do {
+                    message = try container.decode(String.self, forKey: .message)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 items = try container.decode([PaymentModeCustomConfigSchema].self, forKey: .items)

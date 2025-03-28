@@ -12,11 +12,11 @@ public extension PlatformClient.Catalog {
     class EntityConfiguration: Codable {
         
         
-        public var appId: String
+        public var appId: String?
         
         public var configId: String?
         
-        public var configType: String
+        public var configType: String?
         
         public var id: String?
         
@@ -41,7 +41,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(appId: String, configId: String? = nil, configType: String, id: String? = nil, listing: GetCatalogConfigurationDetailsSchemaListing? = nil, product: GetCatalogConfigurationDetailsProduct? = nil) {
+        public init(appId: String? = nil, configId: String? = nil, configType: String? = nil, id: String? = nil, listing: GetCatalogConfigurationDetailsSchemaListing? = nil, product: GetCatalogConfigurationDetailsProduct? = nil) {
             
             self.appId = appId
             
@@ -61,9 +61,16 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                appId = try container.decode(String.self, forKey: .appId)
+                do {
+                    appId = try container.decode(String.self, forKey: .appId)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -78,9 +85,16 @@ public extension PlatformClient.Catalog {
                 
             
             
-                configType = try container.decode(String.self, forKey: .configType)
+                do {
+                    configType = try container.decode(String.self, forKey: .configType)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -169,11 +183,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class EntityConfiguration: Codable {
         
         
-        public var appId: String
+        public var appId: String?
         
         public var configId: String?
         
-        public var configType: String
+        public var configType: String?
         
         public var id: String?
         
@@ -198,7 +212,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(appId: String, configId: String? = nil, configType: String, id: String? = nil, listing: GetCatalogConfigurationDetailsSchemaListing? = nil, product: GetCatalogConfigurationDetailsProduct? = nil) {
+        public init(appId: String? = nil, configId: String? = nil, configType: String? = nil, id: String? = nil, listing: GetCatalogConfigurationDetailsSchemaListing? = nil, product: GetCatalogConfigurationDetailsProduct? = nil) {
             
             self.appId = appId
             
@@ -218,9 +232,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                appId = try container.decode(String.self, forKey: .appId)
+                do {
+                    appId = try container.decode(String.self, forKey: .appId)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -235,9 +256,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                configType = try container.decode(String.self, forKey: .configType)
+                do {
+                    configType = try container.decode(String.self, forKey: .configType)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

@@ -8,54 +8,42 @@ public extension ApplicationClient.Payment {
     */
     class AddBeneficiaryDetails: Codable {
         
-        public var delights: Bool
+        public var transferMode: String?
         
-        public var shipmentId: String
+        public var shipmentId: String?
         
-        public var details: BeneficiaryModeDetails
-        
-        public var otp: String?
+        public var delights: Bool?
         
         public var orderId: String
         
-        public var transferMode: String
-        
-        public var requestId: String?
+        public var details: BeneficiaryModeDetails
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case delights = "delights"
+            case transferMode = "transfer_mode"
             
             case shipmentId = "shipment_id"
             
-            case details = "details"
-            
-            case otp = "otp"
+            case delights = "delights"
             
             case orderId = "order_id"
             
-            case transferMode = "transfer_mode"
-            
-            case requestId = "request_id"
+            case details = "details"
             
         }
 
-        public init(delights: Bool, details: BeneficiaryModeDetails, orderId: String, otp: String? = nil, requestId: String? = nil, shipmentId: String, transferMode: String) {
-            
-            self.delights = delights
-            
-            self.shipmentId = shipmentId
-            
-            self.details = details
-            
-            self.otp = otp
-            
-            self.orderId = orderId
+        public init(delights: Bool? = nil, details: BeneficiaryModeDetails, orderId: String, shipmentId: String? = nil, transferMode: String? = nil) {
             
             self.transferMode = transferMode
             
-            self.requestId = requestId
+            self.shipmentId = shipmentId
+            
+            self.delights = delights
+            
+            self.orderId = orderId
+            
+            self.details = details
             
         }
 
@@ -63,23 +51,32 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            delights = try container.decode(Bool.self, forKey: .delights)
+            do {
+                transferMode = try container.decode(String.self, forKey: .transferMode)
             
-            
-            
-            
-            shipmentId = try container.decode(String.self, forKey: .shipmentId)
-            
-            
-            
-            
-            details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
-            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
             do {
-                otp = try container.decode(String.self, forKey: .otp)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                delights = try container.decode(Bool.self, forKey: .delights)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,20 +92,8 @@ public extension ApplicationClient.Payment {
             
             
             
-            transferMode = try container.decode(String.self, forKey: .transferMode)
+            details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
             
-            
-            
-            
-            do {
-                requestId = try container.decode(String.self, forKey: .requestId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
         }
@@ -117,7 +102,7 @@ public extension ApplicationClient.Payment {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(delights, forKey: .delights)
+            try? container.encodeIfPresent(transferMode, forKey: .transferMode)
             
             
             
@@ -125,11 +110,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(details, forKey: .details)
-            
-            
-            
-            try? container.encodeIfPresent(otp, forKey: .otp)
+            try? container.encodeIfPresent(delights, forKey: .delights)
             
             
             
@@ -137,11 +118,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(transferMode, forKey: .transferMode)
-            
-            
-            
-            try? container.encodeIfPresent(requestId, forKey: .requestId)
+            try? container.encodeIfPresent(details, forKey: .details)
             
             
         }

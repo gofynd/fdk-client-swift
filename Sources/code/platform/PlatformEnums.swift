@@ -75,40 +75,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
 public extension PlatformClient.Content {
     
     
-    /*
-        Enum: GenerationEntityType
-        Used By: Content
-    */
-    enum GenerationEntityType: String, Codable {
-        
-        case title = "title"
-        
-        case description = "description"
-        
-    }
-
-    
-    
     
 }
 
 
 
 public extension PlatformClient.ApplicationClient.Content {
-    
-    
-    /*
-        Enum: GenerationEntityType
-        Used By: Content
-    */
-    enum GenerationEntityType: String, Codable {
-        
-        case title = "title"
-        
-        case description = "description"
-        
-    }
-
     
     
     
@@ -128,42 +100,6 @@ public extension PlatformClient.Lead {
     
     
     /*
-        Enum: PriorityEnum
-        Used By: Lead
-    */
-    enum PriorityEnum: String, Codable {
-        
-        case low = "low"
-        
-        case medium = "medium"
-        
-        case high = "high"
-        
-        case urgent = "urgent"
-        
-    }
-
-    
-    
-    /*
-        Enum: HistoryTypeEnum
-        Used By: Lead
-    */
-    enum HistoryTypeEnum: String, Codable {
-        
-        case rating = "rating"
-        
-        case log = "log"
-        
-        case comment = "comment"
-        
-        case thread = "thread"
-        
-    }
-
-    
-    
-    /*
         Enum: TicketAssetTypeEnum
         Used By: Lead
     */
@@ -192,6 +128,44 @@ public extension PlatformClient.Lead {
     
     
     /*
+        Enum: PriorityEnum
+        Used By: Lead
+    */
+    enum PriorityEnum: String, Codable {
+        
+        case high = "high"
+        
+        case low = "low"
+        
+        case medium = "medium"
+        
+        case urgent = "urgent"
+        
+    }
+
+    
+    
+    /*
+        Enum: HistoryTypeEnum
+        Used By: Lead
+    */
+    enum HistoryTypeEnum: String, Codable {
+        
+        case rating = "rating"
+        
+        case log = "log"
+        
+        case comment = "comment"
+        
+        case diff = "diff"
+        
+        case thread = "thread"
+        
+    }
+
+    
+    
+    /*
         Enum: TicketSourceEnum
         Used By: Lead
     */
@@ -200,6 +174,8 @@ public extension PlatformClient.Lead {
         case platformPanel = "platform_panel"
         
         case salesChannel = "sales_channel"
+        
+        case partnerPanel = "partner_panel"
         
     }
 
@@ -212,42 +188,6 @@ public extension PlatformClient.ApplicationClient.Lead {
     
     
     /*
-        Enum: PriorityEnum
-        Used By: Lead
-    */
-    enum PriorityEnum: String, Codable {
-        
-        case low = "low"
-        
-        case medium = "medium"
-        
-        case high = "high"
-        
-        case urgent = "urgent"
-        
-    }
-
-    
-    
-    /*
-        Enum: HistoryTypeEnum
-        Used By: Lead
-    */
-    enum HistoryTypeEnum: String, Codable {
-        
-        case rating = "rating"
-        
-        case log = "log"
-        
-        case comment = "comment"
-        
-        case thread = "thread"
-        
-    }
-
-    
-    
-    /*
         Enum: TicketAssetTypeEnum
         Used By: Lead
     */
@@ -276,6 +216,44 @@ public extension PlatformClient.ApplicationClient.Lead {
     
     
     /*
+        Enum: PriorityEnum
+        Used By: Lead
+    */
+    enum PriorityEnum: String, Codable {
+        
+        case high = "high"
+        
+        case low = "low"
+        
+        case medium = "medium"
+        
+        case urgent = "urgent"
+        
+    }
+
+    
+    
+    /*
+        Enum: HistoryTypeEnum
+        Used By: Lead
+    */
+    enum HistoryTypeEnum: String, Codable {
+        
+        case rating = "rating"
+        
+        case log = "log"
+        
+        case comment = "comment"
+        
+        case diff = "diff"
+        
+        case thread = "thread"
+        
+    }
+
+    
+    
+    /*
         Enum: TicketSourceEnum
         Used By: Lead
     */
@@ -284,6 +262,8 @@ public extension PlatformClient.ApplicationClient.Lead {
         case platformPanel = "platform_panel"
         
         case salesChannel = "sales_channel"
+        
+        case partnerPanel = "partner_panel"
         
     }
 

@@ -32,7 +32,7 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var pinOrder: Double?
         
-        public var defaultValue: String?
+        public var defaultValue: [String: Any]?
         
         public var validations: [[String: Any]]?
         
@@ -63,7 +63,7 @@ public extension PlatformClient.ApplicationClient.User {
             
         }
 
-        public init(customerEditable: Bool? = nil, defaultValue: String? = nil, description: String? = nil, encrypted: Bool? = nil, multiValue: Bool? = nil, name: String? = nil, pinned: Bool? = nil, pinOrder: Double? = nil, slug: String? = nil, type: String? = nil, validations: [[String: Any]]? = nil) {
+        public init(customerEditable: Bool? = nil, defaultValue: [String: Any]? = nil, description: String? = nil, encrypted: Bool? = nil, multiValue: Bool? = nil, name: String? = nil, pinned: Bool? = nil, pinOrder: Double? = nil, slug: String? = nil, type: String? = nil, validations: [[String: Any]]? = nil) {
             
             self.name = name
             
@@ -202,7 +202,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    defaultValue = try container.decode(String.self, forKey: .defaultValue)
+                    defaultValue = try container.decode([String: Any].self, forKey: .defaultValue)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

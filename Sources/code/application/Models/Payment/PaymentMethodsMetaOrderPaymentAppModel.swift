@@ -8,11 +8,15 @@ public extension ApplicationClient.Payment {
     */
     class PaymentMethodsMetaOrder: Codable {
         
-        public var merchantCode: String
+        public var merchantCode: String?
         
         public var paymentGateway: String
         
-        public var paymentIdentifier: String
+        public var paymentIdentifier: String?
+        
+        public var paymentExtraIdentifiers: [String: Any]?
+        
+        public var logoUrl: PaymentModeLogo?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -23,9 +27,13 @@ public extension ApplicationClient.Payment {
             
             case paymentIdentifier = "payment_identifier"
             
+            case paymentExtraIdentifiers = "payment_extra_identifiers"
+            
+            case logoUrl = "logo_url"
+            
         }
 
-        public init(merchantCode: String, paymentGateway: String, paymentIdentifier: String) {
+        public init(logoUrl: PaymentModeLogo? = nil, merchantCode: String? = nil, paymentExtraIdentifiers: [String: Any]? = nil, paymentGateway: String, paymentIdentifier: String? = nil) {
             
             self.merchantCode = merchantCode
             
@@ -33,14 +41,25 @@ public extension ApplicationClient.Payment {
             
             self.paymentIdentifier = paymentIdentifier
             
+            self.paymentExtraIdentifiers = paymentExtraIdentifiers
+            
+            self.logoUrl = logoUrl
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            merchantCode = try container.decode(String.self, forKey: .merchantCode)
+            do {
+                merchantCode = try container.decode(String.self, forKey: .merchantCode)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -49,8 +68,39 @@ public extension ApplicationClient.Payment {
             
             
             
-            paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
+            do {
+                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                paymentExtraIdentifiers = try container.decode([String: Any].self, forKey: .paymentExtraIdentifiers)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                logoUrl = try container.decode(PaymentModeLogo.self, forKey: .logoUrl)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
         }
@@ -68,6 +118,14 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(paymentIdentifier, forKey: .paymentIdentifier)
+            
+            
+            
+            try? container.encodeIfPresent(paymentExtraIdentifiers, forKey: .paymentExtraIdentifiers)
+            
+            
+            
+            try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
             
             
         }
