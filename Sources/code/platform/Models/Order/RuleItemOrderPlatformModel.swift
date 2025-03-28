@@ -16,7 +16,7 @@ public extension PlatformClient.Order {
         
         public var entityType: String
         
-        public var value: String
+        public var value: String?
         
         public var channel: String
         
@@ -26,13 +26,23 @@ public extension PlatformClient.Order {
         
         public var isDeleted: Bool
         
-        public var conditions: Conditions
+        public var restrictForwardServiceability: Bool
         
-        public var meta: [String: Any]
+        public var conditions: [Condition]
+        
+        public var meta: RuleMeta
         
         public var ruleType: String
         
         public var isActive: Bool
+        
+        public var name: String
+        
+        public var description: String
+        
+        public var flowType: String
+        
+        public var position: Int
         
 
         public enum CodingKeys: String, CodingKey {
@@ -51,6 +61,8 @@ public extension PlatformClient.Order {
             
             case isDeleted = "is_deleted"
             
+            case restrictForwardServiceability = "restrict_forward_serviceability"
+            
             case conditions = "conditions"
             
             case meta = "meta"
@@ -59,9 +71,17 @@ public extension PlatformClient.Order {
             
             case isActive = "is_active"
             
+            case name = "name"
+            
+            case description = "description"
+            
+            case flowType = "flow_type"
+            
+            case position = "position"
+            
         }
 
-        public init(actions: RuleAction, channel: String, conditions: Conditions, entityType: String, id: String, isActive: Bool, isDeleted: Bool, meta: [String: Any], qcEnabled: Bool, ruleType: String, value: String) {
+        public init(actions: RuleAction, channel: String, conditions: [Condition], description: String, entityType: String, flowType: String, id: String, isActive: Bool, isDeleted: Bool, meta: RuleMeta, name: String, position: Int, qcEnabled: Bool, restrictForwardServiceability: Bool, ruleType: String, value: String? = nil) {
             
             self.id = id
             
@@ -77,6 +97,8 @@ public extension PlatformClient.Order {
             
             self.isDeleted = isDeleted
             
+            self.restrictForwardServiceability = restrictForwardServiceability
+            
             self.conditions = conditions
             
             self.meta = meta
@@ -84,6 +106,14 @@ public extension PlatformClient.Order {
             self.ruleType = ruleType
             
             self.isActive = isActive
+            
+            self.name = name
+            
+            self.description = description
+            
+            self.flowType = flowType
+            
+            self.position = position
             
         }
 
@@ -101,9 +131,16 @@ public extension PlatformClient.Order {
             
             
             
-                value = try container.decode(String.self, forKey: .value)
+                do {
+                    value = try container.decode(String.self, forKey: .value)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 channel = try container.decode(String.self, forKey: .channel)
@@ -126,12 +163,17 @@ public extension PlatformClient.Order {
             
             
             
-                conditions = try container.decode(Conditions.self, forKey: .conditions)
+                restrictForwardServiceability = try container.decode(Bool.self, forKey: .restrictForwardServiceability)
                 
             
             
             
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                conditions = try container.decode([Condition].self, forKey: .conditions)
+                
+            
+            
+            
+                meta = try container.decode(RuleMeta.self, forKey: .meta)
                 
             
             
@@ -142,6 +184,26 @@ public extension PlatformClient.Order {
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)
+                
+            
+            
+            
+                name = try container.decode(String.self, forKey: .name)
+                
+            
+            
+            
+                description = try container.decode(String.self, forKey: .description)
+                
+            
+            
+            
+                flowType = try container.decode(String.self, forKey: .flowType)
+                
+            
+            
+            
+                position = try container.decode(Int.self, forKey: .position)
                 
             
             
@@ -187,6 +249,11 @@ public extension PlatformClient.Order {
             
             
             
+            try? container.encodeIfPresent(restrictForwardServiceability, forKey: .restrictForwardServiceability)
+            
+            
+            
+            
             try? container.encodeIfPresent(conditions, forKey: .conditions)
             
             
@@ -203,6 +270,26 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(flowType, forKey: .flowType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(position, forKey: .position)
             
             
         }
@@ -225,7 +312,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var entityType: String
         
-        public var value: String
+        public var value: String?
         
         public var channel: String
         
@@ -235,13 +322,23 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var isDeleted: Bool
         
-        public var conditions: Conditions
+        public var restrictForwardServiceability: Bool
         
-        public var meta: [String: Any]
+        public var conditions: [Condition]
+        
+        public var meta: RuleMeta
         
         public var ruleType: String
         
         public var isActive: Bool
+        
+        public var name: String
+        
+        public var description: String
+        
+        public var flowType: String
+        
+        public var position: Int
         
 
         public enum CodingKeys: String, CodingKey {
@@ -260,6 +357,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case isDeleted = "is_deleted"
             
+            case restrictForwardServiceability = "restrict_forward_serviceability"
+            
             case conditions = "conditions"
             
             case meta = "meta"
@@ -268,9 +367,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case isActive = "is_active"
             
+            case name = "name"
+            
+            case description = "description"
+            
+            case flowType = "flow_type"
+            
+            case position = "position"
+            
         }
 
-        public init(actions: RuleAction, channel: String, conditions: Conditions, entityType: String, id: String, isActive: Bool, isDeleted: Bool, meta: [String: Any], qcEnabled: Bool, ruleType: String, value: String) {
+        public init(actions: RuleAction, channel: String, conditions: [Condition], description: String, entityType: String, flowType: String, id: String, isActive: Bool, isDeleted: Bool, meta: RuleMeta, name: String, position: Int, qcEnabled: Bool, restrictForwardServiceability: Bool, ruleType: String, value: String? = nil) {
             
             self.id = id
             
@@ -286,6 +393,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.isDeleted = isDeleted
             
+            self.restrictForwardServiceability = restrictForwardServiceability
+            
             self.conditions = conditions
             
             self.meta = meta
@@ -293,6 +402,14 @@ public extension PlatformClient.ApplicationClient.Order {
             self.ruleType = ruleType
             
             self.isActive = isActive
+            
+            self.name = name
+            
+            self.description = description
+            
+            self.flowType = flowType
+            
+            self.position = position
             
         }
 
@@ -310,9 +427,16 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                value = try container.decode(String.self, forKey: .value)
+                do {
+                    value = try container.decode(String.self, forKey: .value)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 channel = try container.decode(String.self, forKey: .channel)
@@ -335,12 +459,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                conditions = try container.decode(Conditions.self, forKey: .conditions)
+                restrictForwardServiceability = try container.decode(Bool.self, forKey: .restrictForwardServiceability)
                 
             
             
             
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                conditions = try container.decode([Condition].self, forKey: .conditions)
+                
+            
+            
+            
+                meta = try container.decode(RuleMeta.self, forKey: .meta)
                 
             
             
@@ -351,6 +480,26 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)
+                
+            
+            
+            
+                name = try container.decode(String.self, forKey: .name)
+                
+            
+            
+            
+                description = try container.decode(String.self, forKey: .description)
+                
+            
+            
+            
+                flowType = try container.decode(String.self, forKey: .flowType)
+                
+            
+            
+            
+                position = try container.decode(Int.self, forKey: .position)
                 
             
             
@@ -396,6 +545,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
+            try? container.encodeIfPresent(restrictForwardServiceability, forKey: .restrictForwardServiceability)
+            
+            
+            
+            
             try? container.encodeIfPresent(conditions, forKey: .conditions)
             
             
@@ -412,6 +566,26 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(flowType, forKey: .flowType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(position, forKey: .position)
             
             
         }

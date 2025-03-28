@@ -68,7 +68,6 @@ extension PlatformClient {
         *
         * Summary: Register Subscriber.
         * Description: Register Subscriber.
-
         **/
         public func registerSubscriberToEventV2(
             body: SubscriberConfigPostRequestV2,
@@ -119,7 +118,6 @@ extension PlatformClient {
         *
         * Summary: Update Subscriber.
         * Description: Update Subscriber.
-
         **/
         public func updateSubscriberV2(
             body: SubscriberConfigUpdateRequestV2,

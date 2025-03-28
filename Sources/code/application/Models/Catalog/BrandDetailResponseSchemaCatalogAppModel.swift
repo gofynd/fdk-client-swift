@@ -18,11 +18,13 @@ public extension ApplicationClient.Catalog {
         
         public var customJson: [String: Any]?
         
-        public var name: String?
-        
         public var slug: String?
         
         public var app: [String: Any]?
+        
+        public var name: String?
+        
+        public var seo: ApplicationItemSEO?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -37,15 +39,17 @@ public extension ApplicationClient.Catalog {
             
             case customJson = "_custom_json"
             
-            case name = "name"
-            
             case slug = "slug"
             
             case app = "_app"
             
+            case name = "name"
+            
+            case seo = "seo"
+            
         }
 
-        public init(banners: ImageUrls? = nil, description: String? = nil, logo: Media? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, app: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(banners: ImageUrls? = nil, description: String? = nil, logo: Media? = nil, name: String? = nil, seo: ApplicationItemSEO? = nil, slug: String? = nil, uid: Int? = nil, app: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.logo = logo
             
@@ -57,11 +61,13 @@ public extension ApplicationClient.Catalog {
             
             self.customJson = customJson
             
-            self.name = name
-            
             self.slug = slug
             
             self.app = app
+            
+            self.name = name
+            
+            self.seo = seo
             
         }
 
@@ -130,18 +136,6 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                name = try container.decode(String.self, forKey: .name)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 slug = try container.decode(String.self, forKey: .slug)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -155,6 +149,30 @@ public extension ApplicationClient.Catalog {
             
             do {
                 app = try container.decode([String: Any].self, forKey: .app)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                name = try container.decode(String.self, forKey: .name)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                seo = try container.decode(ApplicationItemSEO.self, forKey: .seo)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -190,15 +208,19 @@ public extension ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
             try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
             try? container.encodeIfPresent(app, forKey: .app)
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            try? container.encodeIfPresent(seo, forKey: .seo)
             
             
         }

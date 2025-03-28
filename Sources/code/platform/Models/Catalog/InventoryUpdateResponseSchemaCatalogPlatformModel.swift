@@ -14,7 +14,7 @@ public extension PlatformClient.Catalog {
         
         public var items: [InventoryResponseItem]?
         
-        public var message: String
+        public var message: String?
         
         public var success: Bool?
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(items: [InventoryResponseItem]? = nil, message: String, success: Bool? = nil) {
+        public init(items: [InventoryResponseItem]? = nil, message: String? = nil, success: Bool? = nil) {
             
             self.items = items
             
@@ -55,9 +55,16 @@ public extension PlatformClient.Catalog {
                 
             
             
-                message = try container.decode(String.self, forKey: .message)
+                do {
+                    message = try container.decode(String.self, forKey: .message)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -109,7 +116,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var items: [InventoryResponseItem]?
         
-        public var message: String
+        public var message: String?
         
         public var success: Bool?
         
@@ -124,7 +131,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(items: [InventoryResponseItem]? = nil, message: String, success: Bool? = nil) {
+        public init(items: [InventoryResponseItem]? = nil, message: String? = nil, success: Bool? = nil) {
             
             self.items = items
             
@@ -150,9 +157,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                message = try container.decode(String.self, forKey: .message)
+                do {
+                    message = try container.decode(String.self, forKey: .message)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

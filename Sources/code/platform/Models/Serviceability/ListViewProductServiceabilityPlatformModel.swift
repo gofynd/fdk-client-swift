@@ -12,24 +12,24 @@ public extension PlatformClient.Serviceability {
     class ListViewProduct: Codable {
         
         
-        public var type: String
+        public var count: Int
         
-        public var values: [String]
+        public var type: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case type = "type"
+            case count = "count"
             
-            case values = "values"
+            case type = "type"
             
         }
 
-        public init(type: String, values: [String]) {
+        public init(count: Int, type: String) {
+            
+            self.count = count
             
             self.type = type
-            
-            self.values = values
             
         }
 
@@ -37,12 +37,12 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                type = try container.decode(String.self, forKey: .type)
+                count = try container.decode(Int.self, forKey: .count)
                 
             
             
             
-                values = try container.decode([String].self, forKey: .values)
+                type = try container.decode(String.self, forKey: .type)
                 
             
             
@@ -53,12 +53,12 @@ public extension PlatformClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(count, forKey: .count)
+            
+            
+            
+            
             try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(values, forKey: .values)
             
             
         }
@@ -77,24 +77,24 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ListViewProduct: Codable {
         
         
-        public var type: String
+        public var count: Int
         
-        public var values: [String]
+        public var type: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case type = "type"
+            case count = "count"
             
-            case values = "values"
+            case type = "type"
             
         }
 
-        public init(type: String, values: [String]) {
+        public init(count: Int, type: String) {
+            
+            self.count = count
             
             self.type = type
-            
-            self.values = values
             
         }
 
@@ -102,12 +102,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                type = try container.decode(String.self, forKey: .type)
+                count = try container.decode(Int.self, forKey: .count)
                 
             
             
             
-                values = try container.decode([String].self, forKey: .values)
+                type = try container.decode(String.self, forKey: .type)
                 
             
             
@@ -118,12 +118,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
+            try? container.encodeIfPresent(count, forKey: .count)
+            
+            
+            
+            
             try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(values, forKey: .values)
             
             
         }

@@ -12,7 +12,7 @@ public extension PlatformClient.Serviceability {
     class BulkCreateZoneExport: Codable {
         
         
-        public var placeholder: [String: Any]?
+        public var placeholder: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(placeholder: [String: Any]? = nil) {
+        public init(placeholder: String? = nil) {
             
             self.placeholder = placeholder
             
@@ -32,7 +32,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    placeholder = try container.decode([String: Any].self, forKey: .placeholder)
+                    placeholder = try container.decode(String.self, forKey: .placeholder)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class BulkCreateZoneExport: Codable {
         
         
-        public var placeholder: [String: Any]?
+        public var placeholder: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(placeholder: [String: Any]? = nil) {
+        public init(placeholder: String? = nil) {
             
             self.placeholder = placeholder
             
@@ -88,7 +88,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    placeholder = try container.decode([String: Any].self, forKey: .placeholder)
+                    placeholder = try container.decode(String.self, forKey: .placeholder)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

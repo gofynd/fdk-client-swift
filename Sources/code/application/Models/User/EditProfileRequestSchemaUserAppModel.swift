@@ -8,7 +8,7 @@ public extension ApplicationClient.User {
     */
     class EditProfileRequestSchema: Codable {
         
-        public var encryptOtp: Bool?
+        public var ci: Bool?
         
         public var firstName: String?
         
@@ -35,7 +35,7 @@ public extension ApplicationClient.User {
 
         public enum CodingKeys: String, CodingKey {
             
-            case encryptOtp = "encrypt_otp"
+            case ci = "ci"
             
             case firstName = "first_name"
             
@@ -61,9 +61,9 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(androidHash: String? = nil, countryCode: String? = nil, dob: String? = nil, email: String? = nil, encryptOtp: Bool? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, mobile: EditProfileMobileSchema? = nil, profilePicUrl: String? = nil, registerToken: String? = nil, sender: String? = nil) {
+        public init(androidHash: String? = nil, ci: Bool? = nil, countryCode: String? = nil, dob: String? = nil, email: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, mobile: EditProfileMobileSchema? = nil, profilePicUrl: String? = nil, registerToken: String? = nil, sender: String? = nil) {
             
-            self.encryptOtp = encryptOtp
+            self.ci = ci
             
             self.firstName = firstName
             
@@ -94,7 +94,7 @@ public extension ApplicationClient.User {
             
             
             do {
-                encryptOtp = try container.decode(Bool.self, forKey: .encryptOtp)
+                ci = try container.decode(Bool.self, forKey: .ci)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -242,7 +242,7 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(encryptOtp, forKey: .encryptOtp)
+            try? container.encodeIfPresent(ci, forKey: .ci)
             
             
             

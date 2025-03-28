@@ -12,6 +12,8 @@ public extension PlatformClient.Payment {
     class RefundSourcesPriority: Codable {
         
         
+        public var enabled: Bool?
+        
         public var description: String
         
         public var priority: Int
@@ -21,6 +23,8 @@ public extension PlatformClient.Payment {
 
         public enum CodingKeys: String, CodingKey {
             
+            case enabled = "enabled"
+            
             case description = "description"
             
             case priority = "priority"
@@ -29,7 +33,9 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(description: String, priority: Int, source: String) {
+        public init(description: String, enabled: Bool? = nil, priority: Int, source: String) {
+            
+            self.enabled = enabled
             
             self.description = description
             
@@ -41,6 +47,18 @@ public extension PlatformClient.Payment {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    enabled = try container.decode(Bool.self, forKey: .enabled)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 description = try container.decode(String.self, forKey: .description)
@@ -61,6 +79,11 @@ public extension PlatformClient.Payment {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            
             
             
             
@@ -93,6 +116,8 @@ public extension PlatformClient.ApplicationClient.Payment {
     class RefundSourcesPriority: Codable {
         
         
+        public var enabled: Bool?
+        
         public var description: String
         
         public var priority: Int
@@ -102,6 +127,8 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public enum CodingKeys: String, CodingKey {
             
+            case enabled = "enabled"
+            
             case description = "description"
             
             case priority = "priority"
@@ -110,7 +137,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(description: String, priority: Int, source: String) {
+        public init(description: String, enabled: Bool? = nil, priority: Int, source: String) {
+            
+            self.enabled = enabled
             
             self.description = description
             
@@ -122,6 +151,18 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    enabled = try container.decode(Bool.self, forKey: .enabled)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 description = try container.decode(String.self, forKey: .description)
@@ -142,6 +183,11 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            
             
             
             

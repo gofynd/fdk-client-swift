@@ -20,6 +20,8 @@ public extension PlatformClient.Content {
         
         public var duration: Double?
         
+        public var nextSchedule: [NextSchedule]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -31,9 +33,11 @@ public extension PlatformClient.Content {
             
             case duration = "duration"
             
+            case nextSchedule = "next_schedule"
+            
         }
 
-        public init(cron: String? = nil, duration: Double? = nil, end: String? = nil, start: String? = nil) {
+        public init(cron: String? = nil, duration: Double? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, start: String? = nil) {
             
             self.cron = cron
             
@@ -42,6 +46,8 @@ public extension PlatformClient.Content {
             self.end = end
             
             self.duration = duration
+            
+            self.nextSchedule = nextSchedule
             
         }
 
@@ -96,6 +102,18 @@ public extension PlatformClient.Content {
                 }
                 
             
+            
+                do {
+                    nextSchedule = try container.decode([NextSchedule].self, forKey: .nextSchedule)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -119,6 +137,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(duration, forKey: .duration)
+            
+            
+            
+            
+            try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
             
             
         }
@@ -145,6 +168,8 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var duration: Double?
         
+        public var nextSchedule: [NextSchedule]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -156,9 +181,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case duration = "duration"
             
+            case nextSchedule = "next_schedule"
+            
         }
 
-        public init(cron: String? = nil, duration: Double? = nil, end: String? = nil, start: String? = nil) {
+        public init(cron: String? = nil, duration: Double? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, start: String? = nil) {
             
             self.cron = cron
             
@@ -167,6 +194,8 @@ public extension PlatformClient.ApplicationClient.Content {
             self.end = end
             
             self.duration = duration
+            
+            self.nextSchedule = nextSchedule
             
         }
 
@@ -221,6 +250,18 @@ public extension PlatformClient.ApplicationClient.Content {
                 }
                 
             
+            
+                do {
+                    nextSchedule = try container.decode([NextSchedule].self, forKey: .nextSchedule)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -244,6 +285,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(duration, forKey: .duration)
+            
+            
+            
+            
+            try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
             
             
         }

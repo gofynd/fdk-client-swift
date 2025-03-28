@@ -18,6 +18,8 @@ public extension PlatformClient.Communication {
         
         public var expiry: OtpConfigurationExpiry
         
+        public var rateLimit: OtpConfigRateLimit
+        
         public var applicationId: String?
         
         public var companyId: String?
@@ -31,19 +33,23 @@ public extension PlatformClient.Communication {
             
             case expiry = "expiry"
             
+            case rateLimit = "rate_limit"
+            
             case applicationId = "application_id"
             
             case companyId = "company_id"
             
         }
 
-        public init(applicationId: String? = nil, companyId: String? = nil, expiry: OtpConfigurationExpiry, otpLength: Int, type: String) {
+        public init(applicationId: String? = nil, companyId: String? = nil, expiry: OtpConfigurationExpiry, otpLength: Int, rateLimit: OtpConfigRateLimit, type: String) {
             
             self.otpLength = otpLength
             
             self.type = type
             
             self.expiry = expiry
+            
+            self.rateLimit = rateLimit
             
             self.applicationId = applicationId
             
@@ -66,6 +72,11 @@ public extension PlatformClient.Communication {
             
             
                 expiry = try container.decode(OtpConfigurationExpiry.self, forKey: .expiry)
+                
+            
+            
+            
+                rateLimit = try container.decode(OtpConfigRateLimit.self, forKey: .rateLimit)
                 
             
             
@@ -111,6 +122,11 @@ public extension PlatformClient.Communication {
             
             
             try? container.encodeIfPresent(expiry, forKey: .expiry)
+            
+            
+            
+            
+            try? container.encodeIfPresent(rateLimit, forKey: .rateLimit)
             
             
             
@@ -145,6 +161,8 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var expiry: OtpConfigurationExpiry
         
+        public var rateLimit: OtpConfigRateLimit
+        
         public var applicationId: String?
         
         public var companyId: String?
@@ -158,19 +176,23 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             case expiry = "expiry"
             
+            case rateLimit = "rate_limit"
+            
             case applicationId = "application_id"
             
             case companyId = "company_id"
             
         }
 
-        public init(applicationId: String? = nil, companyId: String? = nil, expiry: OtpConfigurationExpiry, otpLength: Int, type: String) {
+        public init(applicationId: String? = nil, companyId: String? = nil, expiry: OtpConfigurationExpiry, otpLength: Int, rateLimit: OtpConfigRateLimit, type: String) {
             
             self.otpLength = otpLength
             
             self.type = type
             
             self.expiry = expiry
+            
+            self.rateLimit = rateLimit
             
             self.applicationId = applicationId
             
@@ -193,6 +215,11 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 expiry = try container.decode(OtpConfigurationExpiry.self, forKey: .expiry)
+                
+            
+            
+            
+                rateLimit = try container.decode(OtpConfigRateLimit.self, forKey: .rateLimit)
                 
             
             
@@ -238,6 +265,11 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             try? container.encodeIfPresent(expiry, forKey: .expiry)
+            
+            
+            
+            
+            try? container.encodeIfPresent(rateLimit, forKey: .rateLimit)
             
             
             

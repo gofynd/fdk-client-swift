@@ -24,8 +24,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var result: [String: Any]?
         
-        public var items: [CartItemInfo]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -39,11 +37,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case result = "result"
             
-            case items = "items"
-            
         }
 
-        public init(cart: CartDetailResult? = nil, items: [CartItemInfo]? = nil, message: String? = nil, partial: Bool? = nil, result: [String: Any]? = nil, success: Bool? = nil) {
+        public init(cart: CartDetailResult? = nil, message: String? = nil, partial: Bool? = nil, result: [String: Any]? = nil, success: Bool? = nil) {
             
             self.success = success
             
@@ -54,8 +50,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.message = message
             
             self.result = result
-            
-            self.items = items
             
         }
 
@@ -122,18 +116,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
-            
-                do {
-                    items = try container.decode([CartItemInfo].self, forKey: .items)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -162,11 +144,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(result, forKey: .result)
-            
-            
-            
-            
-            try? container.encodeIfPresent(items, forKey: .items)
             
             
         }

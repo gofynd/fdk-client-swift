@@ -14,9 +14,9 @@ public extension PlatformClient.Content {
         
         public var type: String?
         
-        public var definitionSlug: String?
-        
         public var description: String?
+        
+        public var slug: String?
         
         public var name: String?
         
@@ -29,9 +29,9 @@ public extension PlatformClient.Content {
             
             case type = "type"
             
-            case definitionSlug = "definition_slug"
-            
             case description = "description"
+            
+            case slug = "slug"
             
             case name = "name"
             
@@ -41,13 +41,13 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(definitionSlug: String? = nil, description: String? = nil, displayNameKey: String? = nil, fieldDefinitions: [CustomObjectCustomFieldDefinitions]? = nil, name: String? = nil, type: String? = nil) {
+        public init(description: String? = nil, displayNameKey: String? = nil, fieldDefinitions: [CustomObjectCustomFieldDefinitions]? = nil, name: String? = nil, slug: String? = nil, type: String? = nil) {
             
             self.type = type
             
-            self.definitionSlug = definitionSlug
-            
             self.description = description
+            
+            self.slug = slug
             
             self.name = name
             
@@ -74,7 +74,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    definitionSlug = try container.decode(String.self, forKey: .definitionSlug)
+                    description = try container.decode(String.self, forKey: .description)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +86,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    description = try container.decode(String.self, forKey: .description)
+                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -144,12 +144,12 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(definitionSlug, forKey: .definitionSlug)
-            
-            
-            
-            
             try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
@@ -185,9 +185,9 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var type: String?
         
-        public var definitionSlug: String?
-        
         public var description: String?
+        
+        public var slug: String?
         
         public var name: String?
         
@@ -200,9 +200,9 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case type = "type"
             
-            case definitionSlug = "definition_slug"
-            
             case description = "description"
+            
+            case slug = "slug"
             
             case name = "name"
             
@@ -212,13 +212,13 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(definitionSlug: String? = nil, description: String? = nil, displayNameKey: String? = nil, fieldDefinitions: [CustomObjectCustomFieldDefinitions]? = nil, name: String? = nil, type: String? = nil) {
+        public init(description: String? = nil, displayNameKey: String? = nil, fieldDefinitions: [CustomObjectCustomFieldDefinitions]? = nil, name: String? = nil, slug: String? = nil, type: String? = nil) {
             
             self.type = type
             
-            self.definitionSlug = definitionSlug
-            
             self.description = description
+            
+            self.slug = slug
             
             self.name = name
             
@@ -245,7 +245,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    definitionSlug = try container.decode(String.self, forKey: .definitionSlug)
+                    description = try container.decode(String.self, forKey: .description)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -257,7 +257,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    description = try container.decode(String.self, forKey: .description)
+                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -315,12 +315,12 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(definitionSlug, forKey: .definitionSlug)
-            
-            
-            
-            
             try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             

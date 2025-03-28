@@ -32,9 +32,11 @@ public extension PlatformClient.Order {
         
         public var statusCreatedAt: String?
         
-        public var updatedTs: String?
+        public var statusCreatedTs: String?
         
         public var status: String
+        
+        public var updatedTs: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -59,13 +61,15 @@ public extension PlatformClient.Order {
             
             case statusCreatedAt = "status_created_at"
             
-            case updatedTs = "updated_ts"
+            case statusCreatedTs = "status_created_ts"
             
             case status = "status"
             
+            case updatedTs = "updated_ts"
+            
         }
 
-        public init(bagList: [String]? = nil, createdAt: String? = nil, createdTs: String? = nil, currentShipmentStatus: String? = nil, displayName: String? = nil, id: Int? = nil, meta: [String: Any]? = nil, shipmentId: String? = nil, status: String, statusCreatedAt: String? = nil, title: String, updatedTs: String? = nil) {
+        public init(bagList: [String]? = nil, createdAt: String? = nil, createdTs: String? = nil, currentShipmentStatus: String? = nil, displayName: String? = nil, id: Int? = nil, meta: [String: Any]? = nil, shipmentId: String? = nil, status: String, statusCreatedAt: String? = nil, statusCreatedTs: String? = nil, title: String, updatedTs: String? = nil) {
             
             self.currentShipmentStatus = currentShipmentStatus
             
@@ -87,9 +91,11 @@ public extension PlatformClient.Order {
             
             self.statusCreatedAt = statusCreatedAt
             
-            self.updatedTs = updatedTs
+            self.statusCreatedTs = statusCreatedTs
             
             self.status = status
+            
+            self.updatedTs = updatedTs
             
         }
 
@@ -211,7 +217,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    updatedTs = try container.decode(String.self, forKey: .updatedTs)
+                    statusCreatedTs = try container.decode(String.self, forKey: .statusCreatedTs)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -225,6 +231,18 @@ public extension PlatformClient.Order {
                 status = try container.decode(String.self, forKey: .status)
                 
             
+            
+            
+                do {
+                    updatedTs = try container.decode(String.self, forKey: .updatedTs)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -283,12 +301,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(updatedTs, forKey: .updatedTs)
+            try? container.encodeIfPresent(statusCreatedTs, forKey: .statusCreatedTs)
             
             
             
             
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(updatedTs, forKey: .updatedTs)
             
             
         }
@@ -327,9 +350,11 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var statusCreatedAt: String?
         
-        public var updatedTs: String?
+        public var statusCreatedTs: String?
         
         public var status: String
+        
+        public var updatedTs: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -354,13 +379,15 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case statusCreatedAt = "status_created_at"
             
-            case updatedTs = "updated_ts"
+            case statusCreatedTs = "status_created_ts"
             
             case status = "status"
             
+            case updatedTs = "updated_ts"
+            
         }
 
-        public init(bagList: [String]? = nil, createdAt: String? = nil, createdTs: String? = nil, currentShipmentStatus: String? = nil, displayName: String? = nil, id: Int? = nil, meta: [String: Any]? = nil, shipmentId: String? = nil, status: String, statusCreatedAt: String? = nil, title: String, updatedTs: String? = nil) {
+        public init(bagList: [String]? = nil, createdAt: String? = nil, createdTs: String? = nil, currentShipmentStatus: String? = nil, displayName: String? = nil, id: Int? = nil, meta: [String: Any]? = nil, shipmentId: String? = nil, status: String, statusCreatedAt: String? = nil, statusCreatedTs: String? = nil, title: String, updatedTs: String? = nil) {
             
             self.currentShipmentStatus = currentShipmentStatus
             
@@ -382,9 +409,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.statusCreatedAt = statusCreatedAt
             
-            self.updatedTs = updatedTs
+            self.statusCreatedTs = statusCreatedTs
             
             self.status = status
+            
+            self.updatedTs = updatedTs
             
         }
 
@@ -506,7 +535,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    updatedTs = try container.decode(String.self, forKey: .updatedTs)
+                    statusCreatedTs = try container.decode(String.self, forKey: .statusCreatedTs)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -520,6 +549,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 status = try container.decode(String.self, forKey: .status)
                 
             
+            
+            
+                do {
+                    updatedTs = try container.decode(String.self, forKey: .updatedTs)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -578,12 +619,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(updatedTs, forKey: .updatedTs)
+            try? container.encodeIfPresent(statusCreatedTs, forKey: .statusCreatedTs)
             
             
             
             
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(updatedTs, forKey: .updatedTs)
             
             
         }

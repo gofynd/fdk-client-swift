@@ -32,6 +32,8 @@ public extension PlatformClient.Order {
         
         public var statusCreatedAt: String?
         
+        public var name: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -55,9 +57,11 @@ public extension PlatformClient.Order {
             
             case statusCreatedAt = "status_created_at"
             
+            case name = "name"
+            
         }
 
-        public init(bagList: [String]? = nil, createdAt: String? = nil, createdTs: String? = nil, currentShipmentStatus: String? = nil, displayName: String? = nil, id: Int? = nil, meta: [String: Any]? = nil, shipmentId: String? = nil, status: String? = nil, statusCreatedAt: String? = nil) {
+        public init(bagList: [String]? = nil, createdAt: String? = nil, createdTs: String? = nil, currentShipmentStatus: String? = nil, displayName: String? = nil, id: Int? = nil, meta: [String: Any]? = nil, name: String? = nil, shipmentId: String? = nil, status: String? = nil, statusCreatedAt: String? = nil) {
             
             self.meta = meta
             
@@ -78,6 +82,8 @@ public extension PlatformClient.Order {
             self.currentShipmentStatus = currentShipmentStatus
             
             self.statusCreatedAt = statusCreatedAt
+            
+            self.name = name
             
         }
 
@@ -204,6 +210,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -257,6 +275,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(statusCreatedAt, forKey: .statusCreatedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
         }
@@ -295,6 +318,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var statusCreatedAt: String?
         
+        public var name: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -318,9 +343,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case statusCreatedAt = "status_created_at"
             
+            case name = "name"
+            
         }
 
-        public init(bagList: [String]? = nil, createdAt: String? = nil, createdTs: String? = nil, currentShipmentStatus: String? = nil, displayName: String? = nil, id: Int? = nil, meta: [String: Any]? = nil, shipmentId: String? = nil, status: String? = nil, statusCreatedAt: String? = nil) {
+        public init(bagList: [String]? = nil, createdAt: String? = nil, createdTs: String? = nil, currentShipmentStatus: String? = nil, displayName: String? = nil, id: Int? = nil, meta: [String: Any]? = nil, name: String? = nil, shipmentId: String? = nil, status: String? = nil, statusCreatedAt: String? = nil) {
             
             self.meta = meta
             
@@ -341,6 +368,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.currentShipmentStatus = currentShipmentStatus
             
             self.statusCreatedAt = statusCreatedAt
+            
+            self.name = name
             
         }
 
@@ -467,6 +496,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -520,6 +561,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(statusCreatedAt, forKey: .statusCreatedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
         }

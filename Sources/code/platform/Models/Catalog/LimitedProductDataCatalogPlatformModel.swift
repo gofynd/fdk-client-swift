@@ -24,7 +24,7 @@ public extension PlatformClient.Catalog {
         
         public var name: String?
         
-        public var price: [String: Any]?
+        public var price: ProductPriceRangeSchema?
         
         public var quantity: Int?
         
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(attributes: [String: Any]? = nil, countryOfOrigin: String? = nil, identifier: [String: Any]? = nil, images: [String]? = nil, itemCode: String? = nil, name: String? = nil, price: [String: Any]? = nil, quantity: Int? = nil, shortDescription: String? = nil, sizes: [String]? = nil, slug: String? = nil, uid: Int? = nil) {
+        public init(attributes: [String: Any]? = nil, countryOfOrigin: String? = nil, identifier: [String: Any]? = nil, images: [String]? = nil, itemCode: String? = nil, name: String? = nil, price: ProductPriceRangeSchema? = nil, quantity: Int? = nil, shortDescription: String? = nil, sizes: [String]? = nil, slug: String? = nil, uid: Int? = nil) {
             
             self.attributes = attributes
             
@@ -170,7 +170,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    price = try container.decode([String: Any].self, forKey: .price)
+                    price = try container.decode(ProductPriceRangeSchema.self, forKey: .price)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -333,7 +333,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var name: String?
         
-        public var price: [String: Any]?
+        public var price: ProductPriceRangeSchema?
         
         public var quantity: Int?
         
@@ -374,7 +374,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(attributes: [String: Any]? = nil, countryOfOrigin: String? = nil, identifier: [String: Any]? = nil, images: [String]? = nil, itemCode: String? = nil, name: String? = nil, price: [String: Any]? = nil, quantity: Int? = nil, shortDescription: String? = nil, sizes: [String]? = nil, slug: String? = nil, uid: Int? = nil) {
+        public init(attributes: [String: Any]? = nil, countryOfOrigin: String? = nil, identifier: [String: Any]? = nil, images: [String]? = nil, itemCode: String? = nil, name: String? = nil, price: ProductPriceRangeSchema? = nil, quantity: Int? = nil, shortDescription: String? = nil, sizes: [String]? = nil, slug: String? = nil, uid: Int? = nil) {
             
             self.attributes = attributes
             
@@ -479,7 +479,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    price = try container.decode([String: Any].self, forKey: .price)
+                    price = try container.decode(ProductPriceRangeSchema.self, forKey: .price)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

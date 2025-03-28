@@ -20,6 +20,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var paymentMeta: PaymentMeta
         
+        public var paymentIdentifier: String?
+        
         public var amount: Double?
         
         public var name: String?
@@ -35,6 +37,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case paymentMeta = "payment_meta"
             
+            case paymentIdentifier = "payment_identifier"
+            
             case amount = "amount"
             
             case name = "name"
@@ -43,13 +47,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(amount: Double? = nil, mode: String, name: String? = nil, payment: String? = nil, paymentExtraIdentifiers: [String: Any]? = nil, paymentMeta: PaymentMeta) {
+        public init(amount: Double? = nil, mode: String, name: String? = nil, payment: String? = nil, paymentExtraIdentifiers: [String: Any]? = nil, paymentIdentifier: String? = nil, paymentMeta: PaymentMeta) {
             
             self.mode = mode
             
             self.payment = payment
             
             self.paymentMeta = paymentMeta
+            
+            self.paymentIdentifier = paymentIdentifier
             
             self.amount = amount
             
@@ -83,6 +89,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 paymentMeta = try container.decode(PaymentMeta.self, forKey: .paymentMeta)
                 
             
+            
+            
+                do {
+                    paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -138,6 +156,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(paymentMeta, forKey: .paymentMeta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentIdentifier, forKey: .paymentIdentifier)
             
             
             

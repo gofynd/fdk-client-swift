@@ -12,7 +12,7 @@ public extension PlatformClient.Theme {
     class FontsSchema: Codable {
         
         
-        public var items: FontsSchemaItems?
+        public var items: [[String: Any]]?
         
         public var kind: String?
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Theme {
             
         }
 
-        public init(items: FontsSchemaItems? = nil, kind: String? = nil) {
+        public init(items: [[String: Any]]? = nil, kind: String? = nil) {
             
             self.items = items
             
@@ -38,7 +38,7 @@ public extension PlatformClient.Theme {
             
             
                 do {
-                    items = try container.decode(FontsSchemaItems.self, forKey: .items)
+                    items = try container.decode([[String: Any]].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension PlatformClient.ApplicationClient.Theme {
     class FontsSchema: Codable {
         
         
-        public var items: FontsSchemaItems?
+        public var items: [[String: Any]]?
         
         public var kind: String?
         
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
         }
 
-        public init(items: FontsSchemaItems? = nil, kind: String? = nil) {
+        public init(items: [[String: Any]]? = nil, kind: String? = nil) {
             
             self.items = items
             
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
-                    items = try container.decode(FontsSchemaItems.self, forKey: .items)
+                    items = try container.decode([[String: Any]].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

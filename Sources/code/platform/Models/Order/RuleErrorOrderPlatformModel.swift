@@ -12,11 +12,11 @@ public extension PlatformClient.Order {
     class RuleError: Codable {
         
         
-        public var type: String
+        public var type: String?
         
-        public var value: String
+        public var value: String?
         
-        public var message: String
+        public var message: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,7 +29,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(message: String, type: String, value: String) {
+        public init(message: String? = nil, type: String? = nil, value: String? = nil) {
             
             self.type = type
             
@@ -43,19 +43,40 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                type = try container.decode(String.self, forKey: .type)
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                value = try container.decode(String.self, forKey: .value)
+                do {
+                    value = try container.decode(String.self, forKey: .value)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                message = try container.decode(String.self, forKey: .message)
+                do {
+                    message = try container.decode(String.self, forKey: .message)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -93,11 +114,11 @@ public extension PlatformClient.ApplicationClient.Order {
     class RuleError: Codable {
         
         
-        public var type: String
+        public var type: String?
         
-        public var value: String
+        public var value: String?
         
-        public var message: String
+        public var message: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -110,7 +131,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(message: String, type: String, value: String) {
+        public init(message: String? = nil, type: String? = nil, value: String? = nil) {
             
             self.type = type
             
@@ -124,19 +145,40 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                type = try container.decode(String.self, forKey: .type)
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                value = try container.decode(String.self, forKey: .value)
+                do {
+                    value = try container.decode(String.self, forKey: .value)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                message = try container.decode(String.self, forKey: .message)
+                do {
+                    message = try container.decode(String.self, forKey: .message)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         

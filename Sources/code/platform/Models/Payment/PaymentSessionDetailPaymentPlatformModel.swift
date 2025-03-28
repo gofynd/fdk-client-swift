@@ -30,7 +30,7 @@ public extension PlatformClient.Payment {
         
         public var cancelUrl: String
         
-        public var paymentMethods: [[String: Any]]
+        public var paymentMethods: [PaymentMode]
         
         public var created: String?
         
@@ -55,8 +55,6 @@ public extension PlatformClient.Payment {
         public var meta: [String: Any]?
         
         public var status: String
-        
-        public var reason: ReasonDetail?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -105,11 +103,9 @@ public extension PlatformClient.Payment {
             
             case status = "status"
             
-            case reason = "reason"
-            
         }
 
-        public init(aggregatorCustomerId: String? = nil, aggregatorOrderId: String, amount: Int, amountCaptured: Int, amountRefunded: Int? = nil, billingAddress: AddressDetail? = nil, cancelUrl: String, captured: Bool? = nil, created: String? = nil, currency: String, gid: String, gUserId: String, kind: String? = nil, locale: String? = nil, merchantLocale: String? = nil, meta: [String: Any]? = nil, mode: String, paymentId: String, paymentMethods: [[String: Any]], reason: ReasonDetail? = nil, shippingAddress: AddressDetail? = nil, status: String, successUrl: String) {
+        public init(aggregatorCustomerId: String? = nil, aggregatorOrderId: String, amount: Int, amountCaptured: Int, amountRefunded: Int? = nil, billingAddress: AddressDetail? = nil, cancelUrl: String, captured: Bool? = nil, created: String? = nil, currency: String, gid: String, gUserId: String, kind: String? = nil, locale: String? = nil, merchantLocale: String? = nil, meta: [String: Any]? = nil, mode: String, paymentId: String, paymentMethods: [PaymentMode], shippingAddress: AddressDetail? = nil, status: String, successUrl: String) {
             
             self.paymentId = paymentId
             
@@ -154,8 +150,6 @@ public extension PlatformClient.Payment {
             self.meta = meta
             
             self.status = status
-            
-            self.reason = reason
             
         }
 
@@ -229,7 +223,7 @@ public extension PlatformClient.Payment {
             
             
             
-                paymentMethods = try container.decode([[String: Any]].self, forKey: .paymentMethods)
+                paymentMethods = try container.decode([PaymentMode].self, forKey: .paymentMethods)
                 
             
             
@@ -341,18 +335,6 @@ public extension PlatformClient.Payment {
                 status = try container.decode(String.self, forKey: .status)
                 
             
-            
-            
-                do {
-                    reason = try container.decode(ReasonDetail.self, forKey: .reason)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
@@ -467,11 +449,6 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            
-            try? container.encodeIfPresent(reason, forKey: .reason)
             
             
         }
@@ -508,7 +485,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var cancelUrl: String
         
-        public var paymentMethods: [[String: Any]]
+        public var paymentMethods: [PaymentMode]
         
         public var created: String?
         
@@ -533,8 +510,6 @@ public extension PlatformClient.ApplicationClient.Payment {
         public var meta: [String: Any]?
         
         public var status: String
-        
-        public var reason: ReasonDetail?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -583,11 +558,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case status = "status"
             
-            case reason = "reason"
-            
         }
 
-        public init(aggregatorCustomerId: String? = nil, aggregatorOrderId: String, amount: Int, amountCaptured: Int, amountRefunded: Int? = nil, billingAddress: AddressDetail? = nil, cancelUrl: String, captured: Bool? = nil, created: String? = nil, currency: String, gid: String, gUserId: String, kind: String? = nil, locale: String? = nil, merchantLocale: String? = nil, meta: [String: Any]? = nil, mode: String, paymentId: String, paymentMethods: [[String: Any]], reason: ReasonDetail? = nil, shippingAddress: AddressDetail? = nil, status: String, successUrl: String) {
+        public init(aggregatorCustomerId: String? = nil, aggregatorOrderId: String, amount: Int, amountCaptured: Int, amountRefunded: Int? = nil, billingAddress: AddressDetail? = nil, cancelUrl: String, captured: Bool? = nil, created: String? = nil, currency: String, gid: String, gUserId: String, kind: String? = nil, locale: String? = nil, merchantLocale: String? = nil, meta: [String: Any]? = nil, mode: String, paymentId: String, paymentMethods: [PaymentMode], shippingAddress: AddressDetail? = nil, status: String, successUrl: String) {
             
             self.paymentId = paymentId
             
@@ -632,8 +605,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.meta = meta
             
             self.status = status
-            
-            self.reason = reason
             
         }
 
@@ -707,7 +678,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                paymentMethods = try container.decode([[String: Any]].self, forKey: .paymentMethods)
+                paymentMethods = try container.decode([PaymentMode].self, forKey: .paymentMethods)
                 
             
             
@@ -819,18 +790,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 status = try container.decode(String.self, forKey: .status)
                 
             
-            
-            
-                do {
-                    reason = try container.decode(ReasonDetail.self, forKey: .reason)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
@@ -945,11 +904,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            
-            try? container.encodeIfPresent(reason, forKey: .reason)
             
             
         }

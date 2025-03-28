@@ -26,8 +26,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var meta: [String: Any]?
         
-        public var allowedRefund: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -43,11 +41,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case meta = "meta"
             
-            case allowedRefund = "allowed_refund"
-            
         }
 
-        public init(allowedRefund: Bool? = nil, articleId: String, code: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, type: String? = nil, value: Double? = nil) {
+        public init(articleId: String, code: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, type: String? = nil, value: Double? = nil) {
             
             self.value = value
             
@@ -60,8 +56,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.quantity = quantity
             
             self.meta = meta
-            
-            self.allowedRefund = allowedRefund
             
         }
 
@@ -133,18 +127,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
-            
-                do {
-                    allowedRefund = try container.decode(Bool.self, forKey: .allowedRefund)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -178,11 +160,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(meta, forKey: .meta)
-            
-            
-            
-            
-            try? container.encodeIfPresent(allowedRefund, forKey: .allowedRefund)
             
             
         }

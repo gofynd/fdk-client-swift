@@ -10,7 +10,7 @@ public extension ApplicationClient.Order {
         
         public var code: String?
         
-        public var name: String
+        public var name: String?
         
         public var type: String?
         
@@ -33,7 +33,7 @@ public extension ApplicationClient.Order {
             
         }
 
-        public init(amount: ChargeAmount, code: String? = nil, distributionLogic: ChargeDistributionLogic, name: String, type: String? = nil) {
+        public init(amount: ChargeAmount, code: String? = nil, distributionLogic: ChargeDistributionLogic, name: String? = nil, type: String? = nil) {
             
             self.code = code
             
@@ -63,8 +63,15 @@ public extension ApplicationClient.Order {
             
             
             
-            name = try container.decode(String.self, forKey: .name)
+            do {
+                name = try container.decode(String.self, forKey: .name)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             

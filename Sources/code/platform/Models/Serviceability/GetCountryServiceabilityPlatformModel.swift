@@ -12,8 +12,6 @@ public extension PlatformClient.Serviceability {
     class GetCountry: Codable {
         
         
-        public var meta: CountryMetaFields?
-        
         public var id: String?
         
         public var name: String?
@@ -43,8 +41,6 @@ public extension PlatformClient.Serviceability {
 
         public enum CodingKeys: String, CodingKey {
             
-            case meta = "meta"
-            
             case id = "id"
             
             case name = "name"
@@ -73,9 +69,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(currency: CurrencyObject? = nil, displayName: String? = nil, fields: GetCountryFields? = nil, hierarchy: [CountryHierarchy]? = nil, id: String? = nil, iso2: String? = nil, iso3: String? = nil, latitude: String? = nil, longitude: String? = nil, meta: CountryMetaFields? = nil, name: String? = nil, phoneCode: String? = nil, timezones: [String]? = nil, type: String? = nil) {
-            
-            self.meta = meta
+        public init(currency: CurrencyObject? = nil, displayName: String? = nil, fields: GetCountryFields? = nil, hierarchy: [CountryHierarchy]? = nil, id: String? = nil, iso2: String? = nil, iso3: String? = nil, latitude: String? = nil, longitude: String? = nil, name: String? = nil, phoneCode: String? = nil, timezones: [String]? = nil, type: String? = nil) {
             
             self.id = id
             
@@ -107,18 +101,6 @@ public extension PlatformClient.Serviceability {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    meta = try container.decode(CountryMetaFields.self, forKey: .meta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -280,11 +262,6 @@ public extension PlatformClient.Serviceability {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(meta, forKey: .meta)
-            
             
             
             
@@ -367,8 +344,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class GetCountry: Codable {
         
         
-        public var meta: CountryMetaFields?
-        
         public var id: String?
         
         public var name: String?
@@ -398,8 +373,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         public enum CodingKeys: String, CodingKey {
             
-            case meta = "meta"
-            
             case id = "id"
             
             case name = "name"
@@ -428,9 +401,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(currency: CurrencyObject? = nil, displayName: String? = nil, fields: GetCountryFields? = nil, hierarchy: [CountryHierarchy]? = nil, id: String? = nil, iso2: String? = nil, iso3: String? = nil, latitude: String? = nil, longitude: String? = nil, meta: CountryMetaFields? = nil, name: String? = nil, phoneCode: String? = nil, timezones: [String]? = nil, type: String? = nil) {
-            
-            self.meta = meta
+        public init(currency: CurrencyObject? = nil, displayName: String? = nil, fields: GetCountryFields? = nil, hierarchy: [CountryHierarchy]? = nil, id: String? = nil, iso2: String? = nil, iso3: String? = nil, latitude: String? = nil, longitude: String? = nil, name: String? = nil, phoneCode: String? = nil, timezones: [String]? = nil, type: String? = nil) {
             
             self.id = id
             
@@ -462,18 +433,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    meta = try container.decode(CountryMetaFields.self, forKey: .meta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -635,11 +594,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(meta, forKey: .meta)
-            
             
             
             

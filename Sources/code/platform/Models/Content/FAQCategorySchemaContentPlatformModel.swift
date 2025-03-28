@@ -12,66 +12,66 @@ public extension PlatformClient.Content {
     class FAQCategorySchema: Codable {
         
         
-        public var index: Int?
+        public var id: String?
+        
+        public var application: String?
         
         public var title: String?
         
         public var description: String?
         
-        public var children: [ChildrenSchema]?
-        
-        public var id: String?
+        public var index: Int?
         
         public var slug: String?
         
-        public var application: String?
+        public var children: [ChildrenSchema]?
         
         public var iconUrl: String?
         
-        public var customJson: [String: Any]?
+        public var v: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case index = "index"
+            case id = "_id"
+            
+            case application = "application"
             
             case title = "title"
             
             case description = "description"
             
-            case children = "children"
-            
-            case id = "_id"
+            case index = "index"
             
             case slug = "slug"
             
-            case application = "application"
+            case children = "children"
             
             case iconUrl = "icon_url"
             
-            case customJson = "_custom_json"
+            case v = "__v"
             
         }
 
-        public init(application: String? = nil, children: [ChildrenSchema]? = nil, description: String? = nil, iconUrl: String? = nil, index: Int? = nil, slug: String? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil) {
+        public init(application: String? = nil, children: [ChildrenSchema]? = nil, description: String? = nil, iconUrl: String? = nil, index: Int? = nil, slug: String? = nil, title: String? = nil, id: String? = nil, v: Int? = nil) {
             
-            self.index = index
+            self.id = id
+            
+            self.application = application
             
             self.title = title
             
             self.description = description
             
-            self.children = children
-            
-            self.id = id
+            self.index = index
             
             self.slug = slug
             
-            self.application = application
+            self.children = children
             
             self.iconUrl = iconUrl
             
-            self.customJson = customJson
+            self.v = v
             
         }
 
@@ -80,7 +80,19 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    index = try container.decode(Int.self, forKey: .index)
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    application = try container.decode(String.self, forKey: .application)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,19 +128,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    children = try container.decode([ChildrenSchema].self, forKey: .children)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    id = try container.decode(String.self, forKey: .id)
+                    index = try container.decode(Int.self, forKey: .index)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -152,7 +152,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    application = try container.decode(String.self, forKey: .application)
+                    children = try container.decode([ChildrenSchema].self, forKey: .children)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -176,7 +176,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    customJson = try container.decode([String: Any].self, forKey: .customJson)
+                    v = try container.decode(Int.self, forKey: .v)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -193,7 +193,12 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(index, forKey: .index)
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(application, forKey: .application)
             
             
             
@@ -208,12 +213,7 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(children, forKey: .children)
-            
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(index, forKey: .index)
             
             
             
@@ -223,7 +223,7 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(application, forKey: .application)
+            try? container.encodeIfPresent(children, forKey: .children)
             
             
             
@@ -233,7 +233,7 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }
@@ -252,66 +252,66 @@ public extension PlatformClient.ApplicationClient.Content {
     class FAQCategorySchema: Codable {
         
         
-        public var index: Int?
+        public var id: String?
+        
+        public var application: String?
         
         public var title: String?
         
         public var description: String?
         
-        public var children: [ChildrenSchema]?
-        
-        public var id: String?
+        public var index: Int?
         
         public var slug: String?
         
-        public var application: String?
+        public var children: [ChildrenSchema]?
         
         public var iconUrl: String?
         
-        public var customJson: [String: Any]?
+        public var v: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case index = "index"
+            case id = "_id"
+            
+            case application = "application"
             
             case title = "title"
             
             case description = "description"
             
-            case children = "children"
-            
-            case id = "_id"
+            case index = "index"
             
             case slug = "slug"
             
-            case application = "application"
+            case children = "children"
             
             case iconUrl = "icon_url"
             
-            case customJson = "_custom_json"
+            case v = "__v"
             
         }
 
-        public init(application: String? = nil, children: [ChildrenSchema]? = nil, description: String? = nil, iconUrl: String? = nil, index: Int? = nil, slug: String? = nil, title: String? = nil, customJson: [String: Any]? = nil, id: String? = nil) {
+        public init(application: String? = nil, children: [ChildrenSchema]? = nil, description: String? = nil, iconUrl: String? = nil, index: Int? = nil, slug: String? = nil, title: String? = nil, id: String? = nil, v: Int? = nil) {
             
-            self.index = index
+            self.id = id
+            
+            self.application = application
             
             self.title = title
             
             self.description = description
             
-            self.children = children
-            
-            self.id = id
+            self.index = index
             
             self.slug = slug
             
-            self.application = application
+            self.children = children
             
             self.iconUrl = iconUrl
             
-            self.customJson = customJson
+            self.v = v
             
         }
 
@@ -320,7 +320,19 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    index = try container.decode(Int.self, forKey: .index)
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    application = try container.decode(String.self, forKey: .application)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -356,19 +368,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    children = try container.decode([ChildrenSchema].self, forKey: .children)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    id = try container.decode(String.self, forKey: .id)
+                    index = try container.decode(Int.self, forKey: .index)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -392,7 +392,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    application = try container.decode(String.self, forKey: .application)
+                    children = try container.decode([ChildrenSchema].self, forKey: .children)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -416,7 +416,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    customJson = try container.decode([String: Any].self, forKey: .customJson)
+                    v = try container.decode(Int.self, forKey: .v)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -433,7 +433,12 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(index, forKey: .index)
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(application, forKey: .application)
             
             
             
@@ -448,12 +453,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(children, forKey: .children)
-            
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(index, forKey: .index)
             
             
             
@@ -463,7 +463,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(application, forKey: .application)
+            try? container.encodeIfPresent(children, forKey: .children)
             
             
             
@@ -473,7 +473,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

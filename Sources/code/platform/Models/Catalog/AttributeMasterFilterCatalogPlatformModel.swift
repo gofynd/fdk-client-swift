@@ -12,7 +12,7 @@ public extension PlatformClient.Catalog {
     class AttributeMasterFilter: Codable {
         
         
-        public var dependsOn: [String]?
+        public var ddependsOn: [String]?
         
         public var indexing: Bool
         
@@ -21,7 +21,7 @@ public extension PlatformClient.Catalog {
 
         public enum CodingKeys: String, CodingKey {
             
-            case dependsOn = "depends_on"
+            case ddependsOn = "ddepends_on"
             
             case indexing = "indexing"
             
@@ -29,9 +29,9 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(dependsOn: [String]? = nil, indexing: Bool, priority: Int? = nil) {
+        public init(ddependsOn: [String]? = nil, indexing: Bool, priority: Int? = nil) {
             
-            self.dependsOn = dependsOn
+            self.ddependsOn = ddependsOn
             
             self.indexing = indexing
             
@@ -44,7 +44,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    dependsOn = try container.decode([String].self, forKey: .dependsOn)
+                    ddependsOn = try container.decode([String].self, forKey: .ddependsOn)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(dependsOn, forKey: .dependsOn)
+            try? container.encodeIfPresent(ddependsOn, forKey: .ddependsOn)
             
             
             
@@ -107,7 +107,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class AttributeMasterFilter: Codable {
         
         
-        public var dependsOn: [String]?
+        public var ddependsOn: [String]?
         
         public var indexing: Bool
         
@@ -116,7 +116,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public enum CodingKeys: String, CodingKey {
             
-            case dependsOn = "depends_on"
+            case ddependsOn = "ddepends_on"
             
             case indexing = "indexing"
             
@@ -124,9 +124,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(dependsOn: [String]? = nil, indexing: Bool, priority: Int? = nil) {
+        public init(ddependsOn: [String]? = nil, indexing: Bool, priority: Int? = nil) {
             
-            self.dependsOn = dependsOn
+            self.ddependsOn = ddependsOn
             
             self.indexing = indexing
             
@@ -139,7 +139,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    dependsOn = try container.decode([String].self, forKey: .dependsOn)
+                    ddependsOn = try container.decode([String].self, forKey: .ddependsOn)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -173,7 +173,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(dependsOn, forKey: .dependsOn)
+            try? container.encodeIfPresent(ddependsOn, forKey: .ddependsOn)
             
             
             

@@ -36,6 +36,8 @@ public extension PlatformClient.Theme {
         
         public var updatedAt: String?
         
+        public var application: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -63,9 +65,11 @@ public extension PlatformClient.Theme {
             
             case updatedAt = "updated_at"
             
+            case application = "application"
+            
         }
 
-        public init(createdAt: String? = nil, path: String? = nil, props: [[String: Any]]? = nil, sections: [AvailablePageSchemaSections]? = nil, sectionsMeta: [AvailablePageSectionMetaAttributes]? = nil, seo: AvailablePageSeo? = nil, text: String? = nil, theme: String? = nil, type: String? = nil, updatedAt: String? = nil, value: String? = nil, id: String? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, path: String? = nil, props: [[String: Any]]? = nil, sections: [AvailablePageSchemaSections]? = nil, sectionsMeta: [AvailablePageSectionMetaAttributes]? = nil, seo: AvailablePageSeo? = nil, text: String? = nil, theme: String? = nil, type: String? = nil, updatedAt: String? = nil, value: String? = nil, id: String? = nil) {
             
             self.value = value
             
@@ -90,6 +94,8 @@ public extension PlatformClient.Theme {
             self.createdAt = createdAt
             
             self.updatedAt = updatedAt
+            
+            self.application = application
             
         }
 
@@ -240,6 +246,18 @@ public extension PlatformClient.Theme {
                 }
                 
             
+            
+                do {
+                    application = try container.decode(String.self, forKey: .application)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -303,6 +321,11 @@ public extension PlatformClient.Theme {
             
             
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(application, forKey: .application)
             
             
         }
@@ -345,6 +368,8 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public var updatedAt: String?
         
+        public var application: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -372,9 +397,11 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             case updatedAt = "updated_at"
             
+            case application = "application"
+            
         }
 
-        public init(createdAt: String? = nil, path: String? = nil, props: [[String: Any]]? = nil, sections: [AvailablePageSchemaSections]? = nil, sectionsMeta: [AvailablePageSectionMetaAttributes]? = nil, seo: AvailablePageSeo? = nil, text: String? = nil, theme: String? = nil, type: String? = nil, updatedAt: String? = nil, value: String? = nil, id: String? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, path: String? = nil, props: [[String: Any]]? = nil, sections: [AvailablePageSchemaSections]? = nil, sectionsMeta: [AvailablePageSectionMetaAttributes]? = nil, seo: AvailablePageSeo? = nil, text: String? = nil, theme: String? = nil, type: String? = nil, updatedAt: String? = nil, value: String? = nil, id: String? = nil) {
             
             self.value = value
             
@@ -399,6 +426,8 @@ public extension PlatformClient.ApplicationClient.Theme {
             self.createdAt = createdAt
             
             self.updatedAt = updatedAt
+            
+            self.application = application
             
         }
 
@@ -549,6 +578,18 @@ public extension PlatformClient.ApplicationClient.Theme {
                 }
                 
             
+            
+                do {
+                    application = try container.decode(String.self, forKey: .application)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -612,6 +653,11 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(application, forKey: .application)
             
             
         }

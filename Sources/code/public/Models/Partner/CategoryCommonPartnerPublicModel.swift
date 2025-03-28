@@ -10,24 +10,24 @@ public extension PublicClient.Partner {
     class CategoryCommon: Codable {
         
         
-        public var categoriesL1: [CategoryL1]?
+        public var categoryL1: [CategoryL1]?
         
-        public var categoriesL2: [CategoryL2]?
+        public var categoryL2: [CategoryL2]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case categoriesL1 = "categories_l1"
+            case categoryL1 = "category_l1"
             
-            case categoriesL2 = "categories_l2"
+            case categoryL2 = "category_l2"
             
         }
 
-        public init(categoriesL1: [CategoryL1]? = nil, categoriesL2: [CategoryL2]? = nil) {
+        public init(categoryL1: [CategoryL1]? = nil, categoryL2: [CategoryL2]? = nil) {
             
-            self.categoriesL1 = categoriesL1
+            self.categoryL1 = categoryL1
             
-            self.categoriesL2 = categoriesL2
+            self.categoryL2 = categoryL2
             
         }
 
@@ -36,7 +36,7 @@ public extension PublicClient.Partner {
             
             
                 do {
-                    categoriesL1 = try container.decode([CategoryL1].self, forKey: .categoriesL1)
+                    categoryL1 = try container.decode([CategoryL1].self, forKey: .categoryL1)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +48,7 @@ public extension PublicClient.Partner {
             
             
                 do {
-                    categoriesL2 = try container.decode([CategoryL2].self, forKey: .categoriesL2)
+                    categoryL2 = try container.decode([CategoryL2].self, forKey: .categoryL2)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,11 +64,11 @@ public extension PublicClient.Partner {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(categoriesL1, forKey: .categoriesL1)
+            try? container.encodeIfPresent(categoryL1, forKey: .categoryL1)
             
             
             
-            try? container.encodeIfPresent(categoriesL2, forKey: .categoriesL2)
+            try? container.encodeIfPresent(categoryL2, forKey: .categoryL2)
             
             
         }

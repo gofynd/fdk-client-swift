@@ -24,7 +24,7 @@ public extension PlatformClient.Catalog {
         
         public var failed: Int?
         
-        public var failedRecords: [FailedRecord]?
+        public var failedRecords: [String]?
         
         public var filePath: String?
         
@@ -77,7 +77,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(cancelled: Int? = nil, cancelledRecords: [String]? = nil, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, failed: Int? = nil, failedRecords: [FailedRecord]? = nil, filePath: String? = nil, id: String? = nil, isActive: Bool? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, total: Int? = nil) {
+        public init(cancelled: Int? = nil, cancelledRecords: [String]? = nil, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, failed: Int? = nil, failedRecords: [String]? = nil, filePath: String? = nil, id: String? = nil, isActive: Bool? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, total: Int? = nil) {
             
             self.cancelled = cancelled
             
@@ -188,7 +188,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    failedRecords = try container.decode([FailedRecord].self, forKey: .failedRecords)
+                    failedRecords = try container.decode([String].self, forKey: .failedRecords)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -402,7 +402,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var failed: Int?
         
-        public var failedRecords: [FailedRecord]?
+        public var failedRecords: [String]?
         
         public var filePath: String?
         
@@ -455,7 +455,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(cancelled: Int? = nil, cancelledRecords: [String]? = nil, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, failed: Int? = nil, failedRecords: [FailedRecord]? = nil, filePath: String? = nil, id: String? = nil, isActive: Bool? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, total: Int? = nil) {
+        public init(cancelled: Int? = nil, cancelledRecords: [String]? = nil, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, failed: Int? = nil, failedRecords: [String]? = nil, filePath: String? = nil, id: String? = nil, isActive: Bool? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, total: Int? = nil) {
             
             self.cancelled = cancelled
             
@@ -566,7 +566,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    failedRecords = try container.decode([FailedRecord].self, forKey: .failedRecords)
+                    failedRecords = try container.decode([String].self, forKey: .failedRecords)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

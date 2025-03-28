@@ -10,9 +10,7 @@ public extension ApplicationClient.Payment {
         
         public var status: String
         
-        public var message: String
-        
-        public var isPaymentDone: Bool?
+        public var message: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,17 +19,13 @@ public extension ApplicationClient.Payment {
             
             case message = "message"
             
-            case isPaymentDone = "is_payment_done"
-            
         }
 
-        public init(isPaymentDone: Bool? = nil, message: String, status: String) {
+        public init(message: String? = nil, status: String) {
             
             self.status = status
             
             self.message = message
-            
-            self.isPaymentDone = isPaymentDone
             
         }
 
@@ -44,13 +38,8 @@ public extension ApplicationClient.Payment {
             
             
             
-            message = try container.decode(String.self, forKey: .message)
-            
-            
-            
-            
             do {
-                isPaymentDone = try container.decode(Bool.self, forKey: .isPaymentDone)
+                message = try container.decode(String.self, forKey: .message)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,10 +60,6 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            try? container.encodeIfPresent(isPaymentDone, forKey: .isPaymentDone)
             
             
         }

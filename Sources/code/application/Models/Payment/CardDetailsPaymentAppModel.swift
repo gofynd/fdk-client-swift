@@ -40,14 +40,6 @@ public extension ApplicationClient.Payment {
         
         public var bank: String
         
-        public var cvvLength: Int?
-        
-        public var logo: String?
-        
-        public var isEnabled: Bool?
-        
-        public var isCardValid: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -83,17 +75,9 @@ public extension ApplicationClient.Payment {
             
             case bank = "bank"
             
-            case cvvLength = "cvv_length"
-            
-            case logo = "logo"
-            
-            case isEnabled = "is_enabled"
-            
-            case isCardValid = "is_card_valid"
-            
         }
 
-        public init(bank: String, bankCode: String, cardBrand: String, cardExpMonth: String? = nil, cardExpYear: String? = nil, cardObject: String, cardSubType: String, cardToken: String? = nil, country: String, cvvLength: Int? = nil, extendedCardType: String, id: String, isCardValid: Bool? = nil, isDomesticCard: Bool, isEnabled: Bool? = nil, logo: String? = nil, nameOnCard: String? = nil, status: Bool, type: String, user: String? = nil) {
+        public init(bank: String, bankCode: String, cardBrand: String, cardExpMonth: String? = nil, cardExpYear: String? = nil, cardObject: String, cardSubType: String, cardToken: String? = nil, country: String, extendedCardType: String, id: String, isDomesticCard: Bool, nameOnCard: String? = nil, status: Bool, type: String, user: String? = nil) {
             
             self.status = status
             
@@ -126,14 +110,6 @@ public extension ApplicationClient.Payment {
             self.user = user
             
             self.bank = bank
-            
-            self.cvvLength = cvvLength
-            
-            self.logo = logo
-            
-            self.isEnabled = isEnabled
-            
-            self.isCardValid = isCardValid
             
         }
 
@@ -255,54 +231,6 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            do {
-                cvvLength = try container.decode(Int.self, forKey: .cvvLength)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                logo = try container.decode(String.self, forKey: .logo)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                isEnabled = try container.decode(Bool.self, forKey: .isEnabled)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                isCardValid = try container.decode(Bool.self, forKey: .isCardValid)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -370,22 +298,6 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(bank, forKey: .bank)
-            
-            
-            
-            try? container.encodeIfPresent(cvvLength, forKey: .cvvLength)
-            
-            
-            
-            try? container.encodeIfPresent(logo, forKey: .logo)
-            
-            
-            
-            try? container.encodeIfPresent(isEnabled, forKey: .isEnabled)
-            
-            
-            
-            try? container.encodeIfPresent(isCardValid, forKey: .isCardValid)
             
             
         }

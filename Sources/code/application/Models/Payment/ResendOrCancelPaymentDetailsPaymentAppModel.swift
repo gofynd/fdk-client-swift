@@ -8,7 +8,7 @@ public extension ApplicationClient.Payment {
     */
     class ResendOrCancelPaymentDetails: Codable {
         
-        public var data: LinkStatus?
+        public var data: LinkStatus
         
         public var success: Bool
         
@@ -21,7 +21,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(data: LinkStatus? = nil, success: Bool) {
+        public init(data: LinkStatus, success: Bool) {
             
             self.data = data
             
@@ -33,15 +33,8 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            do {
-                data = try container.decode(LinkStatus.self, forKey: .data)
+            data = try container.decode(LinkStatus.self, forKey: .data)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
             

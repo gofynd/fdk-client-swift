@@ -8,9 +8,9 @@ public extension ApplicationClient.Logistic {
     */
     class GetCountries: Codable {
         
-        public var items: [GetCountriesItems]
+        public var items: [CountryObject]?
         
-        public var page: Page
+        public var page: Page?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension ApplicationClient.Logistic {
             
         }
 
-        public init(items: [GetCountriesItems], page: Page) {
+        public init(items: [CountryObject]? = nil, page: Page? = nil) {
             
             self.items = items
             
@@ -33,13 +33,27 @@ public extension ApplicationClient.Logistic {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            items = try container.decode([GetCountriesItems].self, forKey: .items)
+            do {
+                items = try container.decode([CountryObject].self, forKey: .items)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
+            do {
+                page = try container.decode(Page.self, forKey: .page)
             
-            page = try container.decode(Page.self, forKey: .page)
-            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
         }

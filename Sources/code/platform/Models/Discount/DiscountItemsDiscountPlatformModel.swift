@@ -18,6 +18,10 @@ public extension PlatformClient.Discount {
         
         public var sellerIdentifier: String?
         
+        public var storeCode: String?
+        
+        public var priceZone: String?
+        
         public var discountType: String
         
         public var value: Double
@@ -33,6 +37,10 @@ public extension PlatformClient.Discount {
             
             case sellerIdentifier = "seller_identifier"
             
+            case storeCode = "store_code"
+            
+            case priceZone = "price_zone"
+            
             case discountType = "discount_type"
             
             case value = "value"
@@ -41,13 +49,17 @@ public extension PlatformClient.Discount {
             
         }
 
-        public init(brandName: String? = nil, discountMeta: DiscountMeta? = nil, discountType: String, itemCode: String? = nil, sellerIdentifier: String? = nil, value: Double) {
+        public init(brandName: String? = nil, discountMeta: DiscountMeta? = nil, discountType: String, itemCode: String? = nil, priceZone: String? = nil, sellerIdentifier: String? = nil, storeCode: String? = nil, value: Double) {
             
             self.itemCode = itemCode
             
             self.brandName = brandName
             
             self.sellerIdentifier = sellerIdentifier
+            
+            self.storeCode = storeCode
+            
+            self.priceZone = priceZone
             
             self.discountType = discountType
             
@@ -97,6 +109,30 @@ public extension PlatformClient.Discount {
                 
             
             
+                do {
+                    storeCode = try container.decode(String.self, forKey: .storeCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    priceZone = try container.decode(String.self, forKey: .priceZone)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 discountType = try container.decode(String.self, forKey: .discountType)
                 
             
@@ -136,6 +172,16 @@ public extension PlatformClient.Discount {
             
             
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+            
+            
+            
+            
+            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(priceZone, forKey: .priceZone)
             
             
             

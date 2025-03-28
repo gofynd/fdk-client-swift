@@ -12,7 +12,7 @@ public extension PlatformClient.Catalog {
     class Price1: Codable {
         
         
-        public var currencyCode: String?
+        public var currencyCode: CurrencyCodeEnum?
         
         public var currencySymbol: String?
         
@@ -33,7 +33,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(currencyCode: String? = nil, currencySymbol: String? = nil, max: Double? = nil, min: Double? = nil) {
+        public init(currencyCode: CurrencyCodeEnum? = nil, currencySymbol: String? = nil, max: Double? = nil, min: Double? = nil) {
             
             self.currencyCode = currencyCode
             
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                    currencyCode = try container.decode(CurrencyCodeEnum.self, forKey: .currencyCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -137,7 +137,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class Price1: Codable {
         
         
-        public var currencyCode: String?
+        public var currencyCode: CurrencyCodeEnum?
         
         public var currencySymbol: String?
         
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(currencyCode: String? = nil, currencySymbol: String? = nil, max: Double? = nil, min: Double? = nil) {
+        public init(currencyCode: CurrencyCodeEnum? = nil, currencySymbol: String? = nil, max: Double? = nil, min: Double? = nil) {
             
             self.currencyCode = currencyCode
             
@@ -175,7 +175,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                    currencyCode = try container.decode(CurrencyCodeEnum.self, forKey: .currencyCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

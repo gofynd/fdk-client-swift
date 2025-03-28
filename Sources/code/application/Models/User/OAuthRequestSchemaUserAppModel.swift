@@ -10,9 +10,9 @@ public extension ApplicationClient.User {
         
         public var isSignedIn: Bool?
         
-        public var oauth2: OAuthRequestSchemaOauth2?
+        public var oauth2: OAuthRequestSchemaOauth2
         
-        public var profile: OAuthRequestSchemaProfile?
+        public var profile: OAuthRequestSchemaProfile
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(isSignedIn: Bool? = nil, oauth2: OAuthRequestSchemaOauth2? = nil, profile: OAuthRequestSchemaProfile? = nil) {
+        public init(isSignedIn: Bool? = nil, oauth2: OAuthRequestSchemaOauth2, profile: OAuthRequestSchemaProfile) {
             
             self.isSignedIn = isSignedIn
             
@@ -51,27 +51,13 @@ public extension ApplicationClient.User {
             
             
             
-            do {
-                oauth2 = try container.decode(OAuthRequestSchemaOauth2.self, forKey: .oauth2)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
+            oauth2 = try container.decode(OAuthRequestSchemaOauth2.self, forKey: .oauth2)
             
             
             
-            do {
-                profile = try container.decode(OAuthRequestSchemaProfile.self, forKey: .profile)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
+            profile = try container.decode(OAuthRequestSchemaProfile.self, forKey: .profile)
+            
             
             
         }

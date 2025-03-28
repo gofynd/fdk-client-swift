@@ -8,7 +8,7 @@ public extension ApplicationClient.User {
     */
     class EditEmailRequestSchema: Codable {
         
-        public var email: String?
+        public var email: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -17,7 +17,7 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(email: String? = nil) {
+        public init(email: String) {
             
             self.email = email
             
@@ -27,15 +27,8 @@ public extension ApplicationClient.User {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            do {
-                email = try container.decode(String.self, forKey: .email)
+            email = try container.decode(String.self, forKey: .email)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
         }

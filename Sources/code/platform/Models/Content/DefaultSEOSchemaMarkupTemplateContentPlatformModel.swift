@@ -16,8 +16,6 @@ public extension PlatformClient.Content {
         
         public var schema: String?
         
-        public var targetJson: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -25,17 +23,13 @@ public extension PlatformClient.Content {
             
             case schema = "schema"
             
-            case targetJson = "target_json"
-            
         }
 
-        public init(pageType: String? = nil, schema: String? = nil, targetJson: [String: Any]? = nil) {
+        public init(pageType: String? = nil, schema: String? = nil) {
             
             self.pageType = pageType
             
             self.schema = schema
-            
-            self.targetJson = targetJson
             
         }
 
@@ -66,18 +60,6 @@ public extension PlatformClient.Content {
                 }
                 
             
-            
-                do {
-                    targetJson = try container.decode([String: Any].self, forKey: .targetJson)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -91,11 +73,6 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(schema, forKey: .schema)
-            
-            
-            
-            
-            try? container.encodeIfPresent(targetJson, forKey: .targetJson)
             
             
         }
@@ -118,8 +95,6 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var schema: String?
         
-        public var targetJson: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -127,17 +102,13 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case schema = "schema"
             
-            case targetJson = "target_json"
-            
         }
 
-        public init(pageType: String? = nil, schema: String? = nil, targetJson: [String: Any]? = nil) {
+        public init(pageType: String? = nil, schema: String? = nil) {
             
             self.pageType = pageType
             
             self.schema = schema
-            
-            self.targetJson = targetJson
             
         }
 
@@ -168,18 +139,6 @@ public extension PlatformClient.ApplicationClient.Content {
                 }
                 
             
-            
-                do {
-                    targetJson = try container.decode([String: Any].self, forKey: .targetJson)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -193,11 +152,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(schema, forKey: .schema)
-            
-            
-            
-            
-            try? container.encodeIfPresent(targetJson, forKey: .targetJson)
             
             
         }
