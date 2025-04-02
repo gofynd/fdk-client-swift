@@ -16,7 +16,7 @@ public extension PlatformClient.Order {
         
         public var entityType: String
         
-        public var value: String?
+        public var value: String
         
         public var channel: String
         
@@ -81,7 +81,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(actions: RuleAction, channel: String, conditions: [Condition], description: String, entityType: String, flowType: String, id: String, isActive: Bool, isDeleted: Bool, meta: RuleMeta, name: String, position: Int, qcEnabled: Bool, restrictForwardServiceability: Bool, ruleType: String, value: String? = nil) {
+        public init(actions: RuleAction, channel: String, conditions: [Condition], description: String, entityType: String, flowType: String, id: String, isActive: Bool, isDeleted: Bool, meta: RuleMeta, name: String, position: Int, qcEnabled: Bool, restrictForwardServiceability: Bool, ruleType: String, value: String) {
             
             self.id = id
             
@@ -131,16 +131,9 @@ public extension PlatformClient.Order {
             
             
             
-                do {
-                    value = try container.decode(String.self, forKey: .value)
+                value = try container.decode(String.self, forKey: .value)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 channel = try container.decode(String.self, forKey: .channel)
@@ -312,7 +305,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var entityType: String
         
-        public var value: String?
+        public var value: String
         
         public var channel: String
         
@@ -377,7 +370,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(actions: RuleAction, channel: String, conditions: [Condition], description: String, entityType: String, flowType: String, id: String, isActive: Bool, isDeleted: Bool, meta: RuleMeta, name: String, position: Int, qcEnabled: Bool, restrictForwardServiceability: Bool, ruleType: String, value: String? = nil) {
+        public init(actions: RuleAction, channel: String, conditions: [Condition], description: String, entityType: String, flowType: String, id: String, isActive: Bool, isDeleted: Bool, meta: RuleMeta, name: String, position: Int, qcEnabled: Bool, restrictForwardServiceability: Bool, ruleType: String, value: String) {
             
             self.id = id
             
@@ -427,16 +420,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                do {
-                    value = try container.decode(String.self, forKey: .value)
+                value = try container.decode(String.self, forKey: .value)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 channel = try container.decode(String.self, forKey: .channel)

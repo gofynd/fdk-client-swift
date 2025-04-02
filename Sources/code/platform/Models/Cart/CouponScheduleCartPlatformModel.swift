@@ -22,8 +22,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var cron: String?
         
-        public var status: String?
-        
         public var duration: Int?
         
 
@@ -37,13 +35,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case cron = "cron"
             
-            case status = "status"
-            
             case duration = "duration"
             
         }
 
-        public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, start: String? = nil, status: String? = nil) {
+        public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, start: String? = nil) {
             
             self.end = end
             
@@ -52,8 +48,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.nextSchedule = nextSchedule
             
             self.cron = cron
-            
-            self.status = status
             
             self.duration = duration
             
@@ -112,18 +106,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    status = try container.decode(String.self, forKey: .status)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     duration = try container.decode(Int.self, forKey: .duration)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -157,11 +139,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(cron, forKey: .cron)
-            
-            
-            
-            
-            try? container.encodeIfPresent(status, forKey: .status)
             
             
             

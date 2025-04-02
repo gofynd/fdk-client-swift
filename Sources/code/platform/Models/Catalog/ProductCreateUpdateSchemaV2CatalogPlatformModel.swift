@@ -64,9 +64,7 @@ public extension PlatformClient.Catalog {
         
         public var productGroupTag: [String]?
         
-        public var productPublish: ProductPublish?
-        
-        public var requester: String?
+        public var productPublish: ProductPublish1?
         
         public var returnConfig: ReturnConfig
         
@@ -74,7 +72,7 @@ public extension PlatformClient.Catalog {
         
         public var sizeGuide: String?
         
-        public var sizes: [[String: Any]]
+        public var sizes: [ProductCreateUpdateSizesSchema]
         
         public var slug: String
         
@@ -87,8 +85,6 @@ public extension PlatformClient.Catalog {
         public var templateTag: String
         
         public var trader: [Trader]
-        
-        public var uid: Int?
         
         public var variantGroup: [String: Any]?
         
@@ -153,8 +149,6 @@ public extension PlatformClient.Catalog {
             
             case productPublish = "product_publish"
             
-            case requester = "requester"
-            
             case returnConfig = "return_config"
             
             case shortDescription = "short_description"
@@ -175,8 +169,6 @@ public extension PlatformClient.Catalog {
             
             case trader = "trader"
             
-            case uid = "uid"
-            
             case variantGroup = "variant_group"
             
             case variantMedia = "variant_media"
@@ -185,7 +177,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(action: String? = nil, attributes: [String: Any]? = nil, brandUid: Int, bulkJobId: String? = nil, categorySlug: String, changeRequestId: String? = nil, companyId: Int, countryOfOrigin: String, currency: String, customOrder: CustomOrder? = nil, departments: [Int], description: String? = nil, highlights: [String]? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, isImageLessProduct: Bool? = nil, isSet: Bool? = nil, itemCode: String, itemType: String, media: [Media]? = nil, multiSize: Bool? = nil, name: String, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish? = nil, requester: String? = nil, returnConfig: ReturnConfig, shortDescription: String? = nil, sizes: [[String: Any]], sizeGuide: String? = nil, slug: String, tags: [String]? = nil, taxIdentifier: TaxIdentifier, teaserTag: TeaserTag? = nil, templateTag: String, trader: [Trader], uid: Int? = nil, variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(action: String? = nil, attributes: [String: Any]? = nil, brandUid: Int, bulkJobId: String? = nil, categorySlug: String, changeRequestId: String? = nil, companyId: Int, countryOfOrigin: String, currency: String, customOrder: CustomOrder? = nil, departments: [Int], description: String? = nil, highlights: [String]? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, isImageLessProduct: Bool? = nil, isSet: Bool? = nil, itemCode: String, itemType: String, media: [Media]? = nil, multiSize: Bool? = nil, name: String, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish1? = nil, returnConfig: ReturnConfig, shortDescription: String? = nil, sizes: [ProductCreateUpdateSizesSchema], sizeGuide: String? = nil, slug: String, tags: [String]? = nil, taxIdentifier: TaxIdentifier, teaserTag: TeaserTag? = nil, templateTag: String, trader: [Trader], variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.customJson = customJson
             
@@ -241,8 +233,6 @@ public extension PlatformClient.Catalog {
             
             self.productPublish = productPublish
             
-            self.requester = requester
-            
             self.returnConfig = returnConfig
             
             self.shortDescription = shortDescription
@@ -262,8 +252,6 @@ public extension PlatformClient.Catalog {
             self.templateTag = templateTag
             
             self.trader = trader
-            
-            self.uid = uid
             
             self.variantGroup = variantGroup
             
@@ -527,19 +515,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    productPublish = try container.decode(ProductPublish.self, forKey: .productPublish)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    requester = try container.decode(String.self, forKey: .requester)
+                    productPublish = try container.decode(ProductPublish1.self, forKey: .productPublish)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -579,7 +555,7 @@ public extension PlatformClient.Catalog {
                 
             
             
-                sizes = try container.decode([[String: Any]].self, forKey: .sizes)
+                sizes = try container.decode([ProductCreateUpdateSizesSchema].self, forKey: .sizes)
                 
             
             
@@ -626,18 +602,6 @@ public extension PlatformClient.Catalog {
                 trader = try container.decode([Trader].self, forKey: .trader)
                 
             
-            
-            
-                do {
-                    uid = try container.decode(Int.self, forKey: .uid)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -817,11 +781,6 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(requester, forKey: .requester)
-            
-            
-            
-            
             try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
             
             
@@ -868,11 +827,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(trader, forKey: .trader)
-            
-            
-            
-            
-            try? container.encodeIfPresent(uid, forKey: .uid)
             
             
             
@@ -958,9 +912,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var productGroupTag: [String]?
         
-        public var productPublish: ProductPublish?
-        
-        public var requester: String?
+        public var productPublish: ProductPublish1?
         
         public var returnConfig: ReturnConfig
         
@@ -968,7 +920,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var sizeGuide: String?
         
-        public var sizes: [[String: Any]]
+        public var sizes: [ProductCreateUpdateSizesSchema]
         
         public var slug: String
         
@@ -981,8 +933,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var templateTag: String
         
         public var trader: [Trader]
-        
-        public var uid: Int?
         
         public var variantGroup: [String: Any]?
         
@@ -1047,8 +997,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case productPublish = "product_publish"
             
-            case requester = "requester"
-            
             case returnConfig = "return_config"
             
             case shortDescription = "short_description"
@@ -1069,8 +1017,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case trader = "trader"
             
-            case uid = "uid"
-            
             case variantGroup = "variant_group"
             
             case variantMedia = "variant_media"
@@ -1079,7 +1025,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(action: String? = nil, attributes: [String: Any]? = nil, brandUid: Int, bulkJobId: String? = nil, categorySlug: String, changeRequestId: String? = nil, companyId: Int, countryOfOrigin: String, currency: String, customOrder: CustomOrder? = nil, departments: [Int], description: String? = nil, highlights: [String]? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, isImageLessProduct: Bool? = nil, isSet: Bool? = nil, itemCode: String, itemType: String, media: [Media]? = nil, multiSize: Bool? = nil, name: String, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish? = nil, requester: String? = nil, returnConfig: ReturnConfig, shortDescription: String? = nil, sizes: [[String: Any]], sizeGuide: String? = nil, slug: String, tags: [String]? = nil, taxIdentifier: TaxIdentifier, teaserTag: TeaserTag? = nil, templateTag: String, trader: [Trader], uid: Int? = nil, variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(action: String? = nil, attributes: [String: Any]? = nil, brandUid: Int, bulkJobId: String? = nil, categorySlug: String, changeRequestId: String? = nil, companyId: Int, countryOfOrigin: String, currency: String, customOrder: CustomOrder? = nil, departments: [Int], description: String? = nil, highlights: [String]? = nil, isActive: Bool? = nil, isDependent: Bool? = nil, isImageLessProduct: Bool? = nil, isSet: Bool? = nil, itemCode: String, itemType: String, media: [Media]? = nil, multiSize: Bool? = nil, name: String, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, productGroupTag: [String]? = nil, productPublish: ProductPublish1? = nil, returnConfig: ReturnConfig, shortDescription: String? = nil, sizes: [ProductCreateUpdateSizesSchema], sizeGuide: String? = nil, slug: String, tags: [String]? = nil, taxIdentifier: TaxIdentifier, teaserTag: TeaserTag? = nil, templateTag: String, trader: [Trader], variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.customJson = customJson
             
@@ -1135,8 +1081,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.productPublish = productPublish
             
-            self.requester = requester
-            
             self.returnConfig = returnConfig
             
             self.shortDescription = shortDescription
@@ -1156,8 +1100,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.templateTag = templateTag
             
             self.trader = trader
-            
-            self.uid = uid
             
             self.variantGroup = variantGroup
             
@@ -1421,19 +1363,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    productPublish = try container.decode(ProductPublish.self, forKey: .productPublish)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    requester = try container.decode(String.self, forKey: .requester)
+                    productPublish = try container.decode(ProductPublish1.self, forKey: .productPublish)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1473,7 +1403,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                sizes = try container.decode([[String: Any]].self, forKey: .sizes)
+                sizes = try container.decode([ProductCreateUpdateSizesSchema].self, forKey: .sizes)
                 
             
             
@@ -1520,18 +1450,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 trader = try container.decode([Trader].self, forKey: .trader)
                 
             
-            
-            
-                do {
-                    uid = try container.decode(Int.self, forKey: .uid)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -1711,11 +1629,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(requester, forKey: .requester)
-            
-            
-            
-            
             try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
             
             
@@ -1762,11 +1675,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(trader, forKey: .trader)
-            
-            
-            
-            
-            try? container.encodeIfPresent(uid, forKey: .uid)
             
             
             

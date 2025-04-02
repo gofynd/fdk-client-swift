@@ -18,7 +18,7 @@ public extension PlatformClient.Catalog {
         
         public var configType: String
         
-        public var createdBy: UserSchema?
+        public var createdBy: UserSerializer?
         
         public var createdOn: String?
         
@@ -26,7 +26,7 @@ public extension PlatformClient.Catalog {
         
         public var listing: ConfigurationListing?
         
-        public var modifiedBy: UserSchema?
+        public var modifiedBy: UserSerializer?
         
         public var modifiedOn: String?
         
@@ -61,7 +61,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(appId: String, configId: String? = nil, configType: String, createdBy: UserSchema? = nil, createdOn: String? = nil, id: String? = nil, listing: ConfigurationListing? = nil, modifiedBy: UserSchema? = nil, modifiedOn: String? = nil, product: ConfigurationProduct? = nil, type: String? = nil) {
+        public init(appId: String, configId: String? = nil, configType: String, createdBy: UserSerializer? = nil, createdOn: String? = nil, id: String? = nil, listing: ConfigurationListing? = nil, modifiedBy: UserSerializer? = nil, modifiedOn: String? = nil, product: ConfigurationProduct? = nil, type: String? = nil) {
             
             self.appId = appId
             
@@ -114,7 +114,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserSchema.self, forKey: .createdBy)
+                    createdBy = try container.decode(UserSerializer.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -162,7 +162,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(UserSchema.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(UserSerializer.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -290,7 +290,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var configType: String
         
-        public var createdBy: UserSchema?
+        public var createdBy: UserSerializer?
         
         public var createdOn: String?
         
@@ -298,7 +298,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var listing: ConfigurationListing?
         
-        public var modifiedBy: UserSchema?
+        public var modifiedBy: UserSerializer?
         
         public var modifiedOn: String?
         
@@ -333,7 +333,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(appId: String, configId: String? = nil, configType: String, createdBy: UserSchema? = nil, createdOn: String? = nil, id: String? = nil, listing: ConfigurationListing? = nil, modifiedBy: UserSchema? = nil, modifiedOn: String? = nil, product: ConfigurationProduct? = nil, type: String? = nil) {
+        public init(appId: String, configId: String? = nil, configType: String, createdBy: UserSerializer? = nil, createdOn: String? = nil, id: String? = nil, listing: ConfigurationListing? = nil, modifiedBy: UserSerializer? = nil, modifiedOn: String? = nil, product: ConfigurationProduct? = nil, type: String? = nil) {
             
             self.appId = appId
             
@@ -386,7 +386,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserSchema.self, forKey: .createdBy)
+                    createdBy = try container.decode(UserSerializer.self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -434,7 +434,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(UserSchema.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode(UserSerializer.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

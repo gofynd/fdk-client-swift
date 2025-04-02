@@ -10,7 +10,7 @@ public extension ApplicationClient.Payment {
         
         public var items: [String: Any]?
         
-        public var codCharges: CODChargesLimitsDetails?
+        public var codCharges: CODChargesLimitsResponse?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(codCharges: CODChargesLimitsDetails? = nil, items: [String: Any]? = nil) {
+        public init(codCharges: CODChargesLimitsResponse? = nil, items: [String: Any]? = nil) {
             
             self.items = items
             
@@ -46,7 +46,7 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                codCharges = try container.decode(CODChargesLimitsDetails.self, forKey: .codCharges)
+                codCharges = try container.decode(CODChargesLimitsResponse.self, forKey: .codCharges)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

@@ -26,7 +26,7 @@ extension PlatformClient {
             uniqueExternalId: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PayoutsDetails?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PayoutsResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -58,7 +58,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PayoutsDetails.self, from: data)
+                        let response = Utility.decode(PayoutsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -78,9 +78,9 @@ extension PlatformClient {
         * Description: Store and process a payout transaction.
         **/
         public func savePayout(
-            body: PayoutCreation,
+            body: PayoutRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PayoutDetails?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PayoutResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -108,7 +108,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PayoutDetails.self, from: data)
+                        let response = Utility.decode(PayoutResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -128,9 +128,9 @@ extension PlatformClient {
         * Description: Modify the details of a payout transaction.
         **/
         public func updatePayouts(
-            body: PayoutCreation,
+            body: PayoutRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: UpdatePayoutDetails?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: UpdatePayoutResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -158,7 +158,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(UpdatePayoutDetails.self, from: data)
+                        let response = Utility.decode(UpdatePayoutResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -178,9 +178,9 @@ extension PlatformClient {
         * Description: Enable or disable payout functionality.
         **/
         public func activateAndDectivatePayouts(
-            body: UpdatePayoutCreation,
+            body: UpdatePayoutRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: UpdatePayoutDetails?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: UpdatePayoutResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -208,7 +208,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(UpdatePayoutDetails.self, from: data)
+                        let response = Utility.decode(UpdatePayoutResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -231,7 +231,7 @@ extension PlatformClient {
             uniqueTransferNo: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: DeletePayoutDetails?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: DeletePayoutResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -260,7 +260,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(DeletePayoutDetails.self, from: data)
+                        let response = Utility.decode(DeletePayoutResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -284,7 +284,7 @@ extension PlatformClient {
             uniqueExternalId: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PayoutsDetails?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PayoutsResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -316,7 +316,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PayoutsDetails.self, from: data)
+                        let response = Utility.decode(PayoutsResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -337,9 +337,9 @@ extension PlatformClient {
         **/
         public func savePayouts(
             uniqueTransferNo: String,
-            body: PayoutCreation,
+            body: PayoutRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PayoutDetails?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PayoutResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -367,7 +367,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PayoutDetails.self, from: data)
+                        let response = Utility.decode(PayoutResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -388,9 +388,9 @@ extension PlatformClient {
         **/
         public func updatePayout(
             uniqueTransferNo: String,
-            body: PayoutCreation,
+            body: PayoutRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: UpdatePayoutDetails?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: UpdatePayoutResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -418,7 +418,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(UpdatePayoutDetails.self, from: data)
+                        let response = Utility.decode(UpdatePayoutResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -439,9 +439,9 @@ extension PlatformClient {
         **/
         public func activateAndDectivatePayout(
             uniqueTransferNo: String,
-            body: UpdatePayoutCreation,
+            body: UpdatePayoutRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: UpdatePayoutDetails?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: UpdatePayoutResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -469,7 +469,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(UpdatePayoutDetails.self, from: data)
+                        let response = Utility.decode(UpdatePayoutResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -492,7 +492,7 @@ extension PlatformClient {
             uniqueTransferNo: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: DeletePayoutDetails?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: DeletePayoutResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -520,7 +520,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(DeletePayoutDetails.self, from: data)
+                        let response = Utility.decode(DeletePayoutResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -545,7 +545,7 @@ extension PlatformClient {
             ifscCode: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: IfscCodeDetails?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: IfscCodeResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -574,7 +574,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(IfscCodeDetails.self, from: data)
+                        let response = Utility.decode(IfscCodeResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -629,7 +629,7 @@ extension PlatformClient {
         public func getPaymentMethodConfig(
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: PaymentMethodConfigDetails?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PaymentMethodConfigResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -657,7 +657,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(PaymentMethodConfigDetails.self, from: data)
+                        let response = Utility.decode(PaymentMethodConfigResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

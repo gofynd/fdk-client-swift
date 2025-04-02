@@ -18,8 +18,6 @@ public extension ApplicationClient.Catalog {
         
         public var minQuantity: Int?
         
-        public var allowRemove: Bool?
-        
         public var productUid: Int
         
 
@@ -35,13 +33,11 @@ public extension ApplicationClient.Catalog {
             
             case minQuantity = "min_quantity"
             
-            case allowRemove = "allow_remove"
-            
             case productUid = "product_uid"
             
         }
 
-        public init(allowRemove: Bool? = nil, maxQuantity: Int, minQuantity: Int? = nil, price: ProductGroupPrice? = nil, productDetails: ProductDetails? = nil, productUid: Int, sizes: [Size]? = nil) {
+        public init(maxQuantity: Int, minQuantity: Int? = nil, price: ProductGroupPrice? = nil, productDetails: ProductDetails? = nil, productUid: Int, sizes: [Size]? = nil) {
             
             self.maxQuantity = maxQuantity
             
@@ -52,8 +48,6 @@ public extension ApplicationClient.Catalog {
             self.productDetails = productDetails
             
             self.minQuantity = minQuantity
-            
-            self.allowRemove = allowRemove
             
             self.productUid = productUid
             
@@ -116,18 +110,6 @@ public extension ApplicationClient.Catalog {
             
             
             
-            do {
-                allowRemove = try container.decode(Bool.self, forKey: .allowRemove)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
             productUid = try container.decode(Int.self, forKey: .productUid)
             
             
@@ -155,10 +137,6 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
-            
-            
-            
-            try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
             
             
             

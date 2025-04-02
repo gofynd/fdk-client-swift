@@ -18,7 +18,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var logic: String?
         
-        public var rule: DistributionRule?
+        public var rule: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -31,7 +31,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(logic: String? = nil, rule: DistributionRule? = nil, type: String? = nil) {
+        public init(logic: String? = nil, rule: [String: Any]? = nil, type: String? = nil) {
             
             self.type = type
             
@@ -70,7 +70,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    rule = try container.decode(DistributionRule.self, forKey: .rule)
+                    rule = try container.decode([String: Any].self, forKey: .rule)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

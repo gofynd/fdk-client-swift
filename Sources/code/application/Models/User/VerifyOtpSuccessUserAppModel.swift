@@ -8,8 +8,6 @@ public extension ApplicationClient.User {
     */
     class VerifyOtpSuccess: Codable {
         
-        public var verifyMobileLink: Bool?
-        
         public var user: UserSchema?
         
         public var userExists: Bool?
@@ -19,8 +17,6 @@ public extension ApplicationClient.User {
 
         public enum CodingKeys: String, CodingKey {
             
-            case verifyMobileLink = "verify_mobile_link"
-            
             case user = "user"
             
             case userExists = "user_exists"
@@ -29,9 +25,7 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(registerToken: String? = nil, user: UserSchema? = nil, userExists: Bool? = nil, verifyMobileLink: Bool? = nil) {
-            
-            self.verifyMobileLink = verifyMobileLink
+        public init(registerToken: String? = nil, user: UserSchema? = nil, userExists: Bool? = nil) {
             
             self.user = user
             
@@ -43,18 +37,6 @@ public extension ApplicationClient.User {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-            do {
-                verifyMobileLink = try container.decode(Bool.self, forKey: .verifyMobileLink)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
             
             
             do {
@@ -96,10 +78,6 @@ public extension ApplicationClient.User {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            try? container.encodeIfPresent(verifyMobileLink, forKey: .verifyMobileLink)
-            
             
             
             try? container.encodeIfPresent(user, forKey: .user)

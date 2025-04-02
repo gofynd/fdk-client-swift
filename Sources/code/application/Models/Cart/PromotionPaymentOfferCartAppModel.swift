@@ -30,8 +30,6 @@ public extension ApplicationClient.Cart {
         
         public var validTill: String?
         
-        public var medias: [Media]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -57,11 +55,9 @@ public extension ApplicationClient.Cart {
             
             case validTill = "valid_till"
             
-            case medias = "medias"
-            
         }
 
-        public init(applicationId: String? = nil, buyRules: [[String: Any]]? = nil, calculateOn: String? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, id: String? = nil, medias: [Media]? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, validTill: String? = nil) {
+        public init(applicationId: String? = nil, buyRules: [[String: Any]]? = nil, calculateOn: String? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, validTill: String? = nil) {
             
             self.applicationId = applicationId
             
@@ -84,8 +80,6 @@ public extension ApplicationClient.Cart {
             self.promotionName = promotionName
             
             self.validTill = validTill
-            
-            self.medias = medias
             
         }
 
@@ -224,18 +218,6 @@ public extension ApplicationClient.Cart {
             }
             
             
-            
-            do {
-                medias = try container.decode([Media].self, forKey: .medias)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -283,10 +265,6 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(validTill, forKey: .validTill)
-            
-            
-            
-            try? container.encodeIfPresent(medias, forKey: .medias)
             
             
         }

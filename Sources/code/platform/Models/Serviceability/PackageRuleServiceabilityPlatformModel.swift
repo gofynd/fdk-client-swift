@@ -18,8 +18,6 @@ public extension PlatformClient.Serviceability {
         
         public var itemId: Int?
         
-        public var companyId: Int
-        
         public var width: Double?
         
         public var height: Double?
@@ -63,8 +61,6 @@ public extension PlatformClient.Serviceability {
             
             case itemId = "item_id"
             
-            case companyId = "company_id"
-            
             case width = "width"
             
             case height = "height"
@@ -101,15 +97,13 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(autoCalculate: Bool? = nil, channels: [Channel]? = nil, companyId: Int, errorRate: Double? = nil, height: Double? = nil, id: String? = nil, itemId: Int? = nil, length: Double? = nil, maxWeight: Double? = nil, media: [String]? = nil, mpStores: [PackageMpStores]? = nil, name: String, packageType: String? = nil, packageVolWeight: Double? = nil, rules: [PackageMaterialRule]? = nil, size: String? = nil, status: String? = nil, storeIds: [Int]? = nil, trackInventory: Bool? = nil, weight: Double? = nil, width: Double? = nil) {
+        public init(autoCalculate: Bool? = nil, channels: [Channel]? = nil, errorRate: Double? = nil, height: Double? = nil, id: String? = nil, itemId: Int? = nil, length: Double? = nil, maxWeight: Double? = nil, media: [String]? = nil, mpStores: [PackageMpStores]? = nil, name: String, packageType: String? = nil, packageVolWeight: Double? = nil, rules: [PackageMaterialRule]? = nil, size: String? = nil, status: String? = nil, storeIds: [Int]? = nil, trackInventory: Bool? = nil, weight: Double? = nil, width: Double? = nil) {
             
             self.name = name
             
             self.id = id
             
             self.itemId = itemId
-            
-            self.companyId = companyId
             
             self.width = width
             
@@ -178,11 +172,6 @@ public extension PlatformClient.Serviceability {
                     
                 }
                 
-            
-            
-                companyId = try container.decode(Int.self, forKey: .companyId)
-                
-            
             
             
                 do {
@@ -406,11 +395,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(itemId, forKey: .itemId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
             
@@ -520,8 +504,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var itemId: Int?
         
-        public var companyId: Int
-        
         public var width: Double?
         
         public var height: Double?
@@ -565,8 +547,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case itemId = "item_id"
             
-            case companyId = "company_id"
-            
             case width = "width"
             
             case height = "height"
@@ -603,15 +583,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(autoCalculate: Bool? = nil, channels: [Channel]? = nil, companyId: Int, errorRate: Double? = nil, height: Double? = nil, id: String? = nil, itemId: Int? = nil, length: Double? = nil, maxWeight: Double? = nil, media: [String]? = nil, mpStores: [PackageMpStores]? = nil, name: String, packageType: String? = nil, packageVolWeight: Double? = nil, rules: [PackageMaterialRule]? = nil, size: String? = nil, status: String? = nil, storeIds: [Int]? = nil, trackInventory: Bool? = nil, weight: Double? = nil, width: Double? = nil) {
+        public init(autoCalculate: Bool? = nil, channels: [Channel]? = nil, errorRate: Double? = nil, height: Double? = nil, id: String? = nil, itemId: Int? = nil, length: Double? = nil, maxWeight: Double? = nil, media: [String]? = nil, mpStores: [PackageMpStores]? = nil, name: String, packageType: String? = nil, packageVolWeight: Double? = nil, rules: [PackageMaterialRule]? = nil, size: String? = nil, status: String? = nil, storeIds: [Int]? = nil, trackInventory: Bool? = nil, weight: Double? = nil, width: Double? = nil) {
             
             self.name = name
             
             self.id = id
             
             self.itemId = itemId
-            
-            self.companyId = companyId
             
             self.width = width
             
@@ -680,11 +658,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                     
                 }
                 
-            
-            
-                companyId = try container.decode(Int.self, forKey: .companyId)
-                
-            
             
             
                 do {
@@ -908,11 +881,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(itemId, forKey: .itemId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
             

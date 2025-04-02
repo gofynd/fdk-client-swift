@@ -14,7 +14,7 @@ public extension PlatformClient.ApplicationClient.Cart {
     class Restrictions1: Codable {
         
         
-        public var payments: PaymentModes?
+        public var payments: [String: PaymentModes]?
         
         public var userRegistered: UserRegistered?
         
@@ -63,7 +63,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(anonymousUsers: Bool? = nil, orderingStores: [Int]? = nil, orderQuantity: Int? = nil, payments: PaymentModes? = nil, platforms: [String]? = nil, postOrder: PostOrder1? = nil, userGroups: [Int]? = nil, userId: [String]? = nil, userRegistered: UserRegistered? = nil, userType: String? = nil, uses: UsesRestriction1) {
+        public init(anonymousUsers: Bool? = nil, orderingStores: [Int]? = nil, orderQuantity: Int? = nil, payments: [String: PaymentModes]? = nil, platforms: [String]? = nil, postOrder: PostOrder1? = nil, userGroups: [Int]? = nil, userId: [String]? = nil, userRegistered: UserRegistered? = nil, userType: String? = nil, uses: UsesRestriction1) {
             
             self.payments = payments
             
@@ -94,7 +94,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    payments = try container.decode(PaymentModes.self, forKey: .payments)
+                    payments = try container.decode([String: PaymentModes].self, forKey: .payments)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

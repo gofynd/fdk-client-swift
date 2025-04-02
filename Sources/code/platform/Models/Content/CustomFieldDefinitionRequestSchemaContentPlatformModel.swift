@@ -20,8 +20,6 @@ public extension PlatformClient.Content {
         
         public var namespace: String?
         
-        public var slug: String?
-        
         public var multiValue: Bool?
         
         public var name: String?
@@ -43,8 +41,6 @@ public extension PlatformClient.Content {
             
             case namespace = "namespace"
             
-            case slug = "slug"
-            
             case multiValue = "multi_value"
             
             case name = "name"
@@ -57,7 +53,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(creator: String? = nil, description: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, resource: String? = nil, slug: String? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
+        public init(creator: String? = nil, description: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, resource: String? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
             
             self.resource = resource
             
@@ -66,8 +62,6 @@ public extension PlatformClient.Content {
             self.key = key
             
             self.namespace = namespace
-            
-            self.slug = slug
             
             self.multiValue = multiValue
             
@@ -123,18 +117,6 @@ public extension PlatformClient.Content {
             
                 do {
                     namespace = try container.decode(String.self, forKey: .namespace)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -227,11 +209,6 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(namespace, forKey: .namespace)
-            
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
@@ -283,8 +260,6 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var namespace: String?
         
-        public var slug: String?
-        
         public var multiValue: Bool?
         
         public var name: String?
@@ -306,8 +281,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case namespace = "namespace"
             
-            case slug = "slug"
-            
             case multiValue = "multi_value"
             
             case name = "name"
@@ -320,7 +293,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(creator: String? = nil, description: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, resource: String? = nil, slug: String? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
+        public init(creator: String? = nil, description: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, resource: String? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
             
             self.resource = resource
             
@@ -329,8 +302,6 @@ public extension PlatformClient.ApplicationClient.Content {
             self.key = key
             
             self.namespace = namespace
-            
-            self.slug = slug
             
             self.multiValue = multiValue
             
@@ -386,18 +357,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     namespace = try container.decode(String.self, forKey: .namespace)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -490,11 +449,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(namespace, forKey: .namespace)
-            
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             

@@ -22,8 +22,6 @@ public extension PlatformClient.AuditTrail {
         
         public var location: [String: Any]?
         
-        public var sessions: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -37,11 +35,9 @@ public extension PlatformClient.AuditTrail {
             
             case location = "location"
             
-            case sessions = "sessions"
-            
         }
 
-        public init(application: String? = nil, deviceInfo: [String: Any]? = nil, entity: EntityObject? = nil, location: [String: Any]? = nil, modifier: [String: Any]? = nil, sessions: String? = nil) {
+        public init(application: String? = nil, deviceInfo: [String: Any]? = nil, entity: EntityObject? = nil, location: [String: Any]? = nil, modifier: [String: Any]? = nil) {
             
             self.modifier = modifier
             
@@ -52,8 +48,6 @@ public extension PlatformClient.AuditTrail {
             self.deviceInfo = deviceInfo
             
             self.location = location
-            
-            self.sessions = sessions
             
         }
 
@@ -120,18 +114,6 @@ public extension PlatformClient.AuditTrail {
                 }
                 
             
-            
-                do {
-                    sessions = try container.decode(String.self, forKey: .sessions)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -160,11 +142,6 @@ public extension PlatformClient.AuditTrail {
             
             
             try? container.encodeIfPresent(location, forKey: .location)
-            
-            
-            
-            
-            try? container.encodeIfPresent(sessions, forKey: .sessions)
             
             
         }

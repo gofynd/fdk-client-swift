@@ -46,8 +46,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var updatedOn: String?
         
-        public var createdOn: String?
-        
         public var lastModifiedBy: String?
         
         public var orderPlacing: OrderPlacing?
@@ -107,8 +105,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case updatedOn = "updated_on"
             
-            case createdOn = "created_on"
-            
             case lastModifiedBy = "last_modified_by"
             
             case orderPlacing = "order_placing"
@@ -135,7 +131,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(allowCouponWithRewards: Bool? = nil, appId: String? = nil, articleTags: [String]? = nil, bulkCoupons: Bool? = nil, companyId: Double? = nil, createdOn: String? = nil, deliveryCharges: DeliveryCharges? = nil, emptyCart: Bool? = nil, enabled: Bool? = nil, giftDisplayText: String? = nil, giftPricing: Double? = nil, gstInput: Bool? = nil, hideOnStorefront: Bool? = nil, id: String? = nil, internationalDeliveryCharges: DeliveryCharges? = nil, isActive: Bool? = nil, isUniversal: Bool? = nil, lastModifiedBy: String? = nil, maxCartItems: Int? = nil, maxCartValue: Int? = nil, minCartValue: Int? = nil, name: String? = nil, orderPlacing: OrderPlacing? = nil, panCard: PanCard? = nil, placingForCustomer: Bool? = nil, revenueEngineCoupon: Bool? = nil, slug: String? = nil, staffSelection: Bool? = nil, updatedOn: String? = nil) {
+        public init(allowCouponWithRewards: Bool? = nil, appId: String? = nil, articleTags: [String]? = nil, bulkCoupons: Bool? = nil, companyId: Double? = nil, deliveryCharges: DeliveryCharges? = nil, emptyCart: Bool? = nil, enabled: Bool? = nil, giftDisplayText: String? = nil, giftPricing: Double? = nil, gstInput: Bool? = nil, hideOnStorefront: Bool? = nil, id: String? = nil, internationalDeliveryCharges: DeliveryCharges? = nil, isActive: Bool? = nil, isUniversal: Bool? = nil, lastModifiedBy: String? = nil, maxCartItems: Int? = nil, maxCartValue: Int? = nil, minCartValue: Int? = nil, name: String? = nil, orderPlacing: OrderPlacing? = nil, panCard: PanCard? = nil, placingForCustomer: Bool? = nil, revenueEngineCoupon: Bool? = nil, slug: String? = nil, staffSelection: Bool? = nil, updatedOn: String? = nil) {
             
             self.minCartValue = minCartValue
             
@@ -168,8 +164,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.companyId = companyId
             
             self.updatedOn = updatedOn
-            
-            self.createdOn = createdOn
             
             self.lastModifiedBy = lastModifiedBy
             
@@ -383,18 +377,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     updatedOn = try container.decode(String.self, forKey: .updatedOn)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    createdOn = try container.decode(String.self, forKey: .createdOn)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -631,11 +613,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(updatedOn, forKey: .updatedOn)
-            
-            
-            
-            
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
             
             
             

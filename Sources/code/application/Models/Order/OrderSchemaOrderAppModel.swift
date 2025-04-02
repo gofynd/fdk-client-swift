@@ -8,8 +8,6 @@ public extension ApplicationClient.Order {
     */
     class OrderSchema: Codable {
         
-        public var couponDetails: [CouponDetails]?
-        
         public var totalShipmentsInOrder: Int?
         
         public var customCartMeta: [String: Any]?
@@ -30,13 +28,15 @@ public extension ApplicationClient.Order {
         
         public var bagsForReorder: [BagsForReorder]?
         
-        public var charges: [PriceAdjustmentCharge]?
-        
         public var customMeta: [[String: Any]]?
+        
+        public var currency: Currency?
         
         public var currencyInfo: CurrencyInfo?
         
         public var isValidated: Bool?
+        
+        public var charges: [PriceAdjustmentCharge]?
         
         public var meta: [String: Any]?
         
@@ -44,14 +44,8 @@ public extension ApplicationClient.Order {
         
         public var paymentInfo: [PaymentInfo]?
         
-        public var currency: CurrencySchema?
-        
-        public var customJson: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case couponDetails = "coupon_details"
             
             case totalShipmentsInOrder = "total_shipments_in_order"
             
@@ -73,13 +67,15 @@ public extension ApplicationClient.Order {
             
             case bagsForReorder = "bags_for_reorder"
             
-            case charges = "charges"
-            
             case customMeta = "custom_meta"
+            
+            case currency = "currency"
             
             case currencyInfo = "currency_info"
             
             case isValidated = "is_validated"
+            
+            case charges = "charges"
             
             case meta = "meta"
             
@@ -87,15 +83,9 @@ public extension ApplicationClient.Order {
             
             case paymentInfo = "payment_info"
             
-            case currency = "currency"
-            
-            case customJson = "custom_json"
-            
         }
 
-        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, charges: [PriceAdjustmentCharge]? = nil, couponDetails: [CouponDetails]? = nil, currency: CurrencySchema? = nil, currencyInfo: CurrencyInfo? = nil, customCartMeta: [String: Any]? = nil, customJson: [String: Any]? = nil, customMeta: [[String: Any]]? = nil, externalOrderId: String? = nil, gstinCode: String? = nil, isValidated: Bool? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, paymentInfo: [PaymentInfo]? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
-            
-            self.couponDetails = couponDetails
+        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, charges: [PriceAdjustmentCharge]? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customCartMeta: [String: Any]? = nil, customMeta: [[String: Any]]? = nil, externalOrderId: String? = nil, gstinCode: String? = nil, isValidated: Bool? = nil, meta: [String: Any]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, paymentInfo: [PaymentInfo]? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
             
             self.totalShipmentsInOrder = totalShipmentsInOrder
             
@@ -117,13 +107,15 @@ public extension ApplicationClient.Order {
             
             self.bagsForReorder = bagsForReorder
             
-            self.charges = charges
-            
             self.customMeta = customMeta
+            
+            self.currency = currency
             
             self.currencyInfo = currencyInfo
             
             self.isValidated = isValidated
+            
+            self.charges = charges
             
             self.meta = meta
             
@@ -131,26 +123,10 @@ public extension ApplicationClient.Order {
             
             self.paymentInfo = paymentInfo
             
-            self.currency = currency
-            
-            self.customJson = customJson
-            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-            do {
-                couponDetails = try container.decode([CouponDetails].self, forKey: .couponDetails)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
             
             
             do {
@@ -274,7 +250,7 @@ public extension ApplicationClient.Order {
             
             
             do {
-                charges = try container.decode([PriceAdjustmentCharge].self, forKey: .charges)
+                customMeta = try container.decode([[String: Any]].self, forKey: .customMeta)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -286,7 +262,7 @@ public extension ApplicationClient.Order {
             
             
             do {
-                customMeta = try container.decode([[String: Any]].self, forKey: .customMeta)
+                currency = try container.decode(Currency.self, forKey: .currency)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -311,6 +287,18 @@ public extension ApplicationClient.Order {
             
             do {
                 isValidated = try container.decode(Bool.self, forKey: .isValidated)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                charges = try container.decode([PriceAdjustmentCharge].self, forKey: .charges)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -356,38 +344,10 @@ public extension ApplicationClient.Order {
             }
             
             
-            
-            do {
-                currency = try container.decode(CurrencySchema.self, forKey: .currency)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            try? container.encodeIfPresent(couponDetails, forKey: .couponDetails)
-            
             
             
             try? container.encodeIfPresent(totalShipmentsInOrder, forKey: .totalShipmentsInOrder)
@@ -430,11 +390,11 @@ public extension ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(charges, forKey: .charges)
-            
-            
-            
             try? container.encodeIfPresent(customMeta, forKey: .customMeta)
+            
+            
+            
+            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
             
@@ -443,6 +403,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(isValidated, forKey: .isValidated)
+            
+            
+            
+            try? container.encodeIfPresent(charges, forKey: .charges)
             
             
             
@@ -455,14 +419,6 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
-            
-            
-            
-            try? container.encodeIfPresent(currency, forKey: .currency)
-            
-            
-            
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
         }

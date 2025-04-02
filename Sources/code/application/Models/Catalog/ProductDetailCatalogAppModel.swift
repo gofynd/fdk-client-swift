@@ -20,7 +20,7 @@ public extension ApplicationClient.Catalog {
         
         public var discountMeta: DiscountMeta?
         
-        public var variants: [ProductVariantResponseSchema]?
+        public var variants: [ProductVariantResponse]?
         
         public var customOrder: ProductDetailCustomOrder?
         
@@ -103,8 +103,6 @@ public extension ApplicationClient.Catalog {
         public var sellable: Bool?
         
         public var countryOfOrigin: String?
-        
-        public var modifiedOn: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -205,11 +203,9 @@ public extension ApplicationClient.Catalog {
             
             case countryOfOrigin = "country_of_origin"
             
-            case modifiedOn = "modified_on"
-            
         }
 
-        public init(action: ProductListingAction? = nil, attributes: [String: Any]? = nil, brand: ProductBrand? = nil, categories: [ProductBrand]? = nil, categoryMap: ProductCategoryMap? = nil, channel: String? = nil, color: String? = nil, countryOfOrigin: String? = nil, customOrder: ProductDetailCustomOrder? = nil, department: ProductDepartment? = nil, description: String? = nil, discount: String? = nil, discountMeta: DiscountMeta? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, identifiers: [String]? = nil, imageNature: String? = nil, isDependent: Bool? = nil, isTryout: Bool? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, modifiedOn: String? = nil, moq: ApplicationItemMOQ? = nil, name: String? = nil, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, price: ProductListingPrice? = nil, productGroupTag: [String]? = nil, productOnlineDate: String? = nil, promoMeta: [String: Any]? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, seo: ApplicationItemSEO? = nil, shortDescription: String? = nil, similars: [String]? = nil, sizes: [String]? = nil, slug: String, tags: [String]? = nil, teaserTag: String? = nil, templateTag: String? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil, variants: [ProductVariantResponseSchema]? = nil, customJson: [String: Any]? = nil, customMeta: [CustomMetaFields]? = nil) {
+        public init(action: ProductListingAction? = nil, attributes: [String: Any]? = nil, brand: ProductBrand? = nil, categories: [ProductBrand]? = nil, categoryMap: ProductCategoryMap? = nil, channel: String? = nil, color: String? = nil, countryOfOrigin: String? = nil, customOrder: ProductDetailCustomOrder? = nil, department: ProductDepartment? = nil, description: String? = nil, discount: String? = nil, discountMeta: DiscountMeta? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, identifiers: [String]? = nil, imageNature: String? = nil, isDependent: Bool? = nil, isTryout: Bool? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, moq: ApplicationItemMOQ? = nil, name: String? = nil, netQuantity: NetQuantity? = nil, noOfBoxes: Int? = nil, price: ProductListingPrice? = nil, productGroupTag: [String]? = nil, productOnlineDate: String? = nil, promoMeta: [String: Any]? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, seo: ApplicationItemSEO? = nil, shortDescription: String? = nil, similars: [String]? = nil, sizes: [String]? = nil, slug: String, tags: [String]? = nil, teaserTag: String? = nil, templateTag: String? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil, variants: [ProductVariantResponse]? = nil, customJson: [String: Any]? = nil, customMeta: [CustomMetaFields]? = nil) {
             
             self.uid = uid
             
@@ -307,8 +303,6 @@ public extension ApplicationClient.Catalog {
             
             self.countryOfOrigin = countryOfOrigin
             
-            self.modifiedOn = modifiedOn
-            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -388,7 +382,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                variants = try container.decode([ProductVariantResponseSchema].self, forKey: .variants)
+                variants = try container.decode([ProductVariantResponse].self, forKey: .variants)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -883,18 +877,6 @@ public extension ApplicationClient.Catalog {
             }
             
             
-            
-            do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -1090,10 +1072,6 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(countryOfOrigin, forKey: .countryOfOrigin)
-            
-            
-            
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
         }

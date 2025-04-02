@@ -50,12 +50,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var isArchived: Bool?
         
-        public var couponType: String?
-        
-        public var couponPrefix: String?
-        
-        public var couponCounts: Double?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -95,15 +89,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case isArchived = "is_archived"
             
-            case couponType = "coupon_type"
-            
-            case couponPrefix = "coupon_prefix"
-            
-            case couponCounts = "coupon_counts"
-            
         }
 
-        public init(action: CouponAction? = nil, author: CouponAuthor? = nil, code: String? = nil, couponCounts: Double? = nil, couponPrefix: String? = nil, couponType: String? = nil, dateMeta: CouponDateMeta? = nil, displayMeta: DisplayMeta? = nil, identifiers: Identifier? = nil, isArchived: Bool? = nil, ownership: Ownership? = nil, restrictions: Restrictions? = nil, rule: [Rule]? = nil, ruleDefinition: RuleDefinition? = nil, state: State? = nil, tags: [String]? = nil, typeSlug: String? = nil, validation: Validation? = nil, validity: Validity? = nil, id: String? = nil, schedule: CouponSchedule? = nil) {
+        public init(action: CouponAction? = nil, author: CouponAuthor? = nil, code: String? = nil, dateMeta: CouponDateMeta? = nil, displayMeta: DisplayMeta? = nil, identifiers: Identifier? = nil, isArchived: Bool? = nil, ownership: Ownership? = nil, restrictions: Restrictions? = nil, rule: [Rule]? = nil, ruleDefinition: RuleDefinition? = nil, state: State? = nil, tags: [String]? = nil, typeSlug: String? = nil, validation: Validation? = nil, validity: Validity? = nil, id: String? = nil, schedule: CouponSchedule? = nil) {
             
             self.dateMeta = dateMeta
             
@@ -140,12 +128,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.id = id
             
             self.isArchived = isArchived
-            
-            self.couponType = couponType
-            
-            self.couponPrefix = couponPrefix
-            
-            self.couponCounts = couponCounts
             
         }
 
@@ -368,42 +350,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
-            
-                do {
-                    couponType = try container.decode(String.self, forKey: .couponType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    couponPrefix = try container.decode(String.self, forKey: .couponPrefix)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    couponCounts = try container.decode(Double.self, forKey: .couponCounts)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -497,21 +443,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(isArchived, forKey: .isArchived)
-            
-            
-            
-            
-            try? container.encodeIfPresent(couponType, forKey: .couponType)
-            
-            
-            
-            
-            try? container.encodeIfPresent(couponPrefix, forKey: .couponPrefix)
-            
-            
-            
-            
-            try? container.encodeIfPresent(couponCounts, forKey: .couponCounts)
             
             
         }

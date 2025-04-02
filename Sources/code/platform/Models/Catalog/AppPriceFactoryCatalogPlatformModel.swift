@@ -30,9 +30,9 @@ public extension PlatformClient.Catalog {
         
         public var currency: String
         
-        public var createdBy: UserInfo?
+        public var createdBy: [String: Any]?
         
-        public var modifiedBy: UserInfo?
+        public var modifiedBy: [String: Any]?
         
         public var createdOn: String?
         
@@ -69,7 +69,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(applicationId: String, code: String, createdBy: UserInfo? = nil, createdOn: String? = nil, currency: String, departmentIds: [Int], factoryType: String, factoryTypeIds: [String], isActive: Bool, modifiedBy: UserInfo? = nil, modifiedOn: String? = nil, name: String, id: String? = nil) {
+        public init(applicationId: String, code: String, createdBy: [String: Any]? = nil, createdOn: String? = nil, currency: String, departmentIds: [Int], factoryType: String, factoryTypeIds: [String], isActive: Bool, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, id: String? = nil) {
             
             self.id = id
             
@@ -156,7 +156,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserInfo.self, forKey: .createdBy)
+                    createdBy = try container.decode([String: Any].self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -168,7 +168,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(UserInfo.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode([String: Any].self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -306,9 +306,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var currency: String
         
-        public var createdBy: UserInfo?
+        public var createdBy: [String: Any]?
         
-        public var modifiedBy: UserInfo?
+        public var modifiedBy: [String: Any]?
         
         public var createdOn: String?
         
@@ -345,7 +345,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(applicationId: String, code: String, createdBy: UserInfo? = nil, createdOn: String? = nil, currency: String, departmentIds: [Int], factoryType: String, factoryTypeIds: [String], isActive: Bool, modifiedBy: UserInfo? = nil, modifiedOn: String? = nil, name: String, id: String? = nil) {
+        public init(applicationId: String, code: String, createdBy: [String: Any]? = nil, createdOn: String? = nil, currency: String, departmentIds: [Int], factoryType: String, factoryTypeIds: [String], isActive: Bool, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, id: String? = nil) {
             
             self.id = id
             
@@ -432,7 +432,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    createdBy = try container.decode(UserInfo.self, forKey: .createdBy)
+                    createdBy = try container.decode([String: Any].self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -444,7 +444,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    modifiedBy = try container.decode(UserInfo.self, forKey: .modifiedBy)
+                    modifiedBy = try container.decode([String: Any].self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

@@ -24,7 +24,7 @@ extension PlatformClient {
             query: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ApplicationResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ApplicationResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -60,7 +60,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ApplicationResponseSchema.self, from: data)
+                        let response = Utility.decode(ApplicationResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

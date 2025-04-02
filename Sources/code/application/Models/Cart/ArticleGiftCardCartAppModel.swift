@@ -12,8 +12,6 @@ public extension ApplicationClient.Cart {
         
         public var displayText: String?
         
-        public var giftMessage: String?
-        
         public var isGiftApplied: Bool?
         
 
@@ -23,19 +21,15 @@ public extension ApplicationClient.Cart {
             
             case displayText = "display_text"
             
-            case giftMessage = "gift_message"
-            
             case isGiftApplied = "is_gift_applied"
             
         }
 
-        public init(displayText: String? = nil, giftMessage: String? = nil, giftPrice: Double? = nil, isGiftApplied: Bool? = nil) {
+        public init(displayText: String? = nil, giftPrice: Double? = nil, isGiftApplied: Bool? = nil) {
             
             self.giftPrice = giftPrice
             
             self.displayText = displayText
-            
-            self.giftMessage = giftMessage
             
             self.isGiftApplied = isGiftApplied
             
@@ -70,18 +64,6 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                giftMessage = try container.decode(String.self, forKey: .giftMessage)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 isGiftApplied = try container.decode(Bool.self, forKey: .isGiftApplied)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -103,10 +85,6 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(displayText, forKey: .displayText)
-            
-            
-            
-            try? container.encodeIfPresent(giftMessage, forKey: .giftMessage)
             
             
             

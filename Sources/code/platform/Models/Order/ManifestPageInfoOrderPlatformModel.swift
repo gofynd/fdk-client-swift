@@ -24,6 +24,8 @@ public extension PlatformClient.Order {
         
         public var type: String
         
+        public var itemTotal: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -39,9 +41,11 @@ public extension PlatformClient.Order {
             
             case type = "type"
             
+            case itemTotal = "item_total"
+            
         }
 
-        public init(current: Int, hasNext: Bool, hasPrevious: Bool, size: Int, total: Int, type: String) {
+        public init(current: Int, hasNext: Bool, hasPrevious: Bool, itemTotal: Int? = nil, size: Int, total: Int, type: String) {
             
             self.current = current
             
@@ -54,6 +58,8 @@ public extension PlatformClient.Order {
             self.hasPrevious = hasPrevious
             
             self.type = type
+            
+            self.itemTotal = itemTotal
             
         }
 
@@ -90,6 +96,18 @@ public extension PlatformClient.Order {
                 
             
             
+            
+                do {
+                    itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -123,6 +141,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
             
             
         }
@@ -153,6 +176,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var type: String
         
+        public var itemTotal: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -168,9 +193,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case type = "type"
             
+            case itemTotal = "item_total"
+            
         }
 
-        public init(current: Int, hasNext: Bool, hasPrevious: Bool, size: Int, total: Int, type: String) {
+        public init(current: Int, hasNext: Bool, hasPrevious: Bool, itemTotal: Int? = nil, size: Int, total: Int, type: String) {
             
             self.current = current
             
@@ -183,6 +210,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.hasPrevious = hasPrevious
             
             self.type = type
+            
+            self.itemTotal = itemTotal
             
         }
 
@@ -219,6 +248,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
+            
+                do {
+                    itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -252,6 +293,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
             
             
         }

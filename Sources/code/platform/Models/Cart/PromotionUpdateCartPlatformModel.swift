@@ -54,7 +54,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var applicationId: String
         
-        public var buyRules: [String: Any]?
+        public var buyRules: [String: ItemCriteria]?
         
         public var customJson: [String: Any]?
         
@@ -115,7 +115,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(applicationId: String, applyAllDiscount: Bool? = nil, applyExclusive: String? = nil, applyPriority: Int? = nil, author: PromotionAuthor? = nil, buyRules: [String: Any]? = nil, calculateOn: String? = nil, code: String? = nil, currency: String? = nil, dateMeta: PromotionDateMeta? = nil, discountRules: [DiscountRule]? = nil, displayMeta: DisplayMeta1? = nil, mode: String, ownership: Ownership? = nil, postOrderAction: PromotionAction? = nil, promotionType: String, promoGroup: String, reason: String? = nil, restrictions: Restrictions1? = nil, stackable: Bool? = nil, tags: [String]? = nil, visiblility: Visibility? = nil, customJson: [String: Any]? = nil, schedule: PromotionSchedule? = nil) {
+        public init(applicationId: String, applyAllDiscount: Bool? = nil, applyExclusive: String? = nil, applyPriority: Int? = nil, author: PromotionAuthor? = nil, buyRules: [String: ItemCriteria]? = nil, calculateOn: String? = nil, code: String? = nil, currency: String? = nil, dateMeta: PromotionDateMeta? = nil, discountRules: [DiscountRule]? = nil, displayMeta: DisplayMeta1? = nil, mode: String, ownership: Ownership? = nil, postOrderAction: PromotionAction? = nil, promotionType: String, promoGroup: String, reason: String? = nil, restrictions: Restrictions1? = nil, stackable: Bool? = nil, tags: [String]? = nil, visiblility: Visibility? = nil, customJson: [String: Any]? = nil, schedule: PromotionSchedule? = nil) {
             
             self.stackable = stackable
             
@@ -384,7 +384,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    buyRules = try container.decode([String: Any].self, forKey: .buyRules)
+                    buyRules = try container.decode([String: ItemCriteria].self, forKey: .buyRules)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

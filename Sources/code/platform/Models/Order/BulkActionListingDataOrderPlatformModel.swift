@@ -60,13 +60,13 @@ public extension PlatformClient.Order {
         
         public var uploadedBy: String?
         
+        public var totalShipmentsCount: Int?
+        
         public var invoicelabelDocumentType: String?
         
         public var failedShCount: Int?
         
         public var successfulShCount: Int?
-        
-        public var totalShipmentsCount: Int?
         
         public var totalCount: Int?
         
@@ -129,13 +129,13 @@ public extension PlatformClient.Order {
             
             case uploadedBy = "uploaded_by"
             
+            case totalShipmentsCount = "total_shipments_count"
+            
             case invoicelabelDocumentType = "invoicelabel_document_type"
             
             case failedShCount = "failed_sh_count"
             
             case successfulShCount = "successful_sh_count"
-            
-            case totalShipmentsCount = "total_shipments_count"
             
             case totalCount = "total_count"
             
@@ -199,13 +199,13 @@ public extension PlatformClient.Order {
             
             self.uploadedBy = uploadedBy
             
+            self.totalShipmentsCount = totalShipmentsCount
+            
             self.invoicelabelDocumentType = invoicelabelDocumentType
             
             self.failedShCount = failedShCount
             
             self.successfulShCount = successfulShCount
-            
-            self.totalShipmentsCount = totalShipmentsCount
             
             self.totalCount = totalCount
             
@@ -512,6 +512,18 @@ public extension PlatformClient.Order {
             
             
                 do {
+                    totalShipmentsCount = try container.decode(Int.self, forKey: .totalShipmentsCount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     invoicelabelDocumentType = try container.decode(String.self, forKey: .invoicelabelDocumentType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -537,18 +549,6 @@ public extension PlatformClient.Order {
             
                 do {
                     successfulShCount = try container.decode(Int.self, forKey: .successfulShCount)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    totalShipmentsCount = try container.decode(Int.self, forKey: .totalShipmentsCount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -745,6 +745,11 @@ public extension PlatformClient.Order {
             
             
             
+            try? container.encodeIfPresent(totalShipmentsCount, forKey: .totalShipmentsCount)
+            
+            
+            
+            
             try? container.encodeIfPresent(invoicelabelDocumentType, forKey: .invoicelabelDocumentType)
             
             
@@ -756,11 +761,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(successfulShCount, forKey: .successfulShCount)
-            
-            
-            
-            
-            try? container.encodeIfPresent(totalShipmentsCount, forKey: .totalShipmentsCount)
             
             
             
@@ -852,13 +852,13 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var uploadedBy: String?
         
+        public var totalShipmentsCount: Int?
+        
         public var invoicelabelDocumentType: String?
         
         public var failedShCount: Int?
         
         public var successfulShCount: Int?
-        
-        public var totalShipmentsCount: Int?
         
         public var totalCount: Int?
         
@@ -921,13 +921,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case uploadedBy = "uploaded_by"
             
+            case totalShipmentsCount = "total_shipments_count"
+            
             case invoicelabelDocumentType = "invoicelabel_document_type"
             
             case failedShCount = "failed_sh_count"
             
             case successfulShCount = "successful_sh_count"
-            
-            case totalShipmentsCount = "total_shipments_count"
             
             case totalCount = "total_count"
             
@@ -991,13 +991,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.uploadedBy = uploadedBy
             
+            self.totalShipmentsCount = totalShipmentsCount
+            
             self.invoicelabelDocumentType = invoicelabelDocumentType
             
             self.failedShCount = failedShCount
             
             self.successfulShCount = successfulShCount
-            
-            self.totalShipmentsCount = totalShipmentsCount
             
             self.totalCount = totalCount
             
@@ -1304,6 +1304,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
+                    totalShipmentsCount = try container.decode(Int.self, forKey: .totalShipmentsCount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     invoicelabelDocumentType = try container.decode(String.self, forKey: .invoicelabelDocumentType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -1329,18 +1341,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     successfulShCount = try container.decode(Int.self, forKey: .successfulShCount)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    totalShipmentsCount = try container.decode(Int.self, forKey: .totalShipmentsCount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1537,6 +1537,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
+            try? container.encodeIfPresent(totalShipmentsCount, forKey: .totalShipmentsCount)
+            
+            
+            
+            
             try? container.encodeIfPresent(invoicelabelDocumentType, forKey: .invoicelabelDocumentType)
             
             
@@ -1548,11 +1553,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(successfulShCount, forKey: .successfulShCount)
-            
-            
-            
-            
-            try? container.encodeIfPresent(totalShipmentsCount, forKey: .totalShipmentsCount)
             
             
             

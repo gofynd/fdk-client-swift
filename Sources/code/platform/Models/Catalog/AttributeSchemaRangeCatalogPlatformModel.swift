@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class AttributeSchemaRange: Codable {
         
         
-        public var min: Int?
-        
         public var max: Int?
+        
+        public var min: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case min = "min"
-            
             case max = "max"
+            
+            case min = "min"
             
         }
 
         public init(max: Int? = nil, min: Int? = nil) {
             
-            self.min = min
-            
             self.max = max
+            
+            self.min = min
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    min = try container.decode(Int.self, forKey: .min)
+                    max = try container.decode(Int.self, forKey: .max)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    max = try container.decode(Int.self, forKey: .max)
+                    min = try container.decode(Int.self, forKey: .min)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(min, forKey: .min)
-            
-            
-            
-            
             try? container.encodeIfPresent(max, forKey: .max)
+            
+            
+            
+            
+            try? container.encodeIfPresent(min, forKey: .min)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class AttributeSchemaRange: Codable {
         
         
-        public var min: Int?
-        
         public var max: Int?
+        
+        public var min: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case min = "min"
-            
             case max = "max"
+            
+            case min = "min"
             
         }
 
         public init(max: Int? = nil, min: Int? = nil) {
             
-            self.min = min
-            
             self.max = max
+            
+            self.min = min
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    min = try container.decode(Int.self, forKey: .min)
+                    max = try container.decode(Int.self, forKey: .max)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    max = try container.decode(Int.self, forKey: .max)
+                    min = try container.decode(Int.self, forKey: .min)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(min, forKey: .min)
-            
-            
-            
-            
             try? container.encodeIfPresent(max, forKey: .max)
+            
+            
+            
+            
+            try? container.encodeIfPresent(min, forKey: .min)
             
             
         }

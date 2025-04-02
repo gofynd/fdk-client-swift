@@ -22,7 +22,7 @@ extension PublicClient {
             query: String?,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: ApplicationResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ApplicationResponse?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -58,7 +58,7 @@ extension PublicClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(ApplicationResponseSchema.self, from: data)
+                        let response = Utility.decode(ApplicationResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -136,9 +136,9 @@ extension PublicClient {
         * Description: Check if the application version is up to date.
         **/
         public func checkVersionIsUpToDate(
-            body: VersionRequestSchema,
+            body: VersionRequest,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: VersionResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: VersionResponse?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -166,7 +166,7 @@ extension PublicClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(VersionResponseSchema.self, from: data)
+                        let response = Utility.decode(VersionResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

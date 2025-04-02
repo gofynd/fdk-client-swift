@@ -12,30 +12,30 @@ public extension PlatformClient.Catalog {
     class CustomOrder: Codable {
         
         
-        public var manufacturingTimeUnit: String?
-        
-        public var isCustomOrder: Bool
+        public var isCustomOrder: Bool?
         
         public var manufacturingTime: Int?
         
+        public var manufacturingTimeUnit: String?
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case manufacturingTimeUnit = "manufacturing_time_unit"
             
             case isCustomOrder = "is_custom_order"
             
             case manufacturingTime = "manufacturing_time"
             
+            case manufacturingTimeUnit = "manufacturing_time_unit"
+            
         }
 
-        public init(isCustomOrder: Bool, manufacturingTime: Int? = nil, manufacturingTimeUnit: String? = nil) {
-            
-            self.manufacturingTimeUnit = manufacturingTimeUnit
+        public init(isCustomOrder: Bool? = nil, manufacturingTime: Int? = nil, manufacturingTimeUnit: String? = nil) {
             
             self.isCustomOrder = isCustomOrder
             
             self.manufacturingTime = manufacturingTime
+            
+            self.manufacturingTimeUnit = manufacturingTimeUnit
             
         }
 
@@ -44,7 +44,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    manufacturingTimeUnit = try container.decode(String.self, forKey: .manufacturingTimeUnit)
+                    isCustomOrder = try container.decode(Bool.self, forKey: .isCustomOrder)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,13 +55,20 @@ public extension PlatformClient.Catalog {
                 
             
             
-                isCustomOrder = try container.decode(Bool.self, forKey: .isCustomOrder)
+                do {
+                    manufacturingTime = try container.decode(Int.self, forKey: .manufacturingTime)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
                 do {
-                    manufacturingTime = try container.decode(Int.self, forKey: .manufacturingTime)
+                    manufacturingTimeUnit = try container.decode(String.self, forKey: .manufacturingTimeUnit)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,17 +85,17 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(manufacturingTimeUnit, forKey: .manufacturingTimeUnit)
-            
-            
-            
-            
             try? container.encodeIfPresent(isCustomOrder, forKey: .isCustomOrder)
             
             
             
             
             try? container.encodeIfPresent(manufacturingTime, forKey: .manufacturingTime)
+            
+            
+            
+            
+            try? container.encodeIfPresent(manufacturingTimeUnit, forKey: .manufacturingTimeUnit)
             
             
         }
@@ -107,30 +114,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CustomOrder: Codable {
         
         
-        public var manufacturingTimeUnit: String?
-        
-        public var isCustomOrder: Bool
+        public var isCustomOrder: Bool?
         
         public var manufacturingTime: Int?
         
+        public var manufacturingTimeUnit: String?
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case manufacturingTimeUnit = "manufacturing_time_unit"
             
             case isCustomOrder = "is_custom_order"
             
             case manufacturingTime = "manufacturing_time"
             
+            case manufacturingTimeUnit = "manufacturing_time_unit"
+            
         }
 
-        public init(isCustomOrder: Bool, manufacturingTime: Int? = nil, manufacturingTimeUnit: String? = nil) {
-            
-            self.manufacturingTimeUnit = manufacturingTimeUnit
+        public init(isCustomOrder: Bool? = nil, manufacturingTime: Int? = nil, manufacturingTimeUnit: String? = nil) {
             
             self.isCustomOrder = isCustomOrder
             
             self.manufacturingTime = manufacturingTime
+            
+            self.manufacturingTimeUnit = manufacturingTimeUnit
             
         }
 
@@ -139,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    manufacturingTimeUnit = try container.decode(String.self, forKey: .manufacturingTimeUnit)
+                    isCustomOrder = try container.decode(Bool.self, forKey: .isCustomOrder)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,13 +157,20 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                isCustomOrder = try container.decode(Bool.self, forKey: .isCustomOrder)
+                do {
+                    manufacturingTime = try container.decode(Int.self, forKey: .manufacturingTime)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
                 do {
-                    manufacturingTime = try container.decode(Int.self, forKey: .manufacturingTime)
+                    manufacturingTimeUnit = try container.decode(String.self, forKey: .manufacturingTimeUnit)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -173,17 +187,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(manufacturingTimeUnit, forKey: .manufacturingTimeUnit)
-            
-            
-            
-            
             try? container.encodeIfPresent(isCustomOrder, forKey: .isCustomOrder)
             
             
             
             
             try? container.encodeIfPresent(manufacturingTime, forKey: .manufacturingTime)
+            
+            
+            
+            
+            try? container.encodeIfPresent(manufacturingTimeUnit, forKey: .manufacturingTimeUnit)
             
             
         }

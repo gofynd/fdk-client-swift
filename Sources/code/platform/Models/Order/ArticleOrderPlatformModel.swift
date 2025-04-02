@@ -18,7 +18,7 @@ public extension PlatformClient.Order {
         
         public var uid: String
         
-        public var set: [String: Any]?
+        public var aSet: [String: Any]?
         
         public var dimensions: Dimensions?
         
@@ -55,7 +55,7 @@ public extension PlatformClient.Order {
             
             case uid = "uid"
             
-            case set = "set"
+            case aSet = "a_set"
             
             case dimensions = "dimensions"
             
@@ -85,7 +85,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, set: [String: Any]? = nil, size: String, tags: [String]? = nil, uid: String, variants: [String: Any]? = nil, weight: Weight? = nil, id: String) {
+        public init(aSet: [String: Any]? = nil, childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, size: String, tags: [String]? = nil, uid: String, variants: [String: Any]? = nil, weight: Weight? = nil, id: String) {
             
             self.childDetails = childDetails
             
@@ -93,7 +93,7 @@ public extension PlatformClient.Order {
             
             self.uid = uid
             
-            self.set = set
+            self.aSet = aSet
             
             self.dimensions = dimensions
             
@@ -150,7 +150,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    set = try container.decode([String: Any].self, forKey: .set)
+                    aSet = try container.decode([String: Any].self, forKey: .aSet)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -317,7 +317,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(set, forKey: .set)
+            try? container.encodeIfPresent(aSet, forKey: .aSet)
             
             
             
@@ -407,7 +407,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var uid: String
         
-        public var set: [String: Any]?
+        public var aSet: [String: Any]?
         
         public var dimensions: Dimensions?
         
@@ -444,7 +444,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case uid = "uid"
             
-            case set = "set"
+            case aSet = "a_set"
             
             case dimensions = "dimensions"
             
@@ -474,7 +474,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, set: [String: Any]? = nil, size: String, tags: [String]? = nil, uid: String, variants: [String: Any]? = nil, weight: Weight? = nil, id: String) {
+        public init(aSet: [String: Any]? = nil, childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, size: String, tags: [String]? = nil, uid: String, variants: [String: Any]? = nil, weight: Weight? = nil, id: String) {
             
             self.childDetails = childDetails
             
@@ -482,7 +482,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.uid = uid
             
-            self.set = set
+            self.aSet = aSet
             
             self.dimensions = dimensions
             
@@ -539,7 +539,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    set = try container.decode([String: Any].self, forKey: .set)
+                    aSet = try container.decode([String: Any].self, forKey: .aSet)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -706,7 +706,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(set, forKey: .set)
+            try? container.encodeIfPresent(aSet, forKey: .aSet)
             
             
             

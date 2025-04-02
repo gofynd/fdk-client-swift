@@ -74,6 +74,8 @@ public extension ApplicationClient.Cart {
         
         public var customCartMeta: [String: Any]?
         
+        public var errorCode: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -143,9 +145,11 @@ public extension ApplicationClient.Cart {
             
             case customCartMeta = "custom_cart_meta"
             
+            case errorCode = "error_code"
+            
         }
 
-        public init(appliedPromoDetails: [AppliedPromotion]? = nil, breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, codMessage: String? = nil, comment: String? = nil, commonConfig: CartCommonConfig? = nil, coupon: CartDetailCoupon? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customCart: CustomCart? = nil, customCartMeta: [String: Any]? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, gstin: String? = nil, id: String? = nil, isPanReceived: Bool? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, notification: [String: Any]? = nil, orderId: String? = nil, panConfig: [String: Any]? = nil, panNo: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, priceAdjustmentApplied: [PriceAdjustmentApplied]? = nil, restrictCheckout: Bool? = nil, staffUserId: String? = nil, success: Bool? = nil, uid: String? = nil, userType: String? = nil) {
+        public init(appliedPromoDetails: [AppliedPromotion]? = nil, breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, codMessage: String? = nil, comment: String? = nil, commonConfig: CartCommonConfig? = nil, coupon: CartDetailCoupon? = nil, couponText: String? = nil, currency: CartCurrency? = nil, customCart: CustomCart? = nil, customCartMeta: [String: Any]? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, errorCode: String? = nil, gstin: String? = nil, id: String? = nil, isPanReceived: Bool? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, notification: [String: Any]? = nil, orderId: String? = nil, panConfig: [String: Any]? = nil, panNo: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, priceAdjustmentApplied: [PriceAdjustmentApplied]? = nil, restrictCheckout: Bool? = nil, staffUserId: String? = nil, success: Bool? = nil, uid: String? = nil, userType: String? = nil) {
             
             self.userType = userType
             
@@ -212,6 +216,8 @@ public extension ApplicationClient.Cart {
             self.orderId = orderId
             
             self.customCartMeta = customCartMeta
+            
+            self.errorCode = errorCode
             
         }
 
@@ -614,6 +620,18 @@ public extension ApplicationClient.Cart {
             }
             
             
+            
+            do {
+                errorCode = try container.decode(String.self, forKey: .errorCode)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -749,6 +767,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(customCartMeta, forKey: .customCartMeta)
+            
+            
+            
+            try? container.encodeIfPresent(errorCode, forKey: .errorCode)
             
             
         }

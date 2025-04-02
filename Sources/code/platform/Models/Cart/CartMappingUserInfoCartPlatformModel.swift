@@ -24,8 +24,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var mobile: String?
         
-        public var email: String?
-        
         public var gender: String?
         
         public var createdAt: String?
@@ -49,8 +47,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case mobile = "mobile"
             
-            case email = "email"
-            
             case gender = "gender"
             
             case createdAt = "created_at"
@@ -63,7 +59,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(createdAt: String? = nil, email: String? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, isPanReceived: Bool? = nil, lastName: String? = nil, mobile: String? = nil, modifiedOn: String? = nil, uid: String? = nil, id: String? = nil) {
+        public init(createdAt: String? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, isPanReceived: Bool? = nil, lastName: String? = nil, mobile: String? = nil, modifiedOn: String? = nil, uid: String? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -74,8 +70,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.lastName = lastName
             
             self.mobile = mobile
-            
-            self.email = email
             
             self.gender = gender
             
@@ -143,18 +137,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     mobile = try container.decode(String.self, forKey: .mobile)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    email = try container.decode(String.self, forKey: .email)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -252,11 +234,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(mobile, forKey: .mobile)
-            
-            
-            
-            
-            try? container.encodeIfPresent(email, forKey: .email)
             
             
             

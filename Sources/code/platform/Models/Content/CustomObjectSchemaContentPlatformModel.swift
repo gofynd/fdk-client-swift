@@ -45,7 +45,7 @@ public extension PlatformClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "id"
+            case id = "_id"
             
             case name = "name"
             
@@ -77,7 +77,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, definitionId: String? = nil, displayName: String? = nil, fields: [CustomFieldSchema]? = nil, id: String? = nil, isDeleted: Bool? = nil, name: String? = nil, slug: String? = nil, status: String? = nil, type: String? = nil, updatedAt: String? = nil, updatedBy: String? = nil) {
+        public init(companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, definitionId: String? = nil, displayName: String? = nil, fields: [CustomFieldSchema]? = nil, isDeleted: Bool? = nil, name: String? = nil, slug: String? = nil, status: String? = nil, type: String? = nil, updatedAt: String? = nil, updatedBy: String? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -423,7 +423,7 @@ public extension PlatformClient.ApplicationClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "id"
+            case id = "_id"
             
             case name = "name"
             
@@ -455,7 +455,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, definitionId: String? = nil, displayName: String? = nil, fields: [CustomFieldSchema]? = nil, id: String? = nil, isDeleted: Bool? = nil, name: String? = nil, slug: String? = nil, status: String? = nil, type: String? = nil, updatedAt: String? = nil, updatedBy: String? = nil) {
+        public init(companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, definitionId: String? = nil, displayName: String? = nil, fields: [CustomFieldSchema]? = nil, isDeleted: Bool? = nil, name: String? = nil, slug: String? = nil, status: String? = nil, type: String? = nil, updatedAt: String? = nil, updatedBy: String? = nil, id: String? = nil) {
             
             self.id = id
             

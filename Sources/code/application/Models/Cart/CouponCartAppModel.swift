@@ -10,8 +10,6 @@ public extension ApplicationClient.Cart {
         
         public var title: String?
         
-        public var uid: Double?
-        
         public var maxDiscountValue: Double?
         
         public var couponCode: String?
@@ -55,8 +53,6 @@ public extension ApplicationClient.Cart {
             
             case title = "title"
             
-            case uid = "uid"
-            
             case maxDiscountValue = "max_discount_value"
             
             case couponCode = "coupon_code"
@@ -97,11 +93,9 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(couponAmount: Double? = nil, couponApplicableMessage: String? = nil, couponCode: String? = nil, couponType: String? = nil, couponValue: Double? = nil, description: String? = nil, endDate: String? = nil, expiresOn: String? = nil, isApplicable: Bool? = nil, isApplied: Bool? = nil, isBankOffer: Bool? = nil, maxDiscountValue: Double? = nil, medias: [CartCouponMedias]? = nil, message: String? = nil, minimumCartValue: Double? = nil, offerText: String? = nil, startDate: String? = nil, subTitle: String? = nil, tags: [String]? = nil, title: String? = nil, uid: Double? = nil) {
+        public init(couponAmount: Double? = nil, couponApplicableMessage: String? = nil, couponCode: String? = nil, couponType: String? = nil, couponValue: Double? = nil, description: String? = nil, endDate: String? = nil, expiresOn: String? = nil, isApplicable: Bool? = nil, isApplied: Bool? = nil, isBankOffer: Bool? = nil, maxDiscountValue: Double? = nil, medias: [CartCouponMedias]? = nil, message: String? = nil, minimumCartValue: Double? = nil, offerText: String? = nil, startDate: String? = nil, subTitle: String? = nil, tags: [String]? = nil, title: String? = nil) {
             
             self.title = title
-            
-            self.uid = uid
             
             self.maxDiscountValue = maxDiscountValue
             
@@ -149,18 +143,6 @@ public extension ApplicationClient.Cart {
             
             do {
                 title = try container.decode(String.self, forKey: .title)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                uid = try container.decode(Double.self, forKey: .uid)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -405,10 +387,6 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(title, forKey: .title)
-            
-            
-            
-            try? container.encodeIfPresent(uid, forKey: .uid)
             
             
             
