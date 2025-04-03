@@ -7,12 +7,10 @@ public extension ApplicationClient.FileStorage {
     withFileName fileName: String, 
     as contentType: String, 
     toNameSpace namespace: String,
-    withEncKey encKey: String?,
-    onResponse: @escaping (_ response: ApplicationClient.FileStorage.FileUploadComplete?, _ error: FDKError?) -> Void
+    onResponse: @escaping (_ response: ApplicationClient.FileStorage.CompleteResponse?, _ error: FDKError?) -> Void
     ) {
-        let requestBody = ApplicationClient.FileStorage.FileUploadStart(
+        let requestBody = ApplicationClient.FileStorage.StartRequest(
             contentType: contentType,
-            encKey: encKey,
             fileName: fileName,
             params: nil,
             size: data.count,

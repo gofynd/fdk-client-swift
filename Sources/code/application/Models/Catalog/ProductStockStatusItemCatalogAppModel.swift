@@ -12,20 +12,6 @@ public extension ApplicationClient.Catalog {
         
         public var quantity: Int?
         
-        public var brand: BrandItem?
-        
-        public var sellerIdentifier: String?
-        
-        public var priceEffective: Double?
-        
-        public var priceSelling: Double?
-        
-        public var priceMarked: Double?
-        
-        public var discountMeta: DiscountMeta?
-        
-        public var discountApplied: [String: Any]?
-        
         public var store: StoreDetail?
         
         public var size: String?
@@ -38,7 +24,7 @@ public extension ApplicationClient.Catalog {
         
         public var seller: Seller?
         
-        public var identifier: ArticleIdentifier?
+        public var identifier: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -46,20 +32,6 @@ public extension ApplicationClient.Catalog {
             case uid = "uid"
             
             case quantity = "quantity"
-            
-            case brand = "brand"
-            
-            case sellerIdentifier = "seller_identifier"
-            
-            case priceEffective = "price_effective"
-            
-            case priceSelling = "price_selling"
-            
-            case priceMarked = "price_marked"
-            
-            case discountMeta = "discount_meta"
-            
-            case discountApplied = "discount_applied"
             
             case store = "store"
             
@@ -77,25 +49,11 @@ public extension ApplicationClient.Catalog {
             
         }
 
-        public init(brand: BrandItem? = nil, company: CompanyDetail? = nil, discountApplied: [String: Any]? = nil, discountMeta: DiscountMeta? = nil, identifier: ArticleIdentifier? = nil, itemId: Int? = nil, price: ProductStockPrice? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, priceSelling: Double? = nil, quantity: Int? = nil, seller: Seller? = nil, sellerIdentifier: String? = nil, size: String? = nil, store: StoreDetail? = nil, uid: String? = nil) {
+        public init(company: CompanyDetail? = nil, identifier: [String: Any]? = nil, itemId: Int? = nil, price: ProductStockPrice? = nil, quantity: Int? = nil, seller: Seller? = nil, size: String? = nil, store: StoreDetail? = nil, uid: String? = nil) {
             
             self.uid = uid
             
             self.quantity = quantity
-            
-            self.brand = brand
-            
-            self.sellerIdentifier = sellerIdentifier
-            
-            self.priceEffective = priceEffective
-            
-            self.priceSelling = priceSelling
-            
-            self.priceMarked = priceMarked
-            
-            self.discountMeta = discountMeta
-            
-            self.discountApplied = discountApplied
             
             self.store = store
             
@@ -131,90 +89,6 @@ public extension ApplicationClient.Catalog {
             
             do {
                 quantity = try container.decode(Int.self, forKey: .quantity)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                brand = try container.decode(BrandItem.self, forKey: .brand)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                priceEffective = try container.decode(Double.self, forKey: .priceEffective)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                priceSelling = try container.decode(Double.self, forKey: .priceSelling)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                priceMarked = try container.decode(Double.self, forKey: .priceMarked)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                discountMeta = try container.decode(DiscountMeta.self, forKey: .discountMeta)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                discountApplied = try container.decode([String: Any].self, forKey: .discountApplied)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -298,7 +172,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                identifier = try container.decode(ArticleIdentifier.self, forKey: .identifier)
+                identifier = try container.decode([String: Any].self, forKey: .identifier)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -319,34 +193,6 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(quantity, forKey: .quantity)
-            
-            
-            
-            try? container.encodeIfPresent(brand, forKey: .brand)
-            
-            
-            
-            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
-            
-            
-            
-            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
-            
-            
-            
-            try? container.encodeIfPresent(priceSelling, forKey: .priceSelling)
-            
-            
-            
-            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
-            
-            
-            
-            try? container.encodeIfPresent(discountMeta, forKey: .discountMeta)
-            
-            
-            
-            try? container.encodeIfPresent(discountApplied, forKey: .discountApplied)
             
             
             

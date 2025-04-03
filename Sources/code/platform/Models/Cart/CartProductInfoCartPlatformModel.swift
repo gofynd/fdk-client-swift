@@ -36,8 +36,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var bulkOffer: [String: Any]?
         
-        public var priceAdjustmentApplied: [ArticleAppliedPriceAdjustment]?
-        
         public var price: ProductPriceInfo?
         
         public var couponMessage: String?
@@ -50,25 +48,13 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var availability: ProductAvailability?
         
-        public var moq: CartItemMOQ?
+        public var moq: [String: Any]?
         
         public var pricePerUnit: ProductPriceInfo?
         
         public var promoMeta: PromoMeta?
         
-        public var customOrder: CartItemCustomOrder?
-        
-        public var charges: [Double]?
-        
-        public var allowRemove: Bool?
-        
-        public var autoAddToCart: Bool?
-        
-        public var discountMeta: DiscountMeta?
-        
-        public var journeyWisePromise: [JourneyPromiseObject]?
-        
-        public var distance: Double?
+        public var customOrder: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -95,8 +81,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case bulkOffer = "bulk_offer"
             
-            case priceAdjustmentApplied = "price_adjustment_applied"
-            
             case price = "price"
             
             case couponMessage = "coupon_message"
@@ -117,21 +101,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case customOrder = "custom_order"
             
-            case charges = "charges"
-            
-            case allowRemove = "allow_remove"
-            
-            case autoAddToCart = "auto_add_to_cart"
-            
-            case discountMeta = "discount_meta"
-            
-            case journeyWisePromise = "journey_wise_promise"
-            
-            case distance = "distance"
-            
         }
 
-        public init(allowRemove: Bool? = nil, article: ProductArticle? = nil, autoAddToCart: Bool? = nil, availability: ProductAvailability? = nil, bulkOffer: [String: Any]? = nil, charges: [Double]? = nil, coupon: CouponDetails? = nil, couponMessage: String? = nil, customOrder: CartItemCustomOrder? = nil, deliveryPromise: ShipmentPromise? = nil, discount: String? = nil, discountMeta: DiscountMeta? = nil, distance: Double? = nil, identifiers: CartProductIdentifer, isSet: Bool? = nil, journeyWisePromise: [JourneyPromiseObject]? = nil, key: String? = nil, message: String? = nil, moq: CartItemMOQ? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ProductPriceInfo? = nil, priceAdjustmentApplied: [ArticleAppliedPriceAdjustment]? = nil, pricePerUnit: ProductPriceInfo? = nil, product: CartProduct? = nil, productEanId: String? = nil, promotionsApplied: [AppliedPromotion]? = nil, promoMeta: PromoMeta? = nil, quantity: Int? = nil) {
+        public init(article: ProductArticle? = nil, availability: ProductAvailability? = nil, bulkOffer: [String: Any]? = nil, coupon: CouponDetails? = nil, couponMessage: String? = nil, customOrder: [String: Any]? = nil, deliveryPromise: ShipmentPromise? = nil, discount: String? = nil, identifiers: CartProductIdentifer, isSet: Bool? = nil, key: String? = nil, message: String? = nil, moq: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ProductPriceInfo? = nil, pricePerUnit: ProductPriceInfo? = nil, product: CartProduct? = nil, productEanId: String? = nil, promotionsApplied: [AppliedPromotion]? = nil, promoMeta: PromoMeta? = nil, quantity: Int? = nil) {
             
             self.quantity = quantity
             
@@ -155,8 +127,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             self.bulkOffer = bulkOffer
             
-            self.priceAdjustmentApplied = priceAdjustmentApplied
-            
             self.price = price
             
             self.couponMessage = couponMessage
@@ -176,18 +146,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.promoMeta = promoMeta
             
             self.customOrder = customOrder
-            
-            self.charges = charges
-            
-            self.allowRemove = allowRemove
-            
-            self.autoAddToCart = autoAddToCart
-            
-            self.discountMeta = discountMeta
-            
-            self.journeyWisePromise = journeyWisePromise
-            
-            self.distance = distance
             
         }
 
@@ -328,18 +286,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    priceAdjustmentApplied = try container.decode([ArticleAppliedPriceAdjustment].self, forKey: .priceAdjustmentApplied)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     price = try container.decode(ProductPriceInfo.self, forKey: .price)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -405,7 +351,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    moq = try container.decode(CartItemMOQ.self, forKey: .moq)
+                    moq = try container.decode([String: Any].self, forKey: .moq)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -441,79 +387,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    customOrder = try container.decode(CartItemCustomOrder.self, forKey: .customOrder)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    charges = try container.decode([Double].self, forKey: .charges)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    allowRemove = try container.decode(Bool.self, forKey: .allowRemove)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    autoAddToCart = try container.decode(Bool.self, forKey: .autoAddToCart)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    discountMeta = try container.decode(DiscountMeta.self, forKey: .discountMeta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    journeyWisePromise = try container.decode([JourneyPromiseObject].self, forKey: .journeyWisePromise)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    distance = try container.decode(Double.self, forKey: .distance)
+                    customOrder = try container.decode([String: Any].self, forKey: .customOrder)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -585,11 +459,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(priceAdjustmentApplied, forKey: .priceAdjustmentApplied)
-            
-            
-            
-            
             try? container.encodeIfPresent(price, forKey: .price)
             
             
@@ -636,36 +505,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(customOrder, forKey: .customOrder)
-            
-            
-            
-            
-            try? container.encodeIfPresent(charges, forKey: .charges)
-            
-            
-            
-            
-            try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
-            
-            
-            
-            
-            try? container.encodeIfPresent(autoAddToCart, forKey: .autoAddToCart)
-            
-            
-            
-            
-            try? container.encodeIfPresent(discountMeta, forKey: .discountMeta)
-            
-            
-            
-            
-            try? container.encodeIfPresent(journeyWisePromise, forKey: .journeyWisePromise)
-            
-            
-            
-            
-            try? container.encodeIfPresent(distance, forKey: .distance)
             
             
         }

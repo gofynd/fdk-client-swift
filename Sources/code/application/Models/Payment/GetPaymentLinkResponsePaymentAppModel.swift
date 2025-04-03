@@ -26,10 +26,6 @@ public extension ApplicationClient.Payment {
         
         public var amount: Double?
         
-        public var currency: String?
-        
-        public var error: ErrorDescription?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -51,13 +47,9 @@ public extension ApplicationClient.Payment {
             
             case amount = "amount"
             
-            case currency = "currency"
-            
-            case error = "error"
-            
         }
 
-        public init(amount: Double? = nil, currency: String? = nil, error: ErrorDescription? = nil, externalOrderId: String? = nil, merchantName: String? = nil, message: String, paymentLinkCurrentStatus: String? = nil, paymentLinkUrl: String? = nil, pollingTimeout: Int? = nil, statusCode: Int, success: Bool) {
+        public init(amount: Double? = nil, externalOrderId: String? = nil, merchantName: String? = nil, message: String, paymentLinkCurrentStatus: String? = nil, paymentLinkUrl: String? = nil, pollingTimeout: Int? = nil, statusCode: Int, success: Bool) {
             
             self.statusCode = statusCode
             
@@ -76,10 +68,6 @@ public extension ApplicationClient.Payment {
             self.merchantName = merchantName
             
             self.amount = amount
-            
-            self.currency = currency
-            
-            self.error = error
             
         }
 
@@ -173,30 +161,6 @@ public extension ApplicationClient.Payment {
             }
             
             
-            
-            do {
-                currency = try container.decode(String.self, forKey: .currency)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                error = try container.decode(ErrorDescription.self, forKey: .error)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -236,14 +200,6 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(amount, forKey: .amount)
-            
-            
-            
-            try? container.encodeIfPresent(currency, forKey: .currency)
-            
-            
-            
-            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }

@@ -18,8 +18,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var isDeleted: Bool?
         
-        public var addressId: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -27,17 +25,13 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case isDeleted = "is_deleted"
             
-            case addressId = "address_id"
-            
         }
 
-        public init(addressId: String? = nil, id: String? = nil, isDeleted: Bool? = nil) {
+        public init(id: String? = nil, isDeleted: Bool? = nil) {
             
             self.id = id
             
             self.isDeleted = isDeleted
-            
-            self.addressId = addressId
             
         }
 
@@ -68,18 +62,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
-            
-                do {
-                    addressId = try container.decode(String.self, forKey: .addressId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -93,11 +75,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(isDeleted, forKey: .isDeleted)
-            
-            
-            
-            
-            try? container.encodeIfPresent(addressId, forKey: .addressId)
             
             
         }

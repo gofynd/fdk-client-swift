@@ -16,7 +16,7 @@ public extension PlatformClient.CompanyProfile {
         
         public var countryCode: String
         
-        public var pincode: String?
+        public var pincode: Int?
         
         public var addressType: String?
         
@@ -69,7 +69,7 @@ public extension PlatformClient.CompanyProfile {
             
         }
 
-        public init(address1: String? = nil, address2: String? = nil, addressType: String? = nil, city: String? = nil, country: String? = nil, countryCode: String, landmark: String? = nil, latitude: Double, longitude: Double, pincode: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil) {
+        public init(address1: String? = nil, address2: String? = nil, addressType: String? = nil, city: String? = nil, country: String? = nil, countryCode: String, landmark: String? = nil, latitude: Double, longitude: Double, pincode: Int? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil) {
             
             self.landmark = landmark
             
@@ -121,7 +121,7 @@ public extension PlatformClient.CompanyProfile {
             
             
                 do {
-                    pincode = try container.decode(String.self, forKey: .pincode)
+                    pincode = try container.decode(Int.self, forKey: .pincode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

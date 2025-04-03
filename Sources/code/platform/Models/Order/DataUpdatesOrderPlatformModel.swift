@@ -18,8 +18,6 @@ public extension PlatformClient.Order {
         
         public var entities: [EntitiesDataUpdates]?
         
-        public var repricedProducts: [RepricedProductsDataUpdates]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -29,19 +27,15 @@ public extension PlatformClient.Order {
             
             case entities = "entities"
             
-            case repricedProducts = "repriced_products"
-            
         }
 
-        public init(entities: [EntitiesDataUpdates]? = nil, orderItemStatus: [OrderItemDataUpdates]? = nil, products: [ProductsDataUpdates]? = nil, repricedProducts: [RepricedProductsDataUpdates]? = nil) {
+        public init(entities: [EntitiesDataUpdates]? = nil, orderItemStatus: [OrderItemDataUpdates]? = nil, products: [ProductsDataUpdates]? = nil) {
             
             self.orderItemStatus = orderItemStatus
             
             self.products = products
             
             self.entities = entities
-            
-            self.repricedProducts = repricedProducts
             
         }
 
@@ -84,18 +78,6 @@ public extension PlatformClient.Order {
                 }
                 
             
-            
-                do {
-                    repricedProducts = try container.decode([RepricedProductsDataUpdates].self, forKey: .repricedProducts)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -114,11 +96,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(entities, forKey: .entities)
-            
-            
-            
-            
-            try? container.encodeIfPresent(repricedProducts, forKey: .repricedProducts)
             
             
         }
@@ -143,8 +120,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var entities: [EntitiesDataUpdates]?
         
-        public var repricedProducts: [RepricedProductsDataUpdates]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -154,19 +129,15 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case entities = "entities"
             
-            case repricedProducts = "repriced_products"
-            
         }
 
-        public init(entities: [EntitiesDataUpdates]? = nil, orderItemStatus: [OrderItemDataUpdates]? = nil, products: [ProductsDataUpdates]? = nil, repricedProducts: [RepricedProductsDataUpdates]? = nil) {
+        public init(entities: [EntitiesDataUpdates]? = nil, orderItemStatus: [OrderItemDataUpdates]? = nil, products: [ProductsDataUpdates]? = nil) {
             
             self.orderItemStatus = orderItemStatus
             
             self.products = products
             
             self.entities = entities
-            
-            self.repricedProducts = repricedProducts
             
         }
 
@@ -209,18 +180,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
-            
-                do {
-                    repricedProducts = try container.decode([RepricedProductsDataUpdates].self, forKey: .repricedProducts)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -239,11 +198,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(entities, forKey: .entities)
-            
-            
-            
-            
-            try? container.encodeIfPresent(repricedProducts, forKey: .repricedProducts)
             
             
         }

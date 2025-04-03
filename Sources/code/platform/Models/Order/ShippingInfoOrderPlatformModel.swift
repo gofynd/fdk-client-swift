@@ -12,8 +12,6 @@ public extension PlatformClient.Order {
     class ShippingInfo: Codable {
         
         
-        public var phone: String?
-        
         public var alternateMobileNumber: String?
         
         public var state: String?
@@ -75,8 +73,6 @@ public extension PlatformClient.Order {
 
         public enum CodingKeys: String, CodingKey {
             
-            case phone = "phone"
-            
             case alternateMobileNumber = "alternate_mobile_number"
             
             case state = "state"
@@ -137,9 +133,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, addressType: String? = nil, alternateEmail: String? = nil, alternateMobileNumber: String? = nil, area: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, customerCode: String? = nil, externalCustomerCode: String? = nil, firstName: String? = nil, floorNo: String? = nil, gender: String? = nil, geoLocation: GeoLocationSchema? = nil, houseNo: String? = nil, landmark: String? = nil, lastName: String? = nil, middleName: String? = nil, phone: String? = nil, pincode: String? = nil, primaryEmail: String? = nil, primaryMobileNumber: String? = nil, shippingType: String? = nil, slot: [[String: Any]]? = nil, state: String? = nil, stateCode: String? = nil, title: String? = nil) {
-            
-            self.phone = phone
+        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, addressType: String? = nil, alternateEmail: String? = nil, alternateMobileNumber: String? = nil, area: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, customerCode: String? = nil, externalCustomerCode: String? = nil, firstName: String? = nil, floorNo: String? = nil, gender: String? = nil, geoLocation: GeoLocationSchema? = nil, houseNo: String? = nil, landmark: String? = nil, lastName: String? = nil, middleName: String? = nil, pincode: String? = nil, primaryEmail: String? = nil, primaryMobileNumber: String? = nil, shippingType: String? = nil, slot: [[String: Any]]? = nil, state: String? = nil, stateCode: String? = nil, title: String? = nil) {
             
             self.alternateMobileNumber = alternateMobileNumber
             
@@ -203,18 +197,6 @@ public extension PlatformClient.Order {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    phone = try container.decode(String.self, forKey: .phone)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -568,11 +550,6 @@ public extension PlatformClient.Order {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(phone, forKey: .phone)
-            
             
             
             
@@ -735,8 +712,6 @@ public extension PlatformClient.ApplicationClient.Order {
     class ShippingInfo: Codable {
         
         
-        public var phone: String?
-        
         public var alternateMobileNumber: String?
         
         public var state: String?
@@ -798,8 +773,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public enum CodingKeys: String, CodingKey {
             
-            case phone = "phone"
-            
             case alternateMobileNumber = "alternate_mobile_number"
             
             case state = "state"
@@ -860,9 +833,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, addressType: String? = nil, alternateEmail: String? = nil, alternateMobileNumber: String? = nil, area: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, customerCode: String? = nil, externalCustomerCode: String? = nil, firstName: String? = nil, floorNo: String? = nil, gender: String? = nil, geoLocation: GeoLocationSchema? = nil, houseNo: String? = nil, landmark: String? = nil, lastName: String? = nil, middleName: String? = nil, phone: String? = nil, pincode: String? = nil, primaryEmail: String? = nil, primaryMobileNumber: String? = nil, shippingType: String? = nil, slot: [[String: Any]]? = nil, state: String? = nil, stateCode: String? = nil, title: String? = nil) {
-            
-            self.phone = phone
+        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, addressType: String? = nil, alternateEmail: String? = nil, alternateMobileNumber: String? = nil, area: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, customerCode: String? = nil, externalCustomerCode: String? = nil, firstName: String? = nil, floorNo: String? = nil, gender: String? = nil, geoLocation: GeoLocationSchema? = nil, houseNo: String? = nil, landmark: String? = nil, lastName: String? = nil, middleName: String? = nil, pincode: String? = nil, primaryEmail: String? = nil, primaryMobileNumber: String? = nil, shippingType: String? = nil, slot: [[String: Any]]? = nil, state: String? = nil, stateCode: String? = nil, title: String? = nil) {
             
             self.alternateMobileNumber = alternateMobileNumber
             
@@ -926,18 +897,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    phone = try container.decode(String.self, forKey: .phone)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -1291,11 +1250,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(phone, forKey: .phone)
-            
             
             
             

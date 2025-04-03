@@ -18,7 +18,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var start: String?
         
-        public var nextSchedule: [NextSchedule]?
+        public var nextSchedule: [[String: Any]]?
         
         public var cron: String?
         
@@ -39,7 +39,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, start: String? = nil) {
+        public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [[String: Any]]? = nil, start: String? = nil) {
             
             self.end = end
             
@@ -82,7 +82,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    nextSchedule = try container.decode([NextSchedule].self, forKey: .nextSchedule)
+                    nextSchedule = try container.decode([[String: Any]].self, forKey: .nextSchedule)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

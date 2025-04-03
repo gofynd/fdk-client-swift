@@ -30,8 +30,6 @@ public extension PlatformClient.Configuration {
         
         public var order: OrderFeature?
         
-        public var buybox: BuyboxFeature?
-        
         public var id: String?
         
         public var app: String?
@@ -41,8 +39,6 @@ public extension PlatformClient.Configuration {
         public var modifiedAt: String?
         
         public var v: Int?
-        
-        public var pricingStrategy: PricingStrategy?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -65,8 +61,6 @@ public extension PlatformClient.Configuration {
             
             case order = "order"
             
-            case buybox = "buybox"
-            
             case id = "_id"
             
             case app = "app"
@@ -77,11 +71,9 @@ public extension PlatformClient.Configuration {
             
             case v = "__v"
             
-            case pricingStrategy = "pricing_strategy"
-            
         }
 
-        public init(app: String? = nil, buybox: BuyboxFeature? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, homePage: HomePageFeature? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, pcr: PcrFeature? = nil, pricingStrategy: PricingStrategy? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, id: String? = nil, v: Int? = nil) {
+        public init(app: String? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, homePage: HomePageFeature? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, pcr: PcrFeature? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, id: String? = nil, v: Int? = nil) {
             
             self.productDetail = productDetail
             
@@ -101,8 +93,6 @@ public extension PlatformClient.Configuration {
             
             self.order = order
             
-            self.buybox = buybox
-            
             self.id = id
             
             self.app = app
@@ -112,8 +102,6 @@ public extension PlatformClient.Configuration {
             self.modifiedAt = modifiedAt
             
             self.v = v
-            
-            self.pricingStrategy = pricingStrategy
             
         }
 
@@ -230,18 +218,6 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    buybox = try container.decode(BuyboxFeature.self, forKey: .buybox)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -291,18 +267,6 @@ public extension PlatformClient.Configuration {
             
                 do {
                     v = try container.decode(Int.self, forKey: .v)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    pricingStrategy = try container.decode(PricingStrategy.self, forKey: .pricingStrategy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -364,11 +328,6 @@ public extension PlatformClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(buybox, forKey: .buybox)
-            
-            
-            
-            
             try? container.encodeIfPresent(id, forKey: .id)
             
             
@@ -390,11 +349,6 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(v, forKey: .v)
-            
-            
-            
-            
-            try? container.encodeIfPresent(pricingStrategy, forKey: .pricingStrategy)
             
             
         }
@@ -431,8 +385,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var order: OrderFeature?
         
-        public var buybox: BuyboxFeature?
-        
         public var id: String?
         
         public var app: String?
@@ -442,8 +394,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
         public var modifiedAt: String?
         
         public var v: Int?
-        
-        public var pricingStrategy: PricingStrategy?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -466,8 +416,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case order = "order"
             
-            case buybox = "buybox"
-            
             case id = "_id"
             
             case app = "app"
@@ -478,11 +426,9 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case v = "__v"
             
-            case pricingStrategy = "pricing_strategy"
-            
         }
 
-        public init(app: String? = nil, buybox: BuyboxFeature? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, homePage: HomePageFeature? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, pcr: PcrFeature? = nil, pricingStrategy: PricingStrategy? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, id: String? = nil, v: Int? = nil) {
+        public init(app: String? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, homePage: HomePageFeature? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, pcr: PcrFeature? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, id: String? = nil, v: Int? = nil) {
             
             self.productDetail = productDetail
             
@@ -502,8 +448,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             self.order = order
             
-            self.buybox = buybox
-            
             self.id = id
             
             self.app = app
@@ -513,8 +457,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.modifiedAt = modifiedAt
             
             self.v = v
-            
-            self.pricingStrategy = pricingStrategy
             
         }
 
@@ -631,18 +573,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    buybox = try container.decode(BuyboxFeature.self, forKey: .buybox)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -692,18 +622,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
                 do {
                     v = try container.decode(Int.self, forKey: .v)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    pricingStrategy = try container.decode(PricingStrategy.self, forKey: .pricingStrategy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -765,11 +683,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(buybox, forKey: .buybox)
-            
-            
-            
-            
             try? container.encodeIfPresent(id, forKey: .id)
             
             
@@ -791,11 +704,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(v, forKey: .v)
-            
-            
-            
-            
-            try? container.encodeIfPresent(pricingStrategy, forKey: .pricingStrategy)
             
             
         }

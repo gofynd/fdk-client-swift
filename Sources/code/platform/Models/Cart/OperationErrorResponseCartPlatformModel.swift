@@ -18,7 +18,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var message: String?
         
-        public var errors: String?
+        public var error: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -27,17 +27,17 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case message = "message"
             
-            case errors = "errors"
+            case error = "error"
             
         }
 
-        public init(errors: String? = nil, message: String? = nil, success: Bool? = nil) {
+        public init(error: String? = nil, message: String? = nil, success: Bool? = nil) {
             
             self.success = success
             
             self.message = message
             
-            self.errors = errors
+            self.error = error
             
         }
 
@@ -70,7 +70,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    errors = try container.decode(String.self, forKey: .errors)
+                    error = try container.decode(String.self, forKey: .error)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +97,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(errors, forKey: .errors)
+            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }

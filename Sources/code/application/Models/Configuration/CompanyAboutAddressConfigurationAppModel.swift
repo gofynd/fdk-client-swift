@@ -8,7 +8,7 @@ public extension ApplicationClient.Configuration {
     */
     class CompanyAboutAddress: Codable {
         
-        public var pincode: String?
+        public var pincode: Int?
         
         public var address1: String?
         
@@ -41,7 +41,7 @@ public extension ApplicationClient.Configuration {
             
         }
 
-        public init(address1: String? = nil, address2: String? = nil, addressType: String? = nil, city: String? = nil, country: String? = nil, pincode: String? = nil, state: String? = nil) {
+        public init(address1: String? = nil, address2: String? = nil, addressType: String? = nil, city: String? = nil, country: String? = nil, pincode: Int? = nil, state: String? = nil) {
             
             self.pincode = pincode
             
@@ -64,7 +64,7 @@ public extension ApplicationClient.Configuration {
             
             
             do {
-                pincode = try container.decode(String.self, forKey: .pincode)
+                pincode = try container.decode(Int.self, forKey: .pincode)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

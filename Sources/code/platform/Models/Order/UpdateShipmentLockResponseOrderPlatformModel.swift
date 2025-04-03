@@ -18,8 +18,6 @@ public extension PlatformClient.Order {
         
         public var checkResponse: [CheckResponse]?
         
-        public var status: Int?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -29,19 +27,15 @@ public extension PlatformClient.Order {
             
             case checkResponse = "check_response"
             
-            case status = "status"
-            
         }
 
-        public init(checkResponse: [CheckResponse]? = nil, message: String? = nil, status: Int? = nil, success: Bool? = nil) {
+        public init(checkResponse: [CheckResponse]? = nil, message: String? = nil, success: Bool? = nil) {
             
             self.success = success
             
             self.message = message
             
             self.checkResponse = checkResponse
-            
-            self.status = status
             
         }
 
@@ -84,18 +78,6 @@ public extension PlatformClient.Order {
                 }
                 
             
-            
-                do {
-                    status = try container.decode(Int.self, forKey: .status)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -114,11 +96,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(checkResponse, forKey: .checkResponse)
-            
-            
-            
-            
-            try? container.encodeIfPresent(status, forKey: .status)
             
             
         }
@@ -143,8 +120,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var checkResponse: [CheckResponse]?
         
-        public var status: Int?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -154,19 +129,15 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case checkResponse = "check_response"
             
-            case status = "status"
-            
         }
 
-        public init(checkResponse: [CheckResponse]? = nil, message: String? = nil, status: Int? = nil, success: Bool? = nil) {
+        public init(checkResponse: [CheckResponse]? = nil, message: String? = nil, success: Bool? = nil) {
             
             self.success = success
             
             self.message = message
             
             self.checkResponse = checkResponse
-            
-            self.status = status
             
         }
 
@@ -209,18 +180,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
-            
-                do {
-                    status = try container.decode(Int.self, forKey: .status)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -239,11 +198,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(checkResponse, forKey: .checkResponse)
-            
-            
-            
-            
-            try? container.encodeIfPresent(status, forKey: .status)
             
             
         }

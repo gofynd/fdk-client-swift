@@ -26,8 +26,6 @@ public extension ApplicationClient.Payment {
         
         public var contact: String?
         
-        public var bank: String?
-        
         public var method: String?
         
 
@@ -51,13 +49,11 @@ public extension ApplicationClient.Payment {
             
             case contact = "contact"
             
-            case bank = "bank"
-            
             case method = "method"
             
         }
 
-        public init(aggregator: String? = nil, amount: Double? = nil, bank: String? = nil, callbackUrl: String? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, email: String? = nil, merchantOrderId: String? = nil, method: String? = nil, orderId: String? = nil) {
+        public init(aggregator: String? = nil, amount: Double? = nil, callbackUrl: String? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, email: String? = nil, merchantOrderId: String? = nil, method: String? = nil, orderId: String? = nil) {
             
             self.amount = amount
             
@@ -76,8 +72,6 @@ public extension ApplicationClient.Payment {
             self.email = email
             
             self.contact = contact
-            
-            self.bank = bank
             
             self.method = method
             
@@ -196,18 +190,6 @@ public extension ApplicationClient.Payment {
             
             
             do {
-                bank = try container.decode(String.self, forKey: .bank)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
                 method = try container.decode(String.self, forKey: .method)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -257,10 +239,6 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(contact, forKey: .contact)
-            
-            
-            
-            try? container.encodeIfPresent(bank, forKey: .bank)
             
             
             

@@ -12,8 +12,6 @@ public extension PlatformClient.Order {
     class HistoryDict: Codable {
         
         
-        public var userDetails: [String: Any]?
-        
         public var displayMessage: String?
         
         public var bagId: Int?
@@ -45,8 +43,6 @@ public extension PlatformClient.Order {
 
         public enum CodingKeys: String, CodingKey {
             
-            case userDetails = "user_details"
-            
             case displayMessage = "display_message"
             
             case bagId = "bag_id"
@@ -77,9 +73,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(assignedAgent: String? = nil, bagId: Int? = nil, createdat: String, createdTs: String? = nil, displayMessage: String? = nil, l1Detail: String? = nil, l2Detail: String? = nil, l3Detail: String? = nil, message: String, meta: HistoryMeta? = nil, ticketId: String? = nil, ticketUrl: String? = nil, type: String, user: String, userDetails: [String: Any]? = nil) {
-            
-            self.userDetails = userDetails
+        public init(assignedAgent: String? = nil, bagId: Int? = nil, createdat: String, createdTs: String? = nil, displayMessage: String? = nil, l1Detail: String? = nil, l2Detail: String? = nil, l3Detail: String? = nil, message: String, meta: HistoryMeta? = nil, ticketId: String? = nil, ticketUrl: String? = nil, type: String, user: String) {
             
             self.displayMessage = displayMessage
             
@@ -113,18 +107,6 @@ public extension PlatformClient.Order {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    userDetails = try container.decode([String: Any].self, forKey: .userDetails)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -270,11 +252,6 @@ public extension PlatformClient.Order {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(userDetails, forKey: .userDetails)
-            
             
             
             
@@ -362,8 +339,6 @@ public extension PlatformClient.ApplicationClient.Order {
     class HistoryDict: Codable {
         
         
-        public var userDetails: [String: Any]?
-        
         public var displayMessage: String?
         
         public var bagId: Int?
@@ -395,8 +370,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public enum CodingKeys: String, CodingKey {
             
-            case userDetails = "user_details"
-            
             case displayMessage = "display_message"
             
             case bagId = "bag_id"
@@ -427,9 +400,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(assignedAgent: String? = nil, bagId: Int? = nil, createdat: String, createdTs: String? = nil, displayMessage: String? = nil, l1Detail: String? = nil, l2Detail: String? = nil, l3Detail: String? = nil, message: String, meta: HistoryMeta? = nil, ticketId: String? = nil, ticketUrl: String? = nil, type: String, user: String, userDetails: [String: Any]? = nil) {
-            
-            self.userDetails = userDetails
+        public init(assignedAgent: String? = nil, bagId: Int? = nil, createdat: String, createdTs: String? = nil, displayMessage: String? = nil, l1Detail: String? = nil, l2Detail: String? = nil, l3Detail: String? = nil, message: String, meta: HistoryMeta? = nil, ticketId: String? = nil, ticketUrl: String? = nil, type: String, user: String) {
             
             self.displayMessage = displayMessage
             
@@ -463,18 +434,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    userDetails = try container.decode([String: Any].self, forKey: .userDetails)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -620,11 +579,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(userDetails, forKey: .userDetails)
-            
             
             
             

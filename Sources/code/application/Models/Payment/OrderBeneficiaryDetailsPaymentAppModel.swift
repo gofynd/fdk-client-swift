@@ -12,7 +12,7 @@ public extension ApplicationClient.Payment {
         
         public var accountNo: String
         
-        public var mobile: String
+        public var mobile: String?
         
         public var bankName: String
         
@@ -32,31 +32,19 @@ public extension ApplicationClient.Payment {
         
         public var transferMode: String
         
-        public var branchName: String
+        public var branchName: String?
         
         public var createdOn: String
         
         public var subtitle: String
         
-        public var comment: String
+        public var comment: String?
         
         public var address: String
         
         public var title: String
         
         public var displayName: String
-        
-        public var aggregatorId: String?
-        
-        public var isVerified: Bool?
-        
-        public var status: String?
-        
-        public var txnId: String?
-        
-        public var meta: [String: Any]?
-        
-        public var defaultBeneficiary: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -99,21 +87,9 @@ public extension ApplicationClient.Payment {
             
             case displayName = "display_name"
             
-            case aggregatorId = "aggregator_id"
-            
-            case isVerified = "is_verified"
-            
-            case status = "status"
-            
-            case txnId = "txn_id"
-            
-            case meta = "meta"
-            
-            case defaultBeneficiary = "default_beneficiary"
-            
         }
 
-        public init(accountHolder: String, accountNo: String, address: String, aggregatorId: String? = nil, bankName: String, beneficiaryId: String, branchName: String, comment: String, createdOn: String, defaultBeneficiary: Bool? = nil, delightsUserName: String? = nil, displayName: String, email: String, id: Int, ifscCode: String, isActive: Bool, isVerified: Bool? = nil, meta: [String: Any]? = nil, mobile: String, modifiedOn: String, status: String? = nil, subtitle: String, title: String, transferMode: String, txnId: String? = nil) {
+        public init(accountHolder: String, accountNo: String, address: String, bankName: String, beneficiaryId: String, branchName: String? = nil, comment: String? = nil, createdOn: String, delightsUserName: String? = nil, displayName: String, email: String, id: Int, ifscCode: String, isActive: Bool, mobile: String? = nil, modifiedOn: String, subtitle: String, title: String, transferMode: String) {
             
             self.modifiedOn = modifiedOn
             
@@ -153,18 +129,6 @@ public extension ApplicationClient.Payment {
             
             self.displayName = displayName
             
-            self.aggregatorId = aggregatorId
-            
-            self.isVerified = isVerified
-            
-            self.status = status
-            
-            self.txnId = txnId
-            
-            self.meta = meta
-            
-            self.defaultBeneficiary = defaultBeneficiary
-            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -181,8 +145,15 @@ public extension ApplicationClient.Payment {
             
             
             
-            mobile = try container.decode(String.self, forKey: .mobile)
+            do {
+                mobile = try container.decode(String.self, forKey: .mobile)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -238,8 +209,15 @@ public extension ApplicationClient.Payment {
             
             
             
-            branchName = try container.decode(String.self, forKey: .branchName)
+            do {
+                branchName = try container.decode(String.self, forKey: .branchName)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -253,8 +231,15 @@ public extension ApplicationClient.Payment {
             
             
             
-            comment = try container.decode(String.self, forKey: .comment)
+            do {
+                comment = try container.decode(String.self, forKey: .comment)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -270,78 +255,6 @@ public extension ApplicationClient.Payment {
             
             displayName = try container.decode(String.self, forKey: .displayName)
             
-            
-            
-            
-            do {
-                aggregatorId = try container.decode(String.self, forKey: .aggregatorId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                isVerified = try container.decode(Bool.self, forKey: .isVerified)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                status = try container.decode(String.self, forKey: .status)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                txnId = try container.decode(String.self, forKey: .txnId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                defaultBeneficiary = try container.decode(Bool.self, forKey: .defaultBeneficiary)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
         }
@@ -423,30 +336,6 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(displayName, forKey: .displayName)
-            
-            
-            
-            try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
-            
-            
-            
-            try? container.encodeIfPresent(isVerified, forKey: .isVerified)
-            
-            
-            
-            try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            try? container.encodeIfPresent(txnId, forKey: .txnId)
-            
-            
-            
-            try? container.encodeIfPresent(meta, forKey: .meta)
-            
-            
-            
-            try? container.encodeIfPresent(defaultBeneficiary, forKey: .defaultBeneficiary)
             
             
         }

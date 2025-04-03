@@ -12,11 +12,9 @@ public extension PlatformClient.Catalog {
     class ConfigurationProduct: Codable {
         
         
-        public var similar: ConfigurationProductSimilar?
+        public var similar: ConfigurationProductSimilar
         
-        public var variant: ConfigurationProductVariant?
-        
-        public var detailsGroups: ConfigurationProductDetailsGroups?
+        public var variant: ConfigurationProductVariant
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,17 +23,13 @@ public extension PlatformClient.Catalog {
             
             case variant = "variant"
             
-            case detailsGroups = "details_groups"
-            
         }
 
-        public init(detailsGroups: ConfigurationProductDetailsGroups? = nil, similar: ConfigurationProductSimilar? = nil, variant: ConfigurationProductVariant? = nil) {
+        public init(similar: ConfigurationProductSimilar, variant: ConfigurationProductVariant) {
             
             self.similar = similar
             
             self.variant = variant
-            
-            self.detailsGroups = detailsGroups
             
         }
 
@@ -43,40 +37,14 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    similar = try container.decode(ConfigurationProductSimilar.self, forKey: .similar)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                similar = try container.decode(ConfigurationProductSimilar.self, forKey: .similar)
                 
             
             
-                do {
-                    variant = try container.decode(ConfigurationProductVariant.self, forKey: .variant)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                variant = try container.decode(ConfigurationProductVariant.self, forKey: .variant)
                 
             
-            
-                do {
-                    detailsGroups = try container.decode(ConfigurationProductDetailsGroups.self, forKey: .detailsGroups)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
@@ -91,11 +59,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(variant, forKey: .variant)
-            
-            
-            
-            
-            try? container.encodeIfPresent(detailsGroups, forKey: .detailsGroups)
             
             
         }
@@ -114,11 +77,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ConfigurationProduct: Codable {
         
         
-        public var similar: ConfigurationProductSimilar?
+        public var similar: ConfigurationProductSimilar
         
-        public var variant: ConfigurationProductVariant?
-        
-        public var detailsGroups: ConfigurationProductDetailsGroups?
+        public var variant: ConfigurationProductVariant
         
 
         public enum CodingKeys: String, CodingKey {
@@ -127,17 +88,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case variant = "variant"
             
-            case detailsGroups = "details_groups"
-            
         }
 
-        public init(detailsGroups: ConfigurationProductDetailsGroups? = nil, similar: ConfigurationProductSimilar? = nil, variant: ConfigurationProductVariant? = nil) {
+        public init(similar: ConfigurationProductSimilar, variant: ConfigurationProductVariant) {
             
             self.similar = similar
             
             self.variant = variant
-            
-            self.detailsGroups = detailsGroups
             
         }
 
@@ -145,40 +102,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    similar = try container.decode(ConfigurationProductSimilar.self, forKey: .similar)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                similar = try container.decode(ConfigurationProductSimilar.self, forKey: .similar)
                 
             
             
-                do {
-                    variant = try container.decode(ConfigurationProductVariant.self, forKey: .variant)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+                variant = try container.decode(ConfigurationProductVariant.self, forKey: .variant)
                 
             
-            
-                do {
-                    detailsGroups = try container.decode(ConfigurationProductDetailsGroups.self, forKey: .detailsGroups)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
@@ -193,11 +124,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(variant, forKey: .variant)
-            
-            
-            
-            
-            try? container.encodeIfPresent(detailsGroups, forKey: .detailsGroups)
             
             
         }

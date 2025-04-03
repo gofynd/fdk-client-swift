@@ -8,8 +8,6 @@ public extension ApplicationClient.Payment {
     */
     class PaymentStatusUpdateRequest: Codable {
         
-        public var aggregatorOrderId: String?
-        
         public var status: String?
         
         public var merchantTransactionId: String?
@@ -32,18 +30,12 @@ public extension ApplicationClient.Payment {
         
         public var currency: String?
         
-        public var amount: Int
+        public var amount: Int?
         
         public var email: String?
         
-        public var uniqueLinkId: String?
-        
-        public var razorpayPaymentId: String?
-        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case aggregatorOrderId = "aggregator_order_id"
             
             case status = "status"
             
@@ -71,15 +63,9 @@ public extension ApplicationClient.Payment {
             
             case email = "email"
             
-            case uniqueLinkId = "unique_link_id"
-            
-            case razorpayPaymentId = "razorpay_payment_id"
-            
         }
 
-        public init(aggregator: String, aggregatorOrderId: String? = nil, amount: Int, contact: String? = nil, currency: String? = nil, customerId: String? = nil, deviceId: String? = nil, email: String? = nil, merchantOrderId: String, merchantTransactionId: String? = nil, method: String, orderId: String? = nil, razorpayPaymentId: String? = nil, status: String? = nil, uniqueLinkId: String? = nil, vpa: String? = nil) {
-            
-            self.aggregatorOrderId = aggregatorOrderId
+        public init(aggregator: String, amount: Int? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, deviceId: String? = nil, email: String? = nil, merchantOrderId: String, merchantTransactionId: String? = nil, method: String, orderId: String? = nil, status: String? = nil, vpa: String? = nil) {
             
             self.status = status
             
@@ -107,26 +93,10 @@ public extension ApplicationClient.Payment {
             
             self.email = email
             
-            self.uniqueLinkId = uniqueLinkId
-            
-            self.razorpayPaymentId = razorpayPaymentId
-            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-            do {
-                aggregatorOrderId = try container.decode(String.self, forKey: .aggregatorOrderId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
             
             
             do {
@@ -240,8 +210,15 @@ public extension ApplicationClient.Payment {
             
             
             
-            amount = try container.decode(Int.self, forKey: .amount)
+            do {
+                amount = try container.decode(Int.self, forKey: .amount)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -256,38 +233,10 @@ public extension ApplicationClient.Payment {
             }
             
             
-            
-            do {
-                uniqueLinkId = try container.decode(String.self, forKey: .uniqueLinkId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                razorpayPaymentId = try container.decode(String.self, forKey: .razorpayPaymentId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            try? container.encodeIfPresent(aggregatorOrderId, forKey: .aggregatorOrderId)
-            
             
             
             try? container.encodeIfPresent(status, forKey: .status)
@@ -339,14 +288,6 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(email, forKey: .email)
-            
-            
-            
-            try? container.encodeIfPresent(uniqueLinkId, forKey: .uniqueLinkId)
-            
-            
-            
-            try? container.encodeIfPresent(razorpayPaymentId, forKey: .razorpayPaymentId)
             
             
         }

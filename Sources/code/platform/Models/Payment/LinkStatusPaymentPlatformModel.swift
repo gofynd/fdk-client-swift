@@ -14,7 +14,9 @@ public extension PlatformClient.Payment {
         
         public var status: String
         
-        public var message: String?
+        public var message: String
+        
+        public var isPaymentDone: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -23,13 +25,17 @@ public extension PlatformClient.Payment {
             
             case message = "message"
             
+            case isPaymentDone = "is_payment_done"
+            
         }
 
-        public init(message: String? = nil, status: String) {
+        public init(isPaymentDone: Bool? = nil, message: String, status: String) {
             
             self.status = status
             
             self.message = message
+            
+            self.isPaymentDone = isPaymentDone
             
         }
 
@@ -42,8 +48,13 @@ public extension PlatformClient.Payment {
             
             
             
+                message = try container.decode(String.self, forKey: .message)
+                
+            
+            
+            
                 do {
-                    message = try container.decode(String.self, forKey: .message)
+                    isPaymentDone = try container.decode(Bool.self, forKey: .isPaymentDone)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -66,6 +77,11 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isPaymentDone, forKey: .isPaymentDone)
             
             
         }
@@ -86,7 +102,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var status: String
         
-        public var message: String?
+        public var message: String
+        
+        public var isPaymentDone: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -95,13 +113,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case message = "message"
             
+            case isPaymentDone = "is_payment_done"
+            
         }
 
-        public init(message: String? = nil, status: String) {
+        public init(isPaymentDone: Bool? = nil, message: String, status: String) {
             
             self.status = status
             
             self.message = message
+            
+            self.isPaymentDone = isPaymentDone
             
         }
 
@@ -114,8 +136,13 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
+                message = try container.decode(String.self, forKey: .message)
+                
+            
+            
+            
                 do {
-                    message = try container.decode(String.self, forKey: .message)
+                    isPaymentDone = try container.decode(Bool.self, forKey: .isPaymentDone)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -138,6 +165,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isPaymentDone, forKey: .isPaymentDone)
             
             
         }

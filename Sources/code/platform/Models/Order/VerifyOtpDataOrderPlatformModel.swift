@@ -16,7 +16,7 @@ public extension PlatformClient.Order {
         
         public var mobile: String
         
-        public var otpCode: String
+        public var otpCode: Int
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,7 +29,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(mobile: String, otpCode: String, requestId: String) {
+        public init(mobile: String, otpCode: Int, requestId: String) {
             
             self.requestId = requestId
             
@@ -53,7 +53,7 @@ public extension PlatformClient.Order {
             
             
             
-                otpCode = try container.decode(String.self, forKey: .otpCode)
+                otpCode = try container.decode(Int.self, forKey: .otpCode)
                 
             
             
@@ -97,7 +97,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var mobile: String
         
-        public var otpCode: String
+        public var otpCode: Int
         
 
         public enum CodingKeys: String, CodingKey {
@@ -110,7 +110,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(mobile: String, otpCode: String, requestId: String) {
+        public init(mobile: String, otpCode: Int, requestId: String) {
             
             self.requestId = requestId
             
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                otpCode = try container.decode(String.self, forKey: .otpCode)
+                otpCode = try container.decode(Int.self, forKey: .otpCode)
                 
             
             

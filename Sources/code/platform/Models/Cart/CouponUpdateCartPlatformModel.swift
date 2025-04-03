@@ -46,10 +46,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var ruleDefinition: RuleDefinition
         
-        public var id: String?
-        
-        public var isArchived: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -85,13 +81,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case ruleDefinition = "rule_definition"
             
-            case id = "_id"
-            
-            case isArchived = "is_archived"
-            
         }
 
-        public init(action: CouponAction? = nil, author: CouponAuthor? = nil, code: String, dateMeta: CouponDateMeta? = nil, displayMeta: DisplayMeta, identifiers: Identifier, isArchived: Bool? = nil, ownership: Ownership, restrictions: Restrictions? = nil, rule: [Rule], ruleDefinition: RuleDefinition, state: State? = nil, tags: [String]? = nil, typeSlug: String, validation: Validation? = nil, validity: Validity, id: String? = nil, schedule: CouponSchedule? = nil) {
+        public init(action: CouponAction? = nil, author: CouponAuthor? = nil, code: String, dateMeta: CouponDateMeta? = nil, displayMeta: DisplayMeta, identifiers: Identifier, ownership: Ownership, restrictions: Restrictions? = nil, rule: [Rule], ruleDefinition: RuleDefinition, state: State? = nil, tags: [String]? = nil, typeSlug: String, validation: Validation? = nil, validity: Validity, schedule: CouponSchedule? = nil) {
             
             self.dateMeta = dateMeta
             
@@ -124,10 +116,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.validity = validity
             
             self.ruleDefinition = ruleDefinition
-            
-            self.id = id
-            
-            self.isArchived = isArchived
             
         }
 
@@ -270,30 +258,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 
             
             
-            
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isArchived = try container.decode(Bool.self, forKey: .isArchived)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -377,16 +341,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(ruleDefinition, forKey: .ruleDefinition)
-            
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isArchived, forKey: .isArchived)
             
             
         }

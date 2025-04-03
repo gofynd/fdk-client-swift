@@ -16,7 +16,7 @@ public extension ApplicationClient.Payment {
         
         public var success: Bool?
         
-        public var statusCode: Int?
+        public var statusCode: Int
         
         public var data: PaymentOrderData?
         
@@ -41,7 +41,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(callbackUrl: String? = nil, data: PaymentOrderData? = nil, message: String, orderId: String? = nil, paymentConfirmUrl: String? = nil, statusCode: Int? = nil, success: Bool? = nil) {
+        public init(callbackUrl: String? = nil, data: PaymentOrderData? = nil, message: String, orderId: String? = nil, paymentConfirmUrl: String? = nil, statusCode: Int, success: Bool? = nil) {
             
             self.paymentConfirmUrl = paymentConfirmUrl
             
@@ -111,15 +111,8 @@ public extension ApplicationClient.Payment {
             
             
             
-            do {
-                statusCode = try container.decode(Int.self, forKey: .statusCode)
+            statusCode = try container.decode(Int.self, forKey: .statusCode)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
             

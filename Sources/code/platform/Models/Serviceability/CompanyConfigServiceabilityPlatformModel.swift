@@ -12,16 +12,16 @@ public extension PlatformClient.Serviceability {
     class CompanyConfig: Codable {
         
         
-        public var companyId: Int?
+        public var ruleIds: [String]
         
-        public var sort: [String]?
+        public var sort: [String]
         
-        public var logisticsAsActual: String?
+        public var logisticsAsActual: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case companyId = "company_id"
+            case ruleIds = "rule_ids"
             
             case sort = "sort"
             
@@ -29,9 +29,9 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(companyId: Int? = nil, logisticsAsActual: String? = nil, sort: [String]? = nil) {
+        public init(logisticsAsActual: Bool? = nil, ruleIds: [String], sort: [String]) {
             
-            self.companyId = companyId
+            self.ruleIds = ruleIds
             
             self.sort = sort
             
@@ -43,32 +43,18 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    companyId = try container.decode(Int.self, forKey: .companyId)
+                ruleIds = try container.decode([String].self, forKey: .ruleIds)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+            
+            
+                sort = try container.decode([String].self, forKey: .sort)
                 
+            
             
             
                 do {
-                    sort = try container.decode([String].self, forKey: .sort)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    logisticsAsActual = try container.decode(String.self, forKey: .logisticsAsActual)
+                    logisticsAsActual = try container.decode(Bool.self, forKey: .logisticsAsActual)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +71,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(ruleIds, forKey: .ruleIds)
             
             
             
@@ -114,16 +100,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class CompanyConfig: Codable {
         
         
-        public var companyId: Int?
+        public var ruleIds: [String]
         
-        public var sort: [String]?
+        public var sort: [String]
         
-        public var logisticsAsActual: String?
+        public var logisticsAsActual: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case companyId = "company_id"
+            case ruleIds = "rule_ids"
             
             case sort = "sort"
             
@@ -131,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(companyId: Int? = nil, logisticsAsActual: String? = nil, sort: [String]? = nil) {
+        public init(logisticsAsActual: Bool? = nil, ruleIds: [String], sort: [String]) {
             
-            self.companyId = companyId
+            self.ruleIds = ruleIds
             
             self.sort = sort
             
@@ -145,32 +131,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    companyId = try container.decode(Int.self, forKey: .companyId)
+                ruleIds = try container.decode([String].self, forKey: .ruleIds)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+            
+            
+                sort = try container.decode([String].self, forKey: .sort)
                 
+            
             
             
                 do {
-                    sort = try container.decode([String].self, forKey: .sort)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    logisticsAsActual = try container.decode(String.self, forKey: .logisticsAsActual)
+                    logisticsAsActual = try container.decode(Bool.self, forKey: .logisticsAsActual)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,7 +159,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(ruleIds, forKey: .ruleIds)
             
             
             

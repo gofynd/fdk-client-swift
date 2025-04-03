@@ -16,10 +16,6 @@ public extension PlatformClient.Payment {
         
         public var gid: String
         
-        public var appliedPaymentOffers: AppliedOfferSerializer?
-        
-        public var checksum: String?
-        
         public var orderDetails: OrderDetail
         
         public var status: String
@@ -30,6 +26,8 @@ public extension PlatformClient.Payment {
         
         public var totalAmount: Int
         
+        public var checksum: String
+        
         public var source: String?
         
 
@@ -38,10 +36,6 @@ public extension PlatformClient.Payment {
             case meta = "meta"
             
             case gid = "gid"
-            
-            case appliedPaymentOffers = "applied_payment_offers"
-            
-            case checksum = "checksum"
             
             case orderDetails = "order_details"
             
@@ -53,19 +47,17 @@ public extension PlatformClient.Payment {
             
             case totalAmount = "total_amount"
             
+            case checksum = "checksum"
+            
             case source = "source"
             
         }
 
-        public init(appliedPaymentOffers: AppliedOfferSerializer? = nil, checksum: String? = nil, currency: String, gid: String, meta: [String: Any]? = nil, orderDetails: OrderDetail, paymentDetails: [PaymentSessionDetail], source: String? = nil, status: String, totalAmount: Int) {
+        public init(checksum: String, currency: String, gid: String, meta: [String: Any]? = nil, orderDetails: OrderDetail, paymentDetails: [PaymentSessionDetail], source: String? = nil, status: String, totalAmount: Int) {
             
             self.meta = meta
             
             self.gid = gid
-            
-            self.appliedPaymentOffers = appliedPaymentOffers
-            
-            self.checksum = checksum
             
             self.orderDetails = orderDetails
             
@@ -76,6 +68,8 @@ public extension PlatformClient.Payment {
             self.paymentDetails = paymentDetails
             
             self.totalAmount = totalAmount
+            
+            self.checksum = checksum
             
             self.source = source
             
@@ -102,30 +96,6 @@ public extension PlatformClient.Payment {
             
             
             
-                do {
-                    appliedPaymentOffers = try container.decode(AppliedOfferSerializer.self, forKey: .appliedPaymentOffers)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    checksum = try container.decode(String.self, forKey: .checksum)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 orderDetails = try container.decode(OrderDetail.self, forKey: .orderDetails)
                 
             
@@ -147,6 +117,11 @@ public extension PlatformClient.Payment {
             
             
                 totalAmount = try container.decode(Int.self, forKey: .totalAmount)
+                
+            
+            
+            
+                checksum = try container.decode(String.self, forKey: .checksum)
                 
             
             
@@ -179,16 +154,6 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(appliedPaymentOffers, forKey: .appliedPaymentOffers)
-            
-            
-            
-            
-            try? container.encodeIfPresent(checksum, forKey: .checksum)
-            
-            
-            
-            
             try? container.encodeIfPresent(orderDetails, forKey: .orderDetails)
             
             
@@ -210,6 +175,11 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(checksum, forKey: .checksum)
             
             
             
@@ -237,10 +207,6 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var gid: String
         
-        public var appliedPaymentOffers: AppliedOfferSerializer?
-        
-        public var checksum: String?
-        
         public var orderDetails: OrderDetail
         
         public var status: String
@@ -251,6 +217,8 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var totalAmount: Int
         
+        public var checksum: String
+        
         public var source: String?
         
 
@@ -259,10 +227,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             case meta = "meta"
             
             case gid = "gid"
-            
-            case appliedPaymentOffers = "applied_payment_offers"
-            
-            case checksum = "checksum"
             
             case orderDetails = "order_details"
             
@@ -274,19 +238,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case totalAmount = "total_amount"
             
+            case checksum = "checksum"
+            
             case source = "source"
             
         }
 
-        public init(appliedPaymentOffers: AppliedOfferSerializer? = nil, checksum: String? = nil, currency: String, gid: String, meta: [String: Any]? = nil, orderDetails: OrderDetail, paymentDetails: [PaymentSessionDetail], source: String? = nil, status: String, totalAmount: Int) {
+        public init(checksum: String, currency: String, gid: String, meta: [String: Any]? = nil, orderDetails: OrderDetail, paymentDetails: [PaymentSessionDetail], source: String? = nil, status: String, totalAmount: Int) {
             
             self.meta = meta
             
             self.gid = gid
-            
-            self.appliedPaymentOffers = appliedPaymentOffers
-            
-            self.checksum = checksum
             
             self.orderDetails = orderDetails
             
@@ -297,6 +259,8 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.paymentDetails = paymentDetails
             
             self.totalAmount = totalAmount
+            
+            self.checksum = checksum
             
             self.source = source
             
@@ -323,30 +287,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                do {
-                    appliedPaymentOffers = try container.decode(AppliedOfferSerializer.self, forKey: .appliedPaymentOffers)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    checksum = try container.decode(String.self, forKey: .checksum)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
                 orderDetails = try container.decode(OrderDetail.self, forKey: .orderDetails)
                 
             
@@ -368,6 +308,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 totalAmount = try container.decode(Int.self, forKey: .totalAmount)
+                
+            
+            
+            
+                checksum = try container.decode(String.self, forKey: .checksum)
                 
             
             
@@ -400,16 +345,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(appliedPaymentOffers, forKey: .appliedPaymentOffers)
-            
-            
-            
-            
-            try? container.encodeIfPresent(checksum, forKey: .checksum)
-            
-            
-            
-            
             try? container.encodeIfPresent(orderDetails, forKey: .orderDetails)
             
             
@@ -431,6 +366,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(checksum, forKey: .checksum)
             
             
             

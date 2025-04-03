@@ -16,7 +16,7 @@ public extension PlatformClient.Communication {
         
         public var user: SystemNotificationUser?
         
-        public var settings: SystemNotificationSetting?
+        public var settings: SystemNotificationUser?
         
         public var id: String?
         
@@ -41,7 +41,7 @@ public extension PlatformClient.Communication {
             
         }
 
-        public init(createdAt: String? = nil, group: String? = nil, notification: Notification? = nil, settings: SystemNotificationSetting? = nil, user: SystemNotificationUser? = nil, id: String? = nil) {
+        public init(createdAt: String? = nil, group: String? = nil, notification: Notification? = nil, settings: SystemNotificationUser? = nil, user: SystemNotificationUser? = nil, id: String? = nil) {
             
             self.notification = notification
             
@@ -86,7 +86,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    settings = try container.decode(SystemNotificationSetting.self, forKey: .settings)
+                    settings = try container.decode(SystemNotificationUser.self, forKey: .settings)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,7 +187,7 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var user: SystemNotificationUser?
         
-        public var settings: SystemNotificationSetting?
+        public var settings: SystemNotificationUser?
         
         public var id: String?
         
@@ -212,7 +212,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
         }
 
-        public init(createdAt: String? = nil, group: String? = nil, notification: Notification? = nil, settings: SystemNotificationSetting? = nil, user: SystemNotificationUser? = nil, id: String? = nil) {
+        public init(createdAt: String? = nil, group: String? = nil, notification: Notification? = nil, settings: SystemNotificationUser? = nil, user: SystemNotificationUser? = nil, id: String? = nil) {
             
             self.notification = notification
             
@@ -257,7 +257,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    settings = try container.decode(SystemNotificationSetting.self, forKey: .settings)
+                    settings = try container.decode(SystemNotificationUser.self, forKey: .settings)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

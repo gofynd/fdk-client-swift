@@ -16,11 +16,7 @@ public extension PlatformClient.Payment {
         
         public var isActive: Bool?
         
-        public var ccavenue: PaymentGatewayConfig?
-        
-        public var razorpay: PaymentGatewayConfig?
-        
-        public var juspay: PaymentGatewayConfig?
+        public var aggregatorName: PaymentGatewayConfig?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,25 +25,17 @@ public extension PlatformClient.Payment {
             
             case isActive = "is_active"
             
-            case ccavenue = "ccavenue"
-            
-            case razorpay = "razorpay"
-            
-            case juspay = "juspay"
+            case aggregatorName = "aggregator_name"
             
         }
 
-        public init(appId: String, ccavenue: PaymentGatewayConfig? = nil, isActive: Bool? = nil, juspay: PaymentGatewayConfig? = nil, razorpay: PaymentGatewayConfig? = nil) {
+        public init(aggregatorName: PaymentGatewayConfig? = nil, appId: String, isActive: Bool? = nil) {
             
             self.appId = appId
             
             self.isActive = isActive
             
-            self.ccavenue = ccavenue
-            
-            self.razorpay = razorpay
-            
-            self.juspay = juspay
+            self.aggregatorName = aggregatorName
             
         }
 
@@ -73,31 +61,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    ccavenue = try container.decode(PaymentGatewayConfig.self, forKey: .ccavenue)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    razorpay = try container.decode(PaymentGatewayConfig.self, forKey: .razorpay)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    juspay = try container.decode(PaymentGatewayConfig.self, forKey: .juspay)
+                    aggregatorName = try container.decode(PaymentGatewayConfig.self, forKey: .aggregatorName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -124,17 +88,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(ccavenue, forKey: .ccavenue)
-            
-            
-            
-            
-            try? container.encodeIfPresent(razorpay, forKey: .razorpay)
-            
-            
-            
-            
-            try? container.encodeIfPresent(juspay, forKey: .juspay)
+            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
             
             
         }
@@ -157,11 +111,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var isActive: Bool?
         
-        public var ccavenue: PaymentGatewayConfig?
-        
-        public var razorpay: PaymentGatewayConfig?
-        
-        public var juspay: PaymentGatewayConfig?
+        public var aggregatorName: PaymentGatewayConfig?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -170,25 +120,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case isActive = "is_active"
             
-            case ccavenue = "ccavenue"
-            
-            case razorpay = "razorpay"
-            
-            case juspay = "juspay"
+            case aggregatorName = "aggregator_name"
             
         }
 
-        public init(appId: String, ccavenue: PaymentGatewayConfig? = nil, isActive: Bool? = nil, juspay: PaymentGatewayConfig? = nil, razorpay: PaymentGatewayConfig? = nil) {
+        public init(aggregatorName: PaymentGatewayConfig? = nil, appId: String, isActive: Bool? = nil) {
             
             self.appId = appId
             
             self.isActive = isActive
             
-            self.ccavenue = ccavenue
-            
-            self.razorpay = razorpay
-            
-            self.juspay = juspay
+            self.aggregatorName = aggregatorName
             
         }
 
@@ -214,31 +156,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    ccavenue = try container.decode(PaymentGatewayConfig.self, forKey: .ccavenue)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    razorpay = try container.decode(PaymentGatewayConfig.self, forKey: .razorpay)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    juspay = try container.decode(PaymentGatewayConfig.self, forKey: .juspay)
+                    aggregatorName = try container.decode(PaymentGatewayConfig.self, forKey: .aggregatorName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -265,17 +183,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(ccavenue, forKey: .ccavenue)
-            
-            
-            
-            
-            try? container.encodeIfPresent(razorpay, forKey: .razorpay)
-            
-            
-            
-            
-            try? container.encodeIfPresent(juspay, forKey: .juspay)
+            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
             
             
         }

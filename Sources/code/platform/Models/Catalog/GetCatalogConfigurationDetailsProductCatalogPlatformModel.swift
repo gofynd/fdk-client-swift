@@ -12,36 +12,36 @@ public extension PlatformClient.Catalog {
     class GetCatalogConfigurationDetailsProduct: Codable {
         
         
-        public var compare: CompareFilter?
+        public var compare: [String: Any]?
         
-        public var similar: SimilarFilter?
+        public var detail: [String: Any]?
         
-        public var variant: VariantFilter?
+        public var similar: [String: Any]?
         
-        public var detail: DetailFilter?
+        public var variant: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case compare = "compare"
             
+            case detail = "detail"
+            
             case similar = "similar"
             
             case variant = "variant"
             
-            case detail = "detail"
-            
         }
 
-        public init(compare: CompareFilter? = nil, detail: DetailFilter? = nil, similar: SimilarFilter? = nil, variant: VariantFilter? = nil) {
+        public init(compare: [String: Any]? = nil, detail: [String: Any]? = nil, similar: [String: Any]? = nil, variant: [String: Any]? = nil) {
             
             self.compare = compare
+            
+            self.detail = detail
             
             self.similar = similar
             
             self.variant = variant
-            
-            self.detail = detail
             
         }
 
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    compare = try container.decode(CompareFilter.self, forKey: .compare)
+                    compare = try container.decode([String: Any].self, forKey: .compare)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    similar = try container.decode(SimilarFilter.self, forKey: .similar)
+                    detail = try container.decode([String: Any].self, forKey: .detail)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,7 +74,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    variant = try container.decode(VariantFilter.self, forKey: .variant)
+                    similar = try container.decode([String: Any].self, forKey: .similar)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +86,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    detail = try container.decode(DetailFilter.self, forKey: .detail)
+                    variant = try container.decode([String: Any].self, forKey: .variant)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,17 +108,17 @@ public extension PlatformClient.Catalog {
             
             
             
+            try? container.encodeIfPresent(detail, forKey: .detail)
+            
+            
+            
+            
             try? container.encodeIfPresent(similar, forKey: .similar)
             
             
             
             
             try? container.encodeIfPresent(variant, forKey: .variant)
-            
-            
-            
-            
-            try? container.encodeIfPresent(detail, forKey: .detail)
             
             
         }
@@ -137,36 +137,36 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetCatalogConfigurationDetailsProduct: Codable {
         
         
-        public var compare: CompareFilter?
+        public var compare: [String: Any]?
         
-        public var similar: SimilarFilter?
+        public var detail: [String: Any]?
         
-        public var variant: VariantFilter?
+        public var similar: [String: Any]?
         
-        public var detail: DetailFilter?
+        public var variant: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case compare = "compare"
             
+            case detail = "detail"
+            
             case similar = "similar"
             
             case variant = "variant"
             
-            case detail = "detail"
-            
         }
 
-        public init(compare: CompareFilter? = nil, detail: DetailFilter? = nil, similar: SimilarFilter? = nil, variant: VariantFilter? = nil) {
+        public init(compare: [String: Any]? = nil, detail: [String: Any]? = nil, similar: [String: Any]? = nil, variant: [String: Any]? = nil) {
             
             self.compare = compare
+            
+            self.detail = detail
             
             self.similar = similar
             
             self.variant = variant
-            
-            self.detail = detail
             
         }
 
@@ -175,7 +175,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    compare = try container.decode(CompareFilter.self, forKey: .compare)
+                    compare = try container.decode([String: Any].self, forKey: .compare)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,7 +187,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    similar = try container.decode(SimilarFilter.self, forKey: .similar)
+                    detail = try container.decode([String: Any].self, forKey: .detail)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -199,7 +199,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    variant = try container.decode(VariantFilter.self, forKey: .variant)
+                    similar = try container.decode([String: Any].self, forKey: .similar)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -211,7 +211,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    detail = try container.decode(DetailFilter.self, forKey: .detail)
+                    variant = try container.decode([String: Any].self, forKey: .variant)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -233,17 +233,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
+            try? container.encodeIfPresent(detail, forKey: .detail)
+            
+            
+            
+            
             try? container.encodeIfPresent(similar, forKey: .similar)
             
             
             
             
             try? container.encodeIfPresent(variant, forKey: .variant)
-            
-            
-            
-            
-            try? container.encodeIfPresent(detail, forKey: .detail)
             
             
         }

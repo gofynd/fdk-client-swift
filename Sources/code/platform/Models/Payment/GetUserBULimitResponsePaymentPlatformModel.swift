@@ -12,7 +12,7 @@ public extension PlatformClient.Payment {
     class GetUserBULimitResponse: Codable {
         
         
-        public var buisnessUnit: String
+        public var businessUnit: String
         
         public var displayName: String
         
@@ -21,7 +21,7 @@ public extension PlatformClient.Payment {
 
         public enum CodingKeys: String, CodingKey {
             
-            case buisnessUnit = "buisness_unit"
+            case businessUnit = "business_unit"
             
             case displayName = "display_name"
             
@@ -29,9 +29,9 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(buisnessUnit: String, config: CODPaymentLimitConfig, displayName: String) {
+        public init(businessUnit: String, config: CODPaymentLimitConfig, displayName: String) {
             
-            self.buisnessUnit = buisnessUnit
+            self.businessUnit = businessUnit
             
             self.displayName = displayName
             
@@ -43,7 +43,7 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                buisnessUnit = try container.decode(String.self, forKey: .buisnessUnit)
+                businessUnit = try container.decode(String.self, forKey: .businessUnit)
                 
             
             
@@ -64,7 +64,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(buisnessUnit, forKey: .buisnessUnit)
+            try? container.encodeIfPresent(businessUnit, forKey: .businessUnit)
             
             
             
@@ -93,7 +93,7 @@ public extension PlatformClient.ApplicationClient.Payment {
     class GetUserBULimitResponse: Codable {
         
         
-        public var buisnessUnit: String
+        public var businessUnit: String
         
         public var displayName: String
         
@@ -102,7 +102,7 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public enum CodingKeys: String, CodingKey {
             
-            case buisnessUnit = "buisness_unit"
+            case businessUnit = "business_unit"
             
             case displayName = "display_name"
             
@@ -110,9 +110,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(buisnessUnit: String, config: CODPaymentLimitConfig, displayName: String) {
+        public init(businessUnit: String, config: CODPaymentLimitConfig, displayName: String) {
             
-            self.buisnessUnit = buisnessUnit
+            self.businessUnit = businessUnit
             
             self.displayName = displayName
             
@@ -124,7 +124,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                buisnessUnit = try container.decode(String.self, forKey: .buisnessUnit)
+                businessUnit = try container.decode(String.self, forKey: .businessUnit)
                 
             
             
@@ -145,7 +145,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(buisnessUnit, forKey: .buisnessUnit)
+            try? container.encodeIfPresent(businessUnit, forKey: .businessUnit)
             
             
             

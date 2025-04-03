@@ -12,7 +12,7 @@ public extension ApplicationClient.Payment {
         
         public var aggregator: String
         
-        public var orderId: String?
+        public var orderId: String
         
         public var transactionToken: String?
         
@@ -33,7 +33,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(aggregator: String, amount: Int, orderId: String? = nil, transactionToken: String? = nil, verified: Bool? = nil) {
+        public init(aggregator: String, amount: Int, orderId: String, transactionToken: String? = nil, verified: Bool? = nil) {
             
             self.verified = verified
             
@@ -68,15 +68,8 @@ public extension ApplicationClient.Payment {
             
             
             
-            do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+            orderId = try container.decode(String.self, forKey: .orderId)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
             

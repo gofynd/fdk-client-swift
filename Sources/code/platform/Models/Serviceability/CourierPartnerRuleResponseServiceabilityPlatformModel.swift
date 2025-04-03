@@ -12,60 +12,84 @@ public extension PlatformClient.Serviceability {
     class CourierPartnerRuleResponse: Codable {
         
         
-        public var isActive: Bool
+        public var isActive: Bool?
         
-        public var cpList: [CourierPartnerList]?
+        public var applicationId: String?
         
-        public var name: String
+        public var companyId: Int?
         
-        public var conditions: CourierPartnerRuleResponseConditions
+        public var conditions: CourierPartnerRuleConditions?
         
-        public var manualPriority: [String]?
+        public var sort: [String]?
         
-        public var sort: [String]
+        public var createdBy: [String: Any]?
         
-        public var shipmentAdjustmentType: String?
+        public var id: String?
         
-        public var type: String
+        public var modifiedBy: [String: Any]?
+        
+        public var modifiedOn: String?
+        
+        public var name: String?
+        
+        public var type: String?
+        
+        public var cpList: [CourierPartnerRuleCPListResponse]?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case isActive = "is_active"
             
-            case cpList = "cp_list"
+            case applicationId = "application_id"
             
-            case name = "name"
+            case companyId = "company_id"
             
             case conditions = "conditions"
             
-            case manualPriority = "manual_priority"
-            
             case sort = "sort"
             
-            case shipmentAdjustmentType = "shipment_adjustment_type"
+            case createdBy = "created_by"
+            
+            case id = "id"
+            
+            case modifiedBy = "modified_by"
+            
+            case modifiedOn = "modified_on"
+            
+            case name = "name"
             
             case type = "type"
             
+            case cpList = "cp_list"
+            
         }
 
-        public init(conditions: CourierPartnerRuleResponseConditions, cpList: [CourierPartnerList]? = nil, isActive: Bool, manualPriority: [String]? = nil, name: String, shipmentAdjustmentType: String? = nil, sort: [String], type: String) {
+        public init(applicationId: String? = nil, companyId: Int? = nil, conditions: CourierPartnerRuleConditions? = nil, cpList: [CourierPartnerRuleCPListResponse]? = nil, createdBy: [String: Any]? = nil, id: String? = nil, isActive: Bool? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String? = nil, sort: [String]? = nil, type: String? = nil) {
             
             self.isActive = isActive
             
-            self.cpList = cpList
+            self.applicationId = applicationId
             
-            self.name = name
+            self.companyId = companyId
             
             self.conditions = conditions
             
-            self.manualPriority = manualPriority
-            
             self.sort = sort
             
-            self.shipmentAdjustmentType = shipmentAdjustmentType
+            self.createdBy = createdBy
+            
+            self.id = id
+            
+            self.modifiedBy = modifiedBy
+            
+            self.modifiedOn = modifiedOn
+            
+            self.name = name
             
             self.type = type
+            
+            self.cpList = cpList
             
         }
 
@@ -73,13 +97,8 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-                
-            
-            
-            
                 do {
-                    cpList = try container.decode([CourierPartnerList].self, forKey: .cpList)
+                    isActive = try container.decode(Bool.self, forKey: .isActive)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,18 +109,8 @@ public extension PlatformClient.Serviceability {
                 
             
             
-                name = try container.decode(String.self, forKey: .name)
-                
-            
-            
-            
-                conditions = try container.decode(CourierPartnerRuleResponseConditions.self, forKey: .conditions)
-                
-            
-            
-            
                 do {
-                    manualPriority = try container.decode([String].self, forKey: .manualPriority)
+                    applicationId = try container.decode(String.self, forKey: .applicationId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,13 +121,8 @@ public extension PlatformClient.Serviceability {
                 
             
             
-                sort = try container.decode([String].self, forKey: .sort)
-                
-            
-            
-            
                 do {
-                    shipmentAdjustmentType = try container.decode(String.self, forKey: .shipmentAdjustmentType)
+                    companyId = try container.decode(Int.self, forKey: .companyId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,9 +133,112 @@ public extension PlatformClient.Serviceability {
                 
             
             
-                type = try container.decode(String.self, forKey: .type)
+                do {
+                    conditions = try container.decode(CourierPartnerRuleConditions.self, forKey: .conditions)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
+            
+                do {
+                    sort = try container.decode([String].self, forKey: .sort)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    createdBy = try container.decode([String: Any].self, forKey: .createdBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    modifiedBy = try container.decode([String: Any].self, forKey: .modifiedBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    cpList = try container.decode([CourierPartnerRuleCPListResponse].self, forKey: .cpList)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -145,12 +252,12 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(cpList, forKey: .cpList)
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
             
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
             
@@ -160,22 +267,42 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(manualPriority, forKey: .manualPriority)
-            
-            
-            
-            
             try? container.encodeIfPresent(sort, forKey: .sort)
             
             
             
             
-            try? container.encodeIfPresent(shipmentAdjustmentType, forKey: .shipmentAdjustmentType)
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(cpList, forKey: .cpList)
             
             
         }
@@ -194,60 +321,84 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class CourierPartnerRuleResponse: Codable {
         
         
-        public var isActive: Bool
+        public var isActive: Bool?
         
-        public var cpList: [CourierPartnerList]?
+        public var applicationId: String?
         
-        public var name: String
+        public var companyId: Int?
         
-        public var conditions: CourierPartnerRuleResponseConditions
+        public var conditions: CourierPartnerRuleConditions?
         
-        public var manualPriority: [String]?
+        public var sort: [String]?
         
-        public var sort: [String]
+        public var createdBy: [String: Any]?
         
-        public var shipmentAdjustmentType: String?
+        public var id: String?
         
-        public var type: String
+        public var modifiedBy: [String: Any]?
+        
+        public var modifiedOn: String?
+        
+        public var name: String?
+        
+        public var type: String?
+        
+        public var cpList: [CourierPartnerRuleCPListResponse]?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case isActive = "is_active"
             
-            case cpList = "cp_list"
+            case applicationId = "application_id"
             
-            case name = "name"
+            case companyId = "company_id"
             
             case conditions = "conditions"
             
-            case manualPriority = "manual_priority"
-            
             case sort = "sort"
             
-            case shipmentAdjustmentType = "shipment_adjustment_type"
+            case createdBy = "created_by"
+            
+            case id = "id"
+            
+            case modifiedBy = "modified_by"
+            
+            case modifiedOn = "modified_on"
+            
+            case name = "name"
             
             case type = "type"
             
+            case cpList = "cp_list"
+            
         }
 
-        public init(conditions: CourierPartnerRuleResponseConditions, cpList: [CourierPartnerList]? = nil, isActive: Bool, manualPriority: [String]? = nil, name: String, shipmentAdjustmentType: String? = nil, sort: [String], type: String) {
+        public init(applicationId: String? = nil, companyId: Int? = nil, conditions: CourierPartnerRuleConditions? = nil, cpList: [CourierPartnerRuleCPListResponse]? = nil, createdBy: [String: Any]? = nil, id: String? = nil, isActive: Bool? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String? = nil, sort: [String]? = nil, type: String? = nil) {
             
             self.isActive = isActive
             
-            self.cpList = cpList
+            self.applicationId = applicationId
             
-            self.name = name
+            self.companyId = companyId
             
             self.conditions = conditions
             
-            self.manualPriority = manualPriority
-            
             self.sort = sort
             
-            self.shipmentAdjustmentType = shipmentAdjustmentType
+            self.createdBy = createdBy
+            
+            self.id = id
+            
+            self.modifiedBy = modifiedBy
+            
+            self.modifiedOn = modifiedOn
+            
+            self.name = name
             
             self.type = type
+            
+            self.cpList = cpList
             
         }
 
@@ -255,13 +406,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-                
-            
-            
-            
                 do {
-                    cpList = try container.decode([CourierPartnerList].self, forKey: .cpList)
+                    isActive = try container.decode(Bool.self, forKey: .isActive)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -272,18 +418,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
-                name = try container.decode(String.self, forKey: .name)
-                
-            
-            
-            
-                conditions = try container.decode(CourierPartnerRuleResponseConditions.self, forKey: .conditions)
-                
-            
-            
-            
                 do {
-                    manualPriority = try container.decode([String].self, forKey: .manualPriority)
+                    applicationId = try container.decode(String.self, forKey: .applicationId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -294,13 +430,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
-                sort = try container.decode([String].self, forKey: .sort)
-                
-            
-            
-            
                 do {
-                    shipmentAdjustmentType = try container.decode(String.self, forKey: .shipmentAdjustmentType)
+                    companyId = try container.decode(Int.self, forKey: .companyId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -311,9 +442,112 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
-                type = try container.decode(String.self, forKey: .type)
+                do {
+                    conditions = try container.decode(CourierPartnerRuleConditions.self, forKey: .conditions)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
+            
+                do {
+                    sort = try container.decode([String].self, forKey: .sort)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    createdBy = try container.decode([String: Any].self, forKey: .createdBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    modifiedBy = try container.decode([String: Any].self, forKey: .modifiedBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    cpList = try container.decode([CourierPartnerRuleCPListResponse].self, forKey: .cpList)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -327,12 +561,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(cpList, forKey: .cpList)
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
             
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
             
@@ -342,22 +576,42 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(manualPriority, forKey: .manualPriority)
-            
-            
-            
-            
             try? container.encodeIfPresent(sort, forKey: .sort)
             
             
             
             
-            try? container.encodeIfPresent(shipmentAdjustmentType, forKey: .shipmentAdjustmentType)
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(cpList, forKey: .cpList)
             
             
         }

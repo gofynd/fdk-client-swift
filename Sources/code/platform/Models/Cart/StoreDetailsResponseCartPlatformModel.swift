@@ -16,22 +16,16 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var items: [PickupStoreDetail]?
         
-        public var data: [PickupStoreDetail]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case items = "items"
             
-            case data = "data"
-            
         }
 
-        public init(data: [PickupStoreDetail]? = nil, items: [PickupStoreDetail]? = nil) {
+        public init(items: [PickupStoreDetail]? = nil) {
             
             self.items = items
-            
-            self.data = data
             
         }
 
@@ -50,18 +44,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
-            
-                do {
-                    data = try container.decode([PickupStoreDetail].self, forKey: .data)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -70,11 +52,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(items, forKey: .items)
-            
-            
-            
-            
-            try? container.encodeIfPresent(data, forKey: .data)
             
             
         }

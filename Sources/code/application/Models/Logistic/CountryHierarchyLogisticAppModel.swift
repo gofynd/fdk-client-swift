@@ -8,22 +8,22 @@ public extension ApplicationClient.Logistic {
     */
     class CountryHierarchy: Codable {
         
-        public var displayName: String?
+        public var name: String?
         
         public var slug: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case displayName = "display_name"
+            case name = "name"
             
             case slug = "slug"
             
         }
 
-        public init(displayName: String? = nil, slug: String? = nil) {
+        public init(name: String? = nil, slug: String? = nil) {
             
-            self.displayName = displayName
+            self.name = name
             
             self.slug = slug
             
@@ -34,7 +34,7 @@ public extension ApplicationClient.Logistic {
             
             
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                name = try container.decode(String.self, forKey: .name)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension ApplicationClient.Logistic {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             

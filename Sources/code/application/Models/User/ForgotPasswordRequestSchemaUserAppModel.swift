@@ -8,9 +8,9 @@ public extension ApplicationClient.User {
     */
     class ForgotPasswordRequestSchema: Codable {
         
-        public var code: String
+        public var code: String?
         
-        public var password: String
+        public var password: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(code: String, password: String) {
+        public init(code: String? = nil, password: String? = nil) {
             
             self.code = code
             
@@ -33,13 +33,27 @@ public extension ApplicationClient.User {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            code = try container.decode(String.self, forKey: .code)
+            do {
+                code = try container.decode(String.self, forKey: .code)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
+            do {
+                password = try container.decode(String.self, forKey: .password)
             
-            password = try container.decode(String.self, forKey: .password)
-            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
         }
