@@ -8,7 +8,7 @@ public extension ApplicationClient.Payment {
     */
     class CreateOrderUserRequest: Codable {
         
-        public var failureCallbackUrl: String
+        public var failureCallbackUrl: String?
         
         public var currency: String
         
@@ -16,7 +16,7 @@ public extension ApplicationClient.Payment {
         
         public var paymentMethods: CreateOrderUserPaymentMethods
         
-        public var successCallbackUrl: String
+        public var successCallbackUrl: String?
         
         public var meta: [String: Any]?
         
@@ -37,7 +37,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(currency: String, failureCallbackUrl: String, meta: [String: Any]? = nil, paymentLinkId: String, paymentMethods: CreateOrderUserPaymentMethods, successCallbackUrl: String) {
+        public init(currency: String, failureCallbackUrl: String? = nil, meta: [String: Any]? = nil, paymentLinkId: String, paymentMethods: CreateOrderUserPaymentMethods, successCallbackUrl: String? = nil) {
             
             self.failureCallbackUrl = failureCallbackUrl
             
@@ -57,8 +57,15 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            failureCallbackUrl = try container.decode(String.self, forKey: .failureCallbackUrl)
+            do {
+                failureCallbackUrl = try container.decode(String.self, forKey: .failureCallbackUrl)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -77,8 +84,15 @@ public extension ApplicationClient.Payment {
             
             
             
-            successCallbackUrl = try container.decode(String.self, forKey: .successCallbackUrl)
+            do {
+                successCallbackUrl = try container.decode(String.self, forKey: .successCallbackUrl)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
