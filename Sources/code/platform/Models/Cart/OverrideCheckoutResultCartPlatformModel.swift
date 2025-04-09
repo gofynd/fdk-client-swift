@@ -18,17 +18,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var cart: [String: Any]
         
-        public var success: Bool
+        public var success: String
         
         public var orderId: String
         
         public var message: String
-        
-        public var appInterceptUrl: String?
-        
-        public var callbackUrl: String?
-        
-        public var paymentConfirmUrl: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -43,15 +37,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case message = "message"
             
-            case appInterceptUrl = "app_intercept_url"
-            
-            case callbackUrl = "callback_url"
-            
-            case paymentConfirmUrl = "payment_confirm_url"
-            
         }
 
-        public init(appInterceptUrl: String? = nil, callbackUrl: String? = nil, cart: [String: Any], data: [String: Any], message: String, orderId: String, paymentConfirmUrl: String? = nil, success: Bool) {
+        public init(cart: [String: Any], data: [String: Any], message: String, orderId: String, success: String) {
             
             self.data = data
             
@@ -62,12 +50,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.orderId = orderId
             
             self.message = message
-            
-            self.appInterceptUrl = appInterceptUrl
-            
-            self.callbackUrl = callbackUrl
-            
-            self.paymentConfirmUrl = paymentConfirmUrl
             
         }
 
@@ -85,7 +67,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-                success = try container.decode(Bool.self, forKey: .success)
+                success = try container.decode(String.self, forKey: .success)
                 
             
             
@@ -98,42 +80,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 message = try container.decode(String.self, forKey: .message)
                 
             
-            
-            
-                do {
-                    appInterceptUrl = try container.decode(String.self, forKey: .appInterceptUrl)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    paymentConfirmUrl = try container.decode(String.self, forKey: .paymentConfirmUrl)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
         }
         
@@ -163,21 +109,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            
-            try? container.encodeIfPresent(appInterceptUrl, forKey: .appInterceptUrl)
-            
-            
-            
-            
-            try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
-            
-            
-            
-            
-            try? container.encodeIfPresent(paymentConfirmUrl, forKey: .paymentConfirmUrl)
             
             
         }

@@ -70,6 +70,8 @@ public extension PlatformClient.Order {
         
         public var orderingChannnel: String?
         
+        public var orderingSource: String?
+        
         public var shipmentId: String?
         
         public var customerNote: String?
@@ -89,10 +91,6 @@ public extension PlatformClient.Order {
         public var isLapaEnabled: Bool?
         
         public var logisticsMeta: [String: Any]?
-        
-        public var affiliateShipmentId: String?
-        
-        public var affiliateOrderId: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -155,6 +153,8 @@ public extension PlatformClient.Order {
             
             case orderingChannnel = "ordering_channnel"
             
+            case orderingSource = "ordering_source"
+            
             case shipmentId = "shipment_id"
             
             case customerNote = "customer_note"
@@ -175,13 +175,9 @@ public extension PlatformClient.Order {
             
             case logisticsMeta = "logistics_meta"
             
-            case affiliateShipmentId = "affiliate_shipment_id"
-            
-            case affiliateOrderId = "affiliate_order_id"
-            
         }
 
-        public init(affiliateDetails: AffiliateDetails? = nil, affiliateOrderId: String? = nil, affiliateShipmentId: String? = nil, bags: [BagUnit]? = nil, billingAddress: Address? = nil, canProcess: Bool? = nil, channel: ShipmentListingChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customerNote: String? = nil, deliveryAddress: Address? = nil, displayName: String? = nil, estimatedSlaTime: String? = nil, estimatedSlaTs: String? = nil, forwardEndShipmentId: String? = nil, fulfillingStore: ShipmentItemFulFillingStore? = nil, invoiceId: String? = nil, isActive: Bool? = nil, isLapaEnabled: Bool? = nil, lockStatus: Bool? = nil, logisticsMeta: [String: Any]? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, orderingChannnel: String? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderCreatedTs: String? = nil, orderDate: String? = nil, orderId: String, paymentInfo: [[String: Any]]? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, shipmentCreatedAt: String, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, statusCreatedAt: String? = nil, statusCreatedTs: String? = nil, totalBags: Int, user: UserDataInfo? = nil) {
+        public init(affiliateDetails: AffiliateDetails? = nil, bags: [BagUnit]? = nil, billingAddress: Address? = nil, canProcess: Bool? = nil, channel: ShipmentListingChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customerNote: String? = nil, deliveryAddress: Address? = nil, displayName: String? = nil, estimatedSlaTime: String? = nil, estimatedSlaTs: String? = nil, forwardEndShipmentId: String? = nil, fulfillingStore: ShipmentItemFulFillingStore? = nil, invoiceId: String? = nil, isActive: Bool? = nil, isLapaEnabled: Bool? = nil, lockStatus: Bool? = nil, logisticsMeta: [String: Any]? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, orderingChannnel: String? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderingSource: String? = nil, orderCreatedTs: String? = nil, orderDate: String? = nil, orderId: String, paymentInfo: [[String: Any]]? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, shipmentCreatedAt: String, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, statusCreatedAt: String? = nil, statusCreatedTs: String? = nil, totalBags: Int, user: UserDataInfo? = nil) {
             
             self.orderDate = orderDate
             
@@ -241,6 +237,8 @@ public extension PlatformClient.Order {
             
             self.orderingChannnel = orderingChannnel
             
+            self.orderingSource = orderingSource
+            
             self.shipmentId = shipmentId
             
             self.customerNote = customerNote
@@ -260,10 +258,6 @@ public extension PlatformClient.Order {
             self.isLapaEnabled = isLapaEnabled
             
             self.logisticsMeta = logisticsMeta
-            
-            self.affiliateShipmentId = affiliateShipmentId
-            
-            self.affiliateOrderId = affiliateOrderId
             
         }
 
@@ -613,6 +607,18 @@ public extension PlatformClient.Order {
             
             
                 do {
+                    orderingSource = try container.decode(String.self, forKey: .orderingSource)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     shipmentId = try container.decode(String.self, forKey: .shipmentId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -708,30 +714,6 @@ public extension PlatformClient.Order {
             
                 do {
                     logisticsMeta = try container.decode([String: Any].self, forKey: .logisticsMeta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -893,6 +875,11 @@ public extension PlatformClient.Order {
             
             
             
+            try? container.encodeIfPresent(orderingSource, forKey: .orderingSource)
+            
+            
+            
+            
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
             
             
@@ -939,16 +926,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(logisticsMeta, forKey: .logisticsMeta)
-            
-            
-            
-            
-            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
             
             
         }
@@ -1025,6 +1002,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var orderingChannnel: String?
         
+        public var orderingSource: String?
+        
         public var shipmentId: String?
         
         public var customerNote: String?
@@ -1044,10 +1023,6 @@ public extension PlatformClient.ApplicationClient.Order {
         public var isLapaEnabled: Bool?
         
         public var logisticsMeta: [String: Any]?
-        
-        public var affiliateShipmentId: String?
-        
-        public var affiliateOrderId: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -1110,6 +1085,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case orderingChannnel = "ordering_channnel"
             
+            case orderingSource = "ordering_source"
+            
             case shipmentId = "shipment_id"
             
             case customerNote = "customer_note"
@@ -1130,13 +1107,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case logisticsMeta = "logistics_meta"
             
-            case affiliateShipmentId = "affiliate_shipment_id"
-            
-            case affiliateOrderId = "affiliate_order_id"
-            
         }
 
-        public init(affiliateDetails: AffiliateDetails? = nil, affiliateOrderId: String? = nil, affiliateShipmentId: String? = nil, bags: [BagUnit]? = nil, billingAddress: Address? = nil, canProcess: Bool? = nil, channel: ShipmentListingChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customerNote: String? = nil, deliveryAddress: Address? = nil, displayName: String? = nil, estimatedSlaTime: String? = nil, estimatedSlaTs: String? = nil, forwardEndShipmentId: String? = nil, fulfillingStore: ShipmentItemFulFillingStore? = nil, invoiceId: String? = nil, isActive: Bool? = nil, isLapaEnabled: Bool? = nil, lockStatus: Bool? = nil, logisticsMeta: [String: Any]? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, orderingChannnel: String? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderCreatedTs: String? = nil, orderDate: String? = nil, orderId: String, paymentInfo: [[String: Any]]? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, shipmentCreatedAt: String, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, statusCreatedAt: String? = nil, statusCreatedTs: String? = nil, totalBags: Int, user: UserDataInfo? = nil) {
+        public init(affiliateDetails: AffiliateDetails? = nil, bags: [BagUnit]? = nil, billingAddress: Address? = nil, canProcess: Bool? = nil, channel: ShipmentListingChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customerNote: String? = nil, deliveryAddress: Address? = nil, displayName: String? = nil, estimatedSlaTime: String? = nil, estimatedSlaTs: String? = nil, forwardEndShipmentId: String? = nil, fulfillingStore: ShipmentItemFulFillingStore? = nil, invoiceId: String? = nil, isActive: Bool? = nil, isLapaEnabled: Bool? = nil, lockStatus: Bool? = nil, logisticsMeta: [String: Any]? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, orderingChannnel: String? = nil, orderingCurrencyPrices: OrderingCurrencyPrices? = nil, orderingSource: String? = nil, orderCreatedTs: String? = nil, orderDate: String? = nil, orderId: String, paymentInfo: [[String: Any]]? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, shipmentCreatedAt: String, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, statusCreatedAt: String? = nil, statusCreatedTs: String? = nil, totalBags: Int, user: UserDataInfo? = nil) {
             
             self.orderDate = orderDate
             
@@ -1196,6 +1169,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.orderingChannnel = orderingChannnel
             
+            self.orderingSource = orderingSource
+            
             self.shipmentId = shipmentId
             
             self.customerNote = customerNote
@@ -1215,10 +1190,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.isLapaEnabled = isLapaEnabled
             
             self.logisticsMeta = logisticsMeta
-            
-            self.affiliateShipmentId = affiliateShipmentId
-            
-            self.affiliateOrderId = affiliateOrderId
             
         }
 
@@ -1568,6 +1539,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
+                    orderingSource = try container.decode(String.self, forKey: .orderingSource)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     shipmentId = try container.decode(String.self, forKey: .shipmentId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -1663,30 +1646,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     logisticsMeta = try container.decode([String: Any].self, forKey: .logisticsMeta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1848,6 +1807,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
+            try? container.encodeIfPresent(orderingSource, forKey: .orderingSource)
+            
+            
+            
+            
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
             
             
@@ -1894,16 +1858,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(logisticsMeta, forKey: .logisticsMeta)
-            
-            
-            
-            
-            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
             
             
         }

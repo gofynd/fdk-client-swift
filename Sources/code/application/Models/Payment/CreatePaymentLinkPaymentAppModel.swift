@@ -20,8 +20,6 @@ public extension ApplicationClient.Payment {
         
         public var email: String
         
-        public var countryPhoneCode: String?
-        
         public var successRedirectionUrl: String?
         
         public var failureRedirectionUrl: String?
@@ -41,15 +39,13 @@ public extension ApplicationClient.Payment {
             
             case email = "email"
             
-            case countryPhoneCode = "country_phone_code"
-            
             case successRedirectionUrl = "success_redirection_url"
             
             case failureRedirectionUrl = "failure_redirection_url"
             
         }
 
-        public init(amount: Double, countryPhoneCode: String? = nil, description: String? = nil, email: String, externalOrderId: String, failureRedirectionUrl: String? = nil, meta: CreatePaymentLinkMeta, mobileNumber: String, successRedirectionUrl: String? = nil) {
+        public init(amount: Double, description: String? = nil, email: String, externalOrderId: String, failureRedirectionUrl: String? = nil, meta: CreatePaymentLinkMeta, mobileNumber: String, successRedirectionUrl: String? = nil) {
             
             self.description = description
             
@@ -62,8 +58,6 @@ public extension ApplicationClient.Payment {
             self.meta = meta
             
             self.email = email
-            
-            self.countryPhoneCode = countryPhoneCode
             
             self.successRedirectionUrl = successRedirectionUrl
             
@@ -109,18 +103,6 @@ public extension ApplicationClient.Payment {
             
             email = try container.decode(String.self, forKey: .email)
             
-            
-            
-            
-            do {
-                countryPhoneCode = try container.decode(String.self, forKey: .countryPhoneCode)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
             
@@ -174,10 +156,6 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(email, forKey: .email)
-            
-            
-            
-            try? container.encodeIfPresent(countryPhoneCode, forKey: .countryPhoneCode)
             
             
             

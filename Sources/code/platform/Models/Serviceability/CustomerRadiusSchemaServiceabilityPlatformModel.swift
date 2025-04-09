@@ -12,7 +12,7 @@ public extension PlatformClient.Serviceability {
     class CustomerRadiusSchema: Codable {
         
         
-        public var unit: String
+        public var unit: String?
         
         public var lt: Int?
         
@@ -37,7 +37,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil, unit: String) {
+        public init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil, unit: String? = nil) {
             
             self.unit = unit
             
@@ -55,9 +55,16 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                unit = try container.decode(String.self, forKey: .unit)
+                do {
+                    unit = try container.decode(String.self, forKey: .unit)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -153,7 +160,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class CustomerRadiusSchema: Codable {
         
         
-        public var unit: String
+        public var unit: String?
         
         public var lt: Int?
         
@@ -178,7 +185,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil, unit: String) {
+        public init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil, unit: String? = nil) {
             
             self.unit = unit
             
@@ -196,9 +203,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                unit = try container.decode(String.self, forKey: .unit)
+                do {
+                    unit = try container.decode(String.self, forKey: .unit)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {

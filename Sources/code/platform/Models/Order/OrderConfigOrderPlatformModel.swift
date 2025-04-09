@@ -24,10 +24,6 @@ public extension PlatformClient.Order {
         
         public var affiliateStoreIdMapping: [AffiliateStoreIdMapping]
         
-        public var config: ConfigData?
-        
-        public var success: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -43,13 +39,9 @@ public extension PlatformClient.Order {
             
             case affiliateStoreIdMapping = "affiliate_store_id_mapping"
             
-            case config = "config"
-            
-            case success = "success"
-            
         }
 
-        public init(affiliate: Affiliate, affiliateStoreIdMapping: [AffiliateStoreIdMapping], articleLookup: String? = nil, bagEndState: String? = nil, config: ConfigData? = nil, createUser: Bool? = nil, storeLookup: String? = nil, success: Bool? = nil) {
+        public init(affiliate: Affiliate, affiliateStoreIdMapping: [AffiliateStoreIdMapping], articleLookup: String? = nil, bagEndState: String? = nil, createUser: Bool? = nil, storeLookup: String? = nil) {
             
             self.createUser = createUser
             
@@ -62,10 +54,6 @@ public extension PlatformClient.Order {
             self.storeLookup = storeLookup
             
             self.affiliateStoreIdMapping = affiliateStoreIdMapping
-            
-            self.config = config
-            
-            self.success = success
             
         }
 
@@ -130,30 +118,6 @@ public extension PlatformClient.Order {
                 
             
             
-            
-                do {
-                    config = try container.decode(ConfigData.self, forKey: .config)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    success = try container.decode(Bool.self, forKey: .success)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -187,16 +151,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(affiliateStoreIdMapping, forKey: .affiliateStoreIdMapping)
-            
-            
-            
-            
-            try? container.encodeIfPresent(config, forKey: .config)
-            
-            
-            
-            
-            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }
@@ -227,10 +181,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var affiliateStoreIdMapping: [AffiliateStoreIdMapping]
         
-        public var config: ConfigData?
-        
-        public var success: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -246,13 +196,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case affiliateStoreIdMapping = "affiliate_store_id_mapping"
             
-            case config = "config"
-            
-            case success = "success"
-            
         }
 
-        public init(affiliate: Affiliate, affiliateStoreIdMapping: [AffiliateStoreIdMapping], articleLookup: String? = nil, bagEndState: String? = nil, config: ConfigData? = nil, createUser: Bool? = nil, storeLookup: String? = nil, success: Bool? = nil) {
+        public init(affiliate: Affiliate, affiliateStoreIdMapping: [AffiliateStoreIdMapping], articleLookup: String? = nil, bagEndState: String? = nil, createUser: Bool? = nil, storeLookup: String? = nil) {
             
             self.createUser = createUser
             
@@ -265,10 +211,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.storeLookup = storeLookup
             
             self.affiliateStoreIdMapping = affiliateStoreIdMapping
-            
-            self.config = config
-            
-            self.success = success
             
         }
 
@@ -333,30 +275,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-            
-                do {
-                    config = try container.decode(ConfigData.self, forKey: .config)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    success = try container.decode(Bool.self, forKey: .success)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -390,16 +308,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(affiliateStoreIdMapping, forKey: .affiliateStoreIdMapping)
-            
-            
-            
-            
-            try? container.encodeIfPresent(config, forKey: .config)
-            
-            
-            
-            
-            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }

@@ -14,10 +14,6 @@ public extension ApplicationClient.Payment {
         
         public var paymentMethods: CreateOrderUserPaymentMethods
         
-        public var failureCallbackUrl: String?
-        
-        public var successCallbackUrl: String?
-        
         public var meta: [String: Any]?
         
 
@@ -29,25 +25,17 @@ public extension ApplicationClient.Payment {
             
             case paymentMethods = "payment_methods"
             
-            case failureCallbackUrl = "failure_callback_url"
-            
-            case successCallbackUrl = "success_callback_url"
-            
             case meta = "meta"
             
         }
 
-        public init(currency: String, failureCallbackUrl: String? = nil, meta: [String: Any]? = nil, paymentLinkId: String, paymentMethods: CreateOrderUserPaymentMethods, successCallbackUrl: String? = nil) {
+        public init(currency: String, meta: [String: Any]? = nil, paymentLinkId: String, paymentMethods: CreateOrderUserPaymentMethods) {
             
             self.currency = currency
             
             self.paymentLinkId = paymentLinkId
             
             self.paymentMethods = paymentMethods
-            
-            self.failureCallbackUrl = failureCallbackUrl
-            
-            self.successCallbackUrl = successCallbackUrl
             
             self.meta = meta
             
@@ -69,30 +57,6 @@ public extension ApplicationClient.Payment {
             
             paymentMethods = try container.decode(CreateOrderUserPaymentMethods.self, forKey: .paymentMethods)
             
-            
-            
-            
-            do {
-                failureCallbackUrl = try container.decode(String.self, forKey: .failureCallbackUrl)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                successCallbackUrl = try container.decode(String.self, forKey: .successCallbackUrl)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
             
@@ -122,14 +86,6 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
-            
-            
-            
-            try? container.encodeIfPresent(failureCallbackUrl, forKey: .failureCallbackUrl)
-            
-            
-            
-            try? container.encodeIfPresent(successCallbackUrl, forKey: .successCallbackUrl)
             
             
             

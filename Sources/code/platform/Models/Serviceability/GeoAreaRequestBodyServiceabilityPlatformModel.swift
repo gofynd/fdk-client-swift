@@ -22,7 +22,7 @@ public extension PlatformClient.Serviceability {
         
         public var areas: [Area]
         
-        public var regionType: String
+        public var regionType: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -41,7 +41,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(areas: [Area], isActive: Bool, name: String, regionType: String, slug: String, type: String) {
+        public init(areas: [Area], isActive: Bool, name: String, regionType: String? = nil, slug: String, type: String) {
             
             self.isActive = isActive
             
@@ -86,9 +86,16 @@ public extension PlatformClient.Serviceability {
             
             
             
-                regionType = try container.decode(String.self, forKey: .regionType)
+                do {
+                    regionType = try container.decode(String.self, forKey: .regionType)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -151,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var areas: [Area]
         
-        public var regionType: String
+        public var regionType: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -170,7 +177,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(areas: [Area], isActive: Bool, name: String, regionType: String, slug: String, type: String) {
+        public init(areas: [Area], isActive: Bool, name: String, regionType: String? = nil, slug: String, type: String) {
             
             self.isActive = isActive
             
@@ -215,9 +222,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                regionType = try container.decode(String.self, forKey: .regionType)
+                do {
+                    regionType = try container.decode(String.self, forKey: .regionType)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         

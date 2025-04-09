@@ -14,12 +14,6 @@ public extension PlatformClient.ApplicationClient.User {
     class UserSearchSchema: Codable {
         
         
-        public var v: Double?
-        
-        public var hasOldPasswordHash: Bool?
-        
-        public var debug: DebugInfo?
-        
         public var applicationId: String?
         
         public var userId: String?
@@ -60,14 +54,10 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var status: String?
         
+        public var deletedOn: String?
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case v = "__v"
-            
-            case hasOldPasswordHash = "has_old_password_hash"
-            
-            case debug = "debug"
             
             case applicationId = "application_id"
             
@@ -109,15 +99,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             case status = "status"
             
+            case deletedOn = "deleted_on"
+            
         }
 
-        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, archive: Bool? = nil, createdAt: String? = nil, debug: DebugInfo? = nil, dob: String? = nil, emails: [Email]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, hasOldPasswordHash: Bool? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, rrId: String? = nil, status: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil, v: Double? = nil) {
-            
-            self.v = v
-            
-            self.hasOldPasswordHash = hasOldPasswordHash
-            
-            self.debug = debug
+        public init(accountType: String? = nil, active: Bool? = nil, applicationId: String? = nil, archive: Bool? = nil, createdAt: String? = nil, deletedOn: String? = nil, dob: String? = nil, emails: [Email]? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, meta: [String: Any]? = nil, phoneNumbers: [PhoneNumber]? = nil, profilePicUrl: String? = nil, rrId: String? = nil, status: String? = nil, updatedAt: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
             
             self.applicationId = applicationId
             
@@ -159,46 +145,12 @@ public extension PlatformClient.ApplicationClient.User {
             
             self.status = status
             
+            self.deletedOn = deletedOn
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    v = try container.decode(Double.self, forKey: .v)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    hasOldPasswordHash = try container.decode(Bool.self, forKey: .hasOldPasswordHash)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    debug = try container.decode(DebugInfo.self, forKey: .debug)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -440,25 +392,22 @@ public extension PlatformClient.ApplicationClient.User {
                 }
                 
             
+            
+                do {
+                    deletedOn = try container.decode(String.self, forKey: .deletedOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
-            
-            
-            
-            
-            try? container.encodeIfPresent(hasOldPasswordHash, forKey: .hasOldPasswordHash)
-            
-            
-            
-            
-            try? container.encodeIfPresent(debug, forKey: .debug)
-            
             
             
             
@@ -558,6 +507,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(deletedOn, forKey: .deletedOn)
             
             
         }

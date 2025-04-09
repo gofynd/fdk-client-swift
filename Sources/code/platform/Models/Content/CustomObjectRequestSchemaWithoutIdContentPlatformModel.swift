@@ -12,8 +12,6 @@ public extension PlatformClient.Content {
     class CustomObjectRequestSchemaWithoutId: Codable {
         
         
-        public var slug: String?
-        
         public var status: String?
         
         public var fields: [CustomObjectEntryFieldSchemaWithoutID]?
@@ -21,17 +19,13 @@ public extension PlatformClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
-            case slug = "slug"
-            
             case status = "status"
             
             case fields = "fields"
             
         }
 
-        public init(fields: [CustomObjectEntryFieldSchemaWithoutID]? = nil, slug: String? = nil, status: String? = nil) {
-            
-            self.slug = slug
+        public init(fields: [CustomObjectEntryFieldSchemaWithoutID]? = nil, status: String? = nil) {
             
             self.status = status
             
@@ -41,18 +35,6 @@ public extension PlatformClient.Content {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    slug = try container.decode(String.self, forKey: .slug)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -82,11 +64,6 @@ public extension PlatformClient.Content {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
-            
             
             
             
@@ -114,8 +91,6 @@ public extension PlatformClient.ApplicationClient.Content {
     class CustomObjectRequestSchemaWithoutId: Codable {
         
         
-        public var slug: String?
-        
         public var status: String?
         
         public var fields: [CustomObjectEntryFieldSchemaWithoutID]?
@@ -123,17 +98,13 @@ public extension PlatformClient.ApplicationClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
-            case slug = "slug"
-            
             case status = "status"
             
             case fields = "fields"
             
         }
 
-        public init(fields: [CustomObjectEntryFieldSchemaWithoutID]? = nil, slug: String? = nil, status: String? = nil) {
-            
-            self.slug = slug
+        public init(fields: [CustomObjectEntryFieldSchemaWithoutID]? = nil, status: String? = nil) {
             
             self.status = status
             
@@ -143,18 +114,6 @@ public extension PlatformClient.ApplicationClient.Content {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    slug = try container.decode(String.self, forKey: .slug)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -184,11 +143,6 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
-            
             
             
             

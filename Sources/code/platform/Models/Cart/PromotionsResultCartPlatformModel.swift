@@ -18,14 +18,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var page: Page?
         
-        public var draft: Double?
-        
-        public var review: Double?
-        
-        public var rejected: Double?
-        
-        public var approved: Double?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -33,29 +25,13 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case page = "page"
             
-            case draft = "draft"
-            
-            case review = "review"
-            
-            case rejected = "rejected"
-            
-            case approved = "approved"
-            
         }
 
-        public init(approved: Double? = nil, draft: Double? = nil, items: [PromotionListItem]? = nil, page: Page? = nil, rejected: Double? = nil, review: Double? = nil) {
+        public init(items: [PromotionListItem]? = nil, page: Page? = nil) {
             
             self.items = items
             
             self.page = page
-            
-            self.draft = draft
-            
-            self.review = review
-            
-            self.rejected = rejected
-            
-            self.approved = approved
             
         }
 
@@ -86,54 +62,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
-            
-                do {
-                    draft = try container.decode(Double.self, forKey: .draft)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    review = try container.decode(Double.self, forKey: .review)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    rejected = try container.decode(Double.self, forKey: .rejected)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    approved = try container.decode(Double.self, forKey: .approved)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -147,26 +75,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(page, forKey: .page)
-            
-            
-            
-            
-            try? container.encodeIfPresent(draft, forKey: .draft)
-            
-            
-            
-            
-            try? container.encodeIfPresent(review, forKey: .review)
-            
-            
-            
-            
-            try? container.encodeIfPresent(rejected, forKey: .rejected)
-            
-            
-            
-            
-            try? container.encodeIfPresent(approved, forKey: .approved)
             
             
         }

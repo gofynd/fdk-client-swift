@@ -8,11 +8,11 @@ public extension ApplicationClient.Payment {
     */
     class IfscCodeDetails: Codable {
         
-        public var branchName: String?
+        public var branchName: String
         
         public var success: Bool?
         
-        public var bankName: String?
+        public var bankName: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(bankName: String? = nil, branchName: String? = nil, success: Bool? = nil) {
+        public init(bankName: String, branchName: String, success: Bool? = nil) {
             
             self.branchName = branchName
             
@@ -39,15 +39,8 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            do {
-                branchName = try container.decode(String.self, forKey: .branchName)
+            branchName = try container.decode(String.self, forKey: .branchName)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
             
@@ -63,15 +56,8 @@ public extension ApplicationClient.Payment {
             
             
             
-            do {
-                bankName = try container.decode(String.self, forKey: .bankName)
+            bankName = try container.decode(String.self, forKey: .bankName)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
         }

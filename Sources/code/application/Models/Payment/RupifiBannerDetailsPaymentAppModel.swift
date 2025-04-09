@@ -8,7 +8,7 @@ public extension ApplicationClient.Payment {
     */
     class RupifiBannerDetails: Codable {
         
-        public var data: RupifiBannerData?
+        public var data: RupifiBannerData
         
         public var success: Bool
         
@@ -21,7 +21,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(data: RupifiBannerData? = nil, success: Bool) {
+        public init(data: RupifiBannerData, success: Bool) {
             
             self.data = data
             
@@ -33,15 +33,8 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            do {
-                data = try container.decode(RupifiBannerData.self, forKey: .data)
+            data = try container.decode(RupifiBannerData.self, forKey: .data)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
             

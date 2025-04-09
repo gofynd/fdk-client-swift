@@ -40,8 +40,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var cartId: String
         
-        public var removeArticles: Bool?
-        
         public var autoRemove: Bool?
         
         public var distributionLogic: DistributionLogic?
@@ -75,15 +73,13 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case cartId = "cart_id"
             
-            case removeArticles = "remove_articles"
-            
             case autoRemove = "auto_remove"
             
             case distributionLogic = "distribution_logic"
             
         }
 
-        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, autoRemove: Bool? = nil, cartId: String, collection: Collection, createdBy: String? = nil, distributionLogic: DistributionLogic? = nil, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, removeArticles: Bool? = nil, restrictions: PriceAdjustmentRestrictions? = nil, type: String, value: Double) {
+        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, autoRemove: Bool? = nil, cartId: String, collection: Collection, createdBy: String? = nil, distributionLogic: DistributionLogic? = nil, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, restrictions: PriceAdjustmentRestrictions? = nil, type: String, value: Double) {
             
             self.value = value
             
@@ -110,8 +106,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.meta = meta
             
             self.cartId = cartId
-            
-            self.removeArticles = removeArticles
             
             self.autoRemove = autoRemove
             
@@ -224,18 +218,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    removeArticles = try container.decode(Bool.self, forKey: .removeArticles)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     autoRemove = try container.decode(Bool.self, forKey: .autoRemove)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -326,11 +308,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(cartId, forKey: .cartId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(removeArticles, forKey: .removeArticles)
             
             
             

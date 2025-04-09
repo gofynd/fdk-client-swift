@@ -30,7 +30,7 @@ public extension PlatformClient.Catalog {
         
         public var longitude: Double?
         
-        public var pincode: Int?
+        public var pincode: String?
         
         public var state: String?
         
@@ -61,7 +61,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(address1: String? = nil, address2: String? = nil, addressType: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, landmark: String? = nil, latitude: Double? = nil, longitude: Double? = nil, pincode: Int? = nil, state: String? = nil) {
+        public init(address1: String? = nil, address2: String? = nil, addressType: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, landmark: String? = nil, latitude: Double? = nil, longitude: Double? = nil, pincode: String? = nil, state: String? = nil) {
             
             self.address1 = address1
             
@@ -200,7 +200,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    pincode = try container.decode(Int.self, forKey: .pincode)
+                    pincode = try container.decode(String.self, forKey: .pincode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -316,7 +316,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var longitude: Double?
         
-        public var pincode: Int?
+        public var pincode: String?
         
         public var state: String?
         
@@ -347,7 +347,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(address1: String? = nil, address2: String? = nil, addressType: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, landmark: String? = nil, latitude: Double? = nil, longitude: Double? = nil, pincode: Int? = nil, state: String? = nil) {
+        public init(address1: String? = nil, address2: String? = nil, addressType: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, landmark: String? = nil, latitude: Double? = nil, longitude: Double? = nil, pincode: String? = nil, state: String? = nil) {
             
             self.address1 = address1
             
@@ -486,7 +486,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    pincode = try container.decode(Int.self, forKey: .pincode)
+                    pincode = try container.decode(String.self, forKey: .pincode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

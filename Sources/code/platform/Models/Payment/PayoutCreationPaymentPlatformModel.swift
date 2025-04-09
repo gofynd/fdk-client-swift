@@ -14,7 +14,7 @@ public extension PlatformClient.Payment {
         
         public var aggregator: String
         
-        public var users: PayoutUserDetails
+        public var users: [String: Any]
         
         public var uniqueExternalId: String
         
@@ -41,7 +41,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(aggregator: String, bankDetails: PayoutBankDetails, isActive: Bool, transferType: String, uniqueExternalId: String, users: PayoutUserDetails) {
+        public init(aggregator: String, bankDetails: PayoutBankDetails, isActive: Bool, transferType: String, uniqueExternalId: String, users: [String: Any]) {
             
             self.aggregator = aggregator
             
@@ -66,7 +66,7 @@ public extension PlatformClient.Payment {
             
             
             
-                users = try container.decode(PayoutUserDetails.self, forKey: .users)
+                users = try container.decode([String: Any].self, forKey: .users)
                 
             
             
@@ -143,7 +143,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var aggregator: String
         
-        public var users: PayoutUserDetails
+        public var users: [String: Any]
         
         public var uniqueExternalId: String
         
@@ -170,7 +170,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(aggregator: String, bankDetails: PayoutBankDetails, isActive: Bool, transferType: String, uniqueExternalId: String, users: PayoutUserDetails) {
+        public init(aggregator: String, bankDetails: PayoutBankDetails, isActive: Bool, transferType: String, uniqueExternalId: String, users: [String: Any]) {
             
             self.aggregator = aggregator
             
@@ -195,7 +195,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                users = try container.decode(PayoutUserDetails.self, forKey: .users)
+                users = try container.decode([String: Any].self, forKey: .users)
                 
             
             

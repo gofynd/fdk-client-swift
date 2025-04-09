@@ -16,8 +16,6 @@ public extension PlatformClient.Configuration {
         
         public var success: Bool?
         
-        public var domain: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -25,17 +23,13 @@ public extension PlatformClient.Configuration {
             
             case success = "success"
             
-            case domain = "domain"
-            
         }
 
-        public init(domain: [String: Any]? = nil, message: String? = nil, success: Bool? = nil) {
+        public init(message: String? = nil, success: Bool? = nil) {
             
             self.message = message
             
             self.success = success
-            
-            self.domain = domain
             
         }
 
@@ -66,18 +60,6 @@ public extension PlatformClient.Configuration {
                 }
                 
             
-            
-                do {
-                    domain = try container.decode([String: Any].self, forKey: .domain)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -91,11 +73,6 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(success, forKey: .success)
-            
-            
-            
-            
-            try? container.encodeIfPresent(domain, forKey: .domain)
             
             
         }
@@ -118,8 +95,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var success: Bool?
         
-        public var domain: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -127,17 +102,13 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case success = "success"
             
-            case domain = "domain"
-            
         }
 
-        public init(domain: [String: Any]? = nil, message: String? = nil, success: Bool? = nil) {
+        public init(message: String? = nil, success: Bool? = nil) {
             
             self.message = message
             
             self.success = success
-            
-            self.domain = domain
             
         }
 
@@ -168,18 +139,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
-            
-                do {
-                    domain = try container.decode([String: Any].self, forKey: .domain)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -193,11 +152,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(success, forKey: .success)
-            
-            
-            
-            
-            try? container.encodeIfPresent(domain, forKey: .domain)
             
             
         }

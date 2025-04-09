@@ -26,8 +26,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var customJson: [String: Any]?
         
-        public var priceFactoryTypeId: String?
-        
         public var itemId: Int?
         
         public var itemIndex: Int?
@@ -51,8 +49,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case customJson = "_custom_json"
             
-            case priceFactoryTypeId = "price_factory_type_id"
-            
             case itemId = "item_id"
             
             case itemIndex = "item_index"
@@ -63,7 +59,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(articleId: String? = nil, extraMeta: [String: Any]? = nil, identifiers: CartProductIdentifer, itemId: Int? = nil, itemIndex: Int? = nil, itemSize: String? = nil, meta: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, priceFactoryTypeId: String? = nil, quantity: Int? = nil, customJson: [String: Any]? = nil) {
+        public init(articleId: String? = nil, extraMeta: [String: Any]? = nil, identifiers: CartProductIdentifer, itemId: Int? = nil, itemIndex: Int? = nil, itemSize: String? = nil, meta: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, quantity: Int? = nil, customJson: [String: Any]? = nil) {
             
             self.quantity = quantity
             
@@ -76,8 +72,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.extraMeta = extraMeta
             
             self.customJson = customJson
-            
-            self.priceFactoryTypeId = priceFactoryTypeId
             
             self.itemId = itemId
             
@@ -166,18 +160,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    priceFactoryTypeId = try container.decode(String.self, forKey: .priceFactoryTypeId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     itemId = try container.decode(Int.self, forKey: .itemId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -250,11 +232,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(customJson, forKey: .customJson)
-            
-            
-            
-            
-            try? container.encodeIfPresent(priceFactoryTypeId, forKey: .priceFactoryTypeId)
             
             
             

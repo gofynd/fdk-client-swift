@@ -10,22 +10,16 @@ public extension ApplicationClient.User {
         
         public var verifyMobileLink: Bool?
         
-        public var user: UserSchema?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case verifyMobileLink = "verify_mobile_link"
             
-            case user = "user"
-            
         }
 
-        public init(user: UserSchema? = nil, verifyMobileLink: Bool? = nil) {
+        public init(verifyMobileLink: Bool? = nil) {
             
             self.verifyMobileLink = verifyMobileLink
-            
-            self.user = user
             
         }
 
@@ -44,18 +38,6 @@ public extension ApplicationClient.User {
             }
             
             
-            
-            do {
-                user = try container.decode(UserSchema.self, forKey: .user)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -63,10 +45,6 @@ public extension ApplicationClient.User {
             
             
             try? container.encodeIfPresent(verifyMobileLink, forKey: .verifyMobileLink)
-            
-            
-            
-            try? container.encodeIfPresent(user, forKey: .user)
             
             
         }

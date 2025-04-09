@@ -12,22 +12,22 @@ public extension PlatformClient.Order {
     class APIFailedResponseSchema: Codable {
         
         
-        public var success: Bool?
+        public var status: Bool?
         
         public var error: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
+            case status = "status"
             
             case error = "error"
             
         }
 
-        public init(error: String? = nil, success: Bool? = nil) {
+        public init(error: String? = nil, status: Bool? = nil) {
             
-            self.success = success
+            self.status = status
             
             self.error = error
             
@@ -38,7 +38,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    success = try container.decode(Bool.self, forKey: .success)
+                    status = try container.decode(Bool.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,7 +67,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             
@@ -91,22 +91,22 @@ public extension PlatformClient.ApplicationClient.Order {
     class APIFailedResponseSchema: Codable {
         
         
-        public var success: Bool?
+        public var status: Bool?
         
         public var error: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
+            case status = "status"
             
             case error = "error"
             
         }
 
-        public init(error: String? = nil, success: Bool? = nil) {
+        public init(error: String? = nil, status: Bool? = nil) {
             
-            self.success = success
+            self.status = status
             
             self.error = error
             
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    success = try container.decode(Bool.self, forKey: .success)
+                    status = try container.decode(Bool.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             

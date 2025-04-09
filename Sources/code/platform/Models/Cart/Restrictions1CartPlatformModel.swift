@@ -30,11 +30,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var userId: [String]?
         
-        public var uses: UsesRestriction1
+        public var uses: UsesRestriction1?
         
         public var orderingStores: [Int]?
-        
-        public var userType: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -59,11 +57,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case orderingStores = "ordering_stores"
             
-            case userType = "user_type"
-            
         }
 
-        public init(anonymousUsers: Bool? = nil, orderingStores: [Int]? = nil, orderQuantity: Int? = nil, payments: PaymentModes? = nil, platforms: [String]? = nil, postOrder: PostOrder1? = nil, userGroups: [Int]? = nil, userId: [String]? = nil, userRegistered: UserRegistered? = nil, userType: String? = nil, uses: UsesRestriction1) {
+        public init(anonymousUsers: Bool? = nil, orderingStores: [Int]? = nil, orderQuantity: Int? = nil, payments: PaymentModes? = nil, platforms: [String]? = nil, postOrder: PostOrder1? = nil, userGroups: [Int]? = nil, userId: [String]? = nil, userRegistered: UserRegistered? = nil, uses: UsesRestriction1? = nil) {
             
             self.payments = payments
             
@@ -84,8 +80,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.uses = uses
             
             self.orderingStores = orderingStores
-            
-            self.userType = userType
             
         }
 
@@ -189,13 +183,8 @@ public extension PlatformClient.ApplicationClient.Cart {
                 
             
             
-                uses = try container.decode(UsesRestriction1.self, forKey: .uses)
-                
-            
-            
-            
                 do {
-                    orderingStores = try container.decode([Int].self, forKey: .orderingStores)
+                    uses = try container.decode(UsesRestriction1.self, forKey: .uses)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -207,7 +196,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    userType = try container.decode(String.self, forKey: .userType)
+                    orderingStores = try container.decode([Int].self, forKey: .orderingStores)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -270,11 +259,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(orderingStores, forKey: .orderingStores)
-            
-            
-            
-            
-            try? container.encodeIfPresent(userType, forKey: .userType)
             
             
         }

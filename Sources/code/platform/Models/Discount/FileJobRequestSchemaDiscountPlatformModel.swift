@@ -18,7 +18,7 @@ public extension PlatformClient.Discount {
         
         public var companyId: Int
         
-        public var appId: String
+        public var appIds: [String]
         
         public var jobType: String
         
@@ -45,7 +45,7 @@ public extension PlatformClient.Discount {
             
             case companyId = "company_id"
             
-            case appId = "app_id"
+            case appIds = "app_ids"
             
             case jobType = "job_type"
             
@@ -65,7 +65,7 @@ public extension PlatformClient.Discount {
             
         }
 
-        public init(appId: String, brandIds: [Int]? = nil, companyId: Int, discountLevel: String, discountType: String? = nil, filePath: String? = nil, isActive: Bool, jobType: String, meta: [String: Any]? = nil, name: String, storeIds: [Int]? = nil, validity: ValidityObject) {
+        public init(appIds: [String], brandIds: [Int]? = nil, companyId: Int, discountLevel: String, discountType: String? = nil, filePath: String? = nil, isActive: Bool, jobType: String, meta: [String: Any]? = nil, name: String, storeIds: [Int]? = nil, validity: ValidityObject) {
             
             self.name = name
             
@@ -73,7 +73,7 @@ public extension PlatformClient.Discount {
             
             self.companyId = companyId
             
-            self.appId = appId
+            self.appIds = appIds
             
             self.jobType = jobType
             
@@ -112,7 +112,7 @@ public extension PlatformClient.Discount {
             
             
             
-                appId = try container.decode(String.self, forKey: .appId)
+                appIds = try container.decode([String].self, forKey: .appIds)
                 
             
             
@@ -213,7 +213,7 @@ public extension PlatformClient.Discount {
             
             
             
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(appIds, forKey: .appIds)
             
             
             

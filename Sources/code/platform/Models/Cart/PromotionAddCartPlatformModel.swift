@@ -26,19 +26,17 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var applyAllDiscount: Bool?
         
-        public var displayMeta: DisplayMeta1
+        public var displayMeta: DisplayMeta1?
         
-        public var ownership: Ownership
+        public var ownership: Ownership1?
         
         public var promotionType: String
         
-        public var discountRules: [DiscountRule]
+        public var discountRules: [DiscountRule]?
         
         public var restrictions: Restrictions1?
         
         public var currency: String?
-        
-        public var isProcessed: Bool?
         
         public var code: String?
         
@@ -54,13 +52,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var applicationId: String
         
-        public var buyRules: [String: Any]
+        public var buyRules: ItemCriteria?
         
         public var customJson: [String: Any]?
         
         public var dateMeta: PromotionDateMeta?
-        
-        public var indexedCriteria: [PromoIndexedCriteria]?
         
         public var tags: [String]?
         
@@ -91,8 +87,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case currency = "currency"
             
-            case isProcessed = "is_processed"
-            
             case code = "code"
             
             case schedule = "_schedule"
@@ -113,13 +107,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case dateMeta = "date_meta"
             
-            case indexedCriteria = "indexed_criteria"
-            
             case tags = "tags"
             
         }
 
-        public init(applicationId: String, applyAllDiscount: Bool? = nil, applyExclusive: String? = nil, applyPriority: Int? = nil, author: PromotionAuthor? = nil, buyRules: [String: Any], calculateOn: String? = nil, code: String? = nil, currency: String? = nil, dateMeta: PromotionDateMeta? = nil, discountRules: [DiscountRule], displayMeta: DisplayMeta1, indexedCriteria: [PromoIndexedCriteria]? = nil, isProcessed: Bool? = nil, mode: String, ownership: Ownership, postOrderAction: PromotionAction? = nil, promotionType: String, promoGroup: String, restrictions: Restrictions1? = nil, stackable: Bool? = nil, tags: [String]? = nil, visiblility: Visibility? = nil, customJson: [String: Any]? = nil, schedule: PromotionSchedule? = nil) {
+        public init(applicationId: String, applyAllDiscount: Bool? = nil, applyExclusive: String? = nil, applyPriority: Int? = nil, author: PromotionAuthor? = nil, buyRules: ItemCriteria? = nil, calculateOn: String? = nil, code: String? = nil, currency: String? = nil, dateMeta: PromotionDateMeta? = nil, discountRules: [DiscountRule]? = nil, displayMeta: DisplayMeta1? = nil, mode: String, ownership: Ownership1? = nil, postOrderAction: PromotionAction? = nil, promotionType: String, promoGroup: String, restrictions: Restrictions1? = nil, stackable: Bool? = nil, tags: [String]? = nil, visiblility: Visibility? = nil, customJson: [String: Any]? = nil, schedule: PromotionSchedule? = nil) {
             
             self.stackable = stackable
             
@@ -145,8 +137,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             self.currency = currency
             
-            self.isProcessed = isProcessed
-            
             self.code = code
             
             self.schedule = schedule
@@ -166,8 +156,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.customJson = customJson
             
             self.dateMeta = dateMeta
-            
-            self.indexedCriteria = indexedCriteria
             
             self.tags = tags
             
@@ -235,14 +223,28 @@ public extension PlatformClient.ApplicationClient.Cart {
                 
             
             
-                displayMeta = try container.decode(DisplayMeta1.self, forKey: .displayMeta)
+                do {
+                    displayMeta = try container.decode(DisplayMeta1.self, forKey: .displayMeta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                ownership = try container.decode(Ownership.self, forKey: .ownership)
+                do {
+                    ownership = try container.decode(Ownership1.self, forKey: .ownership)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 promotionType = try container.decode(String.self, forKey: .promotionType)
@@ -250,9 +252,16 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-                discountRules = try container.decode([DiscountRule].self, forKey: .discountRules)
+                do {
+                    discountRules = try container.decode([DiscountRule].self, forKey: .discountRules)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -269,18 +278,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     currency = try container.decode(String.self, forKey: .currency)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isProcessed = try container.decode(Bool.self, forKey: .isProcessed)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -368,9 +365,16 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-                buyRules = try container.decode([String: Any].self, forKey: .buyRules)
+                do {
+                    buyRules = try container.decode(ItemCriteria.self, forKey: .buyRules)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -387,18 +391,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     dateMeta = try container.decode(PromotionDateMeta.self, forKey: .dateMeta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    indexedCriteria = try container.decode([PromoIndexedCriteria].self, forKey: .indexedCriteria)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -487,11 +479,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(isProcessed, forKey: .isProcessed)
-            
-            
-            
-            
             try? container.encodeIfPresent(code, forKey: .code)
             
             
@@ -538,11 +525,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(dateMeta, forKey: .dateMeta)
-            
-            
-            
-            
-            try? container.encodeIfPresent(indexedCriteria, forKey: .indexedCriteria)
             
             
             

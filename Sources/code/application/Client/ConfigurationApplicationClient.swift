@@ -55,7 +55,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches application details.
+        * Summary: Get sales channel
         * Description: Get details of the current sales channel.
         **/
         public func getApplication(
@@ -107,7 +107,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get sales channel, owner and seller information
+        * Summary: Get sales channel owner
         * Description: Get details of the sales channel owner.
         **/
         public func getOwnerInfo(
@@ -159,7 +159,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves basic app info.
+        * Summary: Get Sales channel
         * Description: Get basic details of the sales channel.
         **/
         public func getBasicDetails(
@@ -211,7 +211,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches API tokens.
+        * Summary: Get API tokens
         * Description: Get tools integration token of the sales channel. For example, Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, and Facebook.
         **/
         public func getIntegrationTokens(
@@ -263,7 +263,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Get all deployment stores
+        * Summary: List order-enabled selling locations
         * Description: Get details of all the deployment store locations where the sales channel will be used for order placement.
         **/
         public func getOrderingStores(
@@ -328,44 +328,9 @@ extension ApplicationClient {
         }
         
         
-        
-        
-        
         /**
         *
-        * Summary: get paginator for getOrderingStores
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func getOrderingStoresPaginator(
-            pageSize: Int?,
-            q: String?,
-            headers: [(key: String, value: String)]? = nil
-            ) -> Paginator<OrderingStores> {
-            let pageSize = pageSize ?? 20
-            let paginator = Paginator<OrderingStores>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.getOrderingStores(
-                    pageNo: paginator.pageNo,
-                    pageSize: paginator.pageSize,
-                    q: q,
-                    
-                    headers: headers
-                ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page?.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        /**
-        *
-        * Summary: Get ordering store details
+        * Summary: Get a selling location
         * Description: Get details of a selling location (store) by its ID.
         **/
         public func getStoreDetailById(
@@ -420,7 +385,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches app features.
+        * Summary: Get sales channel features
         * Description: Get configuration of the features of the sales channel.
         **/
         public func getFeatures(
@@ -472,7 +437,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves contact details.
+        * Summary: Get sales channel contact
         * Description: Get contact details of the sales channel.
         **/
         public func getContactInfo(
@@ -524,7 +489,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Lists supported currencies.
+        * Summary: List currencies
         * Description: List available currencies.
         **/
         public func getCurrencies(
@@ -576,7 +541,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches currency by ID.
+        * Summary: Get a currency
         * Description: Get details of the currency.
         **/
         public func getCurrencyById(
@@ -631,7 +596,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves app-specific currencies.
+        * Summary: Get currency configuration
         * Description: Get currency configuration of the sales channel.
         **/
         public func getAppCurrencies(
@@ -683,7 +648,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Lists available languages.
+        * Summary: List languages
         * Description: List available languages.
         **/
         public func getLanguages(
@@ -735,7 +700,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Retrieves store selection cookie.
+        * Summary: Create cookies
         * Description: Reset cookie of ordering store.
         **/
         public func getOrderingStoreCookie(
@@ -787,7 +752,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Deletes store cookie.
+        * Summary: Delete store cookie
         * Description: Delete store cookie.
         **/
         public func removeOrderingStoreCookie(
@@ -839,7 +804,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Lists app staff members.
+        * Summary: List staff members
         * Description: List all staff members of the sales channel.
         **/
         public func getAppStaffList(
@@ -968,7 +933,7 @@ extension ApplicationClient {
         
         /**
         *
-        * Summary: Fetches detailed staff info.
+        * Summary: Get staff member
         * Description: Get a staff user including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the sales channel.
         **/
         public func getAppStaffs(

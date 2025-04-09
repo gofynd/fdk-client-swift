@@ -20,7 +20,7 @@ public extension PlatformClient.Serviceability {
         
         public var areas: [Area]
         
-        public var regionType: String
+        public var regionType: String?
         
         public var type: String
         
@@ -28,9 +28,9 @@ public extension PlatformClient.Serviceability {
         
         public var modifiedOn: String
         
-        public var createdBy: String
+        public var createdBy: CreatedBy?
         
-        public var modifiedBy: String
+        public var modifiedBy: ModifiedBy?
         
         public var geoareaId: String
         
@@ -61,7 +61,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(areas: [Area], createdBy: String, createdOn: String, geoareaId: String, isActive: Bool, modifiedBy: String, modifiedOn: String, name: String, regionType: String, slug: String, type: String) {
+        public init(areas: [Area], createdBy: CreatedBy? = nil, createdOn: String, geoareaId: String, isActive: Bool, modifiedBy: ModifiedBy? = nil, modifiedOn: String, name: String, regionType: String? = nil, slug: String, type: String) {
             
             self.name = name
             
@@ -111,9 +111,16 @@ public extension PlatformClient.Serviceability {
             
             
             
-                regionType = try container.decode(String.self, forKey: .regionType)
+                do {
+                    regionType = try container.decode(String.self, forKey: .regionType)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 type = try container.decode(String.self, forKey: .type)
@@ -131,14 +138,28 @@ public extension PlatformClient.Serviceability {
             
             
             
-                createdBy = try container.decode(String.self, forKey: .createdBy)
+                do {
+                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                modifiedBy = try container.decode(String.self, forKey: .modifiedBy)
+                do {
+                    modifiedBy = try container.decode(ModifiedBy.self, forKey: .modifiedBy)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 geoareaId = try container.decode(String.self, forKey: .geoareaId)
@@ -229,7 +250,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var areas: [Area]
         
-        public var regionType: String
+        public var regionType: String?
         
         public var type: String
         
@@ -237,9 +258,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var modifiedOn: String
         
-        public var createdBy: String
+        public var createdBy: CreatedBy?
         
-        public var modifiedBy: String
+        public var modifiedBy: ModifiedBy?
         
         public var geoareaId: String
         
@@ -270,7 +291,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(areas: [Area], createdBy: String, createdOn: String, geoareaId: String, isActive: Bool, modifiedBy: String, modifiedOn: String, name: String, regionType: String, slug: String, type: String) {
+        public init(areas: [Area], createdBy: CreatedBy? = nil, createdOn: String, geoareaId: String, isActive: Bool, modifiedBy: ModifiedBy? = nil, modifiedOn: String, name: String, regionType: String? = nil, slug: String, type: String) {
             
             self.name = name
             
@@ -320,9 +341,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                regionType = try container.decode(String.self, forKey: .regionType)
+                do {
+                    regionType = try container.decode(String.self, forKey: .regionType)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 type = try container.decode(String.self, forKey: .type)
@@ -340,14 +368,28 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                createdBy = try container.decode(String.self, forKey: .createdBy)
+                do {
+                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                modifiedBy = try container.decode(String.self, forKey: .modifiedBy)
+                do {
+                    modifiedBy = try container.decode(ModifiedBy.self, forKey: .modifiedBy)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 geoareaId = try container.decode(String.self, forKey: .geoareaId)

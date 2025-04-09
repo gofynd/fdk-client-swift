@@ -28,6 +28,10 @@ public extension PlatformClient.Payment {
         
         public var sourceTransferReversal: String?
         
+        public var receiptNumber: String?
+        
+        public var pgRefundId: String?
+        
         public var currency: String
         
         public var transferReversal: String?
@@ -53,6 +57,10 @@ public extension PlatformClient.Payment {
             
             case sourceTransferReversal = "source_transfer_reversal"
             
+            case receiptNumber = "receipt_number"
+            
+            case pgRefundId = "pg_refund_id"
+            
             case currency = "currency"
             
             case transferReversal = "transfer_reversal"
@@ -61,7 +69,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(amount: Int, balanceTransaction: String? = nil, created: String, currency: String, paymentId: String, reason: String? = nil, refundUtr: String? = nil, requestId: String, sourceTransferReversal: String? = nil, status: String, transferReversal: String? = nil) {
+        public init(amount: Int, balanceTransaction: String? = nil, created: String, currency: String, paymentId: String, pgRefundId: String? = nil, reason: String? = nil, receiptNumber: String? = nil, refundUtr: String? = nil, requestId: String, sourceTransferReversal: String? = nil, status: String, transferReversal: String? = nil) {
             
             self.refundUtr = refundUtr
             
@@ -78,6 +86,10 @@ public extension PlatformClient.Payment {
             self.created = created
             
             self.sourceTransferReversal = sourceTransferReversal
+            
+            self.receiptNumber = receiptNumber
+            
+            self.pgRefundId = pgRefundId
             
             self.currency = currency
             
@@ -142,6 +154,30 @@ public extension PlatformClient.Payment {
             
                 do {
                     sourceTransferReversal = try container.decode(String.self, forKey: .sourceTransferReversal)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    receiptNumber = try container.decode(String.self, forKey: .receiptNumber)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    pgRefundId = try container.decode(String.self, forKey: .pgRefundId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -223,6 +259,16 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(sourceTransferReversal, forKey: .sourceTransferReversal)
+            
+            
+            
+            
+            try? container.encodeIfPresent(receiptNumber, forKey: .receiptNumber)
+            
+            
+            
+            
+            try? container.encodeIfPresent(pgRefundId, forKey: .pgRefundId)
             
             
             
@@ -272,6 +318,10 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var sourceTransferReversal: String?
         
+        public var receiptNumber: String?
+        
+        public var pgRefundId: String?
+        
         public var currency: String
         
         public var transferReversal: String?
@@ -297,6 +347,10 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case sourceTransferReversal = "source_transfer_reversal"
             
+            case receiptNumber = "receipt_number"
+            
+            case pgRefundId = "pg_refund_id"
+            
             case currency = "currency"
             
             case transferReversal = "transfer_reversal"
@@ -305,7 +359,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(amount: Int, balanceTransaction: String? = nil, created: String, currency: String, paymentId: String, reason: String? = nil, refundUtr: String? = nil, requestId: String, sourceTransferReversal: String? = nil, status: String, transferReversal: String? = nil) {
+        public init(amount: Int, balanceTransaction: String? = nil, created: String, currency: String, paymentId: String, pgRefundId: String? = nil, reason: String? = nil, receiptNumber: String? = nil, refundUtr: String? = nil, requestId: String, sourceTransferReversal: String? = nil, status: String, transferReversal: String? = nil) {
             
             self.refundUtr = refundUtr
             
@@ -322,6 +376,10 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.created = created
             
             self.sourceTransferReversal = sourceTransferReversal
+            
+            self.receiptNumber = receiptNumber
+            
+            self.pgRefundId = pgRefundId
             
             self.currency = currency
             
@@ -386,6 +444,30 @@ public extension PlatformClient.ApplicationClient.Payment {
             
                 do {
                     sourceTransferReversal = try container.decode(String.self, forKey: .sourceTransferReversal)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    receiptNumber = try container.decode(String.self, forKey: .receiptNumber)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    pgRefundId = try container.decode(String.self, forKey: .pgRefundId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -467,6 +549,16 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(sourceTransferReversal, forKey: .sourceTransferReversal)
+            
+            
+            
+            
+            try? container.encodeIfPresent(receiptNumber, forKey: .receiptNumber)
+            
+            
+            
+            
+            try? container.encodeIfPresent(pgRefundId, forKey: .pgRefundId)
             
             
             

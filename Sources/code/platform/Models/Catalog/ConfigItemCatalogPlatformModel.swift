@@ -30,8 +30,6 @@ public extension PlatformClient.Catalog {
         
         public var templateSlugs: [String]?
         
-        public var seo: ApplicationItemSEO?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -53,11 +51,9 @@ public extension PlatformClient.Catalog {
             
             case templateSlugs = "template_slugs"
             
-            case seo = "seo"
-            
         }
 
-        public init(appId: String? = nil, attributes: [AttributeConfig]? = nil, id: String? = nil, isActive: Bool? = nil, isDefault: Bool? = nil, name: String? = nil, priority: Int? = nil, seo: ApplicationItemSEO? = nil, slug: String? = nil, templateSlugs: [String]? = nil) {
+        public init(appId: String? = nil, attributes: [AttributeConfig]? = nil, id: String? = nil, isActive: Bool? = nil, isDefault: Bool? = nil, name: String? = nil, priority: Int? = nil, slug: String? = nil, templateSlugs: [String]? = nil) {
             
             self.appId = appId
             
@@ -76,8 +72,6 @@ public extension PlatformClient.Catalog {
             self.slug = slug
             
             self.templateSlugs = templateSlugs
-            
-            self.seo = seo
             
         }
 
@@ -192,18 +186,6 @@ public extension PlatformClient.Catalog {
                 }
                 
             
-            
-                do {
-                    seo = try container.decode(ApplicationItemSEO.self, forKey: .seo)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -252,11 +234,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(templateSlugs, forKey: .templateSlugs)
-            
-            
-            
-            
-            try? container.encodeIfPresent(seo, forKey: .seo)
             
             
         }
@@ -293,8 +270,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var templateSlugs: [String]?
         
-        public var seo: ApplicationItemSEO?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -316,11 +291,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case templateSlugs = "template_slugs"
             
-            case seo = "seo"
-            
         }
 
-        public init(appId: String? = nil, attributes: [AttributeConfig]? = nil, id: String? = nil, isActive: Bool? = nil, isDefault: Bool? = nil, name: String? = nil, priority: Int? = nil, seo: ApplicationItemSEO? = nil, slug: String? = nil, templateSlugs: [String]? = nil) {
+        public init(appId: String? = nil, attributes: [AttributeConfig]? = nil, id: String? = nil, isActive: Bool? = nil, isDefault: Bool? = nil, name: String? = nil, priority: Int? = nil, slug: String? = nil, templateSlugs: [String]? = nil) {
             
             self.appId = appId
             
@@ -339,8 +312,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.slug = slug
             
             self.templateSlugs = templateSlugs
-            
-            self.seo = seo
             
         }
 
@@ -455,18 +426,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
-            
-                do {
-                    seo = try container.decode(ApplicationItemSEO.self, forKey: .seo)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -515,11 +474,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(templateSlugs, forKey: .templateSlugs)
-            
-            
-            
-            
-            try? container.encodeIfPresent(seo, forKey: .seo)
             
             
         }

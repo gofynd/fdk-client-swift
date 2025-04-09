@@ -16,10 +16,6 @@ public extension PlatformClient.Order {
         
         public var toDate: String?
         
-        public var endDate: String?
-        
-        public var startDate: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -27,21 +23,13 @@ public extension PlatformClient.Order {
             
             case toDate = "to_date"
             
-            case endDate = "end_date"
-            
-            case startDate = "start_date"
-            
         }
 
-        public init(endDate: String? = nil, fromDate: String? = nil, startDate: String? = nil, toDate: String? = nil) {
+        public init(fromDate: String? = nil, toDate: String? = nil) {
             
             self.fromDate = fromDate
             
             self.toDate = toDate
-            
-            self.endDate = endDate
-            
-            self.startDate = startDate
             
         }
 
@@ -72,30 +60,6 @@ public extension PlatformClient.Order {
                 }
                 
             
-            
-                do {
-                    endDate = try container.decode(String.self, forKey: .endDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    startDate = try container.decode(String.self, forKey: .startDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -109,16 +73,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(toDate, forKey: .toDate)
-            
-            
-            
-            
-            try? container.encodeIfPresent(endDate, forKey: .endDate)
-            
-            
-            
-            
-            try? container.encodeIfPresent(startDate, forKey: .startDate)
             
             
         }
@@ -141,10 +95,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var toDate: String?
         
-        public var endDate: String?
-        
-        public var startDate: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -152,21 +102,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case toDate = "to_date"
             
-            case endDate = "end_date"
-            
-            case startDate = "start_date"
-            
         }
 
-        public init(endDate: String? = nil, fromDate: String? = nil, startDate: String? = nil, toDate: String? = nil) {
+        public init(fromDate: String? = nil, toDate: String? = nil) {
             
             self.fromDate = fromDate
             
             self.toDate = toDate
-            
-            self.endDate = endDate
-            
-            self.startDate = startDate
             
         }
 
@@ -197,30 +139,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
-            
-                do {
-                    endDate = try container.decode(String.self, forKey: .endDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    startDate = try container.decode(String.self, forKey: .startDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -234,16 +152,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(toDate, forKey: .toDate)
-            
-            
-            
-            
-            try? container.encodeIfPresent(endDate, forKey: .endDate)
-            
-            
-            
-            
-            try? container.encodeIfPresent(startDate, forKey: .startDate)
             
             
         }

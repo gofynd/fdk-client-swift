@@ -10,34 +10,16 @@ public extension ApplicationClient.Catalog {
         
         public var error: String?
         
-        public var errors: [String: Any]?
-        
-        public var code: Int?
-        
-        public var message: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case error = "error"
             
-            case errors = "errors"
-            
-            case code = "code"
-            
-            case message = "message"
-            
         }
 
-        public init(code: Int? = nil, error: String? = nil, errors: [String: Any]? = nil, message: String? = nil) {
+        public init(error: String? = nil) {
             
             self.error = error
-            
-            self.errors = errors
-            
-            self.code = code
-            
-            self.message = message
             
         }
 
@@ -56,42 +38,6 @@ public extension ApplicationClient.Catalog {
             }
             
             
-            
-            do {
-                errors = try container.decode([String: Any].self, forKey: .errors)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                code = try container.decode(Int.self, forKey: .code)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                message = try container.decode(String.self, forKey: .message)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -99,18 +45,6 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(error, forKey: .error)
-            
-            
-            
-            try? container.encodeIfPresent(errors, forKey: .errors)
-            
-            
-            
-            try? container.encodeIfPresent(code, forKey: .code)
-            
-            
-            
-            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }

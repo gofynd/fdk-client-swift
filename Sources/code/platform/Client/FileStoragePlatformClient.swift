@@ -223,7 +223,6 @@ extension PlatformClient {
         
         
         
-        
         /**
         *
         * Summary: Browse files.
@@ -282,18 +281,6 @@ extension PlatformClient {
                     }
             });
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         

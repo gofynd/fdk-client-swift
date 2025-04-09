@@ -24,7 +24,7 @@ public extension PlatformClient.ApplicationClient.User {
         
         public var type: String?
         
-        public var customerOverriden: Bool?
+        public var customerOverridden: Bool?
         
         public var attribute: [String: Any]?
         
@@ -43,7 +43,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             case type = "type"
             
-            case customerOverriden = "customer_overriden"
+            case customerOverridden = "customer_overridden"
             
             case attribute = "attribute"
             
@@ -51,7 +51,7 @@ public extension PlatformClient.ApplicationClient.User {
             
         }
 
-        public init(applicationId: String? = nil, attribute: [String: Any]? = nil, customerOverriden: Bool? = nil, name: String? = nil, type: String? = nil, updatedBy: String? = nil, userId: String? = nil, id: String? = nil) {
+        public init(applicationId: String? = nil, attribute: [String: Any]? = nil, customerOverridden: Bool? = nil, name: String? = nil, type: String? = nil, updatedBy: String? = nil, userId: String? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -63,7 +63,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             self.type = type
             
-            self.customerOverriden = customerOverriden
+            self.customerOverridden = customerOverridden
             
             self.attribute = attribute
             
@@ -136,7 +136,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    customerOverriden = try container.decode(Bool.self, forKey: .customerOverriden)
+                    customerOverridden = try container.decode(Bool.self, forKey: .customerOverridden)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -202,7 +202,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             
-            try? container.encodeIfPresent(customerOverriden, forKey: .customerOverriden)
+            try? container.encodeIfPresent(customerOverridden, forKey: .customerOverridden)
             
             
             

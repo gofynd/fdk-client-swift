@@ -12,8 +12,6 @@ public extension ApplicationClient.Payment {
         
         public var paymentModes: [String]
         
-        public var offlineRefundCollectType: [String]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -21,17 +19,13 @@ public extension ApplicationClient.Payment {
             
             case paymentModes = "payment_modes"
             
-            case offlineRefundCollectType = "offline_refund_collect_type"
-            
         }
 
-        public init(items: RefundOptionsDetails, offlineRefundCollectType: [String]? = nil, paymentModes: [String]) {
+        public init(items: RefundOptionsDetails, paymentModes: [String]) {
             
             self.items = items
             
             self.paymentModes = paymentModes
-            
-            self.offlineRefundCollectType = offlineRefundCollectType
             
         }
 
@@ -48,18 +42,6 @@ public extension ApplicationClient.Payment {
             
             
             
-            
-            do {
-                offlineRefundCollectType = try container.decode([String].self, forKey: .offlineRefundCollectType)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -71,10 +53,6 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(paymentModes, forKey: .paymentModes)
-            
-            
-            
-            try? container.encodeIfPresent(offlineRefundCollectType, forKey: .offlineRefundCollectType)
             
             
         }
