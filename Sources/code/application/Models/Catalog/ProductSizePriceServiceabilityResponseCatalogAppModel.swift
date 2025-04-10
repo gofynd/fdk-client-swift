@@ -30,6 +30,8 @@ public extension ApplicationClient.Catalog {
         
         public var isServiceable: String?
         
+        public var tags: [String]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -55,9 +57,11 @@ public extension ApplicationClient.Catalog {
             
             case isServiceable = "is_serviceable"
             
+            case tags = "tags"
+            
         }
 
-        public init(deliveryPromise: PromiseSchema? = nil, discount: String? = nil, isCod: Bool? = nil, isServiceable: String? = nil, itemType: String? = nil, price: ProductStockPriceV3? = nil, pricePerUnit: ProductStockUnitPriceV3? = nil, quantity: Int? = nil, seller: SellerV3? = nil, store: StoreV3? = nil, strategyWiseListing: [StrategyWiseListingSchemaServiceability]? = nil) {
+        public init(deliveryPromise: PromiseSchema? = nil, discount: String? = nil, isCod: Bool? = nil, isServiceable: String? = nil, itemType: String? = nil, price: ProductStockPriceV3? = nil, pricePerUnit: ProductStockUnitPriceV3? = nil, quantity: Int? = nil, seller: SellerV3? = nil, store: StoreV3? = nil, strategyWiseListing: [StrategyWiseListingSchemaServiceability]? = nil, tags: [String]? = nil) {
             
             self.store = store
             
@@ -80,6 +84,8 @@ public extension ApplicationClient.Catalog {
             self.deliveryPromise = deliveryPromise
             
             self.isServiceable = isServiceable
+            
+            self.tags = tags
             
         }
 
@@ -218,6 +224,18 @@ public extension ApplicationClient.Catalog {
             }
             
             
+            
+            do {
+                tags = try container.decode([String].self, forKey: .tags)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -265,6 +283,10 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(isServiceable, forKey: .isServiceable)
+            
+            
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
             
             
         }
