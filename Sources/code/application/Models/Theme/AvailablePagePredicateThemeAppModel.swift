@@ -14,7 +14,7 @@ public extension ApplicationClient.Theme {
         
         public var route: AvailablePageRoutePredicate?
         
-        public var schedule: AvailablePageSchedulePredicate?
+        public var schedule: [AvailablePageSchedulePredicate]?
         
         public var platform: AvailablePagePlatformPredicate?
         
@@ -37,7 +37,7 @@ public extension ApplicationClient.Theme {
             
         }
 
-        public init(platform: AvailablePagePlatformPredicate? = nil, route: AvailablePageRoutePredicate? = nil, schedule: AvailablePageSchedulePredicate? = nil, screen: AvailablePageScreenPredicate? = nil, user: AvailablePageUserPredicate? = nil, zones: [String]? = nil) {
+        public init(platform: AvailablePagePlatformPredicate? = nil, route: AvailablePageRoutePredicate? = nil, schedule: [AvailablePageSchedulePredicate]? = nil, screen: AvailablePageScreenPredicate? = nil, user: AvailablePageUserPredicate? = nil, zones: [String]? = nil) {
             
             self.screen = screen
             
@@ -94,7 +94,7 @@ public extension ApplicationClient.Theme {
             
             
             do {
-                schedule = try container.decode(AvailablePageSchedulePredicate.self, forKey: .schedule)
+                schedule = try container.decode([AvailablePageSchedulePredicate].self, forKey: .schedule)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
