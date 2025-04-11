@@ -64,6 +64,8 @@ public extension PlatformClient.Catalog {
         
         public var uid: Int?
         
+        public var seo: ApplicationItemSEO?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -119,9 +121,11 @@ public extension PlatformClient.Catalog {
             
             case uid = "uid"
             
+            case seo = "seo"
+            
         }
 
-        public init(attributes: [String: Any]? = nil, brand: ProductBrand? = nil, color: String? = nil, description: String? = nil, discount: String? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, imageNature: String? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, name: String? = nil, price: ProductListingPrice? = nil, productOnlineDate: String? = nil, promoMeta: [String: Any]? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, shortDescription: String? = nil, similars: [String]? = nil, slug: String, teaserTag: [String: Any]? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil) {
+        public init(attributes: [String: Any]? = nil, brand: ProductBrand? = nil, color: String? = nil, description: String? = nil, discount: String? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, imageNature: String? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, name: String? = nil, price: ProductListingPrice? = nil, productOnlineDate: String? = nil, promoMeta: [String: Any]? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, seo: ApplicationItemSEO? = nil, shortDescription: String? = nil, similars: [String]? = nil, slug: String, teaserTag: [String: Any]? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil) {
             
             self.attributes = attributes
             
@@ -174,6 +178,8 @@ public extension PlatformClient.Catalog {
             self.type = type
             
             self.uid = uid
+            
+            self.seo = seo
             
         }
 
@@ -485,6 +491,18 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    seo = try container.decode(ApplicationItemSEO.self, forKey: .seo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -618,6 +636,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(uid, forKey: .uid)
+            
+            
+            
+            
+            try? container.encodeIfPresent(seo, forKey: .seo)
             
             
         }
@@ -688,6 +711,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var uid: Int?
         
+        public var seo: ApplicationItemSEO?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -743,9 +768,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case uid = "uid"
             
+            case seo = "seo"
+            
         }
 
-        public init(attributes: [String: Any]? = nil, brand: ProductBrand? = nil, color: String? = nil, description: String? = nil, discount: String? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, imageNature: String? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, name: String? = nil, price: ProductListingPrice? = nil, productOnlineDate: String? = nil, promoMeta: [String: Any]? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, shortDescription: String? = nil, similars: [String]? = nil, slug: String, teaserTag: [String: Any]? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil) {
+        public init(attributes: [String: Any]? = nil, brand: ProductBrand? = nil, color: String? = nil, description: String? = nil, discount: String? = nil, groupedAttributes: [ProductDetailGroupedAttribute]? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, imageNature: String? = nil, itemCode: String? = nil, itemType: String? = nil, medias: [Media]? = nil, name: String? = nil, price: ProductListingPrice? = nil, productOnlineDate: String? = nil, promoMeta: [String: Any]? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, seo: ApplicationItemSEO? = nil, shortDescription: String? = nil, similars: [String]? = nil, slug: String, teaserTag: [String: Any]? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int? = nil) {
             
             self.attributes = attributes
             
@@ -798,6 +825,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.type = type
             
             self.uid = uid
+            
+            self.seo = seo
             
         }
 
@@ -1109,6 +1138,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    seo = try container.decode(ApplicationItemSEO.self, forKey: .seo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -1242,6 +1283,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(uid, forKey: .uid)
+            
+            
+            
+            
+            try? container.encodeIfPresent(seo, forKey: .seo)
             
             
         }
