@@ -24,6 +24,10 @@ public extension PlatformClient.Serviceability {
         
         public var isOwnAccount: Bool
         
+        public var companyId: Int?
+        
+        public var schemeRules: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -39,9 +43,13 @@ public extension PlatformClient.Serviceability {
             
             case isOwnAccount = "is_own_account"
             
+            case companyId = "company_id"
+            
+            case schemeRules = "scheme_rules"
+            
         }
 
-        public init(accountId: String, extensionId: String, isOwnAccount: Bool, isSelfShip: Bool, schemeId: String, stage: String) {
+        public init(accountId: String, companyId: Int? = nil, extensionId: String, isOwnAccount: Bool, isSelfShip: Bool, schemeId: String, schemeRules: [String: Any]? = nil, stage: String) {
             
             self.extensionId = extensionId
             
@@ -54,6 +62,10 @@ public extension PlatformClient.Serviceability {
             self.stage = stage
             
             self.isOwnAccount = isOwnAccount
+            
+            self.companyId = companyId
+            
+            self.schemeRules = schemeRules
             
         }
 
@@ -90,6 +102,30 @@ public extension PlatformClient.Serviceability {
                 
             
             
+            
+                do {
+                    companyId = try container.decode(Int.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    schemeRules = try container.decode([String: Any].self, forKey: .schemeRules)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -123,6 +159,16 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(isOwnAccount, forKey: .isOwnAccount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(schemeRules, forKey: .schemeRules)
             
             
         }
@@ -153,6 +199,10 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var isOwnAccount: Bool
         
+        public var companyId: Int?
+        
+        public var schemeRules: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -168,9 +218,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case isOwnAccount = "is_own_account"
             
+            case companyId = "company_id"
+            
+            case schemeRules = "scheme_rules"
+            
         }
 
-        public init(accountId: String, extensionId: String, isOwnAccount: Bool, isSelfShip: Bool, schemeId: String, stage: String) {
+        public init(accountId: String, companyId: Int? = nil, extensionId: String, isOwnAccount: Bool, isSelfShip: Bool, schemeId: String, schemeRules: [String: Any]? = nil, stage: String) {
             
             self.extensionId = extensionId
             
@@ -183,6 +237,10 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.stage = stage
             
             self.isOwnAccount = isOwnAccount
+            
+            self.companyId = companyId
+            
+            self.schemeRules = schemeRules
             
         }
 
@@ -219,6 +277,30 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
+            
+                do {
+                    companyId = try container.decode(Int.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    schemeRules = try container.decode([String: Any].self, forKey: .schemeRules)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -252,6 +334,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(isOwnAccount, forKey: .isOwnAccount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(schemeRules, forKey: .schemeRules)
             
             
         }

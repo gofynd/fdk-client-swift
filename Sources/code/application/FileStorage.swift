@@ -7,9 +7,9 @@ public extension ApplicationClient.FileStorage {
     withFileName fileName: String, 
     as contentType: String, 
     toNameSpace namespace: String,
-    onResponse: @escaping (_ response: ApplicationClient.FileStorage.CompleteResponse?, _ error: FDKError?) -> Void
+    onResponse: @escaping (_ response: ApplicationClient.FileStorage.FileUploadComplete?, _ error: FDKError?) -> Void
     ) {
-        let requestBody = ApplicationClient.FileStorage.StartRequest(
+        let requestBody = ApplicationClient.FileStorage.FileUploadStart(
             contentType: contentType,
             fileName: fileName,
             params: nil,

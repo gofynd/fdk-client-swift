@@ -16,8 +16,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: List discounts
-        * Description: Retrieve a list of discounts. You can also retrieve discounts using filter query parameters. There are additional optional parameters that can be specified in the parameters of the request when retrieving discount
+        * Summary: Get discounts.
+        * Description: Retrieve a list of available discounts.
         **/
         public func getDiscounts(
             view: String?,
@@ -109,10 +109,69 @@ extension PlatformClient {
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
         *
-        * Summary: Create discount
-        * Description: Creates a discount. There are additional optional parameters that can be specified in the body of the request when creating a discount
+        * Summary: get paginator for getDiscounts
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getDiscountsPaginator(
+            view: String?,
+            q: String?,
+            pageSize: Int?,
+            archived: Bool?,
+            month: Int?,
+            year: Int?,
+            type: String?,
+            appIds: [String]?,
+            headers: [(key: String, value: String)]? = nil
+            ) -> Paginator<ListOrCalender> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ListOrCalender>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getDiscounts(
+                    view: view,
+                    q: q,
+                    pageNo: paginator.pageNo,
+                    pageSize: paginator.pageSize,
+                    archived: archived,
+                    month: month,
+                    year: year,
+                    type: type,
+                    appIds: appIds,
+                    
+                    headers: headers
+                ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Create discount.
+        * Description: Create discount.
         **/
         public func createDiscount(
             body: CreateUpdateDiscount,
@@ -161,8 +220,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get discount
-        * Description: Retrieve a single discount by its id.
+        * Summary: Get discount by ID.
+        * Description: Retrieve detailed information about a specific discount.
         **/
         public func getDiscount(
             id: String,
@@ -212,8 +271,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Update discount
-        * Description: Update an existing discount by its id. Discount can only be updated after 5 min from last updated time stamp (modified_on).
+        * Summary: Update discount.
+        * Description: Create discount.
         **/
         public func updateDiscount(
             id: String,
@@ -263,8 +322,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Upsert discount items
-        * Description: Enables users to create custom discounts in bulk by providing the multiple products in requestBody. It allows for the efficient creation of multiple discounts simultaneously, streamlining the discount management process.
+        * Summary: Upsert discount items.
+        * Description: Create custom discounts.
         **/
         public func upsertDiscountItems(
             id: String,
@@ -314,14 +373,14 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Validate discount file
-        * Description: Validates the discount file for any discrepancies. like item should be valid etc..
+        * Summary: Validate discount file.
+        * Description: Validate file.
         **/
         public func validateDiscountFile(
             discount: String?,
-            body: FileJobRequest,
+            body: FileJobRequestSchema,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: FileJobResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
             var xQuery: [String: Any] = [:] 
@@ -353,7 +412,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(FileJobResponse.self, from: data)
+                        let response = Utility.decode(FileJobResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -369,14 +428,14 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get discount file
-        * Description: Retrieve a discount file by its type, it could be product or inventory.
+        * Summary: Download discount file.
+        * Description: Validate file.
         **/
         public func downloadDiscountFile(
             type: String,
             body: DownloadFileJob,
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: FileJobResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -404,7 +463,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(FileJobResponse.self, from: data)
+                        let response = Utility.decode(FileJobResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -420,14 +479,14 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: List validation job discount
-        * Description: Retrieve a validation job of a discount by its id.
+        * Summary: Get validation job.
+        * Description: Validate file.
         **/
         public func getValidationJob(
             id: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: FileJobResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -455,7 +514,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(FileJobResponse.self, from: data)
+                        let response = Utility.decode(FileJobResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -471,14 +530,14 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: deletel validation job discount
-        * Description: Cancel validation job of a discount by its id.
+        * Summary: Cancel validation job.
+        * Description: Validate file.
         **/
         public func cancelValidationJob(
             id: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CancelJobResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CancelJobResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -506,7 +565,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CancelJobResponse.self, from: data)
+                        let response = Utility.decode(CancelJobResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -522,14 +581,14 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: List discount download job
-        * Description: Retrieve a discount download job by its id.
+        * Summary: Get download job.
+        * Description: Download file Job.
         **/
         public func getDownloadJob(
             id: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: FileJobResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -557,7 +616,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(FileJobResponse.self, from: data)
+                        let response = Utility.decode(FileJobResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -573,14 +632,14 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: delete discount download job
-        * Description: Cancel a discount download job by its id.
+        * Summary: Cancel download job.
+        * Description: Cancel download Job.
         **/
         public func cancelDownloadJob(
             id: String,
             
             headers: [(key: String, value: String)]? = nil,
-            onResponse: @escaping (_ response: CancelJobResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CancelJobResponseSchema?, _ error: FDKError?) -> Void
         ) {
                         
              
@@ -608,7 +667,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(CancelJobResponse.self, from: data)
+                        let response = Utility.decode(CancelJobResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

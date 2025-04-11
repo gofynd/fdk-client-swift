@@ -16,6 +16,10 @@ public extension ApplicationClient.Cart {
         
         public var source: [String: Any]?
         
+        public var orderingStore: Int?
+        
+        public var selectedStaff: String?
+        
         public var meta: [String: Any]?
         
 
@@ -29,11 +33,15 @@ public extension ApplicationClient.Cart {
             
             case source = "source"
             
+            case orderingStore = "ordering_store"
+            
+            case selectedStaff = "selected_staff"
+            
             case meta = "meta"
             
         }
 
-        public init(createdOn: String? = nil, meta: [String: Any]? = nil, source: [String: Any]? = nil, token: String? = nil, user: [String: Any]? = nil) {
+        public init(createdOn: String? = nil, meta: [String: Any]? = nil, orderingStore: Int? = nil, selectedStaff: String? = nil, source: [String: Any]? = nil, token: String? = nil, user: [String: Any]? = nil) {
             
             self.token = token
             
@@ -42,6 +50,10 @@ public extension ApplicationClient.Cart {
             self.createdOn = createdOn
             
             self.source = source
+            
+            self.orderingStore = orderingStore
+            
+            self.selectedStaff = selectedStaff
             
             self.meta = meta
             
@@ -100,6 +112,30 @@ public extension ApplicationClient.Cart {
             
             
             do {
+                orderingStore = try container.decode(Int.self, forKey: .orderingStore)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                selectedStaff = try container.decode(String.self, forKey: .selectedStaff)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -129,6 +165,14 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(source, forKey: .source)
+            
+            
+            
+            try? container.encodeIfPresent(orderingStore, forKey: .orderingStore)
+            
+            
+            
+            try? container.encodeIfPresent(selectedStaff, forKey: .selectedStaff)
             
             
             

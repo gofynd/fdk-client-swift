@@ -18,7 +18,7 @@ public extension ApplicationClient.Theme {
         
         public var sitemap: SEOSitemap?
         
-        public var breadcrumb: [SEObreadcrumb]?
+        public var breadcrumbs: [SEObreadcrumb]?
         
         public var id: String?
         
@@ -35,13 +35,13 @@ public extension ApplicationClient.Theme {
             
             case sitemap = "sitemap"
             
-            case breadcrumb = "breadcrumb"
+            case breadcrumbs = "breadcrumbs"
             
             case id = "_id"
             
         }
 
-        public init(breadcrumb: [SEObreadcrumb]? = nil, canonicalUrl: String? = nil, description: String? = nil, metaTags: [SEOMetaItem]? = nil, sitemap: SEOSitemap? = nil, title: String? = nil, id: String? = nil) {
+        public init(breadcrumbs: [SEObreadcrumb]? = nil, canonicalUrl: String? = nil, description: String? = nil, metaTags: [SEOMetaItem]? = nil, sitemap: SEOSitemap? = nil, title: String? = nil, id: String? = nil) {
             
             self.title = title
             
@@ -53,7 +53,7 @@ public extension ApplicationClient.Theme {
             
             self.sitemap = sitemap
             
-            self.breadcrumb = breadcrumb
+            self.breadcrumbs = breadcrumbs
             
             self.id = id
             
@@ -124,7 +124,7 @@ public extension ApplicationClient.Theme {
             
             
             do {
-                breadcrumb = try container.decode([SEObreadcrumb].self, forKey: .breadcrumb)
+                breadcrumbs = try container.decode([SEObreadcrumb].self, forKey: .breadcrumbs)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            try? container.encodeIfPresent(breadcrumb, forKey: .breadcrumb)
+            try? container.encodeIfPresent(breadcrumbs, forKey: .breadcrumbs)
             
             
             

@@ -20,7 +20,7 @@ public extension PlatformClient.Serviceability {
         
         public var toServiceability: LocationDetailsServiceability
         
-        public var article: OptimalLocationsArticles?
+        public var articles: [OptimalLocationsArticles]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,11 +33,11 @@ public extension PlatformClient.Serviceability {
             
             case toServiceability = "to_serviceability"
             
-            case article = "article"
+            case articles = "articles"
             
         }
 
-        public init(article: OptimalLocationsArticles? = nil, channelId: String, channelIdentifier: String? = nil, channelType: String, toServiceability: LocationDetailsServiceability) {
+        public init(articles: [OptimalLocationsArticles], channelId: String, channelIdentifier: String? = nil, channelType: String, toServiceability: LocationDetailsServiceability) {
             
             self.channelId = channelId
             
@@ -47,7 +47,7 @@ public extension PlatformClient.Serviceability {
             
             self.toServiceability = toServiceability
             
-            self.article = article
+            self.articles = articles
             
         }
 
@@ -82,16 +82,9 @@ public extension PlatformClient.Serviceability {
             
             
             
-                do {
-                    article = try container.decode(OptimalLocationsArticles.self, forKey: .article)
+                articles = try container.decode([OptimalLocationsArticles].self, forKey: .articles)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -120,7 +113,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(article, forKey: .article)
+            try? container.encodeIfPresent(articles, forKey: .articles)
             
             
         }
@@ -147,7 +140,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var toServiceability: LocationDetailsServiceability
         
-        public var article: OptimalLocationsArticles?
+        public var articles: [OptimalLocationsArticles]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -160,11 +153,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case toServiceability = "to_serviceability"
             
-            case article = "article"
+            case articles = "articles"
             
         }
 
-        public init(article: OptimalLocationsArticles? = nil, channelId: String, channelIdentifier: String? = nil, channelType: String, toServiceability: LocationDetailsServiceability) {
+        public init(articles: [OptimalLocationsArticles], channelId: String, channelIdentifier: String? = nil, channelType: String, toServiceability: LocationDetailsServiceability) {
             
             self.channelId = channelId
             
@@ -174,7 +167,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             self.toServiceability = toServiceability
             
-            self.article = article
+            self.articles = articles
             
         }
 
@@ -209,16 +202,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                do {
-                    article = try container.decode(OptimalLocationsArticles.self, forKey: .article)
+                articles = try container.decode([OptimalLocationsArticles].self, forKey: .articles)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -247,7 +233,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(article, forKey: .article)
+            try? container.encodeIfPresent(articles, forKey: .articles)
             
             
         }

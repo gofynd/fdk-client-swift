@@ -16,7 +16,11 @@ public extension PlatformClient.Content {
         
         public var definitionId: String?
         
+        public var type: String?
+        
         public var status: String?
+        
+        public var slug: String?
         
         public var updatedAt: String?
         
@@ -33,7 +37,11 @@ public extension PlatformClient.Content {
             
             case definitionId = "definition_id"
             
+            case type = "type"
+            
             case status = "status"
+            
+            case slug = "slug"
             
             case updatedAt = "updated_at"
             
@@ -45,13 +53,17 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(definition: CustomObjectListItemDefinationSchema? = nil, definitionId: String? = nil, displayName: String? = nil, references: Int? = nil, status: String? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(definition: CustomObjectListItemDefinationSchema? = nil, definitionId: String? = nil, displayName: String? = nil, references: Int? = nil, slug: String? = nil, status: String? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             
             self.id = id
             
             self.definitionId = definitionId
             
+            self.type = type
+            
             self.status = status
+            
+            self.slug = slug
             
             self.updatedAt = updatedAt
             
@@ -92,7 +104,31 @@ public extension PlatformClient.Content {
             
             
                 do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     status = try container.decode(String.self, forKey: .status)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -167,7 +203,17 @@ public extension PlatformClient.Content {
             
             
             
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
@@ -210,7 +256,11 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var definitionId: String?
         
+        public var type: String?
+        
         public var status: String?
+        
+        public var slug: String?
         
         public var updatedAt: String?
         
@@ -227,7 +277,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case definitionId = "definition_id"
             
+            case type = "type"
+            
             case status = "status"
+            
+            case slug = "slug"
             
             case updatedAt = "updated_at"
             
@@ -239,13 +293,17 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(definition: CustomObjectListItemDefinationSchema? = nil, definitionId: String? = nil, displayName: String? = nil, references: Int? = nil, status: String? = nil, updatedAt: String? = nil, id: String? = nil) {
+        public init(definition: CustomObjectListItemDefinationSchema? = nil, definitionId: String? = nil, displayName: String? = nil, references: Int? = nil, slug: String? = nil, status: String? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil) {
             
             self.id = id
             
             self.definitionId = definitionId
             
+            self.type = type
+            
             self.status = status
+            
+            self.slug = slug
             
             self.updatedAt = updatedAt
             
@@ -286,7 +344,31 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     status = try container.decode(String.self, forKey: .status)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -361,7 +443,17 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             

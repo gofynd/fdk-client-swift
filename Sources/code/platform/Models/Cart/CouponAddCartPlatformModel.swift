@@ -28,6 +28,12 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var action: CouponAction?
         
+        public var couponType: String?
+        
+        public var couponPrefix: String?
+        
+        public var couponCounts: Int?
+        
         public var tags: [String]?
         
         public var schedule: CouponSchedule?
@@ -65,6 +71,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case action = "action"
             
+            case couponType = "coupon_type"
+            
+            case couponPrefix = "coupon_prefix"
+            
+            case couponCounts = "coupon_counts"
+            
             case tags = "tags"
             
             case schedule = "_schedule"
@@ -87,7 +99,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(action: CouponAction? = nil, author: CouponAuthor? = nil, code: String, dateMeta: CouponDateMeta? = nil, displayMeta: DisplayMeta, identifiers: Identifier, ownership: Ownership, restrictions: Restrictions? = nil, rule: [Rule], ruleDefinition: RuleDefinition, state: State? = nil, tags: [String]? = nil, typeSlug: String, validation: Validation? = nil, validity: Validity, id: String? = nil, schedule: CouponSchedule? = nil) {
+        public init(action: CouponAction? = nil, author: CouponAuthor? = nil, code: String, couponCounts: Int? = nil, couponPrefix: String? = nil, couponType: String? = nil, dateMeta: CouponDateMeta? = nil, displayMeta: DisplayMeta, identifiers: Identifier, ownership: Ownership, restrictions: Restrictions? = nil, rule: [Rule], ruleDefinition: RuleDefinition, state: State? = nil, tags: [String]? = nil, typeSlug: String, validation: Validation? = nil, validity: Validity, id: String? = nil, schedule: CouponSchedule? = nil) {
             
             self.dateMeta = dateMeta
             
@@ -102,6 +114,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.validation = validation
             
             self.action = action
+            
+            self.couponType = couponType
+            
+            self.couponPrefix = couponPrefix
+            
+            self.couponCounts = couponCounts
             
             self.tags = tags
             
@@ -196,6 +214,42 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     action = try container.decode(CouponAction.self, forKey: .action)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    couponType = try container.decode(String.self, forKey: .couponType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    couponPrefix = try container.decode(String.self, forKey: .couponPrefix)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    couponCounts = try container.decode(Int.self, forKey: .couponCounts)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -314,6 +368,21 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(action, forKey: .action)
+            
+            
+            
+            
+            try? container.encodeIfPresent(couponType, forKey: .couponType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(couponPrefix, forKey: .couponPrefix)
+            
+            
+            
+            
+            try? container.encodeIfPresent(couponCounts, forKey: .couponCounts)
             
             
             

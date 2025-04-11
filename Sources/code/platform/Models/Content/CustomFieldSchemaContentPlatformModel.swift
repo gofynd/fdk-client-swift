@@ -22,11 +22,9 @@ public extension PlatformClient.Content {
         
         public var creator: String?
         
-        public var value: [CustomFieldValue]?
-        
         public var resourceId: String?
         
-        public var type: String?
+        public var type: String
         
         public var multiValue: Bool?
         
@@ -59,8 +57,6 @@ public extension PlatformClient.Content {
             
             case creator = "creator"
             
-            case value = "value"
-            
             case resourceId = "resource_id"
             
             case type = "type"
@@ -85,7 +81,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, definitionId: String? = nil, hasInvalidValues: Bool? = nil, invalidValueErrors: [[String: Any]]? = nil, isDeleted: Bool? = nil, key: String? = nil, multiValue: Bool? = nil, namespace: String? = nil, resource: String? = nil, resourceId: String? = nil, type: String? = nil, updatedAt: String? = nil, value: [CustomFieldValue]? = nil, id: String? = nil) {
+        public init(companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, definitionId: String? = nil, hasInvalidValues: Bool? = nil, invalidValueErrors: [[String: Any]]? = nil, isDeleted: Bool? = nil, key: String? = nil, multiValue: Bool? = nil, namespace: String? = nil, resource: String? = nil, resourceId: String? = nil, type: String, updatedAt: String? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -96,8 +92,6 @@ public extension PlatformClient.Content {
             self.resource = resource
             
             self.creator = creator
-            
-            self.value = value
             
             self.resourceId = resourceId
             
@@ -188,18 +182,6 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    value = try container.decode([CustomFieldValue].self, forKey: .value)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     resourceId = try container.decode(String.self, forKey: .resourceId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -211,16 +193,9 @@ public extension PlatformClient.Content {
                 
             
             
-                do {
-                    type = try container.decode(String.self, forKey: .type)
+                type = try container.decode(String.self, forKey: .type)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -358,11 +333,6 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(creator, forKey: .creator)
-            
-            
-            
-            
-            try? container.encodeIfPresent(value, forKey: .value)
             
             
             
@@ -446,11 +416,9 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var creator: String?
         
-        public var value: [CustomFieldValue]?
-        
         public var resourceId: String?
         
-        public var type: String?
+        public var type: String
         
         public var multiValue: Bool?
         
@@ -483,8 +451,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case creator = "creator"
             
-            case value = "value"
-            
             case resourceId = "resource_id"
             
             case type = "type"
@@ -509,7 +475,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, definitionId: String? = nil, hasInvalidValues: Bool? = nil, invalidValueErrors: [[String: Any]]? = nil, isDeleted: Bool? = nil, key: String? = nil, multiValue: Bool? = nil, namespace: String? = nil, resource: String? = nil, resourceId: String? = nil, type: String? = nil, updatedAt: String? = nil, value: [CustomFieldValue]? = nil, id: String? = nil) {
+        public init(companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, definitionId: String? = nil, hasInvalidValues: Bool? = nil, invalidValueErrors: [[String: Any]]? = nil, isDeleted: Bool? = nil, key: String? = nil, multiValue: Bool? = nil, namespace: String? = nil, resource: String? = nil, resourceId: String? = nil, type: String, updatedAt: String? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -520,8 +486,6 @@ public extension PlatformClient.ApplicationClient.Content {
             self.resource = resource
             
             self.creator = creator
-            
-            self.value = value
             
             self.resourceId = resourceId
             
@@ -612,18 +576,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    value = try container.decode([CustomFieldValue].self, forKey: .value)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     resourceId = try container.decode(String.self, forKey: .resourceId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -635,16 +587,9 @@ public extension PlatformClient.ApplicationClient.Content {
                 
             
             
-                do {
-                    type = try container.decode(String.self, forKey: .type)
+                type = try container.decode(String.self, forKey: .type)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -782,11 +727,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(creator, forKey: .creator)
-            
-            
-            
-            
-            try? container.encodeIfPresent(value, forKey: .value)
             
             
             

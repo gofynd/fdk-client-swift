@@ -38,6 +38,14 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var code: String
         
+        public var couponType: String?
+        
+        public var couponPrefix: String?
+        
+        public var couponCounts: Int?
+        
+        public var reason: String?
+        
         public var typeSlug: String
         
         public var identifiers: Identifier
@@ -45,6 +53,10 @@ public extension PlatformClient.ApplicationClient.Cart {
         public var validity: Validity
         
         public var ruleDefinition: RuleDefinition
+        
+        public var id: String?
+        
+        public var isArchived: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -73,6 +85,14 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case code = "code"
             
+            case couponType = "coupon_type"
+            
+            case couponPrefix = "coupon_prefix"
+            
+            case couponCounts = "coupon_counts"
+            
+            case reason = "reason"
+            
             case typeSlug = "type_slug"
             
             case identifiers = "identifiers"
@@ -81,9 +101,13 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case ruleDefinition = "rule_definition"
             
+            case id = "_id"
+            
+            case isArchived = "is_archived"
+            
         }
 
-        public init(action: CouponAction? = nil, author: CouponAuthor? = nil, code: String, dateMeta: CouponDateMeta? = nil, displayMeta: DisplayMeta, identifiers: Identifier, ownership: Ownership, restrictions: Restrictions? = nil, rule: [Rule], ruleDefinition: RuleDefinition, state: State? = nil, tags: [String]? = nil, typeSlug: String, validation: Validation? = nil, validity: Validity, schedule: CouponSchedule? = nil) {
+        public init(action: CouponAction? = nil, author: CouponAuthor? = nil, code: String, couponCounts: Int? = nil, couponPrefix: String? = nil, couponType: String? = nil, dateMeta: CouponDateMeta? = nil, displayMeta: DisplayMeta, identifiers: Identifier, isArchived: Bool? = nil, ownership: Ownership, reason: String? = nil, restrictions: Restrictions? = nil, rule: [Rule], ruleDefinition: RuleDefinition, state: State? = nil, tags: [String]? = nil, typeSlug: String, validation: Validation? = nil, validity: Validity, id: String? = nil, schedule: CouponSchedule? = nil) {
             
             self.dateMeta = dateMeta
             
@@ -109,6 +133,14 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             self.code = code
             
+            self.couponType = couponType
+            
+            self.couponPrefix = couponPrefix
+            
+            self.couponCounts = couponCounts
+            
+            self.reason = reason
+            
             self.typeSlug = typeSlug
             
             self.identifiers = identifiers
@@ -116,6 +148,10 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.validity = validity
             
             self.ruleDefinition = ruleDefinition
+            
+            self.id = id
+            
+            self.isArchived = isArchived
             
         }
 
@@ -239,6 +275,54 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
+                do {
+                    couponType = try container.decode(String.self, forKey: .couponType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    couponPrefix = try container.decode(String.self, forKey: .couponPrefix)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    couponCounts = try container.decode(Int.self, forKey: .couponCounts)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    reason = try container.decode(String.self, forKey: .reason)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 typeSlug = try container.decode(String.self, forKey: .typeSlug)
                 
             
@@ -257,6 +341,30 @@ public extension PlatformClient.ApplicationClient.Cart {
                 ruleDefinition = try container.decode(RuleDefinition.self, forKey: .ruleDefinition)
                 
             
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isArchived = try container.decode(Bool.self, forKey: .isArchived)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -325,6 +433,26 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
+            try? container.encodeIfPresent(couponType, forKey: .couponType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(couponPrefix, forKey: .couponPrefix)
+            
+            
+            
+            
+            try? container.encodeIfPresent(couponCounts, forKey: .couponCounts)
+            
+            
+            
+            
+            try? container.encodeIfPresent(reason, forKey: .reason)
+            
+            
+            
+            
             try? container.encodeIfPresent(typeSlug, forKey: .typeSlug)
             
             
@@ -341,6 +469,16 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(ruleDefinition, forKey: .ruleDefinition)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isArchived, forKey: .isArchived)
             
             
         }

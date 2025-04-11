@@ -14,11 +14,15 @@ public extension PlatformClient.Webhook {
         
         public var id: Int?
         
+        public var type: String?
+        
         public var eventName: String?
         
         public var eventType: String?
         
         public var eventCategory: String?
+        
+        public var modifiedBy: String?
         
         public var subscriberEventMapping: SubscriberEventMapping?
         
@@ -41,11 +45,15 @@ public extension PlatformClient.Webhook {
             
             case id = "id"
             
+            case type = "type"
+            
             case eventName = "event_name"
             
             case eventType = "event_type"
             
             case eventCategory = "event_category"
+            
+            case modifiedBy = "modified_by"
             
             case subscriberEventMapping = "subscriber_event_mapping"
             
@@ -65,15 +73,19 @@ public extension PlatformClient.Webhook {
             
         }
 
-        public init(createdOn: String? = nil, description: String? = nil, displayName: String? = nil, eventCategory: String? = nil, eventName: String? = nil, eventSchema: [String: Any]? = nil, eventType: String? = nil, group: String? = nil, id: Int? = nil, subscriberEventMapping: SubscriberEventMapping? = nil, updatedOn: String? = nil, version: String? = nil) {
+        public init(createdOn: String? = nil, description: String? = nil, displayName: String? = nil, eventCategory: String? = nil, eventName: String? = nil, eventSchema: [String: Any]? = nil, eventType: String? = nil, group: String? = nil, id: Int? = nil, modifiedBy: String? = nil, subscriberEventMapping: SubscriberEventMapping? = nil, type: String? = nil, updatedOn: String? = nil, version: String? = nil) {
             
             self.id = id
+            
+            self.type = type
             
             self.eventName = eventName
             
             self.eventType = eventType
             
             self.eventCategory = eventCategory
+            
+            self.modifiedBy = modifiedBy
             
             self.subscriberEventMapping = subscriberEventMapping
             
@@ -110,6 +122,18 @@ public extension PlatformClient.Webhook {
             
             
                 do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     eventName = try container.decode(String.self, forKey: .eventName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -135,6 +159,18 @@ public extension PlatformClient.Webhook {
             
                 do {
                     eventCategory = try container.decode(String.self, forKey: .eventCategory)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    modifiedBy = try container.decode(String.self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -252,6 +288,11 @@ public extension PlatformClient.Webhook {
             
             
             
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
             try? container.encodeIfPresent(eventName, forKey: .eventName)
             
             
@@ -263,6 +304,11 @@ public extension PlatformClient.Webhook {
             
             
             try? container.encodeIfPresent(eventCategory, forKey: .eventCategory)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
             
             
             

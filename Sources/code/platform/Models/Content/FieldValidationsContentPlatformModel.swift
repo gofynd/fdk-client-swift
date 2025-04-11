@@ -16,8 +16,6 @@ public extension PlatformClient.Content {
         
         public var type: String?
         
-        public var value: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -25,17 +23,13 @@ public extension PlatformClient.Content {
             
             case type = "type"
             
-            case value = "value"
-            
         }
 
-        public init(name: String? = nil, type: String? = nil, value: [String: Any]? = nil) {
+        public init(name: String? = nil, type: String? = nil) {
             
             self.name = name
             
             self.type = type
-            
-            self.value = value
             
         }
 
@@ -66,18 +60,6 @@ public extension PlatformClient.Content {
                 }
                 
             
-            
-                do {
-                    value = try container.decode([String: Any].self, forKey: .value)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -91,11 +73,6 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(value, forKey: .value)
             
             
         }
@@ -118,8 +95,6 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var type: String?
         
-        public var value: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -127,17 +102,13 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case type = "type"
             
-            case value = "value"
-            
         }
 
-        public init(name: String? = nil, type: String? = nil, value: [String: Any]? = nil) {
+        public init(name: String? = nil, type: String? = nil) {
             
             self.name = name
             
             self.type = type
-            
-            self.value = value
             
         }
 
@@ -168,18 +139,6 @@ public extension PlatformClient.ApplicationClient.Content {
                 }
                 
             
-            
-                do {
-                    value = try container.decode([String: Any].self, forKey: .value)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -193,11 +152,6 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(value, forKey: .value)
             
             
         }

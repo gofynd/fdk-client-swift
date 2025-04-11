@@ -12,9 +12,9 @@ public extension PlatformClient.Content {
     class SeoSchema: Codable {
         
         
-        public var app: String?
-        
         public var id: String?
+        
+        public var app: String?
         
         public var robotsTxt: String?
         
@@ -32,12 +32,16 @@ public extension PlatformClient.Content {
         
         public var updatedAt: String?
         
+        public var v: Int?
+        
+        public var sitemap: SEOSitemap?
+        
 
         public enum CodingKeys: String, CodingKey {
             
-            case app = "app"
-            
             case id = "_id"
+            
+            case app = "app"
             
             case robotsTxt = "robots_txt"
             
@@ -55,13 +59,17 @@ public extension PlatformClient.Content {
             
             case updatedAt = "updated_at"
             
+            case v = "__v"
+            
+            case sitemap = "sitemap"
+            
         }
 
-        public init(additionalSitemap: String? = nil, app: String? = nil, cannonicalEnabled: Bool? = nil, createdAt: String? = nil, customMetaTags: [CustomMetaTag]? = nil, details: Detail? = nil, robotsTxt: String? = nil, sitemapEnabled: Bool? = nil, updatedAt: String? = nil, id: String? = nil) {
-            
-            self.app = app
+        public init(additionalSitemap: String? = nil, app: String? = nil, cannonicalEnabled: Bool? = nil, createdAt: String? = nil, customMetaTags: [CustomMetaTag]? = nil, details: Detail? = nil, robotsTxt: String? = nil, sitemap: SEOSitemap? = nil, sitemapEnabled: Bool? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.id = id
+            
+            self.app = app
             
             self.robotsTxt = robotsTxt
             
@@ -79,6 +87,10 @@ public extension PlatformClient.Content {
             
             self.updatedAt = updatedAt
             
+            self.v = v
+            
+            self.sitemap = sitemap
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -86,7 +98,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    app = try container.decode(String.self, forKey: .app)
+                    id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,7 +110,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    id = try container.decode(String.self, forKey: .id)
+                    app = try container.decode(String.self, forKey: .app)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -204,6 +216,30 @@ public extension PlatformClient.Content {
                 }
                 
             
+            
+                do {
+                    v = try container.decode(Int.self, forKey: .v)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    sitemap = try container.decode(SEOSitemap.self, forKey: .sitemap)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -211,12 +247,12 @@ public extension PlatformClient.Content {
             
             
             
-            try? container.encodeIfPresent(app, forKey: .app)
-            
-            
-            
-            
             try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(app, forKey: .app)
             
             
             
@@ -257,6 +293,16 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(v, forKey: .v)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sitemap, forKey: .sitemap)
             
             
         }
@@ -275,9 +321,9 @@ public extension PlatformClient.ApplicationClient.Content {
     class SeoSchema: Codable {
         
         
-        public var app: String?
-        
         public var id: String?
+        
+        public var app: String?
         
         public var robotsTxt: String?
         
@@ -295,12 +341,16 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var updatedAt: String?
         
+        public var v: Int?
+        
+        public var sitemap: SEOSitemap?
+        
 
         public enum CodingKeys: String, CodingKey {
             
-            case app = "app"
-            
             case id = "_id"
+            
+            case app = "app"
             
             case robotsTxt = "robots_txt"
             
@@ -318,13 +368,17 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case updatedAt = "updated_at"
             
+            case v = "__v"
+            
+            case sitemap = "sitemap"
+            
         }
 
-        public init(additionalSitemap: String? = nil, app: String? = nil, cannonicalEnabled: Bool? = nil, createdAt: String? = nil, customMetaTags: [CustomMetaTag]? = nil, details: Detail? = nil, robotsTxt: String? = nil, sitemapEnabled: Bool? = nil, updatedAt: String? = nil, id: String? = nil) {
-            
-            self.app = app
+        public init(additionalSitemap: String? = nil, app: String? = nil, cannonicalEnabled: Bool? = nil, createdAt: String? = nil, customMetaTags: [CustomMetaTag]? = nil, details: Detail? = nil, robotsTxt: String? = nil, sitemap: SEOSitemap? = nil, sitemapEnabled: Bool? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.id = id
+            
+            self.app = app
             
             self.robotsTxt = robotsTxt
             
@@ -342,6 +396,10 @@ public extension PlatformClient.ApplicationClient.Content {
             
             self.updatedAt = updatedAt
             
+            self.v = v
+            
+            self.sitemap = sitemap
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -349,7 +407,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    app = try container.decode(String.self, forKey: .app)
+                    id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -361,7 +419,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    id = try container.decode(String.self, forKey: .id)
+                    app = try container.decode(String.self, forKey: .app)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -467,6 +525,30 @@ public extension PlatformClient.ApplicationClient.Content {
                 }
                 
             
+            
+                do {
+                    v = try container.decode(Int.self, forKey: .v)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    sitemap = try container.decode(SEOSitemap.self, forKey: .sitemap)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -474,12 +556,12 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
-            try? container.encodeIfPresent(app, forKey: .app)
-            
-            
-            
-            
             try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(app, forKey: .app)
             
             
             
@@ -520,6 +602,16 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(v, forKey: .v)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sitemap, forKey: .sitemap)
             
             
         }

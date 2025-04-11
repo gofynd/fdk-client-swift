@@ -26,6 +26,8 @@ public extension PlatformClient.CompanyProfile {
         
         public var size: Int?
         
+        public var total: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -43,9 +45,11 @@ public extension PlatformClient.CompanyProfile {
             
             case size = "size"
             
+            case total = "total"
+            
         }
 
-        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, size: Int? = nil, type: String) {
+        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, size: Int? = nil, total: Int? = nil, type: String) {
             
             self.itemTotal = itemTotal
             
@@ -60,6 +64,8 @@ public extension PlatformClient.CompanyProfile {
             self.type = type
             
             self.size = size
+            
+            self.total = total
             
         }
 
@@ -143,6 +149,18 @@ public extension PlatformClient.CompanyProfile {
                 }
                 
             
+            
+                do {
+                    total = try container.decode(Int.self, forKey: .total)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -181,6 +199,11 @@ public extension PlatformClient.CompanyProfile {
             
             
             try? container.encodeIfPresent(size, forKey: .size)
+            
+            
+            
+            
+            try? container.encodeIfPresent(total, forKey: .total)
             
             
         }

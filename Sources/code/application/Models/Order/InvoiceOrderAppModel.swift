@@ -10,6 +10,8 @@ public extension ApplicationClient.Order {
         
         public var invoiceUrl: String?
         
+        public var storeInvoiceId: String?
+        
         public var updatedDate: String?
         
         public var labelUrl: String?
@@ -19,15 +21,19 @@ public extension ApplicationClient.Order {
             
             case invoiceUrl = "invoice_url"
             
+            case storeInvoiceId = "store_invoice_id"
+            
             case updatedDate = "updated_date"
             
             case labelUrl = "label_url"
             
         }
 
-        public init(invoiceUrl: String? = nil, labelUrl: String? = nil, updatedDate: String? = nil) {
+        public init(invoiceUrl: String? = nil, labelUrl: String? = nil, storeInvoiceId: String? = nil, updatedDate: String? = nil) {
             
             self.invoiceUrl = invoiceUrl
+            
+            self.storeInvoiceId = storeInvoiceId
             
             self.updatedDate = updatedDate
             
@@ -41,6 +47,18 @@ public extension ApplicationClient.Order {
             
             do {
                 invoiceUrl = try container.decode(String.self, forKey: .invoiceUrl)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,6 +99,10 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(invoiceUrl, forKey: .invoiceUrl)
+            
+            
+            
+            try? container.encodeIfPresent(storeInvoiceId, forKey: .storeInvoiceId)
             
             
             

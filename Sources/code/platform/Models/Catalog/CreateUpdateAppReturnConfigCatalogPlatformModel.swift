@@ -12,9 +12,9 @@ public extension PlatformClient.Catalog {
     class CreateUpdateAppReturnConfig: Codable {
         
         
-        public var appId: String
+        public var appId: String?
         
-        public var companyId: Int
+        public var companyId: Int?
         
         public var returnConfigLevel: String
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(appId: String, companyId: Int, returnConfigLevel: String) {
+        public init(appId: String? = nil, companyId: Int? = nil, returnConfigLevel: String) {
             
             self.appId = appId
             
@@ -43,14 +43,28 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                appId = try container.decode(String.self, forKey: .appId)
+                do {
+                    appId = try container.decode(String.self, forKey: .appId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                do {
+                    companyId = try container.decode(Int.self, forKey: .companyId)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 returnConfigLevel = try container.decode(String.self, forKey: .returnConfigLevel)
@@ -93,9 +107,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CreateUpdateAppReturnConfig: Codable {
         
         
-        public var appId: String
+        public var appId: String?
         
-        public var companyId: Int
+        public var companyId: Int?
         
         public var returnConfigLevel: String
         
@@ -110,7 +124,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(appId: String, companyId: Int, returnConfigLevel: String) {
+        public init(appId: String? = nil, companyId: Int? = nil, returnConfigLevel: String) {
             
             self.appId = appId
             
@@ -124,14 +138,28 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                appId = try container.decode(String.self, forKey: .appId)
+                do {
+                    appId = try container.decode(String.self, forKey: .appId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                do {
+                    companyId = try container.decode(Int.self, forKey: .companyId)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 returnConfigLevel = try container.decode(String.self, forKey: .returnConfigLevel)

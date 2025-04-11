@@ -52,6 +52,10 @@ public extension ApplicationClient.Content {
         
         public var archived: Bool?
         
+        public var v: Double?
+        
+        public var sanitizedContent: [SanitizedContent]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -99,9 +103,13 @@ public extension ApplicationClient.Content {
             
             case archived = "archived"
             
+            case v = "__v"
+            
+            case sanitizedContent = "sanitized_content"
+            
         }
 
-        public init(application: String? = nil, archived: Bool? = nil, componentIds: [String]? = nil, content: [[String: Any]]? = nil, contentPath: String? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, description: String? = nil, featureImage: Asset? = nil, orientation: String? = nil, pageMeta: [[String: Any]]? = nil, platform: String? = nil, published: Bool? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, type: String? = nil, visibility: [String: Any]? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: ScheduleSchema? = nil) {
+        public init(application: String? = nil, archived: Bool? = nil, componentIds: [String]? = nil, content: [[String: Any]]? = nil, contentPath: String? = nil, createdBy: CreatedBySchema? = nil, dateMeta: DateMeta? = nil, description: String? = nil, featureImage: Asset? = nil, orientation: String? = nil, pageMeta: [[String: Any]]? = nil, platform: String? = nil, published: Bool? = nil, sanitizedContent: [SanitizedContent]? = nil, seo: SEO? = nil, slug: String? = nil, tags: [String]? = nil, title: String? = nil, type: String? = nil, visibility: [String: Any]? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: ScheduleSchema? = nil, v: Double? = nil) {
             
             self.id = id
             
@@ -146,6 +154,10 @@ public extension ApplicationClient.Content {
             self.visibility = visibility
             
             self.archived = archived
+            
+            self.v = v
+            
+            self.sanitizedContent = sanitizedContent
             
         }
 
@@ -416,6 +428,30 @@ public extension ApplicationClient.Content {
             }
             
             
+            
+            do {
+                v = try container.decode(Double.self, forKey: .v)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                sanitizedContent = try container.decode([SanitizedContent].self, forKey: .sanitizedContent)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -507,6 +543,14 @@ public extension ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(archived, forKey: .archived)
+            
+            
+            
+            try? container.encodeIfPresent(v, forKey: .v)
+            
+            
+            
+            try? container.encodeIfPresent(sanitizedContent, forKey: .sanitizedContent)
             
             
         }

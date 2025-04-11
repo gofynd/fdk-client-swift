@@ -16,7 +16,7 @@ public extension PlatformClient.Serviceability {
         
         public var page: PincodeMopUpdateAuditHistoryPaging
         
-        public var data: [PincodeMopUpdateAuditHistoryResponse]
+        public var data: [PincodeMopUpdateAuditHistoryResponseSchema]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,7 +29,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(data: [PincodeMopUpdateAuditHistoryResponse], entityType: String? = nil, page: PincodeMopUpdateAuditHistoryPaging) {
+        public init(data: [PincodeMopUpdateAuditHistoryResponseSchema], entityType: String? = nil, page: PincodeMopUpdateAuditHistoryPaging) {
             
             self.entityType = entityType
             
@@ -60,7 +60,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-                data = try container.decode([PincodeMopUpdateAuditHistoryResponse].self, forKey: .data)
+                data = try container.decode([PincodeMopUpdateAuditHistoryResponseSchema].self, forKey: .data)
                 
             
             
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var page: PincodeMopUpdateAuditHistoryPaging
         
-        public var data: [PincodeMopUpdateAuditHistoryResponse]
+        public var data: [PincodeMopUpdateAuditHistoryResponseSchema]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(data: [PincodeMopUpdateAuditHistoryResponse], entityType: String? = nil, page: PincodeMopUpdateAuditHistoryPaging) {
+        public init(data: [PincodeMopUpdateAuditHistoryResponseSchema], entityType: String? = nil, page: PincodeMopUpdateAuditHistoryPaging) {
             
             self.entityType = entityType
             
@@ -148,7 +148,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                data = try container.decode([PincodeMopUpdateAuditHistoryResponse].self, forKey: .data)
+                data = try container.decode([PincodeMopUpdateAuditHistoryResponseSchema].self, forKey: .data)
                 
             
             

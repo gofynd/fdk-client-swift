@@ -8,7 +8,7 @@ public extension ApplicationClient.Payment {
     */
     class WalletResponseSchema: Codable {
         
-        public var data: [String: Any]
+        public var data: WalletResponseData
         
         public var success: Bool
         
@@ -21,7 +21,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(data: [String: Any], success: Bool) {
+        public init(data: WalletResponseData, success: Bool) {
             
             self.data = data
             
@@ -33,7 +33,7 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            data = try container.decode([String: Any].self, forKey: .data)
+            data = try container.decode(WalletResponseData.self, forKey: .data)
             
             
             

@@ -14,16 +14,22 @@ public extension PlatformClient.FileStorage {
         
         public var username: String?
         
+        public var userId: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case username = "username"
             
+            case userId = "user_id"
+            
         }
 
-        public init(username: String? = nil) {
+        public init(username: String? = nil, userId: String? = nil) {
             
             self.username = username
+            
+            self.userId = userId
             
         }
 
@@ -42,6 +48,18 @@ public extension PlatformClient.FileStorage {
                 }
                 
             
+            
+                do {
+                    userId = try container.decode(String.self, forKey: .userId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -50,6 +68,11 @@ public extension PlatformClient.FileStorage {
             
             
             try? container.encodeIfPresent(username, forKey: .username)
+            
+            
+            
+            
+            try? container.encodeIfPresent(userId, forKey: .userId)
             
             
         }
@@ -70,16 +93,22 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var username: String?
         
+        public var userId: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case username = "username"
             
+            case userId = "user_id"
+            
         }
 
-        public init(username: String? = nil) {
+        public init(username: String? = nil, userId: String? = nil) {
             
             self.username = username
+            
+            self.userId = userId
             
         }
 
@@ -98,6 +127,18 @@ public extension PlatformClient.ApplicationClient.FileStorage {
                 }
                 
             
+            
+                do {
+                    userId = try container.decode(String.self, forKey: .userId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -106,6 +147,11 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(username, forKey: .username)
+            
+            
+            
+            
+            try? container.encodeIfPresent(userId, forKey: .userId)
             
             
         }

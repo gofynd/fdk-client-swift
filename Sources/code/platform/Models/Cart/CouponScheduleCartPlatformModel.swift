@@ -18,9 +18,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var start: String?
         
-        public var nextSchedule: [[String: Any]]?
+        public var nextSchedule: [NextSchedule]?
         
         public var cron: String?
+        
+        public var status: String?
         
         public var duration: Int?
         
@@ -35,11 +37,13 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case cron = "cron"
             
+            case status = "status"
+            
             case duration = "duration"
             
         }
 
-        public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [[String: Any]]? = nil, start: String? = nil) {
+        public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, start: String? = nil, status: String? = nil) {
             
             self.end = end
             
@@ -48,6 +52,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.nextSchedule = nextSchedule
             
             self.cron = cron
+            
+            self.status = status
             
             self.duration = duration
             
@@ -82,7 +88,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    nextSchedule = try container.decode([[String: Any]].self, forKey: .nextSchedule)
+                    nextSchedule = try container.decode([NextSchedule].self, forKey: .nextSchedule)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,6 +101,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     cron = try container.decode(String.self, forKey: .cron)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    status = try container.decode(String.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -139,6 +157,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(cron, forKey: .cron)
+            
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             

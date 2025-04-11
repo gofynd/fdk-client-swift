@@ -12,48 +12,42 @@ public extension PlatformClient.Serviceability {
     class LocationRuleValues: Codable {
         
         
-        public var id: String
+        public var uid: String
         
         public var subType: String?
         
-        public var name: String?
-        
         public var displayName: String?
         
-        public var parentId: String?
+        public var parentUid: String?
         
-        public var parentIds: [String]?
+        public var parentId: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "id"
+            case uid = "uid"
             
             case subType = "sub_type"
             
-            case name = "name"
-            
             case displayName = "display_name"
+            
+            case parentUid = "parent_uid"
             
             case parentId = "parent_id"
             
-            case parentIds = "parent_ids"
-            
         }
 
-        public init(displayName: String? = nil, id: String, name: String? = nil, parentId: String? = nil, parentIds: [String]? = nil, subType: String? = nil) {
+        public init(displayName: String? = nil, parentId: [String]? = nil, parentUid: String? = nil, subType: String? = nil, uid: String) {
             
-            self.id = id
+            self.uid = uid
             
             self.subType = subType
             
-            self.name = name
-            
             self.displayName = displayName
             
-            self.parentId = parentId
+            self.parentUid = parentUid
             
-            self.parentIds = parentIds
+            self.parentId = parentId
             
         }
 
@@ -61,25 +55,13 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                id = try container.decode(String.self, forKey: .id)
+                uid = try container.decode(String.self, forKey: .uid)
                 
             
             
             
                 do {
                     subType = try container.decode(String.self, forKey: .subType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,7 +85,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    parentId = try container.decode(String.self, forKey: .parentId)
+                    parentUid = try container.decode(String.self, forKey: .parentUid)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -115,7 +97,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    parentIds = try container.decode([String].self, forKey: .parentIds)
+                    parentId = try container.decode([String].self, forKey: .parentId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,7 +114,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(uid, forKey: .uid)
             
             
             
@@ -142,22 +124,17 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
             try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
             
+            try? container.encodeIfPresent(parentUid, forKey: .parentUid)
+            
+            
+            
+            
             try? container.encodeIfPresent(parentId, forKey: .parentId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(parentIds, forKey: .parentIds)
             
             
         }
@@ -176,48 +153,42 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class LocationRuleValues: Codable {
         
         
-        public var id: String
+        public var uid: String
         
         public var subType: String?
         
-        public var name: String?
-        
         public var displayName: String?
         
-        public var parentId: String?
+        public var parentUid: String?
         
-        public var parentIds: [String]?
+        public var parentId: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "id"
+            case uid = "uid"
             
             case subType = "sub_type"
             
-            case name = "name"
-            
             case displayName = "display_name"
+            
+            case parentUid = "parent_uid"
             
             case parentId = "parent_id"
             
-            case parentIds = "parent_ids"
-            
         }
 
-        public init(displayName: String? = nil, id: String, name: String? = nil, parentId: String? = nil, parentIds: [String]? = nil, subType: String? = nil) {
+        public init(displayName: String? = nil, parentId: [String]? = nil, parentUid: String? = nil, subType: String? = nil, uid: String) {
             
-            self.id = id
+            self.uid = uid
             
             self.subType = subType
             
-            self.name = name
-            
             self.displayName = displayName
             
-            self.parentId = parentId
+            self.parentUid = parentUid
             
-            self.parentIds = parentIds
+            self.parentId = parentId
             
         }
 
@@ -225,25 +196,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                id = try container.decode(String.self, forKey: .id)
+                uid = try container.decode(String.self, forKey: .uid)
                 
             
             
             
                 do {
                     subType = try container.decode(String.self, forKey: .subType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -267,7 +226,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    parentId = try container.decode(String.self, forKey: .parentId)
+                    parentUid = try container.decode(String.self, forKey: .parentUid)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -279,7 +238,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    parentIds = try container.decode([String].self, forKey: .parentIds)
+                    parentId = try container.decode([String].self, forKey: .parentId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -296,7 +255,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(uid, forKey: .uid)
             
             
             
@@ -306,22 +265,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
             try? container.encodeIfPresent(displayName, forKey: .displayName)
             
             
             
             
+            try? container.encodeIfPresent(parentUid, forKey: .parentUid)
+            
+            
+            
+            
             try? container.encodeIfPresent(parentId, forKey: .parentId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(parentIds, forKey: .parentIds)
             
             
         }

@@ -12,7 +12,19 @@ public extension PlatformClient.Order {
     class ShipmentDetails: Codable {
         
         
+        public var boxType: String?
+        
+        public var shipments: Int
+        
+        public var fulfillmentId: Int
+        
+        public var articles: [ArticleDetails]
+        
         public var dpId: String?
+        
+        public var meta: [String: Any]?
+        
+        public var affiliateShipmentId: String
         
         public var dpOptions: [String: Any]?
         
@@ -23,7 +35,19 @@ public extension PlatformClient.Order {
 
         public enum CodingKeys: String, CodingKey {
             
+            case boxType = "box_type"
+            
+            case shipments = "shipments"
+            
+            case fulfillmentId = "fulfillment_id"
+            
+            case articles = "articles"
+            
             case dpId = "dp_id"
+            
+            case meta = "meta"
+            
+            case affiliateShipmentId = "affiliate_shipment_id"
             
             case dpOptions = "dp_options"
             
@@ -33,9 +57,21 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(actionToStatus: [String: Any]? = nil, dpId: String? = nil, dpOptions: [String: Any]? = nil, lockStatus: Bool? = nil) {
+        public init(actionToStatus: [String: Any]? = nil, affiliateShipmentId: String, articles: [ArticleDetails], boxType: String? = nil, dpId: String? = nil, dpOptions: [String: Any]? = nil, fulfillmentId: Int, lockStatus: Bool? = nil, meta: [String: Any]? = nil, shipments: Int) {
+            
+            self.boxType = boxType
+            
+            self.shipments = shipments
+            
+            self.fulfillmentId = fulfillmentId
+            
+            self.articles = articles
             
             self.dpId = dpId
+            
+            self.meta = meta
+            
+            self.affiliateShipmentId = affiliateShipmentId
             
             self.dpOptions = dpOptions
             
@@ -50,6 +86,33 @@ public extension PlatformClient.Order {
             
             
                 do {
+                    boxType = try container.decode(String.self, forKey: .boxType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                shipments = try container.decode(Int.self, forKey: .shipments)
+                
+            
+            
+            
+                fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
+                
+            
+            
+            
+                articles = try container.decode([ArticleDetails].self, forKey: .articles)
+                
+            
+            
+            
+                do {
                     dpId = try container.decode(String.self, forKey: .dpId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -59,6 +122,23 @@ public extension PlatformClient.Order {
                     
                 }
                 
+            
+            
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
+                
+            
             
             
                 do {
@@ -103,7 +183,37 @@ public extension PlatformClient.Order {
             
             
             
+            try? container.encodeIfPresent(boxType, forKey: .boxType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(shipments, forKey: .shipments)
+            
+            
+            
+            
+            try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(articles, forKey: .articles)
+            
+            
+            
+            
             try? container.encodeIfPresent(dpId, forKey: .dpId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
             
             
             
@@ -137,7 +247,19 @@ public extension PlatformClient.ApplicationClient.Order {
     class ShipmentDetails: Codable {
         
         
+        public var boxType: String?
+        
+        public var shipments: Int
+        
+        public var fulfillmentId: Int
+        
+        public var articles: [ArticleDetails]
+        
         public var dpId: String?
+        
+        public var meta: [String: Any]?
+        
+        public var affiliateShipmentId: String
         
         public var dpOptions: [String: Any]?
         
@@ -148,7 +270,19 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public enum CodingKeys: String, CodingKey {
             
+            case boxType = "box_type"
+            
+            case shipments = "shipments"
+            
+            case fulfillmentId = "fulfillment_id"
+            
+            case articles = "articles"
+            
             case dpId = "dp_id"
+            
+            case meta = "meta"
+            
+            case affiliateShipmentId = "affiliate_shipment_id"
             
             case dpOptions = "dp_options"
             
@@ -158,9 +292,21 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(actionToStatus: [String: Any]? = nil, dpId: String? = nil, dpOptions: [String: Any]? = nil, lockStatus: Bool? = nil) {
+        public init(actionToStatus: [String: Any]? = nil, affiliateShipmentId: String, articles: [ArticleDetails], boxType: String? = nil, dpId: String? = nil, dpOptions: [String: Any]? = nil, fulfillmentId: Int, lockStatus: Bool? = nil, meta: [String: Any]? = nil, shipments: Int) {
+            
+            self.boxType = boxType
+            
+            self.shipments = shipments
+            
+            self.fulfillmentId = fulfillmentId
+            
+            self.articles = articles
             
             self.dpId = dpId
+            
+            self.meta = meta
+            
+            self.affiliateShipmentId = affiliateShipmentId
             
             self.dpOptions = dpOptions
             
@@ -175,6 +321,33 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
+                    boxType = try container.decode(String.self, forKey: .boxType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                shipments = try container.decode(Int.self, forKey: .shipments)
+                
+            
+            
+            
+                fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
+                
+            
+            
+            
+                articles = try container.decode([ArticleDetails].self, forKey: .articles)
+                
+            
+            
+            
+                do {
                     dpId = try container.decode(String.self, forKey: .dpId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -184,6 +357,23 @@ public extension PlatformClient.ApplicationClient.Order {
                     
                 }
                 
+            
+            
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
+                
+            
             
             
                 do {
@@ -228,7 +418,37 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
+            try? container.encodeIfPresent(boxType, forKey: .boxType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(shipments, forKey: .shipments)
+            
+            
+            
+            
+            try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(articles, forKey: .articles)
+            
+            
+            
+            
             try? container.encodeIfPresent(dpId, forKey: .dpId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
             
             
             

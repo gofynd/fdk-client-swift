@@ -24,6 +24,8 @@ public extension PlatformClient.Order {
         
         public var status: String
         
+        public var state: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -39,9 +41,11 @@ public extension PlatformClient.Order {
             
             case status = "status"
             
+            case state = "state"
+            
         }
 
-        public init(createdTs: String? = nil, isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String, text: String, time: String? = nil) {
+        public init(createdTs: String? = nil, isCurrent: Bool? = nil, isPassed: Bool? = nil, state: String? = nil, status: String, text: String, time: String? = nil) {
             
             self.isPassed = isPassed
             
@@ -54,6 +58,8 @@ public extension PlatformClient.Order {
             self.createdTs = createdTs
             
             self.status = status
+            
+            self.state = state
             
         }
 
@@ -118,6 +124,18 @@ public extension PlatformClient.Order {
                 
             
             
+            
+                do {
+                    state = try container.decode(String.self, forKey: .state)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -151,6 +169,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(state, forKey: .state)
             
             
         }
@@ -181,6 +204,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var status: String
         
+        public var state: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -196,9 +221,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case status = "status"
             
+            case state = "state"
+            
         }
 
-        public init(createdTs: String? = nil, isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String, text: String, time: String? = nil) {
+        public init(createdTs: String? = nil, isCurrent: Bool? = nil, isPassed: Bool? = nil, state: String? = nil, status: String, text: String, time: String? = nil) {
             
             self.isPassed = isPassed
             
@@ -211,6 +238,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.createdTs = createdTs
             
             self.status = status
+            
+            self.state = state
             
         }
 
@@ -275,6 +304,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
+            
+                do {
+                    state = try container.decode(String.self, forKey: .state)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -308,6 +349,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(state, forKey: .state)
             
             
         }

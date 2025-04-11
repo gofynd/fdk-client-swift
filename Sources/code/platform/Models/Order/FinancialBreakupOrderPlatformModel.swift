@@ -68,6 +68,10 @@ public extension PlatformClient.Order {
         
         public var addedToFyndCash: Bool
         
+        public var refundAmount: Double?
+        
+        public var tcsPercentage: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -127,9 +131,13 @@ public extension PlatformClient.Order {
             
             case addedToFyndCash = "added_to_fynd_cash"
             
+            case refundAmount = "refund_amount"
+            
+            case tcsPercentage = "tcs_percentage"
+            
         }
 
-        public init(addedToFyndCash: Bool, amountPaid: Double, amountPaidRoundoff: Int? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double, cashback: Double, cashbackApplied: Double, codCharges: Double, couponEffectiveDiscount: Double, couponValue: Double, deliveryCharge: Double, discount: Double, fyndCredits: Double, gstFee: Double, gstTag: String, gstTaxPercentage: Double, hsnCode: String, identifiers: Identifier, itemName: String, priceEffective: Double, priceMarked: Double, promotionEffectiveDiscount: Double, refundCredit: Double, size: String, taxCollectedAtSource: Double? = nil, totalUnits: Int, transferPrice: Double, valueOfGood: Double) {
+        public init(addedToFyndCash: Bool, amountPaid: Double, amountPaidRoundoff: Int? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double, cashback: Double, cashbackApplied: Double, codCharges: Double, couponEffectiveDiscount: Double, couponValue: Double, deliveryCharge: Double, discount: Double, fyndCredits: Double, gstFee: Double, gstTag: String, gstTaxPercentage: Double, hsnCode: String, identifiers: Identifier, itemName: String, priceEffective: Double, priceMarked: Double, promotionEffectiveDiscount: Double, refundAmount: Double? = nil, refundCredit: Double, size: String, taxCollectedAtSource: Double? = nil, tcsPercentage: Double? = nil, totalUnits: Int, transferPrice: Double, valueOfGood: Double) {
             
             self.refundCredit = refundCredit
             
@@ -186,6 +194,10 @@ public extension PlatformClient.Order {
             self.totalUnits = totalUnits
             
             self.addedToFyndCash = addedToFyndCash
+            
+            self.refundAmount = refundAmount
+            
+            self.tcsPercentage = tcsPercentage
             
         }
 
@@ -353,6 +365,30 @@ public extension PlatformClient.Order {
                 
             
             
+            
+                do {
+                    refundAmount = try container.decode(Double.self, forKey: .refundAmount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    tcsPercentage = try container.decode(Double.self, forKey: .tcsPercentage)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -496,6 +532,16 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(addedToFyndCash, forKey: .addedToFyndCash)
+            
+            
+            
+            
+            try? container.encodeIfPresent(refundAmount, forKey: .refundAmount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tcsPercentage, forKey: .tcsPercentage)
             
             
         }
@@ -570,6 +616,10 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var addedToFyndCash: Bool
         
+        public var refundAmount: Double?
+        
+        public var tcsPercentage: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -629,9 +679,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case addedToFyndCash = "added_to_fynd_cash"
             
+            case refundAmount = "refund_amount"
+            
+            case tcsPercentage = "tcs_percentage"
+            
         }
 
-        public init(addedToFyndCash: Bool, amountPaid: Double, amountPaidRoundoff: Int? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double, cashback: Double, cashbackApplied: Double, codCharges: Double, couponEffectiveDiscount: Double, couponValue: Double, deliveryCharge: Double, discount: Double, fyndCredits: Double, gstFee: Double, gstTag: String, gstTaxPercentage: Double, hsnCode: String, identifiers: Identifier, itemName: String, priceEffective: Double, priceMarked: Double, promotionEffectiveDiscount: Double, refundCredit: Double, size: String, taxCollectedAtSource: Double? = nil, totalUnits: Int, transferPrice: Double, valueOfGood: Double) {
+        public init(addedToFyndCash: Bool, amountPaid: Double, amountPaidRoundoff: Int? = nil, amountToBeCollected: Double? = nil, brandCalculatedAmount: Double, cashback: Double, cashbackApplied: Double, codCharges: Double, couponEffectiveDiscount: Double, couponValue: Double, deliveryCharge: Double, discount: Double, fyndCredits: Double, gstFee: Double, gstTag: String, gstTaxPercentage: Double, hsnCode: String, identifiers: Identifier, itemName: String, priceEffective: Double, priceMarked: Double, promotionEffectiveDiscount: Double, refundAmount: Double? = nil, refundCredit: Double, size: String, taxCollectedAtSource: Double? = nil, tcsPercentage: Double? = nil, totalUnits: Int, transferPrice: Double, valueOfGood: Double) {
             
             self.refundCredit = refundCredit
             
@@ -688,6 +742,10 @@ public extension PlatformClient.ApplicationClient.Order {
             self.totalUnits = totalUnits
             
             self.addedToFyndCash = addedToFyndCash
+            
+            self.refundAmount = refundAmount
+            
+            self.tcsPercentage = tcsPercentage
             
         }
 
@@ -855,6 +913,30 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
+            
+                do {
+                    refundAmount = try container.decode(Double.self, forKey: .refundAmount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    tcsPercentage = try container.decode(Double.self, forKey: .tcsPercentage)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -998,6 +1080,16 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(addedToFyndCash, forKey: .addedToFyndCash)
+            
+            
+            
+            
+            try? container.encodeIfPresent(refundAmount, forKey: .refundAmount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tcsPercentage, forKey: .tcsPercentage)
             
             
         }

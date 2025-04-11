@@ -14,7 +14,7 @@ public extension PlatformClient.Configuration {
         
         public var enabled: Bool?
         
-        public var storetypeOrder: [[String: Any]]?
+        public var storetypeOrder: [Int]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Configuration {
             
         }
 
-        public init(enabled: Bool? = nil, storetypeOrder: [[String: Any]]? = nil) {
+        public init(enabled: Bool? = nil, storetypeOrder: [Int]? = nil) {
             
             self.enabled = enabled
             
@@ -50,7 +50,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    storetypeOrder = try container.decode([[String: Any]].self, forKey: .storetypeOrder)
+                    storetypeOrder = try container.decode([Int].self, forKey: .storetypeOrder)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var enabled: Bool?
         
-        public var storetypeOrder: [[String: Any]]?
+        public var storetypeOrder: [Int]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
         }
 
-        public init(enabled: Bool? = nil, storetypeOrder: [[String: Any]]? = nil) {
+        public init(enabled: Bool? = nil, storetypeOrder: [Int]? = nil) {
             
             self.enabled = enabled
             
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    storetypeOrder = try container.decode([[String: Any]].self, forKey: .storetypeOrder)
+                    storetypeOrder = try container.decode([Int].self, forKey: .storetypeOrder)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

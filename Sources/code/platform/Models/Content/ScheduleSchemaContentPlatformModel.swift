@@ -12,6 +12,8 @@ public extension PlatformClient.Content {
     class ScheduleSchema: Codable {
         
         
+        public var published: Bool?
+        
         public var cron: String?
         
         public var start: String?
@@ -25,6 +27,8 @@ public extension PlatformClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
+            case published = "published"
+            
             case cron = "cron"
             
             case start = "start"
@@ -37,7 +41,9 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(cron: String? = nil, duration: Double? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, start: String? = nil) {
+        public init(cron: String? = nil, duration: Double? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, published: Bool? = nil, start: String? = nil) {
+            
+            self.published = published
             
             self.cron = cron
             
@@ -53,6 +59,18 @@ public extension PlatformClient.Content {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    published = try container.decode(Bool.self, forKey: .published)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -118,6 +136,11 @@ public extension PlatformClient.Content {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(published, forKey: .published)
+            
             
             
             
@@ -160,6 +183,8 @@ public extension PlatformClient.ApplicationClient.Content {
     class ScheduleSchema: Codable {
         
         
+        public var published: Bool?
+        
         public var cron: String?
         
         public var start: String?
@@ -173,6 +198,8 @@ public extension PlatformClient.ApplicationClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
+            case published = "published"
+            
             case cron = "cron"
             
             case start = "start"
@@ -185,7 +212,9 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(cron: String? = nil, duration: Double? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, start: String? = nil) {
+        public init(cron: String? = nil, duration: Double? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, published: Bool? = nil, start: String? = nil) {
+            
+            self.published = published
             
             self.cron = cron
             
@@ -201,6 +230,18 @@ public extension PlatformClient.ApplicationClient.Content {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    published = try container.decode(Bool.self, forKey: .published)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -266,6 +307,11 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(published, forKey: .published)
+            
             
             
             

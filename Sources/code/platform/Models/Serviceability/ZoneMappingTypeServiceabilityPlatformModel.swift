@@ -14,22 +14,28 @@ public extension PlatformClient.Serviceability {
         
         public var country: String
         
-        public var regions: [String]
+        public var pincode: [String]?
+        
+        public var state: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case country = "country"
             
-            case regions = "regions"
+            case pincode = "pincode"
+            
+            case state = "state"
             
         }
 
-        public init(country: String, regions: [String]) {
+        public init(country: String, pincode: [String]? = nil, state: [String]? = nil) {
             
             self.country = country
             
-            self.regions = regions
+            self.pincode = pincode
+            
+            self.state = state
             
         }
 
@@ -42,9 +48,28 @@ public extension PlatformClient.Serviceability {
             
             
             
-                regions = try container.decode([String].self, forKey: .regions)
+                do {
+                    pincode = try container.decode([String].self, forKey: .pincode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
+            
+                do {
+                    state = try container.decode([String].self, forKey: .state)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -58,7 +83,12 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(regions, forKey: .regions)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(state, forKey: .state)
             
             
         }
@@ -79,22 +109,28 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var country: String
         
-        public var regions: [String]
+        public var pincode: [String]?
+        
+        public var state: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case country = "country"
             
-            case regions = "regions"
+            case pincode = "pincode"
+            
+            case state = "state"
             
         }
 
-        public init(country: String, regions: [String]) {
+        public init(country: String, pincode: [String]? = nil, state: [String]? = nil) {
             
             self.country = country
             
-            self.regions = regions
+            self.pincode = pincode
+            
+            self.state = state
             
         }
 
@@ -107,9 +143,28 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                regions = try container.decode([String].self, forKey: .regions)
+                do {
+                    pincode = try container.decode([String].self, forKey: .pincode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
+            
+                do {
+                    state = try container.decode([String].self, forKey: .state)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -123,7 +178,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(regions, forKey: .regions)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(state, forKey: .state)
             
             
         }

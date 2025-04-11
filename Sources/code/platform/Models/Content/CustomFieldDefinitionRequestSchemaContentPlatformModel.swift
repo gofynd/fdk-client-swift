@@ -20,11 +20,15 @@ public extension PlatformClient.Content {
         
         public var namespace: String?
         
+        public var slug: String?
+        
         public var multiValue: Bool?
         
         public var name: String?
         
         public var description: String?
+        
+        public var creator: String?
         
         public var validations: [FieldValidations]?
         
@@ -39,17 +43,21 @@ public extension PlatformClient.Content {
             
             case namespace = "namespace"
             
+            case slug = "slug"
+            
             case multiValue = "multi_value"
             
             case name = "name"
             
             case description = "description"
             
+            case creator = "creator"
+            
             case validations = "validations"
             
         }
 
-        public init(description: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, resource: String? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
+        public init(creator: String? = nil, description: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, resource: String? = nil, slug: String? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
             
             self.resource = resource
             
@@ -59,11 +67,15 @@ public extension PlatformClient.Content {
             
             self.namespace = namespace
             
+            self.slug = slug
+            
             self.multiValue = multiValue
             
             self.name = name
             
             self.description = description
+            
+            self.creator = creator
             
             self.validations = validations
             
@@ -122,6 +134,18 @@ public extension PlatformClient.Content {
             
             
                 do {
+                    slug = try container.decode(String.self, forKey: .slug)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     multiValue = try container.decode(Bool.self, forKey: .multiValue)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -147,6 +171,18 @@ public extension PlatformClient.Content {
             
                 do {
                     description = try container.decode(String.self, forKey: .description)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    creator = try container.decode(String.self, forKey: .creator)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,6 +231,11 @@ public extension PlatformClient.Content {
             
             
             
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            
             try? container.encodeIfPresent(multiValue, forKey: .multiValue)
             
             
@@ -206,6 +247,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(creator, forKey: .creator)
             
             
             
@@ -237,11 +283,15 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var namespace: String?
         
+        public var slug: String?
+        
         public var multiValue: Bool?
         
         public var name: String?
         
         public var description: String?
+        
+        public var creator: String?
         
         public var validations: [FieldValidations]?
         
@@ -256,17 +306,21 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case namespace = "namespace"
             
+            case slug = "slug"
+            
             case multiValue = "multi_value"
             
             case name = "name"
             
             case description = "description"
             
+            case creator = "creator"
+            
             case validations = "validations"
             
         }
 
-        public init(description: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, resource: String? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
+        public init(creator: String? = nil, description: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, resource: String? = nil, slug: String? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
             
             self.resource = resource
             
@@ -276,11 +330,15 @@ public extension PlatformClient.ApplicationClient.Content {
             
             self.namespace = namespace
             
+            self.slug = slug
+            
             self.multiValue = multiValue
             
             self.name = name
             
             self.description = description
+            
+            self.creator = creator
             
             self.validations = validations
             
@@ -339,6 +397,18 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
+                    slug = try container.decode(String.self, forKey: .slug)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     multiValue = try container.decode(Bool.self, forKey: .multiValue)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -364,6 +434,18 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     description = try container.decode(String.self, forKey: .description)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    creator = try container.decode(String.self, forKey: .creator)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -412,6 +494,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            
             try? container.encodeIfPresent(multiValue, forKey: .multiValue)
             
             
@@ -423,6 +510,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(creator, forKey: .creator)
             
             
             

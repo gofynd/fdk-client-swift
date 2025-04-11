@@ -18,7 +18,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var images: [ProductImage]?
         
-        public var teaserTag: Tags?
+        public var teaserTag: [String: Any]?
         
         public var brand: BaseInfo?
         
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(action: ProductAction? = nil, attributes: [String: Any]? = nil, brand: BaseInfo? = nil, categories: [CategoryInfo]? = nil, images: [ProductImage]? = nil, itemCode: String? = nil, name: String? = nil, slug: String? = nil, tags: [String]? = nil, teaserTag: Tags? = nil, type: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
+        public init(action: ProductAction? = nil, attributes: [String: Any]? = nil, brand: BaseInfo? = nil, categories: [CategoryInfo]? = nil, images: [ProductImage]? = nil, itemCode: String? = nil, name: String? = nil, slug: String? = nil, tags: [String]? = nil, teaserTag: [String: Any]? = nil, type: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             
             self.slug = slug
             
@@ -130,7 +130,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    teaserTag = try container.decode(Tags.self, forKey: .teaserTag)
+                    teaserTag = try container.decode([String: Any].self, forKey: .teaserTag)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
