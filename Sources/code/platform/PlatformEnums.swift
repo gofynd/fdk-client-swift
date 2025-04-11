@@ -282,6 +282,160 @@ public extension PlatformClient.ApplicationClient.Lead {
 
 
 
+public extension PlatformClient.Payment {
+    
+    
+    /*
+        Enum: StatusSchema
+        Used By: Payment
+    */
+    enum StatusSchema: String, Codable {
+        
+        case started = "started"
+        
+        case completed = "completed"
+        
+        case partialPaid = "partial_paid"
+        
+        case failed = "failed"
+        
+        case pending = "pending"
+        
+        case refundDone = "refund_done"
+        
+        case refundInitiated = "refund_initiated"
+        
+        case partialRefund = "partial_refund"
+        
+        case refundFailed = "refund_failed"
+        
+        case refundPending = "refund_pending"
+        
+        case refundAcknowledge = "refund_acknowledge"
+        
+    }
+
+    
+    
+    /*
+        Enum: DeviceTypeSchema
+        Used By: Payment
+    */
+    enum DeviceTypeSchema: String, Codable {
+        
+        case android = "android"
+        
+        case ios = "ios"
+        
+        case desktop = "desktop"
+        
+        case iosPos = "ios-pos"
+        
+        case androidPos = "android-pos"
+        
+        case desktopPaymentLink = "desktop-payment_link"
+        
+    }
+
+    
+    
+    /*
+        Enum: TransactionTypeSchema
+        Used By: Payment
+    */
+    enum TransactionTypeSchema: String, Codable {
+        
+        case forward = "FORWARD"
+        
+        case refund = "REFUND"
+        
+        case autoRefund = "AUTO_REFUND"
+        
+    }
+
+    
+}
+
+
+
+public extension PlatformClient.ApplicationClient.Payment {
+    
+    
+    /*
+        Enum: StatusSchema
+        Used By: Payment
+    */
+    enum StatusSchema: String, Codable {
+        
+        case started = "started"
+        
+        case completed = "completed"
+        
+        case partialPaid = "partial_paid"
+        
+        case failed = "failed"
+        
+        case pending = "pending"
+        
+        case refundDone = "refund_done"
+        
+        case refundInitiated = "refund_initiated"
+        
+        case partialRefund = "partial_refund"
+        
+        case refundFailed = "refund_failed"
+        
+        case refundPending = "refund_pending"
+        
+        case refundAcknowledge = "refund_acknowledge"
+        
+    }
+
+    
+    
+    /*
+        Enum: DeviceTypeSchema
+        Used By: Payment
+    */
+    enum DeviceTypeSchema: String, Codable {
+        
+        case android = "android"
+        
+        case ios = "ios"
+        
+        case desktop = "desktop"
+        
+        case iosPos = "ios-pos"
+        
+        case androidPos = "android-pos"
+        
+        case desktopPaymentLink = "desktop-payment_link"
+        
+    }
+
+    
+    
+    /*
+        Enum: TransactionTypeSchema
+        Used By: Payment
+    */
+    enum TransactionTypeSchema: String, Codable {
+        
+        case forward = "FORWARD"
+        
+        case refund = "REFUND"
+        
+        case autoRefund = "AUTO_REFUND"
+        
+    }
+
+    
+}
+
+
+
+
+
 
 
 
