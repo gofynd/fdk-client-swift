@@ -12,24 +12,24 @@ public extension PlatformClient.Order {
     class AmountSchema: Codable {
         
         
-        public var currency: String?
+        public var orderingCurrency: CurrencyValueSchema
         
-        public var value: Double?
+        public var baseCurrency: CurrencyValueSchema
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case currency = "currency"
+            case orderingCurrency = "ordering_currency"
             
-            case value = "value"
+            case baseCurrency = "base_currency"
             
         }
 
-        public init(currency: String? = nil, value: Double? = nil) {
+        public init(baseCurrency: CurrencyValueSchema, orderingCurrency: CurrencyValueSchema) {
             
-            self.currency = currency
+            self.orderingCurrency = orderingCurrency
             
-            self.value = value
+            self.baseCurrency = baseCurrency
             
         }
 
@@ -37,28 +37,14 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    currency = try container.decode(String.self, forKey: .currency)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                orderingCurrency = try container.decode(CurrencyValueSchema.self, forKey: .orderingCurrency)
                 
             
             
-                do {
-                    value = try container.decode(Double.self, forKey: .value)
+            
+                baseCurrency = try container.decode(CurrencyValueSchema.self, forKey: .baseCurrency)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -67,12 +53,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(orderingCurrency, forKey: .orderingCurrency)
             
             
             
             
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(baseCurrency, forKey: .baseCurrency)
             
             
         }
@@ -91,24 +77,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class AmountSchema: Codable {
         
         
-        public var currency: String?
+        public var orderingCurrency: CurrencyValueSchema
         
-        public var value: Double?
+        public var baseCurrency: CurrencyValueSchema
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case currency = "currency"
+            case orderingCurrency = "ordering_currency"
             
-            case value = "value"
+            case baseCurrency = "base_currency"
             
         }
 
-        public init(currency: String? = nil, value: Double? = nil) {
+        public init(baseCurrency: CurrencyValueSchema, orderingCurrency: CurrencyValueSchema) {
             
-            self.currency = currency
+            self.orderingCurrency = orderingCurrency
             
-            self.value = value
+            self.baseCurrency = baseCurrency
             
         }
 
@@ -116,28 +102,14 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    currency = try container.decode(String.self, forKey: .currency)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                orderingCurrency = try container.decode(CurrencyValueSchema.self, forKey: .orderingCurrency)
                 
             
             
-                do {
-                    value = try container.decode(Double.self, forKey: .value)
+            
+                baseCurrency = try container.decode(CurrencyValueSchema.self, forKey: .baseCurrency)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -146,12 +118,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(orderingCurrency, forKey: .orderingCurrency)
             
             
             
             
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(baseCurrency, forKey: .baseCurrency)
             
             
         }

@@ -68,7 +68,7 @@ public extension PlatformClient.Catalog {
         
         public var categoryUid: Int
         
-        public var verificationStatus: String?
+        public var verificationStatus: Int?
         
         public var channelIdentifier: String?
         
@@ -116,7 +116,7 @@ public extension PlatformClient.Catalog {
         
         public var templateTag: String?
         
-        public var netQuantity: NetQuantitySchema?
+        public var netQuantity: [String: Any]?
         
         public var customOrder: CustomOrder?
         
@@ -131,12 +131,6 @@ public extension PlatformClient.Catalog {
         public var customMeta: [CustomMeta]?
         
         public var discountPercentage: Int?
-        
-        public var noOfBoxes: Int?
-        
-        public var createdOn: String?
-        
-        public var modifiedOn: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -261,15 +255,9 @@ public extension PlatformClient.Catalog {
             
             case discountPercentage = "discount_percentage"
             
-            case noOfBoxes = "no_of_boxes"
-            
-            case createdOn = "created_on"
-            
-            case modifiedOn = "modified_on"
-            
         }
 
-        public init(attributes: [String: Any]? = nil, brand: ProductBrand? = nil, brandUid: Int, categorySlug: String? = nil, categoryUid: Int, channelIdentifier: String? = nil, color: String? = nil, companyIds: [Int]? = nil, countryOfOrigin: String, createdOn: String? = nil, customOrder: CustomOrder? = nil, departments: [Int], description: String? = nil, discount: String? = nil, discountPercentage: Int? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, identifiers: [String]? = nil, imageNature: String, isAvailable: Bool, isCod: Bool, isDependent: Bool, isGift: Bool, itemCode: String, itemId: Int? = nil, itemType: String, l3Categories: [Int], l3CategoryNames: [String]? = nil, medias: [Media]? = nil, modifiedOn: String? = nil, moq: ApplicationItemMOQ, multiCategories: [MultiCategoriesSchema]? = nil, multiSize: Bool, name: String, netQuantity: NetQuantitySchema? = nil, noOfBoxes: Int? = nil, popularity: Int? = nil, price: ProductListingPrice? = nil, productGroupTag: [String]? = nil, productOnlineDate: String? = nil, promoMeta: [String: Any]? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, seo: ApplicationItemSEO, shortDescription: String? = nil, similars: [String]? = nil, sizes: [String]? = nil, sizeGuide: String? = nil, slug: String, storeIds: [Int]? = nil, tags: [String]? = nil, teaserTag: [String: Any]? = nil, templateTag: String? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int, variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, verificationStatus: String? = nil, customJson: [String: Any]? = nil, customMeta: [CustomMeta]? = nil) {
+        public init(attributes: [String: Any]? = nil, brand: ProductBrand? = nil, brandUid: Int, categorySlug: String? = nil, categoryUid: Int, channelIdentifier: String? = nil, color: String? = nil, companyIds: [Int]? = nil, countryOfOrigin: String, customOrder: CustomOrder? = nil, departments: [Int], description: String? = nil, discount: String? = nil, discountPercentage: Int? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, identifiers: [String]? = nil, imageNature: String, isAvailable: Bool, isCod: Bool, isDependent: Bool, isGift: Bool, itemCode: String, itemId: Int? = nil, itemType: String, l3Categories: [Int], l3CategoryNames: [String]? = nil, medias: [Media]? = nil, moq: ApplicationItemMOQ, multiCategories: [MultiCategoriesSchema]? = nil, multiSize: Bool, name: String, netQuantity: [String: Any]? = nil, popularity: Int? = nil, price: ProductListingPrice? = nil, productGroupTag: [String]? = nil, productOnlineDate: String? = nil, promoMeta: [String: Any]? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, seo: ApplicationItemSEO, shortDescription: String? = nil, similars: [String]? = nil, sizes: [String]? = nil, sizeGuide: String? = nil, slug: String, storeIds: [Int]? = nil, tags: [String]? = nil, teaserTag: [String: Any]? = nil, templateTag: String? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int, variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, verificationStatus: Int? = nil, customJson: [String: Any]? = nil, customMeta: [CustomMeta]? = nil) {
             
             self.attributes = attributes
             
@@ -390,12 +378,6 @@ public extension PlatformClient.Catalog {
             self.customMeta = customMeta
             
             self.discountPercentage = discountPercentage
-            
-            self.noOfBoxes = noOfBoxes
-            
-            self.createdOn = createdOn
-            
-            self.modifiedOn = modifiedOn
             
         }
 
@@ -684,7 +666,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    verificationStatus = try container.decode(String.self, forKey: .verificationStatus)
+                    verificationStatus = try container.decode(Int.self, forKey: .verificationStatus)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -909,7 +891,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    netQuantity = try container.decode(NetQuantitySchema.self, forKey: .netQuantity)
+                    netQuantity = try container.decode([String: Any].self, forKey: .netQuantity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -987,42 +969,6 @@ public extension PlatformClient.Catalog {
             
                 do {
                     discountPercentage = try container.decode(Int.self, forKey: .discountPercentage)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    noOfBoxes = try container.decode(Int.self, forKey: .noOfBoxes)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    createdOn = try container.decode(String.self, forKey: .createdOn)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1335,21 +1281,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(discountPercentage, forKey: .discountPercentage)
-            
-            
-            
-            
-            try? container.encodeIfPresent(noOfBoxes, forKey: .noOfBoxes)
-            
-            
-            
-            
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-            
-            
-            
-            
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
         }
@@ -1424,7 +1355,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var categoryUid: Int
         
-        public var verificationStatus: String?
+        public var verificationStatus: Int?
         
         public var channelIdentifier: String?
         
@@ -1472,7 +1403,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var templateTag: String?
         
-        public var netQuantity: NetQuantitySchema?
+        public var netQuantity: [String: Any]?
         
         public var customOrder: CustomOrder?
         
@@ -1487,12 +1418,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var customMeta: [CustomMeta]?
         
         public var discountPercentage: Int?
-        
-        public var noOfBoxes: Int?
-        
-        public var createdOn: String?
-        
-        public var modifiedOn: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -1617,15 +1542,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case discountPercentage = "discount_percentage"
             
-            case noOfBoxes = "no_of_boxes"
-            
-            case createdOn = "created_on"
-            
-            case modifiedOn = "modified_on"
-            
         }
 
-        public init(attributes: [String: Any]? = nil, brand: ProductBrand? = nil, brandUid: Int, categorySlug: String? = nil, categoryUid: Int, channelIdentifier: String? = nil, color: String? = nil, companyIds: [Int]? = nil, countryOfOrigin: String, createdOn: String? = nil, customOrder: CustomOrder? = nil, departments: [Int], description: String? = nil, discount: String? = nil, discountPercentage: Int? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, identifiers: [String]? = nil, imageNature: String, isAvailable: Bool, isCod: Bool, isDependent: Bool, isGift: Bool, itemCode: String, itemId: Int? = nil, itemType: String, l3Categories: [Int], l3CategoryNames: [String]? = nil, medias: [Media]? = nil, modifiedOn: String? = nil, moq: ApplicationItemMOQ, multiCategories: [MultiCategoriesSchema]? = nil, multiSize: Bool, name: String, netQuantity: NetQuantitySchema? = nil, noOfBoxes: Int? = nil, popularity: Int? = nil, price: ProductListingPrice? = nil, productGroupTag: [String]? = nil, productOnlineDate: String? = nil, promoMeta: [String: Any]? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, seo: ApplicationItemSEO, shortDescription: String? = nil, similars: [String]? = nil, sizes: [String]? = nil, sizeGuide: String? = nil, slug: String, storeIds: [Int]? = nil, tags: [String]? = nil, teaserTag: [String: Any]? = nil, templateTag: String? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int, variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, verificationStatus: String? = nil, customJson: [String: Any]? = nil, customMeta: [CustomMeta]? = nil) {
+        public init(attributes: [String: Any]? = nil, brand: ProductBrand? = nil, brandUid: Int, categorySlug: String? = nil, categoryUid: Int, channelIdentifier: String? = nil, color: String? = nil, companyIds: [Int]? = nil, countryOfOrigin: String, customOrder: CustomOrder? = nil, departments: [Int], description: String? = nil, discount: String? = nil, discountPercentage: Int? = nil, hasVariant: Bool? = nil, highlights: [String]? = nil, identifiers: [String]? = nil, imageNature: String, isAvailable: Bool, isCod: Bool, isDependent: Bool, isGift: Bool, itemCode: String, itemId: Int? = nil, itemType: String, l3Categories: [Int], l3CategoryNames: [String]? = nil, medias: [Media]? = nil, moq: ApplicationItemMOQ, multiCategories: [MultiCategoriesSchema]? = nil, multiSize: Bool, name: String, netQuantity: [String: Any]? = nil, popularity: Int? = nil, price: ProductListingPrice? = nil, productGroupTag: [String]? = nil, productOnlineDate: String? = nil, promoMeta: [String: Any]? = nil, rating: Double? = nil, ratingCount: Int? = nil, sellable: Bool? = nil, seo: ApplicationItemSEO, shortDescription: String? = nil, similars: [String]? = nil, sizes: [String]? = nil, sizeGuide: String? = nil, slug: String, storeIds: [Int]? = nil, tags: [String]? = nil, teaserTag: [String: Any]? = nil, templateTag: String? = nil, tryouts: [String]? = nil, type: String? = nil, uid: Int, variants: [String: Any]? = nil, variantGroup: [String: Any]? = nil, variantMedia: [String: Any]? = nil, verificationStatus: Int? = nil, customJson: [String: Any]? = nil, customMeta: [CustomMeta]? = nil) {
             
             self.attributes = attributes
             
@@ -1746,12 +1665,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.customMeta = customMeta
             
             self.discountPercentage = discountPercentage
-            
-            self.noOfBoxes = noOfBoxes
-            
-            self.createdOn = createdOn
-            
-            self.modifiedOn = modifiedOn
             
         }
 
@@ -2040,7 +1953,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    verificationStatus = try container.decode(String.self, forKey: .verificationStatus)
+                    verificationStatus = try container.decode(Int.self, forKey: .verificationStatus)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -2265,7 +2178,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    netQuantity = try container.decode(NetQuantitySchema.self, forKey: .netQuantity)
+                    netQuantity = try container.decode([String: Any].self, forKey: .netQuantity)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -2343,42 +2256,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     discountPercentage = try container.decode(Int.self, forKey: .discountPercentage)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    noOfBoxes = try container.decode(Int.self, forKey: .noOfBoxes)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    createdOn = try container.decode(String.self, forKey: .createdOn)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -2691,21 +2568,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(discountPercentage, forKey: .discountPercentage)
-            
-            
-            
-            
-            try? container.encodeIfPresent(noOfBoxes, forKey: .noOfBoxes)
-            
-            
-            
-            
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-            
-            
-            
-            
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
         }

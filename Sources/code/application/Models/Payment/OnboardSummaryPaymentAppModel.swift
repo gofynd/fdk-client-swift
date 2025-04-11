@@ -22,6 +22,14 @@ public extension ApplicationClient.Payment {
         
         public var activationUrl: String?
         
+        public var type: String?
+        
+        public var reason: String?
+        
+        public var code: Int?
+        
+        public var message: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -39,9 +47,17 @@ public extension ApplicationClient.Payment {
             
             case activationUrl = "activation_url"
             
+            case type = "type"
+            
+            case reason = "reason"
+            
+            case code = "code"
+            
+            case message = "message"
+            
         }
 
-        public init(activationUrl: String? = nil, isEligibleForTxn: Bool? = nil, merchantCustomerRefId: String? = nil, redirectUrl: String? = nil, session: [String: Any]? = nil, status: Bool, statusRemark: String? = nil) {
+        public init(activationUrl: String? = nil, code: Int? = nil, isEligibleForTxn: Bool? = nil, merchantCustomerRefId: String? = nil, message: String? = nil, reason: String? = nil, redirectUrl: String? = nil, session: [String: Any]? = nil, status: Bool, statusRemark: String? = nil, type: String? = nil) {
             
             self.redirectUrl = redirectUrl
             
@@ -56,6 +72,14 @@ public extension ApplicationClient.Payment {
             self.merchantCustomerRefId = merchantCustomerRefId
             
             self.activationUrl = activationUrl
+            
+            self.type = type
+            
+            self.reason = reason
+            
+            self.code = code
+            
+            self.message = message
             
         }
 
@@ -139,6 +163,54 @@ public extension ApplicationClient.Payment {
             }
             
             
+            
+            do {
+                type = try container.decode(String.self, forKey: .type)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                reason = try container.decode(String.self, forKey: .reason)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                code = try container.decode(Int.self, forKey: .code)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                message = try container.decode(String.self, forKey: .message)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -170,6 +242,22 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(activationUrl, forKey: .activationUrl)
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            try? container.encodeIfPresent(reason, forKey: .reason)
+            
+            
+            
+            try? container.encodeIfPresent(code, forKey: .code)
+            
+            
+            
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }

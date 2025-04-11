@@ -12,9 +12,13 @@ public extension PlatformClient.Communication {
     class LogMeta: Codable {
         
         
+        public var identifier: String?
+        
         public var type: String?
         
-        public var identifier: String?
+        public var job: String?
+        
+        public var campaign: String?
         
         public var key: String?
         
@@ -27,9 +31,13 @@ public extension PlatformClient.Communication {
 
         public enum CodingKeys: String, CodingKey {
             
+            case identifier = "identifier"
+            
             case type = "type"
             
-            case identifier = "identifier"
+            case job = "job"
+            
+            case campaign = "campaign"
             
             case key = "key"
             
@@ -41,11 +49,15 @@ public extension PlatformClient.Communication {
             
         }
 
-        public init(identifier: String? = nil, key: String? = nil, offset: String? = nil, partition: String? = nil, topic: String? = nil, type: String? = nil) {
+        public init(campaign: String? = nil, identifier: String? = nil, job: String? = nil, key: String? = nil, offset: String? = nil, partition: String? = nil, topic: String? = nil, type: String? = nil) {
+            
+            self.identifier = identifier
             
             self.type = type
             
-            self.identifier = identifier
+            self.job = job
+            
+            self.campaign = campaign
             
             self.key = key
             
@@ -62,6 +74,18 @@ public extension PlatformClient.Communication {
             
             
                 do {
+                    identifier = try container.decode(String.self, forKey: .identifier)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -74,7 +98,19 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    identifier = try container.decode(String.self, forKey: .identifier)
+                    job = try container.decode(String.self, forKey: .job)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    campaign = try container.decode(String.self, forKey: .campaign)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -139,12 +175,22 @@ public extension PlatformClient.Communication {
             
             
             
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            
+            
+            
+            
             try? container.encodeIfPresent(type, forKey: .type)
             
             
             
             
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(job, forKey: .job)
+            
+            
+            
+            
+            try? container.encodeIfPresent(campaign, forKey: .campaign)
             
             
             
@@ -183,9 +229,13 @@ public extension PlatformClient.ApplicationClient.Communication {
     class LogMeta: Codable {
         
         
+        public var identifier: String?
+        
         public var type: String?
         
-        public var identifier: String?
+        public var job: String?
+        
+        public var campaign: String?
         
         public var key: String?
         
@@ -198,9 +248,13 @@ public extension PlatformClient.ApplicationClient.Communication {
 
         public enum CodingKeys: String, CodingKey {
             
+            case identifier = "identifier"
+            
             case type = "type"
             
-            case identifier = "identifier"
+            case job = "job"
+            
+            case campaign = "campaign"
             
             case key = "key"
             
@@ -212,11 +266,15 @@ public extension PlatformClient.ApplicationClient.Communication {
             
         }
 
-        public init(identifier: String? = nil, key: String? = nil, offset: String? = nil, partition: String? = nil, topic: String? = nil, type: String? = nil) {
+        public init(campaign: String? = nil, identifier: String? = nil, job: String? = nil, key: String? = nil, offset: String? = nil, partition: String? = nil, topic: String? = nil, type: String? = nil) {
+            
+            self.identifier = identifier
             
             self.type = type
             
-            self.identifier = identifier
+            self.job = job
+            
+            self.campaign = campaign
             
             self.key = key
             
@@ -233,6 +291,18 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
+                    identifier = try container.decode(String.self, forKey: .identifier)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -245,7 +315,19 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    identifier = try container.decode(String.self, forKey: .identifier)
+                    job = try container.decode(String.self, forKey: .job)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    campaign = try container.decode(String.self, forKey: .campaign)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -310,12 +392,22 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            
+            
+            
+            
             try? container.encodeIfPresent(type, forKey: .type)
             
             
             
             
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(job, forKey: .job)
+            
+            
+            
+            
+            try? container.encodeIfPresent(campaign, forKey: .campaign)
             
             
             

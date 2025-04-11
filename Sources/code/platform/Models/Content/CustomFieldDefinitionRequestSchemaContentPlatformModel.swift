@@ -12,11 +12,15 @@ public extension PlatformClient.Content {
     class CustomFieldDefinitionRequestSchema: Codable {
         
         
+        public var resource: String?
+        
         public var type: String?
         
-        public var slug: String?
+        public var key: String?
         
         public var namespace: String?
+        
+        public var slug: String?
         
         public var multiValue: Bool?
         
@@ -24,16 +28,22 @@ public extension PlatformClient.Content {
         
         public var description: String?
         
+        public var creator: String?
+        
         public var validations: [FieldValidations]?
         
 
         public enum CodingKeys: String, CodingKey {
             
+            case resource = "resource"
+            
             case type = "type"
             
-            case slug = "slug"
+            case key = "key"
             
             case namespace = "namespace"
+            
+            case slug = "slug"
             
             case multiValue = "multi_value"
             
@@ -41,17 +51,23 @@ public extension PlatformClient.Content {
             
             case description = "description"
             
+            case creator = "creator"
+            
             case validations = "validations"
             
         }
 
-        public init(description: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, slug: String? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
+        public init(creator: String? = nil, description: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, resource: String? = nil, slug: String? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
+            
+            self.resource = resource
             
             self.type = type
             
-            self.slug = slug
+            self.key = key
             
             self.namespace = namespace
+            
+            self.slug = slug
             
             self.multiValue = multiValue
             
@@ -59,12 +75,26 @@ public extension PlatformClient.Content {
             
             self.description = description
             
+            self.creator = creator
+            
             self.validations = validations
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    resource = try container.decode(String.self, forKey: .resource)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -80,7 +110,7 @@ public extension PlatformClient.Content {
             
             
                 do {
-                    slug = try container.decode(String.self, forKey: .slug)
+                    key = try container.decode(String.self, forKey: .key)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,6 +123,18 @@ public extension PlatformClient.Content {
             
                 do {
                     namespace = try container.decode(String.self, forKey: .namespace)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -140,6 +182,18 @@ public extension PlatformClient.Content {
             
             
                 do {
+                    creator = try container.decode(String.self, forKey: .creator)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     validations = try container.decode([FieldValidations].self, forKey: .validations)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -157,17 +211,27 @@ public extension PlatformClient.Content {
             
             
             
+            try? container.encodeIfPresent(resource, forKey: .resource)
+            
+            
+            
+            
             try? container.encodeIfPresent(type, forKey: .type)
             
             
             
             
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(key, forKey: .key)
             
             
             
             
             try? container.encodeIfPresent(namespace, forKey: .namespace)
+            
+            
+            
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
@@ -183,6 +247,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(creator, forKey: .creator)
             
             
             
@@ -206,11 +275,15 @@ public extension PlatformClient.ApplicationClient.Content {
     class CustomFieldDefinitionRequestSchema: Codable {
         
         
+        public var resource: String?
+        
         public var type: String?
         
-        public var slug: String?
+        public var key: String?
         
         public var namespace: String?
+        
+        public var slug: String?
         
         public var multiValue: Bool?
         
@@ -218,16 +291,22 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var description: String?
         
+        public var creator: String?
+        
         public var validations: [FieldValidations]?
         
 
         public enum CodingKeys: String, CodingKey {
             
+            case resource = "resource"
+            
             case type = "type"
             
-            case slug = "slug"
+            case key = "key"
             
             case namespace = "namespace"
+            
+            case slug = "slug"
             
             case multiValue = "multi_value"
             
@@ -235,17 +314,23 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case description = "description"
             
+            case creator = "creator"
+            
             case validations = "validations"
             
         }
 
-        public init(description: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, slug: String? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
+        public init(creator: String? = nil, description: String? = nil, key: String? = nil, multiValue: Bool? = nil, name: String? = nil, namespace: String? = nil, resource: String? = nil, slug: String? = nil, type: String? = nil, validations: [FieldValidations]? = nil) {
+            
+            self.resource = resource
             
             self.type = type
             
-            self.slug = slug
+            self.key = key
             
             self.namespace = namespace
+            
+            self.slug = slug
             
             self.multiValue = multiValue
             
@@ -253,12 +338,26 @@ public extension PlatformClient.ApplicationClient.Content {
             
             self.description = description
             
+            self.creator = creator
+            
             self.validations = validations
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    resource = try container.decode(String.self, forKey: .resource)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -274,7 +373,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
-                    slug = try container.decode(String.self, forKey: .slug)
+                    key = try container.decode(String.self, forKey: .key)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -287,6 +386,18 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     namespace = try container.decode(String.self, forKey: .namespace)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    slug = try container.decode(String.self, forKey: .slug)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -334,6 +445,18 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
                 do {
+                    creator = try container.decode(String.self, forKey: .creator)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     validations = try container.decode([FieldValidations].self, forKey: .validations)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -351,17 +474,27 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             
+            try? container.encodeIfPresent(resource, forKey: .resource)
+            
+            
+            
+            
             try? container.encodeIfPresent(type, forKey: .type)
             
             
             
             
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(key, forKey: .key)
             
             
             
             
             try? container.encodeIfPresent(namespace, forKey: .namespace)
+            
+            
+            
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
             
@@ -377,6 +510,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(creator, forKey: .creator)
             
             
             

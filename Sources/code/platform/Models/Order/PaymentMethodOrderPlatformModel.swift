@@ -26,6 +26,12 @@ public extension PlatformClient.Order {
         
         public var transactionData: [String: Any]?
         
+        public var collected: Bool
+        
+        public var displayName: String
+        
+        public var merchantTransactionId: String
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -43,9 +49,15 @@ public extension PlatformClient.Order {
             
             case transactionData = "transaction_data"
             
+            case collected = "collected"
+            
+            case displayName = "display_name"
+            
+            case merchantTransactionId = "merchant_transaction_id"
+            
         }
 
-        public init(amount: Double, collectBy: String, meta: [String: Any]? = nil, mode: String, name: String, refundBy: String, transactionData: [String: Any]? = nil) {
+        public init(amount: Double, collected: Bool, collectBy: String, displayName: String, merchantTransactionId: String, meta: [String: Any]? = nil, mode: String, name: String, refundBy: String, transactionData: [String: Any]? = nil) {
             
             self.collectBy = collectBy
             
@@ -60,6 +72,12 @@ public extension PlatformClient.Order {
             self.meta = meta
             
             self.transactionData = transactionData
+            
+            self.collected = collected
+            
+            self.displayName = displayName
+            
+            self.merchantTransactionId = merchantTransactionId
             
         }
 
@@ -115,6 +133,21 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                collected = try container.decode(Bool.self, forKey: .collected)
+                
+            
+            
+            
+                displayName = try container.decode(String.self, forKey: .displayName)
+                
+            
+            
+            
+                merchantTransactionId = try container.decode(String.self, forKey: .merchantTransactionId)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -153,6 +186,21 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(transactionData, forKey: .transactionData)
+            
+            
+            
+            
+            try? container.encodeIfPresent(collected, forKey: .collected)
+            
+            
+            
+            
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(merchantTransactionId, forKey: .merchantTransactionId)
             
             
         }
@@ -185,6 +233,12 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var transactionData: [String: Any]?
         
+        public var collected: Bool
+        
+        public var displayName: String
+        
+        public var merchantTransactionId: String
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -202,9 +256,15 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case transactionData = "transaction_data"
             
+            case collected = "collected"
+            
+            case displayName = "display_name"
+            
+            case merchantTransactionId = "merchant_transaction_id"
+            
         }
 
-        public init(amount: Double, collectBy: String, meta: [String: Any]? = nil, mode: String, name: String, refundBy: String, transactionData: [String: Any]? = nil) {
+        public init(amount: Double, collected: Bool, collectBy: String, displayName: String, merchantTransactionId: String, meta: [String: Any]? = nil, mode: String, name: String, refundBy: String, transactionData: [String: Any]? = nil) {
             
             self.collectBy = collectBy
             
@@ -219,6 +279,12 @@ public extension PlatformClient.ApplicationClient.Order {
             self.meta = meta
             
             self.transactionData = transactionData
+            
+            self.collected = collected
+            
+            self.displayName = displayName
+            
+            self.merchantTransactionId = merchantTransactionId
             
         }
 
@@ -274,6 +340,21 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                collected = try container.decode(Bool.self, forKey: .collected)
+                
+            
+            
+            
+                displayName = try container.decode(String.self, forKey: .displayName)
+                
+            
+            
+            
+                merchantTransactionId = try container.decode(String.self, forKey: .merchantTransactionId)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -312,6 +393,21 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(transactionData, forKey: .transactionData)
+            
+            
+            
+            
+            try? container.encodeIfPresent(collected, forKey: .collected)
+            
+            
+            
+            
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(merchantTransactionId, forKey: .merchantTransactionId)
             
             
         }

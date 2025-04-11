@@ -8,9 +8,9 @@ public extension ApplicationClient.Payment {
     */
     class ValidateUPI: Codable {
         
-        public var status: String
+        public var status: Bool
         
-        public var customerName: String
+        public var customerName: String?
         
         public var isValid: Bool
         
@@ -29,7 +29,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(customerName: String, isValid: Bool, status: String, upiVpa: String) {
+        public init(customerName: String? = nil, isValid: Bool, status: Bool, upiVpa: String) {
             
             self.status = status
             
@@ -45,13 +45,20 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            status = try container.decode(String.self, forKey: .status)
+            status = try container.decode(Bool.self, forKey: .status)
             
             
             
             
-            customerName = try container.decode(String.self, forKey: .customerName)
+            do {
+                customerName = try container.decode(String.self, forKey: .customerName)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             

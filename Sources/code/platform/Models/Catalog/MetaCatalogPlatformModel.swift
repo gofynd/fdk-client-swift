@@ -12,30 +12,30 @@ public extension PlatformClient.Catalog {
     class Meta: Codable {
         
         
-        public var headers: [String: Any]?
+        public var headers: GuideHeaders?
+        
+        public var values: [GuideValues]?
         
         public var unit: String?
-        
-        public var values: [[String: Any]]?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case headers = "headers"
             
-            case unit = "unit"
-            
             case values = "values"
+            
+            case unit = "unit"
             
         }
 
-        public init(headers: [String: Any]? = nil, unit: String? = nil, values: [[String: Any]]? = nil) {
+        public init(headers: GuideHeaders? = nil, unit: String? = nil, values: [GuideValues]? = nil) {
             
             self.headers = headers
             
-            self.unit = unit
-            
             self.values = values
+            
+            self.unit = unit
             
         }
 
@@ -44,7 +44,19 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    headers = try container.decode([String: Any].self, forKey: .headers)
+                    headers = try container.decode(GuideHeaders.self, forKey: .headers)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    values = try container.decode([GuideValues].self, forKey: .values)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -66,18 +78,6 @@ public extension PlatformClient.Catalog {
                 }
                 
             
-            
-                do {
-                    values = try container.decode([[String: Any]].self, forKey: .values)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -90,12 +90,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(unit, forKey: .unit)
-            
-            
-            
-            
             try? container.encodeIfPresent(values, forKey: .values)
+            
+            
+            
+            
+            try? container.encodeIfPresent(unit, forKey: .unit)
             
             
         }
@@ -114,30 +114,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class Meta: Codable {
         
         
-        public var headers: [String: Any]?
+        public var headers: GuideHeaders?
+        
+        public var values: [GuideValues]?
         
         public var unit: String?
-        
-        public var values: [[String: Any]]?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case headers = "headers"
             
-            case unit = "unit"
-            
             case values = "values"
+            
+            case unit = "unit"
             
         }
 
-        public init(headers: [String: Any]? = nil, unit: String? = nil, values: [[String: Any]]? = nil) {
+        public init(headers: GuideHeaders? = nil, unit: String? = nil, values: [GuideValues]? = nil) {
             
             self.headers = headers
             
-            self.unit = unit
-            
             self.values = values
+            
+            self.unit = unit
             
         }
 
@@ -146,7 +146,19 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    headers = try container.decode([String: Any].self, forKey: .headers)
+                    headers = try container.decode(GuideHeaders.self, forKey: .headers)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    values = try container.decode([GuideValues].self, forKey: .values)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -168,18 +180,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
-            
-                do {
-                    values = try container.decode([[String: Any]].self, forKey: .values)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -192,12 +192,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(unit, forKey: .unit)
-            
-            
-            
-            
             try? container.encodeIfPresent(values, forKey: .values)
+            
+            
+            
+            
+            try? container.encodeIfPresent(unit, forKey: .unit)
             
             
         }

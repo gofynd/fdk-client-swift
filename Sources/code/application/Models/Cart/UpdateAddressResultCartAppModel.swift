@@ -16,6 +16,8 @@ public extension ApplicationClient.Cart {
         
         public var isDefaultAddress: Bool?
         
+        public var addressId: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -27,9 +29,11 @@ public extension ApplicationClient.Cart {
             
             case isDefaultAddress = "is_default_address"
             
+            case addressId = "address_id"
+            
         }
 
-        public init(id: String? = nil, isDefaultAddress: Bool? = nil, isUpdated: Bool? = nil, success: Bool? = nil) {
+        public init(addressId: String? = nil, id: String? = nil, isDefaultAddress: Bool? = nil, isUpdated: Bool? = nil, success: Bool? = nil) {
             
             self.isUpdated = isUpdated
             
@@ -38,6 +42,8 @@ public extension ApplicationClient.Cart {
             self.success = success
             
             self.isDefaultAddress = isDefaultAddress
+            
+            self.addressId = addressId
             
         }
 
@@ -92,6 +98,18 @@ public extension ApplicationClient.Cart {
             }
             
             
+            
+            do {
+                addressId = try container.decode(String.self, forKey: .addressId)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -111,6 +129,10 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(isDefaultAddress, forKey: .isDefaultAddress)
+            
+            
+            
+            try? container.encodeIfPresent(addressId, forKey: .addressId)
             
             
         }

@@ -18,6 +18,16 @@ public extension PlatformClient.Serviceability {
         
         public var weight: Int?
         
+        public var companyId: Int?
+        
+        public var isActive: Bool?
+        
+        public var type: String?
+        
+        public var name: String?
+        
+        public var id: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -27,15 +37,35 @@ public extension PlatformClient.Serviceability {
             
             case weight = "weight"
             
+            case companyId = "company_id"
+            
+            case isActive = "is_active"
+            
+            case type = "type"
+            
+            case name = "name"
+            
+            case id = "id"
+            
         }
 
-        public init(quantity: PackageMaterialRuleQuantity? = nil, ruleId: String? = nil, weight: Int? = nil) {
+        public init(companyId: Int? = nil, id: String? = nil, isActive: Bool? = nil, name: String? = nil, quantity: PackageMaterialRuleQuantity? = nil, ruleId: String? = nil, type: String? = nil, weight: Int? = nil) {
             
             self.ruleId = ruleId
             
             self.quantity = quantity
             
             self.weight = weight
+            
+            self.companyId = companyId
+            
+            self.isActive = isActive
+            
+            self.type = type
+            
+            self.name = name
+            
+            self.id = id
             
         }
 
@@ -78,6 +108,66 @@ public extension PlatformClient.Serviceability {
                 }
                 
             
+            
+                do {
+                    companyId = try container.decode(Int.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isActive = try container.decode(Bool.self, forKey: .isActive)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -96,6 +186,31 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(weight, forKey: .weight)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
         }
@@ -120,6 +235,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var weight: Int?
         
+        public var companyId: Int?
+        
+        public var isActive: Bool?
+        
+        public var type: String?
+        
+        public var name: String?
+        
+        public var id: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -129,15 +254,35 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case weight = "weight"
             
+            case companyId = "company_id"
+            
+            case isActive = "is_active"
+            
+            case type = "type"
+            
+            case name = "name"
+            
+            case id = "id"
+            
         }
 
-        public init(quantity: PackageMaterialRuleQuantity? = nil, ruleId: String? = nil, weight: Int? = nil) {
+        public init(companyId: Int? = nil, id: String? = nil, isActive: Bool? = nil, name: String? = nil, quantity: PackageMaterialRuleQuantity? = nil, ruleId: String? = nil, type: String? = nil, weight: Int? = nil) {
             
             self.ruleId = ruleId
             
             self.quantity = quantity
             
             self.weight = weight
+            
+            self.companyId = companyId
+            
+            self.isActive = isActive
+            
+            self.type = type
+            
+            self.name = name
+            
+            self.id = id
             
         }
 
@@ -180,6 +325,66 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 }
                 
             
+            
+                do {
+                    companyId = try container.decode(Int.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isActive = try container.decode(Bool.self, forKey: .isActive)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -198,6 +403,31 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(weight, forKey: .weight)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
         }

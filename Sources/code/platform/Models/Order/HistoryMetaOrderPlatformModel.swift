@@ -58,6 +58,8 @@ public extension PlatformClient.Order {
         
         public var message: String?
         
+        public var type: String?
+        
         public var prevStoreName: String?
         
         public var prevStoreCode: String?
@@ -117,6 +119,8 @@ public extension PlatformClient.Order {
             
             case message = "message"
             
+            case type = "type"
+            
             case prevStoreName = "prev_store_name"
             
             case prevStoreCode = "prev_store_code"
@@ -129,7 +133,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(activityComment: String? = nil, activityType: String? = nil, billsec: String? = nil, caller: String? = nil, callerid: String? = nil, callId: String? = nil, channelType: String? = nil, duration: String? = nil, endtime: String? = nil, message: String? = nil, prevStoreCode: String? = nil, prevStoreId: String? = nil, prevStoreName: String? = nil, reason: HistoryReason? = nil, receiver: String? = nil, recipient: String? = nil, recordpath: String? = nil, refundInformation: [RefundInformation]? = nil, refundTo: String? = nil, shortLink: String? = nil, slug: String? = nil, starttime: String? = nil, status: String? = nil, status1: String? = nil, status2: String? = nil, storeCode: String? = nil, storeId: Int? = nil, storeName: String? = nil) {
+        public init(activityComment: String? = nil, activityType: String? = nil, billsec: String? = nil, caller: String? = nil, callerid: String? = nil, callId: String? = nil, channelType: String? = nil, duration: String? = nil, endtime: String? = nil, message: String? = nil, prevStoreCode: String? = nil, prevStoreId: String? = nil, prevStoreName: String? = nil, reason: HistoryReason? = nil, receiver: String? = nil, recipient: String? = nil, recordpath: String? = nil, refundInformation: [RefundInformation]? = nil, refundTo: String? = nil, shortLink: String? = nil, slug: String? = nil, starttime: String? = nil, status: String? = nil, status1: String? = nil, status2: String? = nil, storeCode: String? = nil, storeId: Int? = nil, storeName: String? = nil, type: String? = nil) {
             
             self.storeId = storeId
             
@@ -176,6 +180,8 @@ public extension PlatformClient.Order {
             self.slug = slug
             
             self.message = message
+            
+            self.type = type
             
             self.prevStoreName = prevStoreName
             
@@ -470,6 +476,18 @@ public extension PlatformClient.Order {
             
             
                 do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     prevStoreName = try container.decode(String.self, forKey: .prevStoreName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -646,6 +664,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
             
@@ -735,6 +758,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var message: String?
         
+        public var type: String?
+        
         public var prevStoreName: String?
         
         public var prevStoreCode: String?
@@ -794,6 +819,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case message = "message"
             
+            case type = "type"
+            
             case prevStoreName = "prev_store_name"
             
             case prevStoreCode = "prev_store_code"
@@ -806,7 +833,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(activityComment: String? = nil, activityType: String? = nil, billsec: String? = nil, caller: String? = nil, callerid: String? = nil, callId: String? = nil, channelType: String? = nil, duration: String? = nil, endtime: String? = nil, message: String? = nil, prevStoreCode: String? = nil, prevStoreId: String? = nil, prevStoreName: String? = nil, reason: HistoryReason? = nil, receiver: String? = nil, recipient: String? = nil, recordpath: String? = nil, refundInformation: [RefundInformation]? = nil, refundTo: String? = nil, shortLink: String? = nil, slug: String? = nil, starttime: String? = nil, status: String? = nil, status1: String? = nil, status2: String? = nil, storeCode: String? = nil, storeId: Int? = nil, storeName: String? = nil) {
+        public init(activityComment: String? = nil, activityType: String? = nil, billsec: String? = nil, caller: String? = nil, callerid: String? = nil, callId: String? = nil, channelType: String? = nil, duration: String? = nil, endtime: String? = nil, message: String? = nil, prevStoreCode: String? = nil, prevStoreId: String? = nil, prevStoreName: String? = nil, reason: HistoryReason? = nil, receiver: String? = nil, recipient: String? = nil, recordpath: String? = nil, refundInformation: [RefundInformation]? = nil, refundTo: String? = nil, shortLink: String? = nil, slug: String? = nil, starttime: String? = nil, status: String? = nil, status1: String? = nil, status2: String? = nil, storeCode: String? = nil, storeId: Int? = nil, storeName: String? = nil, type: String? = nil) {
             
             self.storeId = storeId
             
@@ -853,6 +880,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.slug = slug
             
             self.message = message
+            
+            self.type = type
             
             self.prevStoreName = prevStoreName
             
@@ -1147,6 +1176,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     prevStoreName = try container.decode(String.self, forKey: .prevStoreName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -1323,6 +1364,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
             

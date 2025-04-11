@@ -8,7 +8,7 @@ public extension ApplicationClient.Share {
     */
     class ShortLinkReq: Codable {
         
-        public var title: String?
+        public var title: String
         
         public var url: String
         
@@ -61,7 +61,7 @@ public extension ApplicationClient.Share {
             
         }
 
-        public init(active: Bool? = nil, attribution: Attribution? = nil, campaign: CampaignShortLink? = nil, count: Int? = nil, enableTracking: Bool? = nil, expireAt: String? = nil, hash: String? = nil, personalized: Bool? = nil, redirects: Redirects? = nil, socialMediaTags: SocialMediaTags? = nil, title: String? = nil, url: String) {
+        public init(active: Bool? = nil, attribution: Attribution? = nil, campaign: CampaignShortLink? = nil, count: Int? = nil, enableTracking: Bool? = nil, expireAt: String? = nil, hash: String? = nil, personalized: Bool? = nil, redirects: Redirects? = nil, socialMediaTags: SocialMediaTags? = nil, title: String, url: String) {
             
             self.title = title
             
@@ -93,15 +93,8 @@ public extension ApplicationClient.Share {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            do {
-                title = try container.decode(String.self, forKey: .title)
+            title = try container.decode(String.self, forKey: .title)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
             
             
             

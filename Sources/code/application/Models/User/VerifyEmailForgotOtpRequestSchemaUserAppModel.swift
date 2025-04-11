@@ -8,9 +8,11 @@ public extension ApplicationClient.User {
     */
     class VerifyEmailForgotOtpRequestSchema: Codable {
         
-        public var email: String?
+        public var email: String
         
-        public var otp: String?
+        public var otp: String
+        
+        public var requestId: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -19,13 +21,17 @@ public extension ApplicationClient.User {
             
             case otp = "otp"
             
+            case requestId = "request_id"
+            
         }
 
-        public init(email: String? = nil, otp: String? = nil) {
+        public init(email: String, otp: String, requestId: String? = nil) {
             
             self.email = email
             
             self.otp = otp
+            
+            self.requestId = requestId
             
         }
 
@@ -33,20 +39,18 @@ public extension ApplicationClient.User {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            do {
-                email = try container.decode(String.self, forKey: .email)
+            email = try container.decode(String.self, forKey: .email)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
+            
+            
+            
+            otp = try container.decode(String.self, forKey: .otp)
+            
             
             
             
             do {
-                otp = try container.decode(String.self, forKey: .otp)
+                requestId = try container.decode(String.self, forKey: .requestId)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,6 +71,10 @@ public extension ApplicationClient.User {
             
             
             try? container.encodeIfPresent(otp, forKey: .otp)
+            
+            
+            
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
             
             
         }

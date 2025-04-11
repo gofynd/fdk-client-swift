@@ -14,9 +14,11 @@ public extension PlatformClient.ApplicationClient.User {
     class CreateUserSessionRequestSchema: Codable {
         
         
-        public var domain: String?
+        public var domain: String
         
-        public var userId: String?
+        public var userId: String
+        
+        public var maxAge: Double?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,13 +27,17 @@ public extension PlatformClient.ApplicationClient.User {
             
             case userId = "user_id"
             
+            case maxAge = "max_age"
+            
         }
 
-        public init(domain: String? = nil, userId: String? = nil) {
+        public init(domain: String, maxAge: Double? = nil, userId: String) {
             
             self.domain = domain
             
             self.userId = userId
+            
+            self.maxAge = maxAge
             
         }
 
@@ -39,20 +45,18 @@ public extension PlatformClient.ApplicationClient.User {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    domain = try container.decode(String.self, forKey: .domain)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                domain = try container.decode(String.self, forKey: .domain)
                 
             
             
+            
+                userId = try container.decode(String.self, forKey: .userId)
+                
+            
+            
+            
                 do {
-                    userId = try container.decode(String.self, forKey: .userId)
+                    maxAge = try container.decode(Double.self, forKey: .maxAge)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,6 +79,11 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(userId, forKey: .userId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(maxAge, forKey: .maxAge)
             
             
         }

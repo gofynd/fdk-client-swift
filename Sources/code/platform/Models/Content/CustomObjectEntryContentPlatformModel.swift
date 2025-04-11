@@ -12,8 +12,6 @@ public extension PlatformClient.Content {
     class CustomObjectEntry: Codable {
         
         
-        public var id: String?
-        
         public var name: String?
         
         public var type: String?
@@ -24,10 +22,10 @@ public extension PlatformClient.Content {
         
         public var fieldsCount: Int?
         
+        public var slug: String?
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case id = "id"
             
             case name = "name"
             
@@ -39,11 +37,11 @@ public extension PlatformClient.Content {
             
             case fieldsCount = "fields_count"
             
+            case slug = "slug"
+            
         }
 
-        public init(entriesCount: Int? = nil, fieldsCount: Int? = nil, id: String? = nil, name: String? = nil, type: String? = nil, updatedAt: String? = nil) {
-            
-            self.id = id
+        public init(entriesCount: Int? = nil, fieldsCount: Int? = nil, name: String? = nil, slug: String? = nil, type: String? = nil, updatedAt: String? = nil) {
             
             self.name = name
             
@@ -55,22 +53,12 @@ public extension PlatformClient.Content {
             
             self.fieldsCount = fieldsCount
             
+            self.slug = slug
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -132,15 +120,22 @@ public extension PlatformClient.Content {
                 }
                 
             
+            
+                do {
+                    slug = try container.decode(String.self, forKey: .slug)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -165,6 +160,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(fieldsCount, forKey: .fieldsCount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
         }
@@ -183,8 +183,6 @@ public extension PlatformClient.ApplicationClient.Content {
     class CustomObjectEntry: Codable {
         
         
-        public var id: String?
-        
         public var name: String?
         
         public var type: String?
@@ -195,10 +193,10 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var fieldsCount: Int?
         
+        public var slug: String?
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case id = "id"
             
             case name = "name"
             
@@ -210,11 +208,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             case fieldsCount = "fields_count"
             
+            case slug = "slug"
+            
         }
 
-        public init(entriesCount: Int? = nil, fieldsCount: Int? = nil, id: String? = nil, name: String? = nil, type: String? = nil, updatedAt: String? = nil) {
-            
-            self.id = id
+        public init(entriesCount: Int? = nil, fieldsCount: Int? = nil, name: String? = nil, slug: String? = nil, type: String? = nil, updatedAt: String? = nil) {
             
             self.name = name
             
@@ -226,22 +224,12 @@ public extension PlatformClient.ApplicationClient.Content {
             
             self.fieldsCount = fieldsCount
             
+            self.slug = slug
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -303,15 +291,22 @@ public extension PlatformClient.ApplicationClient.Content {
                 }
                 
             
+            
+                do {
+                    slug = try container.decode(String.self, forKey: .slug)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
             
             
             
@@ -336,6 +331,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(fieldsCount, forKey: .fieldsCount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
         }

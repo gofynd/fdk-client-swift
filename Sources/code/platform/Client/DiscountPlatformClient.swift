@@ -16,8 +16,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: List discounts
-        * Description: Retrieve a list of discounts. You can also retrieve discounts using filter query parameters. There are additional optional parameters that can be specified in the parameters of the request when retrieving discount
+        * Summary: Get discounts.
+        * Description: Retrieve a list of available discounts.
         **/
         public func getDiscounts(
             view: String?,
@@ -170,8 +170,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Create discount
-        * Description: Creates a discount. There are additional optional parameters that can be specified in the body of the request when creating a discount
+        * Summary: Create discount.
+        * Description: Create discount.
         **/
         public func createDiscount(
             body: CreateUpdateDiscount,
@@ -220,8 +220,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get discount
-        * Description: Retrieve a single discount by its id.
+        * Summary: Get discount by ID.
+        * Description: Retrieve detailed information about a specific discount.
         **/
         public func getDiscount(
             id: String,
@@ -271,8 +271,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Update discount
-        * Description: Update an existing discount by its id. Discount can only be updated after 5 min from last updated time stamp (modified_on).
+        * Summary: Update discount.
+        * Description: Create discount.
         **/
         public func updateDiscount(
             id: String,
@@ -322,8 +322,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Upsert discount items
-        * Description: Enables users to create custom discounts in bulk by providing the multiple products in requestBody. It allows for the efficient creation of multiple discounts simultaneously, streamlining the discount management process.
+        * Summary: Upsert discount items.
+        * Description: Create custom discounts.
         **/
         public func upsertDiscountItems(
             id: String,
@@ -373,8 +373,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Validate discount file
-        * Description: Validates the discount file for any discrepancies. like item should be valid etc..
+        * Summary: Validate discount file.
+        * Description: Validate file.
         **/
         public func validateDiscountFile(
             discount: String?,
@@ -428,8 +428,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get discount file
-        * Description: Retrieve a discount file by its type, it could be product or inventory.
+        * Summary: Download discount file.
+        * Description: Validate file.
         **/
         public func downloadDiscountFile(
             type: String,
@@ -479,8 +479,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: List validation job discount
-        * Description: Retrieve a validation job of a discount by its id.
+        * Summary: Get validation job.
+        * Description: Validate file.
         **/
         public func getValidationJob(
             id: String,
@@ -530,8 +530,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: deletel validation job discount
-        * Description: Cancel validation job of a discount by its id.
+        * Summary: Cancel validation job.
+        * Description: Validate file.
         **/
         public func cancelValidationJob(
             id: String,
@@ -581,8 +581,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: List discount download job
-        * Description: Retrieve a discount download job by its id.
+        * Summary: Get download job.
+        * Description: Download file Job.
         **/
         public func getDownloadJob(
             id: String,
@@ -632,8 +632,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: delete discount download job
-        * Description: Cancel a discount download job by its id.
+        * Summary: Cancel download job.
+        * Description: Cancel download Job.
         **/
         public func cancelDownloadJob(
             id: String,

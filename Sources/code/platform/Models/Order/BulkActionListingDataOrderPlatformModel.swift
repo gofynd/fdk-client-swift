@@ -66,6 +66,8 @@ public extension PlatformClient.Order {
         
         public var successfulShCount: Int?
         
+        public var totalShipmentsCount: Int?
+        
         public var totalCount: Int?
         
         public var failedShipments: [String]?
@@ -133,6 +135,8 @@ public extension PlatformClient.Order {
             
             case successfulShCount = "successful_sh_count"
             
+            case totalShipmentsCount = "total_shipments_count"
+            
             case totalCount = "total_count"
             
             case failedShipments = "failed_shipments"
@@ -145,7 +149,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(batchId: String? = nil, bulkActionType: String? = nil, companyId: Int? = nil, createdTs: String? = nil, doInvoiceLabelGenerated: Bool? = nil, failedInvoicedCount: Int? = nil, failedShipments: [String]? = nil, failedShCount: Int? = nil, fileName: String? = nil, fileUrl: String? = nil, id: Int? = nil, invoicelabelDocumentType: String? = nil, invoiceDocumentType: String? = nil, invoiceStatus: String? = nil, isInvoiceable: Bool? = nil, labelDocumentType: String? = nil, lastSelectedInvoiceLabelType: String? = nil, meta: [String: Any]? = nil, shipmentsActionInfo: ShipmentActionInfo? = nil, status: String? = nil, storeCode: String? = nil, storeId: Int? = nil, storeName: String? = nil, successfulInvoicedCount: Int? = nil, successfulShCount: Int? = nil, totalCount: Int? = nil, totalInvoicedCount: Int? = nil, updatedTs: Int? = nil, uploadedBy: String? = nil, uploadedOn: String? = nil, userId: String? = nil, userName: String? = nil) {
+        public init(batchId: String? = nil, bulkActionType: String? = nil, companyId: Int? = nil, createdTs: String? = nil, doInvoiceLabelGenerated: Bool? = nil, failedInvoicedCount: Int? = nil, failedShipments: [String]? = nil, failedShCount: Int? = nil, fileName: String? = nil, fileUrl: String? = nil, id: Int? = nil, invoicelabelDocumentType: String? = nil, invoiceDocumentType: String? = nil, invoiceStatus: String? = nil, isInvoiceable: Bool? = nil, labelDocumentType: String? = nil, lastSelectedInvoiceLabelType: String? = nil, meta: [String: Any]? = nil, shipmentsActionInfo: ShipmentActionInfo? = nil, status: String? = nil, storeCode: String? = nil, storeId: Int? = nil, storeName: String? = nil, successfulInvoicedCount: Int? = nil, successfulShCount: Int? = nil, totalCount: Int? = nil, totalInvoicedCount: Int? = nil, totalShipmentsCount: Int? = nil, updatedTs: Int? = nil, uploadedBy: String? = nil, uploadedOn: String? = nil, userId: String? = nil, userName: String? = nil) {
             
             self.storeId = storeId
             
@@ -200,6 +204,8 @@ public extension PlatformClient.Order {
             self.failedShCount = failedShCount
             
             self.successfulShCount = successfulShCount
+            
+            self.totalShipmentsCount = totalShipmentsCount
             
             self.totalCount = totalCount
             
@@ -542,6 +548,18 @@ public extension PlatformClient.Order {
             
             
                 do {
+                    totalShipmentsCount = try container.decode(Int.self, forKey: .totalShipmentsCount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     totalCount = try container.decode(Int.self, forKey: .totalCount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -738,6 +756,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(successfulShCount, forKey: .successfulShCount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(totalShipmentsCount, forKey: .totalShipmentsCount)
             
             
             
@@ -835,6 +858,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var successfulShCount: Int?
         
+        public var totalShipmentsCount: Int?
+        
         public var totalCount: Int?
         
         public var failedShipments: [String]?
@@ -902,6 +927,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case successfulShCount = "successful_sh_count"
             
+            case totalShipmentsCount = "total_shipments_count"
+            
             case totalCount = "total_count"
             
             case failedShipments = "failed_shipments"
@@ -914,7 +941,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(batchId: String? = nil, bulkActionType: String? = nil, companyId: Int? = nil, createdTs: String? = nil, doInvoiceLabelGenerated: Bool? = nil, failedInvoicedCount: Int? = nil, failedShipments: [String]? = nil, failedShCount: Int? = nil, fileName: String? = nil, fileUrl: String? = nil, id: Int? = nil, invoicelabelDocumentType: String? = nil, invoiceDocumentType: String? = nil, invoiceStatus: String? = nil, isInvoiceable: Bool? = nil, labelDocumentType: String? = nil, lastSelectedInvoiceLabelType: String? = nil, meta: [String: Any]? = nil, shipmentsActionInfo: ShipmentActionInfo? = nil, status: String? = nil, storeCode: String? = nil, storeId: Int? = nil, storeName: String? = nil, successfulInvoicedCount: Int? = nil, successfulShCount: Int? = nil, totalCount: Int? = nil, totalInvoicedCount: Int? = nil, updatedTs: Int? = nil, uploadedBy: String? = nil, uploadedOn: String? = nil, userId: String? = nil, userName: String? = nil) {
+        public init(batchId: String? = nil, bulkActionType: String? = nil, companyId: Int? = nil, createdTs: String? = nil, doInvoiceLabelGenerated: Bool? = nil, failedInvoicedCount: Int? = nil, failedShipments: [String]? = nil, failedShCount: Int? = nil, fileName: String? = nil, fileUrl: String? = nil, id: Int? = nil, invoicelabelDocumentType: String? = nil, invoiceDocumentType: String? = nil, invoiceStatus: String? = nil, isInvoiceable: Bool? = nil, labelDocumentType: String? = nil, lastSelectedInvoiceLabelType: String? = nil, meta: [String: Any]? = nil, shipmentsActionInfo: ShipmentActionInfo? = nil, status: String? = nil, storeCode: String? = nil, storeId: Int? = nil, storeName: String? = nil, successfulInvoicedCount: Int? = nil, successfulShCount: Int? = nil, totalCount: Int? = nil, totalInvoicedCount: Int? = nil, totalShipmentsCount: Int? = nil, updatedTs: Int? = nil, uploadedBy: String? = nil, uploadedOn: String? = nil, userId: String? = nil, userName: String? = nil) {
             
             self.storeId = storeId
             
@@ -969,6 +996,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.failedShCount = failedShCount
             
             self.successfulShCount = successfulShCount
+            
+            self.totalShipmentsCount = totalShipmentsCount
             
             self.totalCount = totalCount
             
@@ -1311,6 +1340,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
+                    totalShipmentsCount = try container.decode(Int.self, forKey: .totalShipmentsCount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     totalCount = try container.decode(Int.self, forKey: .totalCount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -1507,6 +1548,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(successfulShCount, forKey: .successfulShCount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(totalShipmentsCount, forKey: .totalShipmentsCount)
             
             
             

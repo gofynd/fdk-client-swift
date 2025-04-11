@@ -14,7 +14,7 @@ public extension PlatformClient.Serviceability {
         
         public var type: String
         
-        public var values: [[String: Any]]
+        public var values: [Int]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(type: String, values: [[String: Any]]) {
+        public init(type: String, values: [Int]) {
             
             self.type = type
             
@@ -42,7 +42,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-                values = try container.decode([[String: Any]].self, forKey: .values)
+                values = try container.decode([Int].self, forKey: .values)
                 
             
             
@@ -79,7 +79,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var type: String
         
-        public var values: [[String: Any]]
+        public var values: [Int]
         
 
         public enum CodingKeys: String, CodingKey {
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(type: String, values: [[String: Any]]) {
+        public init(type: String, values: [Int]) {
             
             self.type = type
             
@@ -107,7 +107,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                values = try container.decode([[String: Any]].self, forKey: .values)
+                values = try container.decode([Int].self, forKey: .values)
                 
             
             

@@ -18,6 +18,8 @@ public extension ApplicationClient.Logistic {
         
         public var input: String
         
+        public var preFill: String?
+        
         public var validation: FieldValidation?
         
         public var values: GetCountryFieldsAddressValues?
@@ -37,6 +39,8 @@ public extension ApplicationClient.Logistic {
             
             case input = "input"
             
+            case preFill = "pre_fill"
+            
             case validation = "validation"
             
             case values = "values"
@@ -45,7 +49,7 @@ public extension ApplicationClient.Logistic {
             
         }
 
-        public init(displayName: String, edit: Bool? = nil, errorText: String? = nil, input: String, required: Bool, slug: String, validation: FieldValidation? = nil, values: GetCountryFieldsAddressValues? = nil) {
+        public init(displayName: String, edit: Bool? = nil, errorText: String? = nil, input: String, preFill: String? = nil, required: Bool, slug: String, validation: FieldValidation? = nil, values: GetCountryFieldsAddressValues? = nil) {
             
             self.displayName = displayName
             
@@ -56,6 +60,8 @@ public extension ApplicationClient.Logistic {
             self.edit = edit
             
             self.input = input
+            
+            self.preFill = preFill
             
             self.validation = validation
             
@@ -98,6 +104,18 @@ public extension ApplicationClient.Logistic {
             
             input = try container.decode(String.self, forKey: .input)
             
+            
+            
+            
+            do {
+                preFill = try container.decode(String.self, forKey: .preFill)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             
@@ -159,6 +177,10 @@ public extension ApplicationClient.Logistic {
             
             
             try? container.encodeIfPresent(input, forKey: .input)
+            
+            
+            
+            try? container.encodeIfPresent(preFill, forKey: .preFill)
             
             
             

@@ -32,7 +32,7 @@ public extension PlatformClient.Order {
         
         public var customFiltersForLane: [String: Any]?
         
-        public var filters: BulkReportsFiltersSchema?
+        public var filters: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -61,7 +61,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(customFiltersForLane: [String: Any]? = nil, customHeaders: [String]? = nil, endDate: String? = nil, entities: [String]? = nil, filters: BulkReportsFiltersSchema? = nil, filterType: String? = nil, isCrossCompanyEnabled: Bool? = nil, laneType: String? = nil, reportType: String? = nil, startDate: String? = nil, storeIds: [String]? = nil) {
+        public init(customFiltersForLane: [String: Any]? = nil, customHeaders: [String]? = nil, endDate: String? = nil, entities: [String]? = nil, filters: [String: Any]? = nil, filterType: String? = nil, isCrossCompanyEnabled: Bool? = nil, laneType: String? = nil, reportType: String? = nil, startDate: String? = nil, storeIds: [String]? = nil) {
             
             self.storeIds = storeIds
             
@@ -212,7 +212,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    filters = try container.decode(BulkReportsFiltersSchema.self, forKey: .filters)
+                    filters = try container.decode([String: Any].self, forKey: .filters)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -318,7 +318,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var customFiltersForLane: [String: Any]?
         
-        public var filters: BulkReportsFiltersSchema?
+        public var filters: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -347,7 +347,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(customFiltersForLane: [String: Any]? = nil, customHeaders: [String]? = nil, endDate: String? = nil, entities: [String]? = nil, filters: BulkReportsFiltersSchema? = nil, filterType: String? = nil, isCrossCompanyEnabled: Bool? = nil, laneType: String? = nil, reportType: String? = nil, startDate: String? = nil, storeIds: [String]? = nil) {
+        public init(customFiltersForLane: [String: Any]? = nil, customHeaders: [String]? = nil, endDate: String? = nil, entities: [String]? = nil, filters: [String: Any]? = nil, filterType: String? = nil, isCrossCompanyEnabled: Bool? = nil, laneType: String? = nil, reportType: String? = nil, startDate: String? = nil, storeIds: [String]? = nil) {
             
             self.storeIds = storeIds
             
@@ -498,7 +498,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    filters = try container.decode(BulkReportsFiltersSchema.self, forKey: .filters)
+                    filters = try container.decode([String: Any].self, forKey: .filters)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

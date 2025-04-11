@@ -12,15 +12,23 @@ public extension PlatformClient.Payment {
     class PaymentSessionPutDetails: Codable {
         
         
-        public var gid: String
+        public var gid: String?
         
-        public var platformTransactionDetails: [[String: Any]]
+        public var platformTransactionDetails: [[String: Any]]?
         
-        public var status: String
+        public var status: String?
         
-        public var currency: String
+        public var currency: String?
         
-        public var totalAmount: Int
+        public var totalAmount: Int?
+        
+        public var error: String?
+        
+        public var success: Bool?
+        
+        public var message: String?
+        
+        public var transactionDetails: [TransactionDetail]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -35,9 +43,17 @@ public extension PlatformClient.Payment {
             
             case totalAmount = "total_amount"
             
+            case error = "error"
+            
+            case success = "success"
+            
+            case message = "message"
+            
+            case transactionDetails = "transaction_details"
+            
         }
 
-        public init(currency: String, gid: String, platformTransactionDetails: [[String: Any]], status: String, totalAmount: Int) {
+        public init(currency: String? = nil, error: String? = nil, gid: String? = nil, message: String? = nil, platformTransactionDetails: [[String: Any]]? = nil, status: String? = nil, success: Bool? = nil, totalAmount: Int? = nil, transactionDetails: [TransactionDetail]? = nil) {
             
             self.gid = gid
             
@@ -49,35 +65,126 @@ public extension PlatformClient.Payment {
             
             self.totalAmount = totalAmount
             
+            self.error = error
+            
+            self.success = success
+            
+            self.message = message
+            
+            self.transactionDetails = transactionDetails
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                gid = try container.decode(String.self, forKey: .gid)
+                do {
+                    gid = try container.decode(String.self, forKey: .gid)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                platformTransactionDetails = try container.decode([[String: Any]].self, forKey: .platformTransactionDetails)
+                do {
+                    platformTransactionDetails = try container.decode([[String: Any]].self, forKey: .platformTransactionDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                status = try container.decode(String.self, forKey: .status)
+                do {
+                    status = try container.decode(String.self, forKey: .status)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                currency = try container.decode(String.self, forKey: .currency)
+                do {
+                    currency = try container.decode(String.self, forKey: .currency)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                totalAmount = try container.decode(Int.self, forKey: .totalAmount)
+                do {
+                    totalAmount = try container.decode(Int.self, forKey: .totalAmount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
+            
+                do {
+                    error = try container.decode(String.self, forKey: .error)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    success = try container.decode(Bool.self, forKey: .success)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    message = try container.decode(String.self, forKey: .message)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    transactionDetails = try container.decode([TransactionDetail].self, forKey: .transactionDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -107,6 +214,26 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(error, forKey: .error)
+            
+            
+            
+            
+            try? container.encodeIfPresent(success, forKey: .success)
+            
+            
+            
+            
+            try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
+            try? container.encodeIfPresent(transactionDetails, forKey: .transactionDetails)
             
             
         }
@@ -125,15 +252,23 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PaymentSessionPutDetails: Codable {
         
         
-        public var gid: String
+        public var gid: String?
         
-        public var platformTransactionDetails: [[String: Any]]
+        public var platformTransactionDetails: [[String: Any]]?
         
-        public var status: String
+        public var status: String?
         
-        public var currency: String
+        public var currency: String?
         
-        public var totalAmount: Int
+        public var totalAmount: Int?
+        
+        public var error: String?
+        
+        public var success: Bool?
+        
+        public var message: String?
+        
+        public var transactionDetails: [TransactionDetail]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -148,9 +283,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case totalAmount = "total_amount"
             
+            case error = "error"
+            
+            case success = "success"
+            
+            case message = "message"
+            
+            case transactionDetails = "transaction_details"
+            
         }
 
-        public init(currency: String, gid: String, platformTransactionDetails: [[String: Any]], status: String, totalAmount: Int) {
+        public init(currency: String? = nil, error: String? = nil, gid: String? = nil, message: String? = nil, platformTransactionDetails: [[String: Any]]? = nil, status: String? = nil, success: Bool? = nil, totalAmount: Int? = nil, transactionDetails: [TransactionDetail]? = nil) {
             
             self.gid = gid
             
@@ -162,35 +305,126 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             self.totalAmount = totalAmount
             
+            self.error = error
+            
+            self.success = success
+            
+            self.message = message
+            
+            self.transactionDetails = transactionDetails
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                gid = try container.decode(String.self, forKey: .gid)
+                do {
+                    gid = try container.decode(String.self, forKey: .gid)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                platformTransactionDetails = try container.decode([[String: Any]].self, forKey: .platformTransactionDetails)
+                do {
+                    platformTransactionDetails = try container.decode([[String: Any]].self, forKey: .platformTransactionDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                status = try container.decode(String.self, forKey: .status)
+                do {
+                    status = try container.decode(String.self, forKey: .status)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                currency = try container.decode(String.self, forKey: .currency)
+                do {
+                    currency = try container.decode(String.self, forKey: .currency)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                totalAmount = try container.decode(Int.self, forKey: .totalAmount)
+                do {
+                    totalAmount = try container.decode(Int.self, forKey: .totalAmount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
+            
+                do {
+                    error = try container.decode(String.self, forKey: .error)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    success = try container.decode(Bool.self, forKey: .success)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    message = try container.decode(String.self, forKey: .message)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    transactionDetails = try container.decode([TransactionDetail].self, forKey: .transactionDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -220,6 +454,26 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(error, forKey: .error)
+            
+            
+            
+            
+            try? container.encodeIfPresent(success, forKey: .success)
+            
+            
+            
+            
+            try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
+            try? container.encodeIfPresent(transactionDetails, forKey: .transactionDetails)
             
             
         }

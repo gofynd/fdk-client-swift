@@ -14,7 +14,7 @@ public extension PlatformClient.ApplicationClient.Cart {
     class PriceAdjustmentRestrictions: Codable {
         
         
-        public var postOrder: [String: Any]?
+        public var postOrder: PostOrder1?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -23,7 +23,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(postOrder: [String: Any]? = nil) {
+        public init(postOrder: PostOrder1? = nil) {
             
             self.postOrder = postOrder
             
@@ -34,7 +34,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    postOrder = try container.decode([String: Any].self, forKey: .postOrder)
+                    postOrder = try container.decode(PostOrder1.self, forKey: .postOrder)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

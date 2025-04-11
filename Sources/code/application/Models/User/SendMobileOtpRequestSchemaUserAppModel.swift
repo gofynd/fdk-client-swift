@@ -8,13 +8,13 @@ public extension ApplicationClient.User {
     */
     class SendMobileOtpRequestSchema: Codable {
         
-        public var encryptOtp: Bool?
+        public var ci: Bool?
         
-        public var mobile: String?
+        public var mobile: String
         
-        public var countryCode: String?
+        public var countryCode: String
         
-        public var action: String?
+        public var action: String
         
         public var token: String?
         
@@ -25,7 +25,7 @@ public extension ApplicationClient.User {
 
         public enum CodingKeys: String, CodingKey {
             
-            case encryptOtp = "encrypt_otp"
+            case ci = "ci"
             
             case mobile = "mobile"
             
@@ -41,9 +41,9 @@ public extension ApplicationClient.User {
             
         }
 
-        public init(action: String? = nil, androidHash: String? = nil, countryCode: String? = nil, encryptOtp: Bool? = nil, force: String? = nil, mobile: String? = nil, token: String? = nil) {
+        public init(action: String, androidHash: String? = nil, ci: Bool? = nil, countryCode: String, force: String? = nil, mobile: String, token: String? = nil) {
             
-            self.encryptOtp = encryptOtp
+            self.ci = ci
             
             self.mobile = mobile
             
@@ -64,7 +64,7 @@ public extension ApplicationClient.User {
             
             
             do {
-                encryptOtp = try container.decode(Bool.self, forKey: .encryptOtp)
+                ci = try container.decode(Bool.self, forKey: .ci)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,39 +75,18 @@ public extension ApplicationClient.User {
             
             
             
-            do {
-                mobile = try container.decode(String.self, forKey: .mobile)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
+            mobile = try container.decode(String.self, forKey: .mobile)
             
             
             
-            do {
-                countryCode = try container.decode(String.self, forKey: .countryCode)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
+            countryCode = try container.decode(String.self, forKey: .countryCode)
             
             
             
-            do {
-                action = try container.decode(String.self, forKey: .action)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
+            action = try container.decode(String.self, forKey: .action)
+            
             
             
             
@@ -152,7 +131,7 @@ public extension ApplicationClient.User {
             var container = encoder.container(keyedBy: CodingKeys.self)
             
             
-            try? container.encodeIfPresent(encryptOtp, forKey: .encryptOtp)
+            try? container.encodeIfPresent(ci, forKey: .ci)
             
             
             

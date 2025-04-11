@@ -24,6 +24,8 @@ public extension PlatformClient.Content {
         
         public var companyId: String?
         
+        public var creator: String?
+        
         public var status: String?
         
         public var actionType: String?
@@ -53,7 +55,7 @@ public extension PlatformClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "id"
+            case id = "_id"
             
             case jobs = "jobs"
             
@@ -64,6 +66,8 @@ public extension PlatformClient.Content {
             case errorsOccured = "errors_occured"
             
             case companyId = "company_id"
+            
+            case creator = "creator"
             
             case status = "status"
             
@@ -93,7 +97,7 @@ public extension PlatformClient.Content {
             
         }
 
-        public init(actionType: String? = nil, applicationId: String? = nil, companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, entity: String? = nil, errorsOccured: [String]? = nil, errorCount: Int? = nil, errorJobs: [String]? = nil, errorUrl: String? = nil, finishedCount: Int? = nil, finishedJobs: [String]? = nil, id: String? = nil, jobs: [String]? = nil, meta: CustomObjectMetaSchema? = nil, status: String? = nil, successCount: Int? = nil, totalJobs: Int? = nil, updatedAt: String? = nil) {
+        public init(actionType: String? = nil, applicationId: String? = nil, companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, entity: String? = nil, errorsOccured: [String]? = nil, errorCount: Int? = nil, errorJobs: [String]? = nil, errorUrl: String? = nil, finishedCount: Int? = nil, finishedJobs: [String]? = nil, jobs: [String]? = nil, meta: CustomObjectMetaSchema? = nil, status: String? = nil, successCount: Int? = nil, totalJobs: Int? = nil, updatedAt: String? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -106,6 +110,8 @@ public extension PlatformClient.Content {
             self.errorsOccured = errorsOccured
             
             self.companyId = companyId
+            
+            self.creator = creator
             
             self.status = status
             
@@ -201,6 +207,18 @@ public extension PlatformClient.Content {
             
                 do {
                     companyId = try container.decode(String.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    creator = try container.decode(String.self, forKey: .creator)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -399,6 +417,11 @@ public extension PlatformClient.Content {
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(creator, forKey: .creator)
             
             
             
@@ -494,6 +517,8 @@ public extension PlatformClient.ApplicationClient.Content {
         
         public var companyId: String?
         
+        public var creator: String?
+        
         public var status: String?
         
         public var actionType: String?
@@ -523,7 +548,7 @@ public extension PlatformClient.ApplicationClient.Content {
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "id"
+            case id = "_id"
             
             case jobs = "jobs"
             
@@ -534,6 +559,8 @@ public extension PlatformClient.ApplicationClient.Content {
             case errorsOccured = "errors_occured"
             
             case companyId = "company_id"
+            
+            case creator = "creator"
             
             case status = "status"
             
@@ -563,7 +590,7 @@ public extension PlatformClient.ApplicationClient.Content {
             
         }
 
-        public init(actionType: String? = nil, applicationId: String? = nil, companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, entity: String? = nil, errorsOccured: [String]? = nil, errorCount: Int? = nil, errorJobs: [String]? = nil, errorUrl: String? = nil, finishedCount: Int? = nil, finishedJobs: [String]? = nil, id: String? = nil, jobs: [String]? = nil, meta: CustomObjectMetaSchema? = nil, status: String? = nil, successCount: Int? = nil, totalJobs: Int? = nil, updatedAt: String? = nil) {
+        public init(actionType: String? = nil, applicationId: String? = nil, companyId: String? = nil, createdAt: String? = nil, createdBy: String? = nil, creator: String? = nil, entity: String? = nil, errorsOccured: [String]? = nil, errorCount: Int? = nil, errorJobs: [String]? = nil, errorUrl: String? = nil, finishedCount: Int? = nil, finishedJobs: [String]? = nil, jobs: [String]? = nil, meta: CustomObjectMetaSchema? = nil, status: String? = nil, successCount: Int? = nil, totalJobs: Int? = nil, updatedAt: String? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -576,6 +603,8 @@ public extension PlatformClient.ApplicationClient.Content {
             self.errorsOccured = errorsOccured
             
             self.companyId = companyId
+            
+            self.creator = creator
             
             self.status = status
             
@@ -671,6 +700,18 @@ public extension PlatformClient.ApplicationClient.Content {
             
                 do {
                     companyId = try container.decode(String.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    creator = try container.decode(String.self, forKey: .creator)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -869,6 +910,11 @@ public extension PlatformClient.ApplicationClient.Content {
             
             
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(creator, forKey: .creator)
             
             
             

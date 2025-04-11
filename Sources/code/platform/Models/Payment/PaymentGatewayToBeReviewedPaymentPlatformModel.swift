@@ -12,22 +12,22 @@ public extension PlatformClient.Payment {
     class PaymentGatewayToBeReviewed: Codable {
         
         
-        public var aggregator: [String]
+        public var aggregators: [String]
         
         public var success: Bool
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case aggregator = "aggregator"
+            case aggregators = "aggregators"
             
             case success = "success"
             
         }
 
-        public init(aggregator: [String], success: Bool) {
+        public init(aggregators: [String], success: Bool) {
             
-            self.aggregator = aggregator
+            self.aggregators = aggregators
             
             self.success = success
             
@@ -37,7 +37,7 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                aggregator = try container.decode([String].self, forKey: .aggregator)
+                aggregators = try container.decode([String].self, forKey: .aggregators)
                 
             
             
@@ -53,7 +53,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            try? container.encodeIfPresent(aggregators, forKey: .aggregators)
             
             
             
@@ -77,22 +77,22 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PaymentGatewayToBeReviewed: Codable {
         
         
-        public var aggregator: [String]
+        public var aggregators: [String]
         
         public var success: Bool
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case aggregator = "aggregator"
+            case aggregators = "aggregators"
             
             case success = "success"
             
         }
 
-        public init(aggregator: [String], success: Bool) {
+        public init(aggregators: [String], success: Bool) {
             
-            self.aggregator = aggregator
+            self.aggregators = aggregators
             
             self.success = success
             
@@ -102,7 +102,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                aggregator = try container.decode([String].self, forKey: .aggregator)
+                aggregators = try container.decode([String].self, forKey: .aggregators)
                 
             
             
@@ -118,7 +118,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            try? container.encodeIfPresent(aggregators, forKey: .aggregators)
             
             
             
