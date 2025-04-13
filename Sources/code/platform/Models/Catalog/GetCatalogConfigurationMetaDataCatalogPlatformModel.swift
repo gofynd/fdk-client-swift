@@ -12,7 +12,7 @@ public extension PlatformClient.Catalog {
     class GetCatalogConfigurationMetaData: Codable {
         
         
-        public var listing: MetaDataListingResponseSchema?
+        public var listing: MetaDataListingResponse?
         
         public var product: GetCatalogConfigurationDetailsProduct?
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(listing: MetaDataListingResponseSchema? = nil, product: GetCatalogConfigurationDetailsProduct? = nil) {
+        public init(listing: MetaDataListingResponse? = nil, product: GetCatalogConfigurationDetailsProduct? = nil) {
             
             self.listing = listing
             
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    listing = try container.decode(MetaDataListingResponseSchema.self, forKey: .listing)
+                    listing = try container.decode(MetaDataListingResponse.self, forKey: .listing)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetCatalogConfigurationMetaData: Codable {
         
         
-        public var listing: MetaDataListingResponseSchema?
+        public var listing: MetaDataListingResponse?
         
         public var product: GetCatalogConfigurationDetailsProduct?
         
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(listing: MetaDataListingResponseSchema? = nil, product: GetCatalogConfigurationDetailsProduct? = nil) {
+        public init(listing: MetaDataListingResponse? = nil, product: GetCatalogConfigurationDetailsProduct? = nil) {
             
             self.listing = listing
             
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    listing = try container.decode(MetaDataListingResponseSchema.self, forKey: .listing)
+                    listing = try container.decode(MetaDataListingResponse.self, forKey: .listing)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

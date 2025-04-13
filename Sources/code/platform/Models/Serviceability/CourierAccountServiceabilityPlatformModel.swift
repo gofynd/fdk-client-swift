@@ -12,8 +12,6 @@ public extension PlatformClient.Serviceability {
     class CourierAccount: Codable {
         
         
-        public var companyId: Int
-        
         public var extensionId: String
         
         public var accountId: String
@@ -26,12 +24,8 @@ public extension PlatformClient.Serviceability {
         
         public var isOwnAccount: Bool
         
-        public var schemeRules: CourierPartnerSchemeModel
-        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case companyId = "company_id"
             
             case extensionId = "extension_id"
             
@@ -45,13 +39,9 @@ public extension PlatformClient.Serviceability {
             
             case isOwnAccount = "is_own_account"
             
-            case schemeRules = "scheme_rules"
-            
         }
 
-        public init(accountId: String, companyId: Int, extensionId: String, isOwnAccount: Bool, isSelfShip: Bool, schemeId: String, schemeRules: CourierPartnerSchemeModel, stage: String) {
-            
-            self.companyId = companyId
+        public init(accountId: String, extensionId: String, isOwnAccount: Bool, isSelfShip: Bool, schemeId: String, stage: String) {
             
             self.extensionId = extensionId
             
@@ -65,17 +55,10 @@ public extension PlatformClient.Serviceability {
             
             self.isOwnAccount = isOwnAccount
             
-            self.schemeRules = schemeRules
-            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                companyId = try container.decode(Int.self, forKey: .companyId)
-                
-            
             
             
                 extensionId = try container.decode(String.self, forKey: .extensionId)
@@ -107,20 +90,10 @@ public extension PlatformClient.Serviceability {
                 
             
             
-            
-                schemeRules = try container.decode(CourierPartnerSchemeModel.self, forKey: .schemeRules)
-                
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
             
             
             
@@ -150,11 +123,6 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(isOwnAccount, forKey: .isOwnAccount)
-            
-            
-            
-            
-            try? container.encodeIfPresent(schemeRules, forKey: .schemeRules)
             
             
         }
@@ -173,8 +141,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class CourierAccount: Codable {
         
         
-        public var companyId: Int
-        
         public var extensionId: String
         
         public var accountId: String
@@ -187,12 +153,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var isOwnAccount: Bool
         
-        public var schemeRules: CourierPartnerSchemeModel
-        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case companyId = "company_id"
             
             case extensionId = "extension_id"
             
@@ -206,13 +168,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case isOwnAccount = "is_own_account"
             
-            case schemeRules = "scheme_rules"
-            
         }
 
-        public init(accountId: String, companyId: Int, extensionId: String, isOwnAccount: Bool, isSelfShip: Bool, schemeId: String, schemeRules: CourierPartnerSchemeModel, stage: String) {
-            
-            self.companyId = companyId
+        public init(accountId: String, extensionId: String, isOwnAccount: Bool, isSelfShip: Bool, schemeId: String, stage: String) {
             
             self.extensionId = extensionId
             
@@ -226,17 +184,10 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             self.isOwnAccount = isOwnAccount
             
-            self.schemeRules = schemeRules
-            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                companyId = try container.decode(Int.self, forKey: .companyId)
-                
-            
             
             
                 extensionId = try container.decode(String.self, forKey: .extensionId)
@@ -268,20 +219,10 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 
             
             
-            
-                schemeRules = try container.decode(CourierPartnerSchemeModel.self, forKey: .schemeRules)
-                
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-            
             
             
             
@@ -311,11 +252,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(isOwnAccount, forKey: .isOwnAccount)
-            
-            
-            
-            
-            try? container.encodeIfPresent(schemeRules, forKey: .schemeRules)
             
             
         }

@@ -20,8 +20,6 @@ public extension ApplicationClient.Cart {
         
         public var code: String?
         
-        public var errorEn: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -37,11 +35,9 @@ public extension ApplicationClient.Cart {
             
             case code = "code"
             
-            case errorEn = "error_en"
-            
         }
 
-        public init(code: String? = nil, discount: Double? = nil, displayMessageEn: String? = nil, errorEn: String? = nil, nextValidationRequired: Bool? = nil, title: String? = nil, valid: Bool? = nil) {
+        public init(code: String? = nil, discount: Double? = nil, displayMessageEn: String? = nil, nextValidationRequired: Bool? = nil, title: String? = nil, valid: Bool? = nil) {
             
             self.title = title
             
@@ -54,8 +50,6 @@ public extension ApplicationClient.Cart {
             self.displayMessageEn = displayMessageEn
             
             self.code = code
-            
-            self.errorEn = errorEn
             
         }
 
@@ -134,18 +128,6 @@ public extension ApplicationClient.Cart {
             }
             
             
-            
-            do {
-                errorEn = try container.decode(String.self, forKey: .errorEn)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -173,10 +155,6 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(code, forKey: .code)
-            
-            
-            
-            try? container.encodeIfPresent(errorEn, forKey: .errorEn)
             
             
         }

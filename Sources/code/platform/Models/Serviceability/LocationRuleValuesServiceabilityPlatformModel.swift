@@ -20,7 +20,7 @@ public extension PlatformClient.Serviceability {
         
         public var displayName: String?
         
-        public var parentId: [String]?
+        public var parentId: String?
         
         public var parentIds: [String]?
         
@@ -41,7 +41,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(displayName: String? = nil, id: String, name: String? = nil, parentId: [String]? = nil, parentIds: [String]? = nil, subType: String? = nil) {
+        public init(displayName: String? = nil, id: String, name: String? = nil, parentId: String? = nil, parentIds: [String]? = nil, subType: String? = nil) {
             
             self.id = id
             
@@ -103,7 +103,7 @@ public extension PlatformClient.Serviceability {
             
             
                 do {
-                    parentId = try container.decode([String].self, forKey: .parentId)
+                    parentId = try container.decode(String.self, forKey: .parentId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -184,7 +184,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var displayName: String?
         
-        public var parentId: [String]?
+        public var parentId: String?
         
         public var parentIds: [String]?
         
@@ -205,7 +205,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(displayName: String? = nil, id: String, name: String? = nil, parentId: [String]? = nil, parentIds: [String]? = nil, subType: String? = nil) {
+        public init(displayName: String? = nil, id: String, name: String? = nil, parentId: String? = nil, parentIds: [String]? = nil, subType: String? = nil) {
             
             self.id = id
             
@@ -267,7 +267,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 do {
-                    parentId = try container.decode([String].self, forKey: .parentId)
+                    parentId = try container.decode(String.self, forKey: .parentId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
