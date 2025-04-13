@@ -78,8 +78,6 @@ public extension PlatformClient.CompanyProfile {
         
         public var autoAssignCourierPartner: Bool?
         
-        public var isHyperlocalActive: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -149,11 +147,9 @@ public extension PlatformClient.CompanyProfile {
             
             case autoAssignCourierPartner = "auto_assign_courier_partner"
             
-            case isHyperlocalActive = "is_hyperlocal_active"
-            
         }
 
-        public init(address: GetAddressSerializer, autoAssignCourierPartner: Bool? = nil, autoInvoice: Bool? = nil, avgOrderProcessingTime: AverageOrderProcessingTime? = nil, bulkShipment: Bool? = nil, code: String, company: GetCompanySerializer? = nil, contactNumbers: [SellerPhoneNumber]? = nil, createdBy: UserSerializer? = nil, createdOn: String? = nil, creditNote: Bool? = nil, defaultOrderAcceptanceTiming: Bool? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSerializer? = nil, holiday: [HolidaySchemaSerializer]? = nil, isHyperlocalActive: Bool? = nil, manager: LocationManagerSerializer? = nil, modifiedBy: UserSerializer? = nil, modifiedOn: String? = nil, name: String, notificationEmails: [String]? = nil, orderAcceptanceTiming: [LocationDayWiseSerializer]? = nil, phoneNumber: String? = nil, productReturnConfig: ProductReturnConfigSerializer? = nil, stage: String? = nil, storeType: String? = nil, tags: [String]? = nil, timing: [LocationDayWiseSerializer]? = nil, uid: Int? = nil, verifiedBy: UserSerializer? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(address: GetAddressSerializer, autoAssignCourierPartner: Bool? = nil, autoInvoice: Bool? = nil, avgOrderProcessingTime: AverageOrderProcessingTime? = nil, bulkShipment: Bool? = nil, code: String, company: GetCompanySerializer? = nil, contactNumbers: [SellerPhoneNumber]? = nil, createdBy: UserSerializer? = nil, createdOn: String? = nil, creditNote: Bool? = nil, defaultOrderAcceptanceTiming: Bool? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSerializer? = nil, holiday: [HolidaySchemaSerializer]? = nil, manager: LocationManagerSerializer? = nil, modifiedBy: UserSerializer? = nil, modifiedOn: String? = nil, name: String, notificationEmails: [String]? = nil, orderAcceptanceTiming: [LocationDayWiseSerializer]? = nil, phoneNumber: String? = nil, productReturnConfig: ProductReturnConfigSerializer? = nil, stage: String? = nil, storeType: String? = nil, tags: [String]? = nil, timing: [LocationDayWiseSerializer]? = nil, uid: Int? = nil, verifiedBy: UserSerializer? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.code = code
             
@@ -220,8 +216,6 @@ public extension PlatformClient.CompanyProfile {
             self.bulkShipment = bulkShipment
             
             self.autoAssignCourierPartner = autoAssignCourierPartner
-            
-            self.isHyperlocalActive = isHyperlocalActive
             
         }
 
@@ -596,18 +590,6 @@ public extension PlatformClient.CompanyProfile {
                 }
                 
             
-            
-                do {
-                    isHyperlocalActive = try container.decode(Bool.self, forKey: .isHyperlocalActive)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -776,11 +758,6 @@ public extension PlatformClient.CompanyProfile {
             
             
             try? container.encodeIfPresent(autoAssignCourierPartner, forKey: .autoAssignCourierPartner)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isHyperlocalActive, forKey: .isHyperlocalActive)
             
             
         }

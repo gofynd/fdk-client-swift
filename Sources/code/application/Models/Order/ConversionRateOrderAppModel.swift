@@ -12,8 +12,6 @@ public extension ApplicationClient.Order {
         
         public var rates: [String: Any]?
         
-        public var timestamp: Double?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -21,17 +19,13 @@ public extension ApplicationClient.Order {
             
             case rates = "rates"
             
-            case timestamp = "timestamp"
-            
         }
 
-        public init(base: String? = nil, rates: [String: Any]? = nil, timestamp: Double? = nil) {
+        public init(base: String? = nil, rates: [String: Any]? = nil) {
             
             self.base = base
             
             self.rates = rates
-            
-            self.timestamp = timestamp
             
         }
 
@@ -62,18 +56,6 @@ public extension ApplicationClient.Order {
             }
             
             
-            
-            do {
-                timestamp = try container.decode(Double.self, forKey: .timestamp)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -85,10 +67,6 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(rates, forKey: .rates)
-            
-            
-            
-            try? container.encodeIfPresent(timestamp, forKey: .timestamp)
             
             
         }

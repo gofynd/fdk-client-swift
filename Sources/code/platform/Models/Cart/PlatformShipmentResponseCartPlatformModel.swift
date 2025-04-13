@@ -42,10 +42,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var error: ShipmentError?
         
-        public var journeyWisePromise: [JourneyPromiseObject]?
-        
-        public var distance: Double?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -77,13 +73,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case error = "error"
             
-            case journeyWisePromise = "journey_wise_promise"
-            
-            case distance = "distance"
-            
         }
 
-        public init(articles: [ShipmentArticle]? = nil, boxType: String? = nil, distance: Double? = nil, dpId: String? = nil, dpOptions: [String: Any]? = nil, error: ShipmentError? = nil, fulfillmentId: Int? = nil, fulfillmentType: String? = nil, items: [CartProductInfo]? = nil, journeyWisePromise: [JourneyPromiseObject]? = nil, logisticsMeta: ShipmentLogisticsMeta? = nil, meta: ShipmentMeta? = nil, orderType: String? = nil, promise: ShipmentPromise? = nil, shipments: Int? = nil, shipmentType: String? = nil) {
+        public init(articles: [ShipmentArticle]? = nil, boxType: String? = nil, dpId: String? = nil, dpOptions: [String: Any]? = nil, error: ShipmentError? = nil, fulfillmentId: Int? = nil, fulfillmentType: String? = nil, items: [CartProductInfo]? = nil, logisticsMeta: ShipmentLogisticsMeta? = nil, meta: ShipmentMeta? = nil, orderType: String? = nil, promise: ShipmentPromise? = nil, shipments: Int? = nil, shipmentType: String? = nil) {
             
             self.shipments = shipments
             
@@ -112,10 +104,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.logisticsMeta = logisticsMeta
             
             self.error = error
-            
-            self.journeyWisePromise = journeyWisePromise
-            
-            self.distance = distance
             
         }
 
@@ -290,30 +278,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
-            
-                do {
-                    journeyWisePromise = try container.decode([JourneyPromiseObject].self, forKey: .journeyWisePromise)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    distance = try container.decode(Double.self, forKey: .distance)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -387,16 +351,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(error, forKey: .error)
-            
-            
-            
-            
-            try? container.encodeIfPresent(journeyWisePromise, forKey: .journeyWisePromise)
-            
-            
-            
-            
-            try? container.encodeIfPresent(distance, forKey: .distance)
             
             
         }

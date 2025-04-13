@@ -20,8 +20,6 @@ public extension ApplicationClient.Order {
         
         public var tags: [String]?
         
-        public var customJson: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -37,11 +35,9 @@ public extension ApplicationClient.Order {
             
             case tags = "tags"
             
-            case customJson = "custom_json"
-            
         }
 
-        public init(code: String? = nil, companyId: Int? = nil, companyName: String? = nil, customJson: [String: Any]? = nil, id: Int? = nil, name: String? = nil, tags: [String]? = nil) {
+        public init(code: String? = nil, companyId: Int? = nil, companyName: String? = nil, id: Int? = nil, name: String? = nil, tags: [String]? = nil) {
             
             self.id = id
             
@@ -54,8 +50,6 @@ public extension ApplicationClient.Order {
             self.companyId = companyId
             
             self.tags = tags
-            
-            self.customJson = customJson
             
         }
 
@@ -134,18 +128,6 @@ public extension ApplicationClient.Order {
             }
             
             
-            
-            do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -173,10 +155,6 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
         }

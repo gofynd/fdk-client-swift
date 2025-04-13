@@ -18,12 +18,6 @@ public extension ApplicationClient.Order {
         
         public var distributionLogic: ChargeDistributionLogic
         
-        public var meta: [String: Any]?
-        
-        public var isRefundable: Bool?
-        
-        public var isRefundableOnState: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -37,15 +31,9 @@ public extension ApplicationClient.Order {
             
             case distributionLogic = "distribution_logic"
             
-            case meta = "meta"
-            
-            case isRefundable = "is_refundable"
-            
-            case isRefundableOnState = "is_refundable_on_state"
-            
         }
 
-        public init(amount: ChargeAmount, code: String? = nil, distributionLogic: ChargeDistributionLogic, isRefundable: Bool? = nil, isRefundableOnState: Bool? = nil, meta: [String: Any]? = nil, name: String, type: String? = nil) {
+        public init(amount: ChargeAmount, code: String? = nil, distributionLogic: ChargeDistributionLogic, name: String, type: String? = nil) {
             
             self.code = code
             
@@ -56,12 +44,6 @@ public extension ApplicationClient.Order {
             self.amount = amount
             
             self.distributionLogic = distributionLogic
-            
-            self.meta = meta
-            
-            self.isRefundable = isRefundable
-            
-            self.isRefundableOnState = isRefundableOnState
             
         }
 
@@ -107,42 +89,6 @@ public extension ApplicationClient.Order {
             
             
             
-            
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                isRefundable = try container.decode(Bool.self, forKey: .isRefundable)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                isRefundableOnState = try container.decode(Bool.self, forKey: .isRefundableOnState)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -166,18 +112,6 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(distributionLogic, forKey: .distributionLogic)
-            
-            
-            
-            try? container.encodeIfPresent(meta, forKey: .meta)
-            
-            
-            
-            try? container.encodeIfPresent(isRefundable, forKey: .isRefundable)
-            
-            
-            
-            try? container.encodeIfPresent(isRefundableOnState, forKey: .isRefundableOnState)
             
             
         }
